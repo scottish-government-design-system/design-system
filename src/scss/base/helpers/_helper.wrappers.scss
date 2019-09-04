@@ -1,0 +1,38 @@
+/*------------------------------------*\
+    WRAPPERS
+\*------------------------------------*/
+
+$wrapper__padding: 15px !default;
+$wrapper__width--medium: 750px !default;
+$wrapper__width--large: 970px !default;
+$wrapper__width--xlarge: 1170px !default;
+
+
+
+
+.#{$pl-prefix}wrapper {
+    margin: 0 auto;
+    padding: 0 $wrapper__padding;
+
+    &--no-overflow {
+        overflow: hidden;
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}wrapper {
+        max-width: $wrapper__width--medium;
+    }
+}
+
+@include media-query(large) {
+    .#{$pl-prefix}wrapper {
+        max-width: $wrapper__width--large;
+    }
+}
+
+@include media-query(xlarge) {
+    .#{$pl-prefix}wrapper {
+        max-width: $wrapper__width--xlarge;
+    }
+}

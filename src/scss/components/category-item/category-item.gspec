@@ -1,0 +1,42 @@
+@objects
+    main                #example-main
+        category-item   .category-item
+            link        .category-item__link
+            title       .category-item__title
+            summary     .category-item__summary
+
+    highlight           #example-highlight
+        category-item   .category-item
+            link        .category-item__link
+            title       .category-item__title
+            summary     .category-item__summary
+
+    no-border          #example-no-border
+        category-item   .category-item
+            link        .category-item__link
+            title       .category-item__title
+            summary     .category-item__summary
+
+= Category item =
+    main.category-item:
+        contains main.category-item.link
+
+    main.category-item.link:
+        contains main.category-item.title, main.category-item.summary
+        css border-left-width is "1px"
+
+    main.category-item.title:
+        inside main.category-item.link 16px left, 7px top, 15px right
+        aligned vertically left main.category-item.summary
+
+    main.category-item.summary:
+        inside main.category-item.link 16px left, 15px right
+        below main.category-item.title 14px
+
+    ## highlighted variant
+    highlight.category-item.link:
+        css border-left-width is "2px"
+
+    ## no-border variant
+    no-border.category-item.summary, no-border.category-item.title:
+        inside no-border.category-item.link 0px left

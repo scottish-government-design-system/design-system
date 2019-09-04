@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    PHASE LABEL
+\*------------------------------------*/
+
+.#{$pl-prefix}tag {
+    background: $color__brand--primary;
+    border-radius: 2px;
+    color: $color__white;
+    display: inline-block;
+    font-size: $tiny-size;
+    font-weight: $bold;
+    line-height: 1;
+    padding: 3px 5px;
+    text-transform: uppercase;
+
+    &--reversed {
+        background-color: $color__white;
+        color: $color__brand--primary;
+    }
+}

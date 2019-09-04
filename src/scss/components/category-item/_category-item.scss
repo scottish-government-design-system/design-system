@@ -1,0 +1,58 @@
+/*------------------------------------*\
+    CATEGORY ITEM
+    Navigation elements for different levels of category navigation. Includes classes for layout of these elements in a list.
+\*------------------------------------*/
+
+$category-item__border-color: $color__link !default;
+$category-item__border-color--hover: $color__link--hover !default;
+
+
+
+
+.#{$pl-prefix}category-item {
+
+    @include blocklink('.#{$pl-prefix}category-item__link');
+
+    border-left: 3px solid mix($category-item__border-color, $color__grey--lighter, 30%);
+    padding: 10px 15px 11px;
+    text-decoration: none;
+    transition: background-color $transition-out-time, border-color $transition-out-time;
+    width: 100%;
+
+    :last-child {
+        margin-bottom: 0;
+    }
+
+    &__title {
+        font-size: $large-size;
+        line-height: 21px;
+        margin: 0 0 14px;
+    }
+
+    &__summary {
+        font-size: $small-size;
+        color: $color__grey--base;
+        line-height: 21px;
+        margin: 0;
+    }
+
+    &--highlight {
+        border-color: $category-item__border-color;
+        //border-left-width: 2px;
+    }
+
+    &--no-border {
+        .#{$pl-prefix}category-item__link {
+            border-left: 0;
+            padding-left: 0;
+        }
+    }
+
+    &:hover {
+        border-color: $color__link--hover;
+    }
+
+    &:hover &__summary {
+        color: $color__body;
+    }
+}

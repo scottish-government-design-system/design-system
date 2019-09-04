@@ -1,0 +1,30 @@
+@objects
+    search-result   .search-result
+        link        .search-result__link
+        header      .search-result__header
+        title       .search-result__title
+        summary     .search-result__summary
+        metadata    .search-result__metadata
+
+= Search result =
+    search-result.link:
+        contains search-result.header, search-result.summary
+
+    search-result.header:
+        contains search-result.metadata, search-result.title
+        inside search-result 22px top
+        aligned vertically left search-result.summary
+
+    search-result.metadata:
+        above search-result.title 7px
+
+    search-result.summary:
+        below search-result.title 7px
+
+    @on small
+        search-result.header:
+            inside search-result 0px left right
+
+    @on medium, large, xlarge
+        search-result.header:
+            inside search-result 15px left right, 22px top

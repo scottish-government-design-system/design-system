@@ -1,0 +1,285 @@
+/*
+    PRIMARY NAVIGATION
+    containing site-navigation and mobile equivalent
+*/
+
+$reversed-current-color: $color__blue--light !default;
+$reversed-hover-bg: $color__link--hover !default;
+$mobile-menu-background: $color__grey--lighter;
+
+
+
+
+.#{$pl-prefix}site-navigation {
+    clear: both;
+    display: none;
+    font-size: $small-size;
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+        margin: 0 0 0 -15px;
+    }
+
+    &__item {
+        display: inline-block;
+        margin-bottom: 0;
+
+        &:not(:last-child) {
+            margin-right: 1px;
+        }
+    }
+
+    &__link {
+        $link-horiz-padding: 15px;
+
+        @include fancy-underscore;
+
+        color: currentColor;
+        display: block;
+        padding: 7px $link-horiz-padding;
+        text-decoration: none;
+        white-space: nowrap;
+
+        &:focus,
+        &:active {
+            position: relative;
+            z-index: 1;
+        }
+
+        &:hover {
+            background-color: $color__link--hover__background;
+        }
+
+        &:active {
+            background-color: $color__link--active__background;
+        }
+
+        &:after {
+            bottom: 0;
+            height: 3px;
+        }
+
+        &:hover:after,
+        &:focus:after {
+            left: $link-horiz-padding;
+            right: $link-horiz-padding;
+        }
+
+        &.#{$pl-prefix}current {
+            background-color: $color__link--current__background;
+
+            &:after {
+                background-color: $color__link;
+                left: $link-horiz-padding;
+                opacity: 1;
+                right: $link-horiz-padding;
+            }
+        }
+    }
+
+    &--reversed {
+        .#{$pl-prefix}site-navigation__link {
+            color: $color__white;
+
+            &:hover:not(.#{$pl-prefix}current):not(:active),
+            &:focus:not(.#{$pl-prefix}current):not(:active) {
+                background-color: $reversed-hover-bg;
+                color: $reversed-current-color;
+            }
+
+            &:active {
+                background-color: $color__blocklink-bg--active;
+                color: $color__link--active;
+            }
+
+            &.#{$pl-prefix}current {
+                background-color: transparent;
+                color: $reversed-current-color;
+
+                &:after {
+                    background-color: currentColor;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+// mobile menu
+
+.js-toggle-menu,
+.js-close-menu {
+    display: none;
+}
+
+.js-enabled {
+    .#{$pl-prefix}mobile-navigation {
+        display: none;
+        position: fixed;
+    }
+
+    .js-toggle-menu,
+    .js-close-menu {
+        display: block;
+    }
+
+    .#{$pl-prefix}mobile-navigation__button {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .#{$pl-prefix}mobile-navigation {
+        position: absolute;
+    }
+
+    .#{$pl-prefix}mobile-navigation.menu-is-open {
+        display: block;
+    }
+}
+
+.#{$pl-prefix}mobile-navigation {
+    box-sizing: border-box;
+    left: 0;
+    overflow: auto;
+    right: 0;
+    z-index: 10;
+
+    &__button {
+        @include blocklink;
+        background-color: transparent;
+        display: none;
+        color: $color__link;
+        font-weight: $normal;
+        height: calc(100% + 1px);
+        padding: 0 15px;
+
+        &--open {
+            background-color: $mobile-menu-background;
+            color: $color__link;
+        }
+
+        &:hover {
+            color: $color__link--hover;
+        }
+
+        &:focus {
+            color: $color__link--hover;
+        }
+    }
+
+    &__backdrop {
+        background: rgba(255,255,255,0.8) !important;
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+        transition-duration: $transition-in-time;
+        width: 100%;
+        z-index: 1;
+
+        &:after {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
+            content: '';
+            height: 11px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+
+    &__content {
+        background: $mobile-menu-background;
+        overflow: hidden;
+        padding: 0 15px;
+    }
+
+    &__block {
+        margin: 21px 0;
+        overflow: hidden;
+    }
+
+    &__list {
+        list-style-type: none;
+        margin: 0;
+    }
+
+    &__item {
+        margin: 0;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid $color__border--base;
+        }
+    }
+
+    &__link {
+        $mobile-nav-link-vertical-padding: 14px;
+        $mobile-nav-link-horizontal-padding: 20px;
+
+        color: $color__body;
+        display: block;
+        padding: $mobile-nav-link-vertical-padding $mobile-nav-link-horizontal-padding;
+        text-decoration: none;
+
+        &:focus {
+            border-left: 3px solid $color__link;
+            outline: 2px solid $color__link--focus__outline;
+            padding-left: #{$mobile-nav-link-horizontal-padding - 2px};
+        }
+
+        &:hover {
+            border-left: 3px solid $color__link;
+            padding-left: #{$mobile-nav-link-horizontal-padding - 2px};
+        }
+
+        &:active {
+            outline: 0;
+        }
+
+        &.#{$pl-prefix}current {
+            background-color: $color__link--current__background;
+            border-left: 3px solid $color__link;
+            padding-left: 18px;
+        }
+    }
+
+    &__button--reversed {
+        color: $color__white;
+
+        &:hover:not(:active),
+        &:focus:not(:active) {
+            background-color: $reversed-hover-bg;
+            color: $reversed-current-color;
+        }
+
+        &:active {
+            background-color: $color__blocklink-bg--active;
+            color: $color__link--active;
+        }
+    }
+}
+
+@include media-query(medium-down) {
+    html.menu-is-open,
+    html.menu-is-open body {
+        overflow-y: hidden;
+        position: relative;
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}site-navigation {
+        display: block;
+    }
+
+    .#{$pl-prefix}mobile-navigation,
+    .#{$pl-prefix}mobile-navigation__button {
+        display: none !important;
+    }
+}

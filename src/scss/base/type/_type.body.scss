@@ -1,0 +1,29 @@
+/*------------------------------------*\
+    BODY
+\*------------------------------------*/
+
+html {
+    font-size: $root-font-size;
+}
+
+body {
+    background: $color__white;
+    color: $color__body;
+    font-family: $base-font-family;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    line-height: 21px;
+    margin: 0;
+    text-rendering: optimizeLegibility;
+}
+
+@include media-query(medium) {
+    html {
+        font-size: $root-font-size--medium;
+    }
+
+    body {
+        line-height: 28px;
+    }
+}

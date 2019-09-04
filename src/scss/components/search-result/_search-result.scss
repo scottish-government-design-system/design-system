@@ -1,0 +1,54 @@
+/*------------------------------------*\
+    SEARCH RESULT
+\*------------------------------------*/
+
+.#{$pl-prefix}search-result {
+    @include blocklink('.#{$pl-prefix}search-result__title');
+
+    border: 1px solid $color__border--light;
+    border-width: 1px 0;
+    color: $color__body !important;
+    margin: 0 #{$mobile-body-margin * -1} -1px;
+    padding: 21px 15px;
+    position: relative;
+    text-decoration: none;
+
+    &__link:after {
+        content: "";
+        height: 100%;
+        left: 0px;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        z-index: 0;
+    }
+
+    &__label {
+        font-weight: $bold;
+        text-transform: uppercase;
+    }
+
+    &__date {
+        color: $color__grey--base;
+        font-weight: $normal;
+    }
+
+    &__title {
+        color: $color__link;
+        margin-bottom: 7px;
+        margin-top: 0 !important;
+
+        transition: color $transition-out-time;
+    }
+
+    &__summary {
+        margin-bottom: 0;
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}search-result {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

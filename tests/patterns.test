@@ -1,0 +1,82 @@
+@@ set domain http://localhost:4000
+@@ table devices
+   |deviceName|tags  |size    |
+   |small     |small |320x640 |
+   |medium    |medium|768x640 |
+   |large     |large |992x640 |
+   |xlarge    |xlarge|1280x800|
+
+@@ parameterized using devices
+Breadcrumbs on ${deviceName} device
+    ${domain}/patterns/breadcrumbs/all-examples.html   ${size}
+        check _scss/components/breadcrumbs/breadcrumbs.gspec --include "${tags}"
+
+@@ parameterized using devices
+Category header on ${deviceName} device
+    ${domain}/patterns/category-header/all-examples.html   ${size}
+        check _scss/components/category-header/category-header.gspec --include "${tags}"
+
+@@ parameterized using devices
+Category item on ${deviceName} device
+    ${domain}/components/category-item/all-examples.html   ${size}
+        check _scss/components/category-item/category-item.gspec --include "${tags}"
+
+@@ parameterized using devices
+Category item (card) on ${deviceName} device
+    ${domain}/components/category-item-card/all-examples.html   ${size}
+        check _scss/components/category-item/category-item--card.gspec --include "${tags}"
+
+@@ parameterized using devices
+Category list on ${deviceName} device
+    ${domain}/patterns/list-navigation/all-examples.html   ${size}
+        check _scss/components/category-lists/category-list.gspec --include "${tags}"
+
+@@ parameterized using devices
+Category list (grid) on ${deviceName} device
+    ${domain}/patterns/grid-navigation/all-examples.html   ${size}
+        check _scss/components/category-lists/category-list--grid.gspec --include "${tags}"
+
+@@ parameterized using devices
+Page header on ${deviceName} device
+    ${domain}/patterns/page-header/all-examples.html   ${size}
+        check _scss/components/page-header/page-header.gspec --include "${tags}"
+
+@@ parameterized using devices
+Search result on ${deviceName} device
+    ${domain}/components/search-result/all-examples.html   ${size}
+        check _scss/components/search-result/search-result.gspec --include "${tags}"
+
+@@ parameterized using devices
+Search results list on ${deviceName} device
+    ${domain}/patterns/search-results/all-examples.html   ${size}
+        check _scss/components/search-results/search-results.gspec --include "${tags}"
+
+@@ parameterized using devices
+Sequential navigation on ${deviceName} device
+    ${domain}/patterns/sequential-navigation/all-examples.html   ${size}
+        check _scss/components/sequential-navigation/sequential-navigation.gspec --include "${tags}"
+
+@@ parameterized using devices
+Site branding on ${deviceName} device
+    ${domain}/components/site-branding/all-examples.html   ${size}
+        check _scss/components/site-branding/site-branding.gspec --include "${tags}"
+
+@@ parameterized using devices
+Site footer on ${deviceName} device
+    ${domain}/patterns/site-footer/all-examples.html   ${size}
+        check _scss/components/site-footer/site-footer.gspec --include "${tags}"
+
+@@ parameterized using devices
+Site header on ${deviceName} device
+    ${domain}/patterns/site-header/all-examples.html   ${size}
+        check _scss/components/site-header/site-header.gspec --include "${tags}"
+
+@@ parameterized using devices
+Site search on ${deviceName} device
+    ${domain}/components/site-search/all-examples.html   ${size}
+        check _scss/components/site-search/site-search.gspec --include "${tags}"
+
+@@ parameterized using devices
+Tag on ${deviceName} device
+    ${domain}/components/tag/all-examples.html   ${size}
+        check _scss/components/tag/tag.gspec --include "${tags}"

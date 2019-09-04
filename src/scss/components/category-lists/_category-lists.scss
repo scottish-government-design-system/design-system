@@ -1,0 +1,100 @@
+/*------------------------------------*\
+    CATEGORY LIST
+\*------------------------------------*/
+
+.#{$pl-prefix}category-list-container {
+    margin: 28px 0;
+}
+
+.#{$pl-prefix}category-list {
+    list-style-type: none;
+    margin: -7px;
+    overflow: hidden;
+    padding: 7px;
+
+    > * {
+        margin-bottom: $grid-gap-y;
+    }
+
+    & + & {
+        margin-top: calc(#{$grid-gap-y} - 7px);
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}category-list--grid > * {
+        float: left;
+        width: calc(50% - #{$grid-gap-x});
+        margin-left: $grid-gap-x;
+
+        &:nth-child(2n+1) {
+            clear: left;
+            margin-left: 0;
+        }
+    }
+
+    .#{$pl-prefix}category-list--grid--narrow > * {
+        margin-left: 10px;
+    }
+
+    .#{$pl-prefix}category-list--grid .category-item--card .category-item__link {
+        min-height: 186px;
+    }
+}
+
+@include media-query(large) {
+    .#{$pl-prefix}category-list--grid > * {
+        width: calc(33% - #{$grid-gap-x});
+
+        &:nth-child(n) {
+            clear: none;
+            margin-left: $grid-gap-x;
+        }
+
+        &:nth-child(3n+1) {
+            clear: left;
+            margin-left: 0;
+        }
+    }
+}
+
+@include media-query(large) {
+    .#{$pl-prefix}category-list--grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+
+@supports(display: grid) {
+    .#{$pl-prefix}category-list--grid > * {
+        float: none;
+        width: 100%;
+
+        &:nth-child(n) {
+            margin-bottom: 0;
+            margin-left: 0;
+        }
+    }
+
+    .#{$pl-prefix}category-list--grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: $grid-gap-y $grid-gap-x;
+
+        &--narrow {
+            grid-gap: $grid-gap--narrow;
+        }
+    }
+
+    @include media-query(medium) {
+        .#{$pl-prefix}category-list--grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @include media-query(large) {
+        .#{$pl-prefix}category-list--grid {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}

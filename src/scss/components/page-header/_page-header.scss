@@ -1,0 +1,26 @@
+/*------------------------------------*\
+    ARTICLE HEADER
+    title block for articles
+\*------------------------------------*/
+
+.#{$pl-prefix}page-header {
+    margin: 14px 0 35px;
+
+    &__title {
+        margin-bottom: 0;
+    }
+
+    &__label + &__title {
+        margin-top: 0;
+    }
+
+    &__metadata {
+        margin-top: 7px;
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}page-header {
+        margin-top: 28px;
+    }
+}

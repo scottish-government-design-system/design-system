@@ -1,0 +1,113 @@
+/*------------------------------------*\
+    ACCORDION
+\*------------------------------------*/
+
+.#{$pl-prefix}accordion {
+    @include block-margins;
+
+    position: relative;
+
+    &__open-all {
+        display: none;
+        position: absolute;
+        right: 0;
+        text-decoration: none;
+        top: -35px;
+    }
+}
+
+.js-enabled .#{$pl-prefix}accordion__open-all {
+    display: block;
+}
+
+.#{$pl-prefix}accordion-item {
+    border-bottom: 1px solid $color__border--light;
+    border-top: 1px solid $color__border--light;
+
+    &__header {
+        @include blocklink;
+
+        color: $color__link;
+        font-weight: $bold;
+        padding: 14px 45px 14px 15px;
+        position: relative;
+
+        &:hover:not(:active) {
+            background-color: $color__link--hover__background;
+            color: $color__link--hover;
+        }
+
+        &:active {
+            color: $color__link--active;
+        }
+    }
+
+    &__title {
+        margin-bottom: 0;
+    }
+
+    &__label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    &__indicator {
+        @include indicator(16px);
+    }
+
+    &__body {
+        display: none;
+        padding: 21px 15px 28px;
+    }
+
+    &__control:checked ~ &__body {
+        display: block;
+    }
+
+    &__control:checked ~ &__header:not(:active) {
+        background-color: $color__link--current__background;
+        color: $color__link--current;
+    }
+
+    &__control:checked ~ &__header &__indicator {
+        @include indicator--open(20px);
+    }
+
+    &__control:focus ~ &__header {
+        outline: 2px solid $color__link--focus__outline;
+        z-index: 2;
+    }
+
+    + .#{$pl-prefix}accordion-item {
+        margin-top: -1px;
+    }
+}
+
+.js-enabled .#{$pl-prefix}accordion-item {
+    &__body {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 15px;
+        transition: max-height $transition-in-time, padding $transition-in-time;
+    }
+
+    &__control:checked ~ .#{$pl-prefix}accordion-item__body {
+        padding-bottom: 28px;
+        padding-top: 21px;
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}accordion-item {
+        &__indicator {
+            top: 18px;
+        }
+
+        &__control:checked ~ &__header &__indicator {
+            top: 24px;
+        }
+    }
+}

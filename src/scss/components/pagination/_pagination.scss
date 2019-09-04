@@ -1,0 +1,54 @@
+/*------------------------------------*\
+    PAGINATION
+\*------------------------------------*/
+
+.#{$pl-prefix}pagination {
+    font-size: $small-size;
+    text-align: center;
+
+    &__list {
+        list-style-type: none;
+        margin: 0;
+        display: none;
+    }
+
+    &__item {
+        display: inline-block;
+    }
+
+    &__link {
+        @include blocklink;
+
+        line-height: 21px;
+        padding: 14px 10px;
+        text-decoration: none;
+        min-width: 50px;
+
+        &.#{$pl-prefix}current {
+            border-bottom: 3px solid $color__brand--primary;
+            padding-bottom: 11px;
+        }
+
+        &--text {
+            padding-left: 21px;
+            padding-right: 21px;
+            width: auto;
+        }
+
+        &--ellipsis {
+            pointer-events: none;
+        }
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}pagination {
+        &__list {
+            display: block;
+        }
+
+        &__load-more {
+            display: none;
+        }
+    }
+}

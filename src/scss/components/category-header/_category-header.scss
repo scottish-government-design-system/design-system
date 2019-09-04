@@ -1,0 +1,65 @@
+/*------------------------------------*\
+    CATEGORY HEADER
+\*------------------------------------*/
+
+$category-header__border-color: $color__brand--primary !default;
+
+
+
+
+.#{$pl-prefix}category-header {
+    align-items: center;
+    margin-bottom: 35px;
+    padding: 14px 0;
+
+    &__header {
+        border-left: 4px solid $category-header__border-color;
+        margin-bottom: 28px;
+        padding-left: 20px;
+    }
+
+    /**
+     * [1] plus [2] gives a multiple of seven to maintain vertical rhythm
+     */
+    &__title {
+        margin-bottom: 10px; /* [1] */
+    }
+
+    &__summary {
+        font-size: $large-size;
+        font-weight: 700;
+        line-height: 28px;
+
+        :last-child {
+            margin-bottom: 4px; /* [2] */
+        }
+    }
+
+    &__image {
+        display: block;
+        margin: 0 auto;
+        max-width: 320px;
+    }
+
+    &--reversed {
+        color: $color__white;
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}category-header {
+        display: grid;
+        grid-gap: 0 30px;
+        grid-template-columns: repeat(12, 1fr);
+
+        &__header {
+            grid-column: 1 / span 8;
+            margin-bottom: 0;
+        }
+
+        &__image {
+            grid-column: 9 / span 4;
+            max-width: 100%;
+        }
+    }
+}

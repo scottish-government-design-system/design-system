@@ -1,0 +1,157 @@
+/*------------------------------------*\
+    NOTIFICATION BANNER
+\*------------------------------------*/
+
+$notification-close-padding: 5px;
+$notification-icon-padding: $notification-close-padding;
+
+
+
+
+.#{$pl-prefix}notification {
+    background: $color__grey--dark;
+    color: $color__white;
+    margin-bottom: 1px;
+
+
+    background: $color__blue--lighter;
+    color: $color__body;
+
+    a:not(.#{$pl-prefix}button) {
+        color: currentColor;
+
+        &:hover {
+            color: $color__link--hover;
+        }
+
+        &:hover {
+            color: $color__link--active;
+        }
+    }
+
+    &__content {
+        justify-content: space-between;
+        padding: 14px 0;
+        position: relative;
+
+        &--has-close {
+            padding-right: 45px;
+        }
+    }
+
+    &__text {
+        display: inline-block;
+        margin-right: 20px;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__actions {
+        display: inline-block;
+        margin: 7px 0 -7px;
+
+        > * {
+            margin-right: 5px;
+            margin-bottom: 14px;
+        }
+    }
+
+    &__icon {
+        background-color: currentColor;
+        border-radius: 100px;
+        display: block;
+        float: left;
+        height: 29px;
+        line-height: 0;
+        margin-left: -5px;
+        padding: 5px;
+        width: 29px;
+
+        + .#{$pl-prefix}notification__text {
+            margin-left: 40px;
+        }
+    }
+
+    &__close {
+        background: transparent;
+        box-sizing: content-box;
+        color: currentColor;
+        display: none;
+        font-size: $small-size--fixed;
+        height: 21px;
+        margin: #{$notification-close-padding * -1} #{$notification-close-padding * -1} #{$notification-close-padding * -1} 25px;
+        padding: $notification-close-padding;
+        position: absolute;
+        right: 0;
+        top: 14px;
+        width: 21px;
+
+        &:hover {
+            background-color: transparent;
+        }
+
+        &:hover:not(:focus) {
+            background-color: transparent;
+            color: currentColor;
+            outline: 2px solid currentColor;
+        }
+    }
+
+    &--major {
+        background: $color__gold--base;
+
+        .#{$pl-prefix}notification__icon svg {
+            fill: $color__gold--base;
+        }
+
+        // major needs special behavour for focus/active state of its interactive elements
+        .#{$pl_prefix}notification__close,
+        a {
+            &:focus {
+                outline-color: $color__body;
+                color: $color__body;
+            }
+
+            &:active {
+                background-color: $color__body;
+                color: $color__gold--base !important;
+            }
+        }
+    }
+
+    &--positive {
+        background: $color__green--base;
+        color: $color__white;
+
+        .#{$pl-prefix}notification__icon svg {
+            fill: $color__green--base;
+        }
+    }
+
+    &--negative {
+        background: $color__red--base;
+        color: $color__white;
+
+        .#{$pl-prefix}notification__icon svg {
+            fill: $color__red--base;
+        }
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}notification__close {
+        top: 18px;
+    }
+}
+
+.js-enabled {
+    .#{$pl-prefix}notification__close {
+        display: block;
+    }
+}

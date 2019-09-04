@@ -1,0 +1,33 @@
+@objects
+    main    #example-main
+        tag .tag
+
+    in-header   #example-in-header
+        header          .site-header
+            content     .site-header__content
+            branding    .site-header__branding
+                title   .site-branding__title
+                logo    .site-branding__logo
+            search      .site-header__search
+            tag         .site-branding__tag
+
+
+= Tag =
+    # all we can do here is check CSS properties
+    main.tag:
+        css font-weight is "700"
+        css text-transform is "uppercase"
+
+    @on small
+        main.tag:
+            css font-size is "12px"
+
+    @on medium, large, xlarge
+        main.tag:
+            css font-size is "14.25px"
+
+    # usage in site header
+    in-header.header.tag:
+        centered vertically inside in-header.header.branding
+        aligned horizontally centered in-header.header.branding.title 1px
+        right-of in-header.header.branding.title 24 to 25px

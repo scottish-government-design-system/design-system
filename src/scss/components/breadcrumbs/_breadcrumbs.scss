@@ -1,0 +1,55 @@
+/*------------------------------------*\
+    $BREADCRUMBS
+\*------------------------------------*/
+
+$breadcrumbs__color: $color__grey--base !default;
+$breadcrumbs__font-size: $small-size--fixed !default;
+
+
+
+
+.#{$pl-prefix}breadcrumbs {
+    color: $breadcrumbs__color;
+    font-size: $breadcrumbs__font-size;
+    line-height: 21px;
+    padding-left: 0;
+    margin: 28px 0 14px;
+
+    &__item {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-left: 0;
+        padding: 0;
+    }
+
+    &__item:not(:first-child):before {
+        @include chevron(right, 7px, 1px);
+        margin: 0 4px 2px 2px;
+    }
+
+    &__container {
+        padding-top: 14px;
+    }
+
+    @include media-query(medium) {
+        &__container {
+            padding-top: 21px;
+        }
+    }
+
+    &--reversed {
+        color: $color__white;
+
+        a {
+            color: $color__white;
+
+            &:hover {
+                color: $color__link--hover;
+            }
+
+            &:active {
+                color: $color__link--active;
+            }
+        }
+    }
+}

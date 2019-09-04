@@ -1,0 +1,167 @@
+/*------------------------------------*\
+    #PAGE NAVIGATION
+    previous and next buttons
+\*------------------------------------*/
+
+$page-nav__icon-color: $color__link !default;
+$page-nav__icon-hover: $color__link--hover !default;
+$page-nav__prefix-color: $color__blue--darker !default;
+$page-nav__icon-size: 56px;
+
+
+
+
+.#{$pl-prefix}sequential-nav {
+    margin-top: 56px;
+    margin-bottom: 49px;
+    overflow: hidden;
+}
+
+@supports(display: grid) {
+    .#{$pl-prefix}sequential-nav {
+        overflow: initial;
+    }
+}
+
+.#{$pl-prefix}sequential-nav__button {
+    @include blocklink('.#{$pl-prefix}sequential-nav__text');
+
+    background: transparent;
+    display: inline-block;
+    line-height: 21px;
+    padding: 14px 5px;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+
+    &:not([href]) {
+        display: none;
+    }
+
+    // Shared styles for left and right variations
+    // :before is the circle
+    &--left:before,
+    &--right:before {
+        content: '';
+        height: $page-nav__icon-size;
+        width: $page-nav__icon-size;
+        background-color: $page-nav__icon-color;
+        background-position: center;
+        border-radius: $page-nav__icon-size;
+        display: inline-block;
+        position: absolute;
+        top: 8px;
+
+        transition: background-color $transition-out-time;
+    }
+
+    // :after is the chevron
+    &--left,
+    &--right {
+        &:after {
+            color: $color__white;
+            position: absolute;
+            top: 25px;
+        }
+    }
+
+    &--left {
+        padding-left: ($page-nav__icon-size + 5px + 12px);
+        text-align: left;
+
+        &:before {
+            left: 5px;
+        }
+
+        &:after {
+            @include chevron(left, 30px, 5px);
+            left: 25px;
+        }
+    }
+
+    &--right {
+        text-align: right;
+        float: right;
+        padding-right: ($page-nav__icon-size + 5px + 12px);
+        text-align: right;
+
+        &:before {
+            right: 5px;
+        }
+
+        &:after {
+            @include chevron(right, 30px, 5px);
+            right: 25px;
+        }
+    }
+}
+
+.#{$pl-prefix}sequential-nav__button:hover {
+    &:before {
+        background-color: $page-nav__icon-hover;
+    }
+}
+
+.#{$pl-prefix}sequential-nav__text {
+    display: inline-block;
+    padding-top: 21px;
+    position: relative;
+
+    &:before {
+        color: $page-nav__prefix-color;
+        content: attr(data-label);
+        font-size: 14px;
+        font-weight: $bold;
+        left: 0;
+        position: absolute;
+        right: 0;
+        text-transform: uppercase;
+        top: 0;
+    }
+}
+
+@include media-query(small) {
+    .#{$pl-prefix}sequential-nav {
+        margin-bottom: 56px;
+    }
+
+    .#{$pl-prefix}sequential-nav__item {
+        width: calc(50% - 15px);
+    }
+
+    .#{$pl-prefix}sequential-nav__item:first-child {
+        float: left;
+    }
+
+    .#{$pl-prefix}sequential-nav__item:last-child {
+        float: right;
+    }
+}
+
+@supports (display: grid) {
+    .#{$pl-prefix}sequential-nav {
+        display: grid;
+        grid-gap: $grid-gap-y $grid-gap-x;
+        grid-template-areas: 'next' 'prev';
+    }
+
+    .#{$pl-prefix}sequential-nav__item {
+        float: none;
+        width: 100%;
+
+        &--prev {
+            grid-area: prev;
+        }
+
+        &--next {
+            grid-area: next;
+        }
+    }
+
+    @include media-query (small) {
+        .#{$pl-prefix}sequential-nav {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 'prev next';
+        }
+    }
+}

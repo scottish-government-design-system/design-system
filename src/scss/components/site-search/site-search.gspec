@@ -1,0 +1,36 @@
+@objects
+    main            #example-main
+        search      .site-search
+            input   .site-search__input
+            button  .site-search__button
+            label   .site-search__label
+            icon    .site-search__icon
+
+= Site search =
+    main.search:
+        inside main 0px left right top bottom
+
+    main.search.input:
+        css padding-left is "20px"
+        css padding-right is "20px"
+        aligned horizontally all main.search.button
+        aligned vertically left main.search
+
+    main.search.button:
+        aligned vertically right main.search
+
+    # not actually visible -- this is a check to see if it is present on the page
+    main.search.label:
+        visible
+
+    main.search.icon:
+        centered vertically inside main.search.button
+        centered horizontally inside main.search.button
+
+    @on small
+        main.search.button:
+            css width is "42px"
+
+    @on medium, large, xlarge
+        main.search.button:
+            css width is "49px"

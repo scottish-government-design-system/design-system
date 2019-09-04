@@ -1,0 +1,87 @@
+/*------------------------------------*\
+    BUTTONS
+\*------------------------------------*/
+
+$button-border-width: 2px;
+$button-outline-width: 3px;
+
+
+
+
+button,
+input[type="button"],
+input[type="submit"],
+.#{$pl-prefix}button {
+    background: $color__button__background;
+    border: 0;
+    color: $color__button;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: $bold;
+    padding: 11px 25px 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color $transition-out-time;
+
+    // this order is important. we want active to take precedence over focus and focus to take precedence over hover
+    &:hover {
+        background-color: $color__button--hover__background;
+        color: $color__button;
+        transition-duration: $transition-in-time;
+
+        &:not(:focus) {
+            outline-width: 0;
+        }
+    }
+
+    &:focus {
+        outline: $button-outline-width solid $color__button--focus__outline;
+    }
+
+    &:active,
+    &:hover:active {
+        background-color: $color__button--active__background;
+        color: $color__button--active;
+        outline-color: $color__button--active__outline;
+        transition-duration: 0s;
+    }
+}
+
+.#{$pl-prefix}button {
+    &--secondary {
+        background-color: $color__button--secondary__background;
+        border: $button-border-width solid currentColor;
+        color: $color__button--secondary;
+        padding: #{(11px - $button-border-width)} #{23px - $button-border-width} #{(10px - $button-border-width)};
+
+        &:hover {
+            background-color: $color__button--secondary--hover__background;
+            color: $color__button--secondary--hover;
+        }
+
+        &:focus:not(:active) {
+            color: $color__button--secondary--focus;
+        }
+    }
+
+    &--cancel {
+        background-color: $color__button--cancel__background;
+        border: $button-border-width solid currentColor;
+        color: $color__button--cancel;
+        padding: #{(11px - $button-border-width)} #{23px - $button-border-width} #{(10px - $button-border-width)};
+
+        &:hover {
+            background-color: $color__button--cancel--hover__background;
+            color: $color__button--cancel;
+        }
+
+        &:focus:not(:active) {
+            color: $color__button--cancel;
+        }
+    }
+}
+
+.#{$pl-prefix}button--small {
+    font-size: 0.85rem;
+    padding: 2px 13px 1px;
+}

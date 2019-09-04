@@ -1,0 +1,43 @@
+/*------------------------------------*\
+    CATEGORY ITEM
+    Navigation elements for different levels of category navigation. Includes classes for layout of these elements in a list.
+\*------------------------------------*/
+
+$category-item__border-color: $color__link !default;
+$category-item__border-color--hover: $color__link--hover !default;
+
+
+
+
+.#{$pl-prefix}category-item--card {
+    @include blocklink--solid('.category-item__title');
+    // display: flex;
+
+    border-left: 0;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+    padding: 21px 15px;
+    position: relative;
+    transition-property: background-color, box-shadow;
+
+    &:after {
+        background-color: $color__brand--primary;
+        bottom: 0;
+        content: '';
+        height: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        transition: height $transition-in-time;
+    }
+
+    &:hover:after,
+    &:focus:after {
+        height: 5px;
+    }
+
+    &--gradient {
+        &:after {
+            background: linear-gradient(to right, $color__brand--primary, $color__brand--secondary);
+        }
+    }
+}

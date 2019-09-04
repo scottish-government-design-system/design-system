@@ -1,0 +1,38 @@
+@objects
+    sequential-nav  .sequential-nav
+        prev-item   .sequential-nav__item--prev
+            button  .sequential-nav__button
+            text    .sequential-nav__text
+        next-item   .sequential-nav__item--next
+            button  .sequential-nav__button
+            text    .sequential-nav__text
+
+= Sequential nav =
+    sequential-nav:
+        css margin-top is "56px"
+
+    ## prev layout
+    sequential-nav.prev-item.text:
+        inside sequential-nav.prev-item 14px top, 73to 74px left
+
+    ## next layout
+    sequential-nav.next-item.text:
+        inside sequential-nav.next-item 14px top, 73 to 74px right
+
+    @on small
+        sequential-nav:
+            css margin-bottom is "49px"
+
+        # items stack vertically at small sizes
+        sequential-nav.next-item:
+            above sequential-nav.prev-item 30px
+            aligned vertically all sequential-nav.prev-item
+
+    @on medium, large, xlarge
+        sequential-nav:
+            css margin-bottom is "56px"
+
+        # items are side-by-side at larger sizes
+        sequential-nav.next-item:
+            right-of sequential-nav.prev-item 30px
+            aligned horizontally top sequential-nav.prev-item

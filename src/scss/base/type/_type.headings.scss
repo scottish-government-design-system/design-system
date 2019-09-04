@@ -1,0 +1,68 @@
+/*------------------------------------*\
+    HEADINGS
+\*------------------------------------*/
+
+h1, .alpha {
+    font-size: $h1-size;
+    font-weight: $lighter;
+    line-height: 35px;
+    margin-bottom: 28px;
+    text-rendering: optimizeLegibility;
+}
+
+h2, h3, h4,
+.beta, .gamma, .delta {
+    font-weight: $bold;
+    text-rendering: optimizeLegibility;
+}
+
+h2, .beta {
+    font-size: $h2-size;
+    line-height: 28px;
+    margin-bottom: 7px;
+
+    &:not(:first-child) {
+        margin-top: 28px;
+    }
+}
+
+h3, .gamma {
+    font-size: $h3-size;
+    line-height: 21px;
+    margin-bottom: 7px;
+
+    &:not(:first-child) {
+        margin-top: 28px;
+    }
+}
+
+h4, .delta {
+    font-size: $h4-size;
+    line-height: 21px;
+}
+
+h5, .epsilon {
+    font-size: $h5-size;
+    font-weight: $semibold;
+    line-height: 28px;
+}
+
+@include media-query(medium) {
+    h1, .alpha {
+        font-size: $h1-size--medium;
+        line-height: 56px;
+    }
+
+    h2, .beta {
+        line-height: 35px;
+        margin-bottom: 14px;
+
+        &:not(:first-child) {
+            margin-top: 42px;
+        }
+    }
+
+    h3, .gamma {
+        line-height: 28px;
+    }
+}

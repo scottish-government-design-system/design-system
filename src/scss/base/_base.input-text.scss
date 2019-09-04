@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    INPUT TEXT
+    Temporary until we define form fields more fully
+    Required for styling of search field
+\*------------------------------------*/
+
+input[type="text"] {
+    border: 1px solid $color__border--base;
+    border-radius: 0;
+    font-size: 16px;
+    min-height: 42px;
+    padding: 6px 12px;
+
+    -webkit-appearance: none;
+
+    &:focus {
+        background-color: $color__input--focus__background;
+        outline: 2px solid $color__input--focus__outline;
+        outline-offset: 0;
+    }
+}

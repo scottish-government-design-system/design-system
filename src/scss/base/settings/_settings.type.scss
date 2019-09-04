@@ -1,0 +1,33 @@
+/*------------------------------------*\
+    TYPE
+\*------------------------------------*/
+
+$root-font-size: 16px !default;
+$root-font-size--medium: 19px !default;
+
+// heading sizes
+$h1-size: 1.75rem !default;
+$h2-size: 1.333333rem !default;
+$h3-size: 1rem !default;
+$h4-size: 1rem !default;
+$h5-size: 1rem !default;
+
+// heading sizes at medium breakpoint
+$h1-size--medium: 2.578945rem !default;
+
+// size variants
+$large-size: 1.1625rem !default;
+$small-size: 0.85em !default;
+$tiny-size: 0.75rem !default;
+
+$small-size--fixed: 14px !default;
+
+// weights
+$lighter: 300 !default;
+$normal: 400 !default;
+$semibold: 500 !default;
+$bold: 700 !default;
+$heavy: 900 !default;
+
+// font face
+$base-font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;

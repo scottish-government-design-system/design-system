@@ -1,0 +1,34 @@
+@objects
+    site-search     .site-search
+    suggestions     .search-suggestions
+
+    results         .search-results
+        count       .search-results__count
+        list        .search-results__list
+        item-*      .search-result
+        pagination  .search-results__pagination
+
+= Search results =
+    suggestions:
+        below site-search 21px
+
+    results.count, results.list, suggestions:
+        aligned vertically left site-search
+
+    results.list:
+        below results.count 14px
+        above results.pagination 20px
+
+    results.item-1:
+        above results.item-2 -1px
+
+    results.pagination:
+        aligned vertically centered results
+
+    @on small
+        results.count, suggestions:
+            css padding-left is "0px"
+
+    @on medium, large, xlarge
+        results.count, suggestions:
+            css padding-left is "15px"

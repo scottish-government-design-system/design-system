@@ -1,0 +1,91 @@
+/*------------------------------------*\
+    PATTERN LIBRARY BASE
+\*------------------------------------*/
+
+
+
+
+$breakpoints: (
+    'small' '(min-width: 480px)',
+    'medium' '(min-width: 768px)',
+    'large' '(min-width: 992px)',
+    'xlarge' '(min-width: 1200px)',
+
+    'small-down' '(max-width: 479px)',
+    'medium-down' '(max-width: 767px)',
+    'large-down' '(max-width: 991px)',
+    'small-to-medium' '(min-width: 480px) and (max-width: 767px)',
+    'medium-to-large' '(min-width: 768px) and (max-width: 991px)',
+    'large-to-xlarge' '(min-width: 992px) and (max-width: 1199px)',
+    'xlarge-up' '(min-width: 1200px)',
+
+    'medium-portrait' '(min-width: 768px) and (orientation: portrait) and (max-width : 1024px)',
+    'medium-landscape' '(min-width: 768px) and (orientation: landscape)  and (max-width : 1024px)'
+) !default;
+
+$mobile-body-margin: 15px !default;
+
+$pl-prefix: 'ds_';
+
+
+
+
+/**
+ * SETTINGS
+ */
+@import "settings/settings.colors";
+@import "settings/settings.grid";
+@import "settings/settings.transition";
+@import "settings/settings.type";
+
+
+
+
+/**
+ * TOOLS
+ */
+@import "tools/tool.mixins";
+@import "tools/tool.breakpoint-tests";
+
+
+
+
+/**
+ * GENERIC
+ */
+@import "generic/generic.normalize";
+@import "generic/generic.reset";
+@import "generic/generic.box-sizing";
+
+
+
+
+/**
+ * HELPERS
+ */
+@import "helpers/helper.visibility";
+@import "helpers/helper.wrappers";
+
+
+
+
+/**
+ * TYPE
+ */
+@import "base.spacing";
+@import "type/type.body";
+@import "type/type.headings";
+@import "type/type.links";
+@import "type/type.small";
+
+
+
+
+/**
+ * ELEMENTS
+ */
+@import "base.icon";
+
+@import "base.abbreviations";
+@import "base.buttons";
+@import "base.input-text";

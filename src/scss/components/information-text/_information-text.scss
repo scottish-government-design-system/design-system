@@ -1,0 +1,41 @@
+/*------------------------------------*\
+    #INFORMATION TEXT
+\*------------------------------------*/
+
+
+
+
+.#{$pl-prefix}information-text {
+    border : 1px solid $color__grey--medium;
+    border-width: 1px 0;
+    font-size: 15px;
+    padding: 13px 10px 13px 49px;
+    position: relative;
+
+    @include block-margins;
+}
+
+.#{$pl-prefix}information-text__icon {
+    background: $color__body;
+    border-radius: 26px;
+    color: $color__white;
+    display: inline-block;
+    height: 26px;
+    font-family: "Lucida Bright", serif;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 700;
+    left: 10px;
+    line-height: 26px;
+    position: absolute;
+    text-align: center;
+    top: 13px;
+    width: 26px;
+}
+
+@media (min-width: 768px) {
+    .#{$pl-prefix}information-text {
+        font-size: 17px;
+        padding-right: 35px;
+    }
+}

@@ -1,0 +1,57 @@
+/*------------------------------------*\
+    LINKS
+\*------------------------------------*/
+
+a,
+.#{$pl-prefix}link {
+    color: $color__link;
+    text-decoration: underline;
+    outline: 2px solid transparent;
+    transition: color $transition-out-time, background-color $transition-out-time, outline $transition-out-time;
+
+    // this order is important. we want active to take precedence over focus and focus to take precedence over hover
+    &:hover {
+        background-color: $color__link--hover__background;
+        color: $color__link--hover;
+        outline: 2px solid $color__link--hover__background;
+        transition-duration: $transition-in-time;
+    }
+
+    &:focus {
+        color: $color__link--focus;
+        transition-duration: 0s;
+        outline: 2px solid $color__link--focus__outline;
+    }
+
+    &:active {
+        background-color: $color__link--active__background;
+        color: $color__link--active;
+        outline: 2px solid $color__link--active__background;
+        transition-duration: 0s;
+    }
+
+    > svg {
+        fill: currentColor;
+    }
+}
+
+.#{$pl-prefix}link {
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+a[disabled] {
+    pointer-events: none;
+}
+
+// no underline on header links
+h1, h2, h3, h4 {
+    a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+@objects
+    main                #example-main
+        nav             [aria-label="Breadcrumb"]
+        breadcrumbs     .breadcrumbs
+            item-*      .breadcrumbs__item
+            link-*      .breadcrumbs__link
+            last-link   .breadcrumbs__item:last-child .breadcrumbs__link
+
+    no-current          #example-no-current
+        breadcrumbs     .breadcrumbs
+            last-item   .breadcrumbs__item:last-child
+
+= Breadcrumbs =
+    # breadcrumbs are wrapped by a nav element with a relevant label
+    main.breadcrumbs:
+        css margin-top is "28px"
+        css margin-bottom is "14px"
+
+    # breadcrumb spacing
+    main.breadcrumbs.item-2:
+        right-of main.breadcrumbs.item-1 3 to 4px
+
+    @forEach [main.breadcrumbs.item-*] as itemName, prev as previousItem
+        ${itemName}:
+            height 21px
+            css font-size is "14px"
+
+    # breadcrumb padding
+    main.breadcrumbs.link-2:
+        inside main.breadcrumbs.item-2 14px left
+
+    # last breadcrumb has no link
+    main.breadcrumbs.lastlink:
+        absent
+
+    # "no current" variant: last breadcrumb is hidden
+    # this check is weak -- we're checking properties of the .visually-hidden class
+    no-current.breadcrumbs.last-item:
+        width < 2px
+        height < 2px

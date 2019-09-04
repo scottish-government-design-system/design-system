@@ -1,0 +1,140 @@
+/*------------------------------------*\
+    BRANDING
+\*------------------------------------*/
+
+$site-logo-height: 35px;
+$site-logo-height--medium: 56px;
+
+
+
+
+.#{$pl-prefix}site-branding {
+    &__logo {
+        height: $site-logo-height;
+    }
+
+    &__logo-image {
+        height: 100%;
+    }
+
+    &__link {
+        color: currentColor;
+        display: inline-block;
+        position: relative;
+        text-decoration: none;
+
+        @include fancy-underscore(2px);
+    }
+
+    &__logo + &__title {
+        margin-top: 14px;
+    }
+
+    &__title {
+        font-weight: $lighter;
+    }
+}
+
+@include media-query (medium) {
+    .#{$pl-prefix}site-branding {
+        &__link {
+            margin-bottom: 0;
+        }
+
+        &__logo,
+        &__title {
+            float: left;
+        }
+
+        &__logo {
+            height: $site-logo-height--medium;
+            max-height: unset;
+
+            &:not(:last-child):before {
+                background: $color__brand--primary;
+                bottom: 0;
+                content: '';
+                position: absolute;
+                right: -27px;
+                top: 0;
+                width: 2px;
+
+                pointer-events: none;
+            }
+        }
+
+        &__logo + &__title {
+            margin-top: 0;
+        }
+
+        /*
+        * [1] magic number: maximum we can accommodate in the branding content area for two-line titles
+        */
+        &__title {
+            font-size: $large-size;
+            line-height: 31px; /* [1] */
+
+            /* centering items without display: grid */
+            display: table;
+            height: $site-logo-height--medium;
+            margin-left: 50px;
+
+            > * {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+
+
+
+// when branding is a child of a reversed-variant site header
+.#{$pl-prefix}site-branding--reversed {
+    .#{$pl-prefix}site-branding__logo {
+        color: $color__white;
+
+        &:not(:last-child):before {
+            background-color: $color__white;
+        }
+    }
+
+    .#{$pl-prefix}site-branding__link {
+        color: currentColor !important;
+    }
+}
+
+
+
+
+@supports (display: grid) {
+    .#{$pl-prefix}site-branding {
+        display: grid;
+        grid-gap: 0;
+    }
+
+    @include media-query (medium) {
+        .#{$pl-prefix}site-branding {
+            align-items: center;
+            grid-template-columns: min-content auto;
+            grid-column-gap: 50px;
+
+            &__logo,
+            &__title {
+                float: none;
+            }
+
+            &__title {
+                /* override gridless fallback */
+                display: block;
+                height: auto;
+                margin-left: 0;
+
+                > * {
+                    display: block;
+                }
+            }
+        }
+    }
+}

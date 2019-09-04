@@ -1,0 +1,33 @@
+@objects
+    main                #example-main
+        wrapper         .wrapper
+        header          .site-header
+            content     .site-header__content
+            branding    .site-header__branding
+            search      .site-header__search
+
+    reversed            #example-reversed
+        header          .site-header
+            content     .site-header__content
+            branding    .site-header__branding
+            search      .site-header__search
+= Site header =
+    main.header.content:
+        inside main.header 21px top, 15px bottom
+        centered horizontally inside main.header 1px
+        aligned horizontally all main.wrapper 1px
+
+    main.header.branding:
+        aligned horizontally centered main.header.search 1px
+        aligned vertically left main.header.content 1px
+
+    main.header.search:
+        aligned vertically right main.header.content 1px
+
+    @on medium, large, xlarge
+        main.header.branding:
+            width < 66% of main.header.content/width
+
+    # reversed variant does not have top and bottom borders
+    reversed.header.content:
+        inside reversed.header 14px top bottom
