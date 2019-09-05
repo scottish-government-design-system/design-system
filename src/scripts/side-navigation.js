@@ -25,6 +25,9 @@ const sideNavigationComponent = {
             }
 
             checkbox.setAttribute('aria-expanded', event.target.checked);
+
+            // tracking
+            checkbox.setAttribute('data-navigation', `navigation-${event.target.checked ? 'close' : 'open'}`);
         });
 
 
