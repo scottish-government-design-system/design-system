@@ -5,7 +5,7 @@
   "author": {
     "name": "mygov.scot Digital Engineering team",
     "email": "mygov-tech-team@gov.scot",
-    "url": "http://www.mygov.scot/"
+    "url": "http://patternlibrary.mygov.scot"
   },
   "scripts": {
     "galen": "galen test tests/patterns.test",
