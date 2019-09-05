@@ -5,6 +5,8 @@ const accordionComponent = {
         const accordions = document.querySelectorAll('.ds_accordion');
 
         accordions.forEach(function (accordion) {
+            accordion.classList.add('js-initialised');
+
             const accordionItems = accordion.querySelectorAll('.ds_accordion-item');
             const openAllButton = accordion.querySelector('.ds_accordion__open-all');
 

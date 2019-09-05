@@ -16,7 +16,7 @@
     }
 }
 
-.js-enabled .#{$pl-prefix}accordion__open-all {
+.#{$pl-prefix}accordion.js-initialised .#{$pl-prefix}accordion__open-all {
     display: block;
 }
 
@@ -86,7 +86,7 @@
     }
 }
 
-.js-enabled .#{$pl-prefix}accordion-item {
+.#{$pl-prefix}accordion.js-initialised .#{$pl-prefix}accordion-item {
     &__body {
         max-height: 0;
         overflow: hidden;
