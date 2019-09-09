@@ -10,13 +10,19 @@
   "scripts": {
     "galen": "galen test tests/patterns.test",
     "postshrinkwrap": "node_modules/.bin/sealant",
-    "svgsprites": "node_modules/.bin/node svg-sprite",
-    "webpack": "node_modules/.bin/webpack",
+    "prepublish": "npm run webpack; npm run sass; npm run svgsprites",
     "sass": "node_modules/.bin/node-sass src/scss --output dist/css --output-style compressed",
-    "prepublish": "npm run webpack; npm run sass; npm run svgsprites"
+    "svgsprites": "node_modules/.bin/node svg-sprite",
+    "test": "jest --coverage --watch",
+    "webpack": "node_modules/.bin/webpack"
   },
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "jest-fixtures": "^0.6.0",
     "node-sass": "^4.12.0",
     "sealant": "0.0.3",
     "svg-sprite": "^1.4.0",

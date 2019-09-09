@@ -103,4 +103,4 @@ const accordionComponent = {
 // self-initialize
 accordionComponent.init();
 
-export default accordionComponent;
+export {accordionComponent};
