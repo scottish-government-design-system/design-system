@@ -2,20 +2,19 @@
 
 const searchBoxComponent = {
     init: function () {
-        const collapsibleSearchBoxes = document.querySelectorAll('.site-search--collapsible');
+        const collapsibleSearchBoxes = document.querySelectorAll('.ds_site-search--collapsible');
 
         collapsibleSearchBoxes.forEach(function (searchBox) {
-            const searchInput = searchBox.querySelector('.site-search__input');
-            const searchButton = searchBox.querySelector('.site-search__button');
+            const searchInput = searchBox.querySelector('.ds_site-search__input');
+            const searchButton = searchBox.querySelector('.js-site-search-button');
 
             searchButton.addEventListener('click', function (event) {
                 if (!searchInput.value && !window.ds_patterns.breakpoint('medium')) {
                     event.preventDefault();
-
-                    searchBox.classList.toggle('site-search--expanded');
+                    searchBox.classList.toggle('ds_site-search--expanded');
                     searchInput.focus();
 
-                    if (!searchBox.classList.contains('site-search--expanded')) {
+                    if (!searchBox.classList.contains('ds_site-search--expanded')) {
                         searchInput.blur();
                     }
                 }
@@ -27,4 +26,4 @@ const searchBoxComponent = {
 // self-initialize
 searchBoxComponent.init();
 
-export default searchBoxComponent;
+export {searchBoxComponent};

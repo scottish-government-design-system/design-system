@@ -30,7 +30,6 @@ const sideNavigationComponent = {
             checkbox.setAttribute('data-navigation', `navigation-${event.target.checked ? 'close' : 'open'}`);
         });
 
-
         window.addEventListener('scroll', function () {
             const sideNavigationExpand = document.querySelector('.ds_side-navigation__expand');
 
@@ -46,4 +45,4 @@ const sideNavigationComponent = {
 // self-initialize
 sideNavigationComponent.init();
 
-export default sideNavigationComponent;
+export {sideNavigationComponent};

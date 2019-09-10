@@ -1,10 +1,10 @@
 'use strict';
 
 const mobileMenuComponent = {
-    menuElement: document.querySelector('#mobile-navigation-menu'),
-
     init: function () {
-        if (!this.menuElement) {
+        const menuElement = document.querySelector('#mobile-navigation-menu');
+
+        if (!menuElement) {
             return;
         }
 
@@ -17,7 +17,7 @@ const mobileMenuComponent = {
             const menuIsOpen = menuContainer.classList.contains('menu-is-open');
 
             if (menuIsOpen) {
-                mobileMenuComponent.openMenu();
+                mobileMenuComponent.openMenu(menuElement);
             } else {
                 mobileMenuComponent.closeMenu();
             }
@@ -37,14 +37,14 @@ const mobileMenuComponent = {
         });
     },
 
-    openMenu: function (menuContainer) {
+    openMenu: function (menuElement) {
         window.scrollTo(0, window.scrollX);
 
         const htmlElement = document.querySelector('html');
         const bodyElement = document.querySelector('body');
 
         // position overlay
-        const offsetElement = document.querySelector(this.menuElement.dataset.offsetselector);
+        const offsetElement = document.querySelector(menuElement.dataset.offsetselector);
         const offsetHeight = offsetElement ? offsetElement.offsetHeight : 0;
         const offsetTop = offsetElement ? offsetElement.offsetTop : 0;
         const mobileNavigation = document.querySelector('.ds_mobile-navigation');
@@ -68,7 +68,7 @@ const mobileMenuComponent = {
         bodyElement.style.height = window.innerHeight + "px";
     },
 
-    closeMenu: function (menuContainer) {
+    closeMenu: function () {
         const htmlElement = document.querySelector('html');
         const bodyElement = document.querySelector('body');
 
@@ -84,4 +84,4 @@ const mobileMenuComponent = {
 // self-initialize
 mobileMenuComponent.init();
 
-export default mobileMenuComponent;
+export {mobileMenuComponent};

@@ -38,14 +38,11 @@ $category-item__border-color--hover: $color__link--hover !default;
 
     &--highlight {
         border-color: $category-item__border-color;
-        //border-left-width: 2px;
     }
 
     &--no-border {
-        .#{$pl-prefix}category-item__link {
-            border-left: 0;
-            padding-left: 0;
-        }
+        border-left: 0;
+        padding-left: 0;
     }
 
     &:hover {

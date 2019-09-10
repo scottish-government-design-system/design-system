@@ -2,7 +2,7 @@
 
 const notificationComponent = {
     init: function () {
-        const notifications = document.querySelectorAll('.notification');
+        const notifications = document.querySelectorAll('.ds_notification');
 
         notifications.forEach(function (notification) {
             const closeButton = notification.querySelector('.js-close-notification');
@@ -16,4 +16,4 @@ const notificationComponent = {
 // self-initialize
 notificationComponent.init();
 
-export default notificationComponent;
+export {notificationComponent};

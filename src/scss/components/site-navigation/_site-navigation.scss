@@ -1,5 +1,5 @@
 /*
-    PRIMARY NAVIGATION
+    SITE NAVIGATION
     containing site-navigation and mobile equivalent
 */
 
@@ -145,6 +145,7 @@ $mobile-menu-background: $color__grey--lighter;
 .#{$pl-prefix}mobile-navigation {
     box-sizing: border-box;
     left: 0;
+    margin: 0 -15px;
     overflow: auto;
     right: 0;
     z-index: 10;

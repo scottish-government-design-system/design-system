@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const accordion = require('./accordion');
-const html = fs.readFileSync(path.resolve(__dirname, 'accordion.html'), 'utf-8');
+const accordion = require('../src/scripts/accordion');
+const html = fs.readFileSync(path.resolve(__dirname, 'html/accordion.html'), 'utf-8');
 
 describe('accordion', () => {
     beforeEach(() => {
@@ -22,7 +22,7 @@ describe('accordion', () => {
             accordion.accordionComponent.init();
 
             const firstAccordion = document.querySelector('.ds_accordion');
-            const button = firstAccordion.querySelector('.ds_accordion__open-all');
+            const button = firstAccordion.querySelector('.js-open-all');
             const accordionItems = firstAccordion.querySelectorAll('.ds_accordion-item');
             const states = [true, true, true];
 
