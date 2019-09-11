@@ -6,9 +6,11 @@ const notificationComponent = {
 
         notifications.forEach(function (notification) {
             const closeButton = notification.querySelector('.js-close-notification');
-            closeButton.addEventListener('click', function () {
-                notification.parentNode.removeChild(notification);
-            });
+            if (closeButton) {
+                closeButton.addEventListener('click', function () {
+                    notification.parentNode.removeChild(notification);
+                });
+            }
         });
     }
 };
