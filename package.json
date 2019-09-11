@@ -1,14 +1,13 @@
 {
-  "name": "digital-publishing-pattern-library",
-  "description": "Pattern library for Digital Publishing",
+  "name": "@scottish-government/pattern-library",
+  "description": "Pattern library for Scottish public sector websites",
   "version": "0.0.0",
   "author": {
     "name": "mygov.scot Digital Engineering team",
     "email": "mygov-tech-team@gov.scot",
-    "url": "http://patternlibrary.mygov.scot"
+    "url": "https://patternlibrary.mygov.scot"
   },
   "scripts": {
-    "galen": "galen test tests/patterns.test",
     "postshrinkwrap": "node_modules/.bin/sealant",
     "prepublish": "npm run webpack; npm run sass; npm run svgsprites",
     "sass": "node_modules/.bin/node-sass src/scss --output dist/css --output-style compressed",
