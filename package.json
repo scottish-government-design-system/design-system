@@ -13,7 +13,7 @@
     "prepublish": "npm run webpack; npm run sass; npm run svgsprites; npm run test",
     "sass": "node_modules/.bin/node-sass src/scss --output dist/css --output-style compressed",
     "svgsprites": "node_modules/.bin/node svg-sprite",
-    "test": "jest --coverage --watch",
+    "test": "jest --coverage",
     "webpack": "node_modules/.bin/webpack"
   },
   "dependencies": {},
