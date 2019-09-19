@@ -1,7 +1,7 @@
 {
   "name": "@scottish-government/pattern-library",
   "description": "Pattern library for Scottish public sector websites",
-  "version": "0.0.0",
+  "version": "0.0.7",
   "author": {
     "name": "mygov.scot Digital Engineering team",
     "email": "mygov-tech-team@gov.scot",
