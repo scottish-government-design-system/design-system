@@ -48,10 +48,11 @@ const mobileMenuComponent = {
         const offsetHeight = offsetElement ? offsetElement.offsetHeight : 0;
         const offsetTop = offsetElement ? offsetElement.offsetTop : 0;
         const mobileNavigation = document.querySelector('.ds_mobile-navigation');
-        mobileNavigation.style.top = offsetHeight - 7 + 'px';
+        mobileNavigation.style.top = offsetHeight + 'px';
 
-        if (mobileNavigation.offsetHeight + offsetHeight > window.innerHeight) {
-            mobileNavigation.style.bottom = 0;
+        // handle any need for the menu to scroll if it is longer than the viewport
+        if ((mobileNavigation.offsetHeight + offsetHeight) > window.innerHeight) {
+            mobileNavigation.style.bottom = offsetHeight - window.innerHeight + 'px';
         } else {
             mobileNavigation.style.bottom = null;
         }
@@ -71,6 +72,7 @@ const mobileMenuComponent = {
     closeMenu: function () {
         const htmlElement = document.querySelector('html');
         const bodyElement = document.querySelector('body');
+        const mobileNavigation = document.querySelector('.ds_mobile-navigation');
 
         // unset overflow on body and html
         htmlElement.style.position = null;
@@ -78,6 +80,8 @@ const mobileMenuComponent = {
         htmlElement.classList.remove('menu-is-open');
         htmlElement.style.height = null;
         bodyElement.style.height = null;
+
+        mobileNavigation.style.bottom = null;
     }
 };
 

@@ -130,7 +130,7 @@ $mobile-menu-background: $color__grey--lighter;
     .#{$pl-prefix}mobile-navigation__button {
         position: absolute;
         right: 0;
-        top: 0;
+        top: 7px;
     }
 
     .#{$pl-prefix}mobile-navigation {
@@ -145,7 +145,7 @@ $mobile-menu-background: $color__grey--lighter;
 .#{$pl-prefix}mobile-navigation {
     box-sizing: border-box;
     left: 0;
-    margin: 0 -15px;
+    margin: 0;
     overflow: auto;
     right: 0;
     z-index: 10;
@@ -156,12 +156,20 @@ $mobile-menu-background: $color__grey--lighter;
         display: none;
         color: $color__link;
         font-weight: $normal;
-        height: calc(100% + 1px);
+        height: calc(100% - 6px);
         padding: 0 15px;
 
         &--open {
             background-color: $mobile-menu-background;
             color: $color__link;
+
+            .#{$pl-prefix}site-header__control-icon {
+                display: none;
+            }
+
+            .#{$pl-prefix}site-header__control-icon--close {
+                display: inline;
+            }
         }
 
         &:hover {
@@ -231,12 +239,12 @@ $mobile-menu-background: $color__grey--lighter;
         &:focus {
             border-left: 3px solid $color__link;
             outline: 2px solid $color__link--focus__outline;
-            padding-left: #{$mobile-nav-link-horizontal-padding - 2px};
+            padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
         }
 
         &:hover {
             border-left: 3px solid $color__link;
-            padding-left: #{$mobile-nav-link-horizontal-padding - 2px};
+            padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
         }
 
         &:active {
@@ -246,7 +254,7 @@ $mobile-menu-background: $color__grey--lighter;
         &.#{$pl-prefix}current {
             background-color: $color__link--current__background;
             border-left: 3px solid $color__link;
-            padding-left: 18px;
+            padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
         }
     }
 

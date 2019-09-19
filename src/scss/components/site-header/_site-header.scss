@@ -60,10 +60,6 @@ $site-header-border-color--reversed: $color__brand--secondary !default;
     &__search {
         display: none;
     }
-
-    > .#{$pl-prefix}wrapper {
-        position: relative;
-    }
 }
 
 /* variant with the top colour bar set to a gradient of site brand colours */
