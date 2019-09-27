@@ -67,7 +67,7 @@ $site-search__background-color: $color__grey--light !default;
     }
 }
 
-.#{$pl-prefix}site-search--reversed {
+.#{$pl-prefix}reversed .#{$pl-prefix}site-search {
     .#{$pl-prefix}site-search__button {
         background-color: $color__brand--secondary;
 
@@ -76,7 +76,6 @@ $site-search__background-color: $color__grey--light !default;
         }
     }
 }
-
 
 @include media-query(medium-down) {
     .#{$pl-prefix}site-search--collapsible {

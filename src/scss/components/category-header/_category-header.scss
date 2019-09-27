@@ -3,14 +3,14 @@
 \*------------------------------------*/
 
 $category-header__border-color: $color__brand--primary !default;
+$category-header__title-color: $color__body !default;
 
 
 
 
 .#{$pl-prefix}category-header {
     align-items: center;
-    margin-bottom: 35px;
-    padding: 14px 0;
+    @include block-margins;
 
     &__header {
         border-left: 4px solid $category-header__border-color;
@@ -22,6 +22,7 @@ $category-header__border-color: $color__brand--primary !default;
      * [1] plus [2] gives a multiple of seven to maintain vertical rhythm
      */
     &__title {
+        color: $category-header__title-color;
         margin-bottom: 10px; /* [1] */
     }
 
@@ -40,8 +41,12 @@ $category-header__border-color: $color__brand--primary !default;
         margin: 0 auto;
         max-width: 320px;
     }
+}
 
-    &--reversed {
+.#{$pl-prefix}reversed .#{$pl-prefix}category-header {
+    color: $color__white;
+
+    &__title {
         color: $color__white;
     }
 }

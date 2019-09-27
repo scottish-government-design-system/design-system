@@ -1,0 +1,42 @@
+/*------------------------------------*\
+    LEADER
+\*------------------------------------*/
+
+.#{$pl-prefix}leader {
+    font-size: $large-size;
+    font-weight: $lighter;
+    line-height: 28px;
+    margin-bottom: 28px;
+
+    &--first-paragraph {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        margin-bottom: inherit;
+
+        > :first-of-type(p) {
+            font-size: $large-size;
+            font-weight: $lighter;
+            margin-bottom: 28px;
+        }
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}leader {
+        line-height: 35px;
+        margin-bottom: 35px;
+
+        &--first-paragraph {
+            font-size: inherit;
+            font-weight: inherit;
+            line-height: inherit;
+            margin-bottom: inherit;
+
+            > :first-of-type(p) {
+                line-height: 35px;
+                margin-bottom: 35px;
+            }
+        }
+    }
+}

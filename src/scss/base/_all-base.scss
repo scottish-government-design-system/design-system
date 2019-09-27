@@ -75,6 +75,7 @@ $pl-prefix: 'ds_';
 @import "base.spacing";
 @import "type/type.body";
 @import "type/type.headings";
+@import "type/type.leader";
 @import "type/type.links";
 @import "type/type.small";
 
@@ -89,3 +90,4 @@ $pl-prefix: 'ds_';
 @import "base.abbreviations";
 @import "base.buttons";
 @import "base.input-text";
+@import "base.layout";

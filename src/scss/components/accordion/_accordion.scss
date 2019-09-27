@@ -27,7 +27,7 @@
     &__header {
         @include blocklink;
 
-        color: $color__link;
+        color: $color__brand--primary;
         font-weight: $bold;
         padding: 14px 45px 14px 15px;
         position: relative;

@@ -37,7 +37,7 @@ $category-item__border-color--hover: $color__link--hover !default;
 
     &--gradient {
         &:after {
-            background: linear-gradient(to right, $color__brand--primary, $color__brand--secondary);
+            background: linear-gradient(to $brand-gradient-direction, $color__brand--primary, $color__brand--secondary);
         }
     }
 }

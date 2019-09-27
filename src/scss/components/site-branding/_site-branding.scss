@@ -91,7 +91,7 @@ $site-logo-height--medium: 56px;
 
 
 // when branding is a child of a reversed-variant site header
-.#{$pl-prefix}site-branding--reversed {
+.#{$pl-prefix}reversed .#{$pl-prefix}site-branding {
     .#{$pl-prefix}site-branding__logo {
         color: $color__white;
 

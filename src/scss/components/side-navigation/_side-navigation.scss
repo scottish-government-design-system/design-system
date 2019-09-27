@@ -18,6 +18,7 @@ $side-nav-outline-width: 3px;
         @include blocklink;
 
         background-color: $color__white;
+        color: $color__brand--primary;
         cursor: pointer;
         font-weight: $bold;
         padding: 14px 45px 14px 15px;
@@ -117,7 +118,7 @@ $side-nav-outline-width: 3px;
         &:focus,
         &.#{$pl-prefix}current {
             &:before {
-                background: $color__link;
+                background: $color__brand--primary
             }
         }
     }
@@ -138,7 +139,7 @@ $side-nav-outline-width: 3px;
             position: relative;
 
             &:before {
-                background: $color__link;
+                background: $color__brand--primary;
                 bottom: 0;
                 content: '';
                 position: absolute;

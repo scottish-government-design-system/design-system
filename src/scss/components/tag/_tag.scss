@@ -12,9 +12,9 @@
     line-height: 1;
     padding: 3px 5px;
     text-transform: uppercase;
+}
 
-    &--reversed {
-        background-color: $color__white;
-        color: $color__brand--primary;
-    }
+.#{$pl-prefix}reversed .#{$pl-prefix}tag {
+    background-color: $color__white;
+    color: $color__brand--primary;
 }

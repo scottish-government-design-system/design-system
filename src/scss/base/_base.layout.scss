@@ -1,0 +1,450 @@
+/*
+    LAYOUT
+*/
+
+@mixin colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
+    width: calc(100% * #{$columns/$total} - #{$gutter});
+}
+
+@mixin colpush($columns: 1, $total: 12) {
+    margin-left: calc(100% * #{$columns/$total});
+}
+
+@mixin colpull($columns: 1, $total: 12) {
+    margin-left: calc(100% * #{$columns/$total} * -1);
+}
+
+
+.layout {
+    margin-right: #{$grid-gap-x * -1};
+    overflow: hidden;
+
+    > *[class*="layout"] {
+        margin-right: $grid-gap-x;
+    }
+}
+
+@include media-query(medium) {
+    .layout {
+        &__feedback {
+            clear: left;
+            @include colwidth(8);
+        }
+
+        &--article {
+            .layout {
+                &__header {
+                    float: left;
+                    @include colwidth(8);
+                }
+
+                &__partner {
+                    float: left;
+                    @include colwidth(4);
+                }
+
+                &__content {
+                    clear: left;
+                }
+            }
+        }
+
+        &--guide {
+            .layout {
+                &__header {
+                    float: left;
+                    @include colwidth(8);
+                }
+
+                &__partner {
+                    float: left;
+                    @include colwidth(4);
+                }
+
+                &__content {
+                    float: left;
+                    @include colwidth(9);
+                }
+
+                &__sidebar {
+                    clear: left;
+                    float: left;
+                    @include colwidth(3);
+                }
+
+                &__feedback {
+                    @include colpush(3);
+                    @include colwidth(9);
+                }
+            }
+        }
+
+        &--category-list {
+            .layout {
+                &__list {
+                    @include colwidth(8);
+                }
+            }
+        }
+
+        &--search-results {
+            .layout {
+                &__content {
+                    @include colwidth(8)
+                }
+
+                &__list {
+                    @include colwidth(10);
+                }
+            }
+        }
+    }
+}
+
+
+@include media-query(large) {
+    .layout {
+        &--article {
+            .layout {
+                &__content {
+                    clear: left;
+                    float: left;
+                    @include colwidth(8);
+                }
+
+                &__sidebar {
+                    float: left;
+                    @include colwidth(4);
+                }
+            }
+        }
+
+        &--guide {
+            .layout {
+                &__content {
+                    @include colwidth(7);
+                }
+
+                &__feedback {
+                    @include colwidth(7);
+                }
+            }
+        }
+
+        &--category-list {
+            .layout {
+                &__list {
+                    @include colwidth(7);
+                }
+
+                &__feedback {
+                    @include colwidth(7);
+                }
+            }
+        }
+
+        &--search-results {
+            .layout {
+                &__list {
+                    @include colwidth(8);
+                }
+            }
+        }
+    }
+}
+::-webkit-scrollbar-button
+.layout {
+    margin-right: #{$grid-gap-x * -1};
+    overflow: hidden;
+
+    > *[class*="layout"] {
+        margin-right: $grid-gap-x;
+    }
+
+    &--category-list {
+        .layout {
+            &__content {
+                @include colwidth(7);
+            }
+
+            &__feedback {
+                clear: left;
+                @include colwidth(7);
+            }
+        }
+    }
+
+    &--search-results {
+        .layout {
+            &__content {
+                @include colwidth(8);
+            }
+
+            &__feedback {
+                clear: left;
+                @include colwidth(8);
+            }
+        }
+    }
+
+    &--article {
+        .layout {
+            &__header {
+                clear: left;
+                float: left;
+                @include colwidth(8);
+            }
+
+            &__partner {
+                float: left;
+                @include colwidth(4);
+            }
+
+            &__content {
+                clear: left;
+                float: left;
+                @include colwidth(8);
+            }
+
+            &__sidebar {
+                float: left;
+                @include colwidth(4);
+            }
+
+            &__feedback {
+                clear: left;
+                @include colwidth(8);
+            }
+        }
+    }
+
+    &--guide {
+        .layout {
+            &__header {
+                clear: left;
+                float: left;
+                @include colwidth(8);
+            }
+
+            &__partner {
+                float: left;
+                @include colwidth(4);
+            }
+
+            &__content {
+                float: left;
+                @include colwidth(7);
+            }
+
+            &__sidebar {
+                clear: left;
+                float: left;
+                @include colwidth(3);
+            }
+
+            &__feedback {
+                clear: left;
+                @include colwidth(7);
+                @include colpush(3);
+            }
+        }
+    }
+
+    &--org-list {
+        .layout {
+            &__header {
+                @include colwidth(8);
+            }
+
+            &__content {
+                @include colwidth(12);
+            }
+        }
+    }
+
+    &--org-hub {
+        .layout {
+            &__header {
+                clear: left;
+                float: left;
+                @include colwidth(8);
+            }
+
+            &__partner {
+                float: left;
+                @include colwidth(4);
+            }
+
+            &__content {
+                clear: left;
+                float: left;
+                @include colwidth(8);
+            }
+
+            &__feedback {
+                clear: left;
+                @include colwidth(8);
+            }
+        }
+    }
+}
+
+@supports(display: grid) {
+    /**
+     * GRID KEY
+     * c: content
+     * f: feedback
+     * h: header
+     * l: list (e.g. category items, search results)
+     * n: navigation (e.g. subpages of a publication or guide)
+     * p: partner branding
+     * s: sidebar
+     */
+
+    // short abbreviations of grid area names so things are easy to read later on
+    $grid-area-content:     c;
+    $grid-area-feedback:    f;
+    $grid-area-header:      h;
+    $grid-area-list:        l;
+    $grid-area-partner:     p;
+    $grid-area-sidebar:     s;
+
+    .layout {
+        display: grid;
+        grid-gap: 0 $grid-gap-x;
+        grid-template-columns: repeat(2, 1fr);
+
+        // default template areas definition based on article,
+        // which is a relatively safe fallback
+        grid-template-areas:
+            'h h'
+            'p p'
+            'c c'
+            's s'
+            'f f';
+        margin-right: 0;
+
+        &__content {
+            grid-area: $grid-area-content;
+        }
+
+        &__feedback {
+            grid-area: $grid-area-feedback;
+        }
+
+        &__header {
+            grid-area: $grid-area-header;
+        }
+
+        &__list {
+            grid-area: $grid-area-list;
+        }
+
+        &__partner {
+            grid-area: $grid-area-partner;
+        }
+
+        &__sidebar {
+            grid-area: $grid-area-sidebar;
+        }
+    }
+
+    // for increased specificity we scope this to the body
+    body .layout > *[class*="layout"] {
+        margin-left: 0;
+        margin-right: 0;
+        width: auto;
+    }
+
+    @include media-query(small) {
+        .layout {
+            grid-template-columns: repeat(6, 1fr);
+
+            grid-template-areas:
+                'h h h h h h'
+                'p p p p p p'
+                'c c c c c c'
+                's s s s s s'
+                'f f f f f f';
+        }
+    }
+
+    @include media-query(medium) {
+        .layout {
+            grid-template-columns: repeat(12, 1fr);
+
+            grid-template-areas:
+                'h h h h h h h h h h h h'
+                'p p p p p p p p p p p p'
+                'c c c c c c c c c c c c'
+                's s s s s s s s s s s s'
+                'f f f f f f f f . . . .';
+
+            &--article {
+                grid-template-areas:
+                    'h h h h h h h h p p p p'
+                    'c c c c c c c c c c c c'
+                    's s s s s s s s s s s s'
+                    'f f f f f f f f . . . .';
+            }
+
+            &--guide {
+                grid-template-areas:
+                    'h h h h h h h h p p p p'
+                    's s s c c c c c c c c c'
+                    '. . . f f f f f f f f f';
+            }
+
+            &--category-list {
+                grid-template-areas:
+                    'h h h h h h h h h h h h'
+                    'l l l l l l l l . . . .'
+                    'f f f f f f f f . . . .';
+            }
+
+            &--search-results {
+                grid-template-areas:
+                    'h h h h h h h h h h h h'
+                    'c c c c c c c c . . . .'
+                    'l l l l l l l l l l . .';
+            }
+        }
+    }
+
+    @include media-query(large) {
+        .layout {
+            grid-template-areas:
+                'h h h h h h h h p p p p'
+                'c c c c c c c c s s s s'
+                'f f f f f f f f . . . .';
+
+            &--article {
+                grid-template-areas:
+                    'h h h h h h h h p p p p'
+                    'c c c c c c c c s s s s'
+                    'f f f f f f f f . . . .';
+            }
+
+            &--guide {
+                grid-template-areas:
+                    'h h h h h h h h p p p p'
+                    's s s c c c c c c c . .'
+                    '. . . f f f f f f f . .';
+            }
+
+            &--category-list {
+                grid-template-areas:
+                    'h h h h h h h h h h h h'
+                    'l l l l l l l . . . . .'
+                    'f f f f f f f . . . . .';
+            }
+
+            &--search-results {
+                grid-template-areas:
+                    'h h h h h h h h h h h h'
+                    'c c c c c c c c . . . .'
+                    'l l l l l l l l . . . .';
+            }
+        }
+    }
+}
