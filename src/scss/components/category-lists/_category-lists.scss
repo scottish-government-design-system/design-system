@@ -21,6 +21,12 @@
     }
 }
 
+@include media-query(medium-down) {
+    .#{$pl-prefix}category-list--grid > * {
+        min-height: 0;
+    }
+}
+
 @include media-query(medium) {
     .#{$pl-prefix}category-list--grid > * {
         float: left;
