@@ -4,13 +4,15 @@
 
 $category-header__border-color: $color__brand--primary !default;
 $category-header__title-color: $color__body !default;
+$category-header__summary-size: 1.25rem !default;
 
 
 
 
 .#{$pl-prefix}category-header {
     align-items: center;
-    @include block-margins;
+    margin-top: 14px;
+    margin-bottom: 14px;
 
     &__header {
         border-left: 4px solid $category-header__border-color;
@@ -27,7 +29,7 @@ $category-header__title-color: $color__body !default;
     }
 
     &__summary {
-        font-size: $large-size;
+        font-size: $category-header__summary-size;
         font-weight: 700;
         line-height: 28px;
 
@@ -39,6 +41,7 @@ $category-header__title-color: $color__body !default;
     &__image {
         display: block;
         margin: 0 auto;
+        max-height: 350px;
         max-width: 320px;
     }
 }
@@ -64,7 +67,12 @@ $category-header__title-color: $color__body !default;
 
         &__image {
             grid-column: 9 / span 4;
+            margin-right: 0;
             max-width: 100%;
+        }
+
+        &__summary {
+            line-height: 35px;
         }
     }
 }

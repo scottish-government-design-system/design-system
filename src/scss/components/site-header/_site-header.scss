@@ -2,19 +2,20 @@
     SITE HEADER
 \*------------------------------------*/
 
-$site-header-border-color: $color__border--light !default;
-$site-header-border-color--reversed: $color__brand--secondary !default;
+$site-header__border-color: $color__border--light !default;
+$site-header__border-color--reversed: $color__brand--secondary !default;
+$site-header__top-band-color: $color__brand--primary !default;
 
 
 
 
 .#{$pl-prefix}site-header {
     background-color: $color__white;
-    border-bottom: 1px solid $site-header-border-color;
+    border-bottom: 1px solid $site-header__border-color;
     position: relative;
 
     &:before {
-        background: $color__brand--primary;
+        background: $site-header__top-band-color;
         display: block;
         content: '';
         height: 7px;
@@ -97,7 +98,7 @@ $site-header-border-color--reversed: $color__brand--secondary !default;
     }
 
     .#{$pl-prefix}site-header__navigation {
-        border-top: 1px solid $site-header-border-color--reversed;
+        border-top: 1px solid $site-header__border-color--reversed;
     }
 }
 

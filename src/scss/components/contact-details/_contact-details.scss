@@ -1,3 +1,13 @@
+/*------------------------------------*\
+    CATEGORY ITEM
+    Navigation elements for different levels of category navigation. Includes classes for layout of these elements in a list.
+\*------------------------------------*/
+
+$contact-details__border-color: $color__brand--primary !default;
+
+
+
+
 .ds_contact-details {
     $social-icon-size: 21px;
     $contact-details-line-gap: 21px;
@@ -8,7 +18,7 @@
         position: relative;
 
         &:after {
-            background-color: $color__brand--primary;
+            background-color: $contact-details__border-color;
             bottom: 100%;
             content: '';
             left: 0;

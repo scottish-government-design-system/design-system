@@ -2,8 +2,8 @@
     NOTIFICATION BANNER
 \*------------------------------------*/
 
-$notification-close-padding: 5px;
-$notification-icon-padding: $notification-close-padding;
+$notification-banner__close-padding: 5px !default;
+$notification-banner__icon-padding: $notification-banner__close-padding !default;
 
 
 
@@ -85,8 +85,8 @@ $notification-icon-padding: $notification-close-padding;
         display: none;
         font-size: $small-size--fixed;
         height: 21px;
-        margin: #{$notification-close-padding * -1} #{$notification-close-padding * -1} #{$notification-close-padding * -1} 25px;
-        padding: $notification-close-padding;
+        margin: #{$notification-banner__close-padding * -1} #{$notification-banner__close-padding * -1} #{$notification-banner__close-padding * -1} 25px;
+        padding: $notification-banner__close-padding;
         position: absolute;
         right: 0;
         top: 14px;

@@ -2,8 +2,10 @@
     SIDE NAVIGATION
 \*------------------------------------*/
 
-$side-nav-spacing-unit: 15px;
-$side-nav-outline-width: 3px;
+$side-nav__spacing-unit: 15px !default;
+$side-nav__outline-width: 3px !default;
+$side-nav__expand-color: $color__brand--primary !default;
+$side-nav__highlight-color: $color__brand--primary !default;
 
 
 
@@ -18,7 +20,7 @@ $side-nav-outline-width: 3px;
         @include blocklink;
 
         background-color: $color__white;
-        color: $color__brand--primary;
+        color: $side-nav__expand-color;
         cursor: pointer;
         font-weight: $bold;
         padding: 14px 45px 14px 15px;
@@ -46,7 +48,7 @@ $side-nav-outline-width: 3px;
     }
 
     #show-side-navigation:focus ~ .#{$pl-prefix}side-navigation__expand {
-        outline: $side-nav-outline-width solid $color__link--focus__outline;
+        outline: $side-nav__outline-width solid $color__link--focus__outline;
     }
 
     #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__expand .#{$pl-prefix}side-navigation__expand-indicator {
@@ -65,17 +67,17 @@ $side-nav-outline-width: 3px;
     &__list {
         list-style-type: none;
         margin-bottom: 0;
-        margin-left: #{$side-nav-outline-width * -1};
-        padding: 0 $side-nav-outline-width;
+        margin-left: #{$side-nav__outline-width * -1};
+        padding: 0 $side-nav__outline-width;
 
         &--root {
             display: none;
-            margin: 7px #{15px - $side-nav-outline-width};
+            margin: 7px #{15px - $side-nav__outline-width};
         }
     }
 
     &__list &__list {
-        margin-left: #{$side-nav-spacing-unit * 2};
+        margin-left: #{$side-nav__spacing-unit * 2};
     }
 
     &__item {
@@ -85,7 +87,7 @@ $side-nav-outline-width: 3px;
         &--has-children {
             > .#{$pl-prefix}side-navigation__link:after {
                 color: $color__grey--medium;
-                left: $side-nav-spacing-unit;
+                left: $side-nav__spacing-unit;
                 position: absolute;
                 top: 18px;
                 z-index: 1;
@@ -101,7 +103,7 @@ $side-nav-outline-width: 3px;
     }
 
     &__list &__list &__list &__link {
-        padding-left: #{$side-nav-spacing-unit * 2};
+        padding-left: #{$side-nav__spacing-unit * 2};
 
         &:before {
             background: $color__grey--light;
@@ -118,7 +120,7 @@ $side-nav-outline-width: 3px;
         &:focus,
         &.#{$pl-prefix}current {
             &:before {
-                background: $color__brand--primary
+                background: $side-nav__highlight-color;
             }
         }
     }
@@ -130,7 +132,7 @@ $side-nav-outline-width: 3px;
         @include blocklink;
 
         margin-bottom: 3px;
-        padding: 13px 42px 12px #{$side-nav-spacing-unit * 3}; /* [1] */
+        padding: 13px 42px 12px #{$side-nav__spacing-unit * 3}; /* [1] */
         position: relative;
         text-decoration: none;
 
@@ -139,7 +141,7 @@ $side-nav-outline-width: 3px;
             position: relative;
 
             &:before {
-                background: $color__brand--primary;
+                background: $side-nav__highlight-color;
                 bottom: 0;
                 content: '';
                 position: absolute;

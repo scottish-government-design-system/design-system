@@ -2,8 +2,8 @@
     BUTTONS
 \*------------------------------------*/
 
-$button-border-width: 2px;
-$button-outline-width: 3px;
+$button__border-width: 2px !default;
+$button__outline-width: 3px !default;
 
 
 
@@ -35,7 +35,7 @@ input[type="submit"],
     }
 
     &:focus {
-        outline: $button-outline-width solid $color__button--focus__outline;
+        outline: $button__outline-width solid $color__button--focus__outline;
     }
 
     &:active,
@@ -50,9 +50,9 @@ input[type="submit"],
 .#{$pl-prefix}button {
     &--secondary {
         background-color: $color__button--secondary__background;
-        border: $button-border-width solid currentColor;
+        border: $button__border-width solid currentColor;
         color: $color__button--secondary;
-        padding: #{(11px - $button-border-width)} #{23px - $button-border-width} #{(10px - $button-border-width)};
+        padding: #{(11px - $button__border-width)} #{23px - $button__border-width} #{(10px - $button__border-width)};
 
         &:hover {
             background-color: $color__button--secondary--hover__background;
@@ -66,9 +66,9 @@ input[type="submit"],
 
     &--cancel {
         background-color: $color__button--cancel__background;
-        border: $button-border-width solid currentColor;
+        border: $button__border-width solid currentColor;
         color: $color__button--cancel;
-        padding: #{(11px - $button-border-width)} #{23px - $button-border-width} #{(10px - $button-border-width)};
+        padding: #{(11px - $button__border-width)} #{23px - $button__border-width} #{(10px - $button__border-width)};
 
         &:hover {
             background-color: $color__button--cancel--hover__background;

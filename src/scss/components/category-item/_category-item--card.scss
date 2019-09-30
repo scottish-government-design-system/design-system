@@ -3,7 +3,7 @@
     Navigation elements for different levels of category navigation. Includes classes for layout of these elements in a list.
 \*------------------------------------*/
 
-$category-item__border-color: $color__link !default;
+$category-item__border-color: $color__brand--primary !default;
 $category-item__border-color--hover: $color__link--hover !default;
 
 
@@ -21,7 +21,7 @@ $category-item__border-color--hover: $color__link--hover !default;
     transition-property: background-color, box-shadow;
 
     &:after {
-        background-color: $color__brand--primary;
+        background-color: $category-item__border-color;
         bottom: 0;
         content: '';
         height: 0;

@@ -3,9 +3,12 @@
     containing site-navigation and mobile equivalent
 */
 
-$reversed-current-color: $color__blue--light !default;
-$reversed-hover-bg: $color__link--hover !default;
-$mobile-menu-background: $color__grey--lighter;
+$site-navigation__current-color--reversed: $color__blue--light !default;
+$site-navigation__hover-bg--reversed: $color__link--hover !default;
+$site-navigation__highlight-color: $color__brand--primary !default;
+$site-navigation__mobile-menu-background: $color__grey--lighter !default;
+$site-navigation__mobile-menu-button-color: $color__brand--primary !default;
+$site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color !default;
 
 
 
@@ -71,7 +74,7 @@ $mobile-menu-background: $color__grey--lighter;
             background-color: $color__link--current__background;
 
             &:after {
-                background-color: $color__brand--primary;
+                background-color: $site-navigation__highlight-color;
                 left: $link-horiz-padding;
                 opacity: 1;
                 right: $link-horiz-padding;
@@ -86,8 +89,8 @@ $mobile-menu-background: $color__grey--lighter;
 
         &:hover:not(.#{$pl-prefix}current):not(:active),
         &:focus:not(.#{$pl-prefix}current):not(:active) {
-            background-color: $reversed-hover-bg;
-            color: $reversed-current-color;
+            background-color: $site-navigation__hover-bg--reversed;
+            color: $site-navigation__current-color--reversed;
         }
 
         &:active {
@@ -97,7 +100,7 @@ $mobile-menu-background: $color__grey--lighter;
 
         &.#{$pl-prefix}current {
             background-color: transparent;
-            color: $reversed-current-color;
+            color: $site-navigation__current-color--reversed;
 
             &:after {
                 background-color: currentColor;
@@ -154,14 +157,14 @@ $mobile-menu-background: $color__grey--lighter;
         @include blocklink;
         background-color: transparent;
         display: none;
-        color: $color__brand--primary;
+        color: $site-navigation__mobile-menu-button-color;
         font-weight: $normal;
         height: calc(100% - 6px);
         padding: 0 15px;
 
         &--open {
-            background-color: $mobile-menu-background;
-            color: $color__brand--primary;
+            background-color: $site-navigation__mobile-menu-background;
+            color: $site-navigation__mobile-menu-button-color;
 
             .#{$pl-prefix}site-header__control-icon {
                 display: none;
@@ -204,7 +207,7 @@ $mobile-menu-background: $color__grey--lighter;
     }
 
     &__content {
-        background: $mobile-menu-background;
+        background: $site-navigation__mobile-menu-background;
         overflow: hidden;
         padding: 0 15px;
     }
@@ -237,13 +240,13 @@ $mobile-menu-background: $color__grey--lighter;
         text-decoration: none;
 
         &:focus {
-            border-left: 3px solid $color__brand--primary;
+            border-left: 3px solid $site-navigation__mobile-menu-highlight-color;
             outline: 2px solid $color__link--focus__outline;
             padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
         }
 
         &:hover {
-            border-left: 3px solid $color__brand--primary;
+            border-left: 3px solid $site-navigation__mobile-menu-highlight-color;
             padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
         }
 
@@ -253,7 +256,7 @@ $mobile-menu-background: $color__grey--lighter;
 
         &.#{$pl-prefix}current {
             background-color: $color__link--current__background;
-            border-left: 3px solid $color__brand--primary;
+            border-left: 3px solid $site-navigation__mobile-menu-highlight-color;
             padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
         }
     }

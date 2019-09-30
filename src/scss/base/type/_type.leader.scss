@@ -14,7 +14,7 @@
         line-height: inherit;
         margin-bottom: inherit;
 
-        > :first-of-type(p) {
+        > p:first-child {
             font-size: $large-size;
             font-weight: $lighter;
             margin-bottom: 28px;
@@ -33,7 +33,7 @@
             line-height: inherit;
             margin-bottom: inherit;
 
-            > :first-of-type(p) {
+            > p:first-child {
                 line-height: 35px;
                 margin-bottom: 35px;
             }

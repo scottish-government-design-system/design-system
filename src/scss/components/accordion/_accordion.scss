@@ -2,6 +2,11 @@
     ACCORDION
 \*------------------------------------*/
 
+$accordion__header-color: $color__brand--primary !default;
+
+
+
+
 .#{$pl-prefix}accordion {
     @include block-margins;
 
@@ -27,7 +32,7 @@
     &__header {
         @include blocklink;
 
-        color: $color__brand--primary;
+        color: $accordion__header-color;
         font-weight: $bold;
         padding: 14px 45px 14px 15px;
         position: relative;

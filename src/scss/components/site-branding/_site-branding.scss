@@ -2,15 +2,16 @@
     BRANDING
 \*------------------------------------*/
 
-$site-logo-height: 35px;
-$site-logo-height--medium: 56px;
+$site-logo__height: 35px !default;
+$site-logo__height--medium: 56px !default;
+$branding__separator-color: $color__brand--primary !default;
 
 
 
 
 .#{$pl-prefix}site-branding {
     &__logo {
-        height: $site-logo-height;
+        height: $site-logo__height;
     }
 
     &__logo-image {
@@ -47,11 +48,11 @@ $site-logo-height--medium: 56px;
         }
 
         &__logo {
-            height: $site-logo-height--medium;
+            height: $site-logo__height--medium;
             max-height: unset;
 
             &:not(:last-child):before {
-                background: $color__brand--primary;
+                background: $branding__separator-color;
                 bottom: 0;
                 content: '';
                 position: absolute;
@@ -76,7 +77,7 @@ $site-logo-height--medium: 56px;
 
             /* centering items without display: grid */
             display: table;
-            height: $site-logo-height--medium;
+            height: $site-logo__height--medium;
             margin-left: 50px;
 
             > * {
