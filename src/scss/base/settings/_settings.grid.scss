@@ -4,4 +4,5 @@
 
 $grid-gap-x: 30px;
 $grid-gap-y: 28px;
-$grid-gap--narrow: 10px;
+$grid-gap-x--narrow: 10px;
+$grid-gap-y--narrow: $grid-gap-x--narrow;

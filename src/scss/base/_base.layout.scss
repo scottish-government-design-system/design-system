@@ -14,25 +14,41 @@
     margin-left: calc(100% * #{$columns/$total} * -1);
 }
 
-
-.layout {
-    margin-right: #{$grid-gap-x * -1};
+@mixin layout($margin: $grid-gap-x) {
+    margin-right: #{$margin * -1};
     overflow: hidden;
 
-    > *[class*="layout"] {
-        margin-right: $grid-gap-x;
+    > *[class] {
+        margin-right: $margin;
+    }
+
+    @supports (display: grid) {
+        display: grid;
+        grid-gap: 0 $margin;
+        margin-right: 0;
+
+        > *[class] {
+            margin-left: 0;
+            margin-right: 0;
+            width: auto;
+        }
     }
 }
 
+.#{$pl-prefix}layout {
+    @include layout();
+}
+
 @include media-query(medium) {
-    .layout {
+    .#{$pl-prefix}layout {
+
         &__feedback {
             clear: left;
             @include colwidth(8);
         }
 
         &--article {
-            .layout {
+            .#{$pl-prefix}layout {
                 &__header {
                     float: left;
                     @include colwidth(8);
@@ -50,7 +66,7 @@
         }
 
         &--guide {
-            .layout {
+            .#{$pl-prefix}layout {
                 &__header {
                     float: left;
                     @include colwidth(8);
@@ -80,7 +96,7 @@
         }
 
         &--category-list {
-            .layout {
+            .#{$pl-prefix}layout {
                 &__list {
                     @include colwidth(8);
                 }
@@ -88,7 +104,7 @@
         }
 
         &--search-results {
-            .layout {
+            .#{$pl-prefix}layout {
                 &__content {
                     @include colwidth(8)
                 }
@@ -105,7 +121,7 @@
 @include media-query(large) {
     .layout {
         &--article {
-            .layout {
+            .#{$pl-prefix}layout {
                 &__content {
                     clear: left;
                     float: left;
@@ -120,7 +136,7 @@
         }
 
         &--guide {
-            .layout {
+            .#{$pl-prefix}layout {
                 &__content {
                     @include colwidth(7);
                 }
@@ -132,7 +148,7 @@
         }
 
         &--category-list {
-            .layout {
+            .#{$pl-prefix}layout {
                 &__list {
                     @include colwidth(7);
                 }
@@ -144,146 +160,10 @@
         }
 
         &--search-results {
-            .layout {
+            .#{$pl-prefix}layout {
                 &__list {
                     @include colwidth(8);
                 }
-            }
-        }
-    }
-}
-::-webkit-scrollbar-button
-.layout {
-    margin-right: #{$grid-gap-x * -1};
-    overflow: hidden;
-
-    > *[class*="layout"] {
-        margin-right: $grid-gap-x;
-    }
-
-    &--category-list {
-        .layout {
-            &__content {
-                @include colwidth(7);
-            }
-
-            &__feedback {
-                clear: left;
-                @include colwidth(7);
-            }
-        }
-    }
-
-    &--search-results {
-        .layout {
-            &__content {
-                @include colwidth(8);
-            }
-
-            &__feedback {
-                clear: left;
-                @include colwidth(8);
-            }
-        }
-    }
-
-    &--article {
-        .layout {
-            &__header {
-                clear: left;
-                float: left;
-                @include colwidth(8);
-            }
-
-            &__partner {
-                float: left;
-                @include colwidth(4);
-            }
-
-            &__content {
-                clear: left;
-                float: left;
-                @include colwidth(8);
-            }
-
-            &__sidebar {
-                float: left;
-                @include colwidth(4);
-            }
-
-            &__feedback {
-                clear: left;
-                @include colwidth(8);
-            }
-        }
-    }
-
-    &--guide {
-        .layout {
-            &__header {
-                clear: left;
-                float: left;
-                @include colwidth(8);
-            }
-
-            &__partner {
-                float: left;
-                @include colwidth(4);
-            }
-
-            &__content {
-                float: left;
-                @include colwidth(7);
-            }
-
-            &__sidebar {
-                clear: left;
-                float: left;
-                @include colwidth(3);
-            }
-
-            &__feedback {
-                clear: left;
-                @include colwidth(7);
-                @include colpush(3);
-            }
-        }
-    }
-
-    &--org-list {
-        .layout {
-            &__header {
-                @include colwidth(8);
-            }
-
-            &__content {
-                @include colwidth(12);
-            }
-        }
-    }
-
-    &--org-hub {
-        .layout {
-            &__header {
-                clear: left;
-                float: left;
-                @include colwidth(8);
-            }
-
-            &__partner {
-                float: left;
-                @include colwidth(4);
-            }
-
-            &__content {
-                clear: left;
-                float: left;
-                @include colwidth(8);
-            }
-
-            &__feedback {
-                clear: left;
-                @include colwidth(8);
             }
         }
     }
@@ -309,9 +189,12 @@
     $grid-area-partner:     p;
     $grid-area-sidebar:     s;
 
-    .layout {
-        display: grid;
-        grid-gap: 0 $grid-gap-x;
+    // this includes body for increased specificity
+    body .#{$pl-prefix}layout > *[class] {
+        width: auto;
+    }
+
+    .#{$pl-prefix}layout {
         grid-template-columns: repeat(2, 1fr);
 
         // default template areas definition based on article,
@@ -349,15 +232,8 @@
         }
     }
 
-    // for increased specificity we scope this to the body
-    body .layout > *[class*="layout"] {
-        margin-left: 0;
-        margin-right: 0;
-        width: auto;
-    }
-
     @include media-query(small) {
-        .layout {
+        .#{$pl-prefix}layout {
             grid-template-columns: repeat(6, 1fr);
 
             grid-template-areas:
@@ -370,7 +246,7 @@
     }
 
     @include media-query(medium) {
-        .layout {
+        .#{$pl-prefix}layout {
             grid-template-columns: repeat(12, 1fr);
 
             grid-template-areas:
@@ -412,7 +288,7 @@
     }
 
     @include media-query(large) {
-        .layout {
+        .#{$pl-prefix}layout {
             grid-template-areas:
                 'h h h h h h h h p p p p'
                 'c c c c c c c c s s s s'
