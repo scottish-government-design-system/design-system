@@ -12,7 +12,7 @@ $category-header__summary-size: 1.25rem !default;
 .#{$pl-prefix}category-header {
     align-items: center;
     margin-top: 14px;
-    margin-bottom: 14px;
+    margin-bottom: 28px;
 
     &__header {
         border-left: 4px solid $category-header__border-color;
@@ -61,6 +61,9 @@ $category-header__summary-size: 1.25rem !default;
 
 @include media-query(medium) {
     .#{$pl-prefix}category-header {
+        margin-top: 56px;
+        margin-bottom: 84px;
+
         &__header {
             float: left;
             @include colwidth(8);

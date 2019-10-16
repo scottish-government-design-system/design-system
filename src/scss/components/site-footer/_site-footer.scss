@@ -50,18 +50,6 @@ $site-footer__link-highlight: $color__brand--secondary !default;
         @include fancy-underscore();
     }
 
-    a {
-        color: currentColor;
-
-        &:hover {
-            color: $color__link--hover;
-        }
-
-        &:active {
-            color: $color__link--active;
-        }
-    }
-
     .#{$pl-prefix}site-footer__org-link,
     .#{$pl-prefix}site-footer__copyright-logo {
         color: currentColor !important;

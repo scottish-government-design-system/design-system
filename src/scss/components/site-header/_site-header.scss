@@ -88,7 +88,6 @@ $site-header__top-band-color: $color__brand--primary !default;
 /* variant with a solid-colour background and reversed branding */
 .#{$pl-prefix}site-header.#{$pl-prefix}reversed {
     background-color: $color__brand--primary;
-    border-bottom: 0;
     color: $color__white;
 
     &:not(.#{$pl-prefix}site-header--gradient) {

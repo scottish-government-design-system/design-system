@@ -48,14 +48,17 @@ $side-nav__highlight-color: $color__brand--primary !default;
     }
 
     #show-side-navigation:focus ~ .#{$pl-prefix}side-navigation__expand {
-        outline: $side-nav__outline-width solid $color__link--focus__outline;
+        background: $color__blocklink-bg--focus;
+        box-shadow: 0 $link__border-width $color__link--focus__shadow;
+        color: $color__link--focus;
+        transition-duration: 0s;
     }
 
     #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__expand .#{$pl-prefix}side-navigation__expand-indicator {
         @include indicator--open();
     }
 
-    #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__expand:not(:hover) {
+    #show-side-navigation:checked:not(:active):not(:focus) ~ .#{$pl-prefix}side-navigation__expand:not(:hover) {
         background-color: $color__link--current__background;
         color: $color__link--current;
     }
@@ -85,14 +88,21 @@ $side-nav__highlight-color: $color__brand--primary !default;
         margin-bottom: 0;
 
         &--has-children {
-            > .#{$pl-prefix}side-navigation__link:after {
-                color: $color__grey--medium;
-                left: $side-nav__spacing-unit;
-                position: absolute;
-                top: 18px;
-                z-index: 1;
+            > .#{$pl-prefix}side-navigation__link {
+                &:after {
+                    color: $color__grey--medium;
+                    left: $side-nav__spacing-unit;
+                    position: absolute;
+                    top: 18px;
+                    z-index: 1;
 
-                @include chevron(right, 12px, 2px);
+                    @include chevron(right, 12px, 2px);
+                }
+
+                &:focus:after,
+                &:active:after {
+                    color: $color__link--focus;
+                }
             }
 
             &--expanded > .#{$pl-prefix}side-navigation__link:after {
@@ -148,6 +158,14 @@ $side-nav__highlight-color: $color__brand--primary !default;
                 left: -3px;
                 top: 0;
                 width: 3px;
+            }
+        }
+
+        &.#{$pl-prefix}current {
+            background-color: $color__link--current__background;
+
+            &:hover {
+                background-color: $color__link--current__background;
             }
         }
     }

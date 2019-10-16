@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}search-result {
-    @include blocklink('.#{$pl-prefix}search-result__title');
+    @include blocklink('.#{$pl-prefix}search-result__link');
 
     border: 1px solid $color__border--light;
     border-width: 1px 0;

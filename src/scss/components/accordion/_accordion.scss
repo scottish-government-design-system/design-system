@@ -33,6 +33,7 @@ $accordion__header-color: $color__brand--primary !default;
         @include blocklink;
 
         color: $accordion__header-color;
+        cursor: pointer;
         font-weight: $bold;
         padding: 14px 45px 14px 15px;
         position: relative;
@@ -72,7 +73,7 @@ $accordion__header-color: $color__brand--primary !default;
         display: block;
     }
 
-    &__control:checked ~ &__header:not(:active) {
+    &__control:checked:not(:active):not(:focus) ~ &__header {
         background-color: $color__link--current__background;
         color: $color__link--current;
     }
@@ -82,7 +83,9 @@ $accordion__header-color: $color__brand--primary !default;
     }
 
     &__control:focus ~ &__header {
-        outline: 2px solid $color__link--focus__outline;
+        background: $color__blocklink-bg--focus;
+        box-shadow: 0 $link__border-width $color__link--focus;
+        color: $color__link--focus;
         z-index: 2;
     }
 

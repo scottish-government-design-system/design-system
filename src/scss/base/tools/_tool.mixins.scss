@@ -2,6 +2,11 @@
     MIXINS
 \*------------------------------------*/
 
+$blocklink__outline-width: 0;
+
+
+
+
 @mixin media-query($mq) {
     $breakpoint-found: false;
 
@@ -57,45 +62,37 @@
     width: $linesize;
 }
 
-// /**
-//  * Mixin to enforce consistency on block-style links, e.g. search results,
-//  * category items, etc
-//  */
+/**
+ * Mixin to enforce consistency on block-style links, e.g. search results,
+ * category items, etc
+ */
 @mixin blocklink ($link-selector: null) {
     display: block;
     position: relative;
-    transition: background-color $transition-out-time;
+    transition: background-color $transition-out-time, outline-color $transition-out-time;
+    z-index: 1;
+
+    outline: 0 !important;
 
     &:focus {
-        outline: 3px solid $color__blocklink-bg--active;
-
-        &:not(:active) {
-            outline-color: $color__blocklink--focus__outline;
-        }
+        background-color: $color__blocklink-bg--focus;
+        box-shadow: #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width} $color__link--focus__shadow, $blocklink__outline-width #{$blocklink__outline-width + $link__border-width} $color__link--focus__shadow;
     }
 
     &:hover:not(:focus) {
-        outline: 0;
-    }
-
-    &:hover {
-        background-color: $color__link--hover__background;
+        background-color: $color__blocklink-bg--hover;
     }
 
     &:active {
         background-color: $color__blocklink-bg--active;
-        // outline: initial;
-        transition-duration: 0s;
-    }
-
-    &.#{$pl-prefix}current {
-        background-color: $color__link--current__background;
     }
 
     @if $link-selector {
-        #{$link-selector} {
-            outline: 0;
+        &:hover:not(:focus) {
+            background: transparent;
+        }
 
+        #{$link-selector} {
             &:after {
                 content: "";
                 height: 100%;
@@ -104,21 +101,41 @@
                 top: 0px;
                 width: 100%;
                 z-index: 0;
+
+                transition: background-color $transition-in-time;
             }
 
-            &:focus {
-                &:after {
-                    outline: 3px solid $color__blocklink-bg--active;
-                }
-
-                &:not(:active):after {
-                    outline-color: $color__blocklink--focus__outline;
-                }
+            &:focus:hover {
+                text-decoration: none;
             }
         }
 
-        #{$link-selector}:hover {
-            background: transparent;
+        // apply the background colour in browsers that support blend modes, so we don't obscure the text
+        @supports(mix-blend-mode: darken) {
+            #{$link-selector} {
+                outline: 0;
+
+                &:after {
+                    mix-blend-mode: darken;
+                }
+
+                &:hover {
+                    &:after {
+                        background-color: $color__blocklink-bg--hover;
+                    }
+                }
+
+                &:focus {
+                    background-color: transparent;
+                    box-shadow: none;
+                    text-decoration: underline;
+
+                    &:after {
+                        background-color: $color__blocklink-bg--active;
+                        box-shadow: #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width} $color__link--focus__shadow, $blocklink__outline-width #{$blocklink__outline-width + $link__border-width} $color__link--focus__shadow;
+                    }
+                }
+            }
         }
     }
 }
@@ -139,12 +156,9 @@
     position: relative;
     transition-duration: 0s !important;
 
-    &:hover {
-        background: transparent;
-    }
-
     &:hover:not(:focus) {
-        outline-width: 0;
+        background: transparent;
+        outline-color: transparent;
     }
 
     &:active {

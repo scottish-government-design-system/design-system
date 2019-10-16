@@ -18,31 +18,38 @@ input[type="submit"],
     cursor: pointer;
     display: inline-block;
     font-weight: $bold;
+    outline-width: 0;
     padding: 11px 25px 10px;
     text-align: center;
     text-decoration: none;
     transition: background-color $transition-out-time;
+
+    &:hover,
+    &:focus,
+    &:active {
+        outline-width: 0;
+    }
 
     // this order is important. we want active to take precedence over focus and focus to take precedence over hover
     &:hover {
         background-color: $color__button--hover__background;
         color: $color__button;
         transition-duration: $transition-in-time;
-
-        &:not(:focus) {
-            outline-width: 0;
-        }
     }
 
     &:focus {
-        outline: $button__outline-width solid $color__button--focus__outline;
+        background-color: $color__button--focus__background;
+        box-shadow: 0 $link__border-width $color__link--focus__shadow;
+        color: $color__button--focus;
+        outline-color: $color__button--focus__background;
     }
 
     &:active,
     &:hover:active {
         background-color: $color__button--active__background;
+        box-shadow: 0 $link__border-width $color__link--active__shadow;
         color: $color__button--active;
-        outline-color: $color__button--active__outline;
+        outline-color: $color__button--active__background;
         transition-duration: 0s;
     }
 }
@@ -50,33 +57,57 @@ input[type="submit"],
 .#{$pl-prefix}button {
     &--secondary {
         background-color: $color__button--secondary__background;
-        border: $button__border-width solid currentColor;
         color: $color__button--secondary;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
         padding: #{(11px - $button__border-width)} #{23px - $button__border-width} #{(10px - $button__border-width)};
+
+        &:hover,
+        &:focus,
+        &:active {
+            outline-width: 2px;
+        }
 
         &:hover {
             background-color: $color__button--secondary--hover__background;
             color: $color__button--secondary--hover;
+
+            &:not(:focus) {
+                outline-color: currentColor;
+            }
         }
 
         &:focus:not(:active) {
+            background-color: $color__button--focus__background;
             color: $color__button--secondary--focus;
         }
     }
 
     &--cancel {
         background-color: $color__button--cancel__background;
-        border: $button__border-width solid currentColor;
         color: $color__button--cancel;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
         padding: #{(11px - $button__border-width)} #{23px - $button__border-width} #{(10px - $button__border-width)};
+
+        &:hover,
+        &:focus,
+        &:active {
+            outline-width: 2px;
+        }
 
         &:hover {
             background-color: $color__button--cancel--hover__background;
             color: $color__button--cancel;
+
+            &:not(:focus) {
+                outline-color: currentColor;
+            }
         }
 
         &:focus:not(:active) {
-            color: $color__button--cancel;
+            background-color: $color__button--focus__background;
+            color: $color__button--focus;
         }
     }
 }

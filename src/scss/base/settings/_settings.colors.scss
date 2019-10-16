@@ -26,9 +26,6 @@ $color__gold--base:     #ffb644 !default;
 $color__green--base:    #428542 !default;
 $color__orange--base:   #e87621 !default; // used for ppt icon
 
-$color__hotpink--light: #fcc2f3 !default;
-$color__hotpink--slightlylight:  #ff00df !default; // gives 3:1 contrast ratio against blue base
-$color__hotpink--base:  #f700d0 !default;
 
 
 
@@ -51,12 +48,19 @@ $color__placeholder:    $color__grey--base !default;
 $color__link:                       $color__blue--base !default;
 $color__link--hover:                $color__blue--dark !default;
 $color__link--hover__background:    $color__blue--light !default;
-$color__link--active:               $color__body !default;
-$color__link--active__background:   $color__hotpink--light !default;
-$color__link--focus:                $color__blue--dark !default;
-$color__link--focus__outline:       $color__hotpink--base !default;
+$color__link--focus:                $color__body !default;
+$color__link--focus__outline:       $color__gold--base !default;
+$color__link--focus__background:    $color__link--focus__outline !default;
+$color__link--focus__shadow:        $color__body !default;
+$color__link--active:               $color__link--focus !default;
+$color__link--active__background:   $color__link--focus__background !default;
+$color__link--active__shadow:       $color__link--focus__shadow !default;
 $color__link--current:              $color__body !default;
 $color__link--current__background:  $color__grey--lighter !default;
+$color__link--reversed:             currentColor !default;
+$color__link--reversed--hover:      $color__link--hover !default;
+$color__link--reversed--active:     $color__link--active !default;
+$color__link--reversed--focus:      $color__link--focus !default;
 
 
 
@@ -65,7 +69,7 @@ $color__link--current__background:  $color__grey--lighter !default;
 $color__blocklink-bg:               $color__white !default;
 $color__blocklink-bg--hover:        $color__link--hover__background !default;
 $color__blocklink-bg--active:       $color__link--active__background !default;
-$color__blocklink--focus__outline:  $color__link--focus__outline !default;
+$color__blocklink-bg--focus:        $color__blocklink-bg--active !default;
 
 
 
@@ -76,8 +80,8 @@ $color__button__background:         $color__brand--primary !default;
 $color__button--hover__background:  $color__link--hover !default;
 $color__button--active:             $color__link--active !default;
 $color__button--active__background: $color__link--active__background !default;
-$color__button--active__outline:    $color__button--active__background !default;
-$color__button--focus__outline:     $color__link--focus__outline !default;
+$color__button--focus:              $color__link--focus !default;
+$color__button--focus__background:  $color__link--focus__background !default;
 
 $color__button--secondary:                      $color__link !default;
 $color__button--secondary__background:          transparent !default;
@@ -86,7 +90,7 @@ $color__button--secondary--hover__background:   $color__link--hover__background 
 $color__button--secondary--focus:               $color__link--focus !default;
 $color__button--cancel:                         $color__body !default;
 $color__button--cancel__background:             $color__button--secondary__background !default;
-$color__button--cancel--hover__background:      $color__button--secondary--hover__background !default;
+$color__button--cancel--hover__background:      $color__grey--light !default;
 
 
 

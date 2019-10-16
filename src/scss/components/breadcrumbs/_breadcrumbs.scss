@@ -40,16 +40,4 @@ $breadcrumbs__font-size: $small-size--fixed !default;
 
 .#{$pl-prefix}reversed .#{$pl-prefix}breadcrumbs {
     color: $color__white;
-
-    a {
-        color: $color__white;
-
-        &:hover {
-            color: $color__link--hover;
-        }
-
-        &:active {
-            color: $color__link--active;
-        }
-    }
 }

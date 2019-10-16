@@ -17,18 +17,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding !default
     background: $color__blue--lighter;
     color: $color__body;
 
-    a:not(.#{$pl-prefix}button) {
-        color: currentColor;
-
-        &:hover {
-            color: $color__link--hover;
-        }
-
-        &:hover {
-            color: $color__link--active;
-        }
-    }
-
     &__content {
         justify-content: space-between;
         padding: 14px 0;
