@@ -76,7 +76,7 @@ $blocklink__outline-width: 0;
 
     &:focus {
         background-color: $color__blocklink-bg--focus;
-        box-shadow: #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width} $color__link--focus__shadow, $blocklink__outline-width #{$blocklink__outline-width + $link__border-width} $color__link--focus__shadow;
+        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow;
     }
 
     &:hover:not(:focus) {
@@ -125,14 +125,24 @@ $blocklink__outline-width: 0;
                     }
                 }
 
-                &:focus {
+                &:focus,
+                &:active {
                     background-color: transparent;
                     box-shadow: none;
                     text-decoration: underline;
+                }
 
+                &:focus {
+                    &:after {
+                        background-color: $color__blocklink-bg--focus;
+                        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow;
+                    }
+                }
+
+                &:active {
                     &:after {
                         background-color: $color__blocklink-bg--active;
-                        box-shadow: #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width} $color__link--focus__shadow, $blocklink__outline-width #{$blocklink__outline-width + $link__border-width} $color__link--focus__shadow;
+                        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $color__link--active__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $color__link--active__shadow;
                     }
                 }
             }

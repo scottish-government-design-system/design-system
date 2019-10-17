@@ -36,6 +36,14 @@ $category-item__border-color--hover: $color__link--hover !default;
         height: 5px;
     }
 
+    &:focus:after {
+        background-color: $color__link--focus__shadow;
+    }
+
+    &:active:after {
+        background-color: $color__link--active__shadow;
+    }
+
     &--gradient {
         &:after {
             background: linear-gradient(to $brand-gradient-direction, $color__brand--primary, $color__brand--secondary);
