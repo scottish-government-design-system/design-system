@@ -154,6 +154,7 @@ input[type="submit"],
     }
 }
 
+// ICONS ON BUTTONS
 .#{$pl-prefix}button {
     &--has-icon {
         padding-right: calc(#{$button__height} + #{$button__padding--x});
@@ -209,5 +210,18 @@ input[type="submit"],
                 width: $button__height--small;
             }
         }
+    }
+}
+
+// ICON-ONLY BUTTONS
+.#{$pl-prefix}button--icon-only {
+    height: $button__height;
+    padding: 14px;
+    width: $button__height;
+
+    &.#{$pl-prefix}button--small {
+        height: $button__height--small;
+        padding: 10px;
+        width: $button__height--small;
     }
 }
