@@ -103,7 +103,7 @@ Also include `@include indicator--open` to use the "open" version of the indicat
 
 ## Sprites
 
-Pattern library SVG icons should be compiled into a sprite so we can embed them in a way that lets us control them with CSS.
+Design System SVG icons should be compiled into a sprite so we can embed them in a way that lets us control them with CSS.
 
 Icons should be placed into `/src/images/icons/svg`
 

@@ -4,6 +4,9 @@
 
 $button__border-width: 2px !default;
 $button__outline-width: 3px !default;
+$button__height: 49px !default;
+$button__height--small: 42px !default;
+$button__padding--x: 20px !default;
 
 
 
@@ -18,11 +21,14 @@ input[type="submit"],
     cursor: pointer;
     display: inline-block;
     font-weight: $bold;
+    line-height: 21px;
     outline-width: 0;
-    padding: 11px 25px 10px;
+    padding: 14px 20px;
     text-align: center;
     text-decoration: none;
     transition: background-color $transition-out-time;
+
+    @include block-margins;
 
     &:hover,
     &:focus,
@@ -60,7 +66,6 @@ input[type="submit"],
         color: $color__button--secondary;
         outline: 2px solid currentColor;
         outline-offset: -2px;
-        padding: #{(11px - $button__border-width)} #{23px - $button__border-width} #{(10px - $button__border-width)};
 
         &:hover,
         &:focus,
@@ -88,7 +93,6 @@ input[type="submit"],
         color: $color__button--cancel;
         outline: 2px solid currentColor;
         outline-offset: -2px;
-        padding: #{(11px - $button__border-width)} #{23px - $button__border-width} #{(10px - $button__border-width)};
 
         &:hover,
         &:focus,
@@ -112,7 +116,98 @@ input[type="submit"],
     }
 }
 
-.#{$pl-prefix}button--small {
-    font-size: 0.85rem;
-    padding: 2px 13px 1px;
+// SIZE VARIANTS
+.#{$pl-prefix}button {
+    &--small {
+        font-size: $small-size;
+        padding-top: 10px;
+        padding-bottom: 11px;
+    }
+}
+
+// WIDTH VARIANTS
+.#{$pl-prefix}button {
+    &--fixed {
+        width: 200px;
+
+        &.#{$pl-prefix}button--small {
+            width: 160px;
+        }
+    }
+
+    &--max {
+        max-width: 480px;
+        width: 100%;
+    }
+}
+
+// STACKED BUTTONS
+.#{$pl-prefix}button-group {
+    @include block-margins;
+
+    > .#{$pl-prefix}button {
+        margin: 0 0 21px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.#{$pl-prefix}button {
+    &--has-icon {
+        padding-right: calc(#{$button__height} + #{$button__padding--x});
+        position: relative;
+
+        > .#{$pl-prefix}icon {
+            bottom: 0;
+            padding: 14px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: $button__height;
+        }
+    }
+
+    &--small.#{$pl-prefix}button--has-icon {
+        padding-right: calc(#{$button__height--small} + #{$button__padding--x});
+
+        > .#{$pl-prefix}icon {
+            height: $button__height--small;
+            padding: 10px;
+            width: $button__height--small;
+        }
+    }
+}
+
+@supports (display: grid) {
+    .#{$pl-prefix}button {
+        &--has-icon {
+            display: inline-grid;
+            grid-gap: $button__padding--x - 7px;
+            grid-template-columns: 1fr $button__height;
+            margin-right: 0;
+            padding-right: 0;
+
+            > .#{$pl-prefix}icon {
+                display: block;
+                height: $button__height;
+                margin: -14px 0;
+                position: static;
+                width: $button__height;
+            }
+        }
+
+        &--small.#{$pl-prefix}button--has-icon {
+            grid-gap: $button__padding--x - 11px;
+            grid-template-columns: 1fr $button__height--small;
+            padding-right: 0;
+
+            > .#{$pl-prefix}icon {
+                margin: -10px 0 -11px;
+                padding: 10px;
+                width: $button__height--small;
+            }
+        }
+    }
 }

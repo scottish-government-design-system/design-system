@@ -1,1 +1,1 @@
-# Digital Scotland Pattern Library
+# Digital Scotland Design System

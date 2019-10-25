@@ -192,6 +192,8 @@
 
     // this includes body for increased specificity
     body .#{$pl-prefix}layout > *[class] {
+        margin-left: 0;
+        margin-right: 0;
         width: auto;
     }
 
