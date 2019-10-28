@@ -45,6 +45,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding !default
         margin: 7px 0 -7px;
 
         > * {
+            margin-top: 0;
             margin-right: 5px;
             margin-bottom: 14px;
         }
