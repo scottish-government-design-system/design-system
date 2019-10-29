@@ -164,6 +164,7 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
         color: $site-navigation__mobile-menu-button-color;
         font-weight: $normal;
         height: calc(100% - 6px);
+        margin: 0;
         padding: 0 15px;
 
         &--open {

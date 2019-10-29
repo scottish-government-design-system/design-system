@@ -23,6 +23,7 @@ $accordion__header-color: $color__brand--primary !default;
 
 .#{$pl-prefix}accordion.js-initialised .#{$pl-prefix}accordion__open-all {
     display: block;
+    margin: 0;
 }
 
 .#{$pl-prefix}accordion-item {

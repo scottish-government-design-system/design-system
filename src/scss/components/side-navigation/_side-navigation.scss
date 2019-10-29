@@ -28,7 +28,7 @@ $side-nav__highlight-color: $color__brand--primary !default;
         top: 0;
         z-index: 2;
         text-decoration: none;
-        transition: box-shadow $transition-in-time;
+        transition: background-color $transition-in-time, box-shadow $transition-in-time;
 
         &--shadow {
             box-shadow: 0px 5px 5px rgba(0,0,0,0.15);
@@ -38,8 +38,18 @@ $side-nav__highlight-color: $color__brand--primary !default;
             background-color: $color__link--hover__background;
         }
 
+        &:hover:active {
+            background-color: $color__blocklink-bg--active;
+        }
+
         &:hover .side-navigation__expand-indicator {
             color: $color__link--hover;
+        }
+
+        &:active {
+            background-color: $color__blocklink-bg--active;
+            box-shadow: 0 3px #333333;
+            color: $color__link--active;
         }
     }
 
