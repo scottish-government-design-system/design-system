@@ -33,6 +33,7 @@ $site-search__background-color: $color__grey--light !default;
 
     &__button {
         height: $site-search__height;
+        margin: 0;
         padding: 0;
         position: absolute;
         right: 0;
