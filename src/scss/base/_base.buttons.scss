@@ -58,6 +58,11 @@ input[type="submit"],
         outline-color: $color__button--active__background;
         transition-duration: 0s;
     }
+
+    // ICONS ON BUTTONS
+    .#{$pl-prefix}icon {
+        pointer-events: none;
+    }
 }
 
 .#{$pl-prefix}button {
@@ -152,11 +157,6 @@ input[type="submit"],
             margin-bottom: 0;
         }
     }
-}
-
-// ICONS ON BUTTONS
-.#{$pl-prefix}button .#{$pl-prefix}icon {
-    pointer-events: none;
 }
 
 .#{$pl-prefix}button {
