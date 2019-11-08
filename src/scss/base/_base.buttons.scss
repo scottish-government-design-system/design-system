@@ -155,6 +155,10 @@ input[type="submit"],
 }
 
 // ICONS ON BUTTONS
+.#{$pl-prefix}button .#{$pl-prefix}icon {
+    pointer-events: none;
+}
+
 .#{$pl-prefix}button {
     &--has-icon {
         padding-right: calc(#{$button__height} + #{$button__padding--x});

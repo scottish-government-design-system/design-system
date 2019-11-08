@@ -11,7 +11,7 @@
     &__key {
         display: inline;
 
-        &:after {
+        &::after {
             content: ':';
         }
     }
@@ -45,7 +45,7 @@
         margin-left: 0.25em;
         padding-left: 0.5em;
 
-        &:before {
+        &::before {
             background: currentColor;
             bottom: 2px;
             content: '';

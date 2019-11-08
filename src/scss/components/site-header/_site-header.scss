@@ -14,7 +14,7 @@ $site-header__top-band-color: $color__brand--primary !default;
     border-bottom: 1px solid $site-header__border-color;
     position: relative;
 
-    &:before {
+    &::before {
         background: $site-header__top-band-color;
         display: block;
         content: '';
@@ -65,7 +65,7 @@ $site-header__top-band-color: $color__brand--primary !default;
 
 /* variant with the top colour bar set to a gradient of site brand colours */
 .#{$pl-prefix}site-header--gradient {
-    &:before {
+    &::before {
         background: linear-gradient(to $brand-gradient-direction, $color__brand--primary, $color__brand--secondary);
     }
 }
@@ -74,7 +74,7 @@ $site-header__top-band-color: $color__brand--primary !default;
 .#{$pl-prefix}site-header--shadow {
     border-bottom: 0;
 
-    &:after {
+    &::after {
         background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0));
         bottom: -11px;
         content: '';
@@ -91,7 +91,7 @@ $site-header__top-band-color: $color__brand--primary !default;
     color: $color__white;
 
     &:not(.#{$pl-prefix}site-header--gradient) {
-        &:before {
+        &::before {
             content: none;
         }
     }

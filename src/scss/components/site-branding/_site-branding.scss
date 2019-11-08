@@ -51,7 +51,7 @@ $branding__separator-color: $color__brand--primary !default;
             height: $site-logo__height--medium;
             max-height: unset;
 
-            &:not(:last-child):before {
+            &:not(:last-child)::before {
                 background: $branding__separator-color;
                 bottom: 0;
                 content: '';
@@ -96,7 +96,7 @@ $branding__separator-color: $color__brand--primary !default;
     .#{$pl-prefix}site-branding__logo {
         color: $color__white;
 
-        &:not(:last-child):before {
+        &:not(:last-child)::before {
             background-color: $color__white;
         }
     }

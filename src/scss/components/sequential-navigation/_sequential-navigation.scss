@@ -40,9 +40,9 @@ $page-nav__icon-size: 56px !default;
     }
 
     // Shared styles for left and right variations
-    // :before is the circle
-    &--left:before,
-    &--right:before {
+    // ::before is the circle
+    &--left::before,
+    &--right::before {
         content: '';
         height: $page-nav__icon-size;
         width: $page-nav__icon-size;
@@ -56,10 +56,10 @@ $page-nav__icon-size: 56px !default;
         transition: background-color $transition-out-time;
     }
 
-    // :after is the chevron
+    // ::after is the chevron
     &--left,
     &--right {
-        &:after {
+        &::after {
             color: $color__white;
             position: absolute;
             top: 25px;
@@ -70,11 +70,11 @@ $page-nav__icon-size: 56px !default;
         padding-left: ($page-nav__icon-size + 5px + 12px);
         text-align: left;
 
-        &:before {
+        &::before {
             left: 5px;
         }
 
-        &:after {
+        &::after {
             @include chevron(left, 30px, 5px);
             left: 25px;
         }
@@ -86,11 +86,11 @@ $page-nav__icon-size: 56px !default;
         padding-right: ($page-nav__icon-size + 5px + 12px);
         text-align: right;
 
-        &:before {
+        &::before {
             right: 5px;
         }
 
-        &:after {
+        &::after {
             @include chevron(right, 30px, 5px);
             right: 25px;
         }
@@ -98,13 +98,13 @@ $page-nav__icon-size: 56px !default;
 }
 
 .#{$pl-prefix}sequential-nav__button:hover {
-    &:before {
+    &::before {
         background-color: $page-nav__icon-hover;
     }
 }
 
 .#{$pl-prefix}sequential-nav__button:focus {
-    &:before {
+    &::before {
         background-color: $page-nav__icon-focus;
     }
 }
@@ -113,9 +113,8 @@ $page-nav__icon-size: 56px !default;
     display: inline-block;
     padding-top: 21px;
     position: relative;
-    text-decoration: underline;
 
-    &:before {
+    &::before {
         color: $page-nav__prefix-color;
         content: attr(data-label);
         font-size: 14px;

@@ -14,7 +14,7 @@ $category-item__link-color: $color__brand--primary !default;
 
     @include blocklink('.#{$pl-prefix}category-item__link');
 
-    border-left: 3px solid mix($category-item__border-color, $color__grey--lighter, 30%);
+    // border-left: 3px solid mix($category-item__border-color, $color__grey--lighter, 30%);
     padding: 10px 15px 11px;
     text-decoration: none;
     transition: background-color $transition-out-time, border-color $transition-out-time;
@@ -30,8 +30,37 @@ $category-item__link-color: $color__brand--primary !default;
         margin: 0 0 14px;
     }
 
+    .#{$pl-prefix}category-item__link::after {
+        left: -3px;
+    }
+
     &__link {
         color: $category-item__link-color;
+
+        &::before {
+            background-color: mix($category-item__border-color, $color__grey--lighter, 30%);
+            bottom: 0;
+            content: '';
+            left: -3px;
+            position: absolute;
+            top: 0;
+            width: 3px;
+        }
+
+        &:active::before,
+        &:focus::before {
+            content: none;
+        }
+
+        &--highlight {
+            &::before {
+                background-color: $category-item__border-color;
+            }
+        }
+
+        &:hover::before {
+            background-color: $color__link--hover;
+        }
     }
 
     &__summary {
@@ -41,17 +70,9 @@ $category-item__link-color: $color__brand--primary !default;
         margin: 0;
     }
 
-    &--highlight {
-        border-color: $category-item__border-color;
-    }
-
     &--no-border {
         border-left: 0;
         padding-left: 0;
-    }
-
-    &:hover {
-        border-color: $color__link--hover;
     }
 
     &:hover &__summary {

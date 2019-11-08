@@ -17,7 +17,7 @@ $contact-details__border-color: $color__brand--primary !default;
         padding-top: 7px;
         position: relative;
 
-        &:after {
+        &::after {
             background-color: $contact-details__border-color;
             bottom: 100%;
             content: '';

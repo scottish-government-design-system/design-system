@@ -99,7 +99,7 @@ $side-nav__highlight-color: $color__brand--primary !default;
 
         &--has-children {
             > .#{$pl-prefix}side-navigation__link {
-                &:after {
+                &::after {
                     color: $color__grey--medium;
                     left: $side-nav__spacing-unit;
                     position: absolute;
@@ -109,13 +109,13 @@ $side-nav__highlight-color: $color__brand--primary !default;
                     @include chevron(right, 12px, 2px);
                 }
 
-                &:focus:after,
-                &:active:after {
+                &:focus::after,
+                &:active::after {
                     color: $color__link--focus;
                 }
             }
 
-            &--expanded > .#{$pl-prefix}side-navigation__link:after {
+            &--expanded > .#{$pl-prefix}side-navigation__link::after {
                 @include chevron(down, 12px, 2px);
                 top: 15px;
             }
@@ -125,7 +125,7 @@ $side-nav__highlight-color: $color__brand--primary !default;
     &__list &__list &__list &__link {
         padding-left: #{$side-nav__spacing-unit * 2};
 
-        &:before {
+        &::before {
             background: $color__grey--light;
             bottom: 7px;
             content: '';
@@ -139,7 +139,7 @@ $side-nav__highlight-color: $color__brand--primary !default;
         &:hover,
         &:focus,
         &.#{$pl-prefix}current {
-            &:before {
+            &::before {
                 background: $side-nav__highlight-color;
             }
         }
@@ -160,15 +160,25 @@ $side-nav__highlight-color: $color__brand--primary !default;
         &.#{$pl-prefix}current {
             position: relative;
 
-            &:before {
+            &::before {
                 background: $side-nav__highlight-color;
                 bottom: 0;
                 content: '';
                 position: absolute;
-                left: -3px;
+                left: 0;
                 top: 0;
                 width: 3px;
             }
+        }
+
+        &:active,
+        &:focus {
+            box-shadow: 0 3px $color__link--active__shadow;
+        }
+
+        &:active::before,
+        &:focus::before {
+            content: none;
         }
 
         &.#{$pl-prefix}current {
@@ -214,15 +224,8 @@ $side-nav__highlight-color: $color__brand--primary !default;
             max-height: unset;
         }
 
-        &__item--has-children:before {
+        &__item--has-children::before {
             margin-top: 2px;
-        }
-
-        &__link:hover,
-        &__link.#{$pl-prefix}current {
-            &:before {
-                left: -3px;
-            }
         }
 
         #show-side-navigation {

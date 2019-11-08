@@ -14,7 +14,7 @@ abbr, acronym {
         position: relative;
         text-decoration: none;
 
-        &:after {
+        &::after {
             border-bottom: 1px dotted currentColor;
             content: '';
             left: 0;

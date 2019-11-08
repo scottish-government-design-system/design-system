@@ -13,7 +13,7 @@
     position: relative;
     text-decoration: none;
 
-    &__link:after {
+    &__link::after {
         content: "";
         height: 100%;
         left: 0px;

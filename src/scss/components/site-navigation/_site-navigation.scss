@@ -50,7 +50,7 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
             outline: none;
             padding-bottom: 4px;
 
-            &:after {
+            &::after {
                 content: none;
             }
         }
@@ -69,13 +69,13 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
             background-color: $color__link--active__background;
         }
 
-        &:after {
+        &::after {
             bottom: 0;
             height: 3px;
         }
 
-        &:hover:after,
-        &:focus:after {
+        &:hover::after,
+        &:focus::after {
             left: $link-horiz-padding;
             right: $link-horiz-padding;
         }
@@ -84,7 +84,7 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
             background-color: $color__link--current__background;
             pointer-events: none;
 
-            &:after {
+            &::after {
                 background-color: $site-navigation__highlight-color;
                 left: $link-horiz-padding;
                 opacity: 1;
@@ -106,7 +106,7 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
             background-color: transparent;
             color: $site-navigation__current-color--reversed;
 
-            &:after {
+            &::after {
                 background-color: currentColor;
             }
         }
@@ -201,7 +201,7 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
         width: 100%;
         z-index: 1;
 
-        &:after {
+        &::after {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), transparent);
             content: '';
             height: 11px;

@@ -22,7 +22,7 @@ $breadcrumbs__font-size: $small-size--fixed !default;
         padding: 0;
     }
 
-    &__item:not(:first-child):before {
+    &__item:not(:first-child)::before {
         @include chevron(right, 7px, 1px);
         margin: 0 4px 2px 2px;
     }

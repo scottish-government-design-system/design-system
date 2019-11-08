@@ -93,7 +93,7 @@ $blocklink__outline-width: 0;
         }
 
         #{$link-selector} {
-            &:after {
+            &::after {
                 content: "";
                 height: 100%;
                 left: 0px;
@@ -115,12 +115,12 @@ $blocklink__outline-width: 0;
             #{$link-selector} {
                 outline: 0;
 
-                &:after {
+                &::after {
                     mix-blend-mode: darken;
                 }
 
                 &:hover {
-                    &:after {
+                    &::after {
                         background-color: $color__blocklink-bg--hover;
                     }
                 }
@@ -133,17 +133,21 @@ $blocklink__outline-width: 0;
                 }
 
                 &:focus {
-                    &:after {
+                    &::after {
                         background-color: $color__blocklink-bg--focus;
                         box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow;
                     }
                 }
 
                 &:active {
-                    &:after {
+                    &::after {
                         background-color: $color__blocklink-bg--active;
                         box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $color__link--active__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $color__link--active__shadow;
                     }
+                }
+
+                &:focus:hover {
+                    text-decoration: underline;
                 }
             }
         }
@@ -175,7 +179,7 @@ $blocklink__outline-width: 0;
         background: $color__link--active__background;
     }
 
-    &:after {
+    &::after {
         background-color: currentColor;
         bottom: -6px;
         content: '';
@@ -187,7 +191,7 @@ $blocklink__outline-width: 0;
         transition: left $transition-in-time, right $transition-in-time, opacity $transition-in-time;
     }
 
-    &:hover:after {
+    &:hover::after {
         left: 0;
         opacity: 1;
         right: 0;
