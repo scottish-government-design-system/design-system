@@ -9,7 +9,7 @@
     @include block-margins;
 }
 
-@media (min-width: 768px) {
+@include media-query(medium) {
     .#{$pl-prefix}information-text {
         padding-right: 70px;
     }

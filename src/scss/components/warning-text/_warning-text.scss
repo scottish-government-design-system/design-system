@@ -27,7 +27,7 @@
     width: 35px;
 }
 
-@media (min-width: 768px) {
+@include media-query(medium) {
     .#{$pl-prefix}warning-text {
         padding-left: 73px;
         padding-right: 70px;
