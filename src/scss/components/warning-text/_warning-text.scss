@@ -2,13 +2,10 @@
     #WARNING TEXT
 \*------------------------------------*/
 
-
-
-
 .#{$pl-prefix}warning-text {
-    border : 1px solid $color__grey--medium;
+    border : 1px solid currentColor;
     border-width: 1px 0;
-    padding: 20px 10px 27px 59px;
+    padding: 35px 15px 35px 65px;
     position: relative;
 
     @include block-margins;
@@ -16,27 +13,27 @@
 
 .#{$pl-prefix}warning-text__icon {
     background: $color__body;
-    border-radius: 36px;
+    border-radius: 50%;
     color: $color__white;
     display: inline-block;
-    height: 36px;
+    height: 35px;
     font-size: 32px;
     font-weight: 700;
-    left: 10px;
-    line-height: 36px;
+    left: 15px;
+    line-height: 35px;
     position: absolute;
     text-align: center;
-    top: 16px;
-    width: 36px;
+    top: 30px;
+    width: 35px;
 }
 
 @media (min-width: 768px) {
     .#{$pl-prefix}warning-text {
-        padding-left: 64px;
-        padding-right: 35px;
+        padding-left: 73px;
+        padding-right: 70px;
     }
 
     .#{$pl-prefix}warning-text__icon {
-        left: 15px;
+        left: 23px;
     }
 }
