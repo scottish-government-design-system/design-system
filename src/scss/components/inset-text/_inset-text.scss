@@ -9,6 +9,10 @@
     @include block-margins;
 }
 
+.#{$pl-prefix}inset-text__text > :last-child {
+    margin-bottom: 0;
+}
+
 @include media-query(medium) {
     .#{$pl-prefix}inset-text {
         padding-right: 70px;
