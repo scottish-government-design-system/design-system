@@ -1,8 +1,8 @@
 /*------------------------------------*\
-    #INFORMATION TEXT
+    #INSET TEXT
 \*------------------------------------*/
 
-.#{$pl-prefix}information-text {
+.#{$pl-prefix}inset-text {
     border-left: 10px solid $color__grey--medium;
     padding: 28px 15px;
 
@@ -10,7 +10,7 @@
 }
 
 @include media-query(medium) {
-    .#{$pl-prefix}information-text {
+    .#{$pl-prefix}inset-text {
         padding-right: 70px;
     }
 }
