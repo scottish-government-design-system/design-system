@@ -14,7 +14,6 @@ $page-nav__icon-size: 56px !default;
 
 .#{$pl-prefix}sequential-nav {
     margin-top: 56px;
-    margin-bottom: 49px;
     overflow: hidden;
 }
 
@@ -128,10 +127,6 @@ $page-nav__icon-size: 56px !default;
 }
 
 @include media-query(small) {
-    .#{$pl-prefix}sequential-nav {
-        margin-bottom: 56px;
-    }
-
     .#{$pl-prefix}sequential-nav__item {
         width: calc(50% - 15px);
     }
