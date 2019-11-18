@@ -1,0 +1,122 @@
+/*------------------------------------*\
+    FORM MIXINS
+\*------------------------------------*/
+
+@mixin radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-color: $color__input--active__background) {
+
+    margin-bottom: 21px;
+    padding-left: 40px;
+    position: relative;
+
+    /**
+     * [1] minimum size of radio/checkbox for WCAG AAA
+     */
+    &__input {
+        height: $max-input-size; /* [1] */
+        left: -2px;
+        opacity: 0;
+        position: absolute;
+        top: -2px;
+        width: $max-input-size;
+    }
+
+    &__label {
+        display: inline-block;
+        padding: 7px 30px 7px 15px;
+    }
+
+    &__label::before {
+        border: 2px solid currentColor;
+        content: '';
+        height: $input-size;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: $input-size;
+    }
+
+    &__label::after {
+        content: "";
+        position: absolute;
+
+        bottom: calc(100% - #{$input-size});
+        left: 0;
+        right: calc(100% - #{$input-size});
+        top: 0;
+        opacity: 0;
+
+        background-color: $color__input--spot;
+    }
+
+    &__label::before,
+    &__label::after {
+        @if $round {
+            border-radius: 50%;
+        }
+    }
+
+    /* hover */
+    &__label:hover::before {
+        border-color: $color__input--hover__border;
+        box-shadow: 0 0 0 $input-shadow-size $color__input--hover__border;
+    }
+
+    /* focus */
+    &__input:focus + &__label::before {
+        border-width: 4px;
+        box-shadow: 0 0 0 $input-shadow-size $color__gold--base;
+    }
+
+    /* checked */
+    &__input:checked + &__label::before {
+        border-color: $color__input--spot;
+    }
+
+    &__input:checked + &__label::after {
+        opacity: 1;
+    }
+
+    /* active */
+    &__input:active + &__label::before {
+        background-color: $color__input--active__background;
+        border-color: $color__input--spot;
+        box-shadow: 0 0 0 $input-shadow-size $active-shadow-color;
+    }
+
+    /*
+     * [1] this negative margin makes the small checkboxes/radios align left with content
+     */
+    &--small {
+        margin-bottom: 14px;
+        margin-left: -8px; /* [1] */
+    }
+
+    &--small &__label::before {
+        height: $small-input-size;
+        left: $small-input-offset;
+        top: $small-input-offset;
+        width: $small-input-size;
+    }
+
+    &--small &__label::after {
+        bottom: calc(100% - #{$small-input-size - $small-pip-padding + $small-input-offset});
+        left: #{$small-pip-padding + $small-input-offset};
+        right: calc(100% - #{$small-input-size - $small-pip-padding + $small-input-offset});
+        top: #{$small-pip-padding + $small-input-offset};
+    }
+
+    /* hover */
+    &--small &__label:hover::before {
+        box-shadow: 0 0 0 $small-shadow-size $color__input--hover__border;
+    }
+
+    /* focus */
+    &--small &__input:focus + &__label::before {
+        box-shadow: 0 0 0 $small-shadow-size $color__input--focus__outline;
+    }
+
+    /* active */
+    &--small &__input:active + &__label::before {
+        box-shadow: 0 0 0 $small-shadow-size $active-shadow-color;
+    }
+}

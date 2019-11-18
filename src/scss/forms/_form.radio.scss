@@ -1,0 +1,12 @@
+/*------------------------------------*\
+    RADIO BUTTONS
+\*------------------------------------*/
+
+.#{$pl_prefix}radio {
+    @include radiocheckboxstates(true, 1px, $color__input--spot);
+
+    &__label::after {
+        -webkit-mask-image: url(/assets/images/icons/radio-40.svg);
+        mask-image: url(/assets/images/icons/radio-40.svg);
+    }
+}

@@ -1,0 +1,35 @@
+/*------------------------------------*\
+    CURRENCY WRAPPER
+\*------------------------------------*/
+
+$input-height: 49px;
+
+.#{$pl_prefix}currency-wrapper {
+    position: relative;
+
+    &::before {
+        content: '£';
+        height: $input-height;
+        font-size: $large-size;
+        font-weight: bold;
+        left: 0;
+        line-height: $input-height;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: $input-height;
+    }
+
+    &[data-symbol]::before {
+        content: attr(data-symbol);
+    }
+
+    & > .#{$pl_prefix}input {
+        padding-left: 42px;
+    }
+
+    & > .#{$pl_prefix}input:focus {
+        padding-left: 41px;
+    }
+}

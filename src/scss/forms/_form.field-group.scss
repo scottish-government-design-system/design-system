@@ -1,0 +1,17 @@
+/*------------------------------------*\
+    FIELD GROUP
+\*------------------------------------*/
+
+.#{$pl_prefix}field-group {
+    margin-top: 14px;
+    margin-bottom: -21px;
+
+    &--inline {
+        display: flex;
+        flex-direction: row;
+    }
+
+    &--inline > div:not(:last-child) {
+        margin-right: 15px;
+    }
+}

@@ -1,0 +1,28 @@
+/*------------------------------------*\
+    REVEAL CONTENT
+\*------------------------------------*/
+
+.#{$pl_prefix}reveal-content {
+    display: none;
+    margin-top: 14px;
+    padding-left: 14px;
+    position: relative;
+
+    &::before {
+        background-color: $color__grey--medium;
+        bottom: 0;
+        content: '';
+        left: -23px;
+        position: absolute;
+        top: 0;
+        width: 5px;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+:checked ~ .#{$pl_prefix}reveal-content {
+    display: block;
+}

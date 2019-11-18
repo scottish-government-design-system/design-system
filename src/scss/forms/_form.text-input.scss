@@ -1,0 +1,93 @@
+/*------------------------------------*\
+    TEXT INPUTS
+    Covers text-based INPUT elements and TEXTAREA elements
+\*------------------------------------*/
+
+.#{$pl_prefix}input {
+    border: 2px solid currentColor;
+    border-radius: 0;
+    display: block;
+    margin-bottom: 21px;
+    min-height: 49px;
+    padding: 7px;
+    width: 100%;
+
+    &:hover {
+        border-color: $color__input--hover__border;
+        box-shadow: 0 0 0 $input-shadow-size $color__input--hover__border;
+    }
+
+    &:focus {
+        background-color: $color__input--focus__background;
+        border-color: $color__input--spot;
+        border-width: 3px;
+        box-shadow: 0 0 0 $input-shadow-size $color__input--focus__outline;
+        outline: none;
+        padding: 6px;
+    }
+
+    &__wrapper--has-icon {
+        display: inline-block;
+        position: relative;
+
+        > .#{$pl_prefix}button {
+            margin-top: 0;
+            margin-bottom: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        > .#{$pl_prefix}input {
+            padding-right: 56px;
+        }
+    }
+
+    @supports (display: flex) {
+        &__wrapper--has-icon {
+            display: flex;
+
+            > .#{$pl_prefix}button {
+                margin-left: -49px;
+                position: static;
+            }
+        }
+    }
+}
+
+// width variants: fixed
+$text-input-fixed-widths: (2,3,4,5,10,20);
+
+/*
+ * [1] padding + n character widths
+ * [2] additional currency padding + right padding + n character widths
+ */
+@each $width in $text-input-fixed-widths {
+    .#{$pl_prefix}input--fixed-#{$width} {
+        max-width: calc(14px + #{($width) * 1em}); /* [1] */
+    }
+
+    .#{$pl_prefix}currency-wrapper .#{$pl_prefix}input--fixed-#{$width} {
+        max-width: calc(42px + 7px + #{($width) * 1em}); /* [2] */
+    }
+}
+
+// width variants: fluid
+$text-input-fluid-widths: (
+    'one-quarter' 25,
+    'one-third' 33.333333,
+    'half' 50,
+    'two-thirds' 67.666667,
+    'three-quarters' 75
+);
+
+@include media-query(medium) {
+    @each $width in $text-input-fluid-widths {
+        $name:  nth($width, 1);
+        $value: nth($width, 2);
+
+        .#{$pl_prefix}input--fluid-#{$name} {
+            max-width: #{($value) * 1%};
+        }
+    }
+}

@@ -1,0 +1,28 @@
+/*------------------------------------*\
+    QUESTION BLOCK (temp)
+\*------------------------------------*/
+
+.#{$pl_prefix}question {
+    margin-bottom: 21px;
+
+    &--error {
+        border-left: 5px solid $color__red--base;
+        padding-left: 20px;
+    }
+
+    &__message {
+        font-weight: bold;
+        margin-bottom: 14px;
+    }
+
+    &--error &__message {
+        color: $color__red--base;
+    }
+
+    &--error .ds_radio__label::before,
+    &--error .ds_checkbox__label::before,
+    &--error input,
+    &--error textarea {
+        border-color: currentColor;
+    }
+}

@@ -1,0 +1,12 @@
+/*------------------------------------*\
+    CHECKBOXES
+\*------------------------------------*/
+
+.#{$pl_prefix}checkbox {
+    @include radiocheckboxstates();
+
+    &__label::after {
+        -webkit-mask-image: url(/assets/images/icons/checkbox-40.svg);
+        mask-image: url(/assets/images/icons/checkbox-40.svg);
+    }
+}

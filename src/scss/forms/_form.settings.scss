@@ -1,0 +1,10 @@
+/*------------------------------------*\
+    FORM VARIABLES
+\*------------------------------------*/
+
+$max-input-size: 44px !default;
+$input-size: 40px !default;
+$input-shadow-size: #{($max-input-size - $input-size) /2} !default;
+$small-input-size: 24px !default;
+$small-shadow-size: #{($max-input-size - $small-input-size) /2} !default;
+$small-input-offset: 8px !default;
