@@ -38,6 +38,8 @@
 
 .#{$pl-prefix}layout {
     @include layout();
+
+    margin-bottom: 91px;
 }
 
 @include media-query(medium) {
