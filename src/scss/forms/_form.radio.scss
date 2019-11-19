@@ -5,8 +5,17 @@
 .#{$pl_prefix}radio {
     @include radiocheckboxstates(true, 1px, $color__input--spot);
 
+    /*
+     * [1] for IE11 support, use image without clip path
+     */
     &__label::after {
         -webkit-mask-image: url(/assets/images/icons/radio-40.svg);
         mask-image: url(/assets/images/icons/radio-40.svg);
+        background-image: url(/assets/images/icons/radio-40.svg); /* [1] */
+
+        @supports(display: grid) {
+            background-color: $color__input--spot;
+            background-image: none;
+        }
     }
 }

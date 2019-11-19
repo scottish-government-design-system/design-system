@@ -44,8 +44,6 @@
         right: calc(100% - #{$input-size});
         top: 0;
         opacity: 0;
-
-        background-color: $color__input--spot;
     }
 
     &__label::before,

@@ -18,11 +18,4 @@
     &--error &__message {
         color: $color__red--base;
     }
-
-    &--error .ds_radio__label::before,
-    &--error .ds_checkbox__label::before,
-    &--error input,
-    &--error textarea {
-        border-color: currentColor;
-    }
 }
