@@ -221,7 +221,7 @@ $side-nav__highlight-color: $color__brand--primary !default;
         &__list--root {
             display: block !important;
             margin: 0;
-            max-height: unset;
+            max-height: unset !important;
         }
 
         &__item--has-children::before {

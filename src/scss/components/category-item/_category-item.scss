@@ -71,6 +71,39 @@ $category-item__link-color: $color__brand--primary !default;
     &--highlight &__link::before {
         background-color: $category-item__border-color;
     }
+
+    &--gradient.#{$pl-prefix}category-item--highlight &__link::before {
+        background: linear-gradient(to top, $color__brand--primary, $color__brand--secondary);
+    }
+}
+
+.#{$pl-prefix}card {
+    > .#{$pl-prefix}category-item {
+        min-height: 186px;
+        padding-top: 21px;
+        padding-bottom: 21px;
+    }
+
+    .#{$pl-prefix}category-item__link::before {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 100%;
+        transition: top 0.2s;
+        width: 100%;
+    }
+
+    .#{$pl-prefix}category-item__link:hover::before {
+        top: calc(100% - 3px);
+    }
+
+    .#{$pl-prefix}category-item__link::after {
+        left: 0;
+    }
+
+    .#{$pl-prefix}category-item--gradient &__link::before {
+        background: linear-gradient(to $brand-gradient-direction, $color__brand--primary, $color__brand--secondary);
+    }
 }
 
 @include media-query(medium) {
