@@ -105,6 +105,13 @@ $blocklink__outline-width: 0;
                 transition: background-color $transition-in-time;
             }
 
+            &:focus,
+            &:active {
+                &::after {
+                    transition-duration: 0s;
+                }
+            }
+
             &:focus:hover {
                 text-decoration: none;
             }

@@ -53,7 +53,7 @@ $category-item__link-color: $color__brand--primary !default;
         }
 
         &:hover::before {
-            background-color: $color__link--hover;
+            background-color: $category-item__border-color--hover;
         }
     }
 
@@ -101,7 +101,7 @@ $category-item__link-color: $color__brand--primary !default;
         left: 0;
     }
 
-    .#{$pl-prefix}category-item--gradient &__link::before {
+    .#{$pl-prefix}category-item--gradient .#{$pl-prefix}category-item__link::before {
         background: linear-gradient(to $brand-gradient-direction, $color__brand--primary, $color__brand--secondary);
     }
 }
