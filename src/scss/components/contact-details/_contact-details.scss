@@ -58,6 +58,7 @@ $contact-details__border-color: $color__brand--primary !default;
 
     &__social-icon {
         height: $social-icon-size;
+        pointer-events: none;
         position: absolute;
         left: 0;
         width: $social-icon-size;
