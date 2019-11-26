@@ -11,7 +11,7 @@
   "scripts": {
     "postshrinkwrap": "node_modules/.bin/sealant",
     "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
-    "sass": "node_modules/.bin/node-sass src/scss --output dist/css --output-style compressed",
+    "sass": "node_modules/.bin/node-sass src --output dist/css --output-style compressed",
     "svgsprite": "node_modules/.bin/node svg-sprite",
     "test": "jest --coverage",
     "webpack": "node_modules/.bin/webpack"

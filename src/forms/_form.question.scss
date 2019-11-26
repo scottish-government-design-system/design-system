@@ -11,11 +11,11 @@
     }
 
     &__message {
-        font-weight: bold;
         margin-bottom: 14px;
     }
 
     &--error &__message {
         color: $color__red--base;
+        font-weight: bold;
     }
 }

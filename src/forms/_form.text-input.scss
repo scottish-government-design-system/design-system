@@ -4,7 +4,7 @@
 \*------------------------------------*/
 
 .#{$pl_prefix}input {
-    border: 2px solid currentColor;
+    border: $field-border-width solid currentColor;
     border-radius: 0;
     display: block;
     margin-bottom: 21px;
@@ -12,18 +12,35 @@
     padding: 7px;
     width: 100%;
 
-    &:hover {
-        border-color: $color__input--hover__border;
-        box-shadow: 0 0 0 $input-shadow-size $color__input--hover__border;
-    }
+    // &:hover {
+    //     border-color: $color__input--hover__border;
+    //     box-shadow: 0 0 0 $input-shadow-size $color__input--hover__border;
+    // }
 
     &:focus {
-        background-color: $color__input--focus__background;
-        border-color: $color__input--spot;
-        border-width: 3px;
-        box-shadow: 0 0 0 $input-shadow-size $color__input--focus__outline;
-        outline: none;
-        padding: 6px;
+        outline: $field-glow-width solid $color__input--focus__outline;
+        outline-offset: 0;
+        box-shadow: inset 0 0 0 #{$field-border-width--focus - $field-border-width};
+    }
+
+    &--error {
+        border-color: $color__red--base;
+        border-width: $field-border-width--error;
+        padding: 5px;
+
+        &:focus {
+            border-color: currentColor;
+            box-shadow: none;
+        }
+    }
+
+    & + &__message {
+        margin-top: -14px;
+    }
+
+    &--error + &__message {
+        color: $color__red--base;
+        font-weight: $bold;
     }
 
     &__wrapper--has-icon {

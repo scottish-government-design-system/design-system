@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    FORM VARIABLES
+\*------------------------------------*/
+
+$field-glow-width: 3px;
+$field-border-width: 2px;
+$field-border-width--focus: 4px;
+$field-border-width--error: 4px;
+
+$max-input-size: 44px !default;
+$input-size: 40px !default;
+$small-input-size: 24px !default;
+$small-input-offset: 8px !default;
+
+
+// $input-shadow-size: #{($max-input-size - $input-size) /2} !default;
+// $small-shadow-size: #{($max-input-size - $small-input-size) /2} !default;
+
+
+$small-shadow-size: 11px;

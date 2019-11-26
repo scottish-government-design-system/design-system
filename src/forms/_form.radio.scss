@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .#{$pl_prefix}radio {
-    @include radiocheckboxstates(true, 1px, $color__input--spot);
+    @include radiocheckboxstates(true, 1px);
 
     /*
      * [1] for IE11 support, use image without clip path
