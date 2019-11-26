@@ -5,11 +5,11 @@ module.exports = {
 
   entry: {
     'pattern-library.js': [
-      path.resolve(__dirname, 'src/scripts/accordion.js'),
-      path.resolve(__dirname, 'src/scripts/notification-banner.js'),
-      path.resolve(__dirname, 'src/scripts/side-navigation.js'),
-      path.resolve(__dirname, 'src/scripts/site-navigation.js'),
-      path.resolve(__dirname, 'src/scripts/site-search.js')
+      path.resolve(__dirname, './src/scss/components/accordion/accordion.js'),
+      path.resolve(__dirname, './src/scss/components/notification-banner/notification-banner.js'),
+      path.resolve(__dirname, './src/scss/components/side-navigation/side-navigation.js'),
+      path.resolve(__dirname, './src/scss/components/site-navigation/site-navigation.js'),
+      path.resolve(__dirname, './src/scss/components/site-search/site-search.js')
     ]
   },
 

@@ -1,10 +1,13 @@
 'use strict';
 
-const mobileMenuComponent = {
-    init: function () {
-        const menuElement = document.querySelector('#mobile-navigation-menu');
+class MobileMenu {
+    constructor (mobileMenu) {
+        this.mobileMenu = mobileMenu;
+        this.menuElement = document.querySelector('#mobile-navigation-menu');
+    }
 
-        if (!menuElement) {
+    init () {
+        if (!this.menuElement) {
             return;
         }
 
@@ -12,14 +15,14 @@ const mobileMenuComponent = {
         const menuContainer = document.querySelector('#mobile-navigation-menu');
         const menuCloseButton = document.querySelector('.js-close-menu');
 
-        menuToggleButton.addEventListener('click', function () {
+        menuToggleButton.addEventListener('click', () => {
             menuContainer.classList.toggle('menu-is-open');
             const menuIsOpen = menuContainer.classList.contains('menu-is-open');
 
             if (menuIsOpen) {
-                mobileMenuComponent.openMenu(menuElement);
+                this.openMenu();
             } else {
-                mobileMenuComponent.closeMenu();
+                this.closeMenu();
             }
 
             menuToggleButton.setAttribute('aria-expanded', menuIsOpen);
@@ -27,24 +30,23 @@ const mobileMenuComponent = {
             menuIsOpen? menuToggleButton.classList.add('ds_mobile-navigation__button--open') : menuToggleButton.classList.remove('ds_mobile-navigation__button--open');
         });
 
-        menuCloseButton.addEventListener('click', function () {
+        menuCloseButton.addEventListener('click', () => {
             menuContainer.classList.remove('menu-is-open');
-            mobileMenuComponent.closeMenu();
+            this.closeMenu();
 
             menuToggleButton.setAttribute('aria-expanded', false);
             menuCloseButton.setAttribute('aria-expanded', false);
             menuToggleButton.classList.remove('ds_mobile-navigation__button--open');
         });
-    },
+    }
 
-    openMenu: function (menuElement) {
+    openMenu () {
         window.scrollTo(0, window.scrollX);
-
         const htmlElement = document.querySelector('html');
         const bodyElement = document.querySelector('body');
 
         // position overlay
-        const offsetElement = document.querySelector(menuElement.dataset.offsetselector);
+        const offsetElement = document.querySelector(this.menuElement.dataset.offsetselector);
         const offsetHeight = offsetElement ? offsetElement.offsetHeight : 0;
         const offsetTop = offsetElement ? offsetElement.offsetTop : 0;
         const mobileNavigation = document.querySelector('.ds_mobile-navigation');
@@ -67,9 +69,9 @@ const mobileMenuComponent = {
         htmlElement.classList.add('menu-is-open');
         htmlElement.style.height = window.innerHeight + "px";
         bodyElement.style.height = window.innerHeight + "px";
-    },
+    }
 
-    closeMenu: function () {
+    closeMenu () {
         const htmlElement = document.querySelector('html');
         const bodyElement = document.querySelector('body');
         const mobileNavigation = document.querySelector('.ds_mobile-navigation');
@@ -83,9 +85,6 @@ const mobileMenuComponent = {
 
         mobileNavigation.style.bottom = null;
     }
-};
+}
 
-// self-initialize
-mobileMenuComponent.init();
-
-export {mobileMenuComponent};
+export default MobileMenu;

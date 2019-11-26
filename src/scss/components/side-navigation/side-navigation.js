@@ -1,19 +1,22 @@
 'use strict';
 
-const sideNavigationComponent = {
-    init: function () {
-        const sideNavigation = document.querySelector('.ds_side-navigation');
-        if (sideNavigation) {
-            this.setupSideNavigation(sideNavigation);
-        }
-    },
+class SideNavigation {
+    constructor (sideNavigation) {
+        this.sideNavigation = sideNavigation;
+    }
 
-    setupSideNavigation: function (sideNavigation) {
-        const checkbox = sideNavigation.querySelector('#show-side-navigation');
+    init() {
+        if (this.sideNavigation) {
+            this.setupSideNavigation();
+        }
+    }
+
+    setupSideNavigation() {
+        const checkbox = this.sideNavigation.querySelector('#show-side-navigation');
         checkbox.setAttribute('aria-expanded', false);
 
-        checkbox.addEventListener('change', function (event) {
-            const list = sideNavigation.querySelector('.ds_side-navigation__list--root');
+        checkbox.addEventListener('change', (event) => {
+            const list = this.sideNavigation.querySelector('.ds_side-navigation__list--root');
             if (event.target.checked) {
                 list.style.display = 'block';
                 list.style.maxHeight = list.scrollHeight + 14 +  'px';
@@ -30,8 +33,8 @@ const sideNavigationComponent = {
             checkbox.setAttribute('data-navigation', `navigation-${event.target.checked ? 'close' : 'open'}`);
         });
 
-        window.addEventListener('scroll', function () {
-            const sideNavigationExpand = document.querySelector('.ds_side-navigation__expand');
+        window.addEventListener('scroll', () => {
+            const sideNavigationExpand = this.sideNavigation.querySelector('.ds_side-navigation__expand');
 
             if (sideNavigationExpand.offsetTop > 1) {
                 sideNavigationExpand.classList.add('ds_side-navigation__expand--shadow');
@@ -40,9 +43,6 @@ const sideNavigationComponent = {
             }
         });
     }
-};
+}
 
-// self-initialize
-sideNavigationComponent.init();
-
-export {sideNavigationComponent};
+export default SideNavigation;

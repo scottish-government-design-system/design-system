@@ -1,33 +1,38 @@
 const fs = require('fs');
 const path = require('path');
+const html = fs.readFileSync(path.resolve(__dirname, './side-navigation.html'), 'utf-8');
+const testObj = {};
 
-const sideNavigationScript = require('../src/scripts/side-navigation');
-const html = fs.readFileSync(path.resolve(__dirname, 'html/side-navigation.html'), 'utf-8');
+import SideNavigation from './side-navigation';
 
 describe('side navigation', () => {
     describe('no side navigation', () => {
         it('should not have any errors', () => {
-            sideNavigationScript.sideNavigationComponent.init();
+            const ppp = new SideNavigation();
+            ppp.init();
         });
     });
 
     describe('with side navigation', () => {
         beforeEach(() => {
             document.documentElement.innerHTML = html.toString();
-            sideNavigationScript.sideNavigationComponent.init();
+            testObj.sideNavigationElement = document.querySelector('.ds_side-navigation');
+            testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
         });
 
         it ('should set an initial ARIA value on the show/hide checkbox', () => {
-            const sideNavigation = document.querySelector('.ds_side-navigation');
-            const checkbox = sideNavigation.querySelector('#show-side-navigation');
+            testObj.sideNavigationModule.init();
 
+            const checkbox = testObj.sideNavigationElement.querySelector('#show-side-navigation');
+//console.log(testObj.sideNavigationElement.innerHTML)
             expect(checkbox.getAttribute('aria-expanded')).toEqual('false');
         });
 
         it ('should toggle display of the side navigation on click of the label', () => {
-            const sideNavigation = document.querySelector('.ds_side-navigation');
-            const label = sideNavigation.querySelector('.ds_side-navigation__expand');
-            const list = sideNavigation.querySelector('.ds_side-navigation__list--root');
+            testObj.sideNavigationModule.init();
+
+            const label = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
+            const list = testObj.sideNavigationElement.querySelector('.ds_side-navigation__list--root');
 
             // opening nav
             const event = new Event('click');
@@ -41,7 +46,7 @@ describe('side navigation', () => {
         });
 
         it ('should toggle a class on the navigation if the navigation button is sticky', function () {
-            const sideNavigationExpand = document.querySelector('.ds_side-navigation__expand');
+            const sideNavigationExpand = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
 
             const event = new Event('scroll');
             window.dispatchEvent(event);
