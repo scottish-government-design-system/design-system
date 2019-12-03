@@ -207,8 +207,8 @@
         grid-template-areas:
             'h h'
             'p p'
-            'c c'
             's s'
+            'c c'
             'f f';
         margin-right: 0;
 
@@ -244,8 +244,8 @@
             grid-template-areas:
                 'h h h h h h'
                 'p p p p p p'
-                'c c c c c c'
                 's s s s s s'
+                'c c c c c c'
                 'f f f f f f';
         }
     }
@@ -257,15 +257,15 @@
             grid-template-areas:
                 'h h h h h h h h h h h h'
                 'p p p p p p p p p p p p'
-                'c c c c c c c c c c c c'
                 's s s s s s s s s s s s'
+                'c c c c c c c c c c c c'
                 'f f f f f f f f . . . .';
 
             &--article {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
-                    'c c c c c c c c c c c c'
                     's s s s s s s s s s s s'
+                    'c c c c c c c c c c c c'
                     'f f f f f f f f . . . .';
             }
 

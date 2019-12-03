@@ -4,15 +4,36 @@ class CharacterCount {
     constructor(field) {
         this.field = field;
         this.inputElement = this.field.querySelector('input, textarea');
-        this.messageElement = this.field.querySelector('.ds_input__message');
-        this.maxLength = this.field.dataset.maxlength;
+        this.threshold = this.field.dataset.threshold ? this.field.dataset.threshold * 0.01 : 0;
     }
 
     init() {
-        if (!this.inputElement || !this.messageElement || !this.maxLength) {
+        this.setMaxLength();
+
+        if (!this.inputElement || !this.maxLength) {
             return;
         }
+
+        // dynamically create the message element
+        this.messageElement = document.createElement('div');
+        this.messageElement.setAttribute('aria-live', 'polite');
+        this.messageElement.classList.add('ds_input__message', 'ds_hint-text');
+        this.messageElement.innerText = `You can enter up to ${this.maxLength} characters`;
+        if (this.threshold > 0) {
+            this.messageElement.classList.add('fully-hidden');
+        }
+        this.field.appendChild(this.messageElement);
+
         this.inputElement.addEventListener('keyup', this.checkIfChanged.bind(this));
+    }
+
+    setMaxLength() {
+        if (this.inputElement.getAttribute('maxlength')) {
+            this.maxLength = parseInt(this.inputElement.getAttribute('maxlength'), 10);
+            this.inputElement.removeAttribute('maxlength');
+        } else if (this.field.dataset.maxlength) {
+            this.maxLength = this.field.dataset.maxlength;
+        }
     }
 
     /*
@@ -48,24 +69,13 @@ class CharacterCount {
             this.messageElement.innerText = `You have ${count} ${noun} remaining`;
             this.messageElement.classList.add('ds_hint-text');
         }
+
+        if (this.inputElement.value.length < this.maxLength * this.threshold) {
+            this.messageElement.classList.add('fully-hidden');
+        } else {
+            this.messageElement.classList.remove('fully-hidden');
+        }
     }
 }
 
 export default CharacterCount;
-
-
-
-
-/**
-  var $characterCounts = scope.querySelectorAll('[data-module="govuk-character-count"]')
-  nodeListForEach($characterCounts, function ($characterCount) {
-    new CharacterCount($characterCount).init()
-  })
- */
-
-const characterCountFields = [].slice.call(document.querySelectorAll('.js_character-count'));
-
-characterCountFields.forEach(function (field) {
-    const ppp = new CharacterCount(field);
-    ppp.init();
-});

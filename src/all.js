@@ -1,21 +1,42 @@
-import Accordion from './accordion/accordion.js';
-import CharacterCount from './character-count/character-count.js';
-import NotificationBanner from './notification-banner/notification-banner.js';
-import SideNavigation from './side-navigation/side-navigation.js';
-import MobileMenu from './site-navigation/site-navigation.js';
-import CollapsibleSearchBox from './site-search/site-search.js';
+import Accordion from './components/accordion/accordion';
+import CollapsibleSearchBox from './components/site-search/site-search';
+import CharacterCount from './scripts/character-count';
+import MobileMenu from './components/site-navigation/site-navigation';
+import NotificationBanner from './components/notification-banner/notification-banner';
+import SideNavigation from './components/side-navigation/side-navigation';
 
-const accordions = [].slice.call(document.querySelectorAll('.ds_accordion'));
-accordions.forEach(accordion => new Accordion(accordion).init());
+// Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
+// defaults to document
+function initAll(scope = document) {
+    const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
+    accordions.forEach(accordion => new Accordion(accordion).init());
 
-const notificationBanners = [].slice.call(document.querySelectorAll('.ds_notification'));
-notificationBanners.forEach(notificationBanner => new NotificationBanner(notificationBanner).init());
+    const searchBoxes = [].slice.call(scope.querySelectorAll('[data-module="ds-site-search"]'));
+    searchBoxes.forEach(searchBox => new CollapsibleSearchBox(searchBox).init());
 
-const sideNavigations = [].slice.call(document.querySelectorAll('.ds_side-navigation'));
-sideNavigations.forEach(sideNavigation => new SideNavigation(sideNavigation).init());
+    const characterCountModules = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]'));
+    const characterCountElements = [].slice.call(scope.querySelectorAll('input[maxlength], textarea[maxlength]'));
+    characterCountElements.forEach(element => characterCountModules.push(element.parentNode));
+    characterCountModules.forEach(characterCount => new CharacterCount(characterCount).init());
 
-const mobileMenus = [].slice.call(document.querySelectorAll('#mobile-navigation-menu'));
-mobileMenus.forEach(mobileMenu =>  new MobileMenu(mobileMenu).init());
+    const mobileMenus = [].slice.call(scope.querySelectorAll('[data-module="ds-mobile-navigation-menu"]'));
+    mobileMenus.forEach(mobileMenu =>  new MobileMenu(mobileMenu).init());
 
-const searchBoxes = [].slice.call(document.querySelectorAll('.ds_site-search--collapsible'));
-searchBoxes.forEach(searchBox => new CollapsibleSearchBox(searchBox).init());
+    const notificationBanners = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]'));
+    notificationBanners.forEach(notificationBanner => new NotificationBanner(notificationBanner).init());
+
+    const sideNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-side-navigation"]'));
+    sideNavigations.forEach(sideNavigation => new SideNavigation(sideNavigation).init());
+}
+
+initAll();
+
+export {
+    initAll,
+    Accordion,
+    CharacterCount,
+    CollapsibleSearchBox,
+    MobileMenu,
+    NotificationBanner,
+    SideNavigation
+};

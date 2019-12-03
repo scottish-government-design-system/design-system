@@ -13,6 +13,8 @@ $side-nav__highlight-color: $color__brand--primary !default;
 .#{$pl-prefix}side-navigation {
     @include block-margins;
 
+    margin-top: 0;
+
     border: 1px solid $color__border--light;
     position: relative;
 
