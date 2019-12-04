@@ -80,9 +80,8 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
             right: $link-horiz-padding;
         }
 
-        &.#{$pl-prefix}current {
+        &.#{$pl-prefix}current:not(:focus):not(:hover) {
             background-color: $color__link--current__background;
-            pointer-events: none;
 
             &::after {
                 background-color: $site-navigation__highlight-color;
@@ -92,6 +91,10 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
             }
         }
     }
+}
+
+span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
+    pointer-events: none;
 }
 
 .#{$pl-prefix}reversed .#{$pl-prefix}site-navigation {
