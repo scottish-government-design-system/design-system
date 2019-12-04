@@ -117,4 +117,8 @@
     &--small &__input:active + &__label::before {
         box-shadow: 0 0 0 $small-shadow-size $active-shadow-color;
     }
+
+    > .#{$pl_prefix}hint-text {
+        padding-left: 15px;
+    }
 }
