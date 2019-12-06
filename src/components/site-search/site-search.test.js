@@ -10,7 +10,7 @@ import CollapsibleSearchBox from './site-search';
 xdescribe('collapsible seach box (site search)', () => {
     beforeEach(() => {
         document.documentElement.innerHTML = html.toString();
-        testObj.searchElement = document.querySelector('.ds_site-search--collapsible');
+        testObj.searchElement = document.querySelector('[data-module="ds-site-search"]');
         testObj.searchModule = new CollapsibleSearchBox(testObj.searchElement);
     });
 

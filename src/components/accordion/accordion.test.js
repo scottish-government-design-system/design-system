@@ -8,7 +8,7 @@ import Accordion from './accordion';
 describe('accordion', () => {
     beforeEach(() => {
         document.documentElement.innerHTML = html.toString();
-        testObj.accordionElement = document.querySelector('.ds_accordion');
+        testObj.accordionElement = document.querySelector('[data-module="ds-accordion"]');
         testObj.accordionModule = new Accordion(testObj.accordionElement);
     });
 

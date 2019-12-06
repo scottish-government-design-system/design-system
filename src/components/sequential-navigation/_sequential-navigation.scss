@@ -135,7 +135,7 @@ $page-nav__icon-size: 56px !default;
         float: left;
     }
 
-    .#{$pl-prefix}sequential-nav__item:last-child {
+    .#{$pl-prefix}sequential-nav__item + .#{$pl-prefix}sequential-nav__item:last-child {
         float: right;
     }
 }

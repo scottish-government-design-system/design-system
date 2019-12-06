@@ -16,7 +16,7 @@ describe('side navigation', () => {
     describe('with side navigation', () => {
         beforeEach(() => {
             document.documentElement.innerHTML = html.toString();
-            testObj.sideNavigationElement = document.querySelector('.ds_side-navigation');
+            testObj.sideNavigationElement = document.querySelector('[data-module="ds-side-navigation"]');
             testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
         });
 

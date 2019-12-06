@@ -8,7 +8,7 @@ import NotificationBanner from './notification-banner';
 describe('notification banners', () => {
     beforeEach(() => {
         document.documentElement.innerHTML = html.toString();
-        testObj.notificationElement = document.querySelector('.ds_notification');
+        testObj.notificationElement = document.querySelector('[data-module="ds-notification"]');
         testObj.notificationModule = new NotificationBanner(testObj.notificationElement);
     });
 

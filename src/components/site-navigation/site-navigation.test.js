@@ -19,7 +19,7 @@ describe('site navigation', () => {
 
             window.scrollTo = () => {};
 
-            testObj.siteNavigationElement = document.querySelector('#mobile-navigation-menu');
+            testObj.siteNavigationElement = document.querySelector('[data-module="ds-mobile-navigation-menu"]');
             testObj.siteNavigationModule = new MobileMenu(testObj.siteNavigationElement);
 
             testObj.siteNavigationModule.init();

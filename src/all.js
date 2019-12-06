@@ -1,6 +1,6 @@
 import Accordion from './components/accordion/accordion';
 import CollapsibleSearchBox from './components/site-search/site-search';
-import CharacterCount from './scripts/character-count';
+import CharacterCount from './forms/character-count/character-count';
 import MobileMenu from './components/site-navigation/site-navigation';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';

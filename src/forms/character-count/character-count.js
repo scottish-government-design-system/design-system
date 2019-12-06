@@ -8,9 +8,13 @@ class CharacterCount {
     }
 
     init() {
+        if (!this.inputElement) {
+            return;
+        }
+
         this.setMaxLength();
 
-        if (!this.inputElement || !this.maxLength) {
+        if (!this.maxLength) {
             return;
         }
 
@@ -19,7 +23,7 @@ class CharacterCount {
         this.messageElement.setAttribute('aria-live', 'polite');
         this.messageElement.classList.add('ds_input__message', 'ds_hint-text');
         this.messageElement.innerText = `You can enter up to ${this.maxLength} characters`;
-        if (this.threshold > 0) {
+        if (this.inputElement.value.length < this.maxLength * this.threshold) {
             this.messageElement.classList.add('fully-hidden');
         }
         this.field.appendChild(this.messageElement);
@@ -31,7 +35,7 @@ class CharacterCount {
         if (this.inputElement.getAttribute('maxlength')) {
             this.maxLength = parseInt(this.inputElement.getAttribute('maxlength'), 10);
             this.inputElement.removeAttribute('maxlength');
-        } else if (this.field.dataset.maxlength) {
+        } else {
             this.maxLength = this.field.dataset.maxlength;
         }
     }
