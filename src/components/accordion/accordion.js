@@ -86,7 +86,7 @@ class Accordion {
             allOpen = true;
         } else {
             // not everything is open
-            this.openAllButton.innerHTML = 'Expand all <span class="visually-hidden">sections</span>';
+            this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>';
             this.openAllButton.setAttribute('data-accordion', 'accordion-open-all');
             allOpen = false;
         }

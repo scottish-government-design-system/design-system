@@ -29,8 +29,6 @@ function initAll(scope = document) {
     sideNavigations.forEach(sideNavigation => new SideNavigation(sideNavigation).init());
 }
 
-initAll();
-
 export {
     initAll,
     Accordion,
