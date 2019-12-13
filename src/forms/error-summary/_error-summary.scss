@@ -1,0 +1,27 @@
+/*------------------------------------*\
+    $ERROR SUMMARY
+\*------------------------------------*/
+
+.ds_error-summary {
+    border: 5px solid $color__red--base;
+    padding: 21px 30px;
+    @include block-margins;
+
+    &__title {
+        margin-top: 0;
+    }
+
+    &__list {
+        font-weight: bold;
+        list-style-type: none;
+        margin-left: 0;
+
+        a {
+            color: $color__red--base;
+        }
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}

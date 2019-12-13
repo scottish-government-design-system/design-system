@@ -12,11 +12,6 @@
     padding: 7px;
     width: 100%;
 
-    // &:hover {
-    //     border-color: $color__input--hover__border;
-    //     box-shadow: 0 0 0 $input-shadow-size $color__input--hover__border;
-    // }
-
     &:focus {
         outline: $field-glow-width solid $color__input--focus__outline;
         outline-offset: 0;

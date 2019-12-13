@@ -3,9 +3,9 @@
     Navigation elements for different levels of category navigation. Includes classes for layout of these elements in a list.
 \*------------------------------------*/
 
-$category-item__border-color: $color__brand--primary !default;
+// modifiable vars
 $category-item__border-color--hover: $color__link--hover !default;
-$category-item__link-color: $color__brand--primary !default;
+$category-item__link-color: $color__link !default;
 
 
 
@@ -14,7 +14,6 @@ $category-item__link-color: $color__brand--primary !default;
 
     @include blocklink('.#{$pl-prefix}category-item__link');
 
-    // border-left: 3px solid mix($category-item__border-color, $color__grey--lighter, 30%);
     padding: 10px 15px 11px;
     text-decoration: none;
     transition: background-color $transition-out-time, border-color $transition-out-time;
@@ -38,7 +37,7 @@ $category-item__link-color: $color__brand--primary !default;
         color: $category-item__link-color;
 
         &::before {
-            background-color: mix($category-item__border-color, $color__grey--lighter, 30%);
+            background-color: mix($color__border--highlight, $color__grey--lighter, 30%);
             bottom: 0;
             content: '';
             left: -3px;
@@ -69,7 +68,7 @@ $category-item__link-color: $color__brand--primary !default;
     }
 
     &--highlight &__link::before {
-        background-color: $category-item__border-color;
+        background-color: $color__border--highlight;
     }
 
     &--gradient.#{$pl-prefix}category-item--highlight &__link::before {

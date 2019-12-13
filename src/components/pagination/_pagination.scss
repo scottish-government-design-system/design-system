@@ -2,11 +2,6 @@
     PAGINATION
 \*------------------------------------*/
 
-$pagination__border-color: $color__brand--primary !default;
-
-
-
-
 .#{$pl-prefix}pagination {
     font-size: $small-size;
     text-align: center;
@@ -30,8 +25,10 @@ $pagination__border-color: $color__brand--primary !default;
         min-width: 50px;
 
         &.#{$pl-prefix}current {
-            border-bottom: 3px solid $pagination__border-color;
+            background-color: $color__link--current__background;
+            border-bottom: 3px solid $color__border--highlight;
             padding-bottom: 11px;
+            pointer-events: none;
         }
 
         &--text {

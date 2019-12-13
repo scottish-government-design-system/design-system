@@ -2,9 +2,11 @@
     CATEGORY HEADER
 \*------------------------------------*/
 
-$category-header__border-color: $color__brand--primary !default;
+// modifiable vars
 $category-header__title-color: $color__body !default;
-$category-header__summary-size: 1.25rem !default;
+
+// fixed vars
+$category-header__summary-size: 1.25rem;
 
 
 
@@ -15,7 +17,7 @@ $category-header__summary-size: 1.25rem !default;
     margin-bottom: 28px;
 
     &__header {
-        border-left: 4px solid $category-header__border-color;
+        border-left: 4px solid $color__border--highlight;
         margin-bottom: 28px;
         padding-left: 20px;
     }

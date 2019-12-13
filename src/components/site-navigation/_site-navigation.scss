@@ -3,12 +3,15 @@
     containing site-navigation and mobile equivalent
 */
 
+// modifiable vars
 $site-navigation__current-color--reversed: $color__blue--light !default;
 $site-navigation__hover-bg--reversed: $color__link--hover !default;
-$site-navigation__highlight-color: $color__brand--primary !default;
 $site-navigation__mobile-menu-background: $color__grey--lighter !default;
 $site-navigation__mobile-menu-button-color: $color__brand--primary !default;
-$site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color !default;
+
+// fixed vars
+$site-navigation__highlight-color: $color__border--highlight;
+$site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color;
 
 
 

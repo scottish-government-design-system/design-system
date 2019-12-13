@@ -20,12 +20,9 @@ describe('side navigation', () => {
             testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
         });
 
-        it ('should set an initial ARIA value on the show/hide checkbox', () => {
+        it ('should set an initial ARIA value on the container', () => {
             testObj.sideNavigationModule.init();
-
-            const checkbox = testObj.sideNavigationElement.querySelector('#show-side-navigation');
-//console.log(testObj.sideNavigationElement.innerHTML)
-            expect(checkbox.getAttribute('aria-expanded')).toEqual('false');
+            expect(testObj.sideNavigationElement.getAttribute('aria-expanded')).toEqual('false');
         });
 
         it ('should toggle display of the side navigation on click of the label', () => {

@@ -2,8 +2,11 @@
     $BREADCRUMBS
 \*------------------------------------*/
 
+// modifiable vars
 $breadcrumbs__color: $color__grey--base !default;
-$breadcrumbs__font-size: $small-size--fixed !default;
+
+// fixed vars
+$breadcrumbs__font-size: $small-size--fixed;
 
 
 

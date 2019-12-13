@@ -2,9 +2,9 @@
     SEARCH BOX
 \*------------------------------------*/
 
+// modifiable vars
 $site-search__height: 42px !default;
 $site-search__height--medium: 49px !default;
-$site-search__border-radius: 0 !default;
 $site-search__background-color: $color__grey--light !default;
 
 
@@ -13,37 +13,14 @@ $site-search__background-color: $color__grey--light !default;
 .#{$pl-prefix}site-search {
     box-sizing: border-box;
     color: $color__body;
-    height: $site-search__height;
-
-    &__input-group {
-        position: relative;
-    }
+    min-height: $site-search__height;
 
     &__input[type=text] {
         background: $site-search__background-color;
-        border: 0;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-        margin-right: $site-search__height;
-
+        border-right: 0;
+        margin-bottom: 0;
         min-height: $site-search__height;
-        min-width: 150px;
         padding: 0 20px;
-        width: calc(100% - #{$site-search__height});
-    }
-
-    &__button {
-        height: $site-search__height;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: $site-search__height;
-    }
-
-    &__icon {
-        display: block;
-        padding: 10px;
     }
 
     &--large {
@@ -53,7 +30,7 @@ $site-search__background-color: $color__grey--light !default;
 
 @include media-query(medium) {
     .#{$pl-prefix}site-search {
-        height: $site-search__height--medium;
+        min-height: $site-search__height--medium;
 
         &__input[type=text] {
             min-height: $site-search__height--medium;

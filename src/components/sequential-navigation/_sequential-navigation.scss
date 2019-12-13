@@ -3,6 +3,7 @@
     previous and next buttons
 \*------------------------------------*/
 
+// modifiable vars
 $page-nav__icon-color: $color__brand--primary !default;
 $page-nav__icon-hover: $color__link--hover !default;
 $page-nav__icon-focus: $page-nav__icon-hover !default;
@@ -129,14 +130,14 @@ $page-nav__icon-size: 56px !default;
 @include media-query(small) {
     .#{$pl-prefix}sequential-nav__item {
         width: calc(50% - 15px);
-    }
 
-    .#{$pl-prefix}sequential-nav__item:first-child {
-        float: left;
-    }
+        &--prev {
+            float: left;
+        }
 
-    .#{$pl-prefix}sequential-nav__item + .#{$pl-prefix}sequential-nav__item:last-child {
-        float: right;
+        &--next {
+            float: right;
+        }
     }
 }
 

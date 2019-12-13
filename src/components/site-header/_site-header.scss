@@ -2,9 +2,12 @@
     SITE HEADER
 \*------------------------------------*/
 
+// modifiable vars
 $site-header__border-color: $color__border--light !default;
 $site-header__border-color--reversed: $color__brand--secondary !default;
-$site-header__top-band-color: $color__brand--primary !default;
+
+// fixed vars
+$site-header__top-band-color: $color__brand--primary;
 
 
 
@@ -124,7 +127,6 @@ $site-header__top-band-color: $color__brand--primary !default;
 
         .#{$pl-prefix}site-search__input {
             float: right;
-            max-width: 33%;
         }
     }
 

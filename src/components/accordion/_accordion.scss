@@ -2,7 +2,8 @@
     ACCORDION
 \*------------------------------------*/
 
-$accordion__header-color: $color__brand--primary !default;
+// modifiable vars
+$accordion__header-color: $color__link !default;
 
 
 
@@ -21,9 +22,11 @@ $accordion__header-color: $color__brand--primary !default;
     }
 }
 
-.#{$pl-prefix}accordion.js-initialised .#{$pl-prefix}accordion__open-all {
-    display: block;
-    margin: 0;
+.#{$pl-prefix}accordion.js-initialised {
+    .#{$pl-prefix}accordion__open-all {
+        display: block;
+        margin: 0;
+    }
 }
 
 .#{$pl-prefix}accordion-item {
@@ -49,6 +52,28 @@ $accordion__header-color: $color__brand--primary !default;
         }
     }
 
+    &__header-button {
+        background-color: $color__white;
+        color: $accordion__header-color;
+        line-height: 28px;
+        margin: 0;
+        padding: 14px 45px 14px 15px;
+        position: relative;
+        text-align: left;
+        width: 100%;
+
+        @include blocklink;
+
+        &:hover {
+            color: $color__link--hover;
+        }
+    }
+
+    &--open &__header-button:not(:focus):not(:active) {
+        background-color: $color__link--current__background;
+        color: $color__link--current;
+    }
+
     &__title {
         margin-bottom: 0;
     }
@@ -62,7 +87,7 @@ $accordion__header-color: $color__brand--primary !default;
     }
 
     &__indicator {
-        @include indicator(16px);
+        @include indicator(20px);
     }
 
     &__body {
@@ -79,8 +104,10 @@ $accordion__header-color: $color__brand--primary !default;
         color: $color__link--current;
     }
 
-    &__control:checked ~ &__header &__indicator {
+    &__control:checked ~ &__header &__indicator,
+    &__control:checked ~ &__header-button &__indicator  {
         @include indicator--open(20px);
+        top: 24px;
     }
 
     &__control:focus ~ &__header {
@@ -115,7 +142,8 @@ $accordion__header-color: $color__brand--primary !default;
             top: 18px;
         }
 
-        &__control:checked ~ &__header &__indicator {
+        &__control:checked ~ &__header &__indicator,
+        &__control:checked ~ &__header-button &__indicator {
             top: 24px;
         }
     }

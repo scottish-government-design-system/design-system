@@ -2,18 +2,18 @@
     SIDE NAVIGATION
 \*------------------------------------*/
 
-$side-nav__spacing-unit: 15px !default;
+// modifiable vars
 $side-nav__outline-width: 3px !default;
 $side-nav__expand-color: $color__brand--primary !default;
-$side-nav__highlight-color: $color__brand--primary !default;
+
+// fixed vars
+$side-nav__spacing-unit: 15px;
 
 
 
 
 .#{$pl-prefix}side-navigation {
     @include block-margins;
-
-    margin-top: 0;
 
     border: 1px solid $color__border--light;
     position: relative;
@@ -25,12 +25,15 @@ $side-nav__highlight-color: $color__brand--primary !default;
         color: $side-nav__expand-color;
         cursor: pointer;
         font-weight: $bold;
+        margin: 0;
         padding: 14px 45px 14px 15px;
         position: sticky;
-        top: 0;
-        z-index: 2;
+        text-align: left;
         text-decoration: none;
+        top: 0;
         transition: background-color $transition-in-time, box-shadow $transition-in-time;
+        width: 100%;
+        z-index: 2;
 
         &--shadow {
             box-shadow: 0px 5px 5px rgba(0,0,0,0.15);
@@ -52,6 +55,11 @@ $side-nav__highlight-color: $color__brand--primary !default;
             background-color: $color__blocklink-bg--active;
             box-shadow: 0 3px #333333;
             color: $color__link--active;
+        }
+
+        &--shadow:active,
+        &--shadow:focus {
+            box-shadow: 0 3px #333333, 0px 8px 5px rgba(0,0,0,0.15);
         }
     }
 
@@ -142,7 +150,7 @@ $side-nav__highlight-color: $color__brand--primary !default;
         &:focus,
         &.#{$pl-prefix}current {
             &::before {
-                background: $side-nav__highlight-color;
+                background: $color__border--highlight;
             }
         }
     }
@@ -163,7 +171,7 @@ $side-nav__highlight-color: $color__brand--primary !default;
             position: relative;
 
             &::before {
-                background: $side-nav__highlight-color;
+                background: $color__border--highlight;
                 bottom: 0;
                 content: '';
                 position: absolute;
@@ -214,7 +222,6 @@ $side-nav__highlight-color: $color__brand--primary !default;
         border-width: 0;
         font-size: $small-size;
         line-height: 21px;
-        margin-top: 0;
 
         &__expand {
             display: none;

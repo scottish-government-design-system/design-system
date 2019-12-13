@@ -22,10 +22,9 @@ describe('accordion', () => {
     describe('accordion items', () => {
         it ('should switch to the "open" view if selected on init', () => {
             const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item');
-            const accordionItemBody = firstAccordionItem.querySelector('.ds_accordion-item__body');
 
             testObj.accordionModule.init();
-            expect(accordionItemBody.style.display).toEqual('block');
+            expect(firstAccordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
         });
 
         it ('should set aria-expanded appropriately on each content item depending on open/closed state', () => {
@@ -37,8 +36,7 @@ describe('accordion', () => {
             const states = [true, false, false];
             for (let i = 0, il = accordionItems.length; i < il; i++) {
                 const accordionItem = accordionItems[i];
-                const accordionItemCheckbox = accordionItem.querySelector('.ds_accordion-item__control');
-                expect(accordionItemCheckbox.getAttribute('aria-expanded')).toEqual(states[i].toString());
+                expect(accordionItem.getAttribute('aria-expanded')).toEqual(states[i].toString());
             }
         });
 
@@ -47,14 +45,14 @@ describe('accordion', () => {
 
             const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
             const accordionItemBody = firstAccordionItem.querySelector('.ds_accordion-item__body');
-            const accordionItemLabel = firstAccordionItem.querySelector('.ds_accordion-item__label');
+            const accordionItemButton = firstAccordionItem.querySelector('.ds_accordion-item__header-button');
 
             let event = new Event('click');
-            accordionItemLabel.dispatchEvent(event);
+            accordionItemButton.dispatchEvent(event);
             expect(accordionItemBody.style.display).toEqual('block');
 
             event = new Event('click');
-            accordionItemLabel.dispatchEvent(event);
+            accordionItemButton.dispatchEvent(event);
             expect(parseInt(accordionItemBody.style.maxHeight, 10)).toEqual(0);
         });
     });
@@ -72,8 +70,8 @@ describe('accordion', () => {
 
             for (let i = 0, il = accordionItems.length; i < il; i++) {
                 const accordionItem = accordionItems[i];
-                const accordionItemCheckbox = accordionItem.querySelector('.ds_accordion-item__control');
-                expect(accordionItemCheckbox.getAttribute('aria-expanded')).toEqual(states[i].toString());
+                expect(accordionItem.getAttribute('aria-expanded')).toEqual(states[i].toString());
+                expect(accordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
             }
         });
 
@@ -84,10 +82,10 @@ describe('accordion', () => {
 
             testObj.accordionModule.init();
 
-            const accordionItemLabel = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(3) .ds_accordion-item__label');
+            const accordionItemButton = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(3) .ds_accordion-item__header-button');
 
             const event = new Event('click');
-            accordionItemLabel.dispatchEvent(event);
+            accordionItemButton.dispatchEvent(event);
 
             expect(button.getAttribute('data-accordion')).toEqual('accordion-close-all');
         });
@@ -110,8 +108,8 @@ describe('accordion', () => {
 
             for (let i = 0, il = accordionItems.length; i < il; i++) {
                 const accordionItem = accordionItems[i];
-                const accordionItemCheckbox = accordionItem.querySelector('.ds_accordion-item__control');
-                expect(accordionItemCheckbox.getAttribute('aria-expanded')).toEqual(states[i].toString());
+                expect(accordionItem.getAttribute('aria-expanded')).toEqual(states[i].toString());
+                expect(accordionItem.classList.contains('ds_accordion-item--open')).toEqual(false);
             }
         });
     });

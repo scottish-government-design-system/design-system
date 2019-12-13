@@ -12,25 +12,44 @@ class SideNavigation {
     }
 
     setupSideNavigation() {
-        const checkbox = this.sideNavigation.querySelector('#show-side-navigation');
-        checkbox.setAttribute('aria-expanded', false);
+        // transform markup to button-driven version
+        const navControl = this.sideNavigation.querySelector('.js-toggle-side-navigation');
+        const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand');
+        const navList = this.sideNavigation.querySelector('.ds_side-navigation__list--root');
 
-        checkbox.addEventListener('change', (event) => {
-            const list = this.sideNavigation.querySelector('.ds_side-navigation__list--root');
-            if (event.target.checked) {
-                list.style.display = 'block';
-                list.style.maxHeight = list.scrollHeight + 14 +  'px';
+        const startsOpen = navControl.checked;
+
+        const navButton = document.createElement('button');
+        navButton.classList.add('ds_side-navigation__expand', 'ds_link');
+        navButton.innerHTML = navLabel.innerHTML;
+
+        navLabel.parentNode.removeChild(navLabel);
+        this.sideNavigation.insertBefore(navButton, navList);
+
+        if (startsOpen) {
+            navList.style.display = 'block';
+            navList.style.maxHeight = navList.scrollHeight + 14 +  'px';
+        }
+
+        this.sideNavigation.setAttribute('aria-expanded', startsOpen);
+
+        // events
+        navButton.addEventListener('click', () => {
+            const isOpen = navControl.checked;
+
+            if (!isOpen) {
+                navList.style.display = 'block';
+                navList.style.maxHeight = navList.scrollHeight + 14 +  'px';
             } else {
-                list.style.maxHeight = 0;
+                navList.style.maxHeight = 0;
                 window.setTimeout(function () {
-                    list.style.display = 'none';
+                    navList.style.display = 'none';
                 }, 200);
             }
 
-            checkbox.setAttribute('aria-expanded', event.target.checked);
-
-            // tracking
-            checkbox.setAttribute('data-navigation', `navigation-${event.target.checked ? 'close' : 'open'}`);
+            this.sideNavigation.setAttribute('aria-expanded', !isOpen);
+            navControl.checked = !isOpen;
+            navControl.setAttribute('data-navigation', `navigation-${navControl.checked ? 'close' : 'open'}`);
         });
 
         window.addEventListener('scroll', () => {

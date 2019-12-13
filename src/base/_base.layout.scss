@@ -201,6 +201,7 @@
 
     .#{$pl-prefix}layout {
         grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto 1fr;
 
         // default template areas definition based on article,
         // which is a relatively safe fallback

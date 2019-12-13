@@ -56,7 +56,7 @@ $blocklink__outline-width: 0;
     display: inline-block;
     height: $linesize;
     -webkit-transform: rotateX(0) rotateZ(#{$rotate});
-    -ms-transform: rotateX(0) rotateZ(#{$rotate});
+    -ms-transform: rotate(#{$rotate});
     transform: rotateX(0) rotateZ(#{$rotate});
     transition: transform 0.2s, top 0.2s;
     width: $linesize;

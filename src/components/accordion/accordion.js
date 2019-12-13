@@ -15,39 +15,69 @@ class Accordion {
     }
 
     initAccordionItem(item) {
-        const checkbox = item.querySelector('.ds_accordion-item__control');
-        const body = item.querySelector('.ds_accordion-item__body');
+        // transform markup to button-driven version
+        const itemControl = item.querySelector('.ds_accordion-item__control');
+        const itemHeader = item.querySelector('.ds_accordion-item__header');
+        const itemTitle = itemHeader.querySelector('.ds_accordion-item__title');
+        const itemBody = item.querySelector('.ds_accordion-item__body');
 
-        checkbox.setAttribute('aria-expanded', checkbox.checked);
+        const startsOpen = itemControl.checked;
 
-        if (checkbox.checked) {
-            body.style.display = 'block';
-            body.style.maxHeight = body.scrollHeight + 21 + 28 + 'px';
+        const itemButton = document.createElement('button');
+        const itemIndicator = document.createElement('span');
+
+        itemButton.classList.add('ds_accordion-item__header-button');
+        itemIndicator.classList.add('ds_accordion-item__indicator');
+
+        itemButton.innerHTML = itemTitle.innerHTML;
+        itemButton.appendChild(itemIndicator);
+
+        itemHeader.parentNode.removeChild(itemHeader);
+
+        item.insertBefore(itemButton, itemBody);
+
+        if (startsOpen) {
+            item.classList.add('ds_accordion-item--open');
+            itemBody.style.maxHeight = itemBody.scrollHeight + 21 + 28 + 'px';
+            this.setOpenAllButton(this.checkAllOpen());
         }
 
-        checkbox.addEventListener('change', event => {
+        item.setAttribute('aria-expanded', startsOpen);
 
-            if (event.target.checked) {
-                // 21px and 28px are the top and bottom padding of the body content
+
+        // events
+        itemButton.addEventListener('click', () => {
+            const body = item.querySelector('.ds_accordion-item__body');
+            const isOpen = item.classList.contains('ds_accordion-item--open');
+            const that = this;
+
+            if (!isOpen) {
+                item.classList.add('ds_accordion-item--open');
                 body.style.display = 'block';
+                // 21px and 28px are the top and bottom padding of the body content
                 body.style.maxHeight = body.scrollHeight + 21 + 28 + 'px';
+                this.checkAllOpen();
             } else {
                 body.style.maxHeight = 0;
+                item.classList.remove('ds_accordion-item--open');
+                that.checkAllOpen();
+
                 window.setTimeout(function () {
                     body.style.display = 'none';
                 }, 200);
             }
 
-            this.checkAllOpen();
-
-            checkbox.setAttribute('aria-expanded', event.target.checked);
+            item.setAttribute('aria-expanded', !isOpen);
+            itemControl.checked = !isOpen;
 
             // tracking
             let accordionNumber = 0;
-            if (checkbox.getAttribute('data-accordion')) {
-                accordionNumber = checkbox.getAttribute('data-accordion').split('-').reverse()[0];
+            if (itemButton.getAttribute('data-accordion')) {
+                accordionNumber = itemButton.getAttribute('data-accordion').split('-').reverse()[0];
             }
-            checkbox.setAttribute('data-accordion', `accordion-${event.target.checked ? 'close' : 'open'}-${accordionNumber}`);
+            itemButton.setAttribute('data-accordion', `accordion-${isOpen ? 'close' : 'open'}-${accordionNumber}`);
+
+            this.setOpenAllButton(this.checkAllOpen());
         });
     }
 
@@ -57,18 +87,37 @@ class Accordion {
         }
 
         this.openAllButton.addEventListener('click', () => {
+
+            // if we're opening, open all unopened panels
+            // if we're closing, close all opened panels
             const opening = !this.checkAllOpen();
+            const allPanelButtons = [].slice.call(this.accordion.querySelectorAll('.ds_accordion-item__header-button'));
 
-            const allPanelCheckboxes = [].slice.call(this.accordion.querySelectorAll('.ds_accordion-item__control'));
+            let panelsToToggle;
+            if (opening) {
+                panelsToToggle = allPanelButtons.filter(button => !button.parentNode.classList.contains('ds_accordion-item--open'));
+            } else {
+                panelsToToggle = allPanelButtons.filter(button => button.parentNode.classList.contains('ds_accordion-item--open'));
+            }
 
-            allPanelCheckboxes.forEach(function (checkbox) {
-                checkbox.checked = opening;
-
+            panelsToToggle.forEach(function (button) {
                 const event = document.createEvent('HTMLEvents');
-                event.initEvent('change', true, false);
-                checkbox.dispatchEvent(event);
+                event.initEvent('click', true, false);
+                button.dispatchEvent(event);
             });
+
+            this.setOpenAllButton(opening);
         });
+    }
+
+    setOpenAllButton(open) {
+        if (open) {
+            this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
+            this.openAllButton.setAttribute('data-accordion', 'accordion-close-all');
+        } else {
+            this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>';
+            this.openAllButton.setAttribute('data-accordion', 'accordion-open-all');
+        }
     }
 
     checkAllOpen() {
@@ -76,22 +125,9 @@ class Accordion {
             return;
         }
 
-        const openItemsCount = this.accordion.querySelectorAll('.ds_accordion-item__control:checked').length;
-        let allOpen;
+        const openItemsCount = this.accordion.querySelectorAll('.ds_accordion-item--open').length;
 
-        if (this.items.length === openItemsCount) {
-            // everything is open
-            this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
-            this.openAllButton.setAttribute('data-accordion', 'accordion-close-all');
-            allOpen = true;
-        } else {
-            // not everything is open
-            this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>';
-            this.openAllButton.setAttribute('data-accordion', 'accordion-open-all');
-            allOpen = false;
-        }
-
-        return allOpen;
+        return (this.items.length === openItemsCount);
     }
 }
 

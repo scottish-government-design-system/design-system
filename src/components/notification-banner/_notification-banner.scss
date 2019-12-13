@@ -2,8 +2,9 @@
     NOTIFICATION BANNER
 \*------------------------------------*/
 
-$notification-banner__close-padding: 5px !default;
-$notification-banner__icon-padding: $notification-banner__close-padding !default;
+// fixed vars
+$notification-banner__close-padding: 5px;
+$notification-banner__icon-padding: $notification-banner__close-padding;
 
 
 

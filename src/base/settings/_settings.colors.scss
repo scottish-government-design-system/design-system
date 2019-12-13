@@ -24,7 +24,6 @@ $color__grey--dark:     #333333 !default;
 $color__red--base:      #d32205 !default;
 $color__gold--base:     #fdd522 !default; // #f3b3f3
 $color__green--base:    #428542 !default;
-$color__orange--base:   #e87621 !default; // used for ppt icon
 
 
 
@@ -106,6 +105,7 @@ $color__input--spot:                $color__body !default;
 
 
 // borders
-$color__border--dark: $color__grey--dark;
-$color__border--base: $color__grey--medium;
-$color__border--light: $color__grey--light;
+$color__border--dark:       $color__grey--dark !default;
+$color__border--base:       $color__grey--medium !default;
+$color__border--light:      $color__grey--light !default;
+$color__border--highlight:  $color__brand--primary !default;
