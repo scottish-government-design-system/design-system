@@ -1,11 +1,14 @@
-const fs = require('fs');
-const path = require('path');
-const html = fs.readFileSync(path.resolve(__dirname, './site-navigation.html'), 'utf-8');
 const testObj = {};
+
+jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import MobileMenu from './site-navigation';
 
 describe('site navigation', () => {
+    beforeEach(function () {
+        loadFixtures('components/site-navigation/site-navigation.html');
+    });
+
     describe('no site navigation', () => {
         it('should not have any errors', () => {
             const ppp = new MobileMenu();
@@ -15,8 +18,6 @@ describe('site navigation', () => {
 
     describe('with site navigation', () => {
         beforeEach(() => {
-            document.documentElement.innerHTML = html.toString();
-
             window.scrollTo = () => {};
 
             testObj.siteNavigationElement = document.querySelector('[data-module="ds-mobile-navigation-menu"]');
@@ -29,26 +30,27 @@ describe('site navigation', () => {
             it ('should toggle the display of the mobile menu', () => {
                 const menuToggleButton = document.querySelector('.js-toggle-menu');
 
-                testObj.siteNavigationModule.openMenu = jest.fn(testObj.siteNavigationModule.openMenu);
-                testObj.siteNavigationModule.closeMenu = jest.fn(testObj.siteNavigationModule.closeMenu);
+                spyOn(testObj.siteNavigationModule, 'openMenu');
+                spyOn(testObj.siteNavigationModule, 'closeMenu');
 
                 const event = new Event('click');
                 menuToggleButton.dispatchEvent(event);
-                expect(testObj.siteNavigationModule.openMenu.mock.calls.length).toEqual(1);
+                expect(testObj.siteNavigationModule.openMenu).toHaveBeenCalled();
 
                 menuToggleButton.dispatchEvent(event);
-                expect(testObj.siteNavigationModule.closeMenu.mock.calls.length).toEqual(1);
+                expect(testObj.siteNavigationModule.closeMenu).toHaveBeenCalled();
             });
         });
 
         describe('menu close button', () => {
             it ('should close the mobile menu', () => {
                 const menuCloseButton = document.querySelector('.js-close-menu');
-                testObj.siteNavigationModule.closeMenu = jest.fn(testObj.siteNavigationModule.closeMenu);
+
+                spyOn(testObj.siteNavigationModule, 'closeMenu');
 
                 const event = new Event('click');
                 menuCloseButton.dispatchEvent(event);
-                expect(testObj.siteNavigationModule.closeMenu.mock.calls.length).toEqual(1);
+                expect(testObj.siteNavigationModule.closeMenu).toHaveBeenCalled();
             });
         });
 

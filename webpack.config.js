@@ -12,5 +12,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist/scripts'),
     filename: '[name]'
+  },
+
+  module: {
+    rules: []
   }
 };

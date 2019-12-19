@@ -1,11 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const html = fs.readFileSync(path.resolve(__dirname, './side-navigation.html'), 'utf-8');
 const testObj = {};
+
+jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import SideNavigation from './side-navigation';
 
 describe('side navigation', () => {
+
+    beforeEach(function () {
+        loadFixtures('components/side-navigation/side-navigation.html');
+    });
+
     describe('no side navigation', () => {
         it('should not have any errors', () => {
             const ppp = new SideNavigation();
@@ -15,7 +19,6 @@ describe('side navigation', () => {
 
     describe('with side navigation', () => {
         beforeEach(() => {
-            document.documentElement.innerHTML = html.toString();
             testObj.sideNavigationElement = document.querySelector('[data-module="ds-side-navigation"]');
             testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
         });

@@ -1,13 +1,13 @@
-const fs = require('fs');
-const path = require('path');
-const html = fs.readFileSync(path.resolve(__dirname, './accordion.html'), 'utf-8');
 const testObj = {};
+
+jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import Accordion from './accordion';
 
 describe('accordion', () => {
     beforeEach(() => {
-        document.documentElement.innerHTML = html.toString();
+        loadFixtures('components/accordion/accordion.html');
+
         testObj.accordionElement = document.querySelector('[data-module="ds-accordion"]');
         testObj.accordionModule = new Accordion(testObj.accordionElement);
     });

@@ -1,13 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-const html = fs.readFileSync(path.resolve(__dirname, './character-count.html'), 'utf-8');
 const testObj = {};
+
+jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import CharacterCount from './character-count';
 
 describe('character count', () => {
     beforeEach(() => {
-        document.documentElement.innerHTML = html.toString();
+        loadFixtures('forms/character-count/character-count.html');
     });
 
     describe('setup', () => {

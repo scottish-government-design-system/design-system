@@ -1,15 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-const html = fs.readFileSync(path.resolve(__dirname, './site-search.html'), 'utf-8');
 const testObj = {};
 
 window.ds_patterns = window.ds_patterns || {};
 
+jasmine.getFixtures().fixturesPath = 'base/src/';
+
 import CollapsibleSearchBox from './site-search';
 
-xdescribe('collapsible seach box (site search)', () => {
+describe('collapsible seach box (site search)', () => {
     beforeEach(() => {
-        document.documentElement.innerHTML = html.toString();
+        loadFixtures('components/site-search/site-search.html');
+
         testObj.searchElement = document.querySelector('[data-module="ds-site-search"]');
         testObj.searchModule = new CollapsibleSearchBox(testObj.searchElement);
     });
@@ -57,6 +57,9 @@ xdescribe('collapsible seach box (site search)', () => {
         // disabled because it tries to do a form submit
         // jsdom can't handle that
         it ('should carry out a normal form submission', () => {
+
+            testObj.searchModule.init();
+
             // force breakpoint check to return true
             window.ds_patterns.breakpoint = function() {
                 return true;
