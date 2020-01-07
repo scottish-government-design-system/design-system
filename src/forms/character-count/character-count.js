@@ -65,11 +65,13 @@ class CharacterCount {
         this.messageElement.innerText = `You have ${count} ${noun} remaining`;
         if (count < 0) {
             this.inputElement.classList.add('ds_input--error');
+            this.inputElement.setAttribute('aria-invalid', true);
             this.messageElement.innerText = `You have ${Math.abs(count)} ${noun} too many`;
             this.messageElement.classList.remove('ds_hint-text');
         }
         else {
             this.inputElement.classList.remove('ds_input--error');
+            this.inputElement.setAttribute('aria-invalid', false);
             this.messageElement.innerText = `You have ${count} ${noun} remaining`;
             this.messageElement.classList.add('ds_hint-text');
         }

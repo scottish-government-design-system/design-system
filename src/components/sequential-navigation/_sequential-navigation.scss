@@ -8,6 +8,8 @@ $page-nav__icon-color: $color__brand--primary !default;
 $page-nav__icon-hover: $color__link--hover !default;
 $page-nav__icon-focus: $page-nav__icon-hover !default;
 $page-nav__prefix-color: $color__blue--darker !default;
+
+// fixed vars vars
 $page-nav__icon-size: 56px !default;
 
 
@@ -25,7 +27,7 @@ $page-nav__icon-size: 56px !default;
 }
 
 .#{$pl-prefix}sequential-nav__button {
-    @include blocklink('.#{$pl-prefix}sequential-nav__button');
+    @include blocklink();
 
     background: transparent;
     display: inline-block;

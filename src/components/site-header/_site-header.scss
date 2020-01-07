@@ -3,10 +3,10 @@
 \*------------------------------------*/
 
 // modifiable vars
-$site-header__border-color: $color__border--light !default;
 $site-header__border-color--reversed: $color__brand--secondary !default;
 
 // fixed vars
+$site-header__border-color: $color__border--light;
 $site-header__top-band-color: $color__brand--primary;
 
 

@@ -17,7 +17,8 @@ class SideNavigation {
         const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand');
         const navList = this.sideNavigation.querySelector('.ds_side-navigation__list--root');
 
-        const startsOpen = navControl.checked;
+        navControl.checked = false;
+        this.sideNavigation.setAttribute('aria-expanded', false);
 
         const navButton = document.createElement('button');
         navButton.classList.add('ds_side-navigation__expand', 'ds_link');
@@ -25,13 +26,6 @@ class SideNavigation {
 
         navLabel.parentNode.removeChild(navLabel);
         this.sideNavigation.insertBefore(navButton, navList);
-
-        if (startsOpen) {
-            navList.style.display = 'block';
-            navList.style.maxHeight = navList.scrollHeight + 14 +  'px';
-        }
-
-        this.sideNavigation.setAttribute('aria-expanded', startsOpen);
 
         // events
         navButton.addEventListener('click', () => {

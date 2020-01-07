@@ -10,7 +10,6 @@ $site-footer__background: $color__brand--primary !default;
 
 .#{$pl-prefix}site-footer {
     background-color: $site-footer__background;
-    color: $color__white;
     font-size: $small-size;
     line-height: 21px;
     padding-bottom: 35px;
@@ -54,6 +53,10 @@ $site-footer__background: $color__brand--primary !default;
     .#{$pl-prefix}site-footer__copyright-logo {
         color: currentColor !important;
     }
+}
+
+.#{$pl-prefix}reversed.#{$pl-prefix}site-footer {
+    color: $color__white;
 }
 
 .#{$pl-prefix}site-items {
