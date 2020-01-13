@@ -1,0 +1,30 @@
+/*------------------------------------*\
+    PHASE BANNER
+\*------------------------------------*/
+
+.#{$pl-prefix}phase-banner {
+    @include block-margins;
+
+    background: $color__grey--lighter;
+    border: 1px solid $color__border--light;
+    font-size: $small-size;
+    line-height: 21px;
+    padding: 14px 15px;
+
+    &.no-bottom-margin {
+        margin-bottom: 0;
+    }
+
+    &__content {
+        display: table;
+        margin-bottom: 0;
+    }
+
+    &__tag {
+        margin-right: 1em;
+    }
+
+    &__text {
+        display: table-cell;
+    }
+}
