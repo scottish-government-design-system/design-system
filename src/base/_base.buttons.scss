@@ -65,6 +65,31 @@ input[type="submit"],
     }
 }
 
+.#{$pl-prefix}reversed .#{$pl-prefix}button {
+    background-color: $color__white;
+    color: $color__button__background;
+
+    &:focus,
+    &:hover:focus {
+        background-color: $color__blocklink-bg--focus;
+    }
+
+    &:hover {
+        background-color: $color__blocklink-bg--hover;
+    }
+
+    &:active,
+    &:hover:active {
+        background-color: $color__blocklink-bg--active;
+    }
+
+    &--secondary {
+        background-color: transparent;
+        border-color: currentColor;
+        color: $color__white;
+    }
+}
+
 .#{$pl-prefix}button {
     &--secondary {
         background-color: $color__button--secondary__background;
