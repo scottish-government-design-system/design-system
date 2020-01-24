@@ -6,7 +6,7 @@
     border : 1px solid currentColor;
     border-width: 1px 0;
     font-weight: $bold;
-    padding: 35px 15px 35px 65px;
+    padding: 21px 15px 21px 72px;
     position: relative;
 
     @include block-margins;
@@ -20,11 +20,11 @@
     height: 35px;
     font-size: 32px;
     font-weight: 700;
-    left: 15px;
+    left: 22px;
     line-height: 35px;
     position: absolute;
     text-align: center;
-    top: 30px;
+    top: 14px;
     width: 35px;
 }
 
@@ -34,11 +34,10 @@
 
 @include media-query(medium) {
     .#{$pl-prefix}warning-text {
-        padding-left: 73px;
-        padding-right: 70px;
+        padding: 35px 70px 35px 72px;
     }
 
     .#{$pl-prefix}warning-text__icon {
-        left: 23px;
+        top: 30px;
     }
 }

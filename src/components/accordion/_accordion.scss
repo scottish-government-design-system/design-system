@@ -33,39 +33,30 @@ $accordion__header-color: $color__link !default;
     border-bottom: 1px solid $color__border--light;
     border-top: 1px solid $color__border--light;
 
-    &__header {
+    &__header,
+    &__header-button {
         @include blocklink;
 
+        background-color: $color__white;
         color: $accordion__header-color;
-        cursor: pointer;
-        font-weight: $bold;
-        padding: 14px 45px 14px 15px;
+        line-height: 28px;
+        margin: 0;
+        padding: 14px 50px 14px 15px;
         position: relative;
+        text-align: left;
+        width: 100%;
 
-        &:hover:not(:active) {
+        &:hover:not(:active):not(:focus) {
             background-color: $color__link--hover__background;
+            color: $color__link--hover;
+        }
+
+        &:hover {
             color: $color__link--hover;
         }
 
         &:active {
             color: $color__link--active;
-        }
-    }
-
-    &__header-button {
-        background-color: $color__white;
-        color: $accordion__header-color;
-        line-height: 28px;
-        margin: 0;
-        padding: 14px 45px 14px 15px;
-        position: relative;
-        text-align: left;
-        width: 100%;
-
-        @include blocklink;
-
-        &:hover {
-            color: $color__link--hover;
         }
     }
 
@@ -92,7 +83,11 @@ $accordion__header-color: $color__link !default;
 
     &__body {
         display: none;
-        padding: 21px 15px 28px;
+        padding: 21px 50px 42px 15px;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
     }
 
     &__control:checked ~ &__body {
@@ -126,7 +121,12 @@ $accordion__header-color: $color__link !default;
     &__body {
         max-height: 0;
         overflow: hidden;
-        padding: 0 15px;
+        padding: 0 50px 0 15px;
+
+        @include media-query(medium) {
+            padding-right: 100px;
+        }
+
         transition: max-height $transition-in-time, padding $transition-in-time;
     }
 
@@ -145,6 +145,12 @@ $accordion__header-color: $color__link !default;
         &__control:checked ~ &__header &__indicator,
         &__control:checked ~ &__header-button &__indicator {
             top: 24px;
+        }
+
+        &__header,
+        &__header-button,
+        &__body {
+            padding-right: 100px;
         }
     }
 }

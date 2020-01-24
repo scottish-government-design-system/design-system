@@ -93,7 +93,7 @@ $text-input-fluid-widths: (
     'three-quarters' 75
 );
 
-@include media-query(medium) {
+// @include media-query(medium) {
     @each $width in $text-input-fluid-widths {
         $name:  nth($width, 1);
         $value: nth($width, 2);
@@ -102,4 +102,4 @@ $text-input-fluid-widths: (
             max-width: #{($value) * 1%};
         }
     }
-}
+// }

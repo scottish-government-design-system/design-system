@@ -54,3 +54,16 @@
         }
     }
 }
+
+@supports (display: flex) {
+    .#{$pl-prefix}pagination {
+        &__list {
+            display: flex;
+            justify-content: center;
+        }
+
+        &__item:not(:last-child) {
+            margin-right: 3px;
+        }
+    }
+}

@@ -14,10 +14,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     color: $color__white;
     margin-bottom: 1px;
 
-
-    background: $color__blue--lighter;
-    color: $color__body;
-
     &__content {
         justify-content: space-between;
         padding: 14px 0;
@@ -25,6 +21,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
         &--has-close {
             padding-right: 45px;
+        }
+
+        a {
+            color: inherit;
         }
     }
 
@@ -43,12 +43,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     &__actions {
         display: inline-block;
-        margin: 7px 0 -7px;
+        margin: 21px -10px -7px 0;
 
         > * {
-            margin-top: 0;
-            margin-right: 5px;
-            margin-bottom: 14px;
+            margin: 0 10px 14px 0;
         }
     }
 
@@ -64,7 +62,11 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         width: 29px;
 
         + .#{$pl-prefix}notification__text {
-            margin-left: 40px;
+            margin-left: 15px;
+
+            @include media-query(medium) {
+                margin-left: 40px;
+            }
         }
     }
 
@@ -95,6 +97,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     &--major {
         background: $color__gold--base;
+        color: $color__body;
 
         .#{$pl-prefix}notification__icon svg {
             fill: $color__gold--base;
@@ -103,6 +106,8 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         // major needs special behavour for focus/active state of its interactive elements
         .#{$pl_prefix}notification__close,
         a {
+            color: $color__link;
+
             &:focus {
                 outline-color: $color__body;
                 color: $color__body;
@@ -132,11 +137,49 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             fill: $color__red--base;
         }
     }
+
+    &--light {
+        background: $color__blue--light;
+        color: $color__body;
+
+        a {
+            color: $color__link;
+        }
+    }
 }
 
 @include media-query(medium) {
+    .#{$pl-prefix}notification__actions {
+        margin: 0 0 -14px;
+    }
+
     .#{$pl-prefix}notification__close {
         top: 18px;
+    }
+}
+
+
+@supports(display: flex) {
+    .#{$pl-prefix}notification__actions {
+        display: flex;
+        flex-wrap: wrap;
+
+        > * {
+            flex-basis: 0;
+            flex-grow: 1;
+        }
+    }
+
+    @include media-query(medium) {
+        .#{$pl-prefix}notification__actions {
+            display: inline-flex;
+            width: auto;
+
+            > * {
+                flex-basis: auto;
+                flex-grow: auto;
+            }
+        }
     }
 }
 

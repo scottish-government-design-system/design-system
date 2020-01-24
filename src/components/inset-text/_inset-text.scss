@@ -15,6 +15,7 @@
 
 @include media-query(medium) {
     .#{$pl-prefix}inset-text {
+        padding-left: 30px;
         padding-right: 70px;
     }
 }

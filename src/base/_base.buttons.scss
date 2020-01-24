@@ -53,7 +53,6 @@ input[type="submit"],
     &:active,
     &:hover:active {
         background-color: $color__button--active__background;
-        box-shadow: 0 $link__border-width $color__link--active__shadow;
         color: $color__button--active;
         outline-color: $color__button--active__background;
         transition-duration: 0s;
@@ -245,7 +244,7 @@ input[type="submit"],
 // ICON-ONLY BUTTONS
 .#{$pl-prefix}button--icon-only {
     height: $button__height;
-    padding: 10px;
+    padding: 14px;
     width: $button__height;
 
     &.#{$pl-prefix}button--small {

@@ -29,6 +29,10 @@ class Accordion {
         itemButton.classList.add('ds_accordion-item__header-button');
         itemIndicator.classList.add('ds_accordion-item__indicator');
 
+        // we keep the control present but make it unavailable in the tab order or to screen readers
+        itemControl.classList.remove('visually-hidden');
+        itemControl.classList.add('fully-hidden');
+
         itemButton.innerHTML = itemTitle.innerHTML;
         itemButton.appendChild(itemIndicator);
 
