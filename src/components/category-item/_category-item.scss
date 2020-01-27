@@ -78,7 +78,6 @@ $category-item__link-color: $color__link !default;
 
 .#{$pl-prefix}card {
     > .#{$pl-prefix}category-item {
-        min-height: 186px;
         padding-top: 21px;
         padding-bottom: 21px;
     }
@@ -109,6 +108,12 @@ $category-item__link-color: $color__link !default;
     .#{$pl-prefix}category-item {
         &__title {
             line-height: 28px;
+        }
+    }
+
+    .#{$pl-prefix}card {
+        > .#{$pl-prefix}category-item {
+            min-height: 186px;
         }
     }
 }
