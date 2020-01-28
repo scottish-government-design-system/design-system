@@ -28,3 +28,20 @@
         display: table-cell;
     }
 }
+
+@supports (display: flex) {
+    .#{$pl-prefix}phase-banner {
+        &__content {
+            align-items: baseline;
+            display: flex;
+
+            &--stacked {
+                flex-direction: column;
+
+                > *:not(:last-child) {
+                    margin-bottom: 7px;
+                }
+            }
+        }
+    }
+}
