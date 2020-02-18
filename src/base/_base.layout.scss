@@ -40,6 +40,10 @@
     @include layout();
 
     margin-bottom: 91px;
+
+    &__content img {
+        max-width: 100%;
+    }
 }
 
 @include media-query(medium) {
@@ -189,6 +193,7 @@
     $grid-area-feedback:    f;
     $grid-area-header:      h;
     $grid-area-list:        l;
+    $grid-area-navigation:  n;
     $grid-area-partner:     p;
     $grid-area-sidebar:     s;
 
@@ -227,6 +232,10 @@
 
         &__list {
             grid-area: $grid-area-list;
+        }
+
+        &__navigation {
+            grid-area: $grid-area-navigation;
         }
 
         &__partner {

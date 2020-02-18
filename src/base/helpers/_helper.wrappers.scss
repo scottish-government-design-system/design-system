@@ -22,18 +22,18 @@ $wrapper__width--xlarge: 1170px !default;
 
 @include media-query(medium) {
     .#{$pl-prefix}wrapper {
-        max-width: $wrapper__width--medium;
+        width: $wrapper__width--medium;
     }
 }
 
 @include media-query(large) {
     .#{$pl-prefix}wrapper {
-        max-width: $wrapper__width--large;
+        width: $wrapper__width--large;
     }
 }
 
 @include media-query(xlarge) {
     .#{$pl-prefix}wrapper {
-        max-width: $wrapper__width--xlarge;
+        width: $wrapper__width--xlarge;
     }
 }
