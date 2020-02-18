@@ -60,14 +60,16 @@ $category-header__summary-size: 1.25rem;
     @include layout();
 }
 
+.#{$pl-prefix}category-header {
+    grid-gap: $grid-gap-y $grid-gap-x;
+}
+
 @include media-query(medium) {
     .#{$pl-prefix}category-header {
-        margin-top: 56px;
-        margin-bottom: 84px;
-
         &__header {
             float: left;
             @include colwidth(8);
+            margin: 42px 0;
         }
 
         &__media-container {
@@ -82,6 +84,10 @@ $category-header__summary-size: 1.25rem;
 }
 
 @supports(display: grid) {
+    .#{$pl-prefix}category-header__header {
+        margin-bottom: 0;
+    }
+
     @include media-query(medium) {
         .#{$pl-prefix}category-header {
             grid-template-columns: repeat(12, 1fr);
@@ -89,7 +95,7 @@ $category-header__summary-size: 1.25rem;
             &__header {
                 float: none;
                 grid-column: 1 / span 8;
-                margin-bottom: 0;
+                margin: 42px 0;
             }
 
             &__media-container {

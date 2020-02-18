@@ -6,8 +6,7 @@
     background-color: #ffffff;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
     display: block;
-    outline: 0 !important;
-    padding: 21px 15px;
+    padding: 0;
     position: relative;
     transition: background-color 0.2s, outline-color 0.2s;
     z-index: 1;
@@ -16,16 +15,106 @@
         margin-bottom: 0;
     }
 
-    &--no-padding {
-        padding: 0;
+    &--has-hover:hover {
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    }
 
-        > * {
-            margin-bottom: 0;
+    &__figure {
+        background-color: $color__body;
+        margin-bottom: 0;
+        overflow: hidden;
+        padding-bottom: calc(900%/16);
+        pointer-events: none;
+        position: relative;
+        z-index: 1;
+
+        //2.35:1 image ratio
+        &--235 {
+            padding-bottom: calc(10000%/235);
+        }
+    }
+
+    &__image {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+    }
+
+    &__content {
+        padding: 21px 15px;
+
+        > :first-child {
             margin-top: 0;
         }
     }
 
-    &--has-hover:hover {
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    &__cover-link {
+        outline: 0 !important;
+
+        &:focus,
+        &:active,
+        &:hover {
+            background-color: transparent;
+            box-shadow: none;
+            text-decoration: underline;
+        }
+
+        &::after {
+            bottom: 0;
+            content: "";
+            height: 100%;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 0;
+            transition: background-color 0.2s;
+
+            mix-blend-mode: darken;
+        }
+
+        &:hover::after {
+            background-color: $color__link--hover__background;
+        }
+
+        &:active::after,
+        &:focus::after {
+            background-color: $color__link--active__background;
+            box-shadow: inset 0 -3px $color__link--active__shadow;
+            transition-duration: 0s;
+        }
+    }
+
+    &--small {
+        font-size: $small-size--fixed;
+        line-height: 21px;
+
+        h2 {
+            font-size: 1.105263rem;
+            line-height: 28px;
+            margin-bottom: 0;
+        }
+    }
+
+    &--transparent {
+        background-color: transparent;
+        box-shadow: none;
+
+        .#{$pl-prefix}card__content {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &--padding {
+        padding: 14px 15px;
+    }
+}
+
+@supports(object-fit: contain) {
+    .#{$pl-prefix}card__image {
+        object-fit: cover;
+        width: 100%;
     }
 }
