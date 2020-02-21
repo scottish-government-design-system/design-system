@@ -32,11 +32,12 @@ describe('accordion', () => {
 
             const accordionItems = testObj.accordionElement.querySelectorAll('.ds_accordion-item');
 
+
             // in fixture, first item is checked, others are not
             const states = [true, false, false];
             for (let i = 0, il = accordionItems.length; i < il; i++) {
-                const accordionItem = accordionItems[i];
-                expect(accordionItem.getAttribute('aria-expanded')).toEqual(states[i].toString());
+                const accordionItemButton = accordionItems[i].querySelector('.js-accordion-button');
+                expect(accordionItemButton.getAttribute('aria-expanded')).toEqual(states[i].toString());
             }
         });
 
@@ -45,7 +46,7 @@ describe('accordion', () => {
 
             const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
             const accordionItemBody = firstAccordionItem.querySelector('.ds_accordion-item__body');
-            const accordionItemButton = firstAccordionItem.querySelector('.ds_accordion-item__header-button');
+            const accordionItemButton = firstAccordionItem.querySelector('.js-accordion-button');
 
             let event = new Event('click');
             accordionItemButton.dispatchEvent(event);
@@ -70,7 +71,8 @@ describe('accordion', () => {
 
             for (let i = 0, il = accordionItems.length; i < il; i++) {
                 const accordionItem = accordionItems[i];
-                expect(accordionItem.getAttribute('aria-expanded')).toEqual(states[i].toString());
+                const accordionItemButton = accordionItem.querySelector('.js-accordion-button');
+                expect(accordionItemButton.getAttribute('aria-expanded')).toEqual(states[i].toString());
                 expect(accordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
             }
         });
@@ -82,7 +84,7 @@ describe('accordion', () => {
 
             testObj.accordionModule.init();
 
-            const accordionItemButton = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(3) .ds_accordion-item__header-button');
+            const accordionItemButton = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(3) .js-accordion-button');
 
             const event = new Event('click');
             accordionItemButton.dispatchEvent(event);
@@ -108,7 +110,8 @@ describe('accordion', () => {
 
             for (let i = 0, il = accordionItems.length; i < il; i++) {
                 const accordionItem = accordionItems[i];
-                expect(accordionItem.getAttribute('aria-expanded')).toEqual(states[i].toString());
+                const accordionItemButton = accordionItem.querySelector('.js-accordion-button');
+                expect(accordionItemButton.getAttribute('aria-expanded')).toEqual(states[i].toString());
                 expect(accordionItem.classList.contains('ds_accordion-item--open')).toEqual(false);
             }
         });

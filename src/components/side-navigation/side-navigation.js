@@ -15,14 +15,17 @@ class SideNavigation {
         // transform markup to button-driven version
         const navControl = this.sideNavigation.querySelector('.js-toggle-side-navigation');
         const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand');
-        const navList = this.sideNavigation.querySelector('.ds_side-navigation__list--root');
+        const navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
 
         navControl.checked = false;
-        this.sideNavigation.setAttribute('aria-expanded', false);
-
+        
         const navButton = document.createElement('button');
-        navButton.classList.add('ds_side-navigation__expand', 'ds_link');
+        navButton.classList.add('ds_side-navigation__expand', 'ds_link', 'js-side-navigation-button');
         navButton.innerHTML = navLabel.innerHTML;
+        navButton.setAttribute('aria-expanded', false);
+        
+        navList.id = navList.id || `accordion-item-${parseInt(Math.random() * 1e8, 10)}`;
+        navButton.setAttribute('aria-controls', navList.id);
 
         navLabel.parentNode.removeChild(navLabel);
         this.sideNavigation.insertBefore(navButton, navList);
@@ -41,7 +44,7 @@ class SideNavigation {
                 }, 200);
             }
 
-            this.sideNavigation.setAttribute('aria-expanded', !isOpen);
+            navButton.setAttribute('aria-expanded', !isOpen);
             navControl.checked = !isOpen;
             navControl.setAttribute('data-navigation', `navigation-${navControl.checked ? 'close' : 'open'}`);
         });

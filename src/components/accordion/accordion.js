@@ -26,7 +26,7 @@ class Accordion {
         const itemButton = document.createElement('button');
         const itemIndicator = document.createElement('span');
 
-        itemButton.classList.add('ds_accordion-item__header-button');
+        itemButton.classList.add('ds_accordion-item__header-button', 'js-accordion-button');
         itemIndicator.classList.add('ds_accordion-item__indicator');
 
         // we keep the control present but make it unavailable in the tab order or to screen readers
@@ -46,8 +46,9 @@ class Accordion {
             this.setOpenAllButton(this.checkAllOpen());
         }
 
-        item.setAttribute('aria-expanded', startsOpen);
-
+        itemButton.setAttribute('aria-expanded', startsOpen);
+        itemBody.id = itemBody.id || `accordion-item-${parseInt(Math.random() * 1e8, 10)}`;
+        itemButton.setAttribute('aria-controls', itemBody.id);
 
         // events
         itemButton.addEventListener('click', () => {
@@ -71,7 +72,7 @@ class Accordion {
                 }, 200);
             }
 
-            item.setAttribute('aria-expanded', !isOpen);
+            itemButton.setAttribute('aria-expanded', !isOpen);
             itemControl.checked = !isOpen;
 
             // tracking

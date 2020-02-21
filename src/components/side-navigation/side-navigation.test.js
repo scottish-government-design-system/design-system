@@ -23,9 +23,22 @@ describe('side navigation', () => {
             testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
         });
 
-        it ('should set an initial ARIA value on the container', () => {
+        it ('should set an initial aria-expanded value on the control', () => {
             testObj.sideNavigationModule.init();
-            expect(testObj.sideNavigationElement.getAttribute('aria-expanded')).toEqual('false');
+            const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button')
+            expect(sideNavButton.getAttribute('aria-expanded')).toEqual('false');
+        });
+
+        it ('should update the control\'s aria-expanded attribute when interacted with', () => {
+            testObj.sideNavigationModule.init();
+            const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button')
+            const label = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
+
+            // opening nav
+            const event = new Event('click');
+            label.dispatchEvent(event);
+
+            expect(sideNavButton.getAttribute('aria-expanded')).toEqual('true');
         });
 
         it ('should toggle display of the side navigation on click of the label', () => {
