@@ -19,7 +19,7 @@
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
     }
 
-    &__figure {
+    &__media {
         background-color: $color__body;
         margin-bottom: 0;
         overflow: hidden;
@@ -117,4 +117,9 @@
         object-fit: cover;
         width: 100%;
     }
+}
+
+// special case to make a cover link on a category item cover the whole card when there is an image
+.#{$pl-prefix}card .#{$pl-prefix}category-item {
+    position: static;
 }
