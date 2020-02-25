@@ -20,6 +20,7 @@ class Accordion {
         const itemHeader = item.querySelector('.ds_accordion-item__header');
         const itemTitle = itemHeader.querySelector('.ds_accordion-item__title');
         const itemBody = item.querySelector('.ds_accordion-item__body');
+        const idString = parseInt(Math.random() * 1000000, 10);
 
         const startsOpen = itemControl.checked;
 
@@ -39,6 +40,9 @@ class Accordion {
         itemHeader.parentNode.removeChild(itemHeader);
 
         item.insertBefore(itemButton, itemBody);
+
+        itemBody.id = itemBody.id || `accordion-item-${idString}`;
+        itemButton.setAttribute('aria-controls', itemBody.id);
 
         if (startsOpen) {
             item.classList.add('ds_accordion-item--open');
@@ -116,12 +120,14 @@ class Accordion {
     }
 
     setOpenAllButton(open) {
-        if (open) {
-            this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
-            this.openAllButton.setAttribute('data-accordion', 'accordion-close-all');
-        } else {
-            this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>';
-            this.openAllButton.setAttribute('data-accordion', 'accordion-open-all');
+        if (this.openAllButton) {
+            if (open) {
+                this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
+                this.openAllButton.setAttribute('data-accordion', 'accordion-close-all');
+            } else {
+                this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>';
+                this.openAllButton.setAttribute('data-accordion', 'accordion-open-all');
+            }
         }
     }
 
