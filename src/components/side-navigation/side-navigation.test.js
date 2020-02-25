@@ -25,13 +25,13 @@ describe('side navigation', () => {
 
         it ('should set an initial aria-expanded value on the control', () => {
             testObj.sideNavigationModule.init();
-            const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button')
+            const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button');
             expect(sideNavButton.getAttribute('aria-expanded')).toEqual('false');
         });
 
         it ('should update the control\'s aria-expanded attribute when interacted with', () => {
             testObj.sideNavigationModule.init();
-            const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button')
+            const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button');
             const label = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
 
             // opening nav

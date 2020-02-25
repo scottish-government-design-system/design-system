@@ -21,7 +21,7 @@ class SideNavigation {
         navControl.checked = false;
 
         const navButton = document.createElement('button');
-        navButton.classList.add('ds_side-navigation__expand', 'ds_link');
+        navButton.classList.add('ds_side-navigation__expand', 'ds_link', 'js-side-navigation-button');
         navButton.setAttribute('aria-expanded', false);
         navButton.innerHTML = navLabel.innerHTML;
         navButton.setAttribute('aria-expanded', false);
