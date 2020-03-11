@@ -25,8 +25,8 @@
         min-width: 50px;
 
         &.#{$pl-prefix}current {
-            background-color: $color__link--current__background;
-            border-bottom: 3px solid $color__border--highlight;
+            background-color: $colour__link--current__background;
+            border-bottom: 3px solid $colour__border--highlight;
             padding-bottom: 11px;
             pointer-events: none;
         }

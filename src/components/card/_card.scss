@@ -20,7 +20,7 @@
     }
 
     &__media {
-        background-color: $color__body;
+        background-color: $colour__text;
         margin-bottom: 0;
         overflow: hidden;
         padding-bottom: calc(900%/16);
@@ -124,13 +124,13 @@
     }
 
     .#{$pl-prefix}card__cover-link:hover::after {
-        background-color: $color__link--hover__background;
+        background-color: $colour__link--hover__background;
     }
 
     .#{$pl-prefix}card__cover-link:active::after,
     .#{$pl-prefix}card__cover-link:focus::after {
-        background-color: $color__link--active__background;
-        box-shadow: inset 0 -3px $color__link--active__shadow;
+        background-color: $colour__link--active__background;
+        box-shadow: inset 0 -3px $colour__link--active__shadow;
         transition-duration: 0s;
     }
 }

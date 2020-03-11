@@ -4,10 +4,10 @@
 \*------------------------------------*/
 
 // modifiable vars
-$page-nav__icon-color: $color__brand--primary !default;
-$page-nav__icon-hover: $color__link--hover !default;
+$page-nav__icon-colour: $colour__brand--primary !default;
+$page-nav__icon-hover: $colour__link--hover !default;
 $page-nav__icon-focus: $page-nav__icon-hover !default;
-$page-nav__prefix-color: $color__blue--darker !default;
+$page-nav__prefix-colour: $colour__blue--darker !default;
 
 // fixed vars vars
 $page-nav__icon-size: 56px !default;
@@ -48,7 +48,7 @@ $page-nav__icon-size: 56px !default;
         content: '';
         height: $page-nav__icon-size;
         width: $page-nav__icon-size;
-        background-color: $page-nav__icon-color;
+        background-color: $page-nav__icon-colour;
         background-position: center;
         border-radius: $page-nav__icon-size;
         display: inline-block;
@@ -62,7 +62,7 @@ $page-nav__icon-size: 56px !default;
     &--left,
     &--right {
         &::after {
-            color: $color__white;
+            color: $colour__white;
             position: absolute;
             top: 25px;
         }
@@ -117,7 +117,7 @@ $page-nav__icon-size: 56px !default;
     position: relative;
 
     &::before {
-        color: $page-nav__prefix-color;
+        color: $page-nav__prefix-colour;
         content: attr(data-label);
         font-size: 14px;
         font-weight: $bold;

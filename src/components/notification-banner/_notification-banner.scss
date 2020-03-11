@@ -10,8 +10,8 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 
 .#{$pl-prefix}notification {
-    background: $color__grey--dark;
-    color: $color__white;
+    background: $colour__grey--dark;
+    color: $colour__white;
     margin-bottom: 1px;
 
     &__content {
@@ -96,54 +96,54 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 
     &--major {
-        background: $color__gold--base;
-        color: $color__body;
+        background: $colour__gold--base;
+        color: $colour__text;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $color__gold--base;
+            fill: $colour__gold--base;
         }
 
         // major needs special behavour for focus/active state of its interactive elements
         .#{$pl_prefix}notification__close,
         a {
-            color: $color__link;
+            color: $colour__link;
 
             &:focus {
-                outline-color: $color__body;
-                color: $color__body;
+                outline-color: $colour__text;
+                color: $colour__text;
             }
 
             &:active {
-                background-color: $color__body;
-                color: $color__gold--base !important;
+                background-color: $colour__text;
+                color: $colour__gold--base !important;
             }
         }
     }
 
     &--positive {
-        background: $color__green--base;
-        color: $color__white;
+        background: $colour__green--base;
+        color: $colour__white;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $color__green--base;
+            fill: $colour__green--base;
         }
     }
 
     &--negative {
-        background: $color__red--base;
-        color: $color__white;
+        background: $colour__red--base;
+        color: $colour__white;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $color__red--base;
+            fill: $colour__red--base;
         }
     }
 
     &--light {
-        background: $color__blue--light;
-        color: $color__body;
+        background: $colour__blue--light;
+        color: $colour__text;
 
         a {
-            color: $color__link;
+            color: $colour__link;
         }
     }
 }

@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$accordion__header-color: $color__link !default;
+$accordion__header-colour: $colour__link !default;
 
 
 
@@ -30,15 +30,15 @@ $accordion__header-color: $color__link !default;
 }
 
 .#{$pl-prefix}accordion-item {
-    border-bottom: 1px solid $color__border--light;
-    border-top: 1px solid $color__border--light;
+    border-bottom: 1px solid $colour__border--light;
+    border-top: 1px solid $colour__border--light;
 
     &__header,
     &__header-button {
         @include blocklink;
 
-        background-color: $color__white;
-        color: $accordion__header-color;
+        background-color: $colour__white;
+        color: $accordion__header-colour;
         line-height: 28px;
         margin: 0;
         padding: 14px 50px 14px 15px;
@@ -47,22 +47,22 @@ $accordion__header-color: $color__link !default;
         width: 100%;
 
         &:hover:not(:active):not(:focus) {
-            background-color: $color__link--hover__background;
-            color: $color__link--hover;
+            background-color: $colour__link--hover__background;
+            color: $colour__link--hover;
         }
 
         &:hover {
-            color: $color__link--hover;
+            color: $colour__link--hover;
         }
 
         &:active {
-            color: $color__link--active;
+            color: $colour__link--active;
         }
     }
 
     &--open &__header-button:not(:focus):not(:active) {
-        background-color: $color__link--current__background;
-        color: $color__link--current;
+        background-color: $colour__link--current__background;
+        color: $colour__link--current;
     }
 
     &__title {
@@ -95,8 +95,8 @@ $accordion__header-color: $color__link !default;
     }
 
     &__control:checked:not(:active):not(:focus) ~ &__header {
-        background-color: $color__link--current__background;
-        color: $color__link--current;
+        background-color: $colour__link--current__background;
+        color: $colour__link--current;
     }
 
     &__control:checked ~ &__header &__indicator,
@@ -106,9 +106,9 @@ $accordion__header-color: $color__link !default;
     }
 
     &__control:focus ~ &__header {
-        background: $color__blocklink-bg--focus;
-        box-shadow: 0 $link__border-width $color__link--focus;
-        color: $color__link--focus;
+        background: $colour__blocklink-bg--focus;
+        box-shadow: 0 $link__border-width $colour__link--focus;
+        color: $colour__link--focus;
         z-index: 2;
     }
 

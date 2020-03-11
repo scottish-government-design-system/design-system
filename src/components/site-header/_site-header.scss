@@ -3,22 +3,22 @@
 \*------------------------------------*/
 
 // modifiable vars
-$site-header__border-color--reversed: $color__brand--secondary !default;
+$site-header__border-colour--reversed: $colour__brand--secondary !default;
 
 // fixed vars
-$site-header__border-color: $color__border--light;
-$site-header__top-band-color: $color__brand--primary;
+$site-header__border-colour: $colour__border--light;
+$site-header__top-band-colour: $colour__brand--primary;
 
 
 
 
 .#{$pl-prefix}site-header {
-    background-color: $color__white;
-    border-bottom: 1px solid $site-header__border-color;
+    background-color: $colour__white;
+    border-bottom: 1px solid $site-header__border-colour;
     position: relative;
 
     &::before {
-        background: $site-header__top-band-color;
+        background: $site-header__top-band-colour;
         display: block;
         content: '';
         height: 7px;
@@ -69,7 +69,7 @@ $site-header__top-band-color: $color__brand--primary;
 /* variant with the top colour bar set to a gradient of site brand colours */
 .#{$pl-prefix}site-header--gradient {
     &::before {
-        background: linear-gradient(to $brand-gradient-direction, $color__brand--primary, $color__brand--secondary);
+        background: linear-gradient(to $brand-gradient-direction, $colour__brand--primary, $colour__brand--secondary);
     }
 }
 
@@ -90,8 +90,8 @@ $site-header__top-band-color: $color__brand--primary;
 
 /* variant with a solid-colour background and reversed branding */
 .#{$pl-prefix}site-header.#{$pl-prefix}reversed {
-    background-color: $color__brand--primary;
-    color: $color__white;
+    background-color: $colour__brand--primary;
+    color: $colour__white;
 
     &:not(.#{$pl-prefix}site-header--gradient) {
         &::before {
@@ -100,7 +100,7 @@ $site-header__top-band-color: $color__brand--primary;
     }
 
     .#{$pl-prefix}site-header__navigation {
-        border-top: 1px solid $site-header__border-color--reversed;
+        border-top: 1px solid $site-header__border-colour--reversed;
     }
 }
 
@@ -135,6 +135,6 @@ $site-header__top-band-color: $color__brand--primary;
     }
 
     .#{$pl-prefix}site-header__navigation {
-        border-top: 1px solid $color__border--light;
+        border-top: 1px solid $colour__border--light;
     }
 }

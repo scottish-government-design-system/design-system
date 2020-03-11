@@ -5,9 +5,9 @@
 .#{$pl-prefix}search-result {
     @include blocklink('.#{$pl-prefix}search-result__link');
 
-    border: 1px solid $color__border--light;
+    border: 1px solid $colour__border--light;
     border-width: 1px 0;
-    color: $color__body !important;
+    color: $colour__text !important;
     margin: 0 #{$mobile-body-margin * -1} -1px;
     padding: 21px 15px;
     position: relative;
@@ -29,12 +29,12 @@
     }
 
     &__date {
-        color: $color__grey--base;
+        color: $colour__text--secondary;
         font-weight: $normal;
     }
 
     &__title {
-        color: $color__link;
+        color: $colour__link;
         margin-bottom: 7px;
         margin-top: 0 !important;
 

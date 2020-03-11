@@ -5,7 +5,7 @@
 // modifiable vars
 $site-logo__height: 35px !default;
 $site-logo__height--medium: 56px !default;
-$branding__separator-color: $color__border--highlight !default;
+$branding__separator-colour: $colour__border--highlight !default;
 
 
 
@@ -53,7 +53,7 @@ $branding__separator-color: $color__border--highlight !default;
             max-height: unset;
 
             &:not(:last-child)::before {
-                background: $branding__separator-color;
+                background: $branding__separator-colour;
                 bottom: 0;
                 content: '';
                 position: absolute;
@@ -95,10 +95,10 @@ $branding__separator-color: $color__border--highlight !default;
 // when branding is a child of a reversed-variant site header
 .#{$pl-prefix}reversed .#{$pl-prefix}site-branding {
     .#{$pl-prefix}site-branding__logo {
-        color: $color__white;
+        color: $colour__white;
 
         &:not(:last-child)::before {
-            background-color: $color__white;
+            background-color: $colour__white;
         }
     }
 }

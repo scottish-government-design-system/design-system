@@ -15,11 +15,12 @@ button,
 input[type="button"],
 input[type="submit"],
 .#{$pl-prefix}button {
-    background: $color__button__background;
+    background: $colour__button__background;
     border: 0;
-    color: $color__button;
+    color: $colour__button;
     cursor: pointer;
     display: inline-block;
+    font-size: $small-size;
     font-weight: $bold;
     line-height: 21px;
     outline-width: 0;
@@ -38,23 +39,23 @@ input[type="submit"],
 
     // this order is important. we want active to take precedence over focus and focus to take precedence over hover
     &:hover {
-        background-color: $color__button--hover__background;
-        color: $color__button;
+        background-color: $colour__button--hover__background;
+        color: $colour__button;
         transition-duration: $transition-in-time;
     }
 
     &:focus {
-        background-color: $color__button--focus__background;
-        box-shadow: 0 $link__border-width $color__link--focus__shadow;
-        color: $color__button--focus;
-        outline-color: $color__button--focus__background;
+        background-color: $colour__button--focus__background;
+        box-shadow: 0 $link__border-width $colour__link--focus__shadow;
+        color: $colour__button--focus;
+        outline-color: $colour__button--focus__background;
     }
 
     &:active,
     &:hover:active {
-        background-color: $color__button--active__background;
-        color: $color__button--active;
-        outline-color: $color__button--active__background;
+        background-color: $colour__button--active__background;
+        color: $colour__button--active;
+        outline-color: $colour__button--active__background;
         transition-duration: 0s;
     }
 
@@ -62,37 +63,46 @@ input[type="submit"],
     .#{$pl-prefix}icon {
         pointer-events: none;
     }
+
+    &[disabled] {
+        background-color: $colour__grey--base;
+        box-shadow: none;
+        color: $colour__white;
+        font-weight: $normal;
+        outline: none;
+        pointer-events: none;
+    }
 }
 
 .#{$pl-prefix}reversed .#{$pl-prefix}button {
-    background-color: $color__white;
-    color: $color__button__background;
+    background-color: $colour__white;
+    color: $colour__button__background;
 
     &:focus,
     &:hover:focus {
-        background-color: $color__blocklink-bg--focus;
+        background-color: $colour__blocklink-bg--focus;
     }
 
     &:hover {
-        background-color: $color__blocklink-bg--hover;
+        background-color: $colour__blocklink-bg--hover;
     }
 
     &:active,
     &:hover:active {
-        background-color: $color__blocklink-bg--active;
+        background-color: $colour__blocklink-bg--active;
     }
 
     &--secondary {
         background-color: transparent;
         border-color: currentColor;
-        color: $color__white;
+        color: $colour__white;
     }
 }
 
 .#{$pl-prefix}button {
     &--secondary {
-        background-color: $color__button--secondary__background;
-        color: $color__button--secondary;
+        background-color: $colour__button--secondary__background;
+        color: $colour__button--secondary;
         outline: 2px solid currentColor;
         outline-offset: -2px;
 
@@ -103,8 +113,8 @@ input[type="submit"],
         }
 
         &:hover {
-            background-color: $color__button--secondary--hover__background;
-            color: $color__button--secondary--hover;
+            background-color: $colour__button--secondary--hover__background;
+            color: $colour__button--secondary--hover;
 
             &:not(:focus) {
                 outline-color: currentColor;
@@ -112,14 +122,14 @@ input[type="submit"],
         }
 
         &:focus:not(:active) {
-            background-color: $color__button--focus__background;
-            color: $color__button--secondary--focus;
+            background-color: $colour__button--focus__background;
+            color: $colour__button--secondary--focus;
         }
     }
 
     &--cancel {
-        background-color: $color__button--cancel__background;
-        color: $color__button--cancel;
+        background-color: $colour__button--cancel__background;
+        color: $colour__button--cancel;
         outline: 2px solid currentColor;
         outline-offset: -2px;
 
@@ -130,8 +140,8 @@ input[type="submit"],
         }
 
         &:hover {
-            background-color: $color__button--cancel--hover__background;
-            color: $color__button--cancel;
+            background-color: $colour__button--cancel--hover__background;
+            color: $colour__button--cancel;
 
             &:not(:focus) {
                 outline-color: currentColor;
@@ -139,8 +149,8 @@ input[type="submit"],
         }
 
         &:focus:not(:active) {
-            background-color: $color__button--focus__background;
-            color: $color__button--focus;
+            background-color: $colour__button--focus__background;
+            color: $colour__button--focus;
         }
     }
 }

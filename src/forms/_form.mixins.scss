@@ -2,7 +2,7 @@
     FORM MIXINS
 \*------------------------------------*/
 
-@mixin radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-color: $color__input--active__background) {
+@mixin radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $colour__input--active__background) {
 
     margin-bottom: 21px;
     padding-left: 40px;
@@ -26,7 +26,7 @@
     }
 
     &__label::before {
-        background-color: $color__white;
+        background-color: $colour__white;
         border: $field-border-width solid currentColor;
         content: '';
         height: $input-size;
@@ -57,12 +57,12 @@
     /* focus */
     &__input:focus + &__label::before {
         border-width: $field-border-width--focus;
-        box-shadow: 0 0 0 $field-glow-width $color__gold--base;
+        box-shadow: 0 0 0 $field-glow-width $colour__gold--base;
     }
 
     /* checked */
     &__input:checked + &__label::before {
-        border-color: $color__input--spot;
+        border-color: $colour__input--spot;
     }
 
     &__input:checked + &__label::after {
@@ -71,7 +71,7 @@
 
     /* active */
     &__input:active + &__label::before {
-        background-color: $color__input--active__background;
+        background-color: $colour__input--active__background;
     }
 
     /*
@@ -98,12 +98,12 @@
 
     /* focus */
     &--small &__input:focus + &__label::before {
-        box-shadow: 0 0 0 $small-shadow-size $color__input--focus__outline;
+        box-shadow: 0 0 0 $small-shadow-size $colour__input--focus__outline;
     }
 
     /* active */
     &--small &__input:active + &__label::before {
-        box-shadow: 0 0 0 $small-shadow-size $active-shadow-color;
+        box-shadow: 0 0 0 $small-shadow-size $active-shadow-colour;
     }
 
     > .#{$pl_prefix}hint-text {

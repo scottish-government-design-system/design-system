@@ -5,7 +5,7 @@
 .#{$pl_prefix}select {
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-color: $color__white;
+    background-color: $colour__white;
     border-radius: 0;
     border: 0;
     bottom: 0;
@@ -17,18 +17,18 @@
     width: 100%;
     top: 0;
     &:hover {
-        outline: 4px solid $color__input--hover__border;
+        outline: 4px solid $colour__input--hover__border;
     }
     &:focus {
-        background-color: $color__input--focus__background;
-        box-shadow: 0 0 0 1px $color__input--spot inset;
-        outline: 2px solid $color__input--focus__outline;
+        background-color: $colour__input--focus__background;
+        box-shadow: 0 0 0 1px $colour__input--spot inset;
+        outline: 2px solid $colour__input--focus__outline;
         outline-offset: 2px;
     }
 }
 
 .#{$pl_prefix}select-arrow {
-    background: $color__button__background;
+    background: $colour__button__background;
     bottom: -2px;
     content: '';
     pointer-events: none;
@@ -39,7 +39,7 @@
 
     &::before {
         bottom: 0;
-        color: $color__white;
+        color: $colour__white;
         position: absolute;
         right: 0;
         top: 0;
@@ -52,10 +52,10 @@
 }
 
 .#{$pl_prefix}select:focus + .#{$pl_prefix}select-arrow {
-    background-color: $color__button--focus__background;
+    background-color: $colour__button--focus__background;
 
     &::before {
-        color: $color__button--focus;
+        color: $colour__button--focus;
     }
 }
 

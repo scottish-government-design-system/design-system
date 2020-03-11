@@ -4,8 +4,8 @@
 \*------------------------------------*/
 
 // modifiable vars
-$category-item__border-color--hover: $color__link--hover !default;
-$category-item__link-color: $color__link !default;
+$category-item__border-colour--hover: $colour__link--hover !default;
+$category-item__link-colour: $colour__link !default;
 
 
 
@@ -34,10 +34,10 @@ $category-item__link-color: $color__link !default;
     }
 
     &__link {
-        color: $category-item__link-color;
+        color: $category-item__link-colour;
 
         &::before {
-            background-color: mix($color__border--highlight, $color__grey--lighter, 30%);
+            background-color: mix($colour__border--highlight, $colour__grey--lighter, 30%);
             bottom: 0;
             content: '';
             left: -3px;
@@ -52,27 +52,27 @@ $category-item__link-color: $color__link !default;
         }
 
         &:hover::before {
-            background-color: $category-item__border-color--hover;
+            background-color: $category-item__border-colour--hover;
         }
     }
 
     &__summary {
         font-size: $small-size;
-        color: $color__grey--base;
+        color: $colour__text--secondary;
         line-height: 21px;
         margin: 0;
     }
 
     &:hover &__summary {
-        color: $color__body;
+        color: $colour__text;
     }
 
     &--highlight &__link::before {
-        background-color: $color__border--highlight;
+        background-color: $colour__border--highlight;
     }
 
     &--gradient.#{$pl-prefix}category-item--highlight &__link::before {
-        background: linear-gradient(to top, $color__brand--primary, $color__brand--secondary);
+        background: linear-gradient(to top, $colour__brand--primary, $colour__brand--secondary);
     }
 }
 
@@ -100,7 +100,7 @@ $category-item__link-color: $color__link !default;
     }
 
     .#{$pl-prefix}category-item--gradient .#{$pl-prefix}category-item__link::before {
-        background: linear-gradient(to $brand-gradient-direction, $color__brand--primary, $color__brand--secondary);
+        background: linear-gradient(to $brand-gradient-direction, $colour__brand--primary, $colour__brand--secondary);
     }
 }
 

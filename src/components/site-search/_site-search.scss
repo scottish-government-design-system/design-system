@@ -5,22 +5,26 @@
 // modifiable vars
 $site-search__height: 42px !default;
 $site-search__height--medium: 49px !default;
-$site-search__background-color: $color__grey--light !default;
+$site-search__background-colour: $colour__grey--light !default;
 
 
 
 
 .#{$pl-prefix}site-search {
     box-sizing: border-box;
-    color: $color__body;
+    color: $colour__text;
     min-height: $site-search__height;
 
     &__input[type=text] {
-        background: $site-search__background-color;
-        border-right: 0;
+        background: $site-search__background-colour;
+        border-width: 0;
         margin-bottom: 0;
         min-height: $site-search__height;
         padding: 0 20px;
+
+        &:focus {
+            box-shadow: inset 0 0 0 4px;
+        }
     }
 
     &--large {
@@ -47,10 +51,10 @@ $site-search__background-color: $color__grey--light !default;
 
 .#{$pl-prefix}reversed .#{$pl-prefix}site-search {
     .#{$pl-prefix}site-search__button {
-        background-color: $color__brand--secondary;
+        background-color: $colour__brand--secondary;
 
         &:active {
-            background-color: $color__button--active__background;
+            background-color: $colour__button--active__background;
         }
     }
 }

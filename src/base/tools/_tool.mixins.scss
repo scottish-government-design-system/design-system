@@ -75,16 +75,16 @@ $blocklink__outline-width: 0;
     outline: 0 !important;
 
     &:focus {
-        background-color: $color__blocklink-bg--focus;
-        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow;
+        background-color: $colour__blocklink-bg--focus;
+        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $colour__link--focus__shadow;
     }
 
     &:hover:not(:focus) {
-        background-color: $color__blocklink-bg--hover;
+        background-color: $colour__blocklink-bg--hover;
     }
 
     &:active {
-        background-color: $color__blocklink-bg--active;
+        background-color: $colour__blocklink-bg--active;
     }
 
     @if $link-selector {
@@ -128,7 +128,7 @@ $blocklink__outline-width: 0;
 
                 &:hover {
                     &::after {
-                        background-color: $color__blocklink-bg--hover;
+                        background-color: $colour__blocklink-bg--hover;
                     }
                 }
 
@@ -141,15 +141,15 @@ $blocklink__outline-width: 0;
 
                 &:focus {
                     &::after {
-                        background-color: $color__blocklink-bg--focus;
-                        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $color__link--focus__shadow;
+                        background-color: $colour__blocklink-bg--focus;
+                        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $colour__link--focus__shadow;
                     }
                 }
 
                 &:active {
                     &::after {
-                        background-color: $color__blocklink-bg--active;
-                        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $color__link--active__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $color__link--active__shadow;
+                        background-color: $colour__blocklink-bg--active;
+                        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $colour__link--active__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $colour__link--active__shadow;
                     }
                 }
 
@@ -167,7 +167,7 @@ $blocklink__outline-width: 0;
 @mixin blocklink--solid($link-selector: null) {
     @include blocklink($link-selector);
 
-    background-color: $color__white;
+    background-color: $colour__white;
 }
 
 /**
@@ -183,7 +183,7 @@ $blocklink__outline-width: 0;
     }
 
     &:active {
-        background: $color__link--active__background;
+        background: $colour__link--active__background;
     }
 
     &::after {

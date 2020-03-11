@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$side-nav__expand-color: $color__brand--primary !default;
+$side-nav__expand-colour: $colour__brand--primary !default;
 
 // fixed vars
 $side-nav__outline-width: 3px;
@@ -15,14 +15,14 @@ $side-nav__spacing-unit: 15px;
 .#{$pl-prefix}side-navigation {
     @include block-margins;
 
-    border: 1px solid $color__border--light;
+    border: 1px solid $colour__border--light;
     position: relative;
 
     &__expand {
         @include blocklink;
 
-        background-color: $color__white;
-        color: $side-nav__expand-color;
+        background-color: $colour__white;
+        color: $side-nav__expand-colour;
         cursor: pointer;
         font-weight: $bold;
         margin: 0;
@@ -40,21 +40,21 @@ $side-nav__spacing-unit: 15px;
         }
 
         &:hover:not(:active) {
-            background-color: $color__link--hover__background;
+            background-color: $colour__link--hover__background;
         }
 
         &:hover:active {
-            background-color: $color__blocklink-bg--active;
+            background-color: $colour__blocklink-bg--active;
         }
 
         &:hover .side-navigation__expand-indicator {
-            color: $color__link--hover;
+            color: $colour__link--hover;
         }
 
         &:active {
-            background-color: $color__blocklink-bg--active;
+            background-color: $colour__blocklink-bg--active;
             box-shadow: 0 3px #333333;
-            color: $color__link--active;
+            color: $colour__link--active;
         }
 
         &--shadow:active,
@@ -68,9 +68,9 @@ $side-nav__spacing-unit: 15px;
     }
 
     #show-side-navigation:focus ~ .#{$pl-prefix}side-navigation__expand {
-        background: $color__blocklink-bg--focus;
-        box-shadow: 0 $link__border-width $color__link--focus__shadow;
-        color: $color__link--focus;
+        background: $colour__blocklink-bg--focus;
+        box-shadow: 0 $link__border-width $colour__link--focus__shadow;
+        color: $colour__link--focus;
         transition-duration: 0s;
     }
 
@@ -79,8 +79,8 @@ $side-nav__spacing-unit: 15px;
     }
 
     #show-side-navigation:checked:not(:active):not(:focus) ~ .#{$pl-prefix}side-navigation__expand:not(:hover) {
-        background-color: $color__link--current__background;
-        color: $color__link--current;
+        background-color: $colour__link--current__background;
+        color: $colour__link--current;
     }
 
     #show-side-navigation:checked ~ &__list--root {
@@ -110,7 +110,7 @@ $side-nav__spacing-unit: 15px;
         &--has-children {
             > .#{$pl-prefix}side-navigation__link {
                 &::after {
-                    color: $color__grey--medium;
+                    color: $colour__grey--medium;
                     left: $side-nav__spacing-unit;
                     position: absolute;
                     top: 18px;
@@ -121,7 +121,7 @@ $side-nav__spacing-unit: 15px;
 
                 &:focus::after,
                 &:active::after {
-                    color: $color__link--focus;
+                    color: $colour__link--focus;
                 }
             }
 
@@ -136,7 +136,7 @@ $side-nav__spacing-unit: 15px;
         padding-left: #{$side-nav__spacing-unit * 2};
 
         &::before {
-            background: $color__grey--light;
+            background: $colour__grey--light;
             bottom: 7px;
             content: '';
             left: 14px;
@@ -150,7 +150,7 @@ $side-nav__spacing-unit: 15px;
         &:focus,
         &.#{$pl-prefix}current {
             &::before {
-                background: $color__border--highlight;
+                background: $colour__border--highlight;
             }
         }
     }
@@ -171,7 +171,7 @@ $side-nav__spacing-unit: 15px;
             position: relative;
 
             &::before {
-                background: $color__border--highlight;
+                background: $colour__border--highlight;
                 bottom: 0;
                 content: '';
                 position: absolute;
@@ -183,7 +183,7 @@ $side-nav__spacing-unit: 15px;
 
         &:active,
         &:focus {
-            box-shadow: 0 3px $color__link--active__shadow;
+            box-shadow: 0 3px $colour__link--active__shadow;
         }
 
         &:active::before,
@@ -192,10 +192,10 @@ $side-nav__spacing-unit: 15px;
         }
 
         &.#{$pl-prefix}current {
-            background-color: $color__link--current__background;
+            background-color: $colour__link--current__background;
 
             &:hover {
-                background-color: $color__link--current__background;
+                background-color: $colour__link--current__background;
             }
         }
     }

@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .ds_error-summary {
-    border: 5px solid $color__red--base;
+    border: 5px solid $colour__red--base;
     padding: 21px 30px;
     @include block-margins;
 
@@ -12,16 +12,16 @@
     }
 
     &__list {
-        color: $color__red--base;
+        color: $colour__red--base;
         font-weight: bold;
         list-style-type: none;
         margin-left: 0;
 
         a {
-            color: $color__red--base;
+            color: $colour__red--base;
 
             &:focus, &:active {
-                color: $color__body;
+                color: $colour__text;
             }
         }
 
@@ -39,7 +39,7 @@
     transition: background-color 2s;
 
     &--flash {
-        background-color: $color__gold--base;
+        background-color: $colour__gold--base;
         transition-duration: 0s;
     }
 }

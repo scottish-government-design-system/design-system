@@ -3,14 +3,14 @@
 \*------------------------------------*/
 
 // fixed vars
-$breadcrumbs__color: $color__grey--base;
+$breadcrumbs__colour: $colour__text--secondary;
 $breadcrumbs__font-size: $small-size--fixed;
 
 
 
 
 .#{$pl-prefix}breadcrumbs {
-    color: $breadcrumbs__color;
+    color: $breadcrumbs__colour;
     font-size: $breadcrumbs__font-size;
     line-height: 21px;
     padding-left: 0;
@@ -40,5 +40,5 @@ $breadcrumbs__font-size: $small-size--fixed;
 }
 
 .#{$pl-prefix}reversed .#{$pl-prefix}breadcrumbs {
-    color: $color__white;
+    color: $colour__white;
 }

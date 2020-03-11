@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$category-header__title-color: $color__body !default;
+$category-header__title-colour: $colour__text !default;
 
 // fixed vars
 $category-header__summary-size: 1.25rem;
@@ -12,12 +12,11 @@ $category-header__summary-size: 1.25rem;
 
 
 .#{$pl-prefix}category-header {
-    align-items: center;
     margin-top: 14px;
     margin-bottom: 28px;
 
     &__header {
-        border-left: 4px solid $color__border--highlight;
+        border-left: 4px solid $colour__border--highlight;
         margin-bottom: 28px;
         padding-left: 20px;
     }
@@ -26,7 +25,7 @@ $category-header__summary-size: 1.25rem;
      * [1] plus [2] gives a multiple of seven to maintain vertical rhythm
      */
     &__title {
-        color: $category-header__title-color;
+        color: $category-header__title-colour;
         margin-bottom: 10px; /* [1] */
     }
 
@@ -49,10 +48,10 @@ $category-header__summary-size: 1.25rem;
 }
 
 .#{$pl-prefix}reversed .#{$pl-prefix}category-header {
-    color: $color__white;
+    color: $colour__white;
 
     &__title {
-        color: $color__white;
+        color: $colour__white;
     }
 }
 
@@ -90,6 +89,7 @@ $category-header__summary-size: 1.25rem;
 
     @include media-query(medium) {
         .#{$pl-prefix}category-header {
+            align-items: center;
             grid-template-columns: repeat(12, 1fr);
 
             &__header {

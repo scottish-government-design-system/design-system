@@ -3,15 +3,15 @@
 \*------------------------------------*/
 
 // modifiable vars
-$tag__background-color: $color__brand--primary !default;
+$tag__background-colour: $colour__brand--primary !default;
 
 
 
 
 .#{$pl-prefix}tag {
-    background: $tag__background-color;
+    background: $tag__background-colour;
     border-radius: 2px;
-    color: $color__white;
+    color: $colour__white;
     display: inline-block;
     font-size: $tiny-size;
     font-weight: $bold;
@@ -20,6 +20,6 @@ $tag__background-color: $color__brand--primary !default;
 }
 
 .#{$pl-prefix}reversed .#{$pl-prefix}tag {
-    background-color: $color__white;
-    color: $tag__background-color;
+    background-color: $colour__white;
+    color: $tag__background-colour;
 }

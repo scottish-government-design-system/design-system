@@ -1,0 +1,118 @@
+/*------------------------------------*\
+    COLOUR DEFINITIONS
+\*------------------------------------*/
+
+// Using a BEM-like syntax for variable names.
+
+// Palette
+$colour__white:          #ffffff !default;
+$colour__black:          #000000 !default;
+
+$colour__blue--lighter:  #e5f0f8 !default;
+$colour__blue--light:    #d9effc !default;
+$colour__blue--base:     #0065bd !default;
+$colour__blue--dark:     #00437e !default;
+$colour__blue--darker:   #002d54 !default;
+
+$colour__grey--lighter:  #f8f8f8 !default;
+$colour__grey--light:    #ebebeb !default;
+$colour__grey--pale:     #e3e3e3 !default;
+$colour__grey--medium:   #b3b3b3 !default;
+$colour__grey--base:     #727272 !default;
+$colour__grey--dark:     #333333 !default;
+
+$colour__red--base:      #d32205 !default;
+$colour__gold--base:     #fdd522 !default; // #f3b3f3
+$colour__green--base:    #428542 !default;
+
+
+
+
+// branding
+$colour__brand--primary:     $colour__blue--base !default;
+$colour__brand--secondary:   $colour__blue--darker !default;
+$brand-gradient-direction:  right !default;
+
+
+
+
+// type
+$colour__text:              $colour__grey--dark !default;
+$colour__text--secondary:   $colour__grey--base !default;
+$colour__placeholder:       $colour__text--secondary !default;
+
+
+
+
+// links
+$colour__link:                       $colour__blue--base !default;
+$colour__link--hover:                $colour__blue--dark !default;
+$colour__link--hover__background:    $colour__blue--light !default;
+$colour__link--focus:                $colour__text !default;
+$colour__link--focus__outline:       $colour__gold--base !default;
+$colour__link--focus__background:    $colour__link--focus__outline !default;
+$colour__link--focus__shadow:        $colour__text !default;
+$colour__link--active:               $colour__link--focus !default;
+$colour__link--active__background:   $colour__link--focus__background !default;
+$colour__link--active__shadow:       $colour__link--focus__shadow !default;
+$colour__link--current:              $colour__text !default;
+$colour__link--current__background:  $colour__grey--lighter !default;
+$colour__link--reversed:             currentColor !default;
+$colour__link--reversed--hover:      $colour__link--hover !default;
+$colour__link--reversed--active:     $colour__link--active !default;
+$colour__link--reversed--focus:      $colour__link--focus !default;
+
+
+
+
+// block links
+$colour__blocklink-bg:               $colour__white !default;
+$colour__blocklink-bg--hover:        $colour__link--hover__background !default;
+$colour__blocklink-bg--active:       $colour__link--active__background !default;
+$colour__blocklink-bg--focus:        $colour__blocklink-bg--active !default;
+
+
+
+
+// buttons
+$colour__button:                     $colour__white !default;
+$colour__button__background:         $colour__brand--primary !default;
+$colour__button--hover__background:  $colour__link--hover !default;
+$colour__button--active:             $colour__link--active !default;
+$colour__button--active__background: $colour__link--active__background !default;
+$colour__button--focus:              $colour__link--focus !default;
+$colour__button--focus__background:  $colour__link--focus__background !default;
+
+$colour__button--secondary:                      $colour__link !default;
+$colour__button--secondary__background:          $colour__white !default;
+$colour__button--secondary--hover:               $colour__link--hover !default;
+$colour__button--secondary--hover__background:   $colour__link--hover__background !default;
+$colour__button--secondary--focus:               $colour__link--focus !default;
+$colour__button--cancel:                         $colour__text !default;
+$colour__button--cancel__background:             $colour__button--secondary__background !default;
+$colour__button--cancel--hover__background:      $colour__grey--light !default;
+
+
+
+
+// input
+$colour__input--hover__border:       $colour__grey--medium !default;
+$colour__input--focus__background:   $colour__blue--lighter !default;
+$colour__input--focus__outline:      $colour__link--focus__outline !default;
+$colour__input--active__background:  $colour__input--focus__background !default;
+$colour__input--spot:                $colour__text !default;
+
+
+
+
+// borders
+$colour__border--dark:       $colour__grey--dark !default;
+$colour__border--base:       $colour__grey--medium !default;
+$colour__border--light:      $colour__grey--light !default;
+$colour__border--highlight:  $colour__brand--primary !default;
+
+
+
+
+// state
+$colour__error:  $colour__red--base;

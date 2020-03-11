@@ -4,7 +4,7 @@
 \*------------------------------------*/
 
 // fixed vars
-$contact-details__border-color: $color__border--highlight;
+$contact-details__border-colour: $colour__border--highlight;
 
 
 
@@ -19,7 +19,7 @@ $contact-details__border-color: $color__border--highlight;
         position: relative;
 
         &::after {
-            background-color: $contact-details__border-color;
+            background-color: $contact-details__border-colour;
             bottom: 100%;
             content: '';
             left: 0;

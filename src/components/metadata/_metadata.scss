@@ -31,7 +31,7 @@
  * Alternative display collapsing the metadata into a single line
  */
 .#{$pl-prefix}metadata--inline {
-    color: $color__grey--base;
+    color: $colour__text--secondary;
     font-size: $tiny-size;
     line-height: 21px;
     margin-bottom: 7px;
@@ -60,7 +60,7 @@
         font-weight: $normal;
 
         &.content-label {
-            color: $color__body;
+            color: $colour__text;
             font-weight: $bold;
         }
     }

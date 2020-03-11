@@ -4,14 +4,14 @@
 */
 
 // modifiable vars
-$site-navigation__current-color--reversed: $color__blue--light !default;
-$site-navigation__hover-bg--reversed: $color__link--hover !default;
-$site-navigation__mobile-menu-background: $color__grey--lighter !default;
-$site-navigation__mobile-menu-button-color: $color__brand--primary !default;
+$site-navigation__current-colour--reversed: $colour__blue--light !default;
+$site-navigation__hover-bg--reversed: $colour__link--hover !default;
+$site-navigation__mobile-menu-background: $colour__grey--lighter !default;
+$site-navigation__mobile-menu-button-colour: $colour__brand--primary !default;
 
 // fixed vars
-$site-navigation__highlight-color: $color__border--highlight;
-$site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color;
+$site-navigation__highlight-colour: $colour__border--highlight;
+$site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colour;
 
 
 
@@ -49,7 +49,7 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
         white-space: nowrap;
 
         &:focus {
-            box-shadow: 0 3px $color__link--focus__shadow;
+            box-shadow: 0 3px $colour__link--focus__shadow;
             outline: none;
             padding-bottom: 4px;
 
@@ -65,11 +65,11 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
         }
 
         &:hover:not(:focus) {
-            background-color: $color__link--hover__background;
+            background-color: $colour__link--hover__background;
         }
 
         &:active {
-            background-color: $color__link--active__background;
+            background-color: $colour__link--active__background;
         }
 
         &::after {
@@ -84,10 +84,10 @@ $site-navigation__mobile-menu-highlight-color: $site-navigation__highlight-color
         }
 
         &.#{$pl-prefix}current:not(:focus):not(:hover) {
-            background-color: $color__link--current__background;
+            background-color: $colour__link--current__background;
 
             &::after {
-                background-color: $site-navigation__highlight-color;
+                background-color: $site-navigation__highlight-colour;
                 left: $link-horiz-padding;
                 opacity: 1;
                 right: $link-horiz-padding;
@@ -105,12 +105,12 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
 
         &:hover:not(.#{$pl-prefix}current):not(:active) {
             background-color: $site-navigation__hover-bg--reversed;
-            color: $site-navigation__current-color--reversed;
+            color: $site-navigation__current-colour--reversed;
         }
 
         &.#{$pl-prefix}current {
             background-color: transparent;
-            color: $site-navigation__current-color--reversed;
+            color: $site-navigation__current-colour--reversed;
 
             &::after {
                 background-color: currentColor;
@@ -167,7 +167,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         @include blocklink;
         background-color: transparent;
         display: none;
-        color: $site-navigation__mobile-menu-button-color;
+        color: $site-navigation__mobile-menu-button-colour;
         font-weight: $normal;
         height: calc(100% - 6px);
         margin: 0;
@@ -175,7 +175,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
 
         &--open {
             background-color: $site-navigation__mobile-menu-background;
-            color: $site-navigation__mobile-menu-button-color;
+            color: $site-navigation__mobile-menu-button-colour;
 
             .#{$pl-prefix}site-header__control-icon {
                 display: none;
@@ -187,11 +187,11 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         }
 
         &:hover {
-            color: $color__link--hover;
+            color: $colour__link--hover;
         }
 
         &:focus {
-            color: $color__link--hover;
+            color: $colour__link--hover;
         }
     }
 
@@ -238,7 +238,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         margin: 0;
 
         &:not(:last-child) {
-            border-bottom: 1px solid $color__border--base;
+            border-bottom: 1px solid $colour__border--base;
         }
     }
 
@@ -246,21 +246,21 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         $mobile-nav-link-vertical-padding: 14px;
         $mobile-nav-link-horizontal-padding: 20px;
 
-        color: $color__body;
+        color: $colour__text;
         display: block;
         padding: $mobile-nav-link-vertical-padding $mobile-nav-link-horizontal-padding;
         text-decoration: none;
 
         &:focus {
-            border-left: 3px solid $site-navigation__mobile-menu-highlight-color;
-            box-shadow: 0 3px $color__link--focus__shadow;
+            border-left: 3px solid $site-navigation__mobile-menu-highlight-colour;
+            box-shadow: 0 3px $colour__link--focus__shadow;
             outline: none;
             padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
             position: relative;
         }
 
         &:hover {
-            border-left: 3px solid $site-navigation__mobile-menu-highlight-color;
+            border-left: 3px solid $site-navigation__mobile-menu-highlight-colour;
             padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
         }
 
@@ -269,8 +269,8 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         }
 
         &.#{$pl-prefix}current {
-            background-color: $color__link--current__background;
-            border-left: 3px solid $site-navigation__mobile-menu-highlight-color;
+            background-color: $colour__link--current__background;
+            border-left: 3px solid $site-navigation__mobile-menu-highlight-colour;
             padding-left: #{$mobile-nav-link-horizontal-padding - 3px};
         }
     }
