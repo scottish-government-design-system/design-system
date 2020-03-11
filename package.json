@@ -9,12 +9,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "postshrinkwrap": "node_modules/.bin/sealant",
+    "postshrinkwrap": "sealant",
     "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
-    "sass": "node_modules/.bin/node-sass src --output dist/css --output-style compressed",
-    "svgsprite": "node_modules/.bin/node svg-sprite",
-    "test": "./node_modules/karma/bin/karma start ./karma.conf.js",
-    "webpack": "node_modules/.bin/webpack"
+    "sass": "node-sass src --output dist/css --output-style compressed",
+    "svgsprite": "node svg-sprite",
+    "test": "karma start ./karma.conf.js",
+    "webpack": "webpack"
   },
   "dependencies": {},
   "devDependencies": {
@@ -36,7 +36,7 @@
     "karma-jasmine-matchers": "^4.0.1",
     "karma-webpack": "^4.0.2",
     "node-sass": "^4.12.0",
-    "sealant": "0.0.2",
+    "sealant": "^0.1.1",
     "svg-sprite": "^1.4.0",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.1"
