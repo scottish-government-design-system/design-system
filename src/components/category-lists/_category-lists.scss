@@ -11,9 +11,9 @@
     @include layout();
 
     list-style-type: none;
-    margin-top: -7px;
     margin-bottom: 28px;
     margin-left: -7px;
+    margin-top: -7px;
     padding: 7px;
 
     > * {
@@ -79,6 +79,9 @@
 @supports(display: grid) {
     .#{$pl-prefix}category-list {
         grid-row-gap: $grid-gap-y;
+        margin-left: 0;
+        margin-top: 0;
+        padding: 0;
 
         &--narrow {
             grid-gap: $grid-gap-y--narrow $grid-gap-y--narrow;
