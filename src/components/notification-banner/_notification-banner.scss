@@ -163,6 +163,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     .#{$pl-prefix}notification__actions {
         display: flex;
         flex-wrap: wrap;
+        margin-top: 7px;
 
         > * {
             flex-basis: 0;
@@ -177,7 +178,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
             > * {
                 flex-basis: auto;
-                flex-grow: auto;
+                flex-grow: initial;
             }
         }
     }

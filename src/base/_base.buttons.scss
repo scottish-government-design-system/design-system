@@ -96,6 +96,11 @@ input[type="submit"],
         background-color: transparent;
         border-color: currentColor;
         color: $colour__white;
+
+        &:hover {
+            background-color: rgba(red($colour__brand--primary), green($colour__brand--primary), blue($colour__brand--primary), 0.3);
+            color: $colour__white;
+        }
     }
 }
 
