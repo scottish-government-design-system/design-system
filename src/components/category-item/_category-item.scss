@@ -7,6 +7,9 @@
 $category-item__border-colour--hover: $colour__link--hover !default;
 $category-item__link-colour: $colour__link !default;
 
+$border-width-size: 3px;
+$border-width-size--highlight: 21px;
+
 
 
 
@@ -30,7 +33,7 @@ $category-item__link-colour: $colour__link !default;
     }
 
     .#{$pl-prefix}category-item__link::after {
-        left: -3px;
+        left: #{$border-width-size * -1};
     }
 
     &__link {
@@ -40,10 +43,10 @@ $category-item__link-colour: $colour__link !default;
             background-color: mix($colour__border--highlight, $colour__grey--lighter, 30%);
             bottom: 0;
             content: '';
-            left: -3px;
+            left: #{$border-width-size * -1};
             position: absolute;
             top: 0;
-            width: 3px;
+            width: $border-width-size;
         }
 
         &:active::before,
@@ -114,6 +117,51 @@ $category-item__link-colour: $colour__link !default;
     .#{$pl-prefix}card {
         > .#{$pl-prefix}category-item {
             min-height: 186px;
+        }
+    }
+}
+
+// Highlight modifier styline
+.#{$pl-prefix}category-item--highlight {
+    padding-left: #{15px + $border-width-size--highlight - $border-width-size};
+
+    .#{$pl-prefix}category-item__link {
+        &::before {
+            color: $colour__white;
+            text-align: center;
+            width: $border-width-size--highlight;
+
+            background: url(/assets/images/icons/whitestar.svg) no-repeat $colour__link center 11px;
+            background-size: 17px;
+
+            @include media-query(medium) {
+                background-position-y: 15px;
+            }
+        }
+
+        &:hover::before {
+            background-color: $colour__link--hover;
+        }
+
+        &:active::before,
+        &:focus::before {
+            content: '';
+            background-image: url(/assets/images/icons/darkstar.svg);
+            background-color: $colour__link--focus__background;
+            color: $colour__link--focus;
+        }
+    }
+
+    &.#{$pl-prefix}category-item--card {
+        .#{$pl-prefix}category-item__link {
+            &::before {
+                top: 0;
+                background-position-y: 21px;
+
+                @include media-query(medium) {
+                    background-position-y: 25px;
+                }
+            }
         }
     }
 }
