@@ -8,7 +8,7 @@ $category-item__border-colour--hover: $colour__link--hover !default;
 $category-item__link-colour: $colour__link !default;
 
 $border-width-size: 3px;
-$border-width-size--highlight: 21px;
+$border-width-size--pinned: 21px;
 
 
 
@@ -69,14 +69,6 @@ $border-width-size--highlight: 21px;
     &:hover &__summary {
         color: $colour__text;
     }
-
-    &--highlight &__link::before {
-        background-color: $colour__border--highlight;
-    }
-
-    &--gradient.#{$pl-prefix}category-item--highlight &__link::before {
-        background: linear-gradient(to top, $colour__brand--primary, $colour__brand--secondary);
-    }
 }
 
 .#{$pl-prefix}card {
@@ -101,10 +93,6 @@ $border-width-size--highlight: 21px;
     .#{$pl-prefix}category-item__link::after {
         left: 0;
     }
-
-    .#{$pl-prefix}category-item--gradient .#{$pl-prefix}category-item__link::before {
-        background: linear-gradient(to $brand-gradient-direction, $colour__brand--primary, $colour__brand--secondary);
-    }
 }
 
 @include media-query(medium) {
@@ -121,15 +109,15 @@ $border-width-size--highlight: 21px;
     }
 }
 
-// Highlight modifier styline
-.#{$pl-prefix}category-item--highlight {
-    padding-left: #{15px + $border-width-size--highlight - $border-width-size};
+// "Pinned" modifier styline
+.#{$pl-prefix}category-item--pinned {
+    padding-left: #{15px + $border-width-size--pinned - $border-width-size};
 
     .#{$pl-prefix}category-item__link {
         &::before {
             color: $colour__white;
             text-align: center;
-            width: $border-width-size--highlight;
+            width: $border-width-size--pinned;
 
             background: url(/assets/images/icons/whitestar.svg) no-repeat $colour__link center 11px;
             background-size: 17px;
