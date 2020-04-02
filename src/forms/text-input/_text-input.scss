@@ -19,7 +19,7 @@
     }
 
     &--error {
-        border-color: $colour__red--base;
+        border-color: $colour__state--negative;
         border-width: $field-border-width--error;
         padding: 5px;
 
@@ -34,7 +34,7 @@
     }
 
     &--error + &__message {
-        color: $colour__red--base;
+        color: $colour__state--negative;
         font-weight: $bold;
     }
 

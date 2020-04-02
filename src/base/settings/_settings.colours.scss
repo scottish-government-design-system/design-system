@@ -16,13 +16,12 @@ $colour__blue--darker:   #002d54 !default;
 
 $colour__grey--lighter:  #f8f8f8 !default;
 $colour__grey--light:    #ebebeb !default;
-$colour__grey--pale:     #e3e3e3 !default;
 $colour__grey--medium:   #b3b3b3 !default;
 $colour__grey--base:     #727272 !default;
 $colour__grey--dark:     #333333 !default;
 
 $colour__red--base:      #d32205 !default;
-$colour__gold--base:     #fdd522 !default; // #f3b3f3
+$colour__gold--base:     #fdd522 !default;
 $colour__green--base:    #428542 !default;
 
 
@@ -31,7 +30,7 @@ $colour__green--base:    #428542 !default;
 // branding
 $colour__brand--primary:     $colour__blue--base !default;
 $colour__brand--secondary:   $colour__blue--darker !default;
-$brand-gradient-direction:  right !default;
+$brand-gradient-direction:   right !default;
 
 
 
@@ -106,8 +105,8 @@ $colour__input--spot:                $colour__text !default;
 
 
 // borders
+$colour__border:             $colour__grey--medium !default;
 $colour__border--dark:       $colour__grey--dark !default;
-$colour__border--base:       $colour__grey--medium !default;
 $colour__border--light:      $colour__grey--light !default;
 $colour__border--highlight:  $colour__brand--primary !default;
 
@@ -115,4 +114,5 @@ $colour__border--highlight:  $colour__brand--primary !default;
 
 
 // state
-$colour__error:  $colour__red--base;
+$colour__state--negative:  $colour__red--base;
+$colour__state--positive:  $colour__green--base;

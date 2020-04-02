@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .ds_error-summary {
-    border: 5px solid $colour__red--base;
+    border: 5px solid $colour__state--negative;
     padding: 21px 30px;
     @include block-margins;
 
@@ -12,13 +12,13 @@
     }
 
     &__list {
-        color: $colour__red--base;
+        color: $colour__state--negative;
         font-weight: bold;
         list-style-type: none;
         margin-left: 0;
 
         a {
-            color: $colour__red--base;
+            color: $colour__state--negative;
 
             &:focus, &:active {
                 color: $colour__text;

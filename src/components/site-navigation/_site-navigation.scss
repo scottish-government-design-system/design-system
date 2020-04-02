@@ -238,7 +238,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         margin: 0;
 
         &:not(:last-child) {
-            border-bottom: 1px solid $colour__border--base;
+            border-bottom: 1px solid $colour__border;
         }
     }
 

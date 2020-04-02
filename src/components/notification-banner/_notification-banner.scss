@@ -121,20 +121,20 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 
     &--positive {
-        background: $colour__green--base;
+        background: $colour__state--positive;
         color: $colour__white;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $colour__green--base;
+            fill: $colour__state--positive;
         }
     }
 
     &--negative {
-        background: $colour__red--base;
+        background: $colour__state--negative;
         color: $colour__white;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $colour__red--base;
+            fill: $colour__state--negative;
         }
     }
 

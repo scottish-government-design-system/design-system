@@ -9,7 +9,7 @@
     position: relative;
 
     &::before {
-        background-color: $colour__grey--medium;
+        background-color: $colour__border;
         bottom: 0;
         content: '';
         left: -23px;
