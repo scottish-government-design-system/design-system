@@ -143,7 +143,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
     .#{$pl-prefix}mobile-navigation__button {
         position: absolute;
         right: 0;
-        top: 7px;
+        top: 0;
     }
 
     .#{$pl-prefix}mobile-navigation {
@@ -169,7 +169,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         display: none;
         color: $site-navigation__mobile-menu-button-colour;
         font-weight: $normal;
-        height: calc(100% - 6px);
+        height: 100%;
         margin: 0;
         padding: 0 15px;
 

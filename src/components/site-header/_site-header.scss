@@ -24,6 +24,10 @@ $site-header__top-band-colour: $colour__brand--primary;
         height: 7px;
     }
 
+    &__top {
+        position: relative;
+    }
+
     &__content {
         overflow: hidden;
         padding: 14px 0;
