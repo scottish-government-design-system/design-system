@@ -75,6 +75,7 @@ $border-width-size--pinned: 21px;
     > .#{$pl-prefix}category-item {
         padding-top: 21px;
         padding-bottom: 21px;
+        position: static;
     }
 
     .#{$pl-prefix}category-item__link::before {
@@ -109,34 +110,42 @@ $border-width-size--pinned: 21px;
     }
 }
 
-// "Pinned" modifier styline
+// "Pinned" modifier styling
 .#{$pl-prefix}category-item--pinned {
     padding-left: #{15px + $border-width-size--pinned - $border-width-size};
 
     .#{$pl-prefix}category-item__link {
         &::before {
+            background-color: $colour__border--highlight;
             color: $colour__white;
             text-align: center;
             width: $border-width-size--pinned;
-
-            background: url(/assets/images/icons/whitestar.svg) no-repeat $colour__link center 11px;
-            background-size: 17px;
-
-            @include media-query(medium) {
-                background-position-y: 15px;
-            }
         }
 
         &:hover::before {
             background-color: $colour__link--hover;
         }
+    }
 
-        &:active::before,
-        &:focus::before {
-            content: '';
-            background-image: url(/assets/images/icons/darkstar.svg);
-            background-color: $colour__link--focus__background;
-            color: $colour__link--focus;
+    .#{$pl-prefix}category-item__pinned-icon {
+        position: absolute;
+        width: 19px;
+        height: 19px;
+        left: -2px;
+        top: 10px;
+        z-index: 1;
+
+        fill: white;
+
+        @include media-query(medium) {
+            top: 13px;
+        }
+    }
+
+    .#{$pl-prefix}category-item__link:focus,
+    .#{$pl-prefix}category-item__link:active {
+        .#{$pl-prefix}category-item__pinned-icon {
+            fill: $colour__link--focus;
         }
     }
 
@@ -151,5 +160,15 @@ $border-width-size--pinned: 21px;
                 }
             }
         }
+
+        .#{$pl-prefix}category-item__pinned-icon {
+            left: 1px;
+            top: 20px;
+
+            @include media-query(medium) {
+                top: 24px;
+            }
+        }
+
     }
 }
