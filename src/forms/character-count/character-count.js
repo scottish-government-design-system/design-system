@@ -18,11 +18,13 @@ class CharacterCount {
             return;
         }
 
+        this.initialMessage = `You can enter up to ${this.maxLength} characters`;
+
         // dynamically create the message element
         this.messageElement = document.createElement('div');
         this.messageElement.setAttribute('aria-live', 'polite');
         this.messageElement.classList.add('ds_input__message', 'ds_hint-text');
-        this.messageElement.innerText = `You can enter up to ${this.maxLength} characters`;
+        this.messageElement.innerText = this.initialMessage;
         if (this.inputElement.value.length < this.maxLength * this.threshold) {
             this.messageElement.classList.add('fully-hidden');
         }
@@ -72,7 +74,13 @@ class CharacterCount {
         else {
             this.inputElement.classList.remove('ds_input--error');
             this.inputElement.setAttribute('aria-invalid', false);
-            this.messageElement.innerText = `You have ${count} ${noun} remaining`;
+
+            if (this.inputElement.value.length === 0) {
+                this.messageElement.innerText = this.initialMessage;
+            } else {
+                this.messageElement.innerText = `You have ${count} ${noun} remaining`;
+            }
+
             this.messageElement.classList.add('ds_hint-text');
         }
 

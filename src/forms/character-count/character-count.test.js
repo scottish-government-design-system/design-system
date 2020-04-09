@@ -175,5 +175,27 @@ describe('character count', () => {
 
             expect(countElement.classList.contains('fully-hidden')).toEqual(false);
         });
+
+        it('should revert to the initial count message if the field is empty', () => {
+            testObj.characterCountModule.init();
+
+            const inputElement = testObj.characterCountElement.querySelector('input');
+            const countElement = testObj.characterCountElement.querySelector('.ds_input__message');
+
+            // get initial value
+            const initialValue = countElement.innerText;
+
+            // 6 characters. our max is 20.
+            inputElement.value = '123456';
+            const event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            expect(countElement.innerText).not.toEqual(initialValue);
+
+            inputElement.value = '';
+            inputElement.dispatchEvent(event);
+
+            expect(countElement.innerText).toEqual(initialValue);
+        });
     });
 });
