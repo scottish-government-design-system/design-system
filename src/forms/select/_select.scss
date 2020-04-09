@@ -20,10 +20,12 @@
         outline: 4px solid $colour__input--hover__border;
     }
     &:focus {
-        background-color: $colour__input--focus__background;
         box-shadow: 0 0 0 1px $colour__input--spot inset;
         outline: 2px solid $colour__input--focus__outline;
         outline-offset: 2px;
+    }
+    &:active {
+        background-color: $colour__input--active__background;
     }
 }
 
