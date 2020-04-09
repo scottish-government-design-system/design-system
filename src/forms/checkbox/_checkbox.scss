@@ -9,9 +9,9 @@
      * [1] for IE11 support, use image without clip path
      */
     &__label::after {
-        -webkit-mask-image: url(/assets/images/icons/checkbox-40.svg);
-        mask-image: url(/assets/images/icons/checkbox-40.svg);
-        background-image: url(/assets/images/icons/checkbox-40.svg); /* [1] */
+        -webkit-mask-image: url(#{$iconsfile}#checkbox-40);
+        mask-image: url(#{$iconsfile}#checkbox-40);
+        background-image: url(#{$iconsfile}#checkbox-40); /* [1] */
 
         @supports(display: grid) {
             background-color: $colour__input--spot;
