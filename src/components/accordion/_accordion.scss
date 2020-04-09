@@ -22,6 +22,12 @@ $accordion__header-colour: $colour__link !default;
     }
 }
 
+h1,h2,h3 {
+    + .#{$pl-prefix}accordion {
+        margin-top: 0
+    }
+}
+
 .#{$pl-prefix}accordion.js-initialised {
     .#{$pl-prefix}accordion__open-all {
         display: block;
@@ -39,6 +45,7 @@ $accordion__header-colour: $colour__link !default;
 
         background-color: $colour__white;
         color: $accordion__header-colour;
+        font-size: 1rem;
         line-height: 28px;
         margin: 0;
         padding: 14px 50px 14px 15px;
