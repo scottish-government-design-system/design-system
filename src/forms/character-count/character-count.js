@@ -18,17 +18,21 @@ class CharacterCount {
             return;
         }
 
-        this.initialMessage = `You can enter up to ${this.maxLength} characters`;
+        this.emptyMessage = `You can enter up to ${this.maxLength} characters`;
 
         // dynamically create the message element
         this.messageElement = document.createElement('div');
         this.messageElement.setAttribute('aria-live', 'polite');
         this.messageElement.classList.add('ds_input__message', 'ds_hint-text');
-        this.messageElement.innerText = this.initialMessage;
+        // this.messageElement.innerText = this.inputElement.length ? : this.emptyMessage;
         if (this.inputElement.value.length < this.maxLength * this.threshold) {
             this.messageElement.classList.add('fully-hidden');
         }
         this.field.appendChild(this.messageElement);
+
+
+
+        this.updateCountMessage();
 
         this.inputElement.addEventListener('keyup', this.checkIfChanged.bind(this));
     }
@@ -76,7 +80,7 @@ class CharacterCount {
             this.inputElement.setAttribute('aria-invalid', false);
 
             if (this.inputElement.value.length === 0) {
-                this.messageElement.innerText = this.initialMessage;
+                this.messageElement.innerText = this.emptyMessage;
             } else {
                 this.messageElement.innerText = `You have ${count} ${noun} remaining`;
             }

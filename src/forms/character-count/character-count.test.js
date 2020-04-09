@@ -197,5 +197,16 @@ describe('character count', () => {
 
             expect(countElement.innerText).toEqual(initialValue);
         });
+
+        it('should show the current character count message if the field has been prepopulated with data', () => {
+            const inputElement = testObj.characterCountElement.querySelector('input');
+            inputElement.value = 'hello world';
+
+            testObj.characterCountModule.init();
+
+            const countElement = testObj.characterCountElement.querySelector('.ds_input__message');
+
+            expect(countElement.innerText).toEqual('You have 9 characters remaining');
+        });
     });
 });
