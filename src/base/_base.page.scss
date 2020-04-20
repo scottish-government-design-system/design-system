@@ -1,0 +1,65 @@
+/*------------------------------------*\
+    PAGE SETUP
+    anchor footer to bottom of the viewport on short pages
+\*------------------------------------*/
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+.#{$pl-prefix}page {
+    min-height: calc(100vh - 350px);
+    margin-bottom: 350px;
+}
+
+.#{$pl-prefix}site-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@supports (display: grid) {
+    .#{$pl-prefix}page {
+        display: grid;
+        margin-bottom: 0;
+        min-height: 100vh;
+        grid-template:
+            'page-top' auto
+            'page-middle' 1fr
+            'page-bottom' auto;
+
+        &__top {
+            grid-area: page-top;
+        }
+
+        &__middle {
+            grid-area: page-middle;
+        }
+
+        &__bottom {
+            grid-area: page-bottom;
+        }
+    }
+
+    .#{$pl-prefix}site-footer {
+        position: static;
+    }
+}
+
+/*------------------------------------*\
+    CATEGORY PAGE LAYOUT
+\*------------------------------------*/
+
+.#{$pl-prefix}page__middle {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    position: relative;
+}
+
+.category-lower {
+    padding-bottom: 70px;
+    background: $colour__grey--lighter;
+    border-top: 1px solid $colour__grey--light;
+}
