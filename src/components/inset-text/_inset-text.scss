@@ -9,7 +9,8 @@
     @include block-margins;
 }
 
-.#{$pl-prefix}inset-text__text > :last-child {
+.#{$pl-prefix}inset-text__text > :last-child,
+.#{$pl-prefix}inset-text > :last-child {
     margin-bottom: 0;
 }
 

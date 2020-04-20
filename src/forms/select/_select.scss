@@ -16,9 +16,6 @@
     right: 0;
     width: 100%;
     top: 0;
-    &:hover {
-        outline: 4px solid $colour__input--hover__border;
-    }
     &:focus {
         box-shadow: 0 0 0 1px $colour__input--spot inset;
         outline: 2px solid $colour__input--focus__outline;
@@ -70,4 +67,8 @@
     padding: 0;
     position: relative;
     width: 100%;
+}
+
+.#{$pl_prefix}select-wrapper.#{$pl_prefix}input--error {
+    min-height: #{$field-border-width--error + 49px};
 }

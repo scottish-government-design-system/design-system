@@ -33,7 +33,7 @@
         margin-top: -14px;
     }
 
-    &--error + &__message {
+    &__message--error {
         color: $colour__state--negative;
         font-weight: $bold;
     }

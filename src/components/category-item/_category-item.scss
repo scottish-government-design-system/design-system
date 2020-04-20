@@ -153,11 +153,6 @@ $border-width-size--pinned: 21px;
         .#{$pl-prefix}category-item__link {
             &::before {
                 top: 0;
-                background-position-y: 21px;
-
-                @include media-query(medium) {
-                    background-position-y: 25px;
-                }
             }
         }
 
