@@ -8,13 +8,13 @@ class Accordion {
     }
 
     init() {
-        this.items.forEach(item => this.initAccordionItem(item));
+        this.items.forEach((item, index) => this.initAccordionItem(item, index));
 
         this.initOpenAll();
         this.accordion.classList.add('js-initialised');
     }
 
-    initAccordionItem(item) {
+    initAccordionItem(item, index) {
         // transform markup to button-driven version
         const itemControl = item.querySelector('.ds_accordion-item__control');
         const itemHeader = item.querySelector('.ds_accordion-item__header');
@@ -50,6 +50,8 @@ class Accordion {
             this.setOpenAllButton(this.checkAllOpen());
         }
 
+        itemButton.setAttribute('data-accordion', `accordion-${startsOpen ? 'close' : 'open'}-${index}`);
+
         itemButton.setAttribute('aria-expanded', startsOpen);
         itemBody.id = itemBody.id || `accordion-item-${parseInt(Math.random() * 1e8, 10)}`;
         itemButton.setAttribute('aria-controls', itemBody.id);
@@ -84,7 +86,7 @@ class Accordion {
             if (itemButton.getAttribute('data-accordion')) {
                 accordionNumber = itemButton.getAttribute('data-accordion').split('-').reverse()[0];
             }
-            itemButton.setAttribute('data-accordion', `accordion-${isOpen ? 'close' : 'open'}-${accordionNumber}`);
+            itemButton.setAttribute('data-accordion', `accordion-${isOpen ? 'open' : 'close'}-${accordionNumber}`);
 
             this.setOpenAllButton(this.checkAllOpen());
         });
