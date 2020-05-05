@@ -1,0 +1,41 @@
+/*------------------------------------*\
+    CALLOUT
+\*------------------------------------*/
+
+.#{$pl-prefix}callout {
+    @include block-margins;
+
+    background: $colour__grey--lighter;
+    border-left: 4px solid $colour__brand--primary;
+    padding: 14px 21px;
+
+    &__label.#{$pl-prefix}content-label {
+        color: $colour__brand--primary;
+        font-size: $small-size--fixed;
+    }
+
+    &__title {
+        font-size: $h1-size;
+        font-weight: 300;
+        line-height: 28px;
+        margin-bottom: 14px;
+    }
+
+    &__label +  &__title {
+        margin-top: 0;
+    }
+
+    &__content > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}callout {
+        padding: 28px 28px;
+
+        &__title {
+            line-height: 35px;
+        }
+    }
+}
