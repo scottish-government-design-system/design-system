@@ -26,7 +26,7 @@ class SideNavigation {
         navButton.innerHTML = navLabel.innerHTML;
         navButton.setAttribute('aria-expanded', false);
 
-        navList.id = navList.id || `accordion-item-${parseInt(Math.random() * 1e8, 10)}`;
+        navList.id = navList.id || `side-navigation-${parseInt(Math.random() * 1e8, 10)}`;
         navButton.setAttribute('aria-controls', navList.id);
 
         navLabel.parentNode.removeChild(navLabel);
