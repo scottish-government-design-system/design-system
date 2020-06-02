@@ -10,6 +10,10 @@
     position: relative;
 
     @include block-margins;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
 }
 
 .#{$pl-prefix}warning-text__icon {

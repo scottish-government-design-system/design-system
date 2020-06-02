@@ -11,7 +11,7 @@
     transition: background-color 0.2s, outline-color 0.2s;
     z-index: 1;
 
-    :last-child {
+    > :last-child {
         margin-bottom: 0;
     }
 

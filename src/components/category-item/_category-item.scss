@@ -22,7 +22,7 @@ $border-width-size--pinned: 21px;
     transition: background-color $transition-out-time, border-color $transition-out-time;
     width: 100%;
 
-    :last-child {
+    > :last-child {
         margin-bottom: 0;
     }
 
