@@ -1,6 +1,6 @@
-/*
+/*------------------------------------*\
     LAYOUT
-*/
+\*------------------------------------*/
 
 @mixin colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
     width: calc(100% * #{$columns/$total} - #{$gutter});
@@ -107,6 +107,10 @@
                 &__list {
                     @include colwidth(8);
                 }
+
+                &__grid {
+                    @include colwidth(12);
+                }
             }
         }
 
@@ -154,18 +158,6 @@
             }
         }
 
-        &--category-list {
-            .#{$pl-prefix}layout {
-                &__list {
-                    @include colwidth(7);
-                }
-
-                &__feedback {
-                    @include colwidth(7);
-                }
-            }
-        }
-
         &--search-results {
             .#{$pl-prefix}layout {
                 &__list {
@@ -193,6 +185,7 @@
     $grid-area-feedback:    f;
     $grid-area-header:      h;
     $grid-area-list:        l;
+    $grid-area-grid:        g;
     $grid-area-navigation:  n;
     $grid-area-partner:     p;
     $grid-area-sidebar:     s;
@@ -234,6 +227,10 @@
             grid-area: $grid-area-list;
         }
 
+        &__grid {
+            grid-area: $grid-area-grid;
+        }
+
         &__navigation {
             grid-area: $grid-area-navigation;
         }
@@ -244,6 +241,15 @@
 
         &__sidebar {
             grid-area: $grid-area-sidebar;
+        }
+
+        &--category-list {
+            grid-template-areas:
+                'h h'
+                'c c'
+                'l l'
+                'g g'
+                'f f';
         }
     }
 
@@ -257,6 +263,15 @@
                 's s s s s s'
                 'c c c c c c'
                 'f f f f f f';
+
+            &--category-list {
+                grid-template-areas:
+                    'h h h h h h'
+                    'c c c c c c'
+                    'l l l l l l'
+                    'g g g g g g'
+                    'f f f f f f';
+            }
         }
     }
 
@@ -289,7 +304,9 @@
             &--category-list {
                 grid-template-areas:
                     'h h h h h h h h h h h h'
+                    'c c c c c c c c c c c c'
                     'l l l l l l l l . . . .'
+                    'g g g g g g g g g g g g'
                     'f f f f f f f f . . . .';
             }
 
@@ -326,8 +343,10 @@
             &--category-list {
                 grid-template-areas:
                     'h h h h h h h h h h h h'
-                    'l l l l l l l . . . . .'
-                    'f f f f f f f . . . . .';
+                    'c c c c c c c c c c c c'
+                    'l l l l l l l l . . . .'
+                    'g g g g g g g g g g g g'
+                    'f f f f f f f f . . . .';
             }
 
             &--search-results {
