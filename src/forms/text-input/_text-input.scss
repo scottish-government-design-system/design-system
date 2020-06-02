@@ -38,30 +38,50 @@
         font-weight: $bold;
     }
 
-    &__wrapper--has-icon {
-        display: inline-block;
-        position: relative;
+    &__wrapper {
+        margin-bottom: 21px;
 
-        > .#{$pl_prefix}button {
-            margin-top: 0;
+        > .#{$pl-prefix}input {
+            float: left;
             margin-bottom: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
+            margin-right: 10px;
         }
 
-        > .#{$pl_prefix}input {
-            padding-right: 56px;
+        > .#{$pl-prefix}button {
+            margin: 0;
+        }
+
+        &--has-icon {
+            display: inline-block;
+            position: relative;
+
+            > .#{$pl_prefix}button {
+                margin-top: 0;
+                margin-bottom: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            > .#{$pl_prefix}input {
+                padding-right: 56px;
+            }
         }
     }
 
     @supports (display: flex) {
-        &__wrapper--has-icon {
+        &__wrapper {
             display: flex;
 
-            > .#{$pl_prefix}button {
-                margin-left: -49px;
-                position: static;
+            > * {
+                float: none;
+            }
+
+            &--has-icon {
+                > .#{$pl_prefix}button {
+                    margin-left: -49px;
+                    position: static;
+                }
             }
         }
     }

@@ -27,7 +27,7 @@
 
     &__label::before {
         background-color: $colour__white;
-        border: $field-border-width solid currentColor;
+        border: $field-border-width solid $colour__text;
         content: '';
         height: $input-size;
         left: 0;

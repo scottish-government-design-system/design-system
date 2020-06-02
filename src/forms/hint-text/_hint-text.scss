@@ -5,4 +5,8 @@
 .#{$pl_prefix}hint-text {
     color: $colour__text--secondary;
     margin-bottom: 14px;
+
+    > * {
+        margin-bottom: 7px;
+    }
 }

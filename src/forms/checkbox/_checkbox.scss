@@ -5,6 +5,11 @@
 .#{$pl_prefix}checkbox {
     @include radiocheckboxstates();
 
+    /* checked */
+    &__input:checked + &__label::before {
+        background-color: $colour__text;
+    }
+
     /*
      * [1] for IE11 support, use image without clip path
      */
@@ -14,8 +19,16 @@
         background-image: url(#{$iconsfile}#checkbox-40); /* [1] */
 
         @supports(display: grid) {
-            background-color: $colour__input--spot;
+            background-color: $colour__white;
             background-image: none;
         }
+    }
+
+    &__input:focus:checked + &__label::before {
+        background-color: $colour__link--focus__background;
+    }
+
+    &__input:focus:checked + &__label::after {
+        background-color: $colour__link--focus;
     }
 }
