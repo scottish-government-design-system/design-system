@@ -53,10 +53,6 @@ $contact-details__border-colour: $colour__border--highlight;
         position: relative;
     }
 
-    &__social-link {
-        text-decoration: none;
-    }
-
     &__social-icon {
         height: $social-icon-size;
         pointer-events: none;
