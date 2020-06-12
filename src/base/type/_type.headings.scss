@@ -5,8 +5,8 @@
 h1, .alpha {
     font-size: $h1-size;
     font-weight: $bold;
-    line-height: 35px;
-    margin-bottom: 28px;
+    line-height: 32px;
+    margin-bottom: 32px;
     text-rendering: optimizeLegibility;
 }
 
@@ -18,33 +18,33 @@ h2, h3, h4,
 
 h2, .beta {
     font-size: $h2-size;
-    line-height: 28px;
-    margin-bottom: 7px;
+    line-height: 32px;
+    margin-bottom: 8px;
 
     &:not(:first-child) {
-        margin-top: 28px;
+        margin-top: 32px;
     }
 }
 
 h3, .gamma {
     font-size: $h3-size;
-    line-height: 21px;
-    margin-bottom: 7px;
+    line-height: 24px;
+    margin-bottom: 8px;
 
     &:not(:first-child) {
-        margin-top: 28px;
+        margin-top: 24px;
     }
 }
 
 h4, .delta {
     font-size: $h4-size;
-    line-height: 21px;
+    line-height: 24px;
 }
 
 h5, .epsilon {
     font-size: $h5-size;
     font-weight: $semibold;
-    line-height: 28px;
+    line-height: 32px;
 }
 
 @include media-query(medium) {
@@ -54,15 +54,15 @@ h5, .epsilon {
     }
 
     h2, .beta {
-        line-height: 35px;
-        margin-bottom: 14px;
+        line-height: 40px;
+        margin-bottom: 16px;
 
         &:not(:first-child) {
-            margin-top: 42px;
+            margin-top: 40px;
         }
     }
 
     h3, .gamma {
-        line-height: 28px;
+        line-height: 32px;
     }
 }

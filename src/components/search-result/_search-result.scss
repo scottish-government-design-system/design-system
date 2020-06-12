@@ -5,13 +5,18 @@
 .#{$pl-prefix}search-result {
     @include blocklink('.#{$pl-prefix}search-result__link');
 
-    border: 1px solid $colour__border--light;
+    border-bottom: 1px solid $colour__border--light;
     border-width: 1px 0;
     color: $colour__text !important;
-    margin: 0 #{$mobile-body-margin * -1} -1px;
-    padding: 21px 15px;
+    margin: 0 #{$mobile-body-margin * -1};
+    padding: 24px 16px 23px;
     position: relative;
     text-decoration: none;
+
+    &:first-of-type {
+        border-top: 1px solid $colour__border--light;
+        padding-top: 23px;
+    }
 
     &__link::after {
         content: "";
@@ -35,7 +40,7 @@
 
     &__title {
         color: $colour__link;
-        margin-bottom: 7px;
+        margin-bottom: 8px;
         margin-top: 0 !important;
 
         transition: color $transition-out-time;

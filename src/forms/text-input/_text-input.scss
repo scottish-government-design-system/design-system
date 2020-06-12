@@ -7,9 +7,9 @@
     border: $field-border-width solid currentColor;
     border-radius: 0;
     display: block;
-    margin-bottom: 21px;
-    min-height: 49px;
-    padding: 7px;
+    margin-bottom: 24px;
+    min-height: 48px;
+    padding: 8px;
     width: 100%;
 
     &:focus {
@@ -21,7 +21,7 @@
     &--error {
         border-color: $colour__state--negative;
         border-width: $field-border-width--error;
-        padding: 5px;
+        padding: 4px;
 
         &:focus {
             border-color: currentColor;
@@ -30,7 +30,7 @@
     }
 
     & + &__message {
-        margin-top: -14px;
+        margin-top: -16px;
     }
 
     &__message--error {
@@ -39,12 +39,12 @@
     }
 
     &__wrapper {
-        margin-bottom: 21px;
+        margin-bottom: 24px;
 
         > .#{$pl-prefix}input {
             float: left;
             margin-bottom: 0;
-            margin-right: 10px;
+            margin-right: 8px;
         }
 
         > .#{$pl-prefix}button {
@@ -79,7 +79,7 @@
 
             &--has-icon {
                 > .#{$pl_prefix}button {
-                    margin-left: -49px;
+                    margin-left: -48px;
                     position: static;
                 }
             }
@@ -96,11 +96,11 @@ $text-input-fixed-widths: (2,3,4,5,10,20);
  */
 @each $width in $text-input-fixed-widths {
     .#{$pl_prefix}input--fixed-#{$width} {
-        max-width: calc(14px + #{($width) * 1em}); /* [1] */
+        max-width: calc(16px + #{($width) * 1em}); /* [1] */
     }
 
     .#{$pl_prefix}currency-wrapper .#{$pl_prefix}input--fixed-#{$width} {
-        max-width: calc(42px + 7px + #{($width) * 1em}); /* [2] */
+        max-width: calc(40px + 8px + #{($width) * 1em}); /* [2] */
     }
 }
 

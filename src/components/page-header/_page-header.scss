@@ -4,7 +4,7 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}page-header {
-    margin: 14px 0 35px;
+    margin: 16px 0 32px;
 
     &__title {
         margin-bottom: 0;
@@ -15,12 +15,12 @@
     }
 
     &__metadata {
-        margin-top: 7px;
+        margin-top: 8px;
     }
 }
 
 @include media-query(medium) {
     .#{$pl-prefix}page-header {
-        margin-top: 28px;
+        margin-top: 32px;
     }
 }

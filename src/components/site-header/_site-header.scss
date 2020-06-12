@@ -11,17 +11,18 @@ $site-header__top-band-colour: $colour__brand--primary;
 
 
 
-
+/* [1] compensates for border */
 .#{$pl-prefix}site-header {
     background-color: $colour__white;
     border-bottom: 1px solid $site-header__border-colour;
+    margin-bottom: -1px; /* [1] */
     position: relative;
 
     &::before {
         background: $site-header__top-band-colour;
         display: block;
         content: '';
-        height: 7px;
+        height: 8px;
     }
 
     &__top {
@@ -30,7 +31,7 @@ $site-header__top-band-colour: $colour__brand--primary;
 
     &__content {
         overflow: hidden;
-        padding: 14px 0;
+        padding: 16px 0;
         transition: min-height $transition-in-time;
 
         @supports(display: grid) {
@@ -44,16 +45,16 @@ $site-header__top-band-colour: $colour__brand--primary;
 
     &__control {
         cursor: pointer;
-        height: 21px;
-        margin-right: -15px;
-        padding: 14px 15px;
+        height: 24px;
+        margin-right: -16px;
+        padding: 16px;
 
         @include blocklink;
     }
 
     &__control-icon {
-        height: 21px;
-        width: 21px;
+        height: 24px;
+        width: 24px;
 
         &--close {
             display: none;
@@ -62,7 +63,7 @@ $site-header__top-band-colour: $colour__brand--primary;
 
     &__control-text {
         float: left;
-        margin-right: 10px;
+        margin-right: 8px;
     }
 
     &__search {
@@ -118,8 +119,8 @@ $site-header__top-band-colour: $colour__brand--primary;
 
 @include media-query(medium) {
     .#{$pl-prefix}site-header__content {
-        padding-bottom: 14px;
-        padding-top: 14px;
+        padding-bottom: 16px;
+        padding-top: 16px;
     }
 
     .#{$pl-prefix}site-header__controls {
@@ -138,7 +139,9 @@ $site-header__top-band-colour: $colour__brand--primary;
         max-width: calc(2/3 * 100% - #{$grid-gap-x});
     }
 
+    /* [1] compensates for border */
     .#{$pl-prefix}site-header__navigation {
-        border-top: 1px solid $colour__border--light;
+        border-top: 1px solid $site-header__border-colour;
+        margin-top: -1px; /* [1] */
     }
 }

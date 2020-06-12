@@ -4,7 +4,7 @@
 
 .#{$pl-prefix}metadata {
     font-size: $small-size--fixed;
-    line-height: 21px;
+    line-height: 24px;
     margin: 0;
     overflow: hidden;
 
@@ -33,8 +33,8 @@
 .#{$pl-prefix}metadata--inline {
     color: $colour__text--secondary;
     font-size: $tiny-size;
-    line-height: 21px;
-    margin-bottom: 7px;
+    line-height: 24px;
+    margin-bottom: 8px;
 
     .#{$pl-prefix}metadata__item {
         display: inline;

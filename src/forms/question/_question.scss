@@ -3,19 +3,26 @@
 \*------------------------------------*/
 
 .#{$pl_prefix}question {
-    margin-bottom: 21px;
+    margin-bottom: 32px;
 
     &--error {
-        border-left: 5px solid $colour__state--negative;
+        border-left: 4px solid $colour__state--negative;
         padding-left: 20px;
     }
 
     &__message {
-        margin-bottom: 14px;
+        margin-bottom: 16px;
     }
 
     &--error &__message {
         color: $colour__state--negative;
         font-weight: bold;
+    }
+}
+
+
+@include media-query(medium) {
+    .#{$pl_prefix}question {
+        margin-bottom: 48px;
     }
 }

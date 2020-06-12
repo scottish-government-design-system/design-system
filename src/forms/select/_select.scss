@@ -9,9 +9,9 @@
     border-radius: 0;
     border: 0;
     bottom: 0;
-    height: 45px;
+    height: 44px;
     left: 0;
-    padding: 7px;
+    padding: 8px;
     position: absolute;
     right: 0;
     width: 100%;
@@ -34,7 +34,7 @@
     position: absolute;
     right: -2px;
     top: -2px;
-    width: 49px;
+    width: 48px;
 
     &::before {
         bottom: 0;
@@ -62,13 +62,13 @@
     border: 2px solid currentColor;
     border-radius: 0;
     display: block;
-    margin-bottom: 21px;
-    min-height: 49px;
+    margin-bottom: 24px;
+    min-height: 48px;
     padding: 0;
     position: relative;
     width: 100%;
 }
 
 .#{$pl_prefix}select-wrapper.#{$pl_prefix}input--error {
-    min-height: #{$field-border-width--error + 49px};
+    min-height: #{$field-border-width--error + 48px};
 }

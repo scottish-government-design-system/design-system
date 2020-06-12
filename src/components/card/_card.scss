@@ -42,7 +42,7 @@
     }
 
     &__content {
-        padding: 21px 15px;
+        padding: 24px 16px;
 
         > :first-child {
             margin-top: 0;
@@ -71,11 +71,11 @@
 
     &--small {
         font-size: $small-size--fixed;
-        line-height: 21px;
+        line-height: 24px;
 
         h2 {
             font-size: 1.105263rem;
-            line-height: 28px;
+            line-height: 32px;
             margin-bottom: 0;
         }
     }
@@ -91,7 +91,7 @@
     }
 
     &--padding {
-        padding: 14px 15px;
+        padding: 16px;
     }
 
     &--has-hover &__cover-link:hover::after {

@@ -31,8 +31,8 @@ $page-nav__icon-size: 56px !default;
 
     background: transparent;
     display: inline-block;
-    line-height: 21px;
-    padding: 14px 5px;
+    line-height: 24px;
+    padding: 12px 4px;
     position: relative;
     text-decoration: none;
     width: 100%;
@@ -64,7 +64,7 @@ $page-nav__icon-size: 56px !default;
         &::after {
             color: $colour__white;
             position: absolute;
-            top: 25px;
+            top: 24px;
         }
     }
 
@@ -73,12 +73,12 @@ $page-nav__icon-size: 56px !default;
         text-align: left;
 
         &::before {
-            left: 5px;
+            left: 4px;
         }
 
         &::after {
             @include chevron(left, 30px, 5px);
-            left: 25px;
+            left: 24px;
         }
     }
 
@@ -89,12 +89,12 @@ $page-nav__icon-size: 56px !default;
         text-align: right;
 
         &::before {
-            right: 5px;
+            right: 4px;
         }
 
         &::after {
             @include chevron(right, 30px, 5px);
-            right: 25px;
+            right: 24px;
         }
     }
 }
@@ -113,13 +113,13 @@ $page-nav__icon-size: 56px !default;
 
 .#{$pl-prefix}sequential-nav__text {
     display: inline-block;
-    padding-top: 21px;
+    padding-top: 24px;
     position: relative;
 
     &::before {
         color: $page-nav__prefix-colour;
         content: attr(data-label);
-        font-size: 14px;
+        font-size: 16px;
         font-weight: $bold;
         left: 0;
         position: absolute;
@@ -131,7 +131,7 @@ $page-nav__icon-size: 56px !default;
 
 @include media-query(small) {
     .#{$pl-prefix}sequential-nav__item {
-        width: calc(50% - 15px);
+        width: calc(50% - 16px);
 
         &--prev {
             float: left;

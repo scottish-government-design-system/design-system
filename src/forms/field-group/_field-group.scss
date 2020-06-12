@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 .#{$pl_prefix}field-group {
-    margin-top: 14px;
-    margin-bottom: -21px;
+    margin-top: 16px;
+    margin-bottom: -24px;
 
     &--inline {
         display: flex;
@@ -12,6 +12,6 @@
     }
 
     &--inline > div:not(:last-child) {
-        margin-right: 15px;
+        margin-right: 16px;
     }
 }

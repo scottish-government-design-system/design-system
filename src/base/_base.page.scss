@@ -9,8 +9,8 @@ html {
 }
 
 .#{$pl-prefix}page {
-    min-height: calc(100vh - 350px);
-    margin-bottom: 350px;
+    min-height: calc(100vh - 360px);
+    margin-bottom: 360px;
 }
 
 .#{$pl-prefix}site-footer {
@@ -59,7 +59,7 @@ html {
 }
 
 .category-lower {
-    padding-bottom: 70px;
+    padding-bottom: 72px;
     background: $colour__grey--lighter;
     border-top: 1px solid $colour__grey--light;
 }

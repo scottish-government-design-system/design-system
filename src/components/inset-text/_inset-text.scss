@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}inset-text {
-    border-left: 10px solid $colour__border;
-    padding: 28px 15px;
+    border-left: 8px solid $colour__border;
+    padding: 32px 16px;
 
     @include block-margins;
 }
@@ -16,7 +16,7 @@
 
 @include media-query(medium) {
     .#{$pl-prefix}inset-text {
-        padding-left: 30px;
-        padding-right: 70px;
+        padding-left: 32px;
+        padding-right: 64px;
     }
 }

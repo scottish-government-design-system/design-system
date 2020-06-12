@@ -56,6 +56,8 @@ $colour__link--active__background:   $colour__link--focus__background !default;
 $colour__link--active__shadow:       $colour__link--focus__shadow !default;
 $colour__link--current:              $colour__text !default;
 $colour__link--current__background:  $colour__grey--lighter !default;
+$colour__link--disabled:             $colour__text !default;
+$colour__link--disabled__background: $colour__grey--light !default;
 $colour__link--reversed:             currentColor !default;
 $colour__link--reversed--hover:      $colour__link--hover !default;
 $colour__link--reversed--active:     $colour__link--active !default;

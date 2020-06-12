@@ -2,9 +2,10 @@
     $ERROR SUMMARY
 \*------------------------------------*/
 
+/* [1] compensate for border */
 .ds_error-summary {
-    border: 5px solid $colour__state--negative;
-    padding: 21px 30px;
+    border: 4px solid $colour__state--negative;
+    padding: 20px 28px; /* [1] */
     @include block-margins;
 
     &__title {

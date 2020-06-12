@@ -2,7 +2,7 @@
     CURRENCY WRAPPER
 \*------------------------------------*/
 
-$input-height: 49px;
+$input-height: 48px;
 
 .#{$pl_prefix}currency-wrapper {
     position: relative;
@@ -25,10 +25,10 @@ $input-height: 49px;
     }
 
     & > .#{$pl_prefix}input {
-        padding-left: 42px;
+        padding-left: 40px;
     }
 
     & > .#{$pl_prefix}input:focus {
-        padding-left: 41px;
+        padding-left: 39px;
     }
 }

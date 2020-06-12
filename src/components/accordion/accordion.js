@@ -8,10 +8,11 @@ class Accordion {
     }
 
     init() {
-        this.items.forEach((item, index) => this.initAccordionItem(item, index));
-
-        this.initOpenAll();
-        this.accordion.classList.add('js-initialised');
+        if (!this.accordion.classList.contains('js-initialised')) {
+            this.items.forEach((item, index) => this.initAccordionItem(item, index));
+            this.initOpenAll();
+            this.accordion.classList.add('js-initialised');
+        }
     }
 
     initAccordionItem(item, index) {

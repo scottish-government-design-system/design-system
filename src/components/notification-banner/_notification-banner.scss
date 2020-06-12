@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // fixed vars
-$notification-banner__close-padding: 5px;
+$notification-banner__close-padding: 4px;
 $notification-banner__icon-padding: $notification-banner__close-padding;
 
 
@@ -16,11 +16,11 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     &__content {
         justify-content: space-between;
-        padding: 14px 0;
+        padding: 16px 0;
         position: relative;
 
         &--has-close {
-            padding-right: 45px;
+            padding-right: 40px;
         }
 
         a {
@@ -30,7 +30,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     &__text {
         display: inline-block;
-        margin-right: 20px;
+        margin-right: 16px;
 
         > :last-child {
             margin-bottom: 0;
@@ -43,10 +43,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     &__actions {
         display: inline-block;
-        margin: 21px -10px -7px 0;
+        margin: 24px -8px -8px 0;
 
         > * {
-            margin: 0 10px 14px 0;
+            margin: 0 8px 16px 0;
         }
     }
 
@@ -55,14 +55,14 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         border-radius: 100px;
         display: block;
         float: left;
-        height: 29px;
+        height: 32px;
         line-height: 0;
         margin-left: -5px;
         padding: 5px;
-        width: 29px;
+        width: 32px;
 
         + .#{$pl-prefix}notification__text {
-            margin-left: 15px;
+            margin-left: 16px;
 
             @include media-query(medium) {
                 margin-left: 40px;
@@ -76,13 +76,13 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         color: currentColor;
         display: none;
         font-size: $small-size--fixed;
-        height: 21px;
+        height: 24px;
         margin: #{$notification-banner__close-padding * -1} #{$notification-banner__close-padding * -1} #{$notification-banner__close-padding * -1} 25px;
         padding: $notification-banner__close-padding;
         position: absolute;
         right: 0;
-        top: 14px;
-        width: 21px;
+        top: 16px;
+        width: 24px;
 
         &:hover {
             background-color: transparent;
@@ -150,11 +150,11 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 @include media-query(medium) {
     .#{$pl-prefix}notification__actions {
-        margin: 0 0 -14px;
+        margin: 0 0 -16px;
     }
 
     .#{$pl-prefix}notification__close {
-        top: 18px;
+        top: 21px;
     }
 }
 
@@ -163,7 +163,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     .#{$pl-prefix}notification__actions {
         display: flex;
         flex-wrap: wrap;
-        margin-top: 7px;
+        margin-top: 8px;
 
         > * {
             flex-basis: 0;

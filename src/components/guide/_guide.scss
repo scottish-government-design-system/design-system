@@ -1,0 +1,29 @@
+/*------------------------------------*\
+    GUIDE
+    dev note: the aside could become something like an "article aside" component
+\*------------------------------------*/
+
+
+
+
+.#{$pl_prefix}guide {
+    &__body,
+    &__aside {
+        padding-top: 32px;
+        position: relative;
+
+        &::before {
+            background-color: $colour__border--light;
+            content: '';
+            height: 2px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+
+    &__aside::before {
+        background-color: $colour__brand--primary;
+    }
+}

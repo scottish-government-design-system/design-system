@@ -2,11 +2,12 @@
     #WARNING TEXT
 \*------------------------------------*/
 
+/* [1] compensate for border */
 .#{$pl-prefix}warning-text {
-    border : 1px solid currentColor;
+    border: 1px solid currentColor;
     border-width: 1px 0;
     font-weight: $bold;
-    padding: 21px 15px 21px 72px;
+    padding: 23px 16px 23px 72px; /* [1] */
     position: relative;
 
     @include block-margins;
@@ -21,15 +22,15 @@
     border-radius: 50%;
     color: $colour__white;
     display: inline-block;
-    height: 35px;
+    height: 32px;
     font-size: 32px;
     font-weight: 700;
     left: 22px;
-    line-height: 35px;
+    line-height: 32px;
     position: absolute;
     text-align: center;
-    top: 14px;
-    width: 35px;
+    top: 20px;
+    width: 32px;
 }
 
 .#{$pl-prefix}warning-text__text > :last-child {
@@ -37,8 +38,9 @@
 }
 
 @include media-query(medium) {
+    /* [1] compensate for border */
     .#{$pl-prefix}warning-text {
-        padding: 35px 70px 35px 72px;
+        padding: 31px 72px 31px 72px;  /* [1] */
     }
 
     .#{$pl-prefix}warning-text__icon {

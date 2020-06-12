@@ -210,8 +210,12 @@ $blocklink__outline-width: 0;
  * info notes, accordions, etc
  */
 @mixin block-margins {
-    margin-top: 35px;
-    margin-bottom: 35px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+@mixin block-margins--bottom {
+    margin-bottom: 32px;
 }
 
 /**

@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}category-list-container {
-    margin: 28px 0;
+    margin: 32px 0;
 }
 
 
@@ -11,10 +11,10 @@
     @include layout();
 
     list-style-type: none;
-    margin-bottom: 28px;
-    margin-left: -7px;
-    margin-top: -7px;
-    padding: 7px;
+    margin-bottom: 32px;
+    margin-left: -8px;
+    margin-top: -8px;
+    padding: 8px;
 
     > * {
         margin-bottom: $grid-gap-y;

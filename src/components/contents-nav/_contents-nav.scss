@@ -1,0 +1,59 @@
+/*------------------------------------*\
+    CONTENTS NAV
+\*------------------------------------*/
+
+
+
+
+.#{$pl-prefix}contents-nav {
+    @include block-margins--bottom;
+
+    &__title {
+        font-size: 1em;
+        font-weight: $normal;
+        line-height: 24px;
+        margin-bottom: 16px;
+    }
+
+    &__list {
+        font-size: $small-size;
+        list-style-type: none;
+        margin-left: 0;
+        padding-left: 32px;
+    }
+
+    &__item {
+        position: relative;
+
+        &::before {
+            background: currentColor;
+            content: "—";
+            height: 1px;
+            left: -32px;
+            overflow: hidden;
+            position: absolute;
+            top: 12px;
+            width: 20px;
+        }
+    }
+
+    &__link.#{$pl-prefix}current {
+        font-weight: $bold;
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}contents-nav {
+        margin-top: 8px;
+
+        &__title {
+            font-size: $small-size;
+            line-height: 32px;
+            margin-bottom: 8px;
+        }
+
+        &__item::before {
+            top: 16px;
+        }
+    }
+}

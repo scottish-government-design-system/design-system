@@ -4,7 +4,7 @@
 
 @mixin radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $colour__input--active__background) {
 
-    margin-bottom: 21px;
+    margin-bottom: 24px;
     padding-left: 40px;
     position: relative;
 
@@ -22,7 +22,7 @@
 
     &__label {
         display: inline-block;
-        padding: 7px 30px 7px 15px;
+        padding: 4px 32px 4px 16px;
     }
 
     &__label::before {
@@ -79,7 +79,7 @@
      * [1] this negative margin makes the small checkboxes/radios align left with content
      */
     &--small {
-        margin-bottom: 14px;
+        margin-bottom: 16px;
         margin-left: -8px; /* [1] */
     }
 
@@ -109,6 +109,6 @@
     }
 
     > .#{$pl_prefix}hint-text {
-        padding-left: 15px;
+        padding-left: 16px;
     }
 }

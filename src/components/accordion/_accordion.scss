@@ -18,7 +18,7 @@ $accordion__header-colour: $colour__link !default;
         position: absolute;
         right: 0;
         text-decoration: none;
-        top: -35px;
+        top: -32px;
     }
 }
 
@@ -39,6 +39,7 @@ h1,h2,h3 {
     border-bottom: 1px solid $colour__border--light;
     border-top: 1px solid $colour__border--light;
 
+    /* [1] subtracting the parent's border width */
     &__header,
     &__header-button {
         @include blocklink;
@@ -46,9 +47,9 @@ h1,h2,h3 {
         background-color: $colour__white;
         color: $accordion__header-colour;
         font-size: 1rem;
-        line-height: 28px;
+        line-height: 24px;
         margin: 0;
-        padding: 14px 50px 14px 15px;
+        padding: 15px 40px 15px 16px; /* [1] */
         position: relative;
         text-align: left;
         width: 100%;
@@ -90,7 +91,7 @@ h1,h2,h3 {
 
     &__body {
         display: none;
-        padding: 21px 50px 42px 15px;
+        padding: 24px 40px 40px 16px;
 
         > :last-child {
             margin-bottom: 0;
@@ -128,7 +129,7 @@ h1,h2,h3 {
     &__body {
         max-height: 0;
         overflow: hidden;
-        padding: 0 50px 0 15px;
+        padding: 0 40px 0 16px;
 
         @include media-query(medium) {
             padding-right: 100px;
@@ -138,8 +139,8 @@ h1,h2,h3 {
     }
 
     &__control:checked ~ .#{$pl-prefix}accordion-item__body {
-        padding-bottom: 28px;
-        padding-top: 21px;
+        padding-bottom: 32px;
+        padding-top: 24px;
     }
 }
 

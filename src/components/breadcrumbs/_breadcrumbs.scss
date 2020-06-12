@@ -12,9 +12,9 @@ $breadcrumbs__font-size: $small-size--fixed;
 .#{$pl-prefix}breadcrumbs {
     color: $breadcrumbs__colour;
     font-size: $breadcrumbs__font-size;
-    line-height: 21px;
+    line-height: 24px;
     padding-left: 0;
-    margin: 28px 0 14px;
+    margin: 24px 0 16px;
 
     &__item {
         display: inline-block;
@@ -29,12 +29,12 @@ $breadcrumbs__font-size: $small-size--fixed;
     }
 
     &__container {
-        padding-top: 14px;
+        padding-top: 16px;
     }
 
     @include media-query(medium) {
         &__container {
-            padding-top: 21px;
+            padding-top: 24px;
         }
     }
 }

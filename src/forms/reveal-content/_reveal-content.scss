@@ -4,18 +4,18 @@
 
 .#{$pl_prefix}reveal-content {
     display: none;
-    margin-top: 14px;
-    padding-left: 14px;
+    margin-top: 16px;
+    padding-left: 16px;
     position: relative;
 
     &::before {
         background-color: $colour__border;
         bottom: 0;
         content: '';
-        left: -23px;
+        left: -22px;
         position: absolute;
         top: 0;
-        width: 5px;
+        width: 4px;
     }
 
     > :last-child {

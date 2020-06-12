@@ -5,8 +5,8 @@
 .#{$pl-prefix}leader {
     font-size: $large-size;
     font-weight: $lighter;
-    line-height: 28px;
-    margin-bottom: 28px;
+    line-height: 32px;
+    margin-bottom: 32px;
 
     &--first-paragraph {
         font-size: inherit;
@@ -17,15 +17,15 @@
         > p:first-child {
             font-size: $large-size;
             font-weight: $lighter;
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
     }
 }
 
 @include media-query(medium) {
     .#{$pl-prefix}leader {
-        line-height: 35px;
-        margin-bottom: 35px;
+        line-height: 40px;
+        margin-bottom: 40px;
 
         &--first-paragraph {
             font-size: inherit;
@@ -34,8 +34,8 @@
             margin-bottom: inherit;
 
             > p:first-child {
-                line-height: 35px;
-                margin-bottom: 35px;
+                line-height: 40px;
+                margin-bottom: 40px;
             }
         }
     }

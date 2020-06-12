@@ -11,24 +11,25 @@ $site-footer__background: $colour__brand--primary !default;
 .#{$pl-prefix}site-footer {
     background-color: $site-footer__background;
     font-size: $small-size;
-    line-height: 21px;
-    padding-bottom: 35px;
-    padding-top: 21px;
+    line-height: 24px;
+    padding-bottom: 32px;
+    padding-top: 24px;
 
+    /* [1] subtracting the border width */
     &__site-items {
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         font-size: $small-size--fixed;
         font-weight: $bold;
         list-style-type: none;
-        margin: 0 0 21px;
-        padding-bottom: 21px;
+        margin: 0 0 23px; /* [1] */
+        padding-bottom: 16px;
     }
 
     &__copyright {
         &-logo {
             display: block;
-            margin-bottom: 7px;
-            width: 35px;
+            margin-bottom: 8px;
+            width: 32px;
 
             @include fancy-underscore();
 
@@ -39,7 +40,7 @@ $site-footer__background: $colour__brand--primary !default;
     }
 
     &__org {
-        max-width: 150px;
+        max-width: 160px;
         position: relative;
     }
 
@@ -74,7 +75,7 @@ $site-footer__background: $colour__brand--primary !default;
 
     .#{$pl-prefix}site-footer {
         &__copyright {
-            padding-left: 45px;
+            padding-left: 48px;
             position: relative;
 
             &-logo {
@@ -89,7 +90,7 @@ $site-footer__background: $colour__brand--primary !default;
         .#{$pl-prefix}site-footer {
             &__content {
                 display: grid;
-                grid-gap: 0 30px;
+                grid-gap: 0 $grid-gap-x;
                 grid-template-columns: repeat(12, 1fr);
                 grid-template-areas: 'a a a a a a a a a a a a'
                                      'b b b b b b b b . c c c';

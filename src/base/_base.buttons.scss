@@ -4,9 +4,9 @@
 
 $button__border-width: 2px !default;
 $button__outline-width: 3px !default;
-$button__height: 49px !default;
-$button__height--small: 42px !default;
-$button__padding--x: 20px !default;
+$button__height: 48px !default;
+$button__height--small: 40px !default;
+$button__padding--x: 16px !default;
 
 
 
@@ -22,9 +22,9 @@ input[type="submit"],
     display: inline-block;
     font-size: $small-size;
     font-weight: $bold;
-    line-height: 21px;
+    line-height: 24px;
     outline-width: 0;
-    padding: 14px 20px;
+    padding: 16px;
     text-align: center;
     text-decoration: none;
     transition: background-color $transition-out-time;
@@ -190,7 +190,7 @@ input[type="submit"],
     @include block-margins;
 
     > .#{$pl-prefix}button {
-        margin: 0 0 21px;
+        margin: 0 0 24px;
 
         &:last-child {
             margin-bottom: 0;
@@ -224,7 +224,12 @@ input[type="submit"],
     }
 
     &--small.#{$pl-prefix}button--has-icon {
-        padding-right: calc(#{$button__height--small} + #{$button__padding--x});
+        padding-right: calc(16px + #{$button__padding--x});
+
+        &--left {
+            padding-right: 16px;
+            padding-left: calc(16px + #{$button__padding--x});
+        }
 
         > .#{$pl-prefix}icon {
             height: $button__height--small;

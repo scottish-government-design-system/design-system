@@ -4,7 +4,7 @@
 
 .#{$pl-prefix}search-suggestions {
     font-size: $small-size;
-    margin: 21px 0 28px;
+    margin: 24px 0 24px;
 
     ul {
         display: inline-block;
@@ -26,25 +26,25 @@
 
     &__list {
         list-style-type: none;
-        margin: 0 0 21px;
+        margin: 0 0 24px;
     }
 
     &__pagination {
         background: $colour__grey--light;
         text-align: center;
-        padding: 7px 0;
+        padding: 8px 0;
     }
 }
 
 @include media-query(medium) {
     .#{$pl-prefix}search-results {
         &__count {
-            padding-left: 15px;
+            padding-left: 16px;
         }
     }
 
     .#{$pl-prefix}search-suggestions {
-        padding-left: 15px;
+        padding-left: 16px;
 
         ul li:not(:last-child)::after {
             margin-left: -3px;

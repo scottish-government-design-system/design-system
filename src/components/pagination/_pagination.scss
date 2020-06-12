@@ -19,21 +19,21 @@
     &__link {
         @include blocklink;
 
-        line-height: 21px;
-        padding: 14px 10px;
+        line-height: 24px;
+        padding: 12px 8px;
         text-decoration: none;
-        min-width: 50px;
+        min-width: 48px;
 
         &.#{$pl-prefix}current {
             background-color: $colour__link--current__background;
-            border-bottom: 3px solid $colour__border--highlight;
-            padding-bottom: 11px;
+            border-bottom: 4px solid $colour__border--highlight;
+            padding-bottom: 12px;
             pointer-events: none;
         }
 
         &--text {
-            padding-left: 21px;
-            padding-right: 21px;
+            padding-left: 24px;
+            padding-right: 24px;
             width: auto;
         }
 
@@ -63,7 +63,7 @@
         }
 
         &__item:not(:last-child) {
-            margin-right: 3px;
+            margin-right: 4px;
         }
     }
 }

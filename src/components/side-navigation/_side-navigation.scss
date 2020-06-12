@@ -6,8 +6,8 @@
 $side-nav__expand-colour: $colour__brand--primary !default;
 
 // fixed vars
-$side-nav__outline-width: 3px;
-$side-nav__spacing-unit: 15px;
+$side-nav__outline-width: 4px;
+$side-nav__spacing-unit: 16px;
 
 
 
@@ -26,7 +26,7 @@ $side-nav__spacing-unit: 15px;
         cursor: pointer;
         font-weight: $bold;
         margin: 0;
-        padding: 14px 45px 14px 15px;
+        padding: 16px 40px 16px 16px;
         position: sticky;
         text-align: left;
         text-decoration: none;
@@ -95,7 +95,7 @@ $side-nav__spacing-unit: 15px;
 
         &--root {
             display: none;
-            margin: 7px #{15px - $side-nav__outline-width};
+            margin: 8px #{16px - $side-nav__outline-width};
         }
     }
 
@@ -130,6 +130,10 @@ $side-nav__spacing-unit: 15px;
                 top: 15px;
             }
         }
+
+        &--disabled {
+            text-decoration: line-through;
+        }
     }
 
     &__list &__list &__list &__link {
@@ -137,13 +141,13 @@ $side-nav__spacing-unit: 15px;
 
         &::before {
             background: $colour__grey--light;
-            bottom: 7px;
+            bottom: 8px;
             content: '';
-            left: 14px;
+            left: 16px;
             position: absolute;
             right: 100%;
-            width: 3px;
-            top: 7px;
+            width: 4px;
+            top: 8px;
         }
 
         &:hover,
@@ -156,13 +160,13 @@ $side-nav__spacing-unit: 15px;
     }
 
     /**
-     * [1] vertical padding combines with the margin to form a multiple of seven
+     * [1] vertical padding combines with the margin to form a multiple of eight
      */
     &__link {
         @include blocklink;
 
-        margin-bottom: 3px;
-        padding: 13px 42px 12px #{$side-nav__spacing-unit * 3}; /* [1] */
+        margin-bottom: 2px;
+        padding: 11px 40px 11px #{$side-nav__spacing-unit * 3}; /* [1] */
         position: relative;
         text-decoration: none;
 
@@ -177,7 +181,7 @@ $side-nav__spacing-unit: 15px;
                 position: absolute;
                 left: 0;
                 top: 0;
-                width: 3px;
+                width: 4px;
             }
         }
 
@@ -198,21 +202,26 @@ $side-nav__spacing-unit: 15px;
                 background-color: $colour__link--current__background;
             }
         }
+
+        &--inactive {
+            pointer-events: none;
+            background-color: $colour__link--disabled__background;
+        }
     }
 }
 
 @include media-query(medium-down) {
     .js-enabled .ds_side-navigation {
         .#{$pl-prefix}side-navigation__list--root {
-            margin: 0 15px;
+            margin: 0 16px;
             max-height: 0;
             overflow: hidden;
             transition: max-height $transition-in-time, padding $transition-in-time;
         }
 
         #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__list--root {
-            padding-bottom: 7px;
-            padding-top: 7px;
+            padding-bottom: 8px;
+            padding-top: 8px;
         }
     }
 }
@@ -221,7 +230,7 @@ $side-nav__spacing-unit: 15px;
     .#{$pl-prefix}side-navigation {
         border-width: 0;
         font-size: $small-size;
-        line-height: 21px;
+        line-height: 24px;
 
         &__expand {
             display: none;

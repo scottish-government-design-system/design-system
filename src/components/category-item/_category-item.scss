@@ -7,8 +7,8 @@
 $category-item__border-colour--hover: $colour__link--hover !default;
 $category-item__link-colour: $colour__link !default;
 
-$border-width-size: 3px;
-$border-width-size--pinned: 21px;
+$border-width-size: 4px;
+$border-width-size--pinned: 24px;
 
 
 
@@ -17,7 +17,7 @@ $border-width-size--pinned: 21px;
 
     @include blocklink('.#{$pl-prefix}category-item__link');
 
-    padding: 10px 15px 11px;
+    padding: 12px 16px 12px;
     text-decoration: none;
     transition: background-color $transition-out-time, border-color $transition-out-time;
     width: 100%;
@@ -28,8 +28,8 @@ $border-width-size--pinned: 21px;
 
     &__title {
         font-size: $large-size;
-        line-height: 21px;
-        margin: 0 0 14px;
+        line-height: 24px;
+        margin: 0 0 16px;
     }
 
     .#{$pl-prefix}category-item__link::after {
@@ -62,7 +62,7 @@ $border-width-size--pinned: 21px;
     &__summary {
         font-size: $small-size;
         color: $colour__text--secondary;
-        line-height: 21px;
+        line-height: 24px;
         margin: 0;
     }
 
@@ -73,8 +73,8 @@ $border-width-size--pinned: 21px;
 
 .#{$pl-prefix}card {
     > .#{$pl-prefix}category-item {
-        padding-top: 21px;
-        padding-bottom: 21px;
+        padding-top: 24px;
+        padding-bottom: 24px;
         position: static;
     }
 
@@ -88,7 +88,7 @@ $border-width-size--pinned: 21px;
     }
 
     .#{$pl-prefix}category-item__link:hover::before {
-        top: calc(100% - 3px);
+        top: calc(100% - 4px);
     }
 
     .#{$pl-prefix}category-item__link::after {
@@ -99,20 +99,20 @@ $border-width-size--pinned: 21px;
 @include media-query(medium) {
     .#{$pl-prefix}category-item {
         &__title {
-            line-height: 28px;
+            line-height: 32px;
         }
     }
 
     .#{$pl-prefix}card {
         > .#{$pl-prefix}category-item {
-            min-height: 186px;
+            min-height: 192px;
         }
     }
 }
 
 // "Pinned" modifier styling
 .#{$pl-prefix}category-item--pinned {
-    padding-left: #{15px + $border-width-size--pinned - $border-width-size};
+    padding-left: #{16px + $border-width-size--pinned - $border-width-size};
 
     .#{$pl-prefix}category-item__link {
         &::before {
@@ -131,7 +131,7 @@ $border-width-size--pinned: 21px;
         position: absolute;
         width: 19px;
         height: 19px;
-        left: -2px;
+        left: 0px;
         top: 10px;
         z-index: 1;
 
@@ -157,7 +157,7 @@ $border-width-size--pinned: 21px;
         }
 
         .#{$pl-prefix}category-item__pinned-icon {
-            left: 1px;
+            left: 2px;
             top: 20px;
 
             @include media-query(medium) {

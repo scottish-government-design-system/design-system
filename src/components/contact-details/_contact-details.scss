@@ -10,22 +10,22 @@ $contact-details__border-colour: $colour__border--highlight;
 
 
 .ds_contact-details {
-    $social-icon-size: 21px;
-    $contact-details-line-gap: 21px;
+    $social-icon-size: 24px;
+    $contact-details-line-gap: 24px;
 
     &__title {
         display: inline-block;
-        padding-top: 7px;
+        padding-top: 8px;
         position: relative;
 
         &::after {
             background-color: $contact-details__border-colour;
-            bottom: 100%;
             content: '';
+            height: 4px;
             left: 0;
             position: absolute;
             right: 0;
-            top: -4px;
+            top: 0;
         }
     }
 
@@ -48,8 +48,8 @@ $contact-details__border-colour: $colour__border--highlight;
     }
 
     &__social-item {
-        margin-bottom: 7px;
-        padding-left: #{$social-icon-size + 10px};
+        margin-bottom: 8px;
+        padding-left: #{$social-icon-size + 8px};
         position: relative;
     }
 
@@ -65,7 +65,7 @@ $contact-details__border-colour: $colour__border--highlight;
 @include media-query(medium) {
     .ds_contact-details {
         &__social-icon {
-            top: 3px;
+            top: 4px;
         }
     }
 }

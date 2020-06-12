@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 // modifiable vars
-$site-search__height: 42px !default;
-$site-search__height--medium: 49px !default;
+$site-search__height: 40px !default;
+$site-search__height--medium: 48px !default;
 $site-search__background-colour: $colour__grey--light !default;
 
 
@@ -62,8 +62,8 @@ $site-search__background-colour: $colour__grey--light !default;
 @include media-query(medium-down) {
     .#{$pl-prefix}site-search--collapsible {
         position: absolute;
-        right: 15px;
-        left: calc(100% - 15px);
+        right: 16px;
+        left: calc(100% - 16px);
         transition: left $transition-in-time;
 
         .#{$pl-prefix}site-search__input[type="text"] {
@@ -75,11 +75,11 @@ $site-search__background-colour: $colour__grey--light !default;
     }
 
     .#{$pl-prefix}site-search--expanded {
-        left: 15px;
+        left: 16px;
 
         .#{$pl-prefix}site-search__input[type="text"] {
             opacity: 1;
-            padding: 0 $site-search__height 0 25px;
+            padding: 0 $site-search__height 0 24px;
         }
     }
 }

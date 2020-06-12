@@ -12,36 +12,33 @@ $category-header__summary-size: 1.25rem;
 
 
 .#{$pl-prefix}category-header {
-    margin-top: 14px;
-    margin-bottom: 28px;
+    margin-top: 16px;
+    margin-bottom: 32px;
 
     &__header {
         border-left: 4px solid $colour__border--highlight;
-        margin-bottom: 28px;
-        padding-left: 20px;
+        margin-bottom: 32px;
+        padding-left: 24px;
     }
 
-    /**
-     * [1] plus [2] gives a multiple of seven to maintain vertical rhythm
-     */
     &__title {
         color: $category-header__title-colour;
-        margin-bottom: 10px; /* [1] */
+        margin-bottom: 8px;
     }
 
     &__summary {
         font-size: $category-header__summary-size;
-        line-height: 28px;
+        line-height: 32px;
 
         > :last-child {
-            margin-bottom: 4px; /* [2] */
+            margin-bottom: 8px;
         }
     }
 
     &__media {
         display: block;
         margin: 0 auto;
-        max-height: 350px;
+        max-height: 360px;
         max-width: 320px;
     }
 }
@@ -67,7 +64,7 @@ $category-header__summary-size: 1.25rem;
         &__header {
             float: left;
             @include colwidth(8);
-            margin: 42px 0;
+            margin: 40px 0;
         }
 
         &__media-container {
@@ -76,7 +73,7 @@ $category-header__summary-size: 1.25rem;
         }
 
         &__summary {
-            line-height: 35px;
+            line-height: 32px;
         }
     }
 }
@@ -94,7 +91,7 @@ $category-header__summary-size: 1.25rem;
             &__header {
                 float: none;
                 grid-column: 1 / span 8;
-                margin: 42px 0;
+                margin: 40px 0;
             }
 
             &__media-container {

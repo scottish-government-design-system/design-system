@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$site-logo__height: 35px !default;
+$site-logo__height: 32px !default;
 $site-logo__height--medium: 56px !default;
 $branding__separator-colour: $colour__border--highlight !default;
 
@@ -29,7 +29,7 @@ $branding__separator-colour: $colour__border--highlight !default;
     }
 
     &__logo + &__title {
-        margin-top: 14px;
+        margin-top: 16px;
     }
 
     &__title {
@@ -57,7 +57,7 @@ $branding__separator-colour: $colour__border--highlight !default;
                 bottom: 0;
                 content: '';
                 position: absolute;
-                right: -27px;
+                right: -24px;
                 top: 0;
                 width: 2px;
 
@@ -79,7 +79,7 @@ $branding__separator-colour: $colour__border--highlight !default;
             /* centering items without display: grid */
             display: table;
             height: $site-logo__height--medium;
-            margin-left: 50px;
+            margin-left: 48px;
 
             > * {
                 display: table-cell;

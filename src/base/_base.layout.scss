@@ -251,6 +251,16 @@
                 'g g'
                 'f f';
         }
+
+        &--guide {
+            grid-template-areas:
+                'h h'
+                'p p'
+                'n n'
+                'c c'
+                's s'
+                'f f'
+        }
     }
 
     @include media-query(small) {
@@ -272,19 +282,22 @@
                     'g g g g g g'
                     'f f f f f f';
             }
+
+            &--guide {
+                grid-template-areas:
+                    'h h h h h h'
+                    'p p p p p p'
+                    'n n n n n n'
+                    'c c c c c c'
+                    's s s s s s'
+                    'f f f f f f'
+            }
         }
     }
 
     @include media-query(medium) {
         .#{$pl-prefix}layout {
             grid-template-columns: repeat(12, 1fr);
-
-            grid-template-areas:
-                'h h h h h h h h h h h h'
-                'p p p p p p p p p p p p'
-                's s s s s s s s s s s s'
-                'c c c c c c c c c c c c'
-                'f f f f f f f f . . . .';
 
             &--article {
                 grid-template-areas:
@@ -297,8 +310,9 @@
             &--guide {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
-                    's s s c c c c c c c c c'
-                    '. . . f f f f f f f f f';
+                    'n n n n n n n n . . . .'
+                    'c c c c c c c c s s s s'
+                    'f f f f f f f f . . . .'
             }
 
             &--category-list {
@@ -321,31 +335,10 @@
 
     @include media-query(large) {
         .#{$pl-prefix}layout {
-            grid-template-areas:
-                'h h h h h h h h p p p p'
-                'c c c c c c c c s s s s'
-                'f f f f f f f f . . . .';
-
             &--article {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
                     'c c c c c c c c s s s s'
-                    'f f f f f f f f . . . .';
-            }
-
-            &--guide {
-                grid-template-areas:
-                    'h h h h h h h h p p p p'
-                    's s s c c c c c c c . .'
-                    '. . . f f f f f f f . .';
-            }
-
-            &--category-list {
-                grid-template-areas:
-                    'h h h h h h h h h h h h'
-                    'c c c c c c c c c c c c'
-                    'l l l l l l l l . . . .'
-                    'g g g g g g g g g g g g'
                     'f f f f f f f f . . . .';
             }
 
