@@ -1,4 +1,4 @@
-$pl-prefix: 'ds_';
+$pl-prefix: 'ds_' !default;
 
 @import "accordion/accordion";
 @import "article-aside/article-aside";

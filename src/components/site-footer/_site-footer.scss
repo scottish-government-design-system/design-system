@@ -84,6 +84,20 @@ $site-footer__background: $colour__brand--primary !default;
                 top: 2px;
             }
         }
+
+        &__content {
+            @include layout();
+        }
+
+        &__copyright {
+            float: left;
+            @include colwidth(8);
+        }
+
+        &__org {
+            float: right;
+            @include colwidth(3);
+        }
     }
 
     @supports (display: grid) {

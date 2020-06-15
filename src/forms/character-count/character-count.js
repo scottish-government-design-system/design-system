@@ -30,8 +30,6 @@ class CharacterCount {
         }
         this.field.appendChild(this.messageElement);
 
-
-
         this.updateCountMessage();
 
         this.inputElement.addEventListener('keyup', this.checkIfChanged.bind(this));

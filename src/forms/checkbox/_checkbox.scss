@@ -5,30 +5,34 @@
 .#{$pl_prefix}checkbox {
     @include radiocheckboxstates();
 
-    /* checked */
-    &__input:checked + &__label::before {
-        background-color: $colour__text;
-    }
-
     /*
      * [1] for IE11 support, use image without clip path
      */
     &__label::after {
-        -webkit-mask-image: url(#{$iconsfile}#checkbox-40);
-        mask-image: url(#{$iconsfile}#checkbox-40);
         background-image: url(#{$iconsfile}#checkbox-40); /* [1] */
+    }
+}
 
-        @supports(display: grid) {
+@supports (-webkit-mask-image: url()) or (mask-image: url()) {
+    .#{$pl_prefix}checkbox {
+        &__label::after {
             background-color: $colour__white;
             background-image: none;
+            -webkit-mask-image: url(#{$iconsfile}#checkbox-40);
+            mask-image: url(#{$iconsfile}#checkbox-40);
         }
-    }
 
-    &__input:focus:checked + &__label::before {
-        background-color: $colour__link--focus__background;
-    }
+        /* checked */
+        &__input:checked + &__label::before {
+            background-color: $colour__text;
+        }
 
-    &__input:focus:checked + &__label::after {
-        background-color: $colour__link--focus;
+        &__input:focus:checked + &__label::before {
+            background-color: $colour__link--focus__background;
+        }
+
+        &__input:focus:checked + &__label::after {
+            background-color: $colour__link--focus;
+        }
     }
 }
