@@ -1,0 +1,21 @@
+/*------------------------------------*\
+    ARTICLE ASIDE
+\*------------------------------------*/
+
+
+
+
+.#{$pl_prefix}article-aside {
+    padding-top: 32px;
+    position: relative;
+
+    &::before {
+        background-color: $colour__brand--primary;
+        content: '';
+        height: 2px;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+}

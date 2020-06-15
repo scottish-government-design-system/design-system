@@ -211,7 +211,7 @@ $side-nav__spacing-unit: 16px;
 }
 
 @include media-query(medium-down) {
-    .js-enabled .ds_side-navigation {
+    .js-enabled .#{$pl-prefix}side-navigation {
         .#{$pl-prefix}side-navigation__list--root {
             margin: 0 16px;
             max-height: 0;

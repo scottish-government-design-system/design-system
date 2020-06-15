@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 /* [1] compensate for border */
-.ds_error-summary {
+.#{$pl-prefix}error-summary {
     border: 4px solid $colour__state--negative;
     padding: 20px 28px; /* [1] */
     @include block-margins;

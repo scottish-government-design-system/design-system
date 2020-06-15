@@ -9,7 +9,7 @@ $contact-details__border-colour: $colour__border--highlight;
 
 
 
-.ds_contact-details {
+.#{$pl-prefix}contact-details {
     $social-icon-size: 24px;
     $contact-details-line-gap: 24px;
 
@@ -63,7 +63,7 @@ $contact-details__border-colour: $colour__border--highlight;
 }
 
 @include media-query(medium) {
-    .ds_contact-details {
+    .#{$pl-prefix}contact-details {
         &__social-icon {
             top: 4px;
         }

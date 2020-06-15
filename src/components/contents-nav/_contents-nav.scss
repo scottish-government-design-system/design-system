@@ -6,7 +6,7 @@
 
 
 .#{$pl-prefix}contents-nav {
-    @include block-margins--bottom;
+    margin-bottom: 48px;
 
     &__title {
         font-size: 1em;
@@ -23,6 +23,7 @@
     }
 
     &__item {
+        margin-bottom: 0;
         position: relative;
 
         &::before {

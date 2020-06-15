@@ -59,6 +59,7 @@ class Accordion {
 
         // events
         itemButton.addEventListener('click', event => {
+            event.preventDefault();
             this.toggleAccordionItem(item);
         });
     }

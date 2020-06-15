@@ -25,7 +25,7 @@ $breakpoints: (
 
 $mobile-body-margin: 15px !default;
 
-$pl-prefix: 'ds_';
+$pl-prefix: 'ds_' !default;
 $iconsfile: '/assets/images/icons/icons.stack.svg';
 
 
@@ -79,6 +79,7 @@ $iconsfile: '/assets/images/icons/icons.stack.svg';
 @import "type/type.headings";
 @import "type/type.leader";
 @import "type/type.links";
+@import "type/type.lists";
 @import "type/type.small";
 
 
