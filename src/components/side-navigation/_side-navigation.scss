@@ -65,6 +65,7 @@ $side-nav__spacing-unit: 16px;
 
     &__expand-indicator {
         @include indicator();
+        top: 20px;
     }
 
     #show-side-navigation:focus ~ .#{$pl-prefix}side-navigation__expand {
@@ -113,10 +114,10 @@ $side-nav__spacing-unit: 16px;
                     color: $colour__grey--medium;
                     left: $side-nav__spacing-unit;
                     position: absolute;
-                    top: 18px;
+                    top: 17px;
                     z-index: 1;
 
-                    @include chevron(right, 12px, 2px);
+                    @include chevron(right, 12px);
                 }
 
                 &:focus::after,
@@ -126,8 +127,7 @@ $side-nav__spacing-unit: 16px;
             }
 
             &--expanded > .#{$pl-prefix}side-navigation__link::after {
-                @include chevron(down, 12px, 2px);
-                top: 15px;
+                @include chevron(down, 12px);
             }
         }
 

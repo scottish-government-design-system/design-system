@@ -44,8 +44,8 @@
         top: 0;
         z-index: 1;
 
-        @include chevron(down, 16px, 3px);
-        right: 19px;
+        @include chevron(down, 16px);
+        right: 16px;
         top: 16px;
     }
 }

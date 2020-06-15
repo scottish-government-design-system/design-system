@@ -86,7 +86,8 @@ h1,h2,h3 {
     }
 
     &__indicator {
-        @include indicator(20px);
+        @include indicator;
+        top: 18px;
     }
 
     &__body {
@@ -109,8 +110,7 @@ h1,h2,h3 {
 
     &__control:checked ~ &__header &__indicator,
     &__control:checked ~ &__header-button &__indicator  {
-        @include indicator--open(20px);
-        top: 24px;
+        @include indicator--open;
     }
 
     &__control:focus ~ &__header {
@@ -146,15 +146,6 @@ h1,h2,h3 {
 
 @include media-query(medium) {
     .#{$pl-prefix}accordion-item {
-        &__indicator {
-            top: 18px;
-        }
-
-        &__control:checked ~ &__header &__indicator,
-        &__control:checked ~ &__header-button &__indicator {
-            top: 24px;
-        }
-
         &__header,
         &__header-button,
         &__body {

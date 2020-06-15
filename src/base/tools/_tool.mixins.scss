@@ -36,30 +36,21 @@ $blocklink__outline-width: 0;
     }
 }
 
-@mixin chevron($orientation: down, $size: 1em, $width: 3px) {
-    $rotate: 0;
-    @if $orientation == up {
-        $rotate: -45deg;
-    } @else if $orientation == right {
-        $rotate: 45deg;
-    } @else if $orientation == down {
-        $rotate: 135deg;
-    } @else if $orientation == left {
-        $rotate: 225deg;
-    }
-
-    $linesize: #{$size * 1.414214 * 0.5};
-
-    border: $width solid currentColor;
-    border-width: $width $width 0 0;
-    content: "";
+@mixin chevron($orientation: down, $size: 1em) {
+    content: '';
     display: inline-block;
-    height: $linesize;
-    -webkit-transform: rotateX(0) rotateZ(#{$rotate});
-    -ms-transform: rotate(#{$rotate});
-    transform: rotateX(0) rotateZ(#{$rotate});
+    height: $size;
     transition: transform 0.2s, top 0.2s;
-    width: $linesize;
+    width: $size;
+
+    background-image: url(#{$iconsfile}#chevron-#{$orientation});
+
+    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+        background-color: currentColor;
+        background-image: none;
+        -webkit-mask-image: url(#{$iconsfile}#chevron-#{$orientation});
+        mask-image: url(#{$iconsfile}#chevron-#{$orientation});
+    }
 }
 
 /**
@@ -222,16 +213,13 @@ $blocklink__outline-width: 0;
  * Mixin to enforce consistent open/close icons,
  * mobile section nav, accordions, etc
  */
-@mixin indicator ($topOffset: 16px) {
-    @include chevron();
-
-    color: currentColor;
+@mixin indicator {
+    @include chevron(down);
+    // color: currentColor;
     right: 21px;
     position: absolute;
-    top: $topOffset;
 }
 
-@mixin indicator--open ($topOffset: 20px) {
-    @include chevron(up);
-    top: $topOffset;
+@mixin indicator--open {
+    transform: rotateZ(180deg);
 }

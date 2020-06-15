@@ -64,7 +64,7 @@ $page-nav__icon-size: 56px !default;
         &::after {
             color: $colour__white;
             position: absolute;
-            top: 24px;
+            top: 21px;
         }
     }
 
@@ -77,8 +77,8 @@ $page-nav__icon-size: 56px !default;
         }
 
         &::after {
-            @include chevron(left, 30px, 5px);
-            left: 24px;
+            @include chevron(left, 30px);
+            left: 15px;
         }
     }
 
@@ -93,8 +93,8 @@ $page-nav__icon-size: 56px !default;
         }
 
         &::after {
-            @include chevron(right, 30px, 5px);
-            right: 24px;
+            @include chevron(right, 30px);
+            right: 15px;
         }
     }
 }
