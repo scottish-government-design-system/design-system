@@ -13,6 +13,7 @@ $wrapper__width--xlarge: 1168px !default;
 .#{$pl-prefix}wrapper {
     margin: 0 auto;
     padding: 0 $wrapper__padding;
+    width: 100%;
 
     &--no-overflow {
         overflow: hidden;

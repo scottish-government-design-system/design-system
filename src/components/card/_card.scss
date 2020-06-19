@@ -21,6 +21,7 @@
 
     &__media {
         background-color: $colour__text;
+        height: 0;
         margin-bottom: 0;
         overflow: hidden;
         padding-bottom: calc(900%/16);

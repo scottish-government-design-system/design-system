@@ -41,8 +41,11 @@
 
     margin-bottom: 91px;
 
-    &__content img {
-        max-width: 100%;
+    &__content,
+    &__partner {
+        img {
+            max-width: 100%;
+        }
     }
 }
 
@@ -237,6 +240,7 @@
 
         &__partner {
             grid-area: $grid-area-partner;
+            align-self: start;
         }
 
         &__sidebar {

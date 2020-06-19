@@ -14,9 +14,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     color: $colour__white;
     margin-bottom: 1px;
 
+    /* [1] compensate for bottom margin on parent */
     &__content {
         justify-content: space-between;
-        padding: 16px 0;
+        padding: 16px 0 15px; /* [1] */
         position: relative;
 
         &--has-close {
