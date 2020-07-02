@@ -57,8 +57,8 @@ $blocklink__outline-width: 0;
  * Mixin to enforce consistency on block-style links, e.g. search results,
  * category items, etc
  */
-@mixin blocklink ($link-selector: null) {
-    display: block;
+@mixin blocklink ($link-selector: null, $display: block) {
+    display: $display;
     position: relative;
     transition: background-color $transition-out-time, outline-color $transition-out-time;
     z-index: 1;
@@ -207,6 +207,10 @@ $blocklink__outline-width: 0;
 
 @mixin block-margins--bottom {
     margin-bottom: 32px;
+}
+
+@mixin box-shadow {
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 /**
