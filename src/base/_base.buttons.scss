@@ -17,6 +17,7 @@ input[type="submit"],
 .#{$pl-prefix}button {
     background: $colour__button__background;
     border: 0;
+    border-radius: 0;
     color: $colour__button;
     cursor: pointer;
     display: inline-block;

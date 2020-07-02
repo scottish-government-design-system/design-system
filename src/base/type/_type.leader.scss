@@ -4,7 +4,7 @@
 
 .#{$pl-prefix}leader {
     font-size: $large-size;
-    font-weight: $lighter;
+    font-weight: $light;
     line-height: 32px;
     margin-bottom: 32px;
 
@@ -16,7 +16,7 @@
 
         > p:first-child {
             font-size: $large-size;
-            font-weight: $lighter;
+            font-weight: $light;
             margin-bottom: 32px;
         }
     }

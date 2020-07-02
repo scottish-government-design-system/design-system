@@ -10,155 +10,171 @@ $table-row-hover-colour: $colour__grey--lighter !default;
 
 
 
-table {
+.#{$pl-prefix}table {
     border: 1px solid $table-border-colour;
     table-layout: fixed;
     width: 100%;
-}
-
-th {
-    background-color: $table-header-background-colour;
-    font-weight: bold;
-    position: relative;
-    text-align: left;
-}
-
-th,
-td {
-    vertical-align: top;
-}
-
-th[colspan] {
-    border: 1px solid $table-border-colour;
-}
-
-th:not(:first-child)::before {
-    border-left: 1px solid $table-border-colour;
-    bottom: 8px;
-    content: '';
-    left: -1px;
-    position: absolute;
-    top: 8px;
-}
-
-tr> * {
-    padding: 8px 16px 8px 8px;
-}
-
-tr:hover {
-    background-color: $table-row-hover-colour;
-}
-
-tr {
-    border-bottom: 1px solid $table-border-colour--light;
-}
-
-tr:last-child {
-    border-bottom-color: $table-border-colour;
-}
-
-thead > tr:last-child {
-    border-bottom-width: 0;
-}
 
 
-[data-smallscreen="scrolling"] tr > :first-child {
-    background: $colour__white;
-    border-right: 1px solid $table-border-colour--light;
-    left: 0;
-    position: sticky;
-    z-index: 1;
-}
-
-[data-smallscreen="scrolling"] tr > :first-child::after {
-    background: #ccc;
-    content: '';
-    height: 100%;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 1px;
-}
-
-[data-smallscreen="scrolling"] tr > th:first-child {
-    background: $table-header-background-colour;
-}
-
-[data-smallscreen="scrolling"] tr > td:first-child {
-    background: $colour__white;
-    border-right: 1px solid $table-header-background-colour;
-}
-
-
-
-
-@media only screen and (max-width: 768px) {
-    .js-enabled {
-        [data-smallscreen="boxes"] thead {
-            clip: rect(1px 1px 1px 1px);
-            clip: rect(1px, 1px, 1px, 1px);
-            height: 1px;
-            width: 1px;
-            overflow: hidden;
-            position: absolute !important;
-        }
-
-        [data-smallscreen="boxes"] {
-            border: 0;
-        }
-
-        [data-smallscreen="boxes"] tr {
-            border: 0;
-            display: block;
-            margin-bottom: 16px;
-        }
-
-        [data-smallscreen="boxes"] tr:hover {
-            background-color: transparent;
-        }
-
-        [data-smallscreen="boxes"] tr> * {
-            display: block;
-            overflow: auto;
-        }
-
-        [data-smallscreen="boxes"] tr> * {
-            border: 1px solid $table-border-colour;
-        }
-
-        [data-smallscreen="boxes"] tr> td:not(:last-child) {
-            border-bottom-color: $table-border-colour--light;
-        }
-
-        [data-smallscreen="boxes"] tr> th:last-child {
-            border-width: 0;
-            margin-top: 32px;
-        }
-
-        [data-smallscreen="boxes"] tr> td:not(:first-child) {
-            border-top-width: 0;
-        }
-
-        [data-smallscreen="boxes"] tr> td::before {
-            content: attr(data-heading);
-            display: block;
-            float: left;
-            font-weight: bold;
-            margin-right: 16px;
-            text-align: left;
-            width: calc(50% - 16px);
-        }
-
-        [data-smallscreen="boxes"] tr> td:first-child {
-            box-shadow: inset 0 4px 0 $table-border-colour--light;
-            padding-top: 11px
-        }
+    th {
+        background-color: $table-header-background-colour;
+        font-weight: bold;
+        position: relative;
+        text-align: left;
     }
 
-    [data-smallscreen="scrolling"] {
-        display: block;
-        max-width: 100%;
-        overflow-x: auto;
+    th,
+    td {
+        vertical-align: top;
+    }
 
+    th[colspan] {
+        border: 1px solid $table-border-colour;
+    }
+
+    th:not(:first-child)::before {
+        border-left: 1px solid $table-border-colour;
+        bottom: 8px;
+        content: '';
+        left: -1px;
+        position: absolute;
+        top: 8px;
+    }
+
+    tr > * {
+        padding: 8px 16px 8px 8px;
+    }
+
+    tr:hover {
+        background-color: $table-row-hover-colour;
+    }
+
+    tr {
+        border-bottom: 1px solid $table-border-colour--light;
+    }
+
+    tr:last-child {
+        border-bottom-color: $table-border-colour;
+    }
+
+    thead > tr:last-child {
+        border-bottom-width: 0;
+    }
+
+
+    &[data-smallscreen="scrolling"] tr > :first-child {
+        background: $colour__white;
+        border-right: 1px solid $table-border-colour--light;
+        left: 0;
+        position: sticky;
+        z-index: 1;
+    }
+
+    &[data-smallscreen="scrolling"] tr > :first-child::after {
+        background: #ccc;
+        content: '';
+        height: 100%;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 1px;
+    }
+
+    &[data-smallscreen="scrolling"] tr > th:first-child {
+        background: $table-header-background-colour;
+    }
+
+    &[data-smallscreen="scrolling"] tr > td:first-child {
+        background: $colour__white;
+        border-right: 1px solid $table-header-background-colour;
+    }
+
+    caption {
+        font-size: 16px;
+        font-weight: $bold;
+        line-height: 21px;
+        margin-bottom: 14px;
+        text-align: left;
+
+        @include media-query(medium) {
+            font-size: 19px;
+            line-height: 28px;
+        }
+    }
+}
+
+@include media-query(medium-down) {
+    .js-enabled {
+        .#{$pl-prefix}table {
+            &[data-smallscreen="boxes"] thead {
+                clip: rect(1px 1px 1px 1px);
+                clip: rect(1px, 1px, 1px, 1px);
+                height: 1px;
+                width: 1px;
+                overflow: hidden;
+                position: absolute !important;
+            }
+
+            &[data-smallscreen="boxes"] {
+                border: 0;
+            }
+
+            &[data-smallscreen="boxes"] tr {
+                border: 0;
+                display: block;
+                margin-bottom: 16px;
+            }
+
+            &[data-smallscreen="boxes"] tr:hover {
+                background-color: transparent;
+            }
+
+            &[data-smallscreen="boxes"] tr> * {
+                display: block;
+                overflow: auto;
+                padding-left: calc(50% - 8px);
+                position: relative;
+            }
+
+            &[data-smallscreen="boxes"] tr> * {
+                border: 1px solid $table-border-colour;
+            }
+
+            &[data-smallscreen="boxes"] tr> td:not(:last-child) {
+                border-bottom-color: $table-border-colour--light;
+            }
+
+            &[data-smallscreen="boxes"] tr> th:last-child {
+                border-width: 0;
+                margin-top: 32px;
+            }
+
+            &[data-smallscreen="boxes"] tr> td:not(:first-child) {
+                border-top-width: 0;
+            }
+
+            &[data-smallscreen="boxes"] tr> td::before {
+                content: attr(data-heading);
+                display: block;
+                position: absolute;
+                font-weight: bold;
+                left: 0;
+                margin-left: 16px;
+                margin-right: 16px;
+                text-align: left;
+                width: calc(50% - 16px);
+            }
+
+            &[data-smallscreen="boxes"] tr> td:first-child {
+                box-shadow: inset 0 4px 0 $table-border-colour--light;
+                padding-top: 11px
+            }
+
+            &[data-smallscreen="scrolling"] {
+                display: block;
+                max-width: 100%;
+                overflow-x: auto;
+            }
+        }
     }
 }
