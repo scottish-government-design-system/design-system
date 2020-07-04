@@ -1,0 +1,112 @@
+/*------------------------------------*\
+    DATE PICKER
+\*------------------------------------*/
+
+
+
+
+.#{$pl-prefix}datepicker {
+    position: relative;
+
+    &__dialog {
+        background-color: $colour__white;
+        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+        display: none;
+        padding: 8px;
+        outline: 1px solid $colour__border;
+        outline-offset: -1px;
+        position: absolute;
+        top: 0;
+        transition: background-color 0.2s, outline-color 0.2s;
+        width: 296px;
+        z-index: 2;
+
+        &__header {
+            text-align: center;
+
+            > :nth-child(1) {
+                position: absolute;
+                left: 8px;
+                top: 8px;
+            }
+
+            > :nth-child(3) {
+                position: absolute;
+                right: 8px;
+                top: 8px;
+            }
+        }
+
+        &__title {
+            font-size: $small-size;
+            margin: 0 !important;
+            text-transform: uppercase;
+        }
+
+        &__navbuttons {
+            button {
+                background-color: transparent;
+                color: $colour__text !important;
+                font-weight: $normal;
+                height: 40px;
+                margin: 0;
+                width:  32px;
+
+                @include blocklink(null, inline-block);
+            }
+        }
+
+        &__table {
+            td {
+                border: 0;
+                margin: 0;
+                outline: 0;
+                padding: 0;
+            }
+
+            th {
+                color: $colour__text--secondary;
+                font-size: $small-size;
+                font-weight: $normal;
+            }
+
+            button {
+                background-color: transparent;
+                color: $colour__text;
+                font-weight: $normal;
+                height: 40px;
+                margin: 0;
+                padding: 0;
+                width: 40px;
+
+                @include blocklink;
+
+                &[disabled="true"] {
+                    background-color: $colour__link--disabled__background;
+                    color: $colour__link--disabled;
+                }
+
+                &.#{$pl-prefix}current:not(:focus) {
+                    background: $colour__brand--primary;
+                    color: $colour__white;
+                }
+            }
+        }
+
+        &__buttongroup {
+            @include layout(8px);
+
+            // non-grid
+            button {
+                @include colwidth(1,2,8px);
+                display: block;
+                float: left;
+                margin: 0;
+            }
+
+            @supports (display: grid) {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+}
