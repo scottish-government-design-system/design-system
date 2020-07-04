@@ -3,13 +3,14 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}card {
-    background-color: #ffffff;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    background-color: $colour__white;
     display: block;
     padding: 0;
     position: relative;
     transition: background-color 0.2s, outline-color 0.2s;
     z-index: 1;
+
+    @include box-shadow;
 
     > :last-child {
         margin-bottom: 0;

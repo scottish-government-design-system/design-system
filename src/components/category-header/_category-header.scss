@@ -5,9 +5,6 @@
 // modifiable vars
 $category-header__title-colour: $colour__text !default;
 
-// fixed vars
-$category-header__summary-size: 1.25rem;
-
 
 
 
@@ -16,9 +13,7 @@ $category-header__summary-size: 1.25rem;
     margin-bottom: 32px;
 
     &__header {
-        border-left: 4px solid $colour__border--highlight;
         margin-bottom: 32px;
-        padding-left: 24px;
     }
 
     &__title {
@@ -27,7 +22,6 @@ $category-header__summary-size: 1.25rem;
     }
 
     &__summary {
-        font-size: $category-header__summary-size;
         line-height: 32px;
 
         > :last-child {

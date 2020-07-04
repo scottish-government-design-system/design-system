@@ -22,7 +22,7 @@ $site-header__top-band-colour: $colour__brand--primary;
         background: $site-header__top-band-colour;
         display: block;
         content: '';
-        height: 8px;
+        height: 4px;
     }
 
     &__top {
@@ -31,7 +31,7 @@ $site-header__top-band-colour: $colour__brand--primary;
 
     &__content {
         overflow: hidden;
-        padding: 16px 0;
+        padding: 8px 0;
         transition: min-height $transition-in-time;
 
         @supports(display: grid) {
@@ -118,11 +118,6 @@ $site-header__top-band-colour: $colour__brand--primary;
 }
 
 @include media-query(medium) {
-    .#{$pl-prefix}site-header__content {
-        padding-bottom: 16px;
-        padding-top: 16px;
-    }
-
     .#{$pl-prefix}site-header__controls {
         display: none;
     }

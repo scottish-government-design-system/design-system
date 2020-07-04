@@ -15,7 +15,7 @@ class SideNavigation {
         // transform markup to button-driven version
         const navControl = this.sideNavigation.querySelector('.js-toggle-side-navigation');
         const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand');
-        const navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
+        this.navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
         const idString = parseInt(Math.random() * 1000000, 10);
 
         navControl.checked = false;
@@ -26,27 +26,23 @@ class SideNavigation {
         navButton.innerHTML = navLabel.innerHTML;
         navButton.setAttribute('aria-expanded', false);
 
-        navList.id = navList.id || `side-navigation-${parseInt(Math.random() * 1e8, 10)}`;
-        navButton.setAttribute('aria-controls', navList.id);
+        this.navList.id = this.navList.id || `side-navigation-${parseInt(Math.random() * 1e8, 10)}`;
+        navButton.setAttribute('aria-controls', this.navList.id);
 
         navLabel.parentNode.removeChild(navLabel);
-        this.sideNavigation.insertBefore(navButton, navList);
+        this.sideNavigation.insertBefore(navButton, this.navList);
 
-        navList.id = navList.id || `side-navigation-${idString}`;
-        navButton.setAttribute('aria-controls', navList.id);
+        this.navList.id = this.navList.id || `side-navigation-${idString}`;
+        navButton.setAttribute('aria-controls', this.navList.id);
 
         // events
         navButton.addEventListener('click', () => {
             const isOpen = navControl.checked;
 
             if (!isOpen) {
-                navList.style.display = 'block';
-                navList.style.maxHeight = navList.scrollHeight + 14 +  'px';
+                this.openSideNav();
             } else {
-                navList.style.maxHeight = 0;
-                window.setTimeout(function () {
-                    navList.style.display = 'none';
-                }, 200);
+                this.closeSideNav();
             }
 
             navButton.setAttribute('aria-expanded', !isOpen);
@@ -63,6 +59,18 @@ class SideNavigation {
                 sideNavigationExpand.classList.remove('ds_side-navigation__expand--shadow');
             }
         });
+    }
+
+    openSideNav() {
+        this.navList.style.display = 'block';
+        this.navList.style.maxHeight = this.navList.scrollHeight + 14 +  'px';
+    }
+
+    closeSideNav() {
+        this.navList.style.maxHeight = 0;
+        window.setTimeout(function () {
+            this.navList.style.display = 'none';
+        }, 200);
     }
 }
 

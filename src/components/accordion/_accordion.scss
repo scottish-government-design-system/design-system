@@ -78,6 +78,7 @@ h1,h2,h3 {
     }
 
     &__label {
+        cursor: pointer;
         position: absolute;
         top: 0;
         left: 0;
@@ -103,7 +104,7 @@ h1,h2,h3 {
         display: block;
     }
 
-    &__control:checked:not(:active):not(:focus) ~ &__header {
+    &__control:checked ~ &__header {
         background-color: $colour__link--current__background;
         color: $colour__link--current;
     }
@@ -113,7 +114,8 @@ h1,h2,h3 {
         @include indicator--open;
     }
 
-    &__control:focus ~ &__header {
+    &__control:focus ~ &__header,
+    &__control:focus:hover ~ &__header {
         background: $colour__blocklink-bg--focus;
         box-shadow: 0 $link__border-width $colour__link--focus;
         color: $colour__link--focus;
@@ -150,6 +152,10 @@ h1,h2,h3 {
         &__header-button,
         &__body {
             padding-right: 100px;
+        }
+
+        &__indicator {
+            top: 22px;
         }
     }
 }

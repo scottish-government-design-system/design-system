@@ -4,7 +4,7 @@
 
 // modifiable vars
 $site-logo__height: 32px !default;
-$site-logo__height--medium: 56px !default;
+$site-logo__height--medium: 40px !default;
 $branding__separator-colour: $colour__border--highlight !default;
 
 
@@ -39,6 +39,8 @@ $branding__separator-colour: $colour__border--highlight !default;
 
 @include media-query (medium) {
     .#{$pl-prefix}site-branding {
+        padding: 8px 0;
+
         &__link {
             margin-bottom: 0;
         }

@@ -4,7 +4,7 @@
 
 .#{$pl-prefix}inset-text {
     border-left: 8px solid $colour__border;
-    padding: 32px 16px;
+    padding: 16px;
 
     @include block-margins;
 }
