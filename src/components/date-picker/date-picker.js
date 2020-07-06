@@ -2,6 +2,10 @@
 
 class DSDatePicker {
     constructor(el, options = {}) {
+        if (!el) {
+            return;
+        }
+
         this.datePickerParent = el;
         this.inputElement = this.datePickerParent.querySelector('input');
 
@@ -35,6 +39,10 @@ class DSDatePicker {
     }
 
     init() {
+        if (!this.inputElement) {
+            return;
+        }
+
         // insert calendar button
         const calendarButtonTempContainer = document.createElement('div');
         calendarButtonTempContainer.innerHTML = this.buttonTemplate();
@@ -328,8 +336,14 @@ class DSDatePicker {
         this.dialogElement.classList.add('ds_datepicker__dialog--open');
 
         // position the dialog
+        this.dialogElement.style.top = 0;
         this.dialogElement.style.left = `${this.inputElement.offsetWidth + 16}px`;
-        // this.dialogElement.style.top = `${this.inputElement.offsetParent.offsetTop}px`;
+        const dialogBoundingRect = this.dialogElement.getBoundingClientRect();
+
+        // don't let the dialog extend below the bottom of the viewport
+        if (dialogBoundingRect.bottom > (window.innerHeight || document.documentElement.clientHeight)) {
+            this.dialogElement.style.top = window.innerHeight - (this.dialogElement.offsetParent.offsetTop + dialogBoundingRect.height) + window.scrollY - 8 + 'px';
+        }
 
         // get the date from the input element
         if (this.inputElement.value.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {

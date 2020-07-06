@@ -68,7 +68,7 @@ h1,h2,h3 {
         }
     }
 
-    &--open &__header-button:not(:focus):not(:active) {
+    &--open &__header-button:not(:focus):not(:hover):not(:active) {
         background-color: $colour__link--current__background;
         color: $colour__link--current;
     }
@@ -155,7 +155,7 @@ h1,h2,h3 {
         }
 
         &__indicator {
-            top: 22px;
+            top: 17px;
         }
     }
 }
