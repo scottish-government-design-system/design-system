@@ -15,8 +15,9 @@ class SideNavigation {
         // transform markup to button-driven version
         const navControl = this.sideNavigation.querySelector('.js-toggle-side-navigation');
         const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand');
-        this.navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
         const idString = parseInt(Math.random() * 1000000, 10);
+        this.navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
+        this.navList.id = this.navList.id || `side-navigation-${idString}`;
 
         navControl.checked = false;
 
@@ -25,14 +26,11 @@ class SideNavigation {
         navButton.setAttribute('aria-expanded', false);
         navButton.innerHTML = navLabel.innerHTML;
         navButton.setAttribute('aria-expanded', false);
-
-        this.navList.id = this.navList.id || `side-navigation-${parseInt(Math.random() * 1e8, 10)}`;
         navButton.setAttribute('aria-controls', this.navList.id);
 
         navLabel.parentNode.removeChild(navLabel);
         this.sideNavigation.insertBefore(navButton, this.navList);
 
-        this.navList.id = this.navList.id || `side-navigation-${idString}`;
         navButton.setAttribute('aria-controls', this.navList.id);
 
         // events
@@ -68,7 +66,7 @@ class SideNavigation {
 
     closeSideNav() {
         this.navList.style.maxHeight = 0;
-        window.setTimeout(function () {
+        window.setTimeout(() => {
             this.navList.style.display = 'none';
         }, 200);
     }

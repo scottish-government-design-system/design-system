@@ -8,7 +8,7 @@ describe('accordion', () => {
     beforeEach(() => {
         loadFixtures('components/accordion/accordion.html');
 
-        testObj.accordionElement = document.querySelector('[data-module="ds-accordion"]');
+        testObj.accordionElement = document.querySelector('#withopenall');
         testObj.accordionModule = new Accordion(testObj.accordionElement);
     });
 
@@ -17,6 +17,14 @@ describe('accordion', () => {
         expect(testObj.accordionElement.classList.contains('js-initialised')).toBe(false);
         testObj.accordionModule.init();
         expect(testObj.accordionElement.classList.contains('js-initialised')).toBe(true);
+    });
+
+    it('should abandon attemts to call init() after it has been init-ed', () => {
+        testObj.accordionModule.init();
+
+        spyOn(testObj.accordionModule.accordion.classList, 'add');
+        testObj.accordionModule.init();
+        expect(testObj.accordionModule.accordion.classList.add).not.toHaveBeenCalled();
     });
 
     describe('accordion items', () => {
@@ -115,5 +123,32 @@ describe('accordion', () => {
                 expect(accordionItem.classList.contains('ds_accordion-item--open')).toEqual(false);
             }
         });
+    });
+});
+
+describe('accordion without "open all" button', function () {
+    beforeEach(() => {
+        loadFixtures('components/accordion/accordion.html');
+
+        testObj.accordionElement = document.querySelector('#withoutopenall');
+        testObj.accordionModule = new Accordion(testObj.accordionElement);
+    });
+
+    it('should not attempt to init the open all button', () => {
+        spyOn(testObj.accordionModule, 'initOpenAll');
+        testObj.accordionModule.init();
+
+        expect(testObj.accordionModule.initOpenAll).not.toHaveBeenCalled();
+    });
+
+    it('should not attempt to update the open all button when panels are toggled', () => {
+        spyOn(testObj.accordionModule, 'setOpenAllButton');
+        testObj.accordionModule.init();
+
+        const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
+
+        testObj.accordionModule.toggleAccordionItem(firstAccordionItem);
+
+        expect(testObj.accordionModule.setOpenAllButton).not.toHaveBeenCalled();
     });
 });

@@ -67,15 +67,15 @@ class DSDatePicker {
         this.dialogTitleNode = this.dialogElement.querySelector('.js-datepicker-month-year');
 
         if (this.inputElement.dataset.mindate) {
-            this.minDate = this.formattedDate(this.inputElement.dataset.mindate);
-            if (this.currentDate < this.minDate) {
+            this.minDate = this.dateFromString(this.inputElement.dataset.mindate);
+            if (this.minDate && this.currentDate < this.minDate) {
                 this.currentDate = this.minDate;
             }
         }
 
         if (this.inputElement.dataset.maxdate) {
-            this.maxDate = this.formattedDate(this.inputElement.dataset.maxdate);
-            if (this.currentDate > this.maxDate) {
+            this.maxDate = this.dateFromString(this.inputElement.dataset.maxdate);
+            if (this.maxDate && this.currentDate > this.maxDate) {
                 this.currentDate = this.maxDate;
             }
         }
@@ -129,7 +129,7 @@ class DSDatePicker {
     }
 
     buttonTemplate() {
-        return `<button class="ds_button  ds_button--icon-only">
+        return `<button class="ds_button  ds_button--icon-only  js-calendar-button">
             <span class="visually-hidden">Choose date</span>
             <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#calendar"></use></svg>
         </button>`;
@@ -164,7 +164,7 @@ class DSDatePicker {
         </div>
       </div>
 
-      <table id="myDatepickerGrid" class="ds_datepicker__dialog__table" role="grid" aria-labelledby="id-dialog-label">
+      <table class="ds_datepicker__dialog__table  js-datepicker-grid" role="grid" aria-labelledby="${titleId}">
       <thead>
           <tr>
           <th scope="col" abbr="Sunday">Su</th>
@@ -194,15 +194,14 @@ class DSDatePicker {
         this.inputElement.dataset.maxdate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
     }
 
-    formattedDate(dateString) {
-        let date = '';
+    dateFromString(dateString) {
+        let date = null;
         const parts = dateString.split('/');
-        const format = this.inputElement.dataset.dateformat;
 
-        if (dateString.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
-            switch (format) {
+        if (dateString.match(/\d{1,4}\/\d{1,2}\/\d{1,4}/)) {
+            switch (this.inputElement.dataset.dateformat) {
                 case 'YMD':
-                    date = new Date(`${parts[2]}/${parts[1]}/${parts[0]}`);
+                    date = new Date(`${parts[1]}/${parts[2]}/${parts[0]}`);
                     break;
                 case 'MDY':
                     date = new Date(`${parts[0]}/${parts[1]}/${parts[2]}`);
@@ -278,7 +277,7 @@ class DSDatePicker {
         }
     }
 
-    setCurrentDate(focus = true) {
+    setCurrentDate() {
         const currentDate = this.currentDate;
 
         this.calendarDays.forEach((calendarDay) => {
@@ -288,9 +287,7 @@ class DSDatePicker {
 
             if (calendarDayDate.getTime() === currentDate.getTime() && !calendarDay.disabled) {
                 calendarDay.button.setAttribute('tabindex', 0);
-                if (focus) {
-                    calendarDay.button.focus();
-                }
+                calendarDay.button.focus();
             }
 
             if (this.inputDate && calendarDayDate.getTime() === this.inputDate.getTime()) {
@@ -314,6 +311,20 @@ class DSDatePicker {
 
         this.calendarButtonElement.querySelector('span').innerText = `Choose date. Selected date is ${this.formattedDateHuman(date)}`;
         this.inputElement.value = `${leadingZeroes(date.getDate())}/${leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
+
+        switch (this.inputElement.dataset.dateformat) {
+            case 'YMD':
+                this.inputElement.value = `${date.getFullYear()}/${leadingZeroes(date.getMonth() + 1)}/${leadingZeroes(date.getDate())}`;
+                break;
+            case 'MDY':
+                this.inputElement.value = `${leadingZeroes(date.getMonth() + 1)}/${leadingZeroes(date.getDate())}/${date.getFullYear()}`;
+                break;
+            case 'DMY':
+            default:
+                this.inputElement.value = `${leadingZeroes(date.getDate())}/${leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
+                break;
+        }
+
         this.closeDialog();
     }
 
@@ -340,7 +351,7 @@ class DSDatePicker {
 
         // get the date from the input element
         if (this.inputElement.value.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
-            this.inputDate = this.formattedDate(this.inputElement.value);
+            this.inputDate = this.dateFromString(this.inputElement.value);
             this.currentDate = this.inputDate;
         }
 
@@ -354,7 +365,7 @@ class DSDatePicker {
         this.calendarButtonElement.focus();
     }
 
-    goToDate(date, focus = true) {
+    goToDate(date) {
         if (this.minDate && this.minDate > date) {
             date = this.minDate;
         }
@@ -366,7 +377,7 @@ class DSDatePicker {
         const current = this.currentDate;
         this.currentDate = date;
 
-        if (current.getMonth !== this.currentDate.getMonth() || current.getFullYear() !== this.currentDate.getFullYear) {
+        if (current.getMonth() !== this.currentDate.getMonth() || current.getFullYear() !== this.currentDate.getFullYear()) {
             this.updateCalendar();
         }
 
@@ -374,71 +385,71 @@ class DSDatePicker {
     }
 
     // day navigation
-    focusNextDay (focus = true) {
+    focusNextDay () {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() + 1);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
-    focusPreviousDay (focus = true) {
+    focusPreviousDay () {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() - 1);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
     // week navigation
-    focusNextWeek (focus = true) {
+    focusNextWeek () {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() + 7);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
-    focusPreviousWeek (focus = true) {
+    focusPreviousWeek () {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() - 7);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
-    focusFirstDayOfWeek (focus = true) {
+    focusFirstDayOfWeek () {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() - date.getDay());
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
-    focusLastDayOfWeek (focus = true) {
+    focusLastDayOfWeek () {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() - date.getDay() + 6);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
     // month navigation
-    focusNextMonth(event, focus = true) {
+    focusNextMonth(event) {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setMonth(date.getMonth() + 1);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
-    focusPreviousMonth (event, focus = true) {
+    focusPreviousMonth (event) {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setMonth(date.getMonth() - 1);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
     // year navigation
-    focusNextYear (event, focus = true) {
+    focusNextYear (event) {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setFullYear(date.getFullYear() + 1);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 
-    focusPreviousYear (event, focus = true) {
+    focusPreviousYear (event) {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setFullYear(date.getFullYear() - 1);
-        this.goToDate(date, focus);
+        this.goToDate(date);
     }
 }
 
@@ -458,7 +469,7 @@ class DSCalendarDay {
         this.button.addEventListener('click', this.click.bind(this));
     }
 
-    update(day, disabled = false, hidden = false) {
+    update(day, hidden, disabled) {
         this.button.innerHTML = day.getDate();
         this.date = new Date(day);
 

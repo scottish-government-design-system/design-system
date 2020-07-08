@@ -19,7 +19,7 @@ describe('side navigation', () => {
 
     describe('with side navigation', () => {
         beforeEach(() => {
-            testObj.sideNavigationElement = document.querySelector('[data-module="ds-side-navigation"]');
+            testObj.sideNavigationElement = document.querySelector('#withlistid');
             testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
         });
 
@@ -41,7 +41,9 @@ describe('side navigation', () => {
             expect(sideNavButton.getAttribute('aria-expanded')).toEqual('true');
         });
 
-        it ('should toggle display of the side navigation on click of the label', () => {
+        it('should toggle display of the side navigation on click of the label', () => {
+            jasmine.clock().install();
+
             testObj.sideNavigationModule.init();
 
             const label = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
@@ -56,6 +58,10 @@ describe('side navigation', () => {
             label.dispatchEvent(event);
             expect(parseInt(list.style.maxHeight, 10)).toEqual(0);
 
+            jasmine.clock().tick(200);
+            expect(testObj.sideNavigationModule.navList.style.display).toEqual('none');
+
+            jasmine.clock().uninstall();
         });
 
         it ('should toggle a class on the navigation if the navigation button is sticky', function () {
@@ -66,8 +72,19 @@ describe('side navigation', () => {
             expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(false);
 
             // todo: some way of influencing top offset
-            //window.dispatchEvent(event);
-            //expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(true);
+            window.dispatchEvent(event);
+            // expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(true);
         });
+    });
+
+    it('should assign an ID to the navigation list if one wasn\'t already in the markup', () => {
+        testObj.sideNavigationElement = document.querySelector('#withoutlistid');
+        testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
+
+        const listElement = testObj.sideNavigationElement.querySelector('.ds_side-navigation__list')
+
+        expect(listElement.id).toEqual('');
+        testObj.sideNavigationModule.init();
+        expect(listElement.id).not.toEqual('');
     });
 });
