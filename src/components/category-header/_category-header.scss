@@ -18,6 +18,7 @@ $category-header__title-colour: $colour__text !default;
 
     &__title {
         color: $category-header__title-colour;
+        font-weight: $light;
         margin-bottom: 8px;
     }
 
