@@ -67,4 +67,20 @@ describe('site navigation', () => {
             });
         });
     });
+
+    describe('with offset element', () => {
+        it('should place the menu below a specified offset element', () => {
+            testObj.siteNavigationElement = document.querySelector('[data-module="ds-mobile-navigation-menu"]');
+            testObj.siteNavigationElement.dataset.offsetselector = '#offsetelement';
+
+            testObj.siteNavigationModule = new MobileMenu(testObj.siteNavigationElement);
+
+            testObj.siteNavigationModule.init();
+
+            testObj.siteNavigationModule.openMenu();
+
+            expect(testObj.siteNavigationModule.menuElement.style.top).toEqual(document.querySelector('#offsetelement').style.height);
+        });
+
+    });
 });

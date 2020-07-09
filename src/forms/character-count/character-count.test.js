@@ -208,5 +208,17 @@ describe('character count', () => {
 
             expect(countElement.innerText).toEqual('You have 9 characters remaining');
         });
+
+        it('should only update the mesage if the value has changed', () => {
+            const inputElement = testObj.characterCountModule.inputElement;
+            testObj.characterCountModule.init();
+            spyOn(testObj.characterCountModule, 'updateCountMessage');
+            inputElement.oldValue = '123456';
+            inputElement.value = '123456';
+            const event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            expect(testObj.characterCountModule.updateCountMessage).not.toHaveBeenCalled();
+        });
     });
 });

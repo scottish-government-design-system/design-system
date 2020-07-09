@@ -54,6 +54,7 @@ class CharacterCount {
         if (!this.inputElement.oldValue) {
             this.inputElement.oldValue = '';
         }
+
         if (this.inputElement.value !== this.inputElement.oldValue) {
             this.inputElement.oldValue = this.inputElement.value;
             this.updateCountMessage.bind(this)();

@@ -6,18 +6,17 @@ class MobileMenu {
         this.menuElement = document.querySelector('#mobile-navigation-menu');
     }
 
-    init () {
-        if (!this.menuElement) {
+    init() {
+        if (!this.mobileMenu) {
             return;
         }
 
         const menuToggleButton = document.querySelector('.js-toggle-menu');
-        const menuContainer = document.querySelector('#mobile-navigation-menu');
         const menuCloseButton = document.querySelector('.js-close-menu');
 
         menuToggleButton.addEventListener('click', () => {
-            menuContainer.classList.toggle('menu-is-open');
-            const menuIsOpen = menuContainer.classList.contains('menu-is-open');
+            this.menuElement.classList.toggle('menu-is-open');
+            const menuIsOpen = this.menuElement.classList.contains('menu-is-open');
 
             if (menuIsOpen) {
                 this.openMenu();
@@ -31,7 +30,7 @@ class MobileMenu {
         });
 
         menuCloseButton.addEventListener('click', () => {
-            menuContainer.classList.remove('menu-is-open');
+            this.menuElement.classList.remove('menu-is-open');
             this.closeMenu();
 
             menuToggleButton.setAttribute('aria-expanded', false);
@@ -49,18 +48,17 @@ class MobileMenu {
         const offsetElement = document.querySelector(this.menuElement.dataset.offsetselector);
         const offsetHeight = offsetElement ? offsetElement.offsetHeight : 0;
         const offsetTop = offsetElement ? offsetElement.offsetTop : 0;
-        const mobileNavigation = document.querySelector('.ds_mobile-navigation');
-        mobileNavigation.style.top = offsetHeight + 'px';
+        this.menuElement.style.top = offsetHeight + 'px';
 
         // handle any need for the menu to scroll if it is longer than the viewport
-        if ((mobileNavigation.offsetHeight + offsetHeight) > window.innerHeight) {
-            mobileNavigation.style.bottom = offsetHeight - window.innerHeight + 'px';
+        if ((this.menuElement.offsetHeight + offsetHeight) > window.innerHeight) {
+            this.menuElement.style.bottom = offsetHeight - window.innerHeight + 'px';
         } else {
-            mobileNavigation.style.bottom = null;
+            this.menuElement.style.bottom = null;
         }
 
-        const menuHeight = mobileNavigation.offsetHeight;
-        mobileNavigation.querySelector('.ds_mobile-navigation__backdrop').style.top = menuHeight + offsetHeight + offsetTop + 'px';
+        const menuHeight = this.menuElement.offsetHeight;
+        this.menuElement.querySelector('.ds_mobile-navigation__backdrop').style.top = menuHeight + offsetHeight + offsetTop + 'px';
 
         // set overflow on body and html
         htmlElement.style.position = 'relative';

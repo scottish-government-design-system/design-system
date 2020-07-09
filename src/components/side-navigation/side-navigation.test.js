@@ -64,16 +64,16 @@ describe('side navigation', () => {
             jasmine.clock().uninstall();
         });
 
-        it ('should toggle a class on the navigation if the navigation button is sticky', function () {
+        it('should toggle a class on the navigation if the navigation button is sticky', function () {
+            testObj.sideNavigationModule.init();
             const sideNavigationExpand = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
 
-            const event = new Event('scroll');
-            window.dispatchEvent(event);
             expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(false);
 
-            // todo: some way of influencing top offset
+            const event = new Event('scroll');
+            window.scrollTo(0, 200);
             window.dispatchEvent(event);
-            // expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(true);
+            expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(true);
         });
     });
 

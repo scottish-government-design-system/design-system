@@ -50,6 +50,8 @@ describe('accordion', () => {
         });
 
         it ('should open on click of its header if currently closed (and vice versa)', () => {
+            jasmine.clock().install();
+
             testObj.accordionModule.init();
 
             const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
@@ -62,7 +64,11 @@ describe('accordion', () => {
 
             event = new Event('click');
             accordionItemButton.dispatchEvent(event);
+            jasmine.clock().tick(200);
             expect(parseInt(accordionItemBody.style.maxHeight, 10)).toEqual(0);
+            expect(accordionItemBody.style.display).toEqual('none');
+
+            jasmine.clock().uninstall();
         });
     });
 
