@@ -115,7 +115,7 @@ class DSDatePicker {
         this.cancelButton = this.dialogElement.querySelector('.js-datepicker-cancel');
         this.okButton = this.dialogElement.querySelector('.js-datepicker-ok');
         this.cancelButton.addEventListener('click', (event) => this.closeDialog(event));
-        this.okButton.addEventListener('click', (event) => this.selectDate(event, this.currentDate));
+        this.okButton.addEventListener('click', () => this.selectDate(this.currentDate));
 
         const dialogButtons = this.dialogElement.querySelectorAll('button:not([disabled="true"])');
         this.firstButtonInDialog = dialogButtons[0];
@@ -271,7 +271,7 @@ class DSDatePicker {
                 disabled = true;
             }
 
-            this.calendarDays[i].update(thisDay, disabled, hidden);
+            this.calendarDays[i].update(thisDay, hidden, disabled);
 
             thisDay.setDate(thisDay.getDate() + 1);
         }
@@ -292,8 +292,10 @@ class DSDatePicker {
 
             if (this.inputDate && calendarDayDate.getTime() === this.inputDate.getTime()) {
                 calendarDay.button.classList.add('ds_current');
+                calendarDay.button.setAttribute('aria-selected', true);
             } else {
                 calendarDay.button.classList.remove('ds_current');
+                calendarDay.button.removeAttribute('aria-selected');
             }
         });
     }
@@ -479,11 +481,6 @@ class DSCalendarDay {
             this.button.removeAttribute('disabled');
         }
 
-        // if (hidden) {
-        //     this.button.style.visibility = 'hidden';
-        // } else {
-        //     this.button.style.visibility = 'visible';
-        // }
         if (hidden) {
             this.button.style.display = 'none';
         } else {

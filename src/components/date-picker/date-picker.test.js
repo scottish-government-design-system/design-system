@@ -4,6 +4,16 @@ jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import DSDatePicker from './date-picker';
 
+function leadingZeroes(value, length = 2) {
+    let ret = value.toString();
+
+    while (ret.length < length) {
+        ret = '0' + ret.toString();
+    }
+
+    return ret;
+}
+
 describe('date picker', () => {
     const keycodes = {
         'tab': 9,
@@ -447,7 +457,6 @@ describe('date picker', () => {
 
         it('should select the date on click of the "ok" button', () => {
             testObj.datePickerModule.openDialog();
-            spyOn(testObj.datePickerModule, 'selectDate');
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-ok');
 
@@ -455,7 +464,11 @@ describe('date picker', () => {
             event.initEvent('click');
             button.dispatchEvent(event);
 
-            expect(testObj.datePickerModule.selectDate).toHaveBeenCalled();
+            // expected date is today's date
+            const expectedDate = new Date();
+            const expectedDateText = `${leadingZeroes(expectedDate.getDate())}/${leadingZeroes(expectedDate.getMonth() + 1)}/${expectedDate.getFullYear()}`;
+
+            expect(testObj.datePickerModule.inputElement.value).toEqual(expectedDateText);
         });
 
         it('should toggle the display of the dialog on click of the calendar button', () => {
@@ -531,18 +544,14 @@ describe('date picker', () => {
         });
 
         it('should close the calendar on click of any non-calendar element', () => {
-            spyOn(testObj.datePickerModule, 'closeDialog');
-
             event = document.createEvent('Event');
             event.initEvent('mouseup');
 
-            document.body.dispatchEvent(event);
-            expect(testObj.datePickerModule.closeDialog).not.toHaveBeenCalled();
-
             testObj.datePickerModule.openDialog();
+            expect(testObj.datePickerModule.dialogElement.style.display).toEqual('block');
 
             document.body.dispatchEvent(event);
-            expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
+            expect(testObj.datePickerModule.dialogElement.style.display).toEqual('none');
         });
     });
 
@@ -667,7 +676,7 @@ describe('date picker', () => {
         });
 
         it('esc closes dialog', () => {
-            spyOn(testObj.datePickerModule, 'closeDialog');
+            spyOn(testObj.datePickerModule, 'closeDialog').and.callThrough();
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.esc;
@@ -675,6 +684,7 @@ describe('date picker', () => {
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
+            expect(testObj.datePickerModule.dialogElement.style.display).toEqual('none');
         });
 
         it('any other key behaves normally', () => {
@@ -686,19 +696,18 @@ describe('date picker', () => {
             document.activeElement.dispatchEvent(event);
         });
 
-        it('click goes selects the day', () => {
-            spyOn(testObj.datePickerModule, 'goToDate');
-            spyOn(testObj.datePickerModule, 'selectDate');
-
-            // pick an arbitrary day
-            const day = testObj.datePickerModule.calendarDays[2];
+        it('click selects the day', () => {
+            // pick a day
+            const dayButton = testObj.datePickerModule.dialogElement.querySelector('button[tabindex="0"]');
 
             event = document.createEvent('Event');
             event.initEvent('click');
-            day.button.dispatchEvent(event);
+            dayButton.dispatchEvent(event);
 
-            expect(testObj.datePickerModule.goToDate).toHaveBeenCalledWith(day.date);
-            expect(testObj.datePickerModule.selectDate).toHaveBeenCalledWith(day.date);
+            // expected date is today's date
+            const expectedDate = new Date();
+            const expectedDateText = `${leadingZeroes(expectedDate.getDate())}/${leadingZeroes(expectedDate.getMonth() + 1)}/${expectedDate.getFullYear()}`;
+            expect(testObj.datePickerModule.inputElement.value).toEqual(expectedDateText);
         });
     });
 });
