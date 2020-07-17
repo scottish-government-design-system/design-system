@@ -17,13 +17,13 @@
 
     &__list {
         font-size: $small-size;
+        line-height: 24px;
         list-style-type: none;
         margin-left: 0;
         padding-left: 32px;
     }
 
     &__item {
-        margin-bottom: 0;
         position: relative;
 
         &::before {
@@ -51,10 +51,6 @@
             font-size: $small-size;
             line-height: 32px;
             margin-bottom: 8px;
-        }
-
-        &__item::before {
-            top: 16px;
         }
     }
 }

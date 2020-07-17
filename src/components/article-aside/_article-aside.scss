@@ -6,6 +6,8 @@
 
 
 .#{$pl_prefix}article-aside {
+    font-size: 0.85rem;
+    line-height: 24px;
     padding-top: 32px;
     position: relative;
 
@@ -17,5 +19,9 @@
         position: absolute;
         right: 0;
         top: 0;
+    }
+
+    li {
+        margin-bottom: 16px;
     }
 }
