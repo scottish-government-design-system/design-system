@@ -57,6 +57,11 @@
         }
 
         &__table {
+
+            tbody:focus-within {
+                outline: 2px solid $colour__link--focus__background;
+            }
+
             td {
                 border: 0;
                 margin: 0;
@@ -86,8 +91,13 @@
                     color: $colour__link--disabled;
                 }
 
+                &.#{$pl-prefix}current {
+                    outline: 1px solid $colour__border--dark !important;
+                    outline-offset: -1px;
+                }
+
                 &.#{$pl-prefix}current:not(:focus) {
-                    background: $colour__grey--light;
+                    background: $colour__grey--lighter;
                 }
 
                 &[tabindex="0"]:not(:focus) {
