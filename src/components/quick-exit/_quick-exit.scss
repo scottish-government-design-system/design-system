@@ -1,0 +1,73 @@
+/*------------------------------------*\
+    QUICK EXIT
+\*------------------------------------*/
+
+
+
+
+.#{$pl-prefix}quick-exit {
+    display: none;
+
+    &__button {
+        background-color: $colour__red--base;
+        margin: 0;
+    }
+}
+
+@include media-query(medium-down) {
+    .#{$pl-prefix}quick-exit {
+        display: none;
+
+        &--mobile {
+            bottom: 0;
+            display: block;
+            left: 0;
+            position: fixed;
+            right: 0;
+        }
+
+        &__button {
+            max-width: 100%;
+        }
+
+        &__message {
+            @include visually-hidden();
+        }
+    }
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}quick-exit {
+        display: block;
+        grid-area: q;
+
+        align-self: start;
+        bottom: 8px;
+        position: sticky;
+        top: calc(8px - 32px);
+        z-index: 9999;
+
+        &--mobile {
+            display: none;
+        }
+
+        &__box {
+            background-color:$colour__grey--lighter;
+            outline: 1px solid $colour__border--light;
+            outline-offset: -1px;
+            padding: 16px;
+
+            @include block-margins;
+        }
+
+        &__message {
+            font-size: $small-size;
+            line-height: 24px;
+            margin-bottom: 0;
+        }
+
+        &__button {
+            margin-bottom: 16px;
+        }
+    }
+}

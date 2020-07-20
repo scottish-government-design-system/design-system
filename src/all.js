@@ -5,6 +5,7 @@ import DSDatePicker from './components/date-picker/date-picker';
 import MobileMenu from './components/site-navigation/site-navigation';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';
+import QuickExit from './components/quick-exit/quick-exit';
 
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
 // defaults to document
@@ -26,6 +27,13 @@ function initAll(scope = document) {
     const notificationBanners = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]'));
     notificationBanners.forEach(notificationBanner => new NotificationBanner(notificationBanner).init());
 
+    // this one is handled differently because it applies an event to the whole body and we only want that event once
+    const quickExitButtons = [].slice.call(scope.querySelectorAll('.ds_quick-exit'));
+    if (quickExitButtons.length) {
+        const quickExit = new QuickExit(window);
+        quickExit.init();
+    }
+
     const searchBoxes = [].slice.call(scope.querySelectorAll('[data-module="ds-site-search"]'));
     searchBoxes.forEach(searchBox => new CollapsibleSearchBox(searchBox).init());
 
@@ -41,5 +49,6 @@ export {
     DSDatePicker,
     MobileMenu,
     NotificationBanner,
+    QuickExit,
     SideNavigation
 };
