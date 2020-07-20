@@ -64,14 +64,14 @@ describe('side navigation', () => {
             jasmine.clock().uninstall();
         });
 
-        xit('should toggle a shadow on the navigation if the navigation button is sticky', function (done) {
+        it('should toggle a shadow on the navigation if the navigation button is sticky', function () {
             testObj.sideNavigationModule.init();
             const sideNavigationExpand = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
 
             expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(false);
 
             const event = new Event('scroll');
-            window.scrollTo(0, 200);
+            window.scrollTo(200, 200);
             window.dispatchEvent(event);
 
             expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(true);
