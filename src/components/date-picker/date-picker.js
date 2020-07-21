@@ -519,10 +519,10 @@ class DSCalendarDay {
                 this.picker.focusLastDayOfWeek();
                 break;
             case this.picker.keycodes.pageup:
-                event.shiftKey ? this.picker.focusPreviousYear() : this.picker.focusPreviousMonth();
+                event.shiftKey ? this.picker.focusPreviousYear(event) : this.picker.focusPreviousMonth(event);
                 break;
             case this.picker.keycodes.pagedown:
-                event.shiftKey ? this.picker.focusNextYear() : this.picker.focusNextMonth();
+                event.shiftKey ? this.picker.focusNextYear(event) : this.picker.focusNextMonth(event);
                 break;
             case this.picker.keycodes.esc:
                 this.picker.closeDialog();

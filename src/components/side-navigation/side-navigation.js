@@ -51,7 +51,7 @@ class SideNavigation {
         window.addEventListener('scroll', () => {
             const sideNavigationExpand = this.sideNavigation.querySelector('.ds_side-navigation__expand');
 
-            if (sideNavigationExpand.offsetTop > 1) {
+            if (sideNavigationExpand.offsetTop >= 1) {
                 sideNavigationExpand.classList.add('ds_side-navigation__expand--shadow');
             } else {
                 sideNavigationExpand.classList.remove('ds_side-navigation__expand--shadow');
