@@ -11,10 +11,14 @@ $table-row-hover-colour: $colour__grey--lighter !default;
 
 
 .#{$pl-prefix}table {
-    border: 1px solid $table-border-colour;
-    table-layout: fixed;
+    // table-layout: fixed;
     width: 100%;
 
+    tbody,
+    thead,
+    tfoot {
+        border: 1px solid $table-border-colour;
+    }
 
     th {
         background-color: $table-header-background-colour;
@@ -45,9 +49,6 @@ $table-row-hover-colour: $colour__grey--lighter !default;
         padding: 8px 16px 8px 8px;
     }
 
-    tr:hover {
-        background-color: $table-row-hover-colour;
-    }
 
     tr {
         border-bottom: 1px solid $table-border-colour--light;
@@ -61,33 +62,16 @@ $table-row-hover-colour: $colour__grey--lighter !default;
         border-bottom-width: 0;
     }
 
-
-    &[data-smallscreen="scrolling"] tr > :first-child {
-        background: $colour__white;
-        border-right: 1px solid $table-border-colour--light;
-        left: 0;
-        position: sticky;
-        z-index: 1;
+    tbody > tr > td {
+        background-color: $colour__white;
     }
 
-    &[data-smallscreen="scrolling"] tr > :first-child::after {
-        background: #ccc;
-        content: '';
-        height: 100%;
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 1px;
+    tbody > tr:nth-child(even) > td {
+        background-color: $colour__grey--lighter;
     }
 
-    &[data-smallscreen="scrolling"] tr > th:first-child {
-        background: $table-header-background-colour;
-    }
 
-    &[data-smallscreen="scrolling"] tr > td:first-child {
-        background: $colour__white;
-        border-right: 1px solid $table-header-background-colour;
-    }
+
 
     caption {
         font-size: 16px;
@@ -104,6 +88,54 @@ $table-row-hover-colour: $colour__grey--lighter !default;
 }
 
 @include media-query(medium-down) {
+    .#{$pl-prefix}table.js-is-scrolling {
+        &[data-smallscreen="scrolling"] {
+            display: block;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        &[data-smallscreen="scrolling"] tr > :first-child {
+            left: 0;
+            position: sticky;
+            z-index: 1;
+        }
+
+        &[data-smallscreen="scrolling"] caption {
+            display: block;
+            left: 0;
+            position: sticky;
+        }
+
+        &[data-smallscreen="scrolling"] tr > :first-child::after {
+            background: linear-gradient(90deg, rgba(0,0,0,0.07), rgba(0,0,0,0));
+            content: '';
+            height: 100%;
+            position: absolute;
+            right: -10px;
+            top: 0;
+            width: 10px;
+        }
+
+        &[data-smallscreen="scrolling"] tr > :first-child::before {
+            background: $table-border-colour;
+            content: '';
+            height: 100%;
+            left: -1px;
+            position: absolute;
+            top: 0;
+            width: 1px;
+        }
+
+        &[data-smallscreen="scrolling"] tr > th:first-child {
+            background: $table-header-background-colour;
+        }
+
+        &[data-smallscreen="scrolling"] tr > td:first-child {
+            border-right: 1px solid $table-header-background-colour;
+        }
+    }
+
     .js-enabled {
         .#{$pl-prefix}table {
             &[data-smallscreen="boxes"] thead {
@@ -119,41 +151,41 @@ $table-row-hover-colour: $colour__grey--lighter !default;
                 border: 0;
             }
 
+            &[data-smallscreen="boxes"] tbody {
+                border: none;
+            }
+
             &[data-smallscreen="boxes"] tr {
                 border: 0;
                 display: block;
                 margin-bottom: 16px;
             }
 
-            &[data-smallscreen="boxes"] tr:hover {
-                background-color: transparent;
-            }
-
-            &[data-smallscreen="boxes"] tr> * {
+            &[data-smallscreen="boxes"] tr > * {
                 display: block;
                 overflow: auto;
                 padding-left: calc(50% - 8px);
                 position: relative;
             }
 
-            &[data-smallscreen="boxes"] tr> * {
+            &[data-smallscreen="boxes"] tr > * {
                 border: 1px solid $table-border-colour;
             }
 
-            &[data-smallscreen="boxes"] tr> td:not(:last-child) {
+            &[data-smallscreen="boxes"] tr > td:not(:last-child) {
                 border-bottom-color: $table-border-colour--light;
             }
 
-            &[data-smallscreen="boxes"] tr> th:last-child {
+            &[data-smallscreen="boxes"] tr > th:last-child {
                 border-width: 0;
                 margin-top: 32px;
             }
 
-            &[data-smallscreen="boxes"] tr> td:not(:first-child) {
+            &[data-smallscreen="boxes"] tr > td:not(:first-child) {
                 border-top-width: 0;
             }
 
-            &[data-smallscreen="boxes"] tr> td::before {
+            &[data-smallscreen="boxes"] tr > td::before {
                 content: attr(data-heading);
                 display: block;
                 position: absolute;
@@ -165,16 +197,19 @@ $table-row-hover-colour: $colour__grey--lighter !default;
                 width: calc(50% - 16px);
             }
 
-            &[data-smallscreen="boxes"] tr> td:first-child {
+            &[data-smallscreen="boxes"] tr > td:first-child {
                 box-shadow: inset 0 4px 0 $table-border-colour--light;
                 padding-top: 11px
             }
 
-            &[data-smallscreen="scrolling"] {
-                display: block;
-                max-width: 100%;
-                overflow-x: auto;
+            &[data-smallscreen="boxes"] tr > td:nth-child(odd) {
+                background-color: $colour__white;
             }
+
+            &[data-smallscreen="boxes"] tr > td:nth-child(even) {
+                background-color: $colour__grey--lighter;
+            }
+
         }
     }
 }

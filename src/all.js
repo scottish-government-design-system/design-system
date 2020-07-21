@@ -6,6 +6,7 @@ import MobileMenu from './components/site-navigation/site-navigation';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';
 import QuickExit from './components/quick-exit/quick-exit';
+import MobileTables from './base/table/table';
 
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
 // defaults to document
@@ -39,6 +40,12 @@ function initAll(scope = document) {
 
     const sideNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-side-navigation"]'));
     sideNavigations.forEach(sideNavigation => new SideNavigation(sideNavigation).init());
+
+    const tables = [].slice.call(scope.querySelectorAll('table[data-smallscreen]'));
+    if (tables.length) {
+        const mobileTables = new MobileTables(window);
+        mobileTables.init();
+    }
 }
 
 export {
