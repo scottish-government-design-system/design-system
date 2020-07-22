@@ -31,7 +31,7 @@ function initAll(scope = document) {
     // this one is handled differently because it applies an event to the whole body and we only want that event once
     const quickExitButtons = [].slice.call(scope.querySelectorAll('.ds_quick-exit'));
     if (quickExitButtons.length) {
-        const quickExit = new QuickExit(window);
+        const quickExit = new QuickExit();
         quickExit.init();
     }
 
@@ -43,7 +43,7 @@ function initAll(scope = document) {
 
     const tables = [].slice.call(scope.querySelectorAll('table[data-smallscreen]'));
     if (tables.length) {
-        const mobileTables = new MobileTables(window);
+        const mobileTables = new MobileTables();
         mobileTables.init();
     }
 }

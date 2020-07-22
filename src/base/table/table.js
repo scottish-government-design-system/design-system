@@ -1,7 +1,7 @@
 'use strict';
 
 class MobileTables {
-    constructor(_window) {
+    constructor(_window = window) {
         this.window = _window;
     }
 

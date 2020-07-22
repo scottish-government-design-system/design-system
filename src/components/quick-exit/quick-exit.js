@@ -1,7 +1,7 @@
 'use strict';
 
 class QuickExit {
-    constructor(_window) {
+    constructor(_window = window) {
         this.url = document.querySelector('.js-quick-exit').href;
 
         this.window = _window;
