@@ -87,13 +87,17 @@
                     @include colwidth(4);
                 }
 
+                &__navigation {
+                    clear: left;
+                    @include colwidth(9);
+                }
+
                 &__content {
                     float: left;
                     @include colwidth(9);
                 }
 
                 &__sidebar {
-                    clear: left;
                     float: left;
                     @include colwidth(3);
                 }
@@ -144,7 +148,8 @@
 
                 &__sidebar {
                     float: left;
-                    @include colwidth(4);
+                    @include colpush(1);
+                    @include colwidth(3);
                 }
             }
         }
@@ -152,11 +157,17 @@
         &--guide {
             .#{$pl-prefix}layout {
                 &__content {
-                    @include colwidth(7);
+                    @include colwidth(8);
+                }
+
+                &__sidebar {
+                    float: left;
+                    @include colpush(1);
+                    @include colwidth(3);
                 }
 
                 &__feedback {
-                    @include colwidth(7);
+                    @include colwidth(8);
                 }
             }
         }
@@ -315,8 +326,9 @@
             &--guide {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
-                    'n n n n n n n n . . . .'
-                    'c c c c c c c c s s s s'
+                    'h h h h h h h h . q q q'
+                    'n n n n n n n n . q q q'
+                    'c c c c c c c c . s s s'
                     'f f f f f f f f . . . .'
             }
 
@@ -343,7 +355,7 @@
             &--article {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
-                    'c c c c c c c c s s s s'
+                    'c c c c c c c c . s s s'
                     'f f f f f f f f . . . .';
             }
 

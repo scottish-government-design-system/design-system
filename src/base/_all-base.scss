@@ -34,10 +34,10 @@ $iconsfile: '/assets/images/icons/icons.stack.svg';
 /**
  * SETTINGS
  */
-@import "settings/settings.colours";
-@import "settings/settings.grid";
-@import "settings/settings.transition";
-@import "settings/settings.type";
+@import "_settings/colours/colours";
+@import "_settings/grid/grid";
+@import "_settings/transition/transition";
+@import "_settings/type/type";
 
 
 
@@ -45,8 +45,8 @@ $iconsfile: '/assets/images/icons/icons.stack.svg';
 /**
  * TOOLS
  */
-@import "tools/tool.mixins";
-@import "tools/tool.breakpoint-tests";
+@import "_tools/mixins/mixins";
+@import "_tools/breakpoint-checks/breakpoint-checks";
 
 
 
@@ -54,9 +54,9 @@ $iconsfile: '/assets/images/icons/icons.stack.svg';
 /**
  * GENERIC
  */
-@import "generic/generic.normalize";
-@import "generic/generic.reset";
-@import "generic/generic.box-sizing";
+@import "_generic/normalize/normalize";
+@import "_generic/reset/reset";
+@import "_generic/box-sizing/box-sizing";
 
 
 
@@ -64,9 +64,9 @@ $iconsfile: '/assets/images/icons/icons.stack.svg';
 /**
  * HELPERS
  */
-@import "helpers/helper.no-margin";
-@import "helpers/helper.visibility";
-@import "helpers/helper.wrappers";
+@import "_helpers/no-margin/no-margin";
+@import "_helpers/visibility/visibility";
+@import "_helpers/wrappers/wrappers";
 
 
 
@@ -74,13 +74,13 @@ $iconsfile: '/assets/images/icons/icons.stack.svg';
 /**
  * TYPE
  */
-@import "base.spacing";
-@import "type/type.body";
-@import "type/type.headings";
-@import "type/type.leader";
-@import "type/type.links";
-@import "type/type.lists";
-@import "type/type.small";
+@import "body/body";
+@import "headings/headings";
+@import "leader/leader";
+@import "links/links";
+@import "lists/lists";
+@import "small/small";
+@import "spacing/spacing";
 
 
 
@@ -88,11 +88,10 @@ $iconsfile: '/assets/images/icons/icons.stack.svg';
 /**
  * ELEMENTS
  */
-@import "base.icon";
-
-@import "base.abbreviations";
-@import "base.address";
-@import "base.buttons";
-@import "base.layout";
-@import "base.page";
+@import "icon/icon";
+@import "abbreviations/abbreviations";
+@import "address/address";
+@import "buttons/buttons";
+@import "layout/layout";
+@import "page/page";
 @import "table/table";
