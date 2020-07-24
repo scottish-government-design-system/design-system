@@ -1,5 +1,3 @@
-// TODO: close other calendars on open
-
 class DSDatePicker {
     constructor(el, options = {}) {
         if (!el) {
@@ -282,8 +280,11 @@ class DSDatePicker {
 
         this.calendarDays.forEach((calendarDay) => {
             calendarDay.button.setAttribute('tabindex', -1);
-            let calendarDayDate = calendarDay.date;
+            const calendarDayDate = calendarDay.date;
             calendarDayDate.setHours(0, 0, 0, 0);
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
 
             if (calendarDayDate.getTime() === currentDate.getTime() && !calendarDay.disabled) {
                 calendarDay.button.setAttribute('tabindex', 0);
@@ -291,11 +292,17 @@ class DSDatePicker {
             }
 
             if (this.inputDate && calendarDayDate.getTime() === this.inputDate.getTime()) {
-                calendarDay.button.classList.add('ds_current');
+                calendarDay.button.classList.add('ds_datepicker__current');
                 calendarDay.button.setAttribute('aria-selected', true);
             } else {
-                calendarDay.button.classList.remove('ds_current');
+                calendarDay.button.classList.remove('ds_datepicker__current');
                 calendarDay.button.removeAttribute('aria-selected');
+            }
+
+            if (calendarDayDate.getTime() === today.getTime()) {
+                calendarDay.button.classList.add('ds_datepicker__today');
+            } else {
+                calendarDay.button.classList.remove('ds_datepicker__today');
             }
         });
     }

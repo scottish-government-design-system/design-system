@@ -91,13 +91,17 @@
                     color: $colour__link--disabled;
                 }
 
-                &.#{$pl-prefix}current {
+                &.#{$pl-prefix}datepicker__current {
                     outline: 1px solid $colour__border--dark !important;
                     outline-offset: -1px;
                 }
 
-                &.#{$pl-prefix}current:not(:focus) {
+                &.#{$pl-prefix}datepicker__current:not(:focus):not(:hover) {
                     background: $colour__grey--lighter;
+                }
+
+                &.#{$pl-prefix}datepicker__today {
+                    font-weight: $bold;
                 }
 
                 &[tabindex="0"]:not(:focus) {
