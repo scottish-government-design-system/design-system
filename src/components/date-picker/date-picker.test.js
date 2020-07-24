@@ -344,7 +344,7 @@ describe('date picker', () => {
             testObj.datePickerModule.init();
             testObj.datePickerModule.openDialog();
 
-            expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelector('.ds_current').innerText).toEqual('8');
+            expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelector('.ds_datepicker__current').innerText).toEqual('8');
         });
     });
 
