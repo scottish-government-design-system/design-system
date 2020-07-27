@@ -55,8 +55,7 @@
     }
 
     /* focus */
-    &__input:focus + &__label::before,
-    &__input:active + &__label::before {
+    &__input:focus + &__label::before {
         border-width: $field-border-width--focus;
         box-shadow: 0 0 0 $field-glow-width $colour__gold--base;
     }
@@ -68,11 +67,6 @@
 
     &__input:checked + &__label::after {
         opacity: 1;
-    }
-
-    /* active */
-    &__input:active + &__label::before {
-        background-color: $colour__input--active__background;
     }
 
     /*
@@ -103,8 +97,7 @@
     }
 
     /* hover-focus */
-    &--small &__input:hover:focus + &__label::before,
-    &--small &__input:hover:active + &__label::before {
+    &--small &__input:hover:focus + &__label::before {
         box-shadow: 0 0 0 $field-glow-width $colour__gold--base, 0 0 0 $small-shadow-size #b1b4b6;
     }
 

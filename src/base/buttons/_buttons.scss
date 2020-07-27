@@ -33,8 +33,7 @@ input[type="submit"],
     @include block-margins;
 
     &:hover,
-    &:focus,
-    &:active {
+    &:focus {
         outline-width: 0;
     }
 
@@ -50,13 +49,7 @@ input[type="submit"],
         box-shadow: 0 $link__border-width $colour__link--focus__shadow;
         color: $colour__button--focus;
         outline-color: $colour__button--focus__background;
-    }
 
-    &:active,
-    &:hover:active {
-        background-color: $colour__button--active__background;
-        color: $colour__button--active;
-        outline-color: $colour__button--active__background;
         transition-duration: 0s;
     }
 
@@ -88,17 +81,12 @@ input[type="submit"],
         background-color: $colour__blocklink-bg--hover;
     }
 
-    &:active,
-    &:hover:active {
-        background-color: $colour__blocklink-bg--active;
-    }
-
     &--secondary {
         background-color: transparent;
         border-color: currentColor;
         color: $colour__white;
 
-        &:hover {
+        &:hover:not(:focus) {
             background-color: rgba(red($colour__brand--primary), green($colour__brand--primary), blue($colour__brand--primary), 0.3);
             color: $colour__white;
         }
@@ -113,23 +101,13 @@ input[type="submit"],
         outline-offset: -2px;
 
         &:hover,
-        &:focus,
-        &:active {
+        &:focus {
             outline-width: 2px;
         }
 
-        &:hover {
+        &:hover:not(:focus){
             background-color: $colour__button--secondary--hover__background;
             color: $colour__button--secondary--hover;
-
-            &:not(:focus) {
-                outline-color: currentColor;
-            }
-        }
-
-        &:focus:not(:active) {
-            background-color: $colour__button--focus__background;
-            color: $colour__button--secondary--focus;
         }
     }
 
@@ -140,23 +118,13 @@ input[type="submit"],
         outline-offset: -2px;
 
         &:hover,
-        &:focus,
-        &:active {
+        &:focus {
             outline-width: 2px;
         }
 
-        &:hover {
+        &:hover:not(:focus) {
             background-color: $colour__button--cancel--hover__background;
             color: $colour__button--cancel;
-
-            &:not(:focus) {
-                outline-color: currentColor;
-            }
-        }
-
-        &:focus:not(:active) {
-            background-color: $colour__button--focus__background;
-            color: $colour__button--focus;
         }
     }
 }

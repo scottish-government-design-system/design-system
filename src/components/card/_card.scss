@@ -113,7 +113,6 @@
         outline: 0 !important;
 
         &:focus,
-        &:active,
         &:hover {
             background-color: transparent;
             box-shadow: none;
@@ -129,10 +128,9 @@
         background-color: $colour__link--hover__background;
     }
 
-    .#{$pl-prefix}card__cover-link:active::after,
     .#{$pl-prefix}card__cover-link:focus::after {
-        background-color: $colour__link--active__background;
-        box-shadow: inset 0 -3px $colour__link--active__shadow;
+        background-color: $colour__link--focus__background;
+        box-shadow: inset 0 -3px $colour__link--focus__shadow;
         transition-duration: 0s;
     }
 }

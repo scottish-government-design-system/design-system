@@ -21,7 +21,7 @@
         a {
             color: $colour__state--negative;
 
-            &:focus, &:active {
+            &:focus {
                 color: $colour__text;
             }
         }

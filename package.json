@@ -16,6 +16,9 @@
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"
   },
+  "pre-commit": [
+    "test"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -36,6 +39,7 @@
     "karma-jasmine-matchers": "^4.0.1",
     "karma-webpack": "^4.0.2",
     "node-sass": "^4.12.0",
+    "pre-commit": "^1.2.2",
     "sealant": "^0.1.1",
     "svg-sprite": "^1.4.0",
     "webpack": "^4.28.3",

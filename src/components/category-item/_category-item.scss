@@ -49,7 +49,6 @@ $category-item__pinned-icon-size: 20px;
             width: $border-width-size;
         }
 
-        &:active::before,
         &:focus::before {
             content: none;
         }
@@ -147,8 +146,7 @@ $category-item__pinned-icon-size: 20px;
         }
     }
 
-    .#{$pl-prefix}category-item__link:focus,
-    .#{$pl-prefix}category-item__link:active {
+    .#{$pl-prefix}category-item__link:focus {
         .#{$pl-prefix}category-item__pinned-icon {
             fill: $colour__link--focus__background;
         }

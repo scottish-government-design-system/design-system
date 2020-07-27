@@ -54,21 +54,12 @@ h1,h2,h3 {
         text-align: left;
         width: 100%;
 
-        &:hover:not(:active):not(:focus) {
-            background-color: $colour__link--hover__background;
+        &:hover:not(:focus) {
             color: $colour__link--hover;
-        }
-
-        &:hover {
-            color: $colour__link--hover;
-        }
-
-        &:active {
-            color: $colour__link--active;
         }
     }
 
-    &--open &__header-button:not(:focus):not(:hover):not(:active) {
+    &--open &__header-button:not(:focus):not(:hover) {
         background-color: $colour__link--current__background;
         color: $colour__link--current;
     }

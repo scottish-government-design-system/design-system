@@ -39,25 +39,14 @@ $side-nav__spacing-unit: 16px;
             box-shadow: 0px 5px 5px rgba(0,0,0,0.15);
         }
 
-        &:hover:not(:active) {
+        &:hover:not(:focus) {
             background-color: $colour__link--hover__background;
-        }
-
-        &:hover:active {
-            background-color: $colour__blocklink-bg--active;
         }
 
         &:hover .side-navigation__expand-indicator {
             color: $colour__link--hover;
         }
 
-        &:active {
-            background-color: $colour__blocklink-bg--active;
-            box-shadow: 0 3px #333333;
-            color: $colour__link--active;
-        }
-
-        &--shadow:active,
         &--shadow:focus {
             box-shadow: 0 3px #333333, 0px 8px 5px rgba(0,0,0,0.15);
         }
@@ -79,7 +68,7 @@ $side-nav__spacing-unit: 16px;
         @include indicator--open();
     }
 
-    #show-side-navigation:checked:not(:active):not(:focus) ~ .#{$pl-prefix}side-navigation__expand:not(:hover) {
+    #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__expand:not(:focus):not(:hover) {
         background-color: $colour__link--current__background;
         color: $colour__link--current;
     }
@@ -120,8 +109,7 @@ $side-nav__spacing-unit: 16px;
                     @include chevron(right, 12px);
                 }
 
-                &:focus::after,
-                &:active::after {
+                &:focus::after {
                     color: $colour__link--focus;
                 }
             }
@@ -185,12 +173,10 @@ $side-nav__spacing-unit: 16px;
             }
         }
 
-        &:active,
         &:focus {
-            box-shadow: 0 3px $colour__link--active__shadow;
+            box-shadow: 0 3px $colour__link--focus__shadow;
         }
 
-        &:active::before,
         &:focus::before {
             content: none;
         }

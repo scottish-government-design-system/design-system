@@ -2,6 +2,8 @@
     QUICK EXIT
 \*------------------------------------*/
 
+$quick-exit-banner-height: 56px;
+
 
 
 
@@ -19,11 +21,16 @@
         display: none;
 
         &--mobile {
-            bottom: 0;
             display: block;
             left: 0;
             position: fixed;
             right: 0;
+            top: 0;
+            z-index: 999;
+
+            + * {
+                margin-top: $quick-exit-banner-height;
+            }
         }
 
         &__button {
@@ -32,6 +39,18 @@
 
         &__message {
             @include visually-hidden();
+        }
+    }
+}
+
+@supports(position: sticky) {
+    @include media-query(medium-down) {
+        .#{$pl-prefix}quick-exit--mobile {
+            position: sticky;
+
+            + * {
+                margin-top: 0;
+            }
         }
     }
 }
@@ -52,17 +71,16 @@
         }
 
         &__box {
-            background-color:$colour__grey--lighter;
-            outline: 1px solid $colour__border--light;
+            background-color:$colour__white;
+            margin-bottom: 32px;
+            margin-top: 24px;
             outline-offset: -1px;
-            padding: 16px;
-
-            @include block-margins;
+            padding: 8px 0;
         }
 
         &__message {
-            font-size: $small-size;
-            line-height: 24px;
+            font-size: $tiny-size;
+            line-height: 20px;
             margin-bottom: 0;
         }
 

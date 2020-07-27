@@ -58,18 +58,13 @@ $site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colo
             }
         }
 
-        &:focus,
-        &:active {
+        &:focus {
             position: relative;
             z-index: 1;
         }
 
         &:hover:not(:focus) {
             background-color: $colour__link--hover__background;
-        }
-
-        &:active {
-            background-color: $colour__link--active__background;
         }
 
         &::after {
@@ -103,7 +98,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
 .#{$pl-prefix}reversed .#{$pl-prefix}site-navigation {
     .#{$pl-prefix}site-navigation__link {
 
-        &:hover:not(.#{$pl-prefix}current):not(:active) {
+        &:hover:not(.#{$pl-prefix}current) {
             background-color: $site-navigation__hover-bg--reversed;
             color: $site-navigation__current-colour--reversed;
         }
@@ -262,10 +257,6 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         &:hover {
             border-left: 4px solid $site-navigation__mobile-menu-highlight-colour;
             padding-left: #{$mobile-nav-link-horizontal-padding - 4px};
-        }
-
-        &:active {
-            outline: 0;
         }
 
         &.#{$pl-prefix}current {

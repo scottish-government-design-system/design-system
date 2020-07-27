@@ -1,5 +1,11 @@
 'use strict';
 
+var colors = require('colors');
+
+colors.setTheme({
+  info: 'green'
+});
+
 let SVGSpriter = require('svg-sprite');
 let path = require('path');
 let mkdirp = require('mkdirp');
@@ -45,6 +51,7 @@ glob.glob('**/*.svg', { cwd: cwd }, function (err, files) {
             for (var type in result[mode]) {
                 mkdirp.sync(path.dirname(result[mode][type].path));
                 fs.writeFileSync(result[mode][type].path, result[mode][type].contents);
+                console.info(`svg-sprite: ${files.length} files compiled & written to ${result[mode][type].path}`.info);
             }
         }
     });

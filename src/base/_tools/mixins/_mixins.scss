@@ -74,10 +74,6 @@ $blocklink__outline-width: 0;
         background-color: $colour__blocklink-bg--hover;
     }
 
-    &:active {
-        background-color: $colour__blocklink-bg--active;
-    }
-
     @if $link-selector {
         &:hover:not(:focus) {
             background: transparent;
@@ -96,8 +92,7 @@ $blocklink__outline-width: 0;
                 transition: background-color $transition-in-time;
             }
 
-            &:focus,
-            &:active {
+            &:focus {
                 &::after {
                     transition-duration: 0s;
                 }
@@ -123,8 +118,7 @@ $blocklink__outline-width: 0;
                     }
                 }
 
-                &:focus,
-                &:active {
+                &:focus {
                     background-color: transparent;
                     box-shadow: none;
                     text-decoration: underline;
@@ -134,13 +128,6 @@ $blocklink__outline-width: 0;
                     &::after {
                         background-color: $colour__blocklink-bg--focus;
                         box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $colour__link--focus__shadow;
-                    }
-                }
-
-                &:active {
-                    &::after {
-                        background-color: $colour__blocklink-bg--active;
-                        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $colour__link--active__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $colour__link--active__shadow;
                     }
                 }
 
@@ -171,10 +158,6 @@ $blocklink__outline-width: 0;
     &:hover:not(:focus) {
         background: transparent;
         outline-color: transparent;
-    }
-
-    &:active {
-        background: $colour__link--active__background;
     }
 
     &::after {

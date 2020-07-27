@@ -46,10 +46,6 @@ $site-search__background-colour: $colour__grey--light !default;
 .#{$pl-prefix}reversed .#{$pl-prefix}site-search {
     .#{$pl-prefix}site-search__button {
         background-color: $colour__brand--secondary;
-
-        &:active {
-            background-color: $colour__button--active__background;
-        }
     }
 }
 

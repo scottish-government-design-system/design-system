@@ -104,7 +104,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             fill: $colour__gold--base;
         }
 
-        // major needs special behavour for focus/active state of its interactive elements
+        // major needs special behavour for focus state of its interactive elements
         .#{$pl_prefix}notification__close,
         a {
             color: $colour__link;
@@ -112,11 +112,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             &:focus {
                 outline-color: $colour__text;
                 color: $colour__text;
-            }
-
-            &:active {
-                background-color: $colour__text;
-                color: $colour__gold--base !important;
             }
         }
     }
