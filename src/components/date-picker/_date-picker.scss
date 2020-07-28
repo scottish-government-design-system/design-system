@@ -97,7 +97,7 @@
                     outline-offset: #{$dp-current-outline-width * -1};
                 }
 
-                &.#{$pl-prefix}datepicker__current:not(:focus):not(:hover) {
+                &.#{$pl-prefix}datepicker__current[tabindex="-1"] {
                     background: $colour__grey--lighter;
                     color: currentColor;
                 }
