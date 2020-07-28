@@ -118,7 +118,11 @@
                     }
                 }
 
-                &[tabindex="0"]:not(:focus) {
+                // &[tabindex="0"]:not(:focus) {
+                //
+                // }
+
+                &.#{$pl-prefix}selected:not(:focus) {
                     background-color: $colour__text;
                     color: $colour__white;
                 }
@@ -133,6 +137,7 @@
 
         &__buttongroup {
             @include layout(8px);
+            overflow: visible;
 
             // non-grid
             button {
@@ -148,6 +153,7 @@
         }
     }
 }
+
 
 
 @include media-query(medium-down) {

@@ -282,6 +282,38 @@ describe('date picker', () => {
             testObj.datePickerModule.focusPreviousYear({ preventDefault: function () { } });
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
+
+        it('next month without focusing', () => {
+            const ppp = new Date(testObj.datePickerModule.currentDate);
+            ppp.setMonth(ppp.getMonth() + 1);
+            ppp.setDate(1);
+            testObj.datePickerModule.focusNextMonth({ preventDefault: function () { } }, false);
+            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+        });
+
+        it('previous month without focusing', () => {
+            const ppp = new Date(testObj.datePickerModule.currentDate);
+            ppp.setMonth(ppp.getMonth() - 1);
+            ppp.setDate(1);
+            testObj.datePickerModule.focusPreviousMonth({ preventDefault: function () { } }, false);
+            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+        });
+
+        it('next year without focusing', () => {
+            const ppp = new Date(testObj.datePickerModule.currentDate);
+            ppp.setFullYear(ppp.getFullYear() + 1);
+            ppp.setDate(1);
+            testObj.datePickerModule.focusNextYear({ preventDefault: function () { } }, false);
+            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+        });
+
+        it('previous year without focusing', () => {
+            const ppp = new Date(testObj.datePickerModule.currentDate);
+            ppp.setFullYear(ppp.getFullYear() - 1);
+            ppp.setDate(1);
+            testObj.datePickerModule.focusPreviousYear({ preventDefault: function () { } }, false);
+            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+        });
     });
 
     describe('selection of new date', () => {

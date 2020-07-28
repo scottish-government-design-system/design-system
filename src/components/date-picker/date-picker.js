@@ -138,12 +138,12 @@ class DSDatePicker {
         <div class="ds_datepicker__dialog__navbuttons">
             <button class="ds_button  ds_button--icon-only  js-datepicker-prev-year" aria-label="previous year">
                 <span class="visually-hidden">Previous year</span>
-                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#double-chevron-left"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#double-chevron-left"></use></svg>
             </button>
 
             <button class="ds_button  ds_button--icon-only  js-datepicker-prev-month" aria-label="previous month">
                 <span class="visually-hidden">Previous month</span>
-                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron-left"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron-left"></use></svg>
             </button>
         </div>
 
@@ -152,12 +152,12 @@ class DSDatePicker {
         <div class="ds_datepicker__dialog__navbuttons">
             <button class="ds_button  ds_button--icon-only  js-datepicker-next-month" aria-label="next month">
                 <span class="visually-hidden">Next month</span>
-                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron-right"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron-right"></use></svg>
             </button>
 
             <button class="ds_button  ds_button--icon-only  js-datepicker-next-year" aria-label="next year">
                 <span class="visually-hidden">Next year</span>
-                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#double-chevron-right"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#double-chevron-right"></use></svg>
             </button>
         </div>
       </div>
@@ -276,11 +276,12 @@ class DSDatePicker {
         }
     }
 
-    setCurrentDate() {
+    setCurrentDate(focus = true) {
         const currentDate = this.currentDate;
 
         this.calendarDays.forEach((calendarDay) => {
             calendarDay.button.setAttribute('tabindex', -1);
+            calendarDay.button.classList.remove('ds_selected');
             const calendarDayDate = calendarDay.date;
             calendarDayDate.setHours(0, 0, 0, 0);
 
@@ -288,8 +289,11 @@ class DSDatePicker {
             today.setHours(0, 0, 0, 0);
 
             if (calendarDayDate.getTime() === currentDate.getTime() && !calendarDay.disabled) {
-                calendarDay.button.setAttribute('tabindex', 0);
-                calendarDay.button.focus();
+                if (focus) {
+                    calendarDay.button.setAttribute('tabindex', 0);
+                    calendarDay.button.focus();
+                    calendarDay.button.classList.add('ds_selected');
+                }
             }
 
             if (this.inputDate && calendarDayDate.getTime() === this.inputDate.getTime()) {
@@ -306,6 +310,17 @@ class DSDatePicker {
                 calendarDay.button.classList.remove('ds_datepicker__today');
             }
         });
+
+        // if no date is tab-able, make the first non-disabled date tab-able
+        if (!focus) {
+            const enabledDays = this.calendarDays.filter(calendarDay => {
+                return window.getComputedStyle(calendarDay.button).display === 'block' && !calendarDay.button.disabled;
+            });
+
+            enabledDays[0].button.setAttribute('tabindex', 0);
+
+            this.currentDate = enabledDays[0].date;
+        }
     }
 
     selectDate(date) {
@@ -375,7 +390,7 @@ class DSDatePicker {
         this.calendarButtonElement.focus();
     }
 
-    goToDate(date) {
+    goToDate(date, focus) {
         if (this.minDate && this.minDate > date) {
             date = this.minDate;
         }
@@ -385,6 +400,7 @@ class DSDatePicker {
         }
 
         const current = this.currentDate;
+
         this.currentDate = date;
 
         if (current.getMonth() !== this.currentDate.getMonth() || current.getFullYear() !== this.currentDate.getFullYear()) {
@@ -433,33 +449,33 @@ class DSDatePicker {
     }
 
     // month navigation
-    focusNextMonth(event) {
+    focusNextMonth(event, focus = true) {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setMonth(date.getMonth() + 1);
-        this.goToDate(date);
+        this.goToDate(date, focus);
     }
 
-    focusPreviousMonth (event) {
+    focusPreviousMonth (event, focus = true) {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setMonth(date.getMonth() - 1);
-        this.goToDate(date);
+        this.goToDate(date, focus);
     }
 
     // year navigation
-    focusNextYear (event) {
+    focusNextYear (event, focus = true) {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setFullYear(date.getFullYear() + 1);
-        this.goToDate(date);
+        this.goToDate(date, focus);
     }
 
-    focusPreviousYear (event) {
+    focusPreviousYear (event, focus = true) {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setFullYear(date.getFullYear() - 1);
-        this.goToDate(date);
+        this.goToDate(date, focus);
     }
 }
 
