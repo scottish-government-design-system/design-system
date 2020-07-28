@@ -163,6 +163,7 @@ class DSDatePicker {
       </div>
 
       <table class="ds_datepicker__dialog__table  js-datepicker-grid" role="grid" aria-labelledby="${titleId}">
+      <caption class="ds_datepicker__dialog__table-caption">You can use the cursor keys to select a date</caption>
       <thead>
           <tr>
           <th scope="col" abbr="Sunday">Su</th>

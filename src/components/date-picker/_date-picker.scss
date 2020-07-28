@@ -92,16 +92,30 @@
                 }
 
                 &.#{$pl-prefix}datepicker__current {
-                    outline: 1px solid $colour__border--dark !important;
-                    outline-offset: -1px;
+                    $dp-current-outline-width: 2px;
+                    outline: $dp-current-outline-width solid $colour__border--dark !important;
+                    outline-offset: #{$dp-current-outline-width * -1};
                 }
 
                 &.#{$pl-prefix}datepicker__current:not(:focus):not(:hover) {
                     background: $colour__grey--lighter;
+                    color: currentColor;
                 }
 
                 &.#{$pl-prefix}datepicker__today {
                     font-weight: $bold;
+
+                    &::after {
+                        background-color: currentColor;
+                        border-radius: 4px;
+                        bottom: 6px;
+                        content: '';
+                        height: 4px;
+                        left: 50%;
+                        margin-left: -2px;
+                        position: absolute;
+                        width: 4px;
+                    }
                 }
 
                 &[tabindex="0"]:not(:focus) {
@@ -109,6 +123,12 @@
                     color: $colour__white;
                 }
             }
+        }
+
+        &--table-caption {
+            font-size: $tiny-size;
+            caption-side: bottom;
+            margin-top: 8px;
         }
 
         &__buttongroup {
