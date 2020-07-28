@@ -7,7 +7,7 @@ $site-header__border-colour--reversed: $colour__brand--secondary !default;
 
 // fixed vars
 $site-header__border-colour: $colour__border--light;
-$site-header__top-band-colour: $colour__brand--primary;
+$site-header__top-band-colour: $colour__brand;
 
 
 
@@ -74,7 +74,7 @@ $site-header__top-band-colour: $colour__brand--primary;
 /* variant with the top colour bar set to a gradient of site brand colours */
 .#{$pl-prefix}site-header--gradient {
     &::before {
-        background: linear-gradient(to $brand-gradient-direction, $colour__brand--primary, $colour__brand--secondary);
+        background: linear-gradient(to $brand-gradient-direction, $colour__brand, $colour__brand--secondary);
     }
 }
 
@@ -95,7 +95,7 @@ $site-header__top-band-colour: $colour__brand--primary;
 
 /* variant with a solid-colour background and reversed branding */
 .#{$pl-prefix}site-header.#{$pl-prefix}reversed {
-    background-color: $colour__brand--primary;
+    background-color: $colour__brand;
     color: $colour__white;
 
     &:not(.#{$pl-prefix}site-header--gradient) {

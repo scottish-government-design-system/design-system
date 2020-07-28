@@ -28,7 +28,7 @@ $colour__green--base:    #428542 !default;
 
 
 // branding
-$colour__brand--primary:     $colour__blue--base !default;
+$colour__brand:              $colour__blue--base !default;
 $colour__brand--secondary:   $colour__blue--darker !default;
 $brand-gradient-direction:   right !default;
 
@@ -72,7 +72,7 @@ $colour__blocklink-bg--focus:        $colour__link--focus__background !default;
 
 // buttons
 $colour__button:                     $colour__white !default;
-$colour__button__background:         $colour__brand--primary !default;
+$colour__button__background:         $colour__brand !default;
 $colour__button--hover__background:  $colour__link--hover !default;
 $colour__button--focus:              $colour__link--focus !default;
 $colour__button--focus__background:  $colour__link--focus__background !default;
@@ -93,7 +93,6 @@ $colour__button--cancel--hover__background:      $colour__grey--light !default;
 $colour__input--hover__border:       $colour__grey--medium !default;
 $colour__input--focus__background:   $colour__white !default;
 $colour__input--focus__outline:      $colour__link--focus__outline !default;
-$colour__input--active__background:  $colour__blue--lighter !default;
 $colour__input--spot:                $colour__text !default;
 
 
@@ -103,7 +102,7 @@ $colour__input--spot:                $colour__text !default;
 $colour__border:             $colour__grey--medium !default;
 $colour__border--dark:       $colour__grey--dark !default;
 $colour__border--light:      $colour__grey--light !default;
-$colour__border--highlight:  $colour__brand--primary !default;
+$colour__border--highlight:  $colour__brand !default;
 
 
 

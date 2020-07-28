@@ -12,7 +12,7 @@
     position: relative;
 
     &::before {
-        background-color: $colour__brand--primary;
+        background-color: $colour__brand;
         content: '';
         height: 2px;
         left: 0;

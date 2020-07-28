@@ -6,11 +6,11 @@
     @include block-margins;
 
     background: $colour__grey--lighter;
-    border-left: 4px solid $colour__brand--primary;
+    border-left: 4px solid $colour__brand;
     padding: 16px 24px;
 
     &__label.#{$pl-prefix}content-label {
-        color: $colour__brand--primary;
+        color: $colour__brand;
         font-size: $small-size--fixed;
     }
 

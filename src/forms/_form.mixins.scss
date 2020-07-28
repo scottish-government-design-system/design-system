@@ -2,7 +2,7 @@
     FORM MIXINS
 \*------------------------------------*/
 
-@mixin radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $colour__input--active__background) {
+@mixin radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $colour__input--focus__background) {
 
     margin-bottom: 24px;
     padding-left: 40px;
