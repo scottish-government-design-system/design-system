@@ -51,7 +51,7 @@ $site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colo
         &:focus {
             box-shadow: 0 3px $colour__link--focus__shadow;
             outline: none;
-            padding-bottom: 4px;
+            padding-bottom: 5px;
 
             &::after {
                 content: none;
