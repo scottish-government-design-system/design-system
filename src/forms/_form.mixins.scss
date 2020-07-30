@@ -32,26 +32,30 @@
         height: $input-size;
         left: 0;
         position: absolute;
-        top: 0;
         width: $input-size;
     }
 
     &__label::after {
         content: "";
         position: absolute;
-
         bottom: calc(100% - #{$input-size});
         left: 0;
         right: calc(100% - #{$input-size});
-        top: 0;
         opacity: 0;
     }
 
     &__label::before,
     &__label::after {
+        top: -4px;
+
+        @include media-query(medium) {
+            top: 0;
+        }
+
         @if $round {
             border-radius: 50%;
         }
+
     }
 
     /* focus */
