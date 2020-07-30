@@ -10,3 +10,14 @@ small,
 .#{$pl-prefix}tiny {
     font-size: $tiny-size;
 }
+
+@include media-query(medium) {
+    small,
+    .#{$pl-prefix}small {
+        font-size: $small-size--medium;
+    }
+
+    .#{$pl-prefix}tiny {
+        font-size: $tiny-size--medium;
+    }
+}

@@ -5,7 +5,7 @@
 h1, .alpha {
     font-size: $h1-size;
     font-weight: $bold;
-    line-height: 32px;
+    line-height: 40px;
     margin-bottom: 32px;
     text-rendering: optimizeLegibility;
 }
@@ -44,7 +44,7 @@ h4, .delta {
 h5, .epsilon {
     font-size: $h5-size;
     font-weight: $bold;
-    line-height: 32px;
+    line-height: 24px;
 }
 
 @include media-query(medium) {
@@ -54,6 +54,7 @@ h5, .epsilon {
     }
 
     h2, .beta {
+        font-size: $h2-size--medium;
         line-height: 40px;
         margin-bottom: 16px;
 
@@ -63,6 +64,15 @@ h5, .epsilon {
     }
 
     h3, .gamma {
+        font-size: $h3-size--medium;
         line-height: 32px;
+    }
+
+    h4, .delta {
+        font-size: $h4-size--medium;
+    }
+
+    h5, .epsilon {
+        font-size: $h5-size--medium;
     }
 }

@@ -18,6 +18,10 @@ $input-height: 48px;
         text-align: center;
         top: 0;
         width: $input-height;
+
+        @include media-query(medium) {
+            font-size: $large-size--medium;
+        }
     }
 
     &[data-symbol]::before {
@@ -31,4 +35,6 @@ $input-height: 48px;
     & > .#{$pl_prefix}input:focus {
         padding-left: 39px;
     }
+
+
 }

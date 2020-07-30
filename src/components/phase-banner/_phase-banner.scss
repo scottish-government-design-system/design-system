@@ -28,6 +28,8 @@
 
 @supports (display: flex) {
     .#{$pl-prefix}phase-banner {
+        font-size: $small-size--medium;
+
         &__content {
             align-items: baseline;
             display: flex;

@@ -134,6 +134,10 @@ input[type="submit"],
         font-size: $small-size;
         padding-top: 10px;
         padding-bottom: 11px;
+
+        @include media-query(medium) {
+            font-size: $small-size--medium;
+        }
     }
 }
 

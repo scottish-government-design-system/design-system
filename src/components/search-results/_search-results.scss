@@ -44,6 +44,7 @@
     }
 
     .#{$pl-prefix}search-suggestions {
+        font-size: $small-size--medium;
         padding-left: 16px;
 
         ul li:not(:last-child)::after {

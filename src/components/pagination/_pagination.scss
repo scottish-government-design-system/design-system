@@ -45,6 +45,8 @@
 
 @include media-query(medium) {
     .#{$pl-prefix}pagination {
+        font-size: $small-size--medium;
+
         &__list {
             display: block;
         }

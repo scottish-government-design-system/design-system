@@ -278,6 +278,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
 @include media-query(medium) {
     .#{$pl-prefix}site-navigation {
         display: block;
+        font-size: $small-size--medium;
     }
 
     .#{$pl-prefix}mobile-navigation,

@@ -154,7 +154,23 @@
     }
 }
 
+@include media-query(medium) {
+    .#{$pl-prefix}datepicker {
+        &__dialog__title {
+            font-size: $small-size--medium;
+        }
 
+        &__table {
+            th {
+                font-size: $small-size;
+            }
+        }
+
+        &__table-caption {
+            font-size: $tiny-size--medium;
+        }
+    }
+}
 
 @include media-query(medium-down) {
     .#{$pl-prefix}datepicker {

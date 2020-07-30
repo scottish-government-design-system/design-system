@@ -75,6 +75,8 @@ $site-footer__background: $colour__brand !default;
 
 
     .#{$pl-prefix}site-footer {
+        font-size: $small-size--medium;
+
         &__copyright {
             padding-left: 48px;
             position: relative;

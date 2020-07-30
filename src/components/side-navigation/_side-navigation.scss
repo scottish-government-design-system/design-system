@@ -215,7 +215,7 @@ $side-nav__spacing-unit: 16px;
 @include media-query(medium) {
     .#{$pl-prefix}side-navigation {
         border-width: 0;
-        font-size: $small-size;
+        font-size: $small-size--medium;
         line-height: 24px;
 
         &__expand {

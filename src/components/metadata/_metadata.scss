@@ -65,3 +65,9 @@
         }
     }
 }
+
+@include media-query(medium) {
+    .#{$pl-prefix}metadata--inline {
+        font-size: $tiny-size--medium;
+    }
+}

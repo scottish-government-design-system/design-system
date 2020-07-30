@@ -48,9 +48,12 @@
         margin-top: 8px;
 
         &__title {
-            font-size: $small-size;
+            font-size: $small-size--medium;
             line-height: 32px;
             margin-bottom: 8px;
         }
+
+        &__list {
+            font-size: $small-size--medium;
     }
 }
