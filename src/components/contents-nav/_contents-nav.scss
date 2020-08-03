@@ -16,7 +16,7 @@
     }
 
     &__list {
-        font-size: $small-size;
+        @include small-size;
         line-height: 24px;
         list-style-type: none;
         margin-left: 0;
@@ -51,10 +51,6 @@
             font-size: $small-size--medium;
             line-height: 32px;
             margin-bottom: 8px;
-        }
-
-        &__list {
-            font-size: $small-size--medium;
         }
     }
 }

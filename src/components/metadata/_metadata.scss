@@ -32,7 +32,7 @@
  */
 .#{$pl-prefix}metadata--inline {
     color: $colour__text--secondary;
-    font-size: $tiny-size;
+    @include tiny-size;
     line-height: 24px;
     margin-bottom: 8px;
 
@@ -63,11 +63,5 @@
             color: $colour__text;
             font-weight: $bold;
         }
-    }
-}
-
-@include media-query(medium) {
-    .#{$pl-prefix}metadata--inline {
-        font-size: $tiny-size--medium;
     }
 }

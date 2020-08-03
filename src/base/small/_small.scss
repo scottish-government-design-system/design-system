@@ -4,20 +4,9 @@
 
 small,
 .#{$pl-prefix}small {
-    font-size: $small-size;
+    @include small-size;
 }
 
 .#{$pl-prefix}tiny {
-    font-size: $tiny-size;
-}
-
-@include media-query(medium) {
-    small,
-    .#{$pl-prefix}small {
-        font-size: $small-size--medium;
-    }
-
-    .#{$pl-prefix}tiny {
-        font-size: $tiny-size--medium;
-    }
+    @include tiny-size;
 }

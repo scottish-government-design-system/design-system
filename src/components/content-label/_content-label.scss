@@ -3,15 +3,9 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}content-label {
-    font-size: $small-size;
+    @include small-size;
     font-weight: $normal;
     line-height: 16px;
     margin: 0;
     text-transform: uppercase;
-}
-
-@include media-query(medium) {
-    .#{$pl-prefix}content-label {
-        font-size: $small-size--medium;
-    }
 }

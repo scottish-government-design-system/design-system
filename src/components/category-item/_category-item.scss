@@ -27,7 +27,7 @@ $category-item__pinned-icon-size: 20px;
     }
 
     &__title {
-        font-size: $large-size;
+        @include large-size;
         line-height: 28px;
         margin: 0 0 16px;
     }
@@ -59,7 +59,7 @@ $category-item__pinned-icon-size: 20px;
     }
 
     &__summary {
-        font-size: $small-size;
+        @include small-size;
         color: $colour__text--secondary;
         line-height: 24px;
         margin: 0;
@@ -98,12 +98,7 @@ $category-item__pinned-icon-size: 20px;
 @include media-query(medium) {
     .#{$pl-prefix}category-item {
         &__title {
-            font-size: $large-size--medium;
             line-height: 40px;
-        }
-
-        &__summary {
-            font-size: $small-size--medium;
         }
     }
 

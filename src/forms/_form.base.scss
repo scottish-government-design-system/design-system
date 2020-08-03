@@ -2,7 +2,11 @@
     FORM ELEMENTS (base)
 \*------------------------------------*/
 
+
+
+
 legend {
+    @include h3-size;
     font-weight: bold;
     margin-bottom: 8px;
 }

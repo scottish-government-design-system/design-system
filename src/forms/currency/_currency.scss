@@ -8,9 +8,9 @@ $input-height: 48px;
     position: relative;
 
     &::before {
+        @include large-size;
         content: '£';
         height: $input-height;
-        font-size: $large-size;
         font-weight: bold;
         line-height: $input-height;
         pointer-events: none;
@@ -18,10 +18,6 @@ $input-height: 48px;
         text-align: center;
         top: 0;
         width: $input-height;
-
-        @include media-query(medium) {
-            font-size: $large-size--medium;
-        }
     }
 
     &[data-symbol]::before {

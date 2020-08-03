@@ -37,3 +37,67 @@ $bold: 700 !default;
 
 // font face
 $base-font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+@mixin h1-size {
+    font-size: $h1-size;
+
+    @include media-query(medium) {
+        font-size: $h1-size--medium;
+    }
+}
+
+@mixin h2-size {
+    font-size: $h2-size;
+
+    @include media-query(medium) {
+        font-size: $h2-size--medium;
+    }
+}
+
+@mixin h3-size {
+    font-size: $h3-size;
+
+    @include media-query(medium) {
+        font-size: $h3-size--medium;
+    }
+}
+
+@mixin h4-size {
+    font-size: $h4-size;
+
+    @include media-query(medium) {
+        font-size: $h4-size--medium;
+    }
+}
+
+@mixin h5-size {
+    font-size: $h5-size;
+
+    @include media-query(medium) {
+        font-size: $h5-size--medium;
+    }
+}
+
+@mixin tiny-size {
+    font-size: $tiny-size;
+
+    @include media-query(medium) {
+        font-size: $tiny-size--medium;
+    }
+}
+
+@mixin small-size {
+    font-size: $small-size;
+
+    @include media-query(medium) {
+        font-size: $small-size--medium;
+    }
+}
+
+@mixin large-size {
+    font-size: $large-size;
+
+    @include media-query(medium) {
+        font-size: $large-size--medium;
+    }
+}

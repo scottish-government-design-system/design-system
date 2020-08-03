@@ -38,7 +38,7 @@ $quick-exit-banner-height: 56px;
         }
 
         &__message {
-            font-size: $tiny-size;
+            @include tiny-size;
             @include visually-hidden();
         }
     }
@@ -80,7 +80,6 @@ $quick-exit-banner-height: 56px;
         }
 
         &__message {
-            font-size: $tiny-size--medium;
             line-height: 20px;
             margin-bottom: 0;
         }

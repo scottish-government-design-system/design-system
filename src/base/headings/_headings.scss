@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 h1, .alpha {
-    font-size: $h1-size;
+    @include h1-size;
     font-weight: $bold;
     line-height: 40px;
     margin-bottom: 32px;
@@ -17,7 +17,7 @@ h2, h3, h4,
 }
 
 h2, .beta {
-    font-size: $h2-size;
+    @include h2-size;
     line-height: 32px;
     margin-bottom: 8px;
 
@@ -27,7 +27,7 @@ h2, .beta {
 }
 
 h3, .gamma {
-    font-size: $h3-size;
+    @include h3-size;
     line-height: 24px;
     margin-bottom: 8px;
 
@@ -37,24 +37,22 @@ h3, .gamma {
 }
 
 h4, .delta {
-    font-size: $h4-size;
+    @include h4-size;
     line-height: 24px;
 }
 
 h5, .epsilon {
-    font-size: $h5-size;
+    @include h5-size;
     font-weight: $bold;
     line-height: 24px;
 }
 
 @include media-query(medium) {
     h1, .alpha {
-        font-size: $h1-size--medium;
         line-height: 56px;
     }
 
     h2, .beta {
-        font-size: $h2-size--medium;
         line-height: 40px;
         margin-bottom: 16px;
 
@@ -64,15 +62,12 @@ h5, .epsilon {
     }
 
     h3, .gamma {
-        font-size: $h3-size--medium;
         line-height: 32px;
     }
 
     h4, .delta {
-        font-size: $h4-size--medium;
     }
 
     h5, .epsilon {
-        font-size: $h5-size--medium;
     }
 }

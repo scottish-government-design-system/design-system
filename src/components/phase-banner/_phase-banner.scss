@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}phase-banner {
+    @include small-size;
     background: $colour__grey--light;
-    font-size: $small-size;
     line-height: 24px;
     padding: 16px 0;
 
@@ -28,7 +28,6 @@
 
 @supports (display: flex) {
     .#{$pl-prefix}phase-banner {
-        font-size: $small-size--medium;
 
         &__content {
             align-items: baseline;

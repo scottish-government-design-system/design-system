@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}search-suggestions {
-    font-size: $small-size;
+    @include small-size;
     margin: 24px 0 24px;
 
     ul {
@@ -44,7 +44,6 @@
     }
 
     .#{$pl-prefix}search-suggestions {
-        font-size: $small-size--medium;
         padding-left: 16px;
 
         ul li:not(:last-child)::after {

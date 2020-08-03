@@ -15,7 +15,7 @@
     }
 
     &__title {
-        font-size: $h1-size;
+        @include h1-size;
         line-height: 32px;
         margin-bottom: 16px;
     }
@@ -34,7 +34,6 @@
         padding: 32px;
 
         &__title {
-            font-size: $h1-size--medium;
             line-height: 32px;
         }
     }

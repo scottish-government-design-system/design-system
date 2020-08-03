@@ -38,7 +38,7 @@
         }
 
         &__title {
-            font-size: $small-size;
+            @include small-size;
             margin: 0 !important;
             text-transform: uppercase;
         }
@@ -70,8 +70,8 @@
             }
 
             th {
+                @include small-size;
                 color: $colour__text--secondary;
-                font-size: $small-size;
                 font-weight: $normal;
             }
 
@@ -130,7 +130,7 @@
         }
 
         &__table-caption {
-            font-size: $tiny-size;
+            @include tiny-size;
             caption-side: bottom;
             margin-top: 8px;
         }
@@ -150,24 +150,6 @@
             @supports (display: grid) {
                 grid-template-columns: 1fr 1fr;
             }
-        }
-    }
-}
-
-@include media-query(medium) {
-    .#{$pl-prefix}datepicker {
-        &__dialog__title {
-            font-size: $small-size--medium;
-        }
-
-        &__table {
-            th {
-                font-size: $small-size;
-            }
-        }
-
-        &__table-caption {
-            font-size: $tiny-size--medium;
         }
     }
 }

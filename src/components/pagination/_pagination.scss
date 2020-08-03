@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}pagination {
-    font-size: $small-size;
+    @include small-size;
     text-align: center;
 
     &__list {
@@ -45,7 +45,6 @@
 
 @include media-query(medium) {
     .#{$pl-prefix}pagination {
-        font-size: $small-size--medium;
 
         &__list {
             display: block;

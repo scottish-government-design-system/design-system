@@ -9,8 +9,8 @@ $site-footer__background: $colour__brand !default;
 
 
 .#{$pl-prefix}site-footer {
+    @include small-size;
     background-color: $site-footer__background;
-    font-size: $small-size;
     line-height: 24px;
     margin-top: 64px;
     padding-bottom: 32px;
@@ -75,7 +75,6 @@ $site-footer__background: $colour__brand !default;
 
 
     .#{$pl-prefix}site-footer {
-        font-size: $small-size--medium;
 
         &__copyright {
             padding-left: 48px;
