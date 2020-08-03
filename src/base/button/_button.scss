@@ -7,6 +7,7 @@ $button__outline-width: 3px !default;
 $button__height: 48px !default;
 $button__height--small: 40px !default;
 $button__padding--x: 16px !default;
+$link__border-width: 3px;
 
 
 
@@ -131,13 +132,9 @@ input[type="submit"],
 // SIZE VARIANTS
 .#{$pl-prefix}button {
     &--small {
-        font-size: $small-size;
+        @include small-size;
         padding-top: 10px;
         padding-bottom: 11px;
-
-        @include media-query(medium) {
-            font-size: $small-size--medium;
-        }
     }
 }
 

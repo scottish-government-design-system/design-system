@@ -218,3 +218,37 @@ $blocklink__outline-width: 0;
     overflow: hidden;
     position: absolute !important;
 }
+
+@mixin colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
+    width: calc(100% * #{$columns/$total} - #{$gutter});
+}
+
+@mixin colpush($columns: 1, $total: 12) {
+    margin-left: calc(100% * #{$columns/$total});
+}
+
+@mixin colpull($columns: 1, $total: 12) {
+    margin-left: calc(100% * #{$columns/$total} * -1);
+}
+
+@mixin layout($gutter: $grid-gap-x) {
+    margin-right: #{$gutter * -1};
+    overflow: hidden;
+
+    > *[class] {
+        margin-right: $gutter;
+    }
+
+    @supports (display: grid) {
+        display: grid;
+        grid-gap: 0 $gutter;
+        margin-right: 0;
+        overflow: visible;
+
+        > *[class] {
+            margin-left: 0;
+            margin-right: 0;
+            width: auto;
+        }
+    }
+}

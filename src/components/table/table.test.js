@@ -6,7 +6,7 @@ import MobileTables from './table';
 
 describe('mobile tables', () => {
     beforeEach(function () {
-        loadFixtures('base/table/table.html');
+        loadFixtures('components/table/table.html');
         testObj.mobileTables = new MobileTables();
     });
 
