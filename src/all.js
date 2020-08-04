@@ -6,7 +6,7 @@ import MobileMenu from './components/site-navigation/site-navigation';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';
 import QuickExit from './components/quick-exit/quick-exit';
-import MobileTables from './base/table/table';
+import MobileTables from './components/table/table';
 
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
 // defaults to document
