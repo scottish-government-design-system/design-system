@@ -98,7 +98,7 @@ $category-item__pinned-icon-size: 20px;
 @include media-query(medium) {
     .#{$pl-prefix}category-item {
         &__title {
-            line-height: 40px;
+            line-height: 32px;
         }
     }
 
