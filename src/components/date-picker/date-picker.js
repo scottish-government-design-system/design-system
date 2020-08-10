@@ -176,7 +176,7 @@ class DSDatePicker {
           </tr>
       </thead>
 
-      <tbody></tbody>
+      <tbody data-form="date-select"></tbody>
       </table>
 
       <div class="ds_datepicker__dialog__buttongroup">
