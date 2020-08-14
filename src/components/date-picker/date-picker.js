@@ -137,12 +137,12 @@ class DSDatePicker {
     dialogTemplate(titleId) {
         return `<div class="ds_datepicker__dialog__header ">
         <div class="ds_datepicker__dialog__navbuttons">
-            <button class="ds_button  ds_button--icon-only  js-datepicker-prev-year" aria-label="previous year">
+            <button class="ds_button  ds_button--icon-only  js-datepicker-prev-year" aria-label="previous year" data-button="button-datepicker-prevyear">
                 <span class="visually-hidden">Previous year</span>
                 <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#double-chevron-left"></use></svg>
             </button>
 
-            <button class="ds_button  ds_button--icon-only  js-datepicker-prev-month" aria-label="previous month">
+            <button class="ds_button  ds_button--icon-only  js-datepicker-prev-month" aria-label="previous month" data-button="button-datepicker-prevmonth">
                 <span class="visually-hidden">Previous month</span>
                 <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron-left"></use></svg>
             </button>
@@ -151,12 +151,12 @@ class DSDatePicker {
         <h2 id="${titleId}" class="ds_datepicker__dialog__title  js-datepicker-month-year" aria-live="polite">June 2020</h2>
 
         <div class="ds_datepicker__dialog__navbuttons">
-            <button class="ds_button  ds_button--icon-only  js-datepicker-next-month" aria-label="next month">
+            <button class="ds_button  ds_button--icon-only  js-datepicker-next-month" aria-label="next month" data-button="button-datepicker-nextmonth">
                 <span class="visually-hidden">Next month</span>
                 <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron-right"></use></svg>
             </button>
 
-            <button class="ds_button  ds_button--icon-only  js-datepicker-next-year" aria-label="next year">
+            <button class="ds_button  ds_button--icon-only  js-datepicker-next-year" aria-label="next year" data-button="button-datepicker-nextyear">
                 <span class="visually-hidden">Next year</span>
                 <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#double-chevron-right"></use></svg>
             </button>
@@ -181,8 +181,8 @@ class DSDatePicker {
       </table>
 
       <div class="ds_datepicker__dialog__buttongroup">
-      <button class="ds_button  ds_button--small  ds_button--cancel  js-datepicker-cancel" value="cancel">Cancel</button>
-      <button class="ds_button  ds_button--small  js-datepicker-ok" value="ok">OK</button>
+      <button class="ds_button  ds_button--small  ds_button--cancel  js-datepicker-cancel" value="cancel" data-button="button-datepicker-cancel">Cancel</button>
+      <button class="ds_button  ds_button--small  js-datepicker-ok" value="ok" data-button="button-datepicker-ok">OK</button>
       </div>`;
     }
 
