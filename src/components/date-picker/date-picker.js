@@ -89,6 +89,7 @@ class DSDatePicker {
                 // create cell (day)
                 const cell = document.createElement('td');
                 const dateButton = document.createElement('button');
+                dateButton.dataset.form = 'date-select';
 
                 cell.appendChild(dateButton);
                 row.appendChild(cell);
@@ -127,7 +128,7 @@ class DSDatePicker {
     }
 
     buttonTemplate() {
-        return `<button class="ds_button  ds_button--icon-only  js-calendar-button">
+        return `<button class="ds_button  ds_button--icon-only  js-calendar-button" data-form="date-open">
             <span class="visually-hidden">Choose date</span>
             <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#calendar"></use></svg>
         </button>`;
@@ -176,7 +177,7 @@ class DSDatePicker {
           </tr>
       </thead>
 
-      <tbody data-form="date-select"></tbody>
+      <tbody></tbody>
       </table>
 
       <div class="ds_datepicker__dialog__buttongroup">
