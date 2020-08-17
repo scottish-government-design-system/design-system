@@ -64,6 +64,7 @@ $site-header__top-band-colour: $colour__brand;
     &__control-text {
         float: left;
         margin-right: 8px;
+        pointer-events: none;
     }
 
     &__search {

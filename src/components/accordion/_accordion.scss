@@ -79,6 +79,7 @@ h1,h2,h3 {
 
     &__indicator {
         @include indicator;
+        pointer-events: none;
         top: 18px;
     }
 
