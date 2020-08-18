@@ -17,6 +17,7 @@ $branding__separator-colour: $colour__border--highlight !default;
 
     &__logo-image {
         height: 100%;
+        pointer-events: none;
     }
 
     &__link {
