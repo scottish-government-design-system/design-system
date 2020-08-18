@@ -100,12 +100,7 @@ input[type="submit"],
         outline: 2px solid currentColor;
         outline-offset: -2px;
 
-        &:hover,
-        &:focus {
-            outline-width: 2px;
-        }
-
-        &:hover:not(:focus){
+        &:hover:not(:focus) {
             background-color: $colour__button--secondary--hover__background;
             color: $colour__button--secondary--hover;
         }
@@ -116,11 +111,6 @@ input[type="submit"],
         color: $colour__button--cancel;
         outline: 2px solid currentColor;
         outline-offset: -2px;
-
-        &:hover,
-        &:focus {
-            outline-width: 2px;
-        }
 
         &:hover:not(:focus) {
             background-color: $colour__button--cancel--hover__background;
@@ -158,7 +148,7 @@ input[type="submit"],
 .#{$pl-prefix}button-group {
     @include block-margins;
 
-    > .#{$pl-prefix}button {
+    >.#{$pl-prefix}button {
         margin: 0 0 24px;
 
         &:last-child {
@@ -172,7 +162,7 @@ input[type="submit"],
         padding-right: calc(#{$button__height} + #{$button__padding--x});
         position: relative;
 
-        > .#{$pl-prefix}icon {
+        >.#{$pl-prefix}icon {
             bottom: 0;
             padding: 10px 10px 11px 11px;
             position: absolute;
@@ -185,7 +175,7 @@ input[type="submit"],
             padding-left: calc(#{$button__height} + #{$button__padding--x});
             padding-right: #{$button__padding--x};
 
-            > .#{$pl-prefix}icon {
+            >.#{$pl-prefix}icon {
                 left: 0;
                 right: auto;
             }
@@ -200,7 +190,7 @@ input[type="submit"],
             padding-left: calc(16px + #{$button__padding--x});
         }
 
-        > .#{$pl-prefix}icon {
+        >.#{$pl-prefix}icon {
             height: $button__height--small;
             padding: 10px;
             width: $button__height--small;
