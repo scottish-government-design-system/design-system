@@ -42,6 +42,10 @@ $page-nav__icon-size: 56px !default;
         display: none;
     }
 
+    > * {
+        pointer-events: none;
+    }
+
     // Shared styles for left and right variations
     // ::before is the circle
     &--left::before,
