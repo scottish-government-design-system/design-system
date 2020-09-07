@@ -13,6 +13,7 @@ class DSDatePicker {
         this.currentDate = new Date();
         this.currentDate.setHours(0, 0, 0, 0);
         this.calendarDays = [];
+        this.imagePath = options.imagePath || '/assets/images/icons/';
 
         this.keycodes = {
             'tab': 9,
@@ -64,19 +65,7 @@ class DSDatePicker {
 
         this.dialogTitleNode = this.dialogElement.querySelector('.js-datepicker-month-year');
 
-        if (this.inputElement.dataset.mindate) {
-            this.minDate = this.dateFromString(this.inputElement.dataset.mindate);
-            if (this.minDate && this.currentDate < this.minDate) {
-                this.currentDate = this.minDate;
-            }
-        }
-
-        if (this.inputElement.dataset.maxdate) {
-            this.maxDate = this.dateFromString(this.inputElement.dataset.maxdate);
-            if (this.maxDate && this.currentDate > this.maxDate) {
-                this.currentDate = this.maxDate;
-            }
-        }
+        this.setMinAndMaxDatesOnCalendar();
 
         // create calendar
         const tbody = this.datePickerParent.querySelector('tbody');
@@ -130,8 +119,9 @@ class DSDatePicker {
     buttonTemplate() {
         return `<button class="ds_button  ds_button--icon-only  js-calendar-button" data-form="date-open">
             <span class="visually-hidden">Choose date</span>
-            <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#calendar"></use></svg>
-        </button>`;
+            <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#calendar"></use></svg>
+        </button>
+        `;
     }
 
     dialogTemplate(titleId) {
@@ -139,12 +129,12 @@ class DSDatePicker {
         <div class="ds_datepicker__dialog__navbuttons">
             <button class="ds_button  ds_button--icon-only  js-datepicker-prev-year" aria-label="previous year" data-button="button-datepicker-prevyear">
                 <span class="visually-hidden">Previous year</span>
-                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#double-chevron-left"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#double-chevron-left"></use></svg>
             </button>
 
             <button class="ds_button  ds_button--icon-only  js-datepicker-prev-month" aria-label="previous month" data-button="button-datepicker-prevmonth">
                 <span class="visually-hidden">Previous month</span>
-                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron-left"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#chevron-left"></use></svg>
             </button>
         </div>
 
@@ -153,12 +143,12 @@ class DSDatePicker {
         <div class="ds_datepicker__dialog__navbuttons">
             <button class="ds_button  ds_button--icon-only  js-datepicker-next-month" aria-label="next month" data-button="button-datepicker-nextmonth">
                 <span class="visually-hidden">Next month</span>
-                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron-right"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#chevron-right"></use></svg>
             </button>
 
             <button class="ds_button  ds_button--icon-only  js-datepicker-next-year" aria-label="next year" data-button="button-datepicker-nextyear">
                 <span class="visually-hidden">Next year</span>
-                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#double-chevron-right"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#double-chevron-right"></use></svg>
             </button>
         </div>
       </div>
@@ -186,34 +176,83 @@ class DSDatePicker {
       </div>`;
     }
 
+    leadingZeroes(value, length = 2) {
+        let ret = value.toString();
+
+        while (ret.length < length) {
+            ret = '0' + ret.toString();
+        }
+
+        return ret;
+    }
+
     setMinDate(date) {
-        this.inputElement.dataset.mindate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        this.inputElement.dataset.mindate = this.formattedDateFromDate(date);
     }
 
     setMaxDate(date) {
-        this.inputElement.dataset.maxdate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+        this.inputElement.dataset.maxdate = this.formattedDateFromDate(date);
     }
 
-    dateFromString(dateString) {
-        let date = null;
+    setMinAndMaxDatesOnCalendar() {
+        if (this.inputElement.dataset.mindate) {
+            this.minDate = this.formattedDateFromString(this.inputElement.dataset.mindate, null);
+            if (this.minDate && this.currentDate < this.minDate) {
+                this.currentDate = this.minDate;
+            }
+        }
+
+        if (this.inputElement.dataset.maxdate) {
+            this.maxDate = this.formattedDateFromString(this.inputElement.dataset.maxdate, null);
+            if (this.maxDate && this.currentDate > this.maxDate) {
+                this.currentDate = this.maxDate;
+            }
+        }
+    }
+
+    formattedDateFromString(dateString, fallback = new Date()) {
+        let formattedDate = null;
         const parts = dateString.split('/');
 
         if (dateString.match(/\d{1,4}\/\d{1,2}\/\d{1,4}/)) {
             switch (this.inputElement.dataset.dateformat) {
-                case 'YMD':
-                    date = new Date(`${parts[1]}/${parts[2]}/${parts[0]}`);
-                    break;
-                case 'MDY':
-                    date = new Date(`${parts[0]}/${parts[1]}/${parts[2]}`);
-                    break;
-                case 'DMY':
-                default:
-                    date = new Date(`${parts[1]}/${parts[0]}/${parts[2]}`);
-                    break;
+            case 'YMD':
+                formattedDate = new Date(`${parts[1]}/${parts[2]}/${parts[0]}`);
+                break;
+            case 'MDY':
+                formattedDate = new Date(`${parts[0]}/${parts[1]}/${parts[2]}`);
+                break;
+            case 'DMY':
+            default:
+                formattedDate = new Date(`${parts[1]}/${parts[0]}/${parts[2]}`);
+                break;
             }
         }
 
-        return date;
+        if (formattedDate instanceof Date && !isNaN(formattedDate)) {
+            return formattedDate;
+        } else {
+            return fallback;
+        }
+    }
+
+    formattedDateFromDate(date) {
+        let formattedDate = null;
+
+        switch (this.inputElement.dataset.dateformat) {
+        case 'YMD':
+            formattedDate = `${date.getFullYear()}/${this.leadingZeroes(date.getMonth() + 1)}/${this.leadingZeroes(date.getDate())}`;
+            break;
+        case 'MDY':
+            formattedDate = `${this.leadingZeroes(date.getMonth() + 1)}/${this.leadingZeroes(date.getDate())}/${date.getFullYear()}`;
+            break;
+        case 'DMY':
+        default:
+            formattedDate = `${this.leadingZeroes(date.getDate())}/${this.leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
+            break;
+        }
+
+        return formattedDate;
     }
 
     backgroundClick(event) {
@@ -325,31 +364,25 @@ class DSDatePicker {
     }
 
     selectDate(date) {
-        function leadingZeroes(value, length = 2) {
-            let ret = value.toString();
-
-            while (ret.length < length) {
-                ret = '0' + ret.toString();
-            }
-
-            return ret;
-        }
-
         this.calendarButtonElement.querySelector('span').innerText = `Choose date. Selected date is ${this.formattedDateHuman(date)}`;
-        this.inputElement.value = `${leadingZeroes(date.getDate())}/${leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
+        this.inputElement.value = `${this.leadingZeroes(date.getDate())}/${this.leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
 
         switch (this.inputElement.dataset.dateformat) {
-            case 'YMD':
-                this.inputElement.value = `${date.getFullYear()}/${leadingZeroes(date.getMonth() + 1)}/${leadingZeroes(date.getDate())}`;
-                break;
-            case 'MDY':
-                this.inputElement.value = `${leadingZeroes(date.getMonth() + 1)}/${leadingZeroes(date.getDate())}/${date.getFullYear()}`;
-                break;
-            case 'DMY':
-            default:
-                this.inputElement.value = `${leadingZeroes(date.getDate())}/${leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
-                break;
+        case 'YMD':
+            this.inputElement.value = `${date.getFullYear()}/${this.leadingZeroes(date.getMonth() + 1)}/${this.leadingZeroes(date.getDate())}`;
+            break;
+        case 'MDY':
+            this.inputElement.value = `${this.leadingZeroes(date.getMonth() + 1)}/${this.leadingZeroes(date.getDate())}/${date.getFullYear()}`;
+            break;
+        case 'DMY':
+        default:
+            this.inputElement.value = `${this.leadingZeroes(date.getDate())}/${this.leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
+            break;
         }
+
+        const changeEvent = document.createEvent('Event');
+        changeEvent.initEvent('change', true, true);
+        this.inputElement.dispatchEvent(changeEvent);
 
         this.closeDialog();
     }
@@ -363,6 +396,7 @@ class DSDatePicker {
         if (this.isOpen()) {
             this.closeDialog();
         } else {
+            this.setMinAndMaxDatesOnCalendar();
             this.openDialog();
         }
     }
@@ -377,7 +411,7 @@ class DSDatePicker {
 
         // get the date from the input element
         if (this.inputElement.value.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
-            this.inputDate = this.dateFromString(this.inputElement.value);
+            this.inputDate = this.formattedDateFromString(this.inputElement.value);
             this.currentDate = this.inputDate;
         }
 
@@ -525,36 +559,36 @@ class DSCalendarDay {
         let calendarNavKey = true;
 
         switch (event.keyCode) {
-            case this.picker.keycodes.left:
-                this.picker.focusPreviousDay();
-                break;
-            case this.picker.keycodes.right:
-                this.picker.focusNextDay();
-                break;
-            case this.picker.keycodes.up:
-                this.picker.focusPreviousWeek();
-                break;
-            case this.picker.keycodes.down:
-                this.picker.focusNextWeek();
-                break;
-            case this.picker.keycodes.home:
-                this.picker.focusFirstDayOfWeek();
-                break;
-            case this.picker.keycodes.end:
-                this.picker.focusLastDayOfWeek();
-                break;
-            case this.picker.keycodes.pageup:
-                event.shiftKey ? this.picker.focusPreviousYear(event) : this.picker.focusPreviousMonth(event);
-                break;
-            case this.picker.keycodes.pagedown:
-                event.shiftKey ? this.picker.focusNextYear(event) : this.picker.focusNextMonth(event);
-                break;
-            case this.picker.keycodes.esc:
-                this.picker.closeDialog();
-                break;
-            default:
-                calendarNavKey = false;
-                break;
+        case this.picker.keycodes.left:
+            this.picker.focusPreviousDay();
+            break;
+        case this.picker.keycodes.right:
+            this.picker.focusNextDay();
+            break;
+        case this.picker.keycodes.up:
+            this.picker.focusPreviousWeek();
+            break;
+        case this.picker.keycodes.down:
+            this.picker.focusNextWeek();
+            break;
+        case this.picker.keycodes.home:
+            this.picker.focusFirstDayOfWeek();
+            break;
+        case this.picker.keycodes.end:
+            this.picker.focusLastDayOfWeek();
+            break;
+        case this.picker.keycodes.pageup:
+            event.shiftKey ? this.picker.focusPreviousYear(event) : this.picker.focusPreviousMonth(event);
+            break;
+        case this.picker.keycodes.pagedown:
+            event.shiftKey ? this.picker.focusNextYear(event) : this.picker.focusNextMonth(event);
+            break;
+        case this.picker.keycodes.esc:
+            this.picker.closeDialog();
+            break;
+        default:
+            calendarNavKey = false;
+            break;
         }
 
         if (calendarNavKey) {
