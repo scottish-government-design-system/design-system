@@ -30,6 +30,7 @@ class Tabs {
         const button = document.createElement('button');
         button.setAttribute('class', tabLabel.getAttribute('class'));
         button.setAttribute('role', tabLabel.getAttribute('role'));
+        button.setAttribute('data-navigation', tabLabel.getAttribute('data-navigation'));
         button.innerHTML = tabLabel.innerHTML;
 
         button.dataset.for = tabID;
