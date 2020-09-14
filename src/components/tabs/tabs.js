@@ -18,6 +18,7 @@ class Tabs {
     init() {
         // dom manipulation
         this.tabHeaders.forEach((tabHeader, index) => this.initTab(tabHeader, index));
+        this.updateTabIndexes();
     }
 
     initTab(tabHeader) {
@@ -40,11 +41,9 @@ class Tabs {
             tabHeader.classList.add('ds_current');
             button.setAttribute('aria-selected', true);
             tabContent.removeAttribute('hidden');
-            button.setAttribute('tabindex', 0);
         } else {
             button.setAttribute('aria-selected', false);
             tabContent.setAttribute('hidden', 'hidden');
-            button.setAttribute('tabindex', -1);
         }
 
         tabHeader.appendChild(button);
@@ -55,7 +54,9 @@ class Tabs {
             this.activateTab(tabHeader);
         });
 
-        button.addEventListener('keyup', (event) => {
+        button.addEventListener('keydown', (event) => {
+            let tabNavKey = true;
+
             if (event.keyCode === this.keycodes.right) {
                 this.focusNextTab(event);
             } else if (event.keyCode === this.keycodes.left) {
@@ -64,13 +65,18 @@ class Tabs {
                 this.focusPreviousTab(event);
             } else if (event.keyCode === this.keycodes.down) {
                 this.focusNextTab(event);
+            } else {
+                tabNavKey = false;
+            }
+
+            if (tabNavKey) {
+                event.preventDefault();
+                event.stopPropagation();
             }
         });
     }
 
-    focusNextTab(event) {
-        event.preventDefault();
-        event.stopPropagation();
+    focusNextTab() {
         let active = 0;
         this.tabHeaders.forEach(function (tabHeader, index) {
             if (document.activeElement === tabHeader.querySelector('button')) {
@@ -80,9 +86,7 @@ class Tabs {
         this.tabHeaders[(active + 1) % this.tabHeaders.length].querySelector('button').focus();
     }
 
-    focusPreviousTab(event) {
-        event.preventDefault();
-        event.stopPropagation();
+    focusPreviousTab() {
         let active = 0;
 
         this.tabHeaders.forEach(function (tabHeader, index) {
@@ -100,13 +104,27 @@ class Tabs {
             if (tabHeader === targetTabHeader) {
                 tabHeader.classList.add('ds_current');
                 tabHeader.querySelector('.ds_tab__label').setAttribute('aria-selected', true);
-                tabHeader.querySelector('.ds_tab__label').setAttribute('tabindex', 0);
                 tabContent.removeAttribute('hidden');
             } else {
                 tabHeader.classList.remove('ds_current');
                 tabHeader.querySelector('.ds_tab__label').setAttribute('aria-selected', false);
-                tabHeader.querySelector('.ds_tab__label').setAttribute('tabindex', -1);
                 tabContent.setAttribute('hidden', 'hidden');
+            }
+        });
+
+        this.updateTabIndexes();
+    }
+
+    updateTabIndexes() {
+        this.tabHeaders.forEach(tabHeader => {
+            let tabIndex = -1;
+
+            if (tabHeader.classList.contains('ds_current')) {
+                tabIndex = 0;
+            }
+
+            if (window.ds_patterns.breakpoint('medium')) {
+                tabHeader.querySelector('.ds_tab__label').setAttribute('tabindex', tabIndex);
             }
         });
     }

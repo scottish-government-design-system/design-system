@@ -31,7 +31,7 @@ describe('tabs', () => {
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.left;
-            event.initEvent('keyup');
+            event.initEvent('keydown');
             document.activeElement.dispatchEvent(event);
             expect(document.activeElement === testObj.tabs.tabHeaders[2].querySelector('button')).toBeTrue();
         });
@@ -42,7 +42,7 @@ describe('tabs', () => {
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.up;
-            event.initEvent('keyup');
+            event.initEvent('keydown');
             document.activeElement.dispatchEvent(event);
             expect(document.activeElement === testObj.tabs.tabHeaders[2].querySelector('button')).toBeTrue();
         });
@@ -54,7 +54,7 @@ describe('tabs', () => {
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.right;
-            event.initEvent('keyup');
+            event.initEvent('keydown');
             document.activeElement.dispatchEvent(event);
             expect(document.activeElement === testObj.tabs.tabHeaders[1].querySelector('button')).toBeTrue();
         });
@@ -65,7 +65,7 @@ describe('tabs', () => {
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.down;
-            event.initEvent('keyup');
+            event.initEvent('keydown');
             document.activeElement.dispatchEvent(event);
             expect(document.activeElement === testObj.tabs.tabHeaders[1].querySelector('button')).toBeTrue();
         });
@@ -80,6 +80,16 @@ describe('tabs', () => {
             expect(testObj.tabs.activateTab).toHaveBeenCalled();
             expect(testObj.tabs.tabContainer.querySelector('.ds_current') === testObj.tabs.tabHeaders[1]).toBeTrue();
         });
+
+        it('any other key behaves normally', () => {
+            testObj.tabs.tabHeaders[0].querySelector('button').focus();
+
+            event = document.createEvent('Event');
+            event.keyCode = 1;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+        });
+
 
         // check activate
         it('chould change tabs on demand', () => {
@@ -119,7 +129,29 @@ describe('tabs', () => {
         });
 
         // check tabindex
+        it('should not do anything with tabindex on mobile', () => {
+            window.ds_patterns.breakpoint = function () {
+                return false;
+            };
+
+            // initial state
+            const tabIndex1 = testObj.tabs.tabHeaders[0].querySelector('.ds_tab__label').getAttribute('tabindex');
+            const tabIndex2 = testObj.tabs.tabHeaders[1].querySelector('.ds_tab__label').getAttribute('tabindex');
+            const tabIndex3 = testObj.tabs.tabHeaders[2].querySelector('.ds_tab__label').getAttribute('tabindex');
+
+            // change the selected tab
+            testObj.tabs.activateTab(testObj.tabs.tabHeaders[1]);
+
+            expect (testObj.tabs.tabHeaders[0].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual(tabIndex1);
+            expect (testObj.tabs.tabHeaders[1].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual(tabIndex2);
+            expect(testObj.tabs.tabHeaders[2].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual(tabIndex3);
+        });
+
         it('should set tabindex to -1 on any inactive tabs', () => {
+            window.ds_patterns.breakpoint = function () {
+                return true;
+            };
+
             // initial state
             expect (testObj.tabs.tabHeaders[0].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual('0');
             expect (testObj.tabs.tabHeaders[1].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual('-1');
@@ -130,7 +162,7 @@ describe('tabs', () => {
 
             expect (testObj.tabs.tabHeaders[0].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual('-1');
             expect (testObj.tabs.tabHeaders[1].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual('0');
-            expect (testObj.tabs.tabHeaders[2].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual('-1');
+            expect(testObj.tabs.tabHeaders[2].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual('-1');
         });
     });
 
