@@ -7,6 +7,7 @@ import NotificationBanner from './components/notification-banner/notification-ba
 import SideNavigation from './components/side-navigation/side-navigation';
 import QuickExit from './components/quick-exit/quick-exit';
 import MobileTables from './components/table/table';
+import Tabs from './components/tabs/tabs';
 
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
 // defaults to document
@@ -46,6 +47,9 @@ function initAll(scope = document) {
         const mobileTables = new MobileTables();
         mobileTables.init();
     }
+
+    const tabSets = [].slice.call(scope.querySelectorAll('[data-module="ds-tabs"]'));
+    tabSets.forEach(tabSet => new Tabs(tabSet).init());
 }
 
 export {

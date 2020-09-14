@@ -1,0 +1,214 @@
+/*------------------------------------*\
+    TABS
+\*------------------------------------*/
+
+$tab__background-colour: $colour__link--disabled__background !default;
+
+
+
+
+.#{$pl-prefix}tab-container {
+    border: 1px solid $colour__border;
+}
+
+.#{$pl-prefix}tab {
+    &__content {
+        display: none;
+        padding: 32px;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__label {
+        @include ds_link;
+
+        background: $tab__background-colour;
+        border-bottom: 0;
+        color: $colour__text;
+        display: block;
+        font-weight: 400;
+        margin: 0;
+        outline-width: 1px;
+        padding: 16px 32px;
+        text-align: left;
+        transition: color $transition-out-time, background-color $transition-out-time;
+        width: 100%;
+
+        &:focus {
+            position: relative;
+            z-index: 1;
+            outline-width: 0;
+        }
+
+        &:hover {
+            outline-width: 0;
+        }
+    }
+
+    &__radio {
+        @include visually-hidden;
+    }
+
+    &__radio:checked + &__header + &__content,
+    &__header.#{$pl-prefix}current + &__content {
+        display: block;
+    }
+
+    &__radio:checked + &__header > &__label:not(:focus),
+    &__header.#{$pl-prefix}current > &__label:not(:focus) {
+        background: $colour__white;
+        position: relative;
+    }
+
+    &__radio + &__header > &__label::before,
+    &__header > &__label::before {
+        background: $colour__border--highlight;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 4px;
+    }
+
+    &__radio:checked + &__header > &__label::before,
+    &__header.#{$pl-prefix}current > &__label::before {
+        content: '';
+    }
+
+    &__radio &__header > &__label:focus,
+    &__header > &__label:focus {
+        box-shadow: none;
+
+        &::before {
+            content: '';
+            background-color: $colour__text;
+        }
+    }
+}
+
+@supports (display: grid) {
+    @include media-query(medium) {
+        .#{$pl-prefix}tab-container {
+            border: 0;
+            display: grid;
+            grid-template-areas: 't1 t2 t3 t4 t5 .'
+                                 'tc tc tc tc tc tc';
+            grid-gap: 0 8px;
+            grid-template-columns: repeat(5, minmax(min-content, max-content)) auto;
+
+            &--2 {
+                grid-template-areas: 't1 t2 .'
+                                     'tc tc tc';
+                grid-template-columns: repeat(2, minmax(min-content, max-content)) auto;
+            }
+
+            &--3 {
+                grid-template-areas: 't1 t2 t3 .'
+                                     'tc tc tc tc';
+                grid-template-columns: repeat(3, minmax(min-content, max-content)) auto;
+            }
+
+            &--4 {
+                grid-template-areas: 't1 t2 t3 t4 .'
+                                     'tc tc tc tc tc';
+                grid-template-columns: repeat(4, minmax(min-content, max-content)) auto;
+            }
+
+            &--5 {
+                grid-template-areas: 't1 t2 t3 t4 t5 .'
+                                     'tc tc tc tc tc tc';
+                grid-template-columns: repeat(5, minmax(min-content, max-content)) auto;
+            }
+
+            &--6 {
+                grid-template-areas: 't1 t2 t3 t4 t5 t6 .'
+                                     'tc tc tc tc tc tc tc';
+                grid-template-columns: repeat(6, minmax(min-content, max-content)) auto;
+            }
+        }
+
+        .#{$pl-prefix}tab {
+            &__header {
+                align-self: stretch;
+
+
+                &:nth-of-type(1) {
+                    grid-area: t1;
+                }
+
+                &:nth-of-type(3) {
+                    grid-area: t2;
+                }
+
+                &:nth-of-type(5) {
+                    grid-area: t3;
+                }
+
+                &:nth-of-type(7) {
+                    grid-area: t4;
+                }
+
+                &:nth-of-type(9) {
+                    grid-area: t5;
+                }
+
+                &:nth-of-type(11) {
+                    grid-area: t6;
+                }
+            }
+
+            &__content {
+                border-top: 1px solid $colour__border;
+                grid-area: tc;
+            }
+
+            &__label {
+                border-left: 1px solid $tab__background-colour;
+                border-right: 1px solid $tab__background-colour;
+                height: 100%;
+                padding-left: 31px;
+                padding-right: 31px;
+
+                &:focus {
+                    border-left-color: $colour__link--focus__background;
+                    border-right-color: $colour__link--focus__background;
+                }
+            }
+
+            &__radio:checked + &__header > &__label:not(:focus),
+            &__header.#{$pl-prefix}current > &__label:not(:focus) {
+                border-left-color: $colour__border;
+                border-right-color: $colour__border;
+            }
+
+            &__radio + &__header > &__label::before,
+            &__header> &__label::before {
+                background-color: $colour__border--highlight;
+                bottom: 100%;
+                left: -1px;
+                right: -1px;
+                top: -4px;
+                width: auto;
+            }
+
+            &__radio:checked + &__header > &__label,
+            &__header.#{$pl-prefix}current > &__label {
+                &::after {
+                    background: $colour__white;
+                    bottom: -1px;
+                    content: '';
+                    left: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 100%;
+                }
+
+                &:focus::after {
+                    background-color: $colour__link--focus__background;
+                }
+            }
+        }
+    }
+}

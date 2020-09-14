@@ -3,6 +3,8 @@
 \*------------------------------------*/
 
 $blocklink__outline-width: 0;
+$link__outline-width: 2px;
+$link__border-width: 3px;
 
 
 
@@ -52,6 +54,36 @@ $blocklink__outline-width: 0;
         mask-image: url(#{$iconsfile}#chevron-#{$orientation});
     }
 }
+
+
+@mixin ds_link {
+    color: $colour__link;
+    text-decoration: underline;
+    outline: $link__outline-width solid transparent;
+    transition: color $transition-out-time, background-color $transition-out-time, outline $transition-out-time;
+
+    &:hover {
+        background-color: $colour__link--hover__background;
+        color: $colour__link--hover;
+        outline: $link__outline-width solid $colour__link--hover__background;
+        transition-duration: $transition-in-time;
+    }
+
+    &:focus {
+        background-color: $colour__link--focus__background;
+        box-shadow: #{$link__outline-width * -1} #{$link__outline-width + $link__border-width} $colour__link--focus__shadow, $link__outline-width #{$link__outline-width + $link__border-width} $colour__link--focus__shadow;
+        color: $colour__link--focus;
+        outline: $link__outline-width solid $colour__link--focus__outline;
+        outline-offset: 0;
+        text-decoration: none;
+        transition-duration: 0s;
+    }
+
+    > svg {
+        fill: currentColor;
+    }
+}
+
 
 /**
  * Mixin to enforce consistency on block-style links, e.g. search results,
