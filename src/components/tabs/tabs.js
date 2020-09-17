@@ -21,7 +21,7 @@ class Tabs {
         this.updateTabIndexes();
     }
 
-    initTab(tabHeader) {
+    initTab(tabHeader, index) {
         const tabLabel = tabHeader.querySelector('.ds_tab__label');
         const tabContent = tabHeader.nextElementSibling;
         const tabInput = tabHeader.previousElementSibling;
@@ -32,7 +32,11 @@ class Tabs {
         button.setAttribute('class', tabLabel.getAttribute('class'));
         button.setAttribute('role', tabLabel.getAttribute('role'));
         button.setAttribute('data-navigation', tabLabel.getAttribute('data-navigation'));
-        button.innerHTML = tabLabel.innerHTML;
+        button.innerHTML = tabLabel.innerHTML + ' ';
+        const span = document.createElement('span');
+        span.classList.add('visually-hidden');
+        span.innerText = `(item ${index + 1} of ${this.tabHeaders.length})`;
+        button.appendChild(span);
 
         button.dataset.for = tabID;
         tabContent.id = tabID;

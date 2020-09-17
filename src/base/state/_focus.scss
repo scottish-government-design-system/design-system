@@ -1,0 +1,5 @@
+$focus__outline-width: 2px !default;
+
+:focus {
+    outline: $focus__outline-width solid $colour__link--focus__background;
+}
