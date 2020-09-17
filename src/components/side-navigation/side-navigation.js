@@ -27,6 +27,7 @@ class SideNavigation {
         navButton.innerHTML = navLabel.innerHTML;
         navButton.setAttribute('aria-expanded', false);
         navButton.setAttribute('aria-controls', this.navList.id);
+        navButton.setAttribute('data-navigation', 'sidenav-open');
 
         navLabel.parentNode.removeChild(navLabel);
         this.sideNavigation.insertBefore(navButton, this.navList);
