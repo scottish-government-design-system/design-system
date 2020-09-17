@@ -1,13 +1,14 @@
 import Accordion from './components/accordion/accordion';
-import CollapsibleSearchBox from './components/site-search/site-search';
 import CharacterCount from './forms/character-count/character-count';
+import CollapsibleSearchBox from './components/site-search/site-search';
 import DSDatePicker from './components/date-picker/date-picker';
 import MobileMenu from './components/site-navigation/site-navigation';
-import NotificationBanner from './components/notification-banner/notification-banner';
-import SideNavigation from './components/side-navigation/side-navigation';
-import QuickExit from './components/quick-exit/quick-exit';
 import MobileTables from './components/table/table';
+import NotificationBanner from './components/notification-banner/notification-banner';
+import QuickExit from './components/quick-exit/quick-exit';
+import SideNavigation from './components/side-navigation/side-navigation';
 import Tabs from './components/tabs/tabs';
+import tracking from './tracking';
 
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
 // defaults to document
@@ -50,6 +51,8 @@ function initAll(scope = document) {
 
     const tabSets = [].slice.call(scope.querySelectorAll('[data-module="ds-tabs"]'));
     tabSets.forEach(tabSet => new Tabs(tabSet).init());
+
+    tracking.init();
 }
 
 export {
@@ -59,7 +62,9 @@ export {
     CollapsibleSearchBox,
     DSDatePicker,
     MobileMenu,
+    MobileTables,
     NotificationBanner,
     QuickExit,
-    SideNavigation
+    SideNavigation,
+    Tabs
 };
