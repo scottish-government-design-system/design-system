@@ -26,12 +26,12 @@ $tab__background-colour: $colour__link--disabled__background !default;
 
         background: $tab__background-colour;
         border-bottom: 0;
-        color: $colour__text;
+        border-top: 1px solid $colour__white;
         display: block;
         font-weight: 400;
         margin: 0;
         outline-width: 1px;
-        padding: 16px 32px;
+        padding: 15px 32px 16px;
         text-align: left;
         transition: color $transition-out-time, background-color $transition-out-time;
         width: 100%;
@@ -45,6 +45,11 @@ $tab__background-colour: $colour__link--disabled__background !default;
         &:hover {
             outline-width: 0;
         }
+    }
+
+    &__header:first-child > &__label {
+        border-top: 0;
+        padding-top: 16px;
     }
 
     &__radio {
@@ -167,9 +172,11 @@ $tab__background-colour: $colour__link--disabled__background !default;
             &__label {
                 border-left: 1px solid $tab__background-colour;
                 border-right: 1px solid $tab__background-colour;
+                border-top: 0;
                 height: 100%;
                 padding-left: 31px;
                 padding-right: 31px;
+                padding-top: 16px;
 
                 &:focus {
                     border-left-color: $colour__link--focus__background;
