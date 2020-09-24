@@ -1,4 +1,5 @@
 import Accordion from './components/accordion/accordion';
+import BackToTop from './components/back-to-top/back-to-top';
 import CharacterCount from './forms/character-count/character-count';
 import CollapsibleSearchBox from './components/site-search/site-search';
 import DSDatePicker from './components/date-picker/date-picker';
@@ -15,6 +16,13 @@ import tracking from './tracking';
 function initAll(scope = document) {
     const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
     accordions.forEach(accordion => new Accordion(accordion).init());
+
+    const backToTopEl = scope.querySelector('[data-module="ds-back-to-top"]');
+    console.log(backToTopEl,13);
+    if (backToTopEl) {
+        const backToTop = new BackToTop(backToTopEl);
+        backToTop.init();
+    }
 
     const characterCountModules = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]'));
     // const characterCountElements = [].slice.call(scope.querySelectorAll('input[maxlength], textarea[maxlength]'));
@@ -58,6 +66,7 @@ function initAll(scope = document) {
 export {
     initAll,
     Accordion,
+    BackToTop,
     CharacterCount,
     CollapsibleSearchBox,
     DSDatePicker,

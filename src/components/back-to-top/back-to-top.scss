@@ -2,14 +2,23 @@
     $BACK TO TOP
 \*------------------------------------*/
 
+$back-to-top-offset: ;
+
+
+
+
 .ds_back-to-top {
-    bottom: 0;
+    bottom: 56px;
     pointer-events: none;
     position: absolute;
     right: 8px;
     top: 100vh;
     z-index: 1;
 
+    /*
+     [1] fallback for older browsers
+     [2] 56px is the button's height plus 8px spacing
+     */
     &__button {
         @include blocklink();
         @include small-size;
@@ -20,17 +29,23 @@
         min-width: 120px;
         pointer-events: all;
         padding: 8px 32px 8px 16px;
-        position: fixed;
+        position: fixed; /* [1] */
         position: sticky;
         right: 8px;
-        top: calc(100vh - 56px);
+        top: calc(100vh - 56px); /* [2] */
     }
 
     &__icon {
         height: 24px;
         position: absolute;
         right: 8px;
-        top: 12px;
+        top: 8px;
         width: 24px;
+    }
+}
+
+@include media-query(medium) {
+    .ds_back-to-top__icon {
+        top: 12px;
     }
 }
