@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    $BACK TO TOP
+\*------------------------------------*/
+
+.ds_back-to-top {
+    bottom: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 8px;
+    top: 100vh;
+    z-index: 1;
+
+    &__button {
+        @include blocklink();
+        @include small-size;
+
+        background-color: rgba(255,255,255,0.9);
+        font-weight: $bold;
+        margin: 0;
+        min-width: 120px;
+        pointer-events: all;
+        padding: 8px 32px 8px 16px;
+        position: fixed;
+        position: sticky;
+        right: 8px;
+        top: calc(100vh - 56px);
+    }
+
+    &__icon {
+        height: 24px;
+        position: absolute;
+        right: 8px;
+        top: 12px;
+        width: 24px;
+    }
+}
