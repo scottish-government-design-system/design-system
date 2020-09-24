@@ -18,7 +18,6 @@ function initAll(scope = document) {
     accordions.forEach(accordion => new Accordion(accordion).init());
 
     const backToTopEl = scope.querySelector('[data-module="ds-back-to-top"]');
-    console.log(backToTopEl,13);
     if (backToTopEl) {
         const backToTop = new BackToTop(backToTopEl);
         backToTop.init();
