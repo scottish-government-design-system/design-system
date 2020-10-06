@@ -4,7 +4,6 @@
 
 .#{$pl-prefix}layout {
     @include layout();
-
     margin-bottom: 91px;
 
     &__content,
@@ -103,7 +102,7 @@
 
 
 @include media-query(large) {
-    .layout {
+    .#{$pl-prefix}layout {
         &--article {
             .#{$pl-prefix}layout {
                 &__content {
@@ -252,8 +251,8 @@
             grid-template-areas:
                 'h h h h h h'
                 'p p p p p p'
-                's s s s s s'
                 'c c c c c c'
+                's s s s s s'
                 'f f f f f f';
 
             &--category-list {
@@ -284,8 +283,8 @@
             &--article {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
-                    's s s s s s s s s s s s'
                     'c c c c c c c c c c c c'
+                    's s s s s s s s s s s s'
                     'f f f f f f f f . . . .';
             }
 

@@ -11,8 +11,15 @@ $quick-exit-banner-height: 56px;
     display: none;
 
     &__button {
-        background-color: $colour__red--base;
+        background-color: $ds_colour__red--base;
         margin: 0;
+    }
+
+    &__message {
+        @include small-size;
+        line-height: 20px;
+        margin-bottom: 0;
+        text-align: center;
     }
 }
 
@@ -38,8 +45,7 @@ $quick-exit-banner-height: 56px;
         }
 
         &__message {
-            @include tiny-size;
-            @include visually-hidden();
+            @include visually-hidden;
         }
     }
 }
@@ -72,16 +78,12 @@ $quick-exit-banner-height: 56px;
         }
 
         &__box {
-            background-color:$colour__white;
+            background-color: $ds_colour__white;
+            border: 1px solid $ds_colour__border--light;
             margin-bottom: 32px;
             margin-top: 24px;
             outline-offset: -1px;
-            padding: 8px 0;
-        }
-
-        &__message {
-            line-height: 20px;
-            margin-bottom: 0;
+            padding: 15px;
         }
 
         &__button {

@@ -3,10 +3,10 @@ import BackToTop from './components/back-to-top/back-to-top';
 import CharacterCount from './forms/character-count/character-count';
 import CollapsibleSearchBox from './components/site-search/site-search';
 import DSDatePicker from './components/date-picker/date-picker';
+import HidePage from './components/hide-this-page/hide-this-page';
 import MobileMenu from './components/site-navigation/site-navigation';
 import MobileTables from './components/table/table';
 import NotificationBanner from './components/notification-banner/notification-banner';
-import QuickExit from './components/quick-exit/quick-exit';
 import SideNavigation from './components/side-navigation/side-navigation';
 import Tabs from './components/tabs/tabs';
 import tracking from './tracking';
@@ -38,10 +38,10 @@ function initAll(scope = document) {
     notificationBanners.forEach(notificationBanner => new NotificationBanner(notificationBanner).init());
 
     // this one is handled differently because it applies an event to the whole body and we only want that event once
-    const quickExitButtons = [].slice.call(scope.querySelectorAll('.ds_quick-exit'));
-    if (quickExitButtons.length) {
-        const quickExit = new QuickExit();
-        quickExit.init();
+    const hidePageButtons = [].slice.call(scope.querySelectorAll('.ds_hide-page'));
+    if (hidePageButtons.length) {
+        const hidePage = new HidePage();
+        hidePage.init();
     }
 
     const searchBoxes = [].slice.call(scope.querySelectorAll('[data-module="ds-site-search"]'));
@@ -69,10 +69,10 @@ export {
     CharacterCount,
     CollapsibleSearchBox,
     DSDatePicker,
+    HidePage,
     MobileMenu,
     MobileTables,
     NotificationBanner,
-    QuickExit,
     SideNavigation,
     Tabs
 };

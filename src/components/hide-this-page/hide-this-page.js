@@ -1,9 +1,8 @@
 'use strict';
 
-class QuickExit {
+class HidePage {
     constructor(_window = window) {
-        this.url = document.querySelector('.js-quick-exit').href;
-
+        this.button = document.querySelector('.js-hide-page');
         this.window = _window;
     }
 
@@ -15,26 +14,26 @@ class QuickExit {
     attachKeyboardEvents() {
         document.addEventListener('keyup', (event) => {
             if (event.keyCode === 27) {
-                this.doQuickExit(event);
+                this.doHidePage(event);
             }
         });
     }
 
     attachMouseEvents() {
-        [].slice.call(document.querySelectorAll('.js-quick-exit')).forEach(quickExitButton => quickExitButton.addEventListener('click', (event) => {
-            this.doQuickExit(event);
-        }));
+        this.button.addEventListener('click', (event) => {
+            this.doHidePage(event);
+        });
     }
 
     // clear page body
     // replace history item
     // navigate
-    doQuickExit(event) {
+    doHidePage(event) {
         event.preventDefault();
         document.body.innerHTML = '';
-        this.window.history.replaceState({},'','/');
-        this.window.location.replace(this.url);
+        this.window.open(this.button.href, '_newtab');
+        this.window.location.replace('https://www.google.co.uk');
     }
 }
 
-export default QuickExit;
+export default HidePage;
