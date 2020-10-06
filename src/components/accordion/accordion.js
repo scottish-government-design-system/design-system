@@ -98,8 +98,12 @@ class Accordion {
         if (!isOpen) {
             item.classList.add('ds_accordion-item--open');
             body.style.display = 'block';
-            // 21px and 28px are the top and bottom padding of the body content
-            body.style.maxHeight = body.scrollHeight + 21 + 28 + 'px';
+            // 24px and 32px are the top and bottom padding of the body content
+            body.style.maxHeight = body.scrollHeight + 24 + 32 + 'px';
+
+            window.setTimeout(function () {
+                body.style.maxHeight = 'unset';
+            }, 200);
         } else {
             body.style.maxHeight = 0;
             item.classList.remove('ds_accordion-item--open');

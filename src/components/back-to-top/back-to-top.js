@@ -1,8 +1,6 @@
 class BackToTop {
     constructor(el, options = {}) {
-        if (!el) {
-            return;
-        }
+        this.el = el;
         if (options.footerElSelector) {
             this.footerEl = document.querySelector(options.footerElSelector)
         } else {
@@ -12,17 +10,24 @@ class BackToTop {
     }
 
     init() {
+        if (!this.el) {
+            return;
+        }
         this.checkDisplay();
 
-        window.addEventListener('scroll', () => this.checkDisplay());
+        window.addEventListener('scroll', () => this.checkPosition());
     }
 
     checkDisplay() {
-        document.body.offsetHeight > window.innerHeight ? this.backToTopElement.classList.remove('visually-hidden') : this.backToTopElement.classList.add('visually-hidden');
-
-        if (this.footerEl) {
-            this.backToTopElement.style.bottom = this.footerEl.offsetHeight + 8 + 'px';
+        if (document.body.offsetHeight > window.innerHeight) {
+            this.backToTopElement.classList.remove('visually-hidden');
+        } else {
+            this.backToTopElement.classList.add('visually-hidden');
         }
+    }
+
+    checkPosition() {
+        this.backToTopElement.style.bottom = this.footerEl.offsetHeight + 8 + 'px';
     }
 }
 

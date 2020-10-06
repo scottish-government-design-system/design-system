@@ -64,8 +64,10 @@ describe('accordion', () => {
 
             event = new Event('click');
             accordionItemButton.dispatchEvent(event);
-            jasmine.clock().tick(200);
+            jasmine.clock().tick(199);
             expect(parseInt(accordionItemBody.style.maxHeight, 10)).toEqual(0);
+            jasmine.clock().tick(1);
+            expect(accordionItemBody.style.maxHeight).toEqual('unset');
             expect(accordionItemBody.style.display).toEqual('none');
 
             jasmine.clock().uninstall();
