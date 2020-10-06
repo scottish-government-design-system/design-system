@@ -5,12 +5,12 @@
 .#{$pl-prefix}callout {
     @include block-margins;
 
-    background: $colour__grey--lighter;
-    border-left: 4px solid $colour__brand;
+    background: $ds_colour__grey--lighter;
+    border-left: 4px solid $ds_colour__brand;
     padding: 16px 24px;
 
     &__label.#{$pl-prefix}content-label {
-        color: $colour__brand;
+        color: $ds_colour__brand;
         font-size: $small-size--fixed;
     }
 

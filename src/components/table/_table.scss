@@ -2,10 +2,10 @@
     TABLES
 \*------------------------------------*/
 
-$table-border-colour: $colour__grey--medium !default;
-$table-border-colour--light: $colour__grey--light !default;
-$table-header-background-colour: $colour__grey--light !default;
-$table-row-hover-colour: $colour__grey--lighter !default;
+$table-border-colour: $ds_colour__grey--medium !default;
+$table-border-colour--light: $ds_colour__grey--light !default;
+$table-header-background-colour: $ds_colour__grey--light !default;
+$table-row-hover-colour: $ds_colour__grey--lighter !default;
 
 
 
@@ -63,11 +63,11 @@ $table-row-hover-colour: $colour__grey--lighter !default;
     }
 
     tbody > tr > td {
-        background-color: $colour__white;
+        background-color: $ds_colour__white;
     }
 
     tbody > tr:nth-child(even) > td {
-        background-color: $colour__grey--lighter;
+        background-color: $ds_colour__grey--lighter;
     }
 
 
@@ -203,11 +203,11 @@ $table-row-hover-colour: $colour__grey--lighter !default;
             }
 
             &[data-smallscreen="boxes"] tr > td:nth-child(odd) {
-                background-color: $colour__white;
+                background-color: $ds_colour__white;
             }
 
             &[data-smallscreen="boxes"] tr > td:nth-child(even) {
-                background-color: $colour__grey--lighter;
+                background-color: $ds_colour__grey--lighter;
             }
 
         }

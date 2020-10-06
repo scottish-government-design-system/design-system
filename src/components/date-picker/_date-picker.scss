@@ -9,11 +9,11 @@
     position: relative;
 
     &__dialog {
-        background-color: $colour__white;
+        background-color: $ds_colour__white;
         box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
         display: none;
         padding: 8px;
-        outline: 1px solid $colour__border;
+        outline: 1px solid $ds_colour__border;
         outline-offset: -1px;
         position: absolute;
         top: 0;
@@ -46,7 +46,7 @@
         &__navbuttons {
             button {
                 background-color: transparent;
-                color: $colour__text !important;
+                color: $ds_colour__text !important;
                 font-weight: $normal;
                 height: 40px;
                 margin: 0;
@@ -59,7 +59,7 @@
         &__table {
 
             tbody:focus-within {
-                outline: 2px solid $colour__link--focus__background;
+                outline: 2px solid $ds_colour__link--focus__background;
             }
 
             td {
@@ -71,13 +71,13 @@
 
             th {
                 @include small-size;
-                color: $colour__text--secondary;
+                color: $ds_colour__text--secondary;
                 font-weight: $normal;
             }
 
             button {
                 background-color: transparent;
-                color: $colour__text;
+                color: $ds_colour__text;
                 font-weight: $normal;
                 height: 40px;
                 margin: 0;
@@ -87,18 +87,18 @@
                 @include blocklink;
 
                 &[disabled="true"] {
-                    background-color: $colour__link--disabled__background;
-                    color: $colour__link--disabled;
+                    background-color: $ds_colour__link--disabled__background;
+                    color: $ds_colour__link--disabled;
                 }
 
                 &.#{$pl-prefix}datepicker__current {
                     $dp-current-outline-width: 2px;
-                    outline: $dp-current-outline-width solid $colour__border--dark !important;
+                    outline: $dp-current-outline-width solid $ds_colour__border--dark !important;
                     outline-offset: #{$dp-current-outline-width * -1};
                 }
 
                 &.#{$pl-prefix}datepicker__current[tabindex="-1"] {
-                    background: $colour__grey--lighter;
+                    background: $ds_colour__grey--lighter;
                     color: currentColor;
                 }
 
@@ -123,8 +123,8 @@
                 // }
 
                 &.#{$pl-prefix}selected:not(:focus) {
-                    background-color: $colour__text;
-                    color: $colour__white;
+                    background-color: $ds_colour__text;
+                    color: $ds_colour__white;
                 }
             }
         }

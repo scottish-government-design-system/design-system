@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$site-footer__background: $colour__brand !default;
+$site-footer__background: $ds_colour__brand !default;
 
 
 
@@ -57,7 +57,7 @@ $site-footer__background: $colour__brand !default;
 }
 
 .#{$pl-prefix}reversed.#{$pl-prefix}site-footer {
-    color: $colour__white;
+    color: $ds_colour__white;
 }
 
 .#{$pl-prefix}site-items {

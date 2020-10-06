@@ -10,8 +10,8 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 
 .#{$pl-prefix}notification {
-    background: $colour__grey--dark;
-    color: $colour__white;
+    background: $ds_colour__grey--dark;
+    color: $ds_colour__white;
     margin-bottom: 1px;
 
     /* [1] compensate for bottom margin on parent */
@@ -97,49 +97,49 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 
     &--major {
-        background: $colour__gold--base;
-        color: $colour__text;
+        background: $ds_colour__gold--base;
+        color: $ds_colour__text;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $colour__gold--base;
+            fill: $ds_colour__gold--base;
         }
 
         // major needs special behavour for focus state of its interactive elements
         .#{$pl_prefix}notification__close,
         a {
-            color: $colour__link;
+            color: $ds_colour__link;
 
             &:focus {
-                outline-color: $colour__text;
-                color: $colour__text;
+                outline-color: $ds_colour__text;
+                color: $ds_colour__text;
             }
         }
     }
 
     &--positive {
-        background: $colour__state--positive;
-        color: $colour__white;
+        background: $ds_colour__state--positive;
+        color: $ds_colour__white;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $colour__state--positive;
+            fill: $ds_colour__state--positive;
         }
     }
 
     &--negative {
-        background: $colour__state--negative;
-        color: $colour__white;
+        background: $ds_colour__state--negative;
+        color: $ds_colour__white;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $colour__state--negative;
+            fill: $ds_colour__state--negative;
         }
     }
 
     &--light {
-        background: $colour__blue--light;
-        color: $colour__text;
+        background: $ds_colour__blue--light;
+        color: $ds_colour__text;
 
         a {
-            color: $colour__link;
+            color: $ds_colour__link;
         }
     }
 }

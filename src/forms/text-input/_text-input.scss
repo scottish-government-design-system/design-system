@@ -13,13 +13,13 @@
     width: 100%;
 
     &:focus {
-        outline: $field-glow-width solid $colour__input--focus__outline;
+        outline: $field-glow-width solid $ds_colour__input--focus__outline;
         outline-offset: 0;
         box-shadow: inset 0 0 0 #{$field-border-width--focus - $field-border-width};
     }
 
     &--error {
-        border-color: $colour__state--negative;
+        border-color: $ds_colour__state--negative;
         border-width: $field-border-width--error;
         padding: 4px;
 
@@ -34,7 +34,7 @@
     }
 
     &__message--error {
-        color: $colour__state--negative;
+        color: $ds_colour__state--negative;
         font-weight: $bold;
     }
 

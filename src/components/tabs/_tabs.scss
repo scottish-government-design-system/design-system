@@ -2,13 +2,13 @@
     TABS
 \*------------------------------------*/
 
-$tab__background-colour: $colour__link--disabled__background !default;
+$tab__background-colour: $ds_colour__link--disabled__background !default;
 
 
 
 
 .#{$pl-prefix}tab-container {
-    border: 1px solid $colour__border;
+    border: 1px solid $ds_colour__border;
 }
 
 .#{$pl-prefix}tab {
@@ -26,7 +26,7 @@ $tab__background-colour: $colour__link--disabled__background !default;
 
         background: $tab__background-colour;
         border-bottom: 0;
-        border-top: 1px solid $colour__white;
+        border-top: 1px solid $ds_colour__white;
         display: block;
         font-weight: 400;
         margin: 0;
@@ -63,13 +63,13 @@ $tab__background-colour: $colour__link--disabled__background !default;
 
     &__radio:checked + &__header > &__label:not(:focus),
     &__header.#{$pl-prefix}current > &__label:not(:focus) {
-        background: $colour__white;
+        background: $ds_colour__white;
         position: relative;
     }
 
     &__radio + &__header > &__label::before,
     &__header > &__label::before {
-        background: $colour__border--highlight;
+        background: $ds_colour__border--highlight;
         bottom: 0;
         left: 0;
         position: absolute;
@@ -88,7 +88,7 @@ $tab__background-colour: $colour__link--disabled__background !default;
 
         &::before {
             content: '';
-            background-color: $colour__text;
+            background-color: $ds_colour__text;
         }
     }
 }
@@ -165,7 +165,7 @@ $tab__background-colour: $colour__link--disabled__background !default;
             }
 
             &__content {
-                border-top: 1px solid $colour__border;
+                border-top: 1px solid $ds_colour__border;
                 grid-area: tc;
             }
 
@@ -179,20 +179,20 @@ $tab__background-colour: $colour__link--disabled__background !default;
                 padding-top: 16px;
 
                 &:focus {
-                    border-left-color: $colour__link--focus__background;
-                    border-right-color: $colour__link--focus__background;
+                    border-left-color: $ds_colour__link--focus__background;
+                    border-right-color: $ds_colour__link--focus__background;
                 }
             }
 
             &__radio:checked + &__header > &__label:not(:focus),
             &__header.#{$pl-prefix}current > &__label:not(:focus) {
-                border-left-color: $colour__border;
-                border-right-color: $colour__border;
+                border-left-color: $ds_colour__border;
+                border-right-color: $ds_colour__border;
             }
 
             &__radio + &__header > &__label::before,
             &__header> &__label::before {
-                background-color: $colour__border--highlight;
+                background-color: $ds_colour__border--highlight;
                 bottom: 100%;
                 left: -1px;
                 right: -1px;
@@ -203,7 +203,7 @@ $tab__background-colour: $colour__link--disabled__background !default;
             &__radio:checked + &__header > &__label,
             &__header.#{$pl-prefix}current > &__label {
                 &::after {
-                    background: $colour__white;
+                    background: $ds_colour__white;
                     bottom: -1px;
                     content: '';
                     left: 0;
@@ -213,7 +213,7 @@ $tab__background-colour: $colour__link--disabled__background !default;
                 }
 
                 &:focus::after {
-                    background-color: $colour__link--focus__background;
+                    background-color: $ds_colour__link--focus__background;
                 }
             }
         }

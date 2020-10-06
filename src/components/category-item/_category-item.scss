@@ -4,8 +4,8 @@
 \*------------------------------------*/
 
 // modifiable vars
-$category-item__border-colour--hover: $colour__link--hover !default;
-$category-item__link-colour: $colour__link !default;
+$category-item__border-colour--hover: $ds_colour__link--hover !default;
+$category-item__link-colour: $ds_colour__link !default;
 
 $border-width-size: 4px;
 $category-item__pinned-icon-size: 20px;
@@ -40,7 +40,7 @@ $category-item__pinned-icon-size: 20px;
         color: $category-item__link-colour;
 
         &::before {
-            background-color: mix($colour__border--highlight, $colour__grey--lighter, 30%);
+            background-color: mix($ds_colour__border--highlight, $ds_colour__grey--lighter, 30%);
             bottom: 0;
             content: '';
             left: #{$border-width-size * -1};
@@ -60,13 +60,13 @@ $category-item__pinned-icon-size: 20px;
 
     &__summary {
         @include small-size;
-        color: $colour__text--secondary;
+        color: $ds_colour__text--secondary;
         line-height: 24px;
         margin: 0;
     }
 
     &:hover &__summary {
-        color: $colour__text;
+        color: $ds_colour__text;
     }
 }
 
@@ -113,11 +113,11 @@ $category-item__pinned-icon-size: 20px;
 .#{$pl-prefix}category-item--pinned {
     .#{$pl-prefix}category-item__link {
         &::before {
-            background-color: $colour__border--highlight;
+            background-color: $ds_colour__border--highlight;
         }
 
         &:hover::before {
-            background-color: $colour__link--hover;
+            background-color: $ds_colour__link--hover;
         }
     }
 
@@ -142,13 +142,13 @@ $category-item__pinned-icon-size: 20px;
 
     .#{$pl-prefix}category-item__link:hover {
         .#{$pl-prefix}category-item__pinned-icon {
-            fill: $colour__link--hover__background;
+            fill: $ds_colour__link--hover__background;
         }
     }
 
     .#{$pl-prefix}category-item__link:focus {
         .#{$pl-prefix}category-item__pinned-icon {
-            fill: $colour__link--focus__background;
+            fill: $ds_colour__link--focus__background;
         }
     }
 }

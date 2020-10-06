@@ -16,10 +16,10 @@ button,
 input[type="button"],
 input[type="submit"],
 .#{$pl-prefix}button {
-    background: $colour__button__background;
+    background: $ds_colour__button__background;
     border: 0;
     border-radius: 0;
-    color: $colour__button;
+    color: $ds_colour__button;
     cursor: pointer;
     display: inline-block;
     @include small-size;
@@ -39,16 +39,16 @@ input[type="submit"],
     }
 
     &:hover {
-        background-color: $colour__button--hover__background;
-        color: $colour__button;
+        background-color: $ds_colour__button--hover__background;
+        color: $ds_colour__button;
         transition-duration: $transition-in-time;
     }
 
     &:focus {
-        background-color: $colour__button--focus__background;
-        box-shadow: 0 $link__border-width $colour__link--focus__shadow;
-        color: $colour__button--focus;
-        outline-color: $colour__button--focus__background;
+        background-color: $ds_colour__button--focus__background;
+        box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
+        color: $ds_colour__button--focus;
+        outline-color: $ds_colour__button--focus__background;
 
         transition-duration: 0s;
     }
@@ -59,9 +59,9 @@ input[type="submit"],
     }
 
     &[disabled] {
-        background-color: $colour__grey--base;
+        background-color: $ds_colour__grey--base;
         box-shadow: none;
-        color: $colour__white;
+        color: $ds_colour__white;
         font-weight: $normal;
         outline: none;
         pointer-events: none;
@@ -69,52 +69,52 @@ input[type="submit"],
 }
 
 .#{$pl-prefix}reversed .#{$pl-prefix}button {
-    background-color: $colour__white;
-    color: $colour__button__background;
+    background-color: $ds_colour__white;
+    color: $ds_colour__button__background;
 
     &:focus,
     &:hover:focus {
-        background-color: $colour__blocklink-bg--focus;
+        background-color: $ds_colour__blocklink-bg--focus;
     }
 
     &:hover {
-        background-color: $colour__blocklink-bg--hover;
+        background-color: $ds_colour__blocklink-bg--hover;
     }
 
     &--secondary {
         background-color: transparent;
         border-color: currentColor;
-        color: $colour__white;
+        color: $ds_colour__white;
 
         &:hover:not(:focus) {
-            background-color: rgba(red($colour__brand), green($colour__brand), blue($colour__brand), 0.3);
-            color: $colour__white;
+            background-color: rgba(red($ds_colour__brand), green($ds_colour__brand), blue($ds_colour__brand), 0.3);
+            color: $ds_colour__white;
         }
     }
 }
 
 .#{$pl-prefix}button {
     &--secondary {
-        background-color: $colour__button--secondary__background;
-        color: $colour__button--secondary;
+        background-color: $ds_colour__button--secondary__background;
+        color: $ds_colour__button--secondary;
         outline: 2px solid currentColor;
         outline-offset: -2px;
 
         &:hover:not(:focus) {
-            background-color: $colour__button--secondary--hover__background;
-            color: $colour__button--secondary--hover;
+            background-color: $ds_colour__button--secondary--hover__background;
+            color: $ds_colour__button--secondary--hover;
         }
     }
 
     &--cancel {
-        background-color: $colour__button--cancel__background;
-        color: $colour__button--cancel;
+        background-color: $ds_colour__button--cancel__background;
+        color: $ds_colour__button--cancel;
         outline: 2px solid currentColor;
         outline-offset: -2px;
 
         &:hover:not(:focus) {
-            background-color: $colour__button--cancel--hover__background;
-            color: $colour__button--cancel;
+            background-color: $ds_colour__button--cancel--hover__background;
+            color: $ds_colour__button--cancel;
         }
     }
 }

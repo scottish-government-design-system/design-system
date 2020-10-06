@@ -6,7 +6,7 @@
     margin-bottom: 32px;
 
     &--error {
-        border-left: 4px solid $colour__state--negative;
+        border-left: 4px solid $ds_colour__state--negative;
         padding-left: 20px;
     }
 
@@ -15,7 +15,7 @@
     }
 
     &--error &__message {
-        color: $colour__state--negative;
+        color: $ds_colour__state--negative;
         font-weight: bold;
     }
 }

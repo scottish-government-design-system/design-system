@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}card {
-    background-color: $colour__white;
+    background-color: $ds_colour__white;
     display: block;
     padding: 0;
     position: relative;
@@ -21,7 +21,7 @@
     }
 
     &__media {
-        background-color: $colour__text;
+        background-color: $ds_colour__text;
         height: 0;
         margin-bottom: 0;
         overflow: hidden;
@@ -125,12 +125,12 @@
     }
 
     .#{$pl-prefix}card__cover-link:hover::after {
-        background-color: $colour__link--hover__background;
+        background-color: $ds_colour__link--hover__background;
     }
 
     .#{$pl-prefix}card__cover-link:focus::after {
-        background-color: $colour__link--focus__background;
-        box-shadow: inset 0 -3px $colour__link--focus__shadow;
+        background-color: $ds_colour__link--focus__background;
+        box-shadow: inset 0 -3px $ds_colour__link--focus__shadow;
         transition-duration: 0s;
     }
 }

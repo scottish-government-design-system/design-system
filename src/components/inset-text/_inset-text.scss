@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}inset-text {
-    border-left: 8px solid $colour__border;
+    border-left: 8px solid $ds_colour__border;
     padding: 16px;
 
     @include block-margins;

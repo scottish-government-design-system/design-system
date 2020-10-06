@@ -5,14 +5,14 @@
 // modifiable vars
 $site-search__height: 40px !default;
 $site-search__height--medium: 48px !default;
-$site-search__background-colour: $colour__grey--light !default;
+$site-search__background-colour: $ds_colour__grey--light !default;
 
 
 
 
 .#{$pl-prefix}site-search {
     box-sizing: border-box;
-    color: $colour__text;
+    color: $ds_colour__text;
     min-height: $site-search__height;
 
     &__input[type=text] {
@@ -45,7 +45,7 @@ $site-search__background-colour: $colour__grey--light !default;
 
 .#{$pl-prefix}reversed .#{$pl-prefix}site-search {
     .#{$pl-prefix}site-search__button {
-        background-color: $colour__brand--secondary;
+        background-color: $ds_colour__brand--secondary;
     }
 }
 

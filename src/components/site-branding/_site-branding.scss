@@ -5,7 +5,7 @@
 // modifiable vars
 $site-logo__height: 32px !default;
 $site-logo__height--medium: 40px !default;
-$branding__separator-colour: $colour__border--highlight !default;
+$branding__separator-colour: $ds_colour__border--highlight !default;
 
 
 
@@ -98,10 +98,10 @@ $branding__separator-colour: $colour__border--highlight !default;
 // when branding is a child of a reversed-variant site header
 .#{$pl-prefix}reversed .#{$pl-prefix}site-branding {
     .#{$pl-prefix}site-branding__logo {
-        color: $colour__white;
+        color: $ds_colour__white;
 
         &:not(:last-child)::before {
-            background-color: $colour__white;
+            background-color: $ds_colour__white;
         }
     }
 }

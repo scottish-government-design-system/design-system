@@ -3,17 +3,17 @@
 \*------------------------------------*/
 
 // modifiable vars
-$site-header__border-colour--reversed: $colour__brand--secondary !default;
+$site-header__border-colour--reversed: $ds_colour__brand--secondary !default;
 
 // fixed vars
-$site-header__border-colour: $colour__border--light;
-$site-header__top-band-colour: $colour__brand;
+$site-header__border-colour: $ds_colour__border--light;
+$site-header__top-band-colour: $ds_colour__brand;
 
 
 
 /* [1] compensates for border */
 .#{$pl-prefix}site-header {
-    background-color: $colour__white;
+    background-color: $ds_colour__white;
     border-bottom: 1px solid $site-header__border-colour;
     margin-bottom: -1px; /* [1] */
     position: relative;
@@ -75,7 +75,7 @@ $site-header__top-band-colour: $colour__brand;
 /* variant with the top colour bar set to a gradient of site brand colours */
 .#{$pl-prefix}site-header--gradient {
     &::before {
-        background: linear-gradient(to $brand-gradient-direction, $colour__brand, $colour__brand--secondary);
+        background: linear-gradient(to $ds_brand-gradient-direction, $ds_colour__brand, $ds_colour__brand--secondary);
     }
 }
 
@@ -96,8 +96,8 @@ $site-header__top-band-colour: $colour__brand;
 
 /* variant with a solid-colour background and reversed branding */
 .#{$pl-prefix}site-header.#{$pl-prefix}reversed {
-    background-color: $colour__brand;
-    color: $colour__white;
+    background-color: $ds_colour__brand;
+    color: $ds_colour__white;
 
     &:not(.#{$pl-prefix}site-header--gradient) {
         &::before {

@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$accordion__header-colour: $colour__link !default;
+$accordion__header-colour: $ds_colour__link !default;
 
 
 
@@ -36,15 +36,15 @@ h1,h2,h3 {
 }
 
 .#{$pl-prefix}accordion-item {
-    border-bottom: 1px solid $colour__border--light;
-    border-top: 1px solid $colour__border--light;
+    border-bottom: 1px solid $ds_colour__border--light;
+    border-top: 1px solid $ds_colour__border--light;
 
     /* [1] subtracting the parent's border width */
     &__header,
     &__header-button {
         @include blocklink;
 
-        background-color: $colour__white;
+        background-color: $ds_colour__white;
         color: $accordion__header-colour;
         font-size: 1rem;
         line-height: 24px;
@@ -55,13 +55,13 @@ h1,h2,h3 {
         width: 100%;
 
         &:hover:not(:focus) {
-            color: $colour__link--hover;
+            color: $ds_colour__link--hover;
         }
     }
 
     &--open &__header-button:not(:focus):not(:hover) {
-        background-color: $colour__link--current__background;
-        color: $colour__link--current;
+        background-color: $ds_colour__link--current__background;
+        color: $ds_colour__link--current;
     }
 
     &__title {
@@ -99,8 +99,8 @@ h1,h2,h3 {
     }
 
     &__control:checked ~ &__header {
-        background-color: $colour__link--current__background;
-        color: $colour__link--current;
+        background-color: $ds_colour__link--current__background;
+        color: $ds_colour__link--current;
     }
 
     &__control:checked ~ &__header &__indicator,
@@ -110,9 +110,9 @@ h1,h2,h3 {
 
     &__control:focus ~ &__header,
     &__control:focus:hover ~ &__header {
-        background: $colour__blocklink-bg--focus;
-        box-shadow: 0 $link__border-width $colour__link--focus;
-        color: $colour__link--focus;
+        background: $ds_colour__blocklink-bg--focus;
+        box-shadow: 0 $link__border-width $ds_colour__link--focus;
+        color: $ds_colour__link--focus;
         z-index: 2;
     }
 

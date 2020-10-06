@@ -4,10 +4,10 @@
 \*------------------------------------*/
 
 // modifiable vars
-$page-nav__icon-colour: $colour__brand !default;
-$page-nav__icon-hover: $colour__link--hover !default;
-$page-nav__icon-focus: $colour__link--focus !default;
-$page-nav__prefix-colour: $colour__blue--darker !default;
+$page-nav__icon-colour: $ds_colour__brand !default;
+$page-nav__icon-hover: $ds_colour__link--hover !default;
+$page-nav__icon-focus: $ds_colour__link--focus !default;
+$page-nav__prefix-colour: $ds_colour__blue--darker !default;
 
 // fixed vars vars
 $page-nav__icon-size: 56px !default;
@@ -67,7 +67,7 @@ $page-nav__icon-size: 56px !default;
     &--left,
     &--right {
         &::after {
-            color: $colour__white;
+            color: $ds_colour__white;
             position: absolute;
             top: 21px;
         }

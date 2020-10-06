@@ -14,7 +14,7 @@
         background-image: url(#{$iconsfile}#radio-40); /* [1] */
 
         @supports(display: grid) {
-            background-color: $colour__input--spot;
+            background-color: $ds_colour__input--spot;
             background-image: none;
         }
     }

@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$category-header__title-colour: $colour__text !default;
+$category-header__title-colour: $ds_colour__text !default;
 
 
 
@@ -39,10 +39,10 @@ $category-header__title-colour: $colour__text !default;
 }
 
 .#{$pl-prefix}reversed .#{$pl-prefix}category-header {
-    color: $colour__white;
+    color: $ds_colour__white;
 
     &__title {
-        color: $colour__white;
+        color: $ds_colour__white;
     }
 }
 

@@ -9,7 +9,7 @@
     position: relative;
 
     &::before {
-        background-color: $colour__border;
+        background-color: $ds_colour__border;
         bottom: 0;
         content: '';
         left: -22px;

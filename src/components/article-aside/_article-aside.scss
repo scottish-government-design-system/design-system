@@ -2,17 +2,15 @@
     ARTICLE ASIDE
 \*------------------------------------*/
 
-
-
-
 .#{$pl_prefix}article-aside {
-    font-size: 0.85rem;
-    line-height: 24px;
-    padding-top: 32px;
+    @include block-margins;
+    @include small-size;
+    line-height: 20px;
+    padding-top: 24px;
     position: relative;
 
     &::before {
-        background-color: $colour__brand;
+        background-color: $ds_colour__brand;
         content: '';
         height: 2px;
         left: 0;
@@ -20,8 +18,15 @@
         right: 0;
         top: 0;
     }
+}
 
-    li {
-        margin-bottom: 16px;
+@include media-query(medium) {
+    .#{$pl_prefix}article-aside {
+        line-height: 24px;
+        padding-top: 32px;
+
+        li {
+            margin-bottom: 16px;
+        }
     }
 }

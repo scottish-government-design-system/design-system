@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$tag__background-colour: $colour__brand !default;
+$tag__background-colour: $ds_colour__brand !default;
 
 
 
@@ -11,7 +11,7 @@ $tag__background-colour: $colour__brand !default;
 .#{$pl-prefix}tag {
     background: $tag__background-colour;
     border-radius: 2px;
-    color: $colour__white;
+    color: $ds_colour__white;
     display: inline-block;
     font-size: 15px;
     font-weight: $bold;
@@ -20,6 +20,6 @@ $tag__background-colour: $colour__brand !default;
 }
 
 .#{$pl-prefix}reversed .#{$pl-prefix}tag {
-    background-color: $colour__white;
+    background-color: $ds_colour__white;
     color: $tag__background-colour;
 }

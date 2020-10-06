@@ -21,14 +21,14 @@ a,
 .#{$pl-prefix}reversed {
     a,
     .#{$pl-prefix}link {
-        color: $colour__link--reversed;
+        color: $ds_colour__link--reversed;
 
         &:focus {
-            color: $colour__link--reversed--focus;
+            color: $ds_colour__link--reversed--focus;
         }
 
         &:hover {
-            color: $colour__link--reversed--hover;
+            color: $ds_colour__link--reversed--hover;
         }
     }
 }

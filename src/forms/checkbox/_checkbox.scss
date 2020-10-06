@@ -16,7 +16,7 @@
 @supports (-webkit-mask-image: url()) or (mask-image: url()) {
     .#{$pl_prefix}checkbox {
         &__label::after {
-            background-color: $colour__white;
+            background-color: $ds_colour__white;
             background-image: none;
             -webkit-mask-image: url(#{$iconsfile}#checkbox-40);
             mask-image: url(#{$iconsfile}#checkbox-40);
@@ -24,15 +24,15 @@
 
         /* checked */
         &__input:checked + &__label::before {
-            background-color: $colour__text;
+            background-color: $ds_colour__text;
         }
 
         &__input:focus:checked + &__label::before {
-            background-color: $colour__link--focus__background;
+            background-color: $ds_colour__link--focus__background;
         }
 
         &__input:focus:checked + &__label::after {
-            background-color: $colour__link--focus;
+            background-color: $ds_colour__link--focus;
         }
     }
 }

@@ -4,13 +4,13 @@
 */
 
 // modifiable vars
-$site-navigation__current-colour--reversed: $colour__blue--light !default;
-$site-navigation__hover-bg--reversed: $colour__link--hover !default;
-$site-navigation__mobile-menu-background: $colour__grey--lighter !default;
-$site-navigation__mobile-menu-button-colour: $colour__brand !default;
+$site-navigation__current-colour--reversed: $ds_colour__blue--light !default;
+$site-navigation__hover-bg--reversed: $ds_colour__link--hover !default;
+$site-navigation__mobile-menu-background: $ds_colour__grey--lighter !default;
+$site-navigation__mobile-menu-button-colour: $ds_colour__brand !default;
 
 // fixed vars
-$site-navigation__highlight-colour: $colour__border--highlight;
+$site-navigation__highlight-colour: $ds_colour__border--highlight;
 $site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colour;
 
 
@@ -49,7 +49,7 @@ $site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colo
         white-space: nowrap;
 
         &:focus {
-            box-shadow: 0 3px $colour__link--focus__shadow;
+            box-shadow: 0 3px $ds_colour__link--focus__shadow;
             outline: none;
             padding-bottom: 5px;
 
@@ -64,7 +64,7 @@ $site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colo
         }
 
         &:hover:not(:focus) {
-            background-color: $colour__link--hover__background;
+            background-color: $ds_colour__link--hover__background;
         }
 
         &::after {
@@ -79,7 +79,7 @@ $site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colo
         }
 
         &.#{$pl-prefix}current:not(:focus):not(:hover) {
-            background-color: $colour__link--current__background;
+            background-color: $ds_colour__link--current__background;
 
             &::after {
                 background-color: $site-navigation__highlight-colour;
@@ -182,11 +182,11 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         }
 
         &:hover {
-            color: $colour__link--hover;
+            color: $ds_colour__link--hover;
         }
 
         &:focus {
-            color: $colour__link--hover;
+            color: $ds_colour__link--hover;
         }
     }
 
@@ -233,7 +233,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         margin: 0;
 
         &:not(:last-child) {
-            border-bottom: 1px solid $colour__border;
+            border-bottom: 1px solid $ds_colour__border;
         }
     }
 
@@ -241,14 +241,14 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         $mobile-nav-link-vertical-padding: 16px;
         $mobile-nav-link-horizontal-padding: 16px;
 
-        color: $colour__text;
+        color: $ds_colour__text;
         display: block;
         padding: $mobile-nav-link-vertical-padding $mobile-nav-link-horizontal-padding;
         text-decoration: none;
 
         &:focus {
             border-left: 4px solid $site-navigation__mobile-menu-highlight-colour;
-            box-shadow: 0 4px $colour__link--focus__shadow;
+            box-shadow: 0 4px $ds_colour__link--focus__shadow;
             outline: none;
             padding-left: #{$mobile-nav-link-horizontal-padding - 4px};
             position: relative;
@@ -260,7 +260,7 @@ span.#{$pl-prefix}site-navigation__link.#{$pl-prefix}current {
         }
 
         &.#{$pl-prefix}current {
-            background-color: $colour__link--current__background;
+            background-color: $ds_colour__link--current__background;
             border-left: 4px solid $site-navigation__mobile-menu-highlight-colour;
             padding-left: #{$mobile-nav-link-horizontal-padding - 4px};
         }

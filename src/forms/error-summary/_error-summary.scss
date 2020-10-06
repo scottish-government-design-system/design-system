@@ -4,7 +4,7 @@
 
 /* [1] compensate for border */
 .#{$pl-prefix}error-summary {
-    border: 4px solid $colour__state--negative;
+    border: 4px solid $ds_colour__state--negative;
     padding: 20px 28px; /* [1] */
     @include block-margins;
 
@@ -13,16 +13,16 @@
     }
 
     &__list {
-        color: $colour__state--negative;
+        color: $ds_colour__state--negative;
         font-weight: bold;
         list-style-type: none;
         margin-left: 0;
 
         a {
-            color: $colour__state--negative;
+            color: $ds_colour__state--negative;
 
             &:focus {
-                color: $colour__text;
+                color: $ds_colour__text;
             }
         }
 
@@ -40,7 +40,7 @@
     transition: background-color 2s;
 
     &--flash {
-        background-color: $colour__gold--base;
+        background-color: $ds_colour__gold--base;
         transition-duration: 0s;
     }
 }
