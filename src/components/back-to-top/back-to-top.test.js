@@ -4,10 +4,15 @@ jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import BackToTop from './back-to-top';
 
+// mock window
+const windowObj = {
+    addEventListener: function () { }
+};
+
 describe('back to top', () => {
     beforeEach(() => {
         loadFixtures('components/back-to-top/back-to-top.html');
-
+        windowObj.innerHeight = 600;
     });
 
     it('should exit init without doing anything if no element supplied', () => {
@@ -30,20 +35,20 @@ describe('back to top', () => {
         expect(testObj.backToTopModule.checkDisplay).toHaveBeenCalled();
     });
 
-    xit('should not display if the page is taller than the viewport', () => {
+    it('should not display if the page is taller than the viewport', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
-        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
-
-        const padding = document.querySelector('#padding');
-        padding.parentNode.removeChild(padding);
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement, windowObj);
 
         testObj.backToTopModule.init();
         expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeTrue();
     });
 
-    xit('should display if the page is taller than the viewport', () => {
+    it('should display if the page is taller than the viewport', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
-        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
+
+        windowObj.innerHeight = 1;
+
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement, windowObj);
 
         testObj.backToTopModule.init();
         expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeFalse();
@@ -77,7 +82,7 @@ describe('back to top', () => {
 
     it('should allow a custom footer element', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
-        testObj.backToTopModule = new BackToTop(testObj.backToTopElement, { footerElSelector: '.my_site-footer' });
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement, window, { footerElSelector: '.my_site-footer' });
 
         testObj.backToTopModule.init();
 

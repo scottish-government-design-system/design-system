@@ -1,25 +1,25 @@
 class BackToTop {
-    constructor(el, options = {}) {
-        this.el = el;
+    constructor(el, _window = window, options = {}) {
         if (options.footerElSelector) {
-            this.footerEl = document.querySelector(options.footerElSelector)
+            this.footerEl = document.querySelector(options.footerElSelector);
         } else {
             this.footerEl = document.querySelector('.ds_site-footer');
         }
         this.backToTopElement = el;
+        this.window = _window;
     }
 
     init() {
-        if (!this.el) {
+        if (!this.backToTopElement) {
             return;
         }
         this.checkDisplay();
 
-        window.addEventListener('scroll', () => this.checkPosition());
+        this.window.addEventListener('scroll', () => this.checkPosition());
     }
 
     checkDisplay() {
-        if (document.body.offsetHeight > window.innerHeight) {
+        if (document.body.offsetHeight > this.window.innerHeight) {
             this.backToTopElement.classList.remove('visually-hidden');
         } else {
             this.backToTopElement.classList.add('visually-hidden');
