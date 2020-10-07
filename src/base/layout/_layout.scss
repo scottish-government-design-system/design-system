@@ -22,6 +22,11 @@
             @include colwidth(8);
         }
 
+        &__hide-page {
+            float: right;
+            @include colwidth(3);
+        }
+
         &--article {
             .#{$pl-prefix}layout {
                 &__header {
@@ -68,7 +73,6 @@
                 }
 
                 &__feedback {
-                    @include colpush(3);
                     @include colwidth(9);
                 }
             }
@@ -156,6 +160,7 @@
      * l: list (e.g. category items, search results)
      * n: navigation (e.g. subpages of a publication or guide)
      * p: partner branding
+     * q: hide page (quick exit)
      * s: sidebar
      */
 
@@ -167,6 +172,7 @@
     $grid-area-grid:        g;
     $grid-area-navigation:  n;
     $grid-area-partner:     p;
+    $grid-area-hide-page:   q;
     $grid-area-sidebar:     s;
 
     // this includes body for increased specificity
@@ -218,6 +224,10 @@
         &__partner {
             grid-area: $grid-area-partner;
             align-self: start;
+        }
+
+        &__hide-page {
+            grid-area: $grid-area-hide-page
         }
 
         &__sidebar {
@@ -283,6 +293,7 @@
             &--article {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
+                    'h h h h h h h h q q q q'
                     'c c c c c c c c c c c c'
                     's s s s s s s s s s s s'
                     'f f f f f f f f . . . .';
@@ -320,6 +331,7 @@
             &--article {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
+                    'h h h h h h h h . q q q'
                     'c c c c c c c c . s s s'
                     'f f f f f f f f . . . .';
             }

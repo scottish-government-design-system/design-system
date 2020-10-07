@@ -1,93 +1,79 @@
 /*------------------------------------*\
-    QUICK EXIT
+    HIDE THIS PAGE
 \*------------------------------------*/
 
-$quick-exit-banner-height: 56px;
+.#{$pl-prefix}hide-page {
+    background-color: $ds_colour__grey--light;
+    position: fixed;
+    text-align: center;
+    top: 0;
+    z-index: 1000;
 
+    @supports (display: grid) {
+        width: 100%;
+    }
 
+    @supports (position: sticky) {
+        position: sticky;
+    }
 
+    &--largescreen {
+        display: none;
+        @include block-margins;
+        outline: 1px solid #ebebeb;
+        outline-offset: -1px;
 
-.#{$pl-prefix}quick-exit {
-    display: none;
+        align-self: start;
+        grid-area: q;
+        right: 8px;
+        top: 8px;
+
+        @supports (position: sticky) {
+            bottom: 8px;
+        }
+    }
+
+    & ~ .#{$pl-prefix}page {
+        margin-top: 80px;
+
+        @supports (position: sticky) {
+            margin-top: 0;
+        }
+    }
 
     &__button {
         background-color: $ds_colour__red--base;
         margin: 0;
+        width: 100%;
     }
 
-    &__message {
-        @include small-size;
-        line-height: 20px;
+    &__text {
+        @include tiny-size;
         margin-bottom: 0;
-        text-align: center;
     }
-}
 
-@include media-query(medium-down) {
-    .#{$pl-prefix}quick-exit {
+    .js-enabled-text {
         display: none;
-
-        &--mobile {
-            display: block;
-            left: 0;
-            position: fixed;
-            right: 0;
-            top: 0;
-            z-index: 999;
-
-            + * {
-                margin-top: $quick-exit-banner-height;
-            }
-        }
-
-        &__button {
-            max-width: 100%;
-        }
-
-        &__message {
-            @include visually-hidden;
-        }
     }
 }
 
-@supports(position: sticky) {
-    @include media-query(medium-down) {
-        .#{$pl-prefix}quick-exit--mobile {
-            position: sticky;
-
-            + * {
-                margin-top: 0;
-            }
-        }
+@media only screen and (hover: hover) {
+    .js-enabled .js-enabled-text {
+        display: block;
     }
 }
 
 @include media-query(medium) {
-    .#{$pl-prefix}quick-exit {
-        display: block;
-        grid-area: q;
+    .ds_hide-page {
+        background-color: rgba(255, 255, 255, 0.9);
+        display: none;
 
-        align-self: start;
-        bottom: 8px;
-        position: sticky;
-        top: calc(8px - 32px);
-        z-index: 9999;
-
-        &--mobile {
-            display: none;
+        &--largescreen {
+            display: block;
         }
 
-        &__box {
-            background-color: $ds_colour__white;
-            border: 1px solid $ds_colour__border--light;
-            margin-bottom: 32px;
-            margin-top: 24px;
-            outline-offset: -1px;
-            padding: 15px;
-        }
-
-        &__button {
-            margin-bottom: 16px;
+        & ~ .#{$pl-prefix}page {
+            margin-top: 0;
         }
     }
 }
