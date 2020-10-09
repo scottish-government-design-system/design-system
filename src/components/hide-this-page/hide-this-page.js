@@ -31,6 +31,7 @@ class HidePage {
     doHidePage(event) {
         event.preventDefault();
         document.body.innerHTML = '';
+        document.title = '.';
         this.window.open(this.button.href, '_newtab');
         this.window.location.replace('https://www.google.co.uk');
     }

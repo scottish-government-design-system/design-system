@@ -191,8 +191,8 @@
         grid-template-areas:
             'h h'
             'p p'
-            's s'
             'c c'
+            's s'
             'f f';
         margin-right: 0;
         margin-bottom: 0;
@@ -224,6 +224,7 @@
         &__partner {
             grid-area: $grid-area-partner;
             align-self: start;
+            @include block-margins;
         }
 
         &__hide-page {
@@ -294,17 +295,16 @@
                 grid-template-areas:
                     'h h h h h h h h p p p p'
                     'h h h h h h h h q q q q'
-                    'c c c c c c c c c c c c'
-                    's s s s s s s s s s s s'
+                    'c c c c c c c c s s s s'
                     'f f f f f f f f . . . .';
             }
 
             &--guide {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
-                    'h h h h h h h h . q q q'
-                    'n n n n n n n n . q q q'
-                    'c c c c c c c c . s s s'
+                    'h h h h h h h h q q q q'
+                    'n n n n n n n n q q q q'
+                    'c c c c c c c c s s s s'
                     'f f f f f f f f . . . .'
             }
 
@@ -330,10 +330,19 @@
         .#{$pl-prefix}layout {
             &--article {
                 grid-template-areas:
-                    'h h h h h h h h p p p p'
+                    'h h h h h h h h . p p p'
                     'h h h h h h h h . q q q'
                     'c c c c c c c c . s s s'
                     'f f f f f f f f . . . .';
+            }
+
+            &--guide {
+                grid-template-areas:
+                    'h h h h h h h h . p p p'
+                    'h h h h h h h h . q q q'
+                    'n n n n n n n n . q q q'
+                    'c c c c c c c c . s s s'
+                    'f f f f f f f f . . . .'
             }
 
             &--search-results {
