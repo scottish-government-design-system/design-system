@@ -9,6 +9,10 @@
     padding-top: 24px;
     position: relative;
 
+    &:first-child {
+        margin-top: 0;
+    }
+
     &::before {
         background-color: $ds_colour__brand;
         content: '';

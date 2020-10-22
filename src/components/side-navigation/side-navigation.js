@@ -58,6 +58,8 @@ class SideNavigation {
                 sideNavigationExpand.classList.remove('ds_side-navigation__expand--shadow');
             }
         });
+
+        this.sideNavigation.classList.add('js-initialised');
     }
 
     openSideNav() {
