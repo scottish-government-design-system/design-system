@@ -11,6 +11,20 @@ import SideNavigation from './components/side-navigation/side-navigation';
 import Tabs from './components/tabs/tabs';
 import tracking from './tracking';
 
+const components = {
+    Accordion,
+    BackToTop,
+    CharacterCount,
+    CollapsibleSearchBox,
+    DSDatePicker,
+    HidePage,
+    MobileMenu,
+    MobileTables,
+    NotificationBanner,
+    SideNavigation,
+    Tabs
+};
+
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
 // defaults to document
 function initAll(scope = document) {
@@ -60,19 +74,11 @@ function initAll(scope = document) {
     tabSets.forEach(tabSet => new Tabs(tabSet).init());
 
     tracking.init();
+
+    window.DS = window.DS || {};
+    window.DS.components = components;
 }
 
 export {
-    initAll,
-    Accordion,
-    BackToTop,
-    CharacterCount,
-    CollapsibleSearchBox,
-    DSDatePicker,
-    HidePage,
-    MobileMenu,
-    MobileTables,
-    NotificationBanner,
-    SideNavigation,
-    Tabs
+    initAll
 };
