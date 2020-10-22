@@ -1,0 +1,33 @@
+/*------------------------------------*\
+    PADDING MODIFIERS
+\*------------------------------------*/
+
+.#{$pl-prefix}no-padding {
+    padding: 0 !important;
+}
+
+.#{$pl-prefix}no-padding--top {
+    padding-top: 0 !important;
+}
+
+.#{$pl-prefix}no-padding--right {
+    padding-right: 0 !important;
+}
+
+.#{$pl-prefix}no-padding--bottom {
+    padding-bottom: 0 !important;
+}
+
+.#{$pl-prefix}no-padding--left {
+    padding-left: 0 !important;
+}
+
+.#{$pl-prefix}no-padding--vertical {
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+}
+
+.#{$pl-prefix}no-padding--horizontal {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
