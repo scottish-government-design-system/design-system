@@ -97,11 +97,11 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 
     &--major {
-        background: $ds_colour__gold--base;
+        background: $ds_colour__yellow;
         color: $ds_colour__text;
 
         .#{$pl-prefix}notification__icon svg {
-            fill: $ds_colour__gold--base;
+            fill: $ds_colour__yellow;
         }
 
         // major needs special behavour for focus state of its interactive elements
