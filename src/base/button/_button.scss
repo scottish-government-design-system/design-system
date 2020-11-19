@@ -59,7 +59,7 @@ input[type="submit"],
     }
 
     &[disabled] {
-        background-color: $ds_colour__grey--base;
+        background-color: $ds_colour__grey;
         box-shadow: none;
         color: $ds_colour__white;
         font-weight: $normal;
