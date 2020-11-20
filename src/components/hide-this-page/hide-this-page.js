@@ -13,7 +13,7 @@ class HidePage {
         this.attachKeyboardEvents();
         this.attachMouseEvents();
 
-        this.altlink = this.button.dataset.altlink || 'https://www.google.com';
+        this.altlink = this.button.dataset.altlink || 'https://www.google.co.uk';
     }
 
     attachKeyboardEvents() {

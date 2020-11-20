@@ -27,7 +27,7 @@ describe('hide page', () => {
             spyOn(testObj.hidePage, 'doHidePage');
 
             const event = document.createEvent('Event');
-            event.keyCode = 27;
+            event.key = 'Escape';
             event.initEvent('keyup');
             document.dispatchEvent(event);
 
