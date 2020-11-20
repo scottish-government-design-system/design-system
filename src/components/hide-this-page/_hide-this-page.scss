@@ -2,50 +2,28 @@
     HIDE THIS PAGE
 \*------------------------------------*/
 
+.#{$pl-prefix}has-hide-page .#{$pl-prefix}page{
+    margin-top: 56px;
+}
+
 .#{$pl-prefix}hide-page {
     background-color: $ds_colour__grey--light;
-    margin-bottom: 2px;
+    left: 0;
     position: fixed;
+    right: 0;
     text-align: center;
     top: 0;
+    width: 100% !important;
     z-index: 1000;
-
-    @supports (display: grid) {
-        width: 100%;
-    }
-
-    @supports (position: sticky) {
-        position: sticky;
-    }
-
-    &--largescreen {
-        display: none;
-        @include block-margins;
-        outline: 1px solid #ebebeb;
-        outline-offset: -1px;
-
-        align-self: start;
-        grid-area: q;
-        right: 8px;
-        top: 8px;
-
-        @supports (position: sticky) {
-            bottom: 8px;
-        }
-    }
-
-    & ~ .#{$pl-prefix}page {
-        margin-top: 80px;
-
-        @supports (position: sticky) {
-            margin-top: 0;
-        }
-    }
 
     &__button {
         background-color: $ds_colour__red;
         margin: 0;
         width: 100%;
+
+        &:hover:not(:focus) {
+            background-color: darken($ds_colour__red, 15%);
+        }
     }
 
     &__text {
@@ -62,19 +40,48 @@
     .js-enabled .js-enabled-text {
         display: block;
     }
+
+    .#{$pl-prefix}has-hide-page .#{$pl-prefix}page {
+        margin-top: 80px;
+    }
 }
 
 @include media-query(medium) {
     .ds_hide-page {
+        @include block-margins;
         background-color: rgba(255, 255, 255, 0.9);
-        display: none;
+        outline: 1px solid #ebebeb;
+        outline-offset: -1px;
+        padding: 24px 24px 16px;
 
-        &--largescreen {
-            display: block;
+        @supports (position: sticky) and (display: grid) {
+            bottom: 8px;
+            position: sticky;
         }
 
-        & ~ .#{$pl-prefix}page {
-            margin-top: 0;
+        &__text {
+            margin-top: 16px;
+        }
+    }
+
+    .#{$pl-prefix}has-hide-page .#{$pl-prefix}page {
+        margin-top: 0;
+    }
+}
+
+@supports (display: grid) {
+    .#{$pl-prefix}hide-page {
+        width: 100%;
+
+        @include media-query(medium) {
+            align-self: start;
+            grid-area: 1/9/3/13;
+            right: 8px;
+            top: 8px;
+        }
+
+        @include media-query(large) {
+            grid-area: 1/10/3/13;
         }
     }
 }

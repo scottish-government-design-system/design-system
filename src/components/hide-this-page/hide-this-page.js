@@ -7,13 +7,18 @@ class HidePage {
     }
 
     init() {
+        if (!this.button) {
+            return;
+        }
         this.attachKeyboardEvents();
         this.attachMouseEvents();
+
+        this.altlink = this.button.dataset.altlink || 'https://www.google.com';
     }
 
     attachKeyboardEvents() {
         document.addEventListener('keyup', (event) => {
-            if (event.keyCode === 27) {
+            if (event.key === 'Escape') {
                 this.doHidePage(event);
             }
         });
@@ -33,7 +38,7 @@ class HidePage {
         document.body.innerHTML = '';
         document.title = '.';
         this.window.open(this.button.href, '_newtab');
-        this.window.location.replace('https://www.google.co.uk');
+        this.window.location.replace(this.altlink);
     }
 }
 
