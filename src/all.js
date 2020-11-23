@@ -80,5 +80,6 @@ function initAll(scope = document) {
 }
 
 export {
-    initAll
+    initAll,
+    components
 };
