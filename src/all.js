@@ -81,5 +81,15 @@ function initAll(scope = document) {
 
 export {
     initAll,
-    components
+    Accordion,
+    BackToTop,
+    CharacterCount,
+    CollapsibleSearchBox,
+    DSDatePicker,
+    HidePage,
+    MobileMenu,
+    MobileTables,
+    NotificationBanner,
+    SideNavigation,
+    Tabs
 };
