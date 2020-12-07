@@ -102,7 +102,7 @@ class DSDatePicker {
 
         this.cancelButton = this.dialogElement.querySelector('.js-datepicker-cancel');
         this.okButton = this.dialogElement.querySelector('.js-datepicker-ok');
-        this.cancelButton.addEventListener('click', (event) => this.closeDialog(event));
+        this.cancelButton.addEventListener('click', (event) => { event.preventDefault(); this.closeDialog(event); });
         this.okButton.addEventListener('click', () => this.selectDate(this.currentDate));
 
         const dialogButtons = this.dialogElement.querySelectorAll('button:not([disabled="true"])');

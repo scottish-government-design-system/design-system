@@ -45,18 +45,18 @@ function initAll(scope = document) {
     const datePickers = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]'));
     datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
 
-    const mobileMenus = [].slice.call(scope.querySelectorAll('[data-module="ds-mobile-navigation-menu"]'));
-    mobileMenus.forEach(mobileMenu =>  new MobileMenu(mobileMenu).init());
-
-    const notificationBanners = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]'));
-    notificationBanners.forEach(notificationBanner => new NotificationBanner(notificationBanner).init());
-
     // this one is handled differently because it applies an event to the whole body and we only want that event once
     const hidePageButtons = [].slice.call(scope.querySelectorAll('.ds_hide-page'));
     if (hidePageButtons.length) {
         const hidePage = new HidePage();
         hidePage.init();
     }
+
+    const mobileMenus = [].slice.call(scope.querySelectorAll('[data-module="ds-mobile-navigation-menu"]'));
+    mobileMenus.forEach(mobileMenu =>  new MobileMenu(mobileMenu).init());
+
+    const notificationBanners = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]'));
+    notificationBanners.forEach(notificationBanner => new NotificationBanner(notificationBanner).init());
 
     const searchBoxes = [].slice.call(scope.querySelectorAll('[data-module="ds-site-search"]'));
     searchBoxes.forEach(searchBox => new CollapsibleSearchBox(searchBox).init());
@@ -74,10 +74,10 @@ function initAll(scope = document) {
     tabSets.forEach(tabSet => new Tabs(tabSet).init());
 
     tracking.init();
-
-    window.DS = window.DS || {};
-    window.DS.components = components;
 }
+
+window.DS = window.DS || {};
+window.DS.components = components;
 
 export {
     initAll,
