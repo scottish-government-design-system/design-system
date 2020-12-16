@@ -25,6 +25,7 @@
         &--article {
             .#{$pl-prefix}layout {
                 &__header {
+                    clear: left;
                     float: left;
                     @include colwidth(8);
                 }
@@ -34,8 +35,15 @@
                     @include colwidth(4);
                 }
 
+                &__sidebar {
+                    float: left;
+                    @include colwidth(4);
+                }
+
                 &__content {
                     clear: left;
+                    float: left;
+                    @include colwidth(8);
                 }
             }
         }
@@ -43,6 +51,7 @@
         &--guide {
             .#{$pl-prefix}layout {
                 &__header {
+                    clear: left;
                     float: left;
                     @include colwidth(8);
                 }
@@ -58,6 +67,7 @@
                 }
 
                 &__content {
+                    clear: left;
                     float: left;
                     @include colwidth(8);
                 }

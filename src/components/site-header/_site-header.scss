@@ -39,6 +39,14 @@ $site-header__top-band-colour: $ds_colour__brand;
         }
     }
 
+    &__content > .#{$pl-prefix}site-branding {
+        float: left;
+    }
+
+    &__content > &__search {
+        float: right;
+    }
+
     &__controls {
         display: block;
     }
@@ -109,6 +117,8 @@ $site-header__top-band-colour: $ds_colour__brand;
         border-top: 1px solid $site-header__border-colour--reversed;
     }
 }
+
+
 
 @supports (display: flex) {
     .#{$pl-prefix}site-header__content {

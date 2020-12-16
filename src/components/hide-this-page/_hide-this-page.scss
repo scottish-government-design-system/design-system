@@ -13,7 +13,6 @@
     right: 0;
     text-align: center;
     top: 0;
-    width: 100% !important;
     z-index: 1000;
 
     &__button {
@@ -50,6 +49,7 @@
     .ds_hide-page {
         @include block-margins;
         background-color: rgba(255, 255, 255, 0.9);
+        left: auto;
         outline: 1px solid #ebebeb;
         outline-offset: -1px;
         padding: 24px 24px 16px;

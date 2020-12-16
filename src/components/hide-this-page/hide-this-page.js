@@ -18,7 +18,7 @@ class HidePage {
 
     attachKeyboardEvents() {
         document.addEventListener('keyup', (event) => {
-            if (event.key === 'Escape') {
+            if (event.key === 'Escape' || event.keyCode === 27) {
                 this.doHidePage(event);
             }
         });

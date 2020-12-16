@@ -15,10 +15,14 @@ $accordion__header-colour: $ds_colour__link !default;
 
     &__open-all {
         display: none;
-        position: absolute;
-        right: 0;
+        float: right;
+        margin-bottom: 8px;
+        position: relative;
         text-decoration: none;
-        top: -32px;
+
+        + * {
+            clear: both;
+        }
     }
 }
 
@@ -31,7 +35,6 @@ h1,h2,h3 {
 .#{$pl-prefix}accordion.js-initialised {
     .#{$pl-prefix}accordion__open-all {
         display: block;
-        margin: 0;
     }
 }
 

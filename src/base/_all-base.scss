@@ -65,16 +65,9 @@ $iconsfile: '/assets/images/icons/icons.stack.svg' !default;
  * HELPERS
  */
 @import "_helpers/no-margin/no-margin";
+@import "_helpers/no-padding/no-padding";
 @import "_helpers/visibility/visibility";
 @import "_helpers/wrappers/wrappers";
-
-
-
-
-/**
- * STATES
- */
-@import "state/focus";
 
 
 
