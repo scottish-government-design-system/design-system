@@ -64,7 +64,10 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
     &__radio:checked + &__header > &__label:not(:focus),
     &__header.#{$pl-prefix}current > &__label:not(:focus) {
         background: $ds_colour__white;
+        color: $ds_colour__text;
+        pointer-events: none;
         position: relative;
+        text-decoration: none;
     }
 
     &__radio + &__header > &__label::before,
