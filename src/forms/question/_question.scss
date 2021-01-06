@@ -14,9 +14,10 @@
         margin-bottom: 16px;
     }
 
-    &--error &__message {
+    &__error-message {
         color: $ds_colour__state--negative;
         font-weight: bold;
+        margin-bottom: 16px;
     }
 }
 

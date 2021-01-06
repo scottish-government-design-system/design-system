@@ -52,7 +52,6 @@
         left: auto;
         outline: 1px solid #ebebeb;
         outline-offset: -1px;
-        padding: 24px 24px 16px;
 
         @supports (position: sticky) and (display: grid) {
             bottom: 8px;
@@ -60,7 +59,7 @@
         }
 
         &__text {
-            margin-top: 16px;
+            margin: 8px 0;
         }
     }
 

@@ -78,6 +78,7 @@ function initAll(scope = document) {
 
 window.DS = window.DS || {};
 window.DS.components = components;
+window.DS.tracking = tracking;
 
 export {
     initAll,
