@@ -44,7 +44,7 @@ module.exports = function (config) {
         ],
 
         exclude: [
-            'src/*.js'
+            'src/all.js'
         ],
 
         preprocessors: {

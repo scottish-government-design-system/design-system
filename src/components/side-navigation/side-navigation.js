@@ -22,12 +22,13 @@ class SideNavigation {
         navControl.checked = false;
 
         const navButton = document.createElement('button');
-        navButton.classList.add('ds_side-navigation__expand', 'ds_link', 'js-side-navigation-button');
+        navButton.classList.add('ds_side-navigation__expand');
+        navButton.classList.add('ds_link');
+        navButton.classList.add('js-side-navigation-button');
         navButton.setAttribute('aria-expanded', false);
         navButton.innerHTML = navLabel.innerHTML;
         navButton.setAttribute('aria-expanded', false);
         navButton.setAttribute('aria-controls', this.navList.id);
-        navButton.setAttribute('data-navigation', 'sidenav-open');
 
         navLabel.parentNode.removeChild(navLabel);
         this.sideNavigation.insertBefore(navButton, this.navList);
@@ -46,16 +47,13 @@ class SideNavigation {
 
             navButton.setAttribute('aria-expanded', !isOpen);
             navControl.checked = !isOpen;
-            navControl.setAttribute('data-navigation', `navigation-${navControl.checked ? 'close' : 'open'}`);
         });
 
         window.addEventListener('scroll', () => {
-            const sideNavigationExpand = this.sideNavigation.querySelector('.ds_side-navigation__expand');
-
-            if (sideNavigationExpand.offsetTop >= 1) {
-                sideNavigationExpand.classList.add('ds_side-navigation__expand--shadow');
+            if (navButton.offsetTop >= 1) {
+                navButton.classList.add('ds_side-navigation__expand--shadow');
             } else {
-                sideNavigationExpand.classList.remove('ds_side-navigation__expand--shadow');
+                navButton.classList.remove('ds_side-navigation__expand--shadow');
             }
         });
 

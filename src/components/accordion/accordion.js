@@ -55,7 +55,6 @@ class Accordion {
             }
         }
 
-        itemButton.setAttribute('data-accordion', `accordion-${startsOpen ? 'close' : 'open'}-${index}`);
         itemButton.setAttribute('aria-expanded', startsOpen);
         itemButton.setAttribute('aria-controls', itemBody.id);
 
@@ -116,10 +115,6 @@ class Accordion {
         itemButton.setAttribute('aria-expanded', !isOpen);
         itemControl.checked = !isOpen;
 
-        // tracking
-        const accordionNumber = itemButton.getAttribute('data-accordion').split('-').reverse()[0];
-        itemButton.setAttribute('data-accordion', `accordion-${isOpen ? 'open' : 'close'}-${accordionNumber}`);
-
         if (this.openAllButton) {
             this.setOpenAllButton(this.checkAllOpen());
         }
@@ -128,10 +123,8 @@ class Accordion {
     setOpenAllButton(open) {
         if (open) {
             this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
-            this.openAllButton.setAttribute('data-accordion', 'accordion-close-all');
         } else {
             this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>';
-            this.openAllButton.setAttribute('data-accordion', 'accordion-open-all');
         }
     }
 

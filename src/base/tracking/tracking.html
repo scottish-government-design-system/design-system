@@ -1,0 +1,876 @@
+<div id="buttons">
+    <button data-unit="without-attribute" class="ds_button">Without attribute</button>
+
+    <button data-unit="with-attribute" data-button="button-foo" class="ds_button">With attribute</button>
+</div>
+
+<form id="checkboxes">
+    <fieldset>
+        <legend>What topics are you interested in?</legend>
+        <p class="ds_hint-text">Select as many as you like</p>
+
+        <div class="ds_field-group">
+            <div class="ds_checkbox" data-unit="without-attribute">
+                <input class="ds_checkbox__input" id="education" type="checkbox">
+                <label class="ds_checkbox__label" for="education">Education</label>
+            </div>
+
+            <div class="ds_checkbox" data-unit="with-attribute">
+                <input class="ds_checkbox__input" id="housing" data-form="checkbox-foo" type="checkbox">
+                <label class="ds_checkbox__label" for="housing">Housing</label>
+            </div>
+
+            <div class="ds_checkbox" data-unit="prechecked">
+                <input class="ds_checkbox__input" id="transport" checked type="checkbox">
+                <label class="ds_checkbox__label" for="transport">Transport and travel</label>
+            </div>
+
+            <div class="ds_checkbox" data-unit="prechecked-with-attribute">
+                <input class="ds_checkbox__input" id="culture" data-form="checkbox-bar" checked type="checkbox">
+                <label class="ds_checkbox__label" for="culture">Arts and culture</label>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<form id="radios">
+    <fieldset>
+        <legend>Was this page useful?</legend>
+        <p class="ds_hint-text">Select an option</p>
+
+        <div class="ds_field-group">
+            <div class="ds_radio" data-unit="without-attribute">
+                <input class="ds_radio__input" id="useful-yes" name="feedback-type" type="radio" value="yes">
+                <label class="ds_radio__label" for="useful-yes">Yes</label>
+            </div>
+
+            <div class="ds_radio" data-unit="with-attribute">
+                <input class="ds_radio__input" data-form="radio-foo" id="useful-no" name="feedback-type" type="radio" value="no">
+                <label class="ds_radio__label" for="useful-no">No</label>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<div id="selects">
+    <label class="ds_label" for="mushroom">Mushroom</label>
+    <div class="ds_select-wrapper  ds_input--fluid-one-third">
+        <select data-unit="without-attribute" class="ds_select" id="mushroom">
+            <option></option>
+            <option>Amanita</option>
+            <option>Boletus</option>
+            <option>Coprinopsis</option>
+        </select>
+        <span class="ds_select-arrow" aria-hidden="true"></span>
+    </div>
+
+    <label class="ds_label" for="bird">Bird</label>
+    <div class="ds_select-wrapper  ds_input--fluid-one-third">
+        <select data-unit="with-attribute" data-form="select-foo" class="ds_select" id="bird">
+            <option></option>
+            <option>Avocet</option>
+            <option>Blackbird</option>
+            <option>Crow</option>
+        </select>
+        <span class="ds_select-arrow" aria-hidden="true"></span>
+    </div>
+</div>
+
+<div id="text-inputs">
+    <label class="ds_label" for="first-name">First name</label>
+    <input data-unit="without-attribute" class="ds_input" type="text" id="first-name" />
+
+    <label class="ds_label" for="last-name">Last name</label>
+    <input data-unit="with-attribute" class="ds_input" data-form="textinput-foo" type="text" id="last-name" />
+
+    <label class="ds_label" for="age">Age</label>
+    <input data-unit="number" class="ds_input" type="number" id="age" />
+</div>
+
+<div id="textareas">
+    <label class="ds_label" for="description">Description</label>
+    <textarea data-unit="without-attribute" class="ds_input" rows="3" id="description"></textarea>
+
+    <label class="ds_label" for="comments">Comments</label>
+    <textarea data-unit="with-attribute" data-form="textarea-foo" class="ds_input" rows="3" id="comments"></textarea>
+</div>
+
+<div id="accordions">
+    <div class="ds_accordion" data-module="ds-accordion">
+        <button data-accordion="accordion-open-all" type="button" class="ds_link  ds_accordion__open-all  js-open-all">Open all <span class="visually-hidden">sections</span></button>
+
+        <div class="ds_accordion-item">
+            <input type="checkbox" class="visually-hidden  ds_accordion-item__control" id="panel-1" aria-labelledby="panel-1-heading">
+            <div class="ds_accordion-item__header">
+                <h3 id="panel-1-heading" class="ds_accordion-item__title">
+                    Healthcare for veterans
+                </h3>
+                <span class="ds_accordion-item__indicator"></span>
+                <label class="ds_accordion-item__label" for="panel-1"><span class="visually-hidden">Show this section</span></label>
+            </div>
+            <div class="ds_accordion-item__body">
+                <p>Veterans are entitled to the same healthcare as any citizen. And there are <a href="#">health care options and support</a> available specifically for veterans.  </p>
+                <p>If you have a health condition that's related to your service, you're entitled to priority treatment based on clinical need. </p>
+            </div>
+        </div>
+
+        <div class="ds_accordion-item">
+            <input checked type="checkbox" class="visually-hidden  ds_accordion-item__control" id="panel-2" aria-labelledby="panel-2-heading">
+            <div class="ds_accordion-item__header">
+                <h3 id="panel-2-heading" class="ds_accordion-item__title">
+                    Employability for veterans
+                </h3>
+                <span class="ds_accordion-item__indicator"></span>
+                <label class="ds_accordion-item__label" for="panel-2"><span class="visually-hidden">Show this section</span></label>
+            </div>
+            <div class="ds_accordion-item__body">
+                <p>If you're looking for a job, there are several organisations that can help you <a href="#">find a job or develop new skills</a>.</p>
+            </div>
+        </div>
+
+        <div class="ds_accordion-item">
+            <input type="checkbox" class="visually-hidden  ds_accordion-item__control" id="panel-3" aria-labelledby="panel-3-heading">
+            <div class="ds_accordion-item__header">
+                <h3 id="panel-3-heading" class="ds_accordion-item__title">
+                    Housing for veterans
+                </h3>
+                <span class="ds_accordion-item__indicator"></span>
+                <label class="ds_accordion-item__label" for="panel-3"><span class="visually-hidden">Show this section</span></label>
+            </div>
+            <div class="ds_accordion-item__body">
+                <p>If you need <a href="#">help finding a place to live</a> there's support specifically for veterans.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="asides">
+    <div class="ds_article-aside">
+    <ul>
+        <li>
+            <a data-unit="without-attribute" href="#">Related link 1</a>
+        </li>
+        <li>
+            <a data-unit="with-attribute" data-navigation="link-related-foo" href="#">Related link 2</a>
+        </li>
+    </ul>
+</div>
+
+<div id="back-to-top">
+    <div class="ds_back-to-top">
+        <a href="#" class="ds_back-to-top__button">Back to top <svg class="ds_icon  ds_back-to-top__icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#arrow-up"></use></svg></a>
+    </div>
+</div>
+
+<div id="breadcrumbs">
+    <nav aria-label="Breadcrumb">
+        <ol class="ds_breadcrumbs">
+            <li class="ds_breadcrumbs__item">
+                <a class="ds_breadcrumbs__link" href="#">
+                    Home
+                </a>
+            </li>
+
+            <li class="ds_breadcrumbs__item">
+                <a class="ds_breadcrumbs__link" href="#">
+                    Justice and the law
+                </a>
+            </li>
+
+            <li class="ds_breadcrumbs__item">
+                <a data-unit="with-attribute" data-navigation="breadcrumb-foo" class="ds_breadcrumbs__link" href="#">
+                    Your rights and the law
+                </a>
+            </li>
+
+            <li class="ds_breadcrumbs__item" aria-current="page" >
+                Data sharing of personal information
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<div id="category-list">
+    <nav aria-label="Category navigation">
+        <ol class="ds_category-list">
+            <li class="ds_category-item  ds_category-item--pinned">
+                <h2 class="ds_category-item__title">
+                    <a href="#" class="ds_category-item__link">
+                        Environment and countryside
+                        <svg class="ds_icon  ds_category-item__pinned-icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#star"></use></svg>
+                    </a>
+                </h2>
+
+                <p class="ds_category-item__summary">
+                    Access to and protection of the countryside and managing wildlife on your land
+                </p>
+            </li>
+
+            <li class="ds_category-item  ds_category-item--pinned">
+                <h2 class="ds_category-item__title">
+                    <a data-unit="with-attribute" data-navigation="category-item-foo" href="#" class="ds_category-item__link">
+                        Environmental Impact Assessment (EIA)
+                        <svg class="ds_icon  ds_category-item__pinned-icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#star"></use></svg>
+                    </a>
+                </h2>
+
+                <p class="ds_category-item__summary">
+                    Find out about Environmental Impact Assessments (EIAs) in your area
+                </p>
+            </li>
+
+            <li class="ds_category-item">
+                <h2 class="ds_category-item__title">
+                    <a href="#" class="ds_category-item__link">Farming and rural issues</a>
+                </h2>
+
+                <p class="ds_category-item__summary">
+                    Guidance for farming, animal health, agriculture and food businesses in Scotland
+                </p>
+            </li>
+
+            <li class="ds_category-item">
+                <h2 class="ds_category-item__title">
+                    <a href="#" class="ds_category-item__link">Waste and energy</a>
+                </h2>
+
+                <p class="ds_category-item__summary">
+                    Find advice and support to help your business become more environmentally aware and efficient
+                </p>
+            </li>
+
+            <li class="ds_category-item">
+                <h2 class="ds_category-item__title">
+                    <a href="#" class="ds_category-item__link">Marine and fisheries</a>
+                </h2>
+
+                <p class="ds_category-item__summary">
+                    Includes information on safety at sea and managing crew
+                </p>
+            </li>
+        </ol>
+    </nav>
+</div>
+
+<div id="contact-details">
+    <div class="ds_contact-details">
+
+        <h2 class="ds_contact-details__title">Contact</h2>
+
+        <dl class="ds_contact-details__list">
+            <div class="ds_contact-details__item">
+                <dt>Address</dt>
+                <dd translate="no">
+                    <address>
+                        Scottish Government<br/>
+                        St. Andrew's House<br />
+                        Regent Road<br />
+                        Edinburgh<br />
+                        EH1 3DG
+                    </address>
+                </dd>
+            </div>
+
+            <div class="ds_contact-details__item">
+                <dt>Email</dt>
+                <dd><a data-unit="without-attribute" href="mailto:#">email@gov.scot</a></dd>
+                <dd><a data-unit="with-attribute" data-navigation="contact-details-foo" href="mailto:#">email@gov.scot</a></dd>
+            </div>
+
+            <div class="ds_contact-details__item">
+                <dt>Phone</dt>
+                <dd>
+                    0123 456 7000<br />
+                    Main line is open 8am-5pm<br/>
+                    <a href="https://www.gov.uk/call-charges">Find out about call charges</a>
+                </dd>
+            </div>
+
+            <div class="ds_contact-details__item">
+                <dt>Out of hours</dt>
+                <dd>
+                    0123 456 7001
+                </dd>
+            </div>
+
+            <div class="ds_contact-details__item">
+                <dt>Fax</dt>
+                <dd>
+                    0123 456 7002
+                </dd>
+            </div>
+
+            <div class="ds_contact-details__item  ds_contact-details__social">
+                <dt class="visually-hidden">Social media</dt>
+                <dd class="ds_contact-details__social-item">
+                    <a data-unit="without-attribute" class="ds_contact-details__social-link" href="#">
+                        <svg class="ds_contact-details__social-icon  ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#youtube"></use></svg>
+                        YouTube
+                    </a>
+                </dd>
+
+                <dd class="ds_contact-details__social-item">
+                    <a data-unit="with-attribute" data-navigation="contact-details-foo" class="ds_contact-details__social-link" href="#">
+                        <svg class="ds_contact-details__social-icon  ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#blog"></use></svg>
+                        Blog
+                    </a>
+                </dd>
+            </div>
+        </dl>
+
+    </div>
+</div>
+
+<div id="contents-nav">
+    <nav role="navigation" class="ds_contents-nav" aria-label="Sections">
+        <h2 class="ds_contents-nav__title">Contents</h2>
+
+        <ul class="ds_contents-nav__list">
+            <li class="ds_contents-nav__item">
+                <span class="ds_contents-nav__link  ds_current">
+                    Apply for a new Blue Badge
+                </span>
+            </li>
+            <li class="ds_contents-nav__item">
+                <a data-unit="without-attribute" class="ds_contents-nav__link" href="/apply-blue-badge/renew-a-blue-badge/">
+                    Renew a Blue Badge
+                </a>
+            </li>
+            <li class="ds_contents-nav__item">
+                <a data-unit="with-attribute" data-navigation="contentsnav-foo" class="ds_contents-nav__link" href="/apply-blue-badge/eligibility/">
+                    Eligibility
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div id="error-messages">
+    <div data-unit="default" class="ds_question  ds_question--error" id="error-id-three">
+        <label class="ds_label" for="more-detail">Please provide more detail</label>
+        <p class="ds_hint-text" id="hint-text-more-detail">Do not include personal or financial information, like your National Insurance number or credit card details.</p>
+        <p class="ds_question__error-message">This field is required</p>
+        <textarea rows="5" class="ds_input  ds_input--error" id="more-detail" aria-invalid="true" aria-required="true" aria-describedby="hint-text-more-detail"></textarea>
+    </div>
+
+    <div data-unit="radio" class="ds_question  ds_question--error" id="error-id-one">
+        <fieldset aria-invalid="true">
+            <legend>Did this resolve your issue?</legend>
+            <p class="ds_hint-text">Hint text</p>
+            <p class="ds_question__error-message">This field is required</p>
+
+            <div class="ds_field-group">
+                <div class="ds_radio">
+                    <input class="ds_radio__input" id="resolve-yes" name="resolve" type="radio" value="yes">
+                    <label class="ds_radio__label" for="resolve-yes">Yes</label>
+                </div>
+
+                <div class="ds_radio">
+                    <input class="ds_radio__input" id="resolve-no" name="resolve" type="radio" value="no">
+                    <label class="ds_radio__label" for="resolve-no">No</label>
+
+                    <div class="ds_reveal-content">
+                        <p><strong>Next step:</strong> <a href="#">leave us some feedback</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div data-unit="field-group" class="ds_question  ds_question--error" id="error-id">
+        <fieldset>
+            <legend>Are you a cat or a dog person?</legend>
+            <p class="ds_hint-text">Select an option</p>
+            <p class="ds_question__error-message">This field is required</p>
+
+            <div class="ds_field-group  js-validation-group">
+                <div class="ds_radio">
+                    <input class="ds_radio__input" name="cats-or-dogs" id="cats" type="radio" />
+                    <label class="ds_radio__label" for="cats">Cats</label>
+                </div>
+
+                <div class="ds_radio">
+                    <input class="ds_radio__input" name="cats-or-dogs" id="dogs" type="radio" />
+                    <label class="ds_radio__label" for="dogs">Dogs</label>
+                </div>
+
+                <label class="ds_label" for="reason">Reason</label>
+                <input class="ds_input" id="reason" type="text" />
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div id="error-summaries">
+    <div class="ds_error-summary" id="error-summary" aria-labelledby="error-summary-title" role="alert">
+        <h2 class="ds_error-summary__title" id="error-summary-title">There is a problem</h2>
+
+        <ul class="ds_error-summary__list">
+            <li>
+                <a data-unit="without-attribute" href="#topics">What topics are you interested in?</a>
+            </li>
+            <li>
+                <a data-unit="with-attribute" data-form="error-foo" href="#more-detail">Please provide more detail</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="hide-this-page">
+    <div class="ds_hide-page">
+        <a href="http://bbc.co.uk/weather" data-altlink="https://www.google.co.uk" class="ds_hide-page__button  ds_button  js-hide-page"><strong>Hide this page</strong> <span class="visually-hidden  js-enabled-text">Or press escape key to hide this page</span></a>
+        <p class="ds_hide-page__text  js-enabled-text">(Or press Esc key)</p>
+    </div>
+</div>
+
+<div id="notifications">
+    <div data-unit="with-id" class="ds_notification  ds_reversed" id="mybanner" data-module="ds-notification">
+        <div class="ds_wrapper">
+            <div class="ds_notification__content  ds_notification__content--has-close">
+                <div role="heading" class="visually-hidden">Information</div>
+
+                <div class="ds_notification__text">
+                    <p>We need to tell you about <a data-unit="without-attribute" href="#">something</a> about <a data-unit="with-attribute" data-banner="banner-foo" href="#">something else</a></p>
+                </div>
+
+                <button data-unit="without-attribute" class="ds_notification__close  js-close-notification" type="button">
+                    <span class="visually-hidden">Close this notification</span>
+                    <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#close-21"></use></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div data-unit="without-id" class="ds_notification  ds_reversed" data-module="ds-notification">
+        <div class="ds_wrapper">
+            <div class="ds_notification__content  ds_notification__content--has-close">
+                <div role="heading" class="visually-hidden">Information</div>
+
+                <div class="ds_notification__text">
+                    <p>We need to tell you about <a data-unit="without-attribute" href="#">something</a> about <a data-unit="with-attribute" data-banner="banner-foo-link" href="#">something else</a></p>
+                </div>
+
+                <button data-unit="with-attribute" data-banner="banner-bar" class="ds_notification__close  js-close-notification" type="button">
+                    <span class="visually-hidden">Close this notification</span>
+                    <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#close-21"></use></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pagination">
+    <nav class="ds_pagination" aria-label="Pages">
+        <div class="ds_pagination__load-more">
+            <button class="ds_button">Load more</button>
+        </div>
+
+        <ul class="ds_pagination__list">
+            <li class="ds_pagination__item">
+                <a data-unit="with-attribute" data-search="pagination-foo" href="#" class="ds_pagination__link  ds_pagination__link--text">Previous</a>
+            </li>
+
+            <li class="ds_pagination__item" aria-hidden="true">
+                <span class="ds_pagination__link  ds_pagination__link--ellipsis">&hellip;</span>
+            </li>
+
+            <li class="ds_pagination__item">
+                <a data-unit="without-attribute" href="#" class="ds_pagination__link">11</a>
+            </li>
+
+            <li class="ds_pagination__item">
+                <a href="#" class="ds_pagination__link">12</a>
+            </li>
+
+            <li class="ds_pagination__item" aria-hidden="true">
+                <span class="ds_pagination__link  ds_pagination__link--ellipsis">&hellip;</span>
+            </li>
+
+            <li class="ds_pagination__item">
+                <a href="#" class="ds_pagination__link  ds_pagination__link--text">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div id="phase-banners">
+    <div class="ds_phase-banner">
+        <div class="ds_wrapper">
+            <p class="ds_phase-banner__content">
+                <strong class="ds_tag  ds_phase-banner__tag">
+                    alpha
+                </strong>
+                <span class="ds_phase-banner__text">
+                    This is a new service. Your <a data-unit="without-attribute" href="#">feedback</a> will help us to <a data-unit="with-attribute" data-banner="banner-foo" href="#">improve it</a>.
+                </span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="search-results-multi">
+    <div class="ds_search-results">
+
+    <div class="ds_site-search">
+        <form role="search" class="ds_site-search__form">
+            <label class="ds_label  visually-hidden" for="site-search">Search</label>
+
+            <div class="ds_input__wrapper  ds_input__wrapper--has-icon">
+                <input name="q" required="" id="site-search" class="ds_input  ds_site-search__input" type="text" value="crofting" placeholder="Search" autocomplete="off">
+
+                <button type="submit" class="ds_button  ds_button--icon-only  js-site-search-button">
+                    <span class="visually-hidden">Search</span>
+                    <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#search"></use></svg>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <nav id="suggestions" class="ds_search-suggestions" aria-label="Alternative search suggestions">
+        <span aria-hidden="true">Did you mean:</span>
+
+        <ul>
+            <li>
+                <a aria-label="Did you mean 'crafting'?" href="#">crafting</a>
+            </li>
+            <li>
+                <a aria-label="Did you mean 'crofting'?" href="#">crofting</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="search-results" class="ds_search-results">
+
+        <h2 class="visually-hidden">Search results</h2>
+
+        <p class="ds_search-results__count js-search-results-count"><b>68</b> results</p>
+
+        <ol id="search-results-list" class="ds_search-results__list">
+            <li class="ds_search-result">
+                <header class="ds_search-result__header">
+                    <dl class="ds_search-result__metadata  ds_metadata  ds_metadata--inline">
+                        <span class="ds_metadata__item">
+                            <dt class="ds_metadata__key  visually-hidden">Type</dt>
+                            <dd class="ds_metadata__value  ds_content-label">Policy</dd>
+                        </span>
+                    </dl>
+
+                    <h2 class="gamma  ds_search-result__title">
+                        <a class="ds_search-result__link" href="#">Crofting community right to buy</a>
+                    </h2>
+                </header>
+
+                <p class="ds_search-result__summary">Information and guidance regarding the crofting community right to buy.</p>
+            </li>
+
+            <li class="ds_search-result">
+                <header class="ds_search-result__header">
+                    <dl class="ds_search-result__metadata  ds_metadata  ds_metadata--inline">
+                        <span class="ds_metadata__item">
+                            <dt class="ds_metadata__key  visually-hidden">Type</dt>
+                            <dd class="ds_metadata__value  ds_content-label">Consultation paper</dd>
+                        </span>
+
+                        <span class="ds_metadata__item">
+                            <dt class="ds_metadata__key  visually-hidden">Publication date</dt>
+                            <dd class="ds_metadata__value">28 Aug 2017</dd>
+                        </span>
+                    </dl>
+
+                    <h2 class="gamma  ds_search-result__title">
+                        <a class="ds_search-result__link" href="#">Crofting consultation 2017</a>
+                    </h2>
+                </header>
+
+                <p class="ds_search-result__summary">We are seeking the views of crofters, and those with an interest, on the pathway of any potential new legislation to reform crofting law.</p>
+            </li>
+
+            <li class="ds_search-result">
+                <header class="ds_search-result__header">
+                    <dl class="ds_search-result__metadata  ds_metadata  ds_metadata--inline">
+                        <span class="ds_metadata__item">
+                            <dt class="ds_metadata__key  visually-hidden">Type</dt>
+                            <dd class="ds_metadata__value  ds_content-label">Consultation analysis</dd>
+                        </span>
+
+                        <span class="ds_metadata__item">
+                            <dt class="ds_metadata__key  visually-hidden">Publication date</dt>
+                            <dd class="ds_metadata__value"><time datetime="2016-09-01">01 Sep 2016</time></dd>
+                        </span>
+                    </dl>
+
+                    <h2 class="gamma  ds_search-result__title">
+                        <a class="ds_search-result__link" href="#">Crofting Elections 2017: consultation responses analysis</a>
+                    </h2>
+                </header>
+
+                <p class="ds_search-result__summary">Analysis of the responses to the Crofting Elections 2017 consultation.</p>
+            </li>
+        </ol>
+
+        <nav class="ds_pagination" aria-label="Search pages">
+            <div class="ds_pagination__load-more">
+                <button class="ds_button">Load more</button>
+            </div>
+
+            <ul class="ds_pagination__list">
+                <li class="ds_pagination__item" aria-current="page">
+                    <span class="ds_pagination__link  ds_current">1</span>
+                </li>
+
+                <li class="ds_pagination__item">
+                    <a href="#" class="ds_pagination__link">2</a>
+                </li>
+
+                <li class="ds_pagination__item">
+                    <a href="#" class="ds_pagination__link">3</a>
+                </li>
+
+                <li class="ds_pagination__item">
+                    <a href="#" class="ds_pagination__link">4</a>
+                </li>
+
+                <li class="ds_pagination__item">
+                    <a href="#" class="ds_pagination__link">5</a>
+                </li>
+
+                <li class="ds_pagination__item">
+                    <a href="#" class="ds_pagination__link">6</a>
+                </li>
+
+                <li class="ds_pagination__item">
+                    <a href="#" class="ds_pagination__link">7</a>
+                </li>
+
+                <li class="ds_pagination__item" aria-hidden="true">
+                    <span class="ds_pagination__link  ds_pagination__link--ellipsis">&hellip;</span>
+                </li>
+
+                <li class="ds_pagination__item">
+                    <a href="#" class="ds_pagination__link  ds_pagination__link--text">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+</div>
+
+<div id="sequential-navs">
+    <nav class="ds_sequential-nav" aria-label="Article navigation">
+        <div class="ds_sequential-nav__item  ds_sequential-nav__item--prev">
+            <a title="Previous section" href="#" class="ds_sequential-nav__button  ds_sequential-nav__button--left">
+                <span class="ds_sequential-nav__text" data-label="previous">
+                    Apply for or renew a Blue Badge
+                </span>
+            </a>
+        </div>
+
+        <div class="ds_sequential-nav__item  ds_sequential-nav__item--next">
+            <a title="Next section" href="#" class="ds_sequential-nav__button  ds_sequential-nav__button--right">
+                <span class="ds_sequential-nav__text" data-label="next">
+                    Eligibility: who can have one?
+                </span>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div id="side-navigation">
+    <nav aria-label="Sections" class="ds_side-navigation" data-module="ds-side-navigation">
+        <input type="checkbox" class="fully-hidden  js-toggle-side-navigation" id="show-side-navigation" aria-controls="side-navigation-root" />
+        <label class="ds_side-navigation__expand  ds_link" for="show-side-navigation"><span class="visually-hidden">Show all</span> Pages in this section <span class="ds_side-navigation__expand-indicator"></span></label>
+
+        <ul data-unit="depth-1" class="ds_side-navigation__list  ds_side-navigation__list--root" id="side-navigation-root">
+            <li class="ds_side-navigation__item  ds_side-navigation__item--has-children  ds_side-navigation__item--has-children--expanded">
+                <a href="#" class="ds_side-navigation__link">Apples</a>
+                <ul data-unit="depth-2" class="ds_side-navigation__list">
+                    <li class="ds_side-navigation__item  ds_side-navigation__item--has-children">
+                        <a href="#" class="ds_side-navigation__link">Green apples</a>
+                        <ul data-unit="depth-3" class="ds_side-navigation__list">
+                            <li class="ds_side-navigation__item">
+                                <span class="ds_side-navigation__link  ds_current">Bramley</span>
+                            </li>
+                            <li class="ds_side-navigation__item">
+                                <a href="#" class="ds_side-navigation__link">Granny Smith</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="ds_side-navigation__item  ds_side-navigation__item--has-children">
+                        <a href="#" class="ds_side-navigation__link">Red apples</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="ds_side-navigation__item">
+                <a href="#" class="ds_side-navigation__link">Bananas</a>
+            </li>
+            <li class="ds_side-navigation__item">
+                <a href="#" class="ds_side-navigation__link">Cherries</a>
+            </li>
+            <li class="ds_side-navigation__item">
+                <a href="#" class="ds_side-navigation__link">Dates</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div id="site-branding">
+    <div class="ds_site-branding">
+        <a class="ds_site-branding__logo  ds_site-branding__link" href="#">
+            <img class="ds_site-branding__logo-image" src="/assets/images/logos/digital-scotland.svg" alt="Digital Scotland">
+        </a>
+
+        <div class="ds_site-branding__title">
+            Design System
+        </div>
+    </div>
+</div>
+
+<div id="site-footer">
+    <footer class="ds_site-footer  ds_reversed">
+        <div class="ds_wrapper">
+            <div class="ds_site-footer__content">
+                <ul class="ds_site-footer__site-items">
+                    <li class="ds_site-items__item">
+                        <a href="#">Privacy</a>
+                    </li>
+                    <li class="ds_site-items__item">
+                        <a href="#">Cookies</a>
+                    </li>
+                </ul>
+
+                <div class="ds_site-footer__copyright">
+                    <a class="ds_site-footer__copyright-logo" href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">
+                        <img src="/assets/images/logos/ogl.svg" alt="Open Government License" />
+                    </a>
+                    <p>All content is available under the <a href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>, except for graphic assets and where otherwise stated</p>
+                    <p>&copy; Crown Copyright</p>
+                </div>
+
+                <div class="ds_site-footer__org">
+                    <a class="ds_site-footer__org-link" title="The Scottish Government" href="http://www.gov.scot/">
+                        <img class="ds_site-footer__org-logo" src="/assets/images/logos/scottish-government.svg" alt="gov.scot" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="site-navigation">
+    <nav class="ds_mobile-navigation" data-module="ds-mobile-navigation-menu">
+        <button class="js-toggle-menu  ds_mobile-navigation__button" aria-expanded="false" aria-controls="mobile-navigation-menu">
+            <span class="ds_site-header__control-text">Menu</span>
+
+            <svg class="ds_icon  ds_site-header__control-icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#menu-21"></use></svg>
+            <svg class="ds_icon  ds_site-header__control-icon--close  ds_site-header__control-icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#close-21"></use></svg>
+        </button>
+
+        <div id="mobile-navigation-menu" data-offsetselector=".ds_site-header">
+            <div class="ds_mobile-navigation__content">
+
+                <div class="ds_mobile-navigation__block">
+                    <ul class="ds_mobile-navigation__list">
+                        <li class="ds_mobile-navigation__item">
+                            <a href="#" class="ds_mobile-navigation__link">
+                                Get started
+                            </a>
+                        </li>
+                        <li class="ds_mobile-navigation__item">
+                            <a href="#" class="ds_mobile-navigation__link">
+                                Styles
+                            </a>
+                        </li>
+                        <li class="ds_mobile-navigation__item">
+                            <span class="ds_mobile-navigation__link  ds_current">
+                                Components
+                            </span>
+                        </li>
+                        <li class="ds_mobile-navigation__item">
+                            <a href="#" class="ds_mobile-navigation__link">
+                                Patterns
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <button type="button" class="ds_mobile-navigation__backdrop  js-close-menu" aria-expanded="false" aria-controls="mobile-navigation-menu">
+                    <span class="visually-hidden">Close menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="ds_site-navigation">
+        <ul class="ds_site-navigation__list">
+            <li class="ds_site-navigation__item">
+                <a href="#" class="ds_site-navigation__link">
+                    Get started
+                </a>
+            </li>
+            <li class="ds_site-navigation__item">
+                <a href="#" class="ds_site-navigation__link">
+                    Styles
+                </a>
+            </li>
+            <li class="ds_site-navigation__item">
+                <span class="ds_site-navigation__link  ds_current">
+                    Components
+                </span>
+            </li>
+            <li class="ds_site-navigation__item">
+                <a href="#" class="ds_site-navigation__link">
+                    Patterns
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div id="tabs">
+    <div class="ds_tab-container  ds_tab-container--3" data-module="ds-tabs">
+        <input class="ds_tab__radio" type="radio" checked name="tabs" id="tab1">
+        <div class="ds_tab__header"><label id="tab1-label" aria-controls="tab1-content" role="tab" class="ds_tab__label" for="tab1">Courses and funding</label></div>
+        <div tabindex="0" id="tab1-content" class="ds_tab__content" role="tabpanel" aria-labelledby="tab1-label">
+            <h2>Search for training courses and funding</h2>
+
+            <p>A wide range of training courses for your employees are available.</p>
+
+            <p>Opportunities include distance learning, short courses and vocational training.</p>
+
+            <p><a href="#">Visit My World of Work to search for training courses</a>.</p>
+
+            <p>You can also <a href="#">search for training courses, and funding towards training</a>.</p>
+        </div>
+
+        <input class="ds_tab__radio" type="radio" name="tabs" id="tab2">
+        <div class="ds_tab__header"><label id="tab2-label" aria-controls="tab2-content" role="tab" class="ds_tab__label" for="tab2">Choosing apprenticeships</label></div>
+        <div tabindex="0" id="tab2-content" class="ds_tab__content" role="tabpanel" aria-labelledby="tab2-label">
+            <h2>Choosing an apprenticeship for your business</h2>
+
+            <p>Apprenticeships can help you address skills gaps in your business. The government provides help with the cost of training an apprentice.</p>
+
+            <p>There are 3 different types of apprenticeship:</p>
+
+            <ul>
+                <li>Foundation Apprenticeships let school or college students do short-term work experience at your business as part of a qualification</li>
+
+                <li>Modern Apprenticeships let your new or current employees gain a qualification while working in a paid role at your business</li>
+
+                <li>Graduate Apprenticeships let your new or current employees gain a degree while working in a paid role at your business</li>
+            </ul>
+
+            <p>You can find more information on the <a href="#">apprenticeships.scot</a> website.</p>
+        </div>
+
+        <input class="ds_tab__radio" type="radio" name="tabs" id="tab3">
+        <div class="ds_tab__header"><label id="tab3-label" aria-controls="tab3-content" role="tab" class="ds_tab__label" for="tab3">Extra skills support</label></div>
+        <div tabindex="0" id="tab3-content" class="ds_tab__content" role="tabpanel" aria-labelledby="tab3-label">
+            <h2>Extra skills support</h2>
+
+            <p>The <a href="#">Skills for Growth</a> service can offer skills advice to businesses with fewer than 250 employees.</p>
+
+            <p>Businesses of any size can get skills advice by completing a <a href="#">skills support request form</a>.</p>
+
+            <p>Businesses of any size can also get skills advice by calling Skills Development Scotland on 0800 783 6000.</p>
+        </div>
+    </div>
+</div>

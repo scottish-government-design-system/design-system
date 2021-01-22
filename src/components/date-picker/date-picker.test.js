@@ -64,11 +64,60 @@ describe('date picker', () => {
             expect(testObj.datePickerElement.parentNode.parentNode.querySelector('.ds_datepicker__dialog')).toBeTruthy();
         });
 
-        it('should set a min date if one is specified as a data attribute', () => {
-            testObj.datePickerElement = document.querySelector('#minmaxdate');
-            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
-            testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('01/06/2020'));
+
+
+        describe('min date', () => {
+            it('should set a min date if one is specified as a data attribute', () => {
+                testObj.datePickerElement = document.querySelector('#minmaxdate');
+                testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
+                testObj.datePickerModule.init();
+                expect(testObj.datePickerModule.minDate).toEqual(new Date('01/06/2020'));
+            });
+
+            it('should set a min date if one is specified in options param, YMD format', () => {
+                testObj.datePickerElement = document.querySelector('#minmaxdate');
+
+                const options = {
+                    minDate: new Date('07/01/2020')
+                };
+
+                testObj.datePickerElement.querySelector('.ds_input').dataset.dateformat = 'YMD';
+
+                testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
+                testObj.datePickerModule.init();
+
+                expect(testObj.datePickerModule.inputElement.dataset.mindate).toEqual('2020/07/01');
+            });
+
+            it('should set a min date if one is specified as a data attribute, MDY format', () => {
+                testObj.datePickerElement = document.querySelector('#minmaxdate');
+
+                const options = {
+                    minDate: new Date('07/01/2020')
+                };
+
+                testObj.datePickerElement.querySelector('.ds_input').dataset.dateformat = 'MDY';
+
+                testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
+                testObj.datePickerModule.init();
+
+                expect(testObj.datePickerModule.inputElement.dataset.mindate).toEqual('07/01/2020');
+            });
+
+            it('should set a min date if one is specified as a data attribute, DMY format', () => {
+                testObj.datePickerElement = document.querySelector('#minmaxdate');
+
+                const options = {
+                    minDate: new Date('07/01/2020')
+                };
+
+                testObj.datePickerElement.querySelector('.ds_input').dataset.dateformat = 'DMY';
+
+                testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
+                testObj.datePickerModule.init();
+
+                expect(testObj.datePickerModule.inputElement.dataset.mindate).toEqual('01/07/2020');
+            });
         });
 
         it('should set a max date if one is specified as a data attribute', () => {

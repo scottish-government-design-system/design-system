@@ -9,7 +9,7 @@ import MobileTables from './components/table/table';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';
 import Tabs from './components/tabs/tabs';
-import tracking from './tracking';
+import tracking from './base/tracking/tracking';
 
 const components = {
     Accordion,
