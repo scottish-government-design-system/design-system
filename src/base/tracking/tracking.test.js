@@ -574,6 +574,20 @@ describe('tracking', () => {
         });
     });
 
+    describe('inset texts', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('inset-text');
+        });
+
+        // links and buttons with and without attributes
+        it('should add a data attribute on links in inset texts', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('a'));
+            Tracking.add.insetTexts();
+
+            expect(links[0].getAttribute('data-navigation')).toEqual('inset-link');
+        });
+    });
+
     describe('notifications', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('notifications');
@@ -1090,6 +1104,20 @@ describe('tracking', () => {
 
             expect(triggers[0].getAttribute('data-navigation')).toEqual('tab-foo');
             expect(triggers[1].getAttribute('data-navigation')).toEqual('tab-bar');
+        });
+    });
+
+    describe('warning texts', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('warning-text');
+        });
+
+        // links and buttons with and without attributes
+        it('should add a data attribute on links in warning texts', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('a'));
+            Tracking.add.warningTexts();
+
+            expect(links[0].getAttribute('data-navigation')).toEqual('warning-link');
         });
     });
 

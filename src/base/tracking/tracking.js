@@ -313,6 +313,17 @@ const tracking = {
             });
         },
 
+        insetTexts: function (scope = document) {
+            const insetTexts = [].slice.call(scope.querySelectorAll('.ds_inset-text'));
+            insetTexts.forEach(insetText => {
+
+                const links = [].slice.call(insetText.querySelectorAll('.ds_inset-text__text a'));
+                links.forEach(link => {
+                    link.setAttribute('data-navigation', 'inset-link');
+                });
+            });
+        },
+
         notifications: function (scope = document) {
             const notificationBanners = [].slice.call(scope.querySelectorAll('.ds_notification'));
             notificationBanners.forEach((banner, index) => {
@@ -535,6 +546,17 @@ const tracking = {
                     if (!tab.getAttribute('data-navigation')) {
                         tab.setAttribute('data-navigation', `tab-${index + 1}`);
                     }
+                });
+            });
+        },
+
+        warningTexts: function (scope = document) {
+            const warningTexts = [].slice.call(scope.querySelectorAll('.ds_warning-text'));
+            warningTexts.forEach(warningText => {
+
+                const links = [].slice.call(warningText.querySelectorAll('.ds_warning-text a'));
+                links.forEach(link => {
+                    link.setAttribute('data-navigation', 'warning-link');
                 });
             });
         }
