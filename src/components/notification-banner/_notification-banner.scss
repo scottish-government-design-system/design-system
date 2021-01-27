@@ -2,6 +2,10 @@
     NOTIFICATION BANNER
 \*------------------------------------*/
 
+// modifiable vars
+$notification-banner__background-colour: $ds_colour__grey--dark !default;
+$notification-banner__colour-icon-colour: $ds_colour__yellow !default;
+
 // fixed vars
 $notification-banner__close-padding: 4px;
 $notification-banner__icon-padding: $notification-banner__close-padding;
@@ -10,7 +14,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 
 .#{$pl-prefix}notification {
-    background: $ds_colour__grey--dark;
+    background: $notification-banner__background-colour;
     color: $ds_colour__white;
     margin-bottom: 1px;
 
@@ -52,8 +56,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 
     &__icon {
-        background-color: currentColor;
-        border-radius: 100px;
         display: block;
         float: left;
         height: 32px;
@@ -68,6 +70,20 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             @include media-query(medium) {
                 margin-left: 40px;
             }
+        }
+
+        &--colour {
+            color: $notification-banner__colour-icon-colour;
+        }
+
+        &--inverse {
+            background-color: $ds_colour__white;
+            border-radius: 100px;
+            color: $notification-banner__background-colour;
+        }
+
+        &--inverse.#{$pl-prefix}notification__icon--colour {
+            background-color: $notification-banner__colour-icon-colour;
         }
     }
 
@@ -93,53 +109,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             background-color: transparent;
             color: currentColor;
             outline: 2px solid currentColor;
-        }
-    }
-
-    &--major {
-        background: $ds_colour__yellow;
-        color: $ds_colour__text;
-
-        .#{$pl-prefix}notification__icon svg {
-            fill: $ds_colour__yellow;
-        }
-
-        // major needs special behavour for focus state of its interactive elements
-        .#{$pl_prefix}notification__close,
-        a {
-            color: $ds_colour__link;
-
-            &:focus {
-                outline-color: $ds_colour__text;
-                color: $ds_colour__text;
-            }
-        }
-    }
-
-    &--positive {
-        background: $ds_colour__state--positive;
-        color: $ds_colour__white;
-
-        .#{$pl-prefix}notification__icon svg {
-            fill: $ds_colour__state--positive;
-        }
-    }
-
-    &--negative {
-        background: $ds_colour__state--negative;
-        color: $ds_colour__white;
-
-        .#{$pl-prefix}notification__icon svg {
-            fill: $ds_colour__state--negative;
-        }
-    }
-
-    &--light {
-        background: $ds_colour__blue--light;
-        color: $ds_colour__text;
-
-        a {
-            color: $ds_colour__link;
         }
     }
 }
