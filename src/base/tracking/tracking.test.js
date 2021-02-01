@@ -743,6 +743,15 @@ describe('tracking', () => {
             // check a link in the middle
             expect(links[1].getAttribute('data-search')).toEqual('search-result-12');
         });
+
+        it('should not have syntax errors if there is no lisf results', () => {
+            const list = testObj.scope.querySelector('.ds_search-results__list');
+            list.parentNode.removeChild(list);
+
+            Tracking.add.searchResults();
+
+            // note: no assertion, test success can be inferred from there being no execution errorsss
+        });
     });
 
     describe('search suggestions', () => {

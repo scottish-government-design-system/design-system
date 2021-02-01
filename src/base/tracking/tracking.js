@@ -22,101 +22,6 @@ const tracking = {
     },
 
     add: {
-        buttons: function (scope = document) {
-            const buttons = [].slice.call(scope.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button'));
-            buttons.forEach(button => {
-                if (!button.getAttribute('data-button')) {
-                    button.setAttribute('data-button', `button-${slugify(button.innerText)}`);
-                }
-            });
-        },
-
-        checkboxes: function (scope = document) {
-            const checkboxes = [].slice.call(scope.querySelectorAll('.ds_checkbox__input[type="checkbox"]'));
-            checkboxes.forEach(checkbox => {
-
-                // data attributes
-                let attributeValue = checkbox.getAttribute('data-form');
-
-                if (!checkbox.getAttribute('data-form') && checkbox.id) {
-                    attributeValue = `checkbox-${checkbox.id}`;
-                }
-
-                if (checkbox.checked) {
-                    attributeValue += '-checked';
-                }
-                checkbox.setAttribute('data-form', attributeValue);
-
-                // events
-                const label = scope.querySelector(`[for=${checkbox.id}]`);
-                if (label && !checkbox.classList.contains('js-has-tracking-event')) {
-                    label.addEventListener('click', () => {
-                        checkbox.dataset.form = `checkbox-${checkbox.id}-${checkbox.checked ? 'unchecked' : 'checked'}`;
-                    });
-                    checkbox.classList.add('js-has-tracking-event');
-                }
-            });
-        },
-
-        radios: function (scope = document) {
-            const radios = [].slice.call(scope.querySelectorAll('input[type="radio"]'));
-            radios.forEach(radio => {
-                if (!radio.getAttribute('data-form') && radio.name && radio.id) {
-                    radio.setAttribute('data-form', `radio-${radio.name}-${radio.id}`);
-                }
-            });
-        },
-
-        selects: function (scope = document) {
-            const selects = [].slice.call(scope.querySelectorAll('.ds_select'));
-            selects.forEach(select => {
-                // data attributes
-                if (!select.getAttribute('data-form') && select.id) {
-                    const terms = ['select', select.id];
-
-                    select.setAttribute('data-form', terms.join('-'));
-
-                    const options = [].slice.call(select.querySelectorAll('option'));
-                    options.forEach(option => {
-                        if (option.value || option.innerText) {
-                            terms[2] = slugify(option.value);
-                        } else {
-                            terms[2] = 'null';
-                        }
-                        option.setAttribute('data-form', terms.join('-'));
-                    });
-                }
-
-                // events
-                if (!select.classList.contains('js-has-tracking-event')) {
-                    select.addEventListener('change', (e) => {
-                        window.dataLayer.push({ 'event': e.target.querySelector(':checked').dataset.form });
-                    });
-
-                    select.classList.add('js-has-tracking-event');
-                }
-            });
-        },
-
-        textInputs: function (scope = document) {
-            const textInputs = [].slice.call(scope.querySelectorAll('input.ds_input'));
-            textInputs.forEach(textInput => {
-                if (!textInput.getAttribute('data-form') && textInput.id) {
-                    const type = textInput.type;
-                    textInput.setAttribute('data-form', `${type}input-${textInput.id}`);
-                }
-            });
-        },
-
-        textareas: function (scope = document) {
-            const textareas = [].slice.call(scope.querySelectorAll('textarea.ds_input'));
-            textareas.forEach(textarea => {
-                if (!textarea.getAttribute('data-form') && textarea.id) {
-                    textarea.setAttribute('data-form', `textarea-${textarea.id}`);
-                }
-            });
-        },
-
         accordions: function (scope = document) {
             const accordions = [].slice.call(scope.querySelectorAll('.ds_accordion'));
             accordions.forEach(accordion => {
@@ -133,12 +38,14 @@ const tracking = {
                 }
 
                 function setOpenAll(openAll) {
-                    const open = checkOpenAll(openAll);
+                    if (openAll) {
+                        const open = checkOpenAll(openAll);
 
-                    if (open) {
-                        openAll.setAttribute('data-accordion', 'accordion-close-all');
-                    } else {
-                        openAll.setAttribute('data-accordion', 'accordion-open-all');
+                        if (open) {
+                            openAll.setAttribute('data-accordion', 'accordion-close-all');
+                        } else {
+                            openAll.setAttribute('data-accordion', 'accordion-open-all');
+                        }
                     }
                 }
 
@@ -148,9 +55,7 @@ const tracking = {
                     itemButton.setAttribute('data-accordion', `accordion-${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
                 }
 
-                if (openAll) {
-                    setOpenAll(openAll);
-                }
+                setOpenAll(openAll);
 
                 items.forEach((item, index) => {
                     setAccordionItem(item, index);
@@ -209,6 +114,15 @@ const tracking = {
             });
         },
 
+        buttons: function (scope = document) {
+            const buttons = [].slice.call(scope.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button'));
+            buttons.forEach(button => {
+                if (!button.getAttribute('data-button')) {
+                    button.setAttribute('data-button', `button-${slugify(button.innerText)}`);
+                }
+            });
+        },
+
         categoryLists: function (scope = document) {
             const categoryLists = [].slice.call(scope.querySelectorAll('.ds_category-list'));
             categoryLists.forEach(categoryList => {
@@ -219,6 +133,33 @@ const tracking = {
                         link.setAttribute('data-navigation', `category-item-${index + 1}`);
                     }
                 });
+            });
+        },
+
+        checkboxes: function (scope = document) {
+            const checkboxes = [].slice.call(scope.querySelectorAll('.ds_checkbox__input[type="checkbox"]'));
+            checkboxes.forEach(checkbox => {
+
+                // data attributes
+                let attributeValue = checkbox.getAttribute('data-form');
+
+                if (!checkbox.getAttribute('data-form') && checkbox.id) {
+                    attributeValue = `checkbox-${checkbox.id}`;
+                }
+
+                if (checkbox.checked) {
+                    attributeValue += '-checked';
+                }
+                checkbox.setAttribute('data-form', attributeValue);
+
+                // events
+                const label = scope.querySelector(`[for=${checkbox.id}]`);
+                if (label && !checkbox.classList.contains('js-has-tracking-event')) {
+                    label.addEventListener('click', () => {
+                        checkbox.dataset.form = `checkbox-${checkbox.id}-${checkbox.checked ? 'unchecked' : 'checked'}`;
+                    });
+                    checkbox.classList.add('js-has-tracking-event');
+                }
             });
         },
 
@@ -375,10 +316,23 @@ const tracking = {
             });
         },
 
+        radios: function (scope = document) {
+            const radios = [].slice.call(scope.querySelectorAll('input[type="radio"]'));
+            radios.forEach(radio => {
+                if (!radio.getAttribute('data-form') && radio.name && radio.id) {
+                    radio.setAttribute('data-form', `radio-${radio.name}-${radio.id}`);
+                }
+            });
+        },
+
         searchResults: function (scope = document) {
             const searchResultsSets = [].slice.call(scope.querySelectorAll('.ds_search-results'));
             searchResultsSets.forEach(searchResults => {
                 const list = searchResults.querySelector('.ds_search-results__list');
+
+                if (!list) {
+                    return;
+                }
 
                 const items = [].slice.call(searchResults.querySelectorAll('.ds_search-result'));
 
@@ -407,6 +361,37 @@ const tracking = {
             const searchSuggestionLinks = [].slice.call(scope.querySelectorAll('.ds_search-suggestions a'));
             searchSuggestionLinks.forEach((link, index) => {
                 link.setAttribute('data-search', `suggestion-result-${index+1}/${searchSuggestionLinks.length}`);
+            });
+        },
+
+        selects: function (scope = document) {
+            const selects = [].slice.call(scope.querySelectorAll('.ds_select'));
+            selects.forEach(select => {
+                // data attributes
+                if (!select.getAttribute('data-form') && select.id) {
+                    const terms = ['select', select.id];
+
+                    select.setAttribute('data-form', terms.join('-'));
+
+                    const options = [].slice.call(select.querySelectorAll('option'));
+                    options.forEach(option => {
+                        if (option.value || option.innerText) {
+                            terms[2] = slugify(option.value);
+                        } else {
+                            terms[2] = 'null';
+                        }
+                        option.setAttribute('data-form', terms.join('-'));
+                    });
+                }
+
+                // events
+                if (!select.classList.contains('js-has-tracking-event')) {
+                    select.addEventListener('change', (e) => {
+                        window.dataLayer.push({ 'event': e.target.querySelector(':checked').dataset.form });
+                    });
+
+                    select.classList.add('js-has-tracking-event');
+                }
             });
         },
 
@@ -547,6 +532,25 @@ const tracking = {
                         tab.setAttribute('data-navigation', `tab-${index + 1}`);
                     }
                 });
+            });
+        },
+
+        textInputs: function (scope = document) {
+            const textInputs = [].slice.call(scope.querySelectorAll('input.ds_input'));
+            textInputs.forEach(textInput => {
+                if (!textInput.getAttribute('data-form') && textInput.id) {
+                    const type = textInput.type;
+                    textInput.setAttribute('data-form', `${type}input-${textInput.id}`);
+                }
+            });
+        },
+
+        textareas: function (scope = document) {
+            const textareas = [].slice.call(scope.querySelectorAll('textarea.ds_input'));
+            textareas.forEach(textarea => {
+                if (!textarea.getAttribute('data-form') && textarea.id) {
+                    textarea.setAttribute('data-form', `textarea-${textarea.id}`);
+                }
             });
         },
 
