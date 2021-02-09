@@ -117,7 +117,7 @@ class DSDatePicker {
     }
 
     buttonTemplate() {
-        return `<button class="ds_button  ds_button--icon-only  js-calendar-button" data-form="date-open">
+        return `<button class="ds_button  ds_button--icon-only  js-calendar-button">
             <span class="visually-hidden">Choose date</span>
             <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#calendar"></use></svg>
         </button>

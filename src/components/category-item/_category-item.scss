@@ -8,7 +8,6 @@ $category-item__border-colour--hover: $ds_colour__link--hover !default;
 $category-item__link-colour: $ds_colour__link !default;
 
 $border-width-size: 4px;
-$category-item__pinned-icon-size: 20px;
 
 
 
@@ -105,50 +104,6 @@ $category-item__pinned-icon-size: 20px;
     .#{$pl-prefix}card {
         > .#{$pl-prefix}category-item {
             min-height: 192px;
-        }
-    }
-}
-
-// "Pinned" modifier styling
-.#{$pl-prefix}category-item--pinned {
-    .#{$pl-prefix}category-item__link {
-        &::before {
-            background-color: $ds_colour__border--highlight;
-        }
-
-        &:hover::before {
-            background-color: $ds_colour__link--hover;
-        }
-    }
-
-    .#{$pl-prefix}category-item__pinned-icon {
-        background-color: currentColor;
-        border-radius: $category-item__pinned-icon-size;
-        fill: white;
-        float: left;
-        height: $category-item__pinned-icon-size;
-        left: 0px;
-        margin-right: 8px;
-        padding: 2px 4px 3px;
-        position: relative;
-        top: 2px;
-        width: $category-item__pinned-icon-size;
-        z-index: 1;
-
-        @include media-query(medium) {
-            top: 4px;
-        }
-    }
-
-    .#{$pl-prefix}category-item__link:hover {
-        .#{$pl-prefix}category-item__pinned-icon {
-            fill: $ds_colour__link--hover__background;
-        }
-    }
-
-    .#{$pl-prefix}category-item__link:focus {
-        .#{$pl-prefix}category-item__pinned-icon {
-            fill: $ds_colour__link--focus__background;
         }
     }
 }
