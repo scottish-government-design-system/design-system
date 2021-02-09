@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    NOTIFICATION BANNER
+\*------------------------------------*/
+
+// modifiable vars
+$cookie-notification__background-colour: $ds_colour__grey--light !default;
+$cookie-notification__background-colour--success: $ds_colour__state--positive !default;
+
+
+
+
+.#{$pl-prefix}notification.#{$pl-prefix}notification--cookie {
+    background: $cookie-notification__background-colour;
+    color: $ds_colour__text;
+}
+
+.#{$pl-prefix}notification.#{$pl-prefix}notification--cookie-success {
+    background: $cookie-notification__background-colour--success;
+}

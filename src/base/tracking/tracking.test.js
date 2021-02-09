@@ -608,6 +608,20 @@ describe('tracking', () => {
             expect(link.getAttribute('data-banner')).toEqual('banner-foo');
         });
 
+        it('should add a generated data attribute on banner buttons without attributes already set', () => {
+            const button = testObj.scope.querySelector('.ds_button[data-unit="without-attribute"]');
+            Tracking.add.notifications();
+
+            expect(button.getAttribute('data-banner')).toEqual('banner-mybanner-auto-attribute');
+        });
+
+        it('should NOT add a generated data attribute on banner buttons with attributes already set', () => {
+            const button = testObj.scope.querySelector('.ds_button[data-unit="with-attribute"]');
+            Tracking.add.notifications();
+
+            expect(button.getAttribute('data-banner')).toEqual('banner-preset');
+        });
+
         it('should add a generated data attribute on banner close buttons without attributes already set', () => {
             const link = testObj.scope.querySelector('.ds_notification__close[data-unit="without-attribute"]');
             Tracking.add.notifications();
@@ -1160,6 +1174,16 @@ describe('tracking', () => {
             Tracking.init(accordionEl);
 
             expect(Tracking.add.accordions).toHaveBeenCalledWith(accordionEl);
+        });
+    });
+
+    describe('include parent', () => {
+        it('should include the scope element itself if it is relevant', () => {
+            testObj.scope = document.getElementById('include-parent');
+
+            const elements = Tracking.gatherElements(testObj.scope, 'ds_accordion');
+
+            expect(elements.length).toEqual(2);
         });
     });
 });

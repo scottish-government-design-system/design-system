@@ -18,6 +18,11 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     color: $ds_colour__white;
     margin-bottom: 1px;
 
+    &--large &__content {
+        padding-top: 24px;
+        padding-bottom: 32px;
+    }
+
     /* [1] compensate for bottom margin on parent */
     &__content {
         justify-content: space-between;
@@ -27,10 +32,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         &--has-close {
             padding-right: 40px;
         }
+    }
 
-        a {
-            color: inherit;
-        }
+    &.#{$pl-prefix}reversed &__content a {
+        color: inherit;
     }
 
     &__text {
@@ -47,11 +52,15 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 
     &__actions {
-        display: inline-block;
-        margin: 24px -8px -8px 0;
+        margin-bottom: -16px;
+        margin-top: 32px;
+        text-align: center;
 
         > * {
-            margin: 0 8px 16px 0;
+            margin-bottom: 16px;
+            margin-top: 0;
+            white-space: nowrap;
+            width: 100%;
         }
     }
 
@@ -114,31 +123,30 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 }
 
 @include media-query(medium) {
-    .#{$pl-prefix}notification__actions {
-        margin: 0 0 -16px;
-    }
-
     .#{$pl-prefix}notification__close {
         top: 21px;
+    }
+
+    .#{$pl-prefix}notification__actions {
+        text-align: left;
+
+        > * {
+            width: auto;
+        }
+
+        > *:not(last-child) {
+            margin-right: 16px;
+        }
     }
 }
 
 
 @supports(display: flex) {
-    .#{$pl-prefix}notification__actions {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 8px;
-
-        > * {
-            flex-basis: 0;
-            flex-grow: 1;
-        }
-    }
-
     @include media-query(medium) {
         .#{$pl-prefix}notification__actions {
+            align-items: center;
             display: inline-flex;
+            flex-wrap: wrap;
             width: auto;
 
             > * {

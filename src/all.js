@@ -2,6 +2,7 @@ import Accordion from './components/accordion/accordion';
 import BackToTop from './components/back-to-top/back-to-top';
 import CharacterCount from './forms/character-count/character-count';
 import CollapsibleSearchBox from './components/site-search/site-search';
+import CookieNotification from './components/cookie-notification/cookie-notification';
 import DSDatePicker from './components/date-picker/date-picker';
 import HidePage from './components/hide-this-page/hide-this-page';
 import MobileMenu from './components/site-navigation/site-navigation';
@@ -16,6 +17,7 @@ const components = {
     BackToTop,
     CharacterCount,
     CollapsibleSearchBox,
+    CookieNotification,
     DSDatePicker,
     HidePage,
     MobileMenu,
@@ -43,6 +45,13 @@ function initAll(scope = document) {
     characterCountModules.forEach(characterCount => new CharacterCount(characterCount).init());
 
     const datePickers = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]'));
+    datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
+
+    const cookieNotificationEl = document.querySelector('[data-module="ds-cookie-notification"]');
+    if (cookieNotificationEl) {
+        const cookieNotification = new CookieNotification(cookieNotificationEl);
+        cookieNotification.init();
+    }
     datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
 
     // this one is handled differently because it applies an event to the whole body and we only want that event once

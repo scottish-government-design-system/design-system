@@ -11,7 +11,6 @@ function slugify(string) {
         .replace(/[\W|_]+/g, '-')
         // Remove starting and trailing dashes
         .replace(/^-+|-+$/g, '');
-
 }
 
 const tracking = {
@@ -21,9 +20,19 @@ const tracking = {
         }
     },
 
+    gatherElements: function (scope, className) {
+        const elements = [].slice.call(scope.querySelectorAll(`.${className}`));
+
+        if (scope.classList && scope.classList.contains(className)) {
+            elements.push(scope);
+        }
+
+        return elements;
+    },
+
     add: {
         accordions: function (scope = document) {
-            const accordions = [].slice.call(scope.querySelectorAll('.ds_accordion'));
+            const accordions = tracking.gatherElements(scope, 'ds_accordion');
             accordions.forEach(accordion => {
                 if (!accordion.classList.contains('js-initialised')) {
                     return;
@@ -82,9 +91,9 @@ const tracking = {
         },
 
         asides: function (scope = document) {
-            const asides = [].slice.call(scope.querySelectorAll('.ds_article-aside'));
+            const asides = tracking.gatherElements(scope, 'ds_article-aside');
             asides.forEach(aside => {
-                const links = [].slice.call(aside.querySelectorAll('a'));
+                const links = [].slice.call(aside.querySelectorAll('a:not(.ds_button)'));
 
                 links.forEach((link, index) => {
                     if (!link.getAttribute('data-navigation')) {
@@ -95,14 +104,14 @@ const tracking = {
         },
 
         backToTop: function (scope = document) {
-            const backToTops = [].slice.call(scope.querySelectorAll('.ds_back-to-top__button'));
+            const backToTops = tracking.gatherElements(scope, 'ds_back-to-top__button');
             backToTops.forEach(backToTop => {
                 backToTop.setAttribute('data-navigation', 'backtotop');
             });
         },
 
         breadcrumbs: function (scope = document) {
-            const breadcrumbLists = [].slice.call(scope.querySelectorAll('.ds_breadcrumbs'));
+            const breadcrumbLists = tracking.gatherElements(scope, 'ds_breadcrumbs');
             breadcrumbLists.forEach(breadcrumbList => {
                 const links = [].slice.call(breadcrumbList.querySelectorAll('.ds_breadcrumbs__link'));
 
@@ -124,7 +133,7 @@ const tracking = {
         },
 
         categoryLists: function (scope = document) {
-            const categoryLists = [].slice.call(scope.querySelectorAll('.ds_category-list'));
+            const categoryLists = tracking.gatherElements(scope, 'ds_category-list');
             categoryLists.forEach(categoryList => {
                 const links = [].slice.call(categoryList.querySelectorAll('.ds_category-item__link'));
 
@@ -137,7 +146,7 @@ const tracking = {
         },
 
         checkboxes: function (scope = document) {
-            const checkboxes = [].slice.call(scope.querySelectorAll('.ds_checkbox__input[type="checkbox"]'));
+            const checkboxes = tracking.gatherElements(scope, 'ds_checkbox__input');
             checkboxes.forEach(checkbox => {
 
                 // data attributes
@@ -148,8 +157,9 @@ const tracking = {
                 }
 
                 if (checkbox.checked) {
-                    attributeValue += '-checked';
+                    attributeValue = attributeValue + '-checked';
                 }
+
                 checkbox.setAttribute('data-form', attributeValue);
 
                 // events
@@ -162,9 +172,11 @@ const tracking = {
                 }
             });
         },
-
+/*
+A more general query: the buttons would be given both data-button and data-banner. Will giving things multiple attributes create any problems for reporting?
+*/
         contactDetails: function (scope = document) {
-            const contactDetailsBlocks = [].slice.call(scope.querySelectorAll('.ds_contact-details'));
+            const contactDetailsBlocks = tracking.gatherElements(scope, 'ds_contact-details');
             contactDetailsBlocks.forEach(contactDetails => {
                 const socialLinks = [].slice.call(contactDetails.querySelectorAll('.ds_contact-details__social-link'));
                 socialLinks.forEach(link => {
@@ -183,7 +195,7 @@ const tracking = {
         },
 
         contentNavs: function (scope = document) {
-            const contentsNavs = [].slice.call(scope.querySelectorAll('.ds_contents-nav'));
+            const contentsNavs = tracking.gatherElements(scope, 'ds_contents-nav');
             contentsNavs.forEach(contentsNav => {
                 const links = [].slice.call(contentsNav.querySelectorAll('.ds_contents-nav__link'));
 
@@ -196,7 +208,7 @@ const tracking = {
         },
 
         errorMessages: function (scope = document) {
-            const errorMessages = [].slice.call(scope.querySelectorAll('.ds_question__error-message'));
+            const errorMessages = tracking.gatherElements(scope, 'ds_question__error-message');
             errorMessages.forEach((errorMessage, index) => {
                 const question = errorMessage.closest('.ds_question');
                 const target = question.querySelector('.js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input');
@@ -230,35 +242,41 @@ const tracking = {
         },
 
         errorSummaries: function (scope = document) {
-            const errorSummaryLinks = [].slice.call(scope.querySelectorAll('.ds_error-summary__list a'));
-            errorSummaryLinks.forEach(link => {
-                if (!link.getAttribute('data-form') && link.href) {
-                    link.setAttribute('data-form', `error-${link.href.substring(link.href.lastIndexOf('#') + 1)}`);
-                }
-            });
-        },
-
-        hideThisPage: function (scope = document) {
-            const hideThisPageButtons = [].slice.call(scope.querySelectorAll('.ds_hide-page__button'));
-
-            hideThisPageButtons.forEach(hideThisPageButton => {
-                // attribute
-                hideThisPageButton.setAttribute('data-navigation', 'hide-this-page');
-
-                // event
-                document.addEventListener('keyup', (event) => {
-                    if (event.key === 'Escape' || event.keyCode === 27) {
-                        window.dataLayer.push({ 'event': 'hide-this-page-keyboard' });
+            const errorSummaries = tracking.gatherElements(scope, 'ds_error-summary');
+            errorSummaries.forEach(errorSummary => {
+                const errorSummaryLinks = [].slice.call(errorSummary.querySelectorAll('.ds_error-summary__list a'));
+                errorSummaryLinks.forEach(link => {
+                    if (!link.getAttribute('data-form') && link.href) {
+                        link.setAttribute('data-form', `error-${link.href.substring(link.href.lastIndexOf('#') + 1)}`);
                     }
                 });
             });
         },
 
+        hideThisPage: function (scope = document) {
+            const hideThisPageElements = tracking.gatherElements(scope, 'ds_hide-page');
+            hideThisPageElements.forEach(hideThisPageElement => {
+                const hideThisPageButtons = [].slice.call(hideThisPageElement.querySelectorAll('.ds_hide-page__button'));
+
+                hideThisPageButtons.forEach(hideThisPageButton => {
+                    // attribute
+                    hideThisPageButton.setAttribute('data-navigation', 'hide-this-page');
+
+                    // event
+                    document.addEventListener('keyup', (event) => {
+                        if (event.key === 'Escape' || event.keyCode === 27) {
+                            window.dataLayer.push({ 'event': 'hide-this-page-keyboard' });
+                        }
+                    });
+                });
+            });
+        },
+
         insetTexts: function (scope = document) {
-            const insetTexts = [].slice.call(scope.querySelectorAll('.ds_inset-text'));
+            const insetTexts = tracking.gatherElements(scope, 'ds_inset-text');
             insetTexts.forEach(insetText => {
 
-                const links = [].slice.call(insetText.querySelectorAll('.ds_inset-text__text a'));
+                const links = [].slice.call(insetText.querySelectorAll('.ds_inset-text__text a:not(.ds_button)'));
                 links.forEach(link => {
                     link.setAttribute('data-navigation', 'inset-link');
                 });
@@ -266,14 +284,21 @@ const tracking = {
         },
 
         notifications: function (scope = document) {
-            const notificationBanners = [].slice.call(scope.querySelectorAll('.ds_notification'));
+            const notificationBanners = tracking.gatherElements(scope, 'ds_notification');
             notificationBanners.forEach((banner, index) => {
                 const bannername = banner.id || index+1;
 
-                const links = [].slice.call(banner.querySelectorAll('a'));
+                const links = [].slice.call(banner.querySelectorAll('a:not(.ds_button)'));
                 links.forEach(link => {
                     if (!link.getAttribute('data-banner')) {
                         link.setAttribute('data-banner', `banner-${bannername}-link`);
+                    }
+                });
+
+                const buttons = [].slice.call(banner.querySelectorAll('.ds_button:not(.ds_notification__close)'));
+                buttons.forEach(button => {
+                    if (!button.getAttribute('data-banner')) {
+                        button.setAttribute('data-banner', `banner-${bannername}-${slugify(button.innerText)}`);
                     }
                 });
 
@@ -285,8 +310,7 @@ const tracking = {
         },
 
         pagination: function (scope = document) {
-            const paginations = [].slice.call(scope.querySelectorAll('.ds_pagination'));
-
+            const paginations = tracking.gatherElements(scope, 'ds_pagination');
             paginations.forEach(pagination => {
                 const loadmore = pagination.querySelector('.ds_pagination__load-more button');
                 if (loadmore && !loadmore.getAttribute('data-search')) {
@@ -303,7 +327,7 @@ const tracking = {
         },
 
         phaseBanners: function (scope = document) {
-            const phaseBanners = [].slice.call(scope.querySelectorAll('.ds_phase-banner'));
+            const phaseBanners = tracking.gatherElements(scope, 'ds_phase-banner');
             phaseBanners.forEach(banner => {
                 const bannername = banner.querySelector('.ds_tag') ? banner.querySelector('.ds_tag').innerText : 'phase';
 
@@ -317,7 +341,7 @@ const tracking = {
         },
 
         radios: function (scope = document) {
-            const radios = [].slice.call(scope.querySelectorAll('input[type="radio"]'));
+            const radios = tracking.gatherElements(scope, 'ds_radio__input');
             radios.forEach(radio => {
                 if (!radio.getAttribute('data-form') && radio.name && radio.id) {
                     radio.setAttribute('data-form', `radio-${radio.name}-${radio.id}`);
@@ -326,7 +350,7 @@ const tracking = {
         },
 
         searchResults: function (scope = document) {
-            const searchResultsSets = [].slice.call(scope.querySelectorAll('.ds_search-results'));
+            const searchResultsSets = tracking.gatherElements(scope, 'ds_search-results');
             searchResultsSets.forEach(searchResults => {
                 const list = searchResults.querySelector('.ds_search-results__list');
 
@@ -358,31 +382,31 @@ const tracking = {
         },
 
         searchSuggestions: function (scope = document) {
-            const searchSuggestionLinks = [].slice.call(scope.querySelectorAll('.ds_search-suggestions a'));
-            searchSuggestionLinks.forEach((link, index) => {
-                link.setAttribute('data-search', `suggestion-result-${index+1}/${searchSuggestionLinks.length}`);
+            const searchSuggestionBlocks = tracking.gatherElements(scope, 'ds_search-suggestions');
+            searchSuggestionBlocks.forEach(searchSuggestionBlock => {
+                const searchSuggestionLinks = [].slice.call(searchSuggestionBlock.querySelectorAll('.ds_search-suggestions a'));
+                searchSuggestionLinks.forEach((link, index) => {
+                    link.setAttribute('data-search', `suggestion-result-${index + 1}/${searchSuggestionLinks.length}`);
+                });
             });
         },
 
         selects: function (scope = document) {
-            const selects = [].slice.call(scope.querySelectorAll('.ds_select'));
+            const selects = tracking.gatherElements(scope, 'ds_select');
             selects.forEach(select => {
                 // data attributes
                 if (!select.getAttribute('data-form') && select.id) {
-                    const terms = ['select', select.id];
-
-                    select.setAttribute('data-form', terms.join('-'));
-
-                    const options = [].slice.call(select.querySelectorAll('option'));
-                    options.forEach(option => {
-                        if (option.value || option.innerText) {
-                            terms[2] = slugify(option.value);
-                        } else {
-                            terms[2] = 'null';
-                        }
-                        option.setAttribute('data-form', terms.join('-'));
-                    });
+                    select.setAttribute('data-form', `select-${select.id}`);
                 }
+
+                const options = [].slice.call(select.querySelectorAll('option'));
+                options.forEach(option => {
+                    let valueSlug = 'null';
+                    if (option.value) {
+                        valueSlug = slugify(option.value);
+                    }
+                    option.setAttribute('data-form', `${select.getAttribute('data-form')}-${valueSlug}`);
+                });
 
                 // events
                 if (!select.classList.contains('js-has-tracking-event')) {
@@ -396,7 +420,7 @@ const tracking = {
         },
 
         sequentialNavs: function (scope = document) {
-            const sequentialNavs = [].slice.call(scope.querySelectorAll('.ds_sequential-nav'));
+            const sequentialNavs = tracking.gatherElements(scope, 'ds_sequential-nav');
             sequentialNavs.forEach(sequentialNav => {
                 const prev = sequentialNav.querySelector('.ds_sequential-nav__item--prev > .ds_sequential-nav__button ');
                 const next = sequentialNav.querySelector('.ds_sequential-nav__item--next > .ds_sequential-nav__button ');
@@ -411,7 +435,7 @@ const tracking = {
         },
 
         sideNavs: function (scope = document) {
-            const sideNavs = [].slice.call(scope.querySelectorAll('.ds_side-navigation'));
+            const sideNavs = tracking.gatherElements(scope, 'ds_side-navigation');
             sideNavs.forEach(sideNav => {
                 const list = sideNav.querySelector('.ds_side-navigation__list');
                 const button = sideNav.querySelector('.js-side-navigation-button');
@@ -449,7 +473,7 @@ const tracking = {
         },
 
         siteBranding: function (scope = document) {
-            const siteBrandings = [].slice.call(scope.querySelectorAll('.ds_site-branding'));
+            const siteBrandings = tracking.gatherElements(scope, 'ds_site-branding');
             siteBrandings.forEach(branding => {
                 const logo = branding.querySelector('.ds_site-branding__logo');
 
@@ -466,7 +490,7 @@ const tracking = {
         },
 
         siteFooter: function (scope = document) {
-            const siteFooters = [].slice.call(scope.querySelectorAll('.ds_site-footer'));
+            const siteFooters = tracking.gatherElements(scope, 'ds_site-footer');
             siteFooters.forEach(footer => {
                 const logo = footer.querySelector('.ds_site-footer__org-link');
 
@@ -481,7 +505,7 @@ const tracking = {
                     }
                 });
 
-                const links = [].slice.call(footer.querySelectorAll('.ds_site-items__item a'));
+                const links = [].slice.call(footer.querySelectorAll('.ds_site-items__item a:not(.ds_button)'));
                 links.forEach((link, index) => {
                     if (!link.getAttribute('data-footer')) {
                         link.setAttribute('data-footer', `footer-link-${index + 1}`);
@@ -491,7 +515,7 @@ const tracking = {
         },
 
         siteNavigation: function (scope = document) {
-            const siteNavigations = [].slice.call(scope.querySelectorAll('.ds_site-navigation'));
+            const siteNavigations = tracking.gatherElements(scope, 'ds_site-navigation');
             siteNavigations.forEach(siteNavigation => {
                 const links = [].slice.call(siteNavigation.querySelectorAll('.ds_site-navigation__link'));
                 links.forEach((link, index) => {
@@ -504,7 +528,7 @@ const tracking = {
                 });
             });
 
-            const mobileNavigations = [].slice.call(scope.querySelectorAll('.ds_mobile-navigation'));
+            const mobileNavigations = tracking.gatherElements(scope, 'ds_mobile-navigation');
             mobileNavigations.forEach(mobileNavigation => {
                 const toggler = mobileNavigation.querySelector('.ds_mobile-navigation__button');
                 if (toggler) {
@@ -524,7 +548,7 @@ const tracking = {
         },
 
         tabs: function (scope = document) {
-            const tabSets = [].slice.call(scope.querySelectorAll('.ds_tab-container'));
+            const tabSets = tracking.gatherElements(scope, 'ds_tab-container');
             tabSets.forEach(tabSet => {
                 const tabs = [].slice.call(tabSet.querySelectorAll('.ds_tab__label'));
                 tabs.forEach((tab, index) => {
@@ -555,10 +579,10 @@ const tracking = {
         },
 
         warningTexts: function (scope = document) {
-            const warningTexts = [].slice.call(scope.querySelectorAll('.ds_warning-text'));
+            const warningTexts = tracking.gatherElements(scope, 'ds_warning-text');
             warningTexts.forEach(warningText => {
 
-                const links = [].slice.call(warningText.querySelectorAll('.ds_warning-text a'));
+                const links = [].slice.call(warningText.querySelectorAll('.ds_warning-text a:not(.ds_button)'));
                 links.forEach(link => {
                     link.setAttribute('data-navigation', 'warning-link');
                 });

@@ -1,8 +1,15 @@
+<div id="include-parent" class="ds_accordion" data-module="ds-accordion">
+    <div class="ds_accordion" data-module="ds-accordion">
+    </div>
+</div>
+
 <div id="buttons">
     <button data-unit="without-attribute" class="ds_button">Without attribute</button>
 
     <button data-unit="with-attribute" data-button="button-foo" class="ds_button">With attribute</button>
 </div>
+
+
 
 <form id="checkboxes">
     <fieldset>
@@ -445,6 +452,9 @@
 
                 <div class="ds_notification__text">
                     <p>We need to tell you about <a data-unit="without-attribute" href="#">something</a> about <a data-unit="with-attribute" data-banner="banner-foo" href="#">something else</a></p>
+
+                    <button data-unit="without-attribute" class="ds_button">Auto attribute</button>
+                    <button data-unit="with-attribute" class="ds_button" data-banner="banner-preset">Preset attribute</button>
                 </div>
 
                 <button data-unit="without-attribute" class="ds_notification__close  js-close-notification" type="button">

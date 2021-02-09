@@ -33,11 +33,6 @@ input[type="submit"],
 
     @include block-margins;
 
-    &:hover,
-    &:focus {
-        outline-width: 0;
-    }
-
     &:hover {
         background-color: $ds_colour__button--hover__background;
         color: $ds_colour__button;
@@ -123,8 +118,8 @@ input[type="submit"],
 .#{$pl-prefix}button {
     &--small {
         @include small-size;
-        padding-top: 10px;
-        padding-bottom: 11px;
+        padding-top: 12px;
+        padding-bottom: 12px;
     }
 }
 
