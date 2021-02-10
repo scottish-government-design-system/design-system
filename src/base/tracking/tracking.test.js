@@ -1181,7 +1181,7 @@ describe('tracking', () => {
         it('should include the scope element itself if it is relevant', () => {
             testObj.scope = document.getElementById('include-parent');
 
-            const elements = Tracking.gatherElements(testObj.scope, 'ds_accordion');
+            const elements = Tracking.gatherElements('ds_accordion', testObj.scope);
 
             expect(elements.length).toEqual(2);
         });

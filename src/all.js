@@ -44,14 +44,14 @@ function initAll(scope = document) {
     // characterCountElements.forEach(element => characterCountModules.push(element.parentNode));
     characterCountModules.forEach(characterCount => new CharacterCount(characterCount).init());
 
-    const datePickers = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]'));
-    datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
-
     const cookieNotificationEl = document.querySelector('[data-module="ds-cookie-notification"]');
     if (cookieNotificationEl) {
         const cookieNotification = new CookieNotification(cookieNotificationEl);
         cookieNotification.init();
     }
+
+    const datePickers = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]'));
+    datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
     datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
 
     // this one is handled differently because it applies an event to the whole body and we only want that event once

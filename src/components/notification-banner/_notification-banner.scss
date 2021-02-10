@@ -34,10 +34,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         }
     }
 
-    &.#{$pl-prefix}reversed &__content a {
-        color: inherit;
-    }
-
     &__text {
         display: inline-block;
         margin-right: 16px;

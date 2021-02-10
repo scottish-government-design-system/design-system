@@ -1,3 +1,5 @@
+'use strict';
+
 function slugify(string) {
 
     string = String(string);
@@ -14,14 +16,18 @@ function slugify(string) {
 }
 
 const tracking = {
-    init: function (scope = document) {
+    init: function (scope) {
+        if (!scope) {
+            scope = document;
+        }
+
         for (const [key, value] of Object.entries(tracking.add)) {
             value(scope);
         }
     },
 
-    gatherElements: function (scope, className) {
-        const elements = [].slice.call(scope.querySelectorAll(`.${className}`));
+    gatherElements: function (className, scope) {
+        let elements = [].slice.call(scope.querySelectorAll(`.${className}`));
 
         if (scope.classList && scope.classList.contains(className)) {
             elements.push(scope);
@@ -32,7 +38,8 @@ const tracking = {
 
     add: {
         accordions: function (scope = document) {
-            const accordions = tracking.gatherElements(scope, 'ds_accordion');
+            const accordions = tracking.gatherElements('ds_accordion', scope);
+
             accordions.forEach(accordion => {
                 if (!accordion.classList.contains('js-initialised')) {
                     return;
@@ -91,7 +98,7 @@ const tracking = {
         },
 
         asides: function (scope = document) {
-            const asides = tracking.gatherElements(scope, 'ds_article-aside');
+            const asides = tracking.gatherElements('ds_article-aside', scope);
             asides.forEach(aside => {
                 const links = [].slice.call(aside.querySelectorAll('a:not(.ds_button)'));
 
@@ -104,14 +111,14 @@ const tracking = {
         },
 
         backToTop: function (scope = document) {
-            const backToTops = tracking.gatherElements(scope, 'ds_back-to-top__button');
+            const backToTops = tracking.gatherElements('ds_back-to-top__button', scope);
             backToTops.forEach(backToTop => {
                 backToTop.setAttribute('data-navigation', 'backtotop');
             });
         },
 
         breadcrumbs: function (scope = document) {
-            const breadcrumbLists = tracking.gatherElements(scope, 'ds_breadcrumbs');
+            const breadcrumbLists = tracking.gatherElements('ds_breadcrumbs', scope);
             breadcrumbLists.forEach(breadcrumbList => {
                 const links = [].slice.call(breadcrumbList.querySelectorAll('.ds_breadcrumbs__link'));
 
@@ -133,7 +140,7 @@ const tracking = {
         },
 
         categoryLists: function (scope = document) {
-            const categoryLists = tracking.gatherElements(scope, 'ds_category-list');
+            const categoryLists = tracking.gatherElements('ds_category-list', scope);
             categoryLists.forEach(categoryList => {
                 const links = [].slice.call(categoryList.querySelectorAll('.ds_category-item__link'));
 
@@ -146,7 +153,7 @@ const tracking = {
         },
 
         checkboxes: function (scope = document) {
-            const checkboxes = tracking.gatherElements(scope, 'ds_checkbox__input');
+            const checkboxes = tracking.gatherElements('ds_checkbox__input', scope);
             checkboxes.forEach(checkbox => {
 
                 // data attributes
@@ -172,11 +179,9 @@ const tracking = {
                 }
             });
         },
-/*
-A more general query: the buttons would be given both data-button and data-banner. Will giving things multiple attributes create any problems for reporting?
-*/
+
         contactDetails: function (scope = document) {
-            const contactDetailsBlocks = tracking.gatherElements(scope, 'ds_contact-details');
+            const contactDetailsBlocks = tracking.gatherElements('ds_contact-details', scope);
             contactDetailsBlocks.forEach(contactDetails => {
                 const socialLinks = [].slice.call(contactDetails.querySelectorAll('.ds_contact-details__social-link'));
                 socialLinks.forEach(link => {
@@ -195,7 +200,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         contentNavs: function (scope = document) {
-            const contentsNavs = tracking.gatherElements(scope, 'ds_contents-nav');
+            const contentsNavs = tracking.gatherElements('ds_contents-nav', scope);
             contentsNavs.forEach(contentsNav => {
                 const links = [].slice.call(contentsNav.querySelectorAll('.ds_contents-nav__link'));
 
@@ -208,9 +213,12 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         errorMessages: function (scope = document) {
-            const errorMessages = tracking.gatherElements(scope, 'ds_question__error-message');
+            const errorMessages = tracking.gatherElements('ds_question__error-message', scope);
             errorMessages.forEach((errorMessage, index) => {
                 const question = errorMessage.closest('.ds_question');
+
+                if (!question) {return;}
+
                 const target = question.querySelector('.js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input');
                 let targetName = index + 1;
 
@@ -242,7 +250,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         errorSummaries: function (scope = document) {
-            const errorSummaries = tracking.gatherElements(scope, 'ds_error-summary');
+            const errorSummaries = tracking.gatherElements('ds_error-summary', scope);
             errorSummaries.forEach(errorSummary => {
                 const errorSummaryLinks = [].slice.call(errorSummary.querySelectorAll('.ds_error-summary__list a'));
                 errorSummaryLinks.forEach(link => {
@@ -254,7 +262,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         hideThisPage: function (scope = document) {
-            const hideThisPageElements = tracking.gatherElements(scope, 'ds_hide-page');
+            const hideThisPageElements = tracking.gatherElements('ds_hide-page', scope);
             hideThisPageElements.forEach(hideThisPageElement => {
                 const hideThisPageButtons = [].slice.call(hideThisPageElement.querySelectorAll('.ds_hide-page__button'));
 
@@ -273,7 +281,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         insetTexts: function (scope = document) {
-            const insetTexts = tracking.gatherElements(scope, 'ds_inset-text');
+            const insetTexts = tracking.gatherElements('ds_inset-text', scope);
             insetTexts.forEach(insetText => {
 
                 const links = [].slice.call(insetText.querySelectorAll('.ds_inset-text__text a:not(.ds_button)'));
@@ -284,7 +292,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         notifications: function (scope = document) {
-            const notificationBanners = tracking.gatherElements(scope, 'ds_notification');
+            const notificationBanners = tracking.gatherElements('ds_notification', scope);
             notificationBanners.forEach((banner, index) => {
                 const bannername = banner.id || index+1;
 
@@ -310,7 +318,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         pagination: function (scope = document) {
-            const paginations = tracking.gatherElements(scope, 'ds_pagination');
+            const paginations = tracking.gatherElements('ds_pagination', scope);
             paginations.forEach(pagination => {
                 const loadmore = pagination.querySelector('.ds_pagination__load-more button');
                 if (loadmore && !loadmore.getAttribute('data-search')) {
@@ -327,7 +335,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         phaseBanners: function (scope = document) {
-            const phaseBanners = tracking.gatherElements(scope, 'ds_phase-banner');
+            const phaseBanners = tracking.gatherElements('ds_phase-banner', scope);
             phaseBanners.forEach(banner => {
                 const bannername = banner.querySelector('.ds_tag') ? banner.querySelector('.ds_tag').innerText : 'phase';
 
@@ -341,7 +349,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         radios: function (scope = document) {
-            const radios = tracking.gatherElements(scope, 'ds_radio__input');
+            const radios = tracking.gatherElements('ds_radio__input', scope);
             radios.forEach(radio => {
                 if (!radio.getAttribute('data-form') && radio.name && radio.id) {
                     radio.setAttribute('data-form', `radio-${radio.name}-${radio.id}`);
@@ -350,7 +358,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         searchResults: function (scope = document) {
-            const searchResultsSets = tracking.gatherElements(scope, 'ds_search-results');
+            const searchResultsSets = tracking.gatherElements('ds_search-results', scope);
             searchResultsSets.forEach(searchResults => {
                 const list = searchResults.querySelector('.ds_search-results__list');
 
@@ -382,7 +390,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         searchSuggestions: function (scope = document) {
-            const searchSuggestionBlocks = tracking.gatherElements(scope, 'ds_search-suggestions');
+            const searchSuggestionBlocks = tracking.gatherElements('ds_search-suggestions', scope);
             searchSuggestionBlocks.forEach(searchSuggestionBlock => {
                 const searchSuggestionLinks = [].slice.call(searchSuggestionBlock.querySelectorAll('.ds_search-suggestions a'));
                 searchSuggestionLinks.forEach((link, index) => {
@@ -392,7 +400,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         selects: function (scope = document) {
-            const selects = tracking.gatherElements(scope, 'ds_select');
+            const selects = tracking.gatherElements('ds_select', scope);
             selects.forEach(select => {
                 // data attributes
                 if (!select.getAttribute('data-form') && select.id) {
@@ -420,7 +428,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         sequentialNavs: function (scope = document) {
-            const sequentialNavs = tracking.gatherElements(scope, 'ds_sequential-nav');
+            const sequentialNavs = tracking.gatherElements('ds_sequential-nav', scope);
             sequentialNavs.forEach(sequentialNav => {
                 const prev = sequentialNav.querySelector('.ds_sequential-nav__item--prev > .ds_sequential-nav__button ');
                 const next = sequentialNav.querySelector('.ds_sequential-nav__item--next > .ds_sequential-nav__button ');
@@ -435,7 +443,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         sideNavs: function (scope = document) {
-            const sideNavs = tracking.gatherElements(scope, 'ds_side-navigation');
+            const sideNavs = tracking.gatherElements('ds_side-navigation', scope);
             sideNavs.forEach(sideNav => {
                 const list = sideNav.querySelector('.ds_side-navigation__list');
                 const button = sideNav.querySelector('.js-side-navigation-button');
@@ -473,7 +481,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         siteBranding: function (scope = document) {
-            const siteBrandings = tracking.gatherElements(scope, 'ds_site-branding');
+            const siteBrandings = tracking.gatherElements('ds_site-branding', scope);
             siteBrandings.forEach(branding => {
                 const logo = branding.querySelector('.ds_site-branding__logo');
 
@@ -490,7 +498,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         siteFooter: function (scope = document) {
-            const siteFooters = tracking.gatherElements(scope, 'ds_site-footer');
+            const siteFooters = tracking.gatherElements('ds_site-footer', scope);
             siteFooters.forEach(footer => {
                 const logo = footer.querySelector('.ds_site-footer__org-link');
 
@@ -515,7 +523,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         siteNavigation: function (scope = document) {
-            const siteNavigations = tracking.gatherElements(scope, 'ds_site-navigation');
+            const siteNavigations = tracking.gatherElements('ds_site-navigation', scope);
             siteNavigations.forEach(siteNavigation => {
                 const links = [].slice.call(siteNavigation.querySelectorAll('.ds_site-navigation__link'));
                 links.forEach((link, index) => {
@@ -528,7 +536,7 @@ A more general query: the buttons would be given both data-button and data-banne
                 });
             });
 
-            const mobileNavigations = tracking.gatherElements(scope, 'ds_mobile-navigation');
+            const mobileNavigations = tracking.gatherElements('ds_mobile-navigation', scope);
             mobileNavigations.forEach(mobileNavigation => {
                 const toggler = mobileNavigation.querySelector('.ds_mobile-navigation__button');
                 if (toggler) {
@@ -548,7 +556,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         tabs: function (scope = document) {
-            const tabSets = tracking.gatherElements(scope, 'ds_tab-container');
+            const tabSets = tracking.gatherElements('ds_tab-container', scope);
             tabSets.forEach(tabSet => {
                 const tabs = [].slice.call(tabSet.querySelectorAll('.ds_tab__label'));
                 tabs.forEach((tab, index) => {
@@ -579,7 +587,7 @@ A more general query: the buttons would be given both data-button and data-banne
         },
 
         warningTexts: function (scope = document) {
-            const warningTexts = tracking.gatherElements(scope, 'ds_warning-text');
+            const warningTexts = tracking.gatherElements('ds_warning-text', scope);
             warningTexts.forEach(warningText => {
 
                 const links = [].slice.call(warningText.querySelectorAll('.ds_warning-text a:not(.ds_button)'));
@@ -590,10 +598,5 @@ A more general query: the buttons would be given both data-button and data-banne
         }
     }
 };
-
-        /**
-         * still to go:
-         * cookie notice
-         */
 
 export default tracking;
