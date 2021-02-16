@@ -30,7 +30,8 @@ class Accordion {
         const itemButton = document.createElement('button');
         const itemIndicator = document.createElement('span');
 
-        itemButton.classList.add('ds_accordion-item__header-button', 'js-accordion-button');
+        itemButton.classList.add('ds_accordion-item__header-button');
+        itemButton.classList.add('js-accordion-button');
         itemIndicator.classList.add('ds_accordion-item__indicator');
 
         // we keep the control present but make it unavailable in the tab order or to screen readers

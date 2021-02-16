@@ -44,6 +44,7 @@ input[type="submit"],
         box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
         color: $ds_colour__button--focus;
         outline-color: $ds_colour__button--focus__background;
+        outline-width: 0;
 
         transition-duration: 0s;
     }

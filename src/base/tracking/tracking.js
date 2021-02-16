@@ -21,8 +21,8 @@ const tracking = {
             scope = document;
         }
 
-        for (const [key, value] of Object.entries(tracking.add)) {
-            value(scope);
+        for (var key in tracking.add) {
+            tracking.add[key](scope);
         }
     },
 
