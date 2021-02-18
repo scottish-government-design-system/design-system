@@ -6,9 +6,7 @@
 $side-nav__expand-colour: $ds_colour__brand !default;
 
 // fixed vars
-$side-nav__outline-width: 4px;
-$side-nav__spacing-unit: 16px;
-
+$side-nav__outline-width: 2px;
 
 
 
@@ -74,88 +72,36 @@ $side-nav__spacing-unit: 16px;
         color: $ds_colour__link--current;
     }
 
-    #show-side-navigation:checked ~ &__list--root {
+    #show-side-navigation:checked ~ &__list {
         display: block;
     }
 
     &__list {
         list-style-type: none;
-        margin-bottom: 0;
-        margin-left: #{$side-nav__outline-width * -1};
-        padding: 0 $side-nav__outline-width;
-
-        &--root {
-            display: none;
-            margin: 8px #{16px - $side-nav__outline-width};
-        }
+        margin: 8px 16px;
     }
 
     &__list &__list {
-        margin-left: #{$side-nav__spacing-unit * 2};
+        margin: 0 0 0 16px;
     }
 
     &__item {
         position: relative;
         margin-bottom: 0;
 
-        &--has-children {
-            > .#{$pl-prefix}side-navigation__link {
-                &::after {
-                    color: $ds_colour__grey--medium;
-                    left: $side-nav__spacing-unit;
-                    position: absolute;
-                    top: 17px;
-                    z-index: 1;
-
-                    @include chevron(right, 12px);
-                }
-
-                &:focus::after {
-                    color: $ds_colour__link--focus;
-                }
-            }
-
-            &--expanded > .#{$pl-prefix}side-navigation__link::after {
-                @include chevron(down, 12px);
-            }
-        }
-
         &--disabled {
             text-decoration: line-through;
         }
     }
 
-    &__list &__list &__list &__link {
-        padding-left: #{$side-nav__spacing-unit * 2};
-
-        &::before {
-            background: $ds_colour__grey--light;
-            bottom: 8px;
-            content: '';
-            left: 16px;
-            position: absolute;
-            right: 100%;
-            width: 4px;
-            top: 8px;
-        }
-
-        &:hover,
-        &:focus,
-        &.#{$pl-prefix}current {
-            &::before {
-                background: $ds_colour__border--highlight;
-            }
-        }
-    }
-
     /**
-     * [1] vertical padding combines with the margin to form a multiple of eight
+     * [1] vertical padding offsets the text slightly for visual balance
      */
     &__link {
         @include blocklink;
 
         margin-bottom: 2px;
-        padding: 11px 40px 11px #{$side-nav__spacing-unit * 3}; /* [1] */
+        padding: 8px 40px 6px 16px; /* [1] */
         position: relative;
         text-decoration: none;
 
@@ -170,12 +116,13 @@ $side-nav__spacing-unit: 16px;
                 position: absolute;
                 left: 0;
                 top: 0;
-                width: 4px;
+                width: $side-nav__outline-width;
             }
         }
 
         &:focus {
             box-shadow: 0 3px $ds_colour__link--focus__shadow;
+            z-index: 2;
         }
 
         &:focus::before {
@@ -195,21 +142,43 @@ $side-nav__spacing-unit: 16px;
             background-color: $ds_colour__link--disabled__background;
         }
     }
+
+    // different style for third nav level (?)
+    &__list &__list &__list &__link {
+        padding-left: 24px;
+
+        &::before {
+            background: $ds_colour__grey--light;
+            bottom: 8px;
+            content: '';
+            left: 12px;
+            position: absolute;
+            right: 100%;
+            width: 4px;
+            top: 8px;
+        }
+
+        &:hover,
+        &:focus,
+        &.#{$pl-prefix}current {
+            &::before {
+                background: $ds_colour__border--highlight;
+            }
+        }
+    }
 }
 
 @include media-query(medium-down) {
-    .js-initialised.#{$pl-prefix}side-navigation {
-        .#{$pl-prefix}side-navigation__list--root {
-            margin: 0 16px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height $transition-in-time, padding $transition-in-time;
-        }
+    .js-initialised.#{$pl-prefix}side-navigation > .#{$pl-prefix}side-navigation__list {
+        margin: 0 16px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height $transition-in-time, padding $transition-in-time;
+    }
 
-        #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__list--root {
-            padding-bottom: 8px;
-            padding-top: 8px;
-        }
+    .js-initialised.#{$pl-prefix}side-navigation #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__list {
+        padding-bottom: 8px;
+        padding-top: 8px;
     }
 }
 
@@ -222,14 +191,10 @@ $side-nav__spacing-unit: 16px;
             display: none;
         }
 
-        &__list--root {
+        &__list {
             display: block !important;
             margin: 0;
             max-height: unset !important;
-        }
-
-        &__item--has-children::before {
-            margin-top: 2px;
         }
 
         #show-side-navigation {

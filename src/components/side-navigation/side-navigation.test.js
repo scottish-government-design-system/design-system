@@ -47,7 +47,7 @@ describe('side navigation', () => {
             testObj.sideNavigationModule.init();
 
             const label = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
-            const list = testObj.sideNavigationElement.querySelector('.ds_side-navigation__list--root');
+            const list = testObj.sideNavigationElement.querySelector('.ds_side-navigation__list');
 
             // opening nav
             const event = new Event('click');
