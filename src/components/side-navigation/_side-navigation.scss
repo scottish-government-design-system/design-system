@@ -101,7 +101,7 @@ $side-nav__outline-width: 2px;
         @include blocklink;
 
         margin-bottom: 2px;
-        padding: 8px 40px 6px 16px; /* [1] */
+        padding: 12px 40px 10px 16px; /* [1] */
         position: relative;
         text-decoration: none;
 
@@ -149,13 +149,13 @@ $side-nav__outline-width: 2px;
 
         &::before {
             background: $ds_colour__grey--light;
-            bottom: 8px;
+            bottom: 12px;
             content: '';
             left: 12px;
             position: absolute;
             right: 100%;
             width: 4px;
-            top: 8px;
+            top: 12px;
         }
 
         &:hover,
