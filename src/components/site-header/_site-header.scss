@@ -74,6 +74,10 @@ $site-header__top-band-colour: $ds_colour__brand;
         margin-right: 8px;
         pointer-events: none;
     }
+
+    &__search {
+        display: none;
+    }
 }
 
 /* variant with the top colour bar set to a gradient of site brand colours */
