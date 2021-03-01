@@ -102,14 +102,14 @@ class Accordion {
             body.style.maxHeight = body.scrollHeight + 24 + 32 + 'px';
 
             window.setTimeout(function () {
-                body.style.maxHeight = 'unset';
+                body.style.removeProperty('max-height');
             }, 200);
         } else {
             body.style.maxHeight = 0;
             item.classList.remove('ds_accordion-item--open');
 
             window.setTimeout(function () {
-                body.style.display = 'none';
+                body.style.removeProperty('display');
             }, 200);
         }
 

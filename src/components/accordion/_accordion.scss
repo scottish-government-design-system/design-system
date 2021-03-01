@@ -126,7 +126,6 @@ h1,h2,h3 {
 
 .#{$pl-prefix}accordion.js-initialised .#{$pl-prefix}accordion-item {
     &__body {
-        max-height: 0;
         overflow: hidden;
         padding: 0 40px 0 16px;
 
