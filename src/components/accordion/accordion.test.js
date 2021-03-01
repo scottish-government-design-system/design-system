@@ -67,8 +67,8 @@ describe('accordion', () => {
             jasmine.clock().tick(199);
             expect(parseInt(accordionItemBody.style.maxHeight, 10)).toEqual(0);
             jasmine.clock().tick(1);
-            expect(accordionItemBody.style.maxHeight).toEqual('unset');
-            expect(accordionItemBody.style.display).toEqual('none');
+            expect(accordionItemBody.style.maxHeight).toEqual('');
+            expect(accordionItemBody.style.display).toEqual('');
 
             jasmine.clock().uninstall();
         });
