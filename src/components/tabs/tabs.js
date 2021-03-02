@@ -31,7 +31,9 @@ class Tabs {
         const button = document.createElement('button');
         button.setAttribute('class', tabLabel.getAttribute('class'));
         button.setAttribute('role', tabLabel.getAttribute('role'));
-        button.setAttribute('data-navigation', tabLabel.getAttribute('data-navigation'));
+        if (tabLabel.getAttribute('data-navigation')) {
+            button.setAttribute('data-navigation', tabLabel.getAttribute('data-navigation'));
+        }
         button.setAttribute('aria-controls', tabLabel.getAttribute('aria-controls'));
         button.id = tabLabel.id;
         button.innerHTML = tabLabel.innerHTML + ' ';

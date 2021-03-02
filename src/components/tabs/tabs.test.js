@@ -14,15 +14,27 @@ describe('tabs', () => {
         'down': 40
     };
 
-    beforeEach(function () {
-        loadFixtures('components/tabs/tabs.html');
+    describe('tabs setup', () => {
+        it('should clone the data-navigation attribute from the label to the button if present', () => {
+            loadFixtures('components/tabs/tabs.html');
 
-        testObj.tabs = new Tabs(document.querySelector('.ds_tab-container'));
-        testObj.tabs.init();
+            // set a data navigation attrib
+            document.querySelector('label#tab1-label').dataset.navigation = 'foo';
+
+            testObj.tabs = new Tabs(document.querySelector('.ds_tab-container'));
+            testObj.tabs.init();
+
+            expect(document.querySelector('button#tab1-label').dataset.navigation).toEqual('foo');
+        });
     });
 
     describe('tabs', () => {
-        // check init
+        beforeEach(function () {
+            loadFixtures('components/tabs/tabs.html');
+
+            testObj.tabs = new Tabs(document.querySelector('.ds_tab-container'));
+            testObj.tabs.init();
+        });
 
         // check focus prev
         it('should move focus to the next tab on press of "left"', () => {
