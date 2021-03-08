@@ -1,0 +1,35 @@
+/*------------------------------------*\
+    #SKIP LINKS
+\*------------------------------------*/
+
+.ds_skip-links {
+    position: relative;
+}
+
+.ds_skip-links__list {
+    list-style-type: none;
+    margin: 0;
+}
+
+.ds_skip-links__item {
+    margin: 0;
+}
+
+.ds_skip-links__link {
+    clip: rect(1px 1px 1px 1px);
+    display: block;
+    height: 1px;
+    left: 10px;
+    overflow: hidden;
+    padding: 7px;
+    position: absolute;
+    top: 10px;
+    width: 1px;
+
+    &:focus {
+        clip: auto;
+        height: auto;
+        width: auto;
+        z-index: 10000;
+    }
+}
