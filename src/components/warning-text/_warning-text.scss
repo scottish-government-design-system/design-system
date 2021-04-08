@@ -43,7 +43,7 @@
     @supports (-webkit-mask-image: url()) or (mask-image: url()) {
         &::before {
             background-color: $ds_colour__white;
-            content: none;
+            content: '';
             -webkit-mask-image: url(#{$iconsfile}#priority_high);
             mask-image: url(#{$iconsfile}#priority_high);
         }
