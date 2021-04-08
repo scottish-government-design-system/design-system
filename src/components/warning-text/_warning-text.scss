@@ -44,8 +44,11 @@
         &::before {
             background-color: $ds_colour__white;
             content: '';
+            display: block;
+            height: 100%;
             -webkit-mask-image: url(#{$iconsfile}#priority_high);
             mask-image: url(#{$iconsfile}#priority_high);
+            width: 100%;
         }
     }
 }
