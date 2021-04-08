@@ -85,7 +85,7 @@ h1,h2,h3 {
     &__indicator {
         @include indicator;
         pointer-events: none;
-        top: 18px;
+        top: 11px;
     }
 
     &__body {
@@ -151,7 +151,7 @@ h1,h2,h3 {
         }
 
         &__indicator {
-            top: 17px;
+            top: 9px;
         }
     }
 }

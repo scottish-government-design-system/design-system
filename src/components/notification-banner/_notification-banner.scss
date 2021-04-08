@@ -65,8 +65,9 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         float: left;
         height: 32px;
         line-height: 0;
-        margin-left: -5px;
-        padding: 5px;
+        margin-left: -4px;
+        margin-top: -4px;
+        padding: 2px;
         width: 32px;
 
         + .#{$pl-prefix}notification__text {
@@ -98,13 +99,13 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         color: currentColor;
         display: none;
         font-size: $small-size--fixed;
-        height: 24px;
-        margin: #{$notification-banner__close-padding * -1} #{$notification-banner__close-padding * -1} #{$notification-banner__close-padding * -1} 25px;
-        padding: $notification-banner__close-padding;
+        height: 40px;
+        margin: 0;
+        padding: 0;
         position: absolute;
-        right: 0;
-        top: 16px;
-        width: 24px;
+        right: -8px;
+        top: 8px;
+        width: 40px;
 
         &:hover {
             background-color: transparent;
@@ -120,7 +121,11 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 @include media-query(medium) {
     .#{$pl-prefix}notification__close {
-        top: 21px;
+        top: 12px;
+    }
+
+    .#{$pl-prefix}notification__icon {
+        margin-top: 0;
     }
 
     .#{$pl-prefix}notification__actions {
@@ -135,7 +140,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         }
     }
 }
-
 
 @supports(display: flex) {
     @include media-query(medium) {

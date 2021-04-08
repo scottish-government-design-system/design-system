@@ -41,17 +41,28 @@ $link__border-width: 3px;
 @mixin chevron($orientation: down, $size: 1em) {
     content: '';
     display: inline-block;
-    height: $size;
+    height: $size * 2;
     transition: transform 0.2s, top 0.2s;
-    width: $size;
+    width: $size * 2;
 
-    background-image: url(#{$iconsfile}#chevron-#{$orientation});
+    $spritename: 'expand_more';
+    @if $orientation == down {
+        $spritename: 'expand_more';
+    } @else if $orientation == up {
+        $spritename: 'expand_less';
+    } @else if $orientation == left {
+        $spritename: 'chevron_left';
+    } @else if $orientation == right {
+        $spritename: 'chevron_right';
+    }
+
+    background-image: url(#{$iconsfile}##{$spritename});
 
     @supports (-webkit-mask-image: url()) or (mask-image: url()) {
         background-color: currentColor;
         background-image: none;
-        -webkit-mask-image: url(#{$iconsfile}#chevron-#{$orientation});
-        mask-image: url(#{$iconsfile}#chevron-#{$orientation});
+        -webkit-mask-image: url(#{$iconsfile}##{$spritename});
+        mask-image: url(#{$iconsfile}##{$spritename});
     }
 }
 
@@ -234,8 +245,7 @@ $link__border-width: 3px;
  */
 @mixin indicator {
     @include chevron(down);
-    // color: currentColor;
-    right: 21px;
+    right: 14px;
     position: absolute;
 }
 

@@ -35,6 +35,19 @@
     text-align: center;
     top: 20px;
     width: 32px;
+
+    &::before {
+        content: '!';
+    }
+
+    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+        &::before {
+            background-color: $ds_colour__white;
+            content: none;
+            -webkit-mask-image: url(#{$iconsfile}#priority_high);
+            mask-image: url(#{$iconsfile}#priority_high);
+        }
+    }
 }
 
 .#{$pl-prefix}warning-text__text > :last-child {

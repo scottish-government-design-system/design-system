@@ -25,7 +25,9 @@ $breadcrumbs__font-size: $small-size--fixed;
 
     &__item:not(:first-child)::before {
         @include chevron(right, 0.5em);
-        margin: 0 2px 1px 2px;
+        margin: 0 -2px 0 -1px;
+        position: relative;
+        top: 3px;
     }
 
     &__container {

@@ -53,7 +53,7 @@ $side-nav__outline-width: 2px;
 
     &__expand-indicator {
         @include indicator();
-        top: 20px;
+        top: 14px;
     }
 
     #show-side-navigation:focus ~ .#{$pl-prefix}side-navigation__expand {

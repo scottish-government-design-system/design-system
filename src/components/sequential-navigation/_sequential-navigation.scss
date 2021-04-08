@@ -69,7 +69,7 @@ $page-nav__icon-size: 56px !default;
         &::after {
             color: $ds_colour__white;
             position: absolute;
-            top: 21px;
+            top: 6px;
         }
     }
 
@@ -83,7 +83,7 @@ $page-nav__icon-size: 56px !default;
 
         &::after {
             @include chevron(left, 30px);
-            left: 15px;
+            left: 0;
         }
     }
 
@@ -99,7 +99,7 @@ $page-nav__icon-size: 56px !default;
 
         &::after {
             @include chevron(right, 30px);
-            right: 15px;
+            right: 0;
         }
     }
 }

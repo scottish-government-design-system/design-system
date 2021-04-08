@@ -1,6 +1,5 @@
 /*------------------------------------*\
-    CATEGORY ITEM
-    Navigation elements for different levels of category navigation. Includes classes for layout of these elements in a list.
+    CONTACT DETAILS
 \*------------------------------------*/
 
 // fixed vars
@@ -15,6 +14,7 @@ $contact-details__border-colour: $ds_colour__border--highlight;
 
     &__title {
         display: inline-block;
+        margin-bottom: $contact-details-line-gap;
         padding-top: 8px;
         position: relative;
 
@@ -29,11 +29,6 @@ $contact-details__border-colour: $ds_colour__border--highlight;
         }
     }
 
-    &__item,
-    &__title {
-        margin-bottom: $contact-details-line-gap;
-    }
-
     &__list dd {
         margin-left: 0;
     }
@@ -42,9 +37,9 @@ $contact-details__border-colour: $ds_colour__border--highlight;
         font-weight: $bold;
     }
 
-    &__social {
-        list-style-type: none;
-        margin-left: 0;
+    &__list dt:not(:first-child),
+    &__list dt + dd.ds_contact-details__social-item {
+        margin-top: $contact-details-line-gap;
     }
 
     &__social-item {

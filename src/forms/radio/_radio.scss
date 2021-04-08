@@ -9,9 +9,11 @@
      * [1] for IE11 support, use image without clip path
      */
     &__label::after {
-        -webkit-mask-image: url(#{$iconsfile}#radio-40);
-        mask-image: url(#{$iconsfile}#radio-40);
-        background-image: url(#{$iconsfile}#radio-40); /* [1] */
+        -webkit-mask-image: url(#{$iconsfile}#radio);
+        mask-image: url(#{$iconsfile}#radio);
+        background-image: url(#{$iconsfile}#radio); /* [1] */
+
+        margin: 8px;
 
         @supports(display: grid) {
             background-color: $ds_colour__input--spot;

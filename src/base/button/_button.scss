@@ -4,7 +4,7 @@
 
 $button__border-width: 2px !default;
 $button__outline-width: 3px !default;
-$button__height: 48px !default;
+$button__height: 56px !default;
 $button__height--small: 40px !default;
 $button__padding--x: 16px !default;
 $link__border-width: 3px;
@@ -160,7 +160,7 @@ input[type="submit"],
 
         >.#{$pl-prefix}icon {
             bottom: 0;
-            padding: 10px 10px 11px 11px;
+            padding: 8px;
             position: absolute;
             right: 0;
             top: 0;
@@ -179,16 +179,14 @@ input[type="submit"],
     }
 
     &--small.#{$pl-prefix}button--has-icon {
-        padding-right: calc(16px + #{$button__padding--x});
+        padding-right: calc(24px + #{$button__padding--x});
 
         &--left {
-            padding-right: 16px;
-            padding-left: calc(16px + #{$button__padding--x});
+            padding-right: #{$button__height--small};
+            padding-left: calc(24px + #{$button__padding--x});
         }
 
         >.#{$pl-prefix}icon {
-            height: $button__height--small;
-            padding: 10px;
             width: $button__height--small;
         }
     }
@@ -197,12 +195,12 @@ input[type="submit"],
 // ICON-ONLY BUTTONS
 .#{$pl-prefix}button--icon-only {
     height: $button__height;
-    padding: 10px 10px 11px 11px;
+    padding: 8px;
     width: $button__height;
 
     &.#{$pl-prefix}button--small {
         height: $button__height--small;
-        padding: 10px;
+        padding: 4px;
         width: $button__height--small;
     }
 }
