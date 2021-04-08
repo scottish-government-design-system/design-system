@@ -13,8 +13,6 @@
         mask-image: url(#{$iconsfile}#radio);
         background-image: url(#{$iconsfile}#radio); /* [1] */
 
-        margin: 8px;
-
         @supports(display: grid) {
             background-color: $ds_colour__input--spot;
             background-image: none;
