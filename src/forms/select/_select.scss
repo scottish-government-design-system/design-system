@@ -65,8 +65,19 @@
     padding: 0;
     position: relative;
     width: 100%;
+    
+    &--error {
+        border-color: $ds_colour__state--negative;
+        border-width: $field-border-width--error;
+        padding: 4px;
+
+        &:focus {
+            border-color: currentColor;
+            box-shadow: none;
+        }
+    }
 }
 
-.#{$pl_prefix}select-wrapper.#{$pl_prefix}input--error {
+.#{$pl_prefix}select-wrapper.#{$pl_prefix}select--error {
     min-height: #{$field-border-width--error + 48px};
 }
