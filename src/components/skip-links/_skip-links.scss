@@ -2,20 +2,20 @@
     #SKIP LINKS
 \*------------------------------------*/
 
-.ds_skip-links {
+.#{$pl-prefix}skip-links {
     position: relative;
 }
 
-.ds_skip-links__list {
+.#{$pl-prefix}skip-links__list {
     list-style-type: none;
     margin: 0;
 }
 
-.ds_skip-links__item {
+.#{$pl-prefix}skip-links__item {
     margin: 0;
 }
 
-.ds_skip-links__link {
+.#{$pl-prefix}skip-links__link {
     clip: rect(1px 1px 1px 1px);
     display: block;
     height: 1px;

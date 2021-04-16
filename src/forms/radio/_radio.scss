@@ -9,13 +9,12 @@
      * [1] for IE11 support, use image without clip path
      */
     &__label::after {
-        -webkit-mask-image: url(#{$iconsfile}#radio);
-        mask-image: url(#{$iconsfile}#radio);
-        background-image: url(#{$iconsfile}#radio); /* [1] */
-
         @supports(display: grid) {
             background-color: $ds_colour__input--spot;
             background-image: none;
         }
+
+        $octothorpe: '#';
+        @include icon-mask(#{$iconsfile}#{$octothorpe}radio);
     }
 }

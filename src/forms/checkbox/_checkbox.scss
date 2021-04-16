@@ -5,11 +5,9 @@
 .#{$pl_prefix}checkbox {
     @include radiocheckboxstates();
 
-    /*
-     * [1] for IE11 support, use image without clip path
-     */
     &__label::after {
-        background-image: url(#{$iconsfile}#checkbox); /* [1] */
+        $octothorpe: '#';
+        @include icon-mask(#{$iconsfile}#{$octothorpe}checkbox);
     }
 }
 
@@ -17,9 +15,6 @@
     .#{$pl_prefix}checkbox {
         &__label::after {
             background-color: $ds_colour__white;
-            background-image: none;
-            -webkit-mask-image: url(#{$iconsfile}#checkbox);
-            mask-image: url(#{$iconsfile}#checkbox);
         }
 
         /* checked */

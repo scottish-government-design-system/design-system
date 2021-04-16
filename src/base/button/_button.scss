@@ -5,7 +5,7 @@
 $button__border-width: 2px !default;
 $button__outline-width: 3px !default;
 $button__height: 56px !default;
-$button__height--small: 40px !default;
+$button__height--small: 48px !default;
 $button__padding--x: 16px !default;
 $link__border-width: 3px;
 
@@ -25,8 +25,11 @@ input[type="submit"],
     @include small-size;
     font-weight: $bold;
     line-height: 24px;
+    min-height: $button__height;
+    min-width: $button__height;
     outline-width: 0;
     padding: 16px;
+    position: relative;
     text-align: center;
     text-decoration: none;
     transition: background-color $transition-out-time;
@@ -119,6 +122,8 @@ input[type="submit"],
 .#{$pl-prefix}button {
     &--small {
         @include small-size;
+        min-height: $button__height--small;
+        min-width: $button__height--small;
         padding-top: 12px;
         padding-bottom: 12px;
     }
@@ -153,54 +158,39 @@ input[type="submit"],
     }
 }
 
+// BUTTONS WITH ICONS
 .#{$pl-prefix}button {
+    .#{$pl-prefix}icon {
+        bottom: 0;
+        box-sizing: initial;
+        height: 40px;
+        padding: 8px;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 40px;
+    }
+
+    &--small {
+        .#{$pl-prefix}icon {
+            height: 32px;
+            padding: 8px;
+            width: 32px;
+        }
+    }
+
     &--has-icon {
         padding-right: calc(#{$button__height} + #{$button__padding--x});
-        position: relative;
-
-        >.#{$pl-prefix}icon {
-            bottom: 0;
-            padding: 8px;
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: $button__height;
-        }
-
-        &--left {
-            padding-left: calc(#{$button__height} + #{$button__padding--x});
-            padding-right: #{$button__padding--x};
-
-            >.#{$pl-prefix}icon {
-                left: 0;
-                right: auto;
-            }
-        }
     }
 
-    &--small.#{$pl-prefix}button--has-icon {
-        padding-right: calc(24px + #{$button__padding--x});
+    &--has-icon--left {
+        padding-left: calc(#{$button__height} + #{$button__padding--x});
+        padding-right: #{$button__padding--x};
 
-        &--left {
-            padding-right: #{$button__height--small};
-            padding-left: calc(24px + #{$button__padding--x});
+        .#{$pl-prefix}icon {
+            left: 0;
+            right: auto;
         }
-
-        >.#{$pl-prefix}icon {
-            width: $button__height--small;
-        }
-    }
-}
-
-// ICON-ONLY BUTTONS
-.#{$pl-prefix}button--icon-only {
-    height: $button__height;
-    padding: 8px;
-    width: $button__height;
-
-    &.#{$pl-prefix}button--small {
-        height: $button__height--small;
-        padding: 4px;
-        width: $button__height--small;
     }
 }

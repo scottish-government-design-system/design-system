@@ -56,14 +56,8 @@ $link__border-width: 3px;
         $spritename: 'chevron_right';
     }
 
-    background-image: url(#{$iconsfile}##{$spritename});
-
-    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
-        background-color: currentColor;
-        background-image: none;
-        -webkit-mask-image: url(#{$iconsfile}##{$spritename});
-        mask-image: url(#{$iconsfile}##{$spritename});
-    }
+    $octothorpe: '#';
+    @include icon-mask(#{$iconsfile}#{$octothorpe}#{$spritename});
 }
 
 
@@ -292,5 +286,19 @@ $link__border-width: 3px;
             margin-right: 0;
             width: auto;
         }
+    }
+}
+
+@mixin icon-mask($url) {
+    /*
+     * [1] for IE11 support, use image without clip path
+     */
+    background-image: url($url);
+
+    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+        background-color: currentColor;
+        background-image: none;
+        -webkit-mask-image: url($url);
+        mask-image: url($url);
     }
 }

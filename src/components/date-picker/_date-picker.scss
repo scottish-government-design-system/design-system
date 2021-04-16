@@ -48,12 +48,19 @@
                 background-color: transparent;
                 color: $ds_colour__text !important;
                 font-weight: $normal;
-                height: 40px;
+                min-height: 40px;
                 margin: 0;
                 padding: 4px;
-                width:  32px;
+                min-width:  32px;
 
                 @include blocklink(null, inline-block);
+
+                .#{$pl-prefix}icon {
+                    height: 32px;
+                    padding: 0;
+                    position: static;
+                    width: 24px;
+                }
             }
         }
 
@@ -80,10 +87,10 @@
                 background-color: transparent;
                 color: $ds_colour__text;
                 font-weight: $normal;
-                height: 40px;
+                min-height: 40px;
                 margin: 0;
                 padding: 0;
-                width: 40px;
+                min-width: 40px;
 
                 @include blocklink;
 
@@ -118,10 +125,6 @@
                         width: 4px;
                     }
                 }
-
-                // &[tabindex="0"]:not(:focus) {
-                //
-                // }
 
                 &.#{$pl-prefix}selected:not(:focus) {
                     background-color: $ds_colour__text;

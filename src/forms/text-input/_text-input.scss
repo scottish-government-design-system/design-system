@@ -38,52 +38,7 @@
         font-weight: $bold;
     }
 
-    &__wrapper {
-        margin-bottom: 24px;
 
-        > .#{$pl-prefix}input {
-            float: left;
-            margin-bottom: 0;
-        }
-
-        > .#{$pl-prefix}button {
-            margin: 0;
-        }
-
-        &--has-icon {
-            display: inline-block;
-            position: relative;
-
-            > .#{$pl_prefix}button {
-                margin-top: 0;
-                margin-bottom: 0;
-                position: absolute;
-                right: 0;
-                top: 0;
-            }
-
-            > .#{$pl_prefix}input {
-                padding-right: 56px;
-            }
-        }
-    }
-
-    @supports (display: flex) {
-        &__wrapper {
-            display: flex;
-
-            > * {
-                float: none;
-            }
-
-            &--has-icon {
-                > .#{$pl_prefix}button {
-                    margin-left: -56px;
-                    position: static;
-                }
-            }
-        }
-    }
 }
 
 // width variants: fixed
@@ -112,13 +67,42 @@ $text-input-fluid-widths: (
     'three-quarters' 75
 );
 
-// @include media-query(medium) {
-    @each $width in $text-input-fluid-widths {
-        $name:  nth($width, 1);
-        $value: nth($width, 2);
+@each $width in $text-input-fluid-widths {
+    $name:  nth($width, 1);
+    $value: nth($width, 2);
 
-        .#{$pl_prefix}input--fluid-#{$name} {
-            max-width: #{($value) * 1%};
+    .#{$pl_prefix}input--fluid-#{$name} {
+        max-width: #{($value) * 1%};
+    }
+}
+
+.#{$pl_prefix}input__wrapper {
+    display: block;
+    margin-bottom: 24px;
+
+    &--has-icon {
+        position: relative;
+
+        .#{$pl_prefix}input {
+            margin-right: -48px;
+            padding-right: 56px;
+        }
+
+        .#{$pl_prefix}icon {
+            height: 32px;
+            padding: 8pxpx;
+            width: 32px;
         }
     }
-// }
+
+    > * {
+        float: left;
+        margin: 0;
+    }
+
+    > .#{$pl_prefix}button {
+        margin: 0;
+        min-height: 48px;
+        min-width: 48px;
+    }
+}

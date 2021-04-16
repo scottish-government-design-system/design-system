@@ -3,7 +3,20 @@
 \*------------------------------------*/
 
 .#{$pl-prefix}icon {
+    fill: currentColor;
+    height: 24px;
+    vertical-align: middle;
+    width: 24px;
+}
+
+@for $size from 3 through 20 {
+    .#{$pl-prefix}icon--#{$size*4} {
+        width: #{$size*4}px;
+        height: #{$size*4}px;
+    }
+}
+
+.#{$pl-prefix}icon--fill {
     width: 100%;
     height: 100%;
-    fill: currentColor;
 }

@@ -22,33 +22,32 @@
 }
 
 .#{$pl-prefix}warning-text__icon {
+    $warning-text-icon-size: 32px;
+
     background: $ds_colour__text;
     border-radius: 50%;
     color: $ds_colour__white;
     display: inline-block;
-    height: 32px;
-    font-size: 32px;
+    height: $warning-text-icon-size;
+    font-size: $warning-text-icon-size;
     font-weight: 700;
     left: 24px;
-    line-height: 32px;
+    line-height: $warning-text-icon-size;
     position: absolute;
     text-align: center;
     top: 20px;
-    width: 32px;
+    width: $warning-text-icon-size;
 
-    &::before {
-        content: '!';
-    }
 
     @supports (-webkit-mask-image: url()) or (mask-image: url()) {
         &::before {
-            background-color: $ds_colour__white;
             content: '';
             display: block;
-            height: 100%;
-            -webkit-mask-image: url(#{$iconsfile}#priority_high);
-            mask-image: url(#{$iconsfile}#priority_high);
-            width: 100%;
+            height: #{$warning-text-icon-size - 4px};
+            margin: 2px;
+
+            $octothorpe: '#';
+            @include icon-mask(#{$iconsfile}#{$octothorpe}priority_high);
         }
     }
 }

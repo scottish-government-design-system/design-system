@@ -2,12 +2,12 @@
     $BACK TO TOP
 \*------------------------------------*/
 
-.ds_back-to-top {
+.#{$pl-prefix}back-to-top {
     display: none;
 }
 
 @media only screen {
-    .ds_back-to-top {
+    .#{$pl-prefix}back-to-top {
         bottom: 56px;
         display: block;
         pointer-events: none;
@@ -37,16 +37,14 @@
         }
 
         &__icon {
-            height: 24px;
             position: absolute;
             right: 8px;
             top: 8px;
-            width: 24px;
         }
     }
 
     @include media-query(medium) {
-        .ds_back-to-top__icon {
+        .#{$pl-prefix}back-to-top__icon {
             top: 12px;
         }
     }

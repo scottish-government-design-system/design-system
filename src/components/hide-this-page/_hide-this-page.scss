@@ -46,7 +46,7 @@
 }
 
 @include media-query(medium) {
-    .ds_hide-page {
+    .#{$pl-prefix}hide-page {
         @include block-margins;
         background-color: rgba(255, 255, 255, 0.9);
         left: auto;

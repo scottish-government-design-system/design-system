@@ -107,6 +107,9 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         top: 8px;
         width: 40px;
 
+        min-height: 0;
+        min-width: 0;
+
         &:hover {
             background-color: transparent;
         }
