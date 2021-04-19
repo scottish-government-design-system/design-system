@@ -4,9 +4,16 @@
 
 .#{$pl-prefix}icon {
     fill: currentColor;
-    height: 24px;
+    height: calc(24em/#{$root-font-size/1px});
     vertical-align: middle;
-    width: 24px;
+    width: calc(24em/#{$root-font-size/1px});
+}
+
+@include media-query(medium) {
+    .#{$pl-prefix}icon {
+        height: calc(24em/#{$root-font-size--medium/1px});
+        width: calc(24em/#{$root-font-size--medium/1px});
+    }
 }
 
 @for $size from 3 through 20 {

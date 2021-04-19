@@ -162,6 +162,7 @@
     .#{$pl-prefix}datepicker {
 
         &__dialog {
+            clear: both;
             position: static;
 
             &__header {
