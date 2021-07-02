@@ -48,28 +48,3 @@ $site-search__background-colour: $ds_colour__grey--light !default;
         background-color: $ds_colour__brand--secondary;
     }
 }
-
-@include media-query(medium-down) {
-    .#{$pl-prefix}site-search--collapsible {
-        position: absolute;
-        right: 16px;
-        left: calc(100% - 16px);
-        transition: left $transition-in-time;
-
-        .#{$pl-prefix}site-search__input[type="text"] {
-            opacity: 0;
-            padding: 0;
-
-            transition: all $transition-in-time;
-        }
-    }
-
-    .#{$pl-prefix}site-search--expanded {
-        left: 16px;
-
-        .#{$pl-prefix}site-search__input[type="text"] {
-            opacity: 1;
-            padding: 0 $site-search__height 0 24px;
-        }
-    }
-}

@@ -18,69 +18,51 @@ describe('site navigation', () => {
 
     describe('with site navigation', () => {
         beforeEach(() => {
-            window.scrollTo = () => {};
-
             testObj.siteNavigationElement = document.querySelector('[data-module="ds-mobile-navigation-menu"]');
             testObj.siteNavigationModule = new MobileMenu(testObj.siteNavigationElement);
-
-            testObj.siteNavigationModule.init();
         });
 
-        describe('menu toggle button', () => {
-            it ('should toggle the display of the mobile menu', () => {
-                const menuToggleButton = document.querySelector('.js-toggle-menu');
+        describe('DOM transform', () => {
+            it('should replace the label emlement with a button with certain expected attributes', () => {
+                const label = document.querySelector('.js-toggle-menu');
+                const expectedAttribs = {
+                    classList: label.classList,
+                    controls: label.getAttribute('aria-controls'),
+                    expanded: false
+                };
+                testObj.siteNavigationModule.init();
+                expectedAttribs.classList.add('ds_link');
 
-                spyOn(testObj.siteNavigationModule, 'openMenu');
-                spyOn(testObj.siteNavigationModule, 'closeMenu');
+                const button = document.querySelector('.js-toggle-menu');
+                expect(document.querySelectorAll('.js-toggle-menu').length).toEqual(1);
+                expect(button.classList).toEqual(expectedAttribs.classList);
+                expect(button.getAttribute('aria-controls')).toEqual(expectedAttribs.controls);
+                expect(button.getAttribute('aria-expanded')).toEqual(expectedAttribs.expanded.toString());
+            });
+        });
 
+        describe('open/close menu', () => {
+            it('should show/hide the menu on click of the menu button', () => {
+                testObj.siteNavigationModule.init();
+
+                const button = document.querySelector('.js-toggle-menu');
+                const menu = document.querySelector('.ds_site-navigation--mobile');
+
+                // OPEN
                 const event = new Event('click');
-                menuToggleButton.dispatchEvent(event);
-                expect(testObj.siteNavigationModule.openMenu).toHaveBeenCalled();
+                button.dispatchEvent(event);
 
-                menuToggleButton.dispatchEvent(event);
-                expect(testObj.siteNavigationModule.closeMenu).toHaveBeenCalled();
+                expect(menu.classList.contains('ds_site-navigation--open')).toBeTruthy();
+                expect(button.classList.contains('ds_site-header__control--active')).toBeTruthy();
+                expect(button.getAttribute('aria-expanded')).toEqual(true.toString());
+
+                // CLOSE
+                button.dispatchEvent(event);
+
+                expect(menu.classList.contains('ds_site-navigation--open')).toBeFalsy();
+                expect(button.classList.contains('ds_site-header__control--active')).toBeFalsy();
+                expect(button.getAttribute('aria-expanded')).toEqual(false.toString());
             });
         });
-
-        describe('menu close button', () => {
-            it ('should close the mobile menu', () => {
-                const menuCloseButton = document.querySelector('.js-close-menu');
-
-                spyOn(testObj.siteNavigationModule, 'closeMenu');
-
-                const event = new Event('click');
-                menuCloseButton.dispatchEvent(event);
-                expect(testObj.siteNavigationModule.closeMenu).toHaveBeenCalled();
-            });
-        });
-
-        describe('open menu function', () => {
-            it ('should close the mobile menu', () => {
-                const menuElement = document.querySelector('#mobile-navigation-menu');
-                testObj.siteNavigationModule.openMenu(menuElement);
-            });
-        });
-
-        describe('close menu function', () => {
-            it ('should close the mobile menu', () => {
-                testObj.siteNavigationModule.closeMenu();
-            });
-        });
-    });
-
-    describe('with offset element', () => {
-        it('should place the menu below a specified offset element', () => {
-            testObj.siteNavigationElement = document.querySelector('[data-module="ds-mobile-navigation-menu"]');
-            testObj.siteNavigationElement.dataset.offsetselector = '#offsetelement';
-
-            testObj.siteNavigationModule = new MobileMenu(testObj.siteNavigationElement);
-
-            testObj.siteNavigationModule.init();
-
-            testObj.siteNavigationModule.openMenu();
-
-            expect(testObj.siteNavigationModule.menuElement.style.top).toEqual(document.querySelector('#offsetelement').style.height);
-        });
-
     });
 });

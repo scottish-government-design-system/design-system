@@ -3,85 +3,45 @@
 class MobileMenu {
     constructor (mobileMenu) {
         this.mobileMenu = mobileMenu;
-        this.menuElement = document.querySelector('#mobile-navigation-menu');
     }
 
     init() {
-        if (!this.mobileMenu) {
-            return;
+        if (this.mobileMenu) {
+            this.setupMobileNavigation();
         }
+    }
 
-        const menuToggleButton = document.querySelector('.js-toggle-menu');
-        const menuCloseButton = document.querySelector('.js-close-menu');
+    setupMobileNavigation() {
+        // dom transform:
+        const oldMenuButton = document.querySelector('.js-toggle-menu');
+        const newMenuButton = document.createElement('button');
+        newMenuButton.innerHTML = oldMenuButton.innerHTML;
+        newMenuButton.setAttribute('class', oldMenuButton.getAttribute('class'));
+        newMenuButton.classList.add('ds_link');
+        newMenuButton.setAttribute('aria-controls', oldMenuButton.getAttribute('aria-controls'));
+        newMenuButton.setAttribute('aria-expanded', false);
+        oldMenuButton.parentNode.appendChild(newMenuButton);
+        oldMenuButton.parentNode.removeChild(oldMenuButton);
 
-        menuToggleButton.addEventListener('click', () => {
-            this.menuElement.classList.toggle('menu-is-open');
-            const menuIsOpen = this.menuElement.classList.contains('menu-is-open');
+        // events
+        newMenuButton.addEventListener('click', (event) => {
+            event.preventDefault();
 
-            if (menuIsOpen) {
-                this.openMenu();
+            this.mobileMenu = document.getElementById(newMenuButton.getAttribute('aria-controls'));
+
+            document.documentElement.style.setProperty('--mobile-menu-height', this.mobileMenu.scrollHeight + 'px');
+
+            if (this.mobileMenu.classList.contains('ds_site-navigation--open')) {
+                this.mobileMenu.classList.remove('ds_site-navigation--open');
+                newMenuButton.classList.remove('ds_site-header__control--active');
+                newMenuButton.setAttribute('aria-expanded', false);
             } else {
-                this.closeMenu();
+                this.mobileMenu.style.maxHeight = this.mobileMenu.scrollHeight;
+                this.mobileMenu.classList.add('ds_site-navigation--open');
+                newMenuButton.classList.add('ds_site-header__control--active');
+                newMenuButton.setAttribute('aria-expanded', true);
             }
-
-            menuToggleButton.setAttribute('aria-expanded', menuIsOpen);
-            menuCloseButton.setAttribute('aria-expanded', menuIsOpen);
-            menuIsOpen? menuToggleButton.classList.add('ds_mobile-navigation__button--open') : menuToggleButton.classList.remove('ds_mobile-navigation__button--open');
         });
-
-        menuCloseButton.addEventListener('click', () => {
-            this.menuElement.classList.remove('menu-is-open');
-            this.closeMenu();
-
-            menuToggleButton.setAttribute('aria-expanded', false);
-            menuCloseButton.setAttribute('aria-expanded', false);
-            menuToggleButton.classList.remove('ds_mobile-navigation__button--open');
-        });
-    }
-
-    openMenu () {
-        window.scrollTo(0, window.scrollX);
-        const htmlElement = document.querySelector('html');
-        const bodyElement = document.querySelector('body');
-
-        // position overlay
-        const offsetElement = document.querySelector(this.menuElement.dataset.offsetselector);
-        const offsetHeight = offsetElement ? offsetElement.offsetHeight : 0;
-        const offsetTop = offsetElement ? offsetElement.offsetTop : 0;
-        this.menuElement.style.top = offsetHeight + 'px';
-
-        // handle any need for the menu to scroll if it is longer than the viewport
-        if ((this.menuElement.offsetHeight + offsetHeight) > window.innerHeight) {
-            this.menuElement.style.bottom = offsetHeight - window.innerHeight + 'px';
-        } else {
-            this.menuElement.style.bottom = null;
-        }
-
-        const menuHeight = this.menuElement.offsetHeight;
-        this.menuElement.querySelector('.ds_mobile-navigation__backdrop').style.top = menuHeight + offsetHeight + offsetTop + 'px';
-
-        // set overflow on body and html
-        htmlElement.style.position = 'relative';
-        bodyElement.style.position = 'relative';
-
-        htmlElement.classList.add('menu-is-open');
-        htmlElement.style.height = window.innerHeight + "px";
-        bodyElement.style.height = window.innerHeight + "px";
-    }
-
-    closeMenu () {
-        const htmlElement = document.querySelector('html');
-        const bodyElement = document.querySelector('body');
-        const mobileNavigation = document.querySelector('.ds_mobile-navigation');
-
-        // unset overflow on body and html
-        htmlElement.style.position = null;
-        bodyElement.style.position = null;
-        htmlElement.classList.remove('menu-is-open');
-        htmlElement.style.height = null;
-        bodyElement.style.height = null;
-
-        mobileNavigation.style.bottom = null;
     }
 }
 
