@@ -33,6 +33,7 @@ class Accordion {
         itemButton.classList.add('ds_accordion-item__header-button');
         itemButton.classList.add('js-accordion-button');
         itemIndicator.classList.add('ds_accordion-item__indicator');
+        itemButton.id = itemTitle.id;
 
         // we keep the control present but make it unavailable in the tab order or to screen readers
         itemControl.classList.remove('visually-hidden');

@@ -53,7 +53,8 @@
                 padding: 4px;
                 min-width:  32px;
 
-                @include blocklink(null, inline-block);
+                @include blocklink;
+                display: inline-block;
 
                 .#{$pl-prefix}icon {
                     height: 32px;

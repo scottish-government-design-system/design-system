@@ -1003,11 +1003,11 @@ describe('tracking', () => {
 
         describe('mobile nav', () => {
             beforeEach(() => {
-                testObj.nav = testObj.scope.querySelector('.ds_mobile-navigation');
+                testObj.nav = testObj.scope.querySelector('.ds_site-navigation--mobile');
             });
 
             it('should add a generated data attribute to mobile navigation links (one-indexed)', () => {
-                const links = [].slice.call(testObj.nav.querySelectorAll('.ds_mobile-navigation__link'));
+                const links = [].slice.call(testObj.nav.querySelectorAll('.ds_site-navigation__link'));
 
                 Tracking.add.siteNavigation();
 
@@ -1018,7 +1018,7 @@ describe('tracking', () => {
             });
 
             it('should NOT add a generated data attribute to mobile navigation links with attributes already set', () => {
-                const links = [].slice.call(testObj.nav.querySelectorAll('.ds_mobile-navigation__link'));
+                const links = [].slice.call(testObj.nav.querySelectorAll('.ds_site-navigation__link'));
                 links[0].setAttribute('data-header', 'header-foo');
 
                 Tracking.add.siteNavigation();
@@ -1027,7 +1027,7 @@ describe('tracking', () => {
             });
 
             it('should add a device data attribute to mobile navigation links', () => {
-                const links = [].slice.call(testObj.nav.querySelectorAll('.ds_mobile-navigation__link'));
+                const links = [].slice.call(testObj.nav.querySelectorAll('.ds_site-navigation__link'));
 
                 Tracking.add.siteNavigation();
 
@@ -1035,7 +1035,7 @@ describe('tracking', () => {
             });
 
             it('should NOT add a device data attribute to mobile navigation links with attributes already set', () => {
-                const links = [].slice.call(testObj.nav.querySelectorAll('.ds_mobile-navigation__link'));
+                const links = [].slice.call(testObj.nav.querySelectorAll('.ds_site-navigation__link'));
                 links[0].setAttribute('data-device', 'foo');
 
                 Tracking.add.siteNavigation();
@@ -1044,14 +1044,14 @@ describe('tracking', () => {
             });
 
             it('should add a data attribute to the mobile nav\'s toggle button if present', () => {
-                const toggle = testObj.nav.querySelector('.js-toggle-menu');
                 Tracking.add.siteNavigation();
+                const toggle = testObj.scope.querySelector('.js-toggle-menu');
 
                 expect(toggle.getAttribute('data-header')).toEqual('header-menu-toggle');
             });
 
             it('should NOT a data attribute to the mobile nav\'s toggle button if NOT present', () => {
-                const toggle = testObj.nav.querySelector('.js-toggle-menu');
+                const toggle = testObj.scope.querySelector('.js-toggle-menu');
                 toggle.parentNode.removeChild(toggle);
 
                 Tracking.add.siteNavigation();
@@ -1062,7 +1062,7 @@ describe('tracking', () => {
 
         describe('desktop nav', () => {
             beforeEach(() => {
-                testObj.nav = testObj.scope.querySelector('.ds_site-navigation');
+                testObj.nav = testObj.scope.querySelector('.ds_site-navigation:not(.ds_site-navigation--mobile)');
             });
 
             it ('should add a generated data attribute to site navigation links (one-indexed)', () => {

@@ -21,7 +21,7 @@
         [2] 56px is the button's height plus 8px spacing
         */
         &__button {
-            @include blocklink();
+            @include blocklink;
             @include small-size;
 
             background-color: rgba(255,255,255,0.9);

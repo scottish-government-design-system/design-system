@@ -1,7 +1,6 @@
 import Accordion from './components/accordion/accordion';
 import BackToTop from './components/back-to-top/back-to-top';
 import CharacterCount from './forms/character-count/character-count';
-import CollapsibleSearchBox from './components/site-search/site-search';
 import CookieNotification from './components/cookie-notification/cookie-notification';
 import DSDatePicker from './components/date-picker/date-picker';
 import HidePage from './components/hide-this-page/hide-this-page';
@@ -16,7 +15,6 @@ const components = {
     Accordion,
     BackToTop,
     CharacterCount,
-    CollapsibleSearchBox,
     CookieNotification,
     DSDatePicker,
     HidePage,
@@ -67,9 +65,6 @@ function initAll(scope = document) {
     const notificationBanners = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]'));
     notificationBanners.forEach(notificationBanner => new NotificationBanner(notificationBanner).init());
 
-    const searchBoxes = [].slice.call(scope.querySelectorAll('[data-module="ds-site-search"]'));
-    searchBoxes.forEach(searchBox => new CollapsibleSearchBox(searchBox).init());
-
     const sideNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-side-navigation"]'));
     sideNavigations.forEach(sideNavigation => new SideNavigation(sideNavigation).init());
 
@@ -94,7 +89,6 @@ export {
     Accordion,
     BackToTop,
     CharacterCount,
-    CollapsibleSearchBox,
     DSDatePicker,
     HidePage,
     MobileMenu,

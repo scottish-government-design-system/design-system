@@ -39,10 +39,11 @@ $border-width-size: 4px;
         color: $category-item__link-colour;
 
         &::before {
-            background-color: mix($ds_colour__border--highlight, $ds_colour__grey--lighter, 30%);
+            background-color: $ds_colour__border--highlight;
             bottom: 0;
             content: '';
             left: #{$border-width-size * -1};
+            opacity: 0.3;
             position: absolute;
             top: 0;
             width: $border-width-size;
@@ -54,6 +55,7 @@ $border-width-size: 4px;
 
         &:hover::before {
             background-color: $category-item__border-colour--hover;
+            opacity: 1;
         }
     }
 

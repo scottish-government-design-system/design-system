@@ -5,6 +5,7 @@
 .#{$pl-prefix}phase-banner {
     @include small-size;
     background: $ds_colour__grey--light;
+    clear: both;
     line-height: 24px;
     padding: 16px 0;
 

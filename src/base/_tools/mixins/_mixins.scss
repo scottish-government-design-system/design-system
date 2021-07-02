@@ -65,6 +65,7 @@ $link__border-width: 3px;
     color: $ds_colour__link;
     text-decoration: underline;
     outline: $link__outline-width solid transparent;
+    text-underline-offset: 1px;
     transition: color $transition-out-time, background-color $transition-out-time, outline $transition-out-time;
 
     &:hover {
@@ -94,8 +95,8 @@ $link__border-width: 3px;
  * Mixin to enforce consistency on block-style links, e.g. search results,
  * category items, etc
  */
-@mixin blocklink ($link-selector: null, $display: block) {
-    display: $display;
+@mixin blocklink ($link-selector: null, $hover: true) {
+    display: block;
     position: relative;
     transition: background-color $transition-out-time, outline-color $transition-out-time;
     z-index: 1;
@@ -107,69 +108,54 @@ $link__border-width: 3px;
         box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow;
     }
 
-    &:hover:not(:focus) {
-        background-color: $ds_colour__blocklink-bg--hover;
+    @if $hover {
+        &:hover:not(:focus) {
+            background-color: $ds_colour__blocklink-bg--hover;
+        }
     }
 
     @if $link-selector {
-        &:hover:not(:focus) {
-            background: transparent;
-        }
-
         #{$link-selector} {
-            &::after {
-                content: "";
-                height: 100%;
-                left: 0px;
-                position: absolute;
-                top: 0px;
-                width: 100%;
-                z-index: 0;
-
-                transition: background-color $transition-in-time;
-            }
-
-            &:focus {
-                &::after {
-                    transition-duration: 0s;
-                }
-            }
-
             &:focus:hover {
                 text-decoration: none;
             }
         }
 
-        // apply the background colour in browsers that support blend modes, so we don't obscure the text
-        @supports(mix-blend-mode: darken) {
+        /*
+            supports grid is a hack as a proxy for supports :focus-within
+        */
+        @supports (display: grid) {
             #{$link-selector} {
-                outline: 0;
+                background-color: transparent;
+                outline: none;
 
                 &::after {
-                    mix-blend-mode: darken;
-                }
-
-                &:hover {
-                    &::after {
-                        background-color: $ds_colour__blocklink-bg--hover;
-                    }
-                }
-
-                &:focus {
-                    background-color: transparent;
-                    box-shadow: none;
-                    text-decoration: underline;
+                    content: "";
+                    height: 100%;
+                    left: 0px;
+                    position: absolute;
+                    top: 0px;
+                    width: 100%;
+                    z-index: 0;
                 }
 
                 &:focus {
                     &::after {
-                        background-color: $ds_colour__blocklink-bg--focus;
-                        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow;
+                        transition-duration: 0s;
                     }
                 }
+            }
 
-                &:focus:hover {
-                    text-decoration: underline;
+            &:focus-within {
+                background-color: $ds_colour__blocklink-bg--focus !important;
+                box-shadow: inset 0 -3px #333333, inset 0 -3px #333333;
+                transition-duration: 0s;
+
+                #{$link-selector} {
+                    &:focus {
+                        box-shadow: none;
+                        background-color: transparent;
+                    }
                 }
             }
         }
@@ -267,11 +253,13 @@ $link__border-width: 3px;
     margin-left: calc(100% * #{$columns/$total} * -1);
 }
 
-@mixin layout($gutter: $grid-gap-x) {
-    margin-right: #{$gutter * -1};
+@mixin layout($gutter: $grid-gap-x, $sub: false) {
+    @if $sub {} @else {
+        margin-right: #{$gutter * -1};
+    }
     overflow: hidden;
 
-    > *[class] {
+    > * {
         margin-right: $gutter;
     }
 
@@ -281,10 +269,10 @@ $link__border-width: 3px;
         margin-right: 0;
         overflow: visible;
 
-        > *[class] {
+        > * {
             margin-left: 0;
             margin-right: 0;
-            width: auto;
+            width: auto !important;
         }
     }
 }

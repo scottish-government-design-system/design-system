@@ -86,7 +86,7 @@ input[type="submit"],
         color: $ds_colour__white;
 
         &:hover:not(:focus) {
-            background-color: rgba(red($ds_colour__brand), green($ds_colour__brand), blue($ds_colour__brand), 0.3);
+            background-color: rgba(255, 255, 255, 0.3);
             color: $ds_colour__white;
         }
     }
@@ -102,6 +102,8 @@ input[type="submit"],
         &:hover:not(:focus) {
             background-color: $ds_colour__button--secondary--hover__background;
             color: $ds_colour__button--secondary--hover;
+            outline: 2px solid currentColor;
+            outline-offset: -2px;
         }
     }
 
@@ -114,6 +116,8 @@ input[type="submit"],
         &:hover:not(:focus) {
             background-color: $ds_colour__button--cancel--hover__background;
             color: $ds_colour__button--cancel;
+            outline: 2px solid currentColor;
+            outline-offset: -2px;
         }
     }
 }

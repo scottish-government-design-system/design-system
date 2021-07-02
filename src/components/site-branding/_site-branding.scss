@@ -11,6 +11,8 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
 
 
 .#{$pl-prefix}site-branding {
+    padding: 12px 0;
+
     &__logo {
         height: $site-logo__height;
     }
@@ -29,68 +31,73 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
         @include fancy-underscore(2px);
     }
 
-    &__logo + &__title {
-        margin-top: 16px;
-    }
-
     &__title {
         font-weight: $light;
+        line-height: $site-logo__height;
+        margin-left: 24px;
+    }
+
+    &__logo,
+    &__title {
+        float: left;
+    }
+
+    &__logo {
+        &:not(:last-child)::before {
+            background: $branding__separator-colour;
+            bottom: 0;
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 0;
+            width: 1px;
+
+            pointer-events: none;
+        }
     }
 }
 
 @include media-query (medium) {
     .#{$pl-prefix}site-branding {
-        padding: 8px 0;
-
         &__link {
             margin-bottom: 0;
         }
 
-        &__logo,
-        &__title {
-            float: left;
-        }
-
         &__logo {
             height: $site-logo__height--medium;
-            max-height: unset;
 
             &:not(:last-child)::before {
-                background: $branding__separator-colour;
-                bottom: 0;
-                content: '';
-                position: absolute;
                 right: -24px;
-                top: 0;
-                width: 2px;
-
-                pointer-events: none;
             }
-        }
-
-        &__logo + &__title {
-            margin-top: 0;
         }
 
         /*
-        * [1] magic number: maximum we can accommodate in the branding content area for two-line titles
-        */
+         * [1] magic number: maximum we can accommodate in the branding content area for two-line titles
+         */
         &__title {
             font-size: $large-size;
-            line-height: 31px; /* [1] */
-
-            /* centering items without display: grid */
-            display: table;
-            height: $site-logo__height--medium;
+            line-height: $site-logo__height--medium;
             margin-left: 48px;
-
-            > * {
-                display: table-cell;
-                vertical-align: middle;
-            }
         }
     }
 }
+
+@supports (display: flex) {
+    .ds_site-branding {
+        display: flex;
+        align-items: center;
+
+        &__title {
+            line-height: 1em;
+        }
+
+        &__logo,
+        &__title {
+            float: none;
+        }
+    }
+}
+
 
 
 
@@ -102,40 +109,6 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
 
         &:not(:last-child)::before {
             background-color: $ds_colour__white;
-        }
-    }
-}
-
-
-
-
-@supports (display: grid) {
-    .#{$pl-prefix}site-branding {
-        display: grid;
-        grid-gap: 0;
-    }
-
-    @include media-query (medium) {
-        .#{$pl-prefix}site-branding {
-            align-items: center;
-            grid-template-columns: min-content auto;
-            grid-column-gap: 50px;
-
-            &__logo,
-            &__title {
-                float: none;
-            }
-
-            &__title {
-                /* override gridless fallback */
-                display: block;
-                height: auto;
-                margin-left: 0;
-
-                > * {
-                    display: block;
-                }
-            }
         }
     }
 }

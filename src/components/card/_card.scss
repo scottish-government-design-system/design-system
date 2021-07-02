@@ -99,6 +99,10 @@
     &--has-hover &__cover-link:hover::after {
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
     }
+
+    &--dark {
+        background-color: $ds_colour__grey--dark;
+    }
 }
 
 @supports(object-fit: contain) {

@@ -528,7 +528,12 @@ const tracking = {
                 const links = [].slice.call(siteNavigation.querySelectorAll('.ds_site-navigation__link'));
                 links.forEach((link, index) => {
                     if (!link.getAttribute('data-device')) {
-                        link.setAttribute('data-device', 'desktop');
+                        if (link.closest('.ds_site-navigation--mobile')) {
+                            link.setAttribute('data-device', 'mobile');
+                        } else {
+                            link.setAttribute('data-device', 'desktop');
+                        }
+
                     }
                     if (!link.getAttribute('data-header')) {
                         link.setAttribute('data-header', `header-link-${index + 1}`);
@@ -536,22 +541,12 @@ const tracking = {
                 });
             });
 
-            const mobileNavigations = tracking.gatherElements('ds_mobile-navigation', scope);
+            const mobileNavigations = tracking.gatherElements('ds_site-navigation--mobile', scope);
             mobileNavigations.forEach(mobileNavigation => {
-                const toggler = mobileNavigation.querySelector('.ds_mobile-navigation__button');
+                const toggler = mobileNavigation.parentNode.querySelector('.js-toggle-menu');
                 if (toggler) {
                     toggler.setAttribute('data-header', 'header-menu-toggle');
                 }
-
-                const links = [].slice.call(mobileNavigation.querySelectorAll('.ds_mobile-navigation__link'));
-                links.forEach((link, index) => {
-                    if (!link.getAttribute('data-device')) {
-                        link.setAttribute('data-device', 'mobile');
-                    }
-                    if (!link.getAttribute('data-header')) {
-                        link.setAttribute('data-header', `header-link-${index + 1}`);
-                    }
-                });
             });
         },
 

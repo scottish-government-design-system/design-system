@@ -778,58 +778,21 @@
 </div>
 
 <div id="site-navigation">
-    <nav class="ds_mobile-navigation" data-module="ds-mobile-navigation-menu">
-        <button class="js-toggle-menu  ds_mobile-navigation__button" aria-expanded="false" aria-controls="mobile-navigation-menu">
-            <span class="ds_site-header__control-text">Menu</span>
+    <label aria-controls="mobile-navigation" class="ds_site-header__control  js-toggle-menu" for="menu">
+        <span class="ds_site-header__control-text">Menu</span>
+        <svg class="ds_icon  ds_site-header__control-icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#menu"></use></svg>
+    </label>
 
-            <svg class="ds_icon  ds_site-header__control-icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#menu"></use></svg>
-            <svg class="ds_icon  ds_site-header__control-icon--close  ds_site-header__control-icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#clear"></use></svg>
-        </button>
-
-        <div id="mobile-navigation-menu" data-offsetselector=".ds_site-header">
-            <div class="ds_mobile-navigation__content">
-
-                <div class="ds_mobile-navigation__block">
-                    <ul class="ds_mobile-navigation__list">
-                        <li class="ds_mobile-navigation__item">
-                            <a href="#" class="ds_mobile-navigation__link">
-                                Get started
-                            </a>
-                        </li>
-                        <li class="ds_mobile-navigation__item">
-                            <a href="#" class="ds_mobile-navigation__link">
-                                Styles
-                            </a>
-                        </li>
-                        <li class="ds_mobile-navigation__item">
-                            <span class="ds_mobile-navigation__link  ds_current">
-                                Components
-                            </span>
-                        </li>
-                        <li class="ds_mobile-navigation__item">
-                            <a href="#" class="ds_mobile-navigation__link">
-                                Patterns
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <button type="button" class="ds_mobile-navigation__backdrop  js-close-menu" aria-expanded="false" aria-controls="mobile-navigation-menu">
-                    <span class="visually-hidden">Close menu</span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <nav class="ds_site-navigation">
+    <input class="ds_site-navigation__toggle" id="menu" type="checkbox"/>
+    <nav id="mobile-navigation" class="ds_site-navigation  ds_site-navigation--mobile" data-module="ds-mobile-navigation-menu">
         <ul class="ds_site-navigation__list">
             <li class="ds_site-navigation__item">
-                <a href="#" class="ds_site-navigation__link">
+                <a href="/get-started/" class="ds_site-navigation__link">
                     Get started
                 </a>
             </li>
             <li class="ds_site-navigation__item">
-                <a href="#" class="ds_site-navigation__link">
+                <a href="/styles/" class="ds_site-navigation__link">
                     Styles
                 </a>
             </li>
@@ -839,8 +802,43 @@
                 </span>
             </li>
             <li class="ds_site-navigation__item">
-                <a href="#" class="ds_site-navigation__link">
+                <a href="/patterns/" class="ds_site-navigation__link">
                     Patterns
+                </a>
+            </li>
+            <li class="ds_site-navigation__item">
+                <a href="/accessibility/" class="ds_site-navigation__link">
+                    Accessibility
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <nav class="ds_site-navigation">
+        <ul class="ds_site-navigation__list">
+            <li class="ds_site-navigation__item">
+                <a href="/get-started/" class="ds_site-navigation__link">
+                    Get started
+                </a>
+            </li>
+            <li class="ds_site-navigation__item">
+                <a href="/styles/" class="ds_site-navigation__link">
+                    Styles
+                </a>
+            </li>
+            <li class="ds_site-navigation__item">
+                <span class="ds_site-navigation__link  ds_current">
+                    Components
+                </span>
+            </li>
+            <li class="ds_site-navigation__item">
+                <a href="/patterns/" class="ds_site-navigation__link">
+                    Patterns
+                </a>
+            </li>
+            <li class="ds_site-navigation__item">
+                <a href="/accessibility/" class="ds_site-navigation__link">
+                    Accessibility
                 </a>
             </li>
         </ul>

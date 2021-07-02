@@ -72,11 +72,13 @@ $side-nav__outline-width: 2px;
         color: $ds_colour__link--current;
     }
 
-    #show-side-navigation:checked ~ &__list {
+    #show-side-navigation:checked ~ &__list,
+    #show-side-navigation:checked ~ &__list &__list {
         display: block;
     }
 
     &__list {
+        display: none;
         list-style-type: none;
         margin: 8px 16px;
     }
@@ -129,7 +131,7 @@ $side-nav__outline-width: 2px;
             content: none;
         }
 
-        &.#{$pl-prefix}current {
+        &.#{$pl-prefix}current:not(:focus) {
             background-color: $ds_colour__link--current__background;
 
             &:hover {

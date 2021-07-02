@@ -2,31 +2,36 @@
     SEARCH RESULT
 \*------------------------------------*/
 
-.#{$pl-prefix}search-result {
-    @include blocklink('.#{$pl-prefix}search-result__link');
-
+%x#{$pl-prefix}search-result__outer {
     border-bottom: 1px solid $ds_colour__border--light;
     border-width: 1px 0;
-    color: $ds_colour__text !important;
     margin: 0 #{$mobile-body-margin * -1};
+
+    &:first-of-type {
+        border-top: 1px solid $ds_colour__border--light;
+    }
+}
+
+%x#{$pl-prefix}search-result__inner {
+    color: $ds_colour__text !important;
     padding: 24px 16px 23px;
     position: relative;
     text-decoration: none;
 
     &:first-of-type {
-        border-top: 1px solid $ds_colour__border--light;
         padding-top: 23px;
     }
 
-    &__link::after {
-        content: "";
-        height: 100%;
-        left: 0px;
-        position: absolute;
-        top: 0px;
-        width: 100%;
-        z-index: 0;
+    > :last-child {
+        margin-bottom: 0;
     }
+}
+
+.#{$pl-prefix}search-result {
+    @extend %x#{$pl-prefix}search-result__outer;
+    @extend %x#{$pl-prefix}search-result__inner;
+
+    @include blocklink('.#{$pl-prefix}search-result__link');
 
     &__label {
         font-weight: $bold;
@@ -44,10 +49,6 @@
         margin-top: 0 !important;
 
         transition: color $transition-out-time;
-    }
-
-    &__summary {
-        margin-bottom: 0;
     }
 }
 

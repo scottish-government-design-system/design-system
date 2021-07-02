@@ -109,3 +109,14 @@
         padding-left: 16px;
     }
 }
+
+@mixin field-error {
+    border-color: $ds_colour__state--negative;
+    border-width: $field-border-width--error;
+    padding: 4px;
+
+    &:focus {
+        border-color: currentColor;
+        box-shadow: none;
+    }
+}

@@ -25,7 +25,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     /* [1] compensate for bottom margin on parent */
     &__content {
-        justify-content: space-between;
         padding: 16px 0 15px; /* [1] */
         position: relative;
 
@@ -62,7 +61,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     &__icon {
         display: block;
-        float: left;
+        position: absolute;
         height: 32px;
         line-height: 0;
         margin-left: -4px;
@@ -71,10 +70,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         width: 32px;
 
         + .#{$pl-prefix}notification__text {
-            margin-left: 16px;
+            margin-left: 40px;
 
             @include media-query(medium) {
-                margin-left: 40px;
+                margin-left: 64px;
             }
         }
 

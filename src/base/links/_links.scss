@@ -27,8 +27,10 @@ a,
             color: $ds_colour__link--reversed--focus;
         }
 
-        &:hover {
+        &:hover:not(:focus) {
+            background-color: transparent;
             color: $ds_colour__link--reversed--hover;
+            outline-color: transparent;
         }
     }
 }
@@ -42,7 +44,7 @@ h1, h2, h3, h4 {
     a {
         text-decoration: none;
 
-        &:hover {
+        &:hover:not(:focus) {
             text-decoration: underline;
         }
     }

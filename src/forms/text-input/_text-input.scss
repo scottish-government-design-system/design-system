@@ -79,30 +79,31 @@ $text-input-fluid-widths: (
 .#{$pl_prefix}input__wrapper {
     display: block;
     margin-bottom: 24px;
+    overflow: auto;
 
-    &--has-icon {
-        position: relative;
-
-        .#{$pl_prefix}input {
-            margin-right: -48px;
-            padding-right: 56px;
-        }
-
-        .#{$pl_prefix}icon {
-            height: 32px;
-            padding: 8pxpx;
-            width: 32px;
-        }
+    .#{$pl_prefix}input {
+        float: left;
+        margin-bottom: 0;
+        margin-right: -48px;
+        padding-right: 56px;
     }
 
-    > * {
-        float: left;
-        margin: 0;
+    .#{$pl_prefix}icon {
+        height: 32px;
+        padding: 8px;
+        width: 32px;
     }
 
     > .#{$pl_prefix}button {
         margin: 0;
         min-height: 48px;
         min-width: 48px;
+    }
+}
+
+@supports (display: flex) {
+    .#{$pl_prefix}input__wrapper {
+        display: flex;
+        overflow: visible;
     }
 }

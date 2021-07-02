@@ -67,6 +67,14 @@
     width: 100%;
 }
 
-.#{$pl_prefix}select-wrapper.#{$pl_prefix}input--error {
+/**
+ [1] legacy, former class name
+ */
+.#{$pl_prefix}select-wrapper{
     min-height: #{$field-border-width--error + 48px};
+
+    &.#{$pl_prefix}input--error, /* [1] */
+    &.#{$pl_prefix}select--error {
+        @include field-error;
+    }
 }
