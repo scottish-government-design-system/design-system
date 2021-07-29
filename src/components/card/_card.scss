@@ -20,27 +20,12 @@
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
     }
 
+
     &__media {
-        background-color: $ds_colour__text;
-        height: 0;
-        margin-bottom: 0;
-        overflow: hidden;
-        padding-bottom: calc(900%/16);
-        pointer-events: none;
-        position: relative;
-        z-index: 1;
-
-        //2.35:1 image ratio
-        &--235 {
-            padding-bottom: calc(10000%/235);
+        &--small-mobile {
+            max-width: 291px;
+            margin: 16px auto 0;
         }
-    }
-
-    &__image {
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
     }
 
     &__content {
