@@ -22,9 +22,11 @@
 
 
     &__media {
-        &--small-mobile {
-            max-width: 291px;
-            margin: 16px auto 0;
+        @include media-query (medium-down) {
+            &--small-mobile {
+                max-width: 291px;
+                margin: 16px auto 0;
+            }
         }
     }
 
