@@ -1,3 +1,5 @@
+/* global document, window */
+
 'use strict';
 
 class HidePage {

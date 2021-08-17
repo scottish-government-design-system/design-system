@@ -9,7 +9,9 @@ import MobileTables from './components/table/table';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';
 import Tabs from './components/tabs/tabs';
+
 import tracking from './base/tracking/tracking';
+import aspectBoxFallback from './components/aspect-box/aspect-box-fallback';
 
 const components = {
     Accordion,
@@ -78,6 +80,7 @@ function initAll(scope = document) {
     tabSets.forEach(tabSet => new Tabs(tabSet).init());
 
     tracking.init();
+    aspectBoxFallback();
 }
 
 window.DS = window.DS || {};

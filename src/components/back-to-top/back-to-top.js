@@ -1,3 +1,7 @@
+/* global document, window */
+
+'use strict';
+
 class BackToTop {
     constructor(el, _window = window, options = {}) {
         if (options.footerElSelector) {

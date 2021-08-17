@@ -2,6 +2,7 @@
  * [1] default aspect ratio is 16:9
  */
 .#{$pl-prefix}aspect-box {
+    overflow: hidden;
     position: relative;
     padding-bottom: calc(900%/16); /* [1] */
 
@@ -19,13 +20,21 @@
     &--235 {
         padding-bottom: calc(10000%/235);
     }
-}
 
-.#{$pl-prefix}aspect-box__inner {
-    height: 100%;
-    left: 0;
-    width: 100%;
-    object-fit: cover;
-    position: absolute;
-    right: 0;
+    &--fallback {
+        background: center / cover no-repeat url();
+    }
+
+    &--fallback &__inner {
+        display: none;
+    }
+
+    &__inner {
+        height: 100%;
+        left: 0;
+        width: 100%;
+        object-fit: cover;
+        position: absolute;
+        right: 0;
+    }
 }

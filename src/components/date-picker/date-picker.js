@@ -1,3 +1,7 @@
+/* global document, window */
+
+'use strict';
+
 class DSDatePicker {
     constructor(el, options = {}) {
         if (!el) {

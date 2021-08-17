@@ -165,7 +165,7 @@ describe('tracking', () => {
 
                 let event = new Event('change');
                 select.dispatchEvent(event);
-                expect (window.dataLayer.push).toHaveBeenCalledWith({"event":"select-mushroom-boletus"})
+                expect(window.dataLayer.push).toHaveBeenCalledWith({ "event": "select-mushroom-boletus" });
             });
 
             it('shouldn\'t bind select tracking events multiple times', () => {
@@ -519,6 +519,14 @@ describe('tracking', () => {
             Tracking.add.errorMessages(defaultEl);
 
             expect(messageEl.getAttribute('data-form')).toEqual('error-foo');
+        });
+
+        it('should NOT add a data attribute if there is no "ds_question" element (we do not know what the scope of the field is)', () => {
+            const noQuestionEl = testObj.scope.querySelector('[data-unit="no-question"]');
+            const messageEl = noQuestionEl.querySelector('.ds_question__error-message');
+            Tracking.add.errorMessages(noQuestionEl);
+
+            expect(messageEl.getAttribute('data-form')).toBeNull();
         });
     });
 
@@ -1146,13 +1154,13 @@ describe('tracking', () => {
 
     describe('init all', () => {
         it('should set up tracking on every defined component', () => {
-            for (const [key, value] of Object.entries(Tracking.add)) {
+            for (const [key] of Object.entries(Tracking.add)) {
                 spyOn(Tracking.add, key);
             }
 
             Tracking.init();
 
-            for (const [key, value] of Object.entries(Tracking.add)) {
+            for (const [key] of Object.entries(Tracking.add)) {
                 expect(Tracking.add[key]).toHaveBeenCalled();
             }
         });

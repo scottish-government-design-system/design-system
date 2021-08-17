@@ -36,6 +36,10 @@
         > :first-child {
             margin-top: 0;
         }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
     }
 
     // specificity hack
@@ -44,7 +48,6 @@
     }
 
     &__cover-link {
-
         &::after {
             bottom: 0;
             content: "";

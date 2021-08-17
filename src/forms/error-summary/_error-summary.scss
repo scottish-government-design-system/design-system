@@ -31,7 +31,8 @@
         }
     }
 
-    &__content > :last-child {
+    &__list:last-child,
+    &__list li:last-child {
         margin-bottom: 0;
     }
 }

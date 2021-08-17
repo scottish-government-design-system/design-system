@@ -1,3 +1,5 @@
+/* global document */
+
 'use strict';
 
 import _storage from '../../base/_tools/storage/storage';

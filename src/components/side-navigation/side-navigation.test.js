@@ -82,7 +82,7 @@ describe('side navigation', () => {
         testObj.sideNavigationElement = document.querySelector('#withoutlistid');
         testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
 
-        const listElement = testObj.sideNavigationElement.querySelector('.ds_side-navigation__list')
+        const listElement = testObj.sideNavigationElement.querySelector('.ds_side-navigation__list');
 
         expect(listElement.id).toEqual('');
         testObj.sideNavigationModule.init();

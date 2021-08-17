@@ -1,3 +1,5 @@
+/* global document, window */
+
 'use strict';
 
 class MobileTables {
@@ -35,8 +37,8 @@ class MobileTables {
             }
 
             if (headerRow) {
-                for (let i = 1, il = trs.length; i < il; i++) {
-                    [].slice.call(trs[i].cells).forEach((td, index) => {
+                for (let j = 1, jl = trs.length; j < jl; j++) {
+                    [].slice.call(trs[j].cells).forEach((td, index) => {
                         td.setAttribute('data-heading', headerRow.cells[index].innerText);
                     });
                 }
