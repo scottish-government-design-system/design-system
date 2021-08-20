@@ -1,9 +1,9 @@
 /*------------------------------------*\
-    QUESTION BLOCK (temp)
+    QUESTION
 \*------------------------------------*/
 
 .#{$pl_prefix}question {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 
     &--error {
         border-left: 4px solid $ds_colour__state--negative;
@@ -24,6 +24,6 @@
 
 @include media-query(medium) {
     .#{$pl_prefix}question {
-        margin-bottom: 48px;
+        margin-bottom: 32px;
     }
 }

@@ -1,0 +1,17 @@
+/*------------------------------------*\
+    BACK LINK
+\*------------------------------------*/
+
+.#{$pl-prefix}back-link {
+    @include small-size;
+    align-items: center;
+    display: inline-flex;
+    margin: 16px 0 16px 16px;
+    position: relative;
+
+    &::before {
+        @include chevron(left, 0.75em);
+        left: -24px;
+        position: absolute;
+    }
+}
