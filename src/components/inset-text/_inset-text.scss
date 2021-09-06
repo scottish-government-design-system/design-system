@@ -2,20 +2,20 @@
     #INSET TEXT
 \*------------------------------------*/
 
-.#{$pl-prefix}inset-text {
+.ds_inset-text {
     border-left: 8px solid $ds_colour__border;
     padding: 16px;
 
-    @include block-margins;
+    @include ds_block-margins;
 }
 
-.#{$pl-prefix}inset-text__text > :last-child,
-.#{$pl-prefix}inset-text > :last-child {
+.ds_inset-text__text > :last-child,
+.ds_inset-text > :last-child {
     margin-bottom: 0;
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}inset-text {
+@include ds_media-query(medium) {
+    .ds_inset-text {
         padding-left: 32px;
         padding-right: 64px;
     }

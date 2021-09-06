@@ -142,7 +142,7 @@ describe('tabs', () => {
 
         // check tabindex
         it('should not do anything with tabindex on mobile', () => {
-            window.ds_patterns.breakpoint = function () {
+            window.DS.breakpoint = function () {
                 return false;
             };
 
@@ -160,7 +160,7 @@ describe('tabs', () => {
         });
 
         it('should set tabindex to -1 on any inactive tabs', () => {
-            window.ds_patterns.breakpoint = function () {
+            window.DS.breakpoint = function () {
                 return true;
             };
 

@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 h1, .alpha {
-    @include h1-size;
+    @include ds_h1-size;
     font-weight: $bold;
     line-height: 40px;
     margin-bottom: 32px;
@@ -17,7 +17,7 @@ h2, h3, h4,
 }
 
 h2, .beta {
-    @include h2-size;
+    @include ds_h2-size;
     line-height: 32px;
     margin-bottom: 8px;
 
@@ -27,7 +27,7 @@ h2, .beta {
 }
 
 h3, .gamma {
-    @include h3-size;
+    @include ds_h3-size;
     line-height: 24px;
     margin-bottom: 8px;
 
@@ -37,17 +37,17 @@ h3, .gamma {
 }
 
 h4, .delta {
-    @include h4-size;
+    @include ds_h4-size;
     line-height: 24px;
 }
 
 h5, .epsilon {
-    @include h5-size;
+    @include ds_h5-size;
     font-weight: $bold;
     line-height: 24px;
 }
 
-@include media-query(medium) {
+@include ds_media-query(medium) {
     h1, .alpha {
         line-height: 56px;
     }

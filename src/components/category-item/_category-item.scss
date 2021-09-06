@@ -12,9 +12,9 @@ $border-width-size: 4px;
 
 
 
-.#{$pl-prefix}category-item {
+.ds_category-item {
 
-    @include blocklink('.#{$pl-prefix}category-item__link');
+    @include ds_blocklink('.ds_category-item__link');
 
     padding: 12px 16px 12px;
     text-decoration: none;
@@ -26,12 +26,12 @@ $border-width-size: 4px;
     }
 
     &__title {
-        @include large-size;
+        @include ds_large-size;
         line-height: 28px;
         margin: 0 0 16px;
     }
 
-    .#{$pl-prefix}category-item__link::after {
+    .ds_category-item__link::after {
         left: #{$border-width-size * -1};
     }
 
@@ -57,10 +57,20 @@ $border-width-size: 4px;
             background-color: $category-item__border-colour--hover;
             opacity: 1;
         }
+
+        &::after {
+            background: transparent;
+            bottom: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
     }
 
     &__summary {
-        @include small-size;
+        @include ds_small-size;
         color: $ds_colour__text--secondary;
         line-height: 24px;
         margin: 0;
@@ -71,14 +81,14 @@ $border-width-size: 4px;
     }
 }
 
-.#{$pl-prefix}card {
-    > .#{$pl-prefix}category-item {
+.ds_card {
+    > .ds_category-item {
         padding-top: 24px;
         padding-bottom: 24px;
         position: static;
     }
 
-    .#{$pl-prefix}category-item__link::before {
+    .ds_category-item__link::before {
         left: 0;
         right: 0;
         bottom: 0;
@@ -87,25 +97,25 @@ $border-width-size: 4px;
         width: 100%;
     }
 
-    .#{$pl-prefix}category-item__link:hover::before {
+    .ds_category-item__link:hover::before {
         top: calc(100% - 4px);
     }
 
-    .#{$pl-prefix}category-item__link::after {
+    .ds_category-item__link::after {
         left: 0;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}category-item {
+@include ds_media-query(medium) {
+    .ds_category-item {
         &__title {
             line-height: 32px;
         }
     }
 
-    .#{$pl-prefix}card {
-        > .#{$pl-prefix}category-item {
-            min-height: 192px;
+    .ds_card {
+        > .ds_category-item {
+            min-height: 200px;
         }
     }
 }

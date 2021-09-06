@@ -10,7 +10,7 @@ $site-search__background-colour: $ds_colour__grey--light !default;
 
 
 
-.#{$pl-prefix}site-search {
+.ds_site-search {
     box-sizing: border-box;
     color: $ds_colour__text;
     min-height: $site-search__height;
@@ -32,8 +32,8 @@ $site-search__background-colour: $ds_colour__grey--light !default;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}site-search {
+@include ds_media-query(medium) {
+    .ds_site-search {
         min-height: $site-search__height--medium;
 
         &__button {
@@ -43,8 +43,8 @@ $site-search__background-colour: $ds_colour__grey--light !default;
     }
 }
 
-.#{$pl-prefix}reversed .#{$pl-prefix}site-search {
-    .#{$pl-prefix}site-search__button {
+.ds_reversed .ds_site-search {
+    .ds_site-search__button {
         background-color: $ds_colour__brand--secondary;
     }
 }

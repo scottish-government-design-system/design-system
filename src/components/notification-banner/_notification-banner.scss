@@ -13,7 +13,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 
 
-.#{$pl-prefix}notification {
+.ds_notification {
     background: $notification-banner__background-colour;
     color: $ds_colour__white;
     margin-bottom: 1px;
@@ -23,9 +23,9 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         padding-bottom: 32px;
     }
 
-    /* [1] compensate for bottom margin on parent */
+    /// [1] compensate for bottom margin on parent
     &__content {
-        padding: 16px 0 15px; /* [1] */
+        padding: 16px 0 15px; /// [1]
         position: relative;
 
         &--has-close {
@@ -69,10 +69,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         padding: 2px;
         width: 32px;
 
-        + .#{$pl-prefix}notification__text {
+        + .ds_notification__text {
             margin-left: 40px;
 
-            @include media-query(medium) {
+            @include ds_media-query(medium) {
                 margin-left: 64px;
             }
         }
@@ -87,7 +87,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             color: $notification-banner__background-colour;
         }
 
-        &--inverse.#{$pl-prefix}notification__icon--colour {
+        &--inverse.ds_notification__icon--colour {
             background-color: $notification-banner__colour-icon-colour;
         }
     }
@@ -121,16 +121,16 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}notification__close {
+@include ds_media-query(medium) {
+    .ds_notification__close {
         top: 12px;
     }
 
-    .#{$pl-prefix}notification__icon {
+    .ds_notification__icon {
         margin-top: 0;
     }
 
-    .#{$pl-prefix}notification__actions {
+    .ds_notification__actions {
         text-align: left;
 
         > * {
@@ -144,8 +144,8 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 }
 
 @supports(display: flex) {
-    @include media-query(medium) {
-        .#{$pl-prefix}notification__actions {
+    @include ds_media-query(medium) {
+        .ds_notification__actions {
             align-items: center;
             display: inline-flex;
             flex-wrap: wrap;
@@ -160,7 +160,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 }
 
 .js-enabled {
-    .#{$pl-prefix}notification__close {
+    .ds_notification__close {
         display: block;
     }
 }

@@ -6,39 +6,34 @@ $blocklink__outline-width: 0;
 $link__outline-width: 2px;
 $link__border-width: 3px;
 
+/// Media query
+///
+/// Shorthand @media alias that keeps media query rules to a defined set of
+/// breakpoints.
+///
+/// @param {string} $breakpoint - name of the breakpoint to use
+///
+/// @example scss
+///   @include ds_media-query(medium) {
+///     .my-element {
+///        display: block;
+///     }
+///   }
 
-
-
-@mixin media-query($mq) {
-    $breakpoint-found: false;
-
-    // Loop through the list of breakpoints we’ve provided in our settings file.
-    @each $breakpoint in $breakpoints {
-
-        // Grab the alias and the condition from their respective locations in
-        // the list.
-        $alias:     nth($breakpoint, 1);
-        $condition: nth($breakpoint, 2);
-
-        // If the media query we’ve specified has an alias and a condition...
-        @if $mq == $alias and $condition {
-            // ...tell the mixin that we’ve found it...
-            $breakpoint-found: true;
-
-            // ...and spit it out here.
-            @media #{$condition} {
-                @content;
-            }
-        }
+@mixin ds_media-query($breakpoint) {
+    // validate param
+    @if not map-has-key($ds_breakpoints, $breakpoint) {
+        @error 'Breakpoint "#{$breakpoint}" not defined.';
     }
 
-    // If the user specifies a non-exitent alias, send them a warning.
-    @if $breakpoint-found == false{
-        @warn "Oops! Breakpoint ‘#{$mq}’ does not exist."
+    $condition: map-get($ds_breakpoints, $breakpoint);
+
+    @media #{$condition} {
+        @content;
     }
 }
 
-@mixin chevron($orientation: down, $size: 1em) {
+@mixin ds_chevron($orientation: down, $size: 1em) {
     content: '';
     display: inline-block;
     height: $size * 2;
@@ -57,9 +52,13 @@ $link__border-width: 3px;
     }
 
     $octothorpe: '#';
-    @include icon-mask(#{$iconsfile}#{$octothorpe}#{$spritename});
+    @include ds_icon-mask(#{$iconsfile}#{$octothorpe}#{$spritename});
 }
 
+/// Link
+///
+/// Single definition to enforce consistent display of links and elements that
+/// look like links (e.g. buttons we want to have display with a link-like style)
 
 @mixin ds_link {
     color: $ds_colour__link;
@@ -91,11 +90,14 @@ $link__border-width: 3px;
 }
 
 
-/**
- * Mixin to enforce consistency on block-style links, e.g. search results,
- * category items, etc
- */
-@mixin blocklink ($link-selector: null, $hover: true) {
+/// Blocklink
+///
+/// Mixin to enforce consistency on block-style links, e.g. search results, category items, etc
+///
+/// @param {string} $link-selector - child element that is used as the link, optional
+/// @param {boolean} $hover - whether to apply a hover state
+
+@mixin ds_blocklink ($link-selector: null, $hover: true) {
     display: block;
     position: relative;
     transition: background-color $transition-out-time, outline-color $transition-out-time;
@@ -162,19 +164,19 @@ $link__border-width: 3px;
     }
 }
 
-/**
- * blocklink variant
- */
-@mixin blocklink--solid($link-selector: null) {
-    @include blocklink($link-selector);
+@mixin ds_blocklink--solid($link-selector: null) {
+    @include ds_blocklink($link-selector);
 
     background-color: $ds_colour__white;
 }
 
-/**
- * Animated underscore used on logo images
- */
-@mixin fancy-underscore($width: 1px) {
+/// Fancy underscore
+///
+/// Animated underscore used on logo images, site nav
+///
+/// @param {string} $width - width of the underscore
+
+@mixin ds_fancy-underscore($width: 1px) {
     position: relative;
     transition-duration: 0s !important;
 
@@ -202,58 +204,54 @@ $link__border-width: 3px;
     }
 }
 
-/**
- * Mixin to enforce consistent margins on "block" elements, e.g. blockquotes,
- * info notes, accordions, etc
- */
-@mixin block-margins {
+/// Block margins
+///
+/// Single definition for consistent spacing
+
+@mixin ds_block-margins {
     margin-top: 32px;
     margin-bottom: 32px;
 }
 
-@mixin block-margins--bottom {
+@mixin ds_block-margins--bottom {
     margin-bottom: 32px;
 }
 
-@mixin box-shadow {
+/// Box shadow
+///
+/// Single definition for consistent box shadows
+
+@mixin ds_box-shadow {
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
 }
 
-/**
- * Mixin to enforce consistent open/close icons,
- * mobile section nav, accordions, etc
- */
-@mixin indicator {
-    @include chevron(down);
+/// Indicator
+///
+/// Single definition for consistent open/close icons, mobile section nav, accordions, etc
+
+@mixin ds_indicator {
+    @include ds_chevron(down);
     right: 14px;
     position: absolute;
 }
 
-@mixin indicator--open {
+@mixin ds_indicator--open {
     transform: rotateZ(180deg);
 }
 
-@mixin visually-hidden {
-    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px; width: 1px;
-    overflow: hidden;
-    position: absolute !important;
-}
-
-@mixin colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
+@mixin ds_colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
     width: calc(100% * #{$columns/$total} - #{$gutter});
 }
 
-@mixin colpush($columns: 1, $total: 12) {
+@mixin ds_colpush($columns: 1, $total: 12) {
     margin-left: calc(100% * #{$columns/$total});
 }
 
-@mixin colpull($columns: 1, $total: 12) {
+@mixin ds_colpull($columns: 1, $total: 12) {
     margin-left: calc(100% * #{$columns/$total} * -1);
 }
 
-@mixin layout($gutter: $grid-gap-x, $sub: false) {
+@mixin ds_layout($gutter: $grid-gap-x, $sub: false) {
     @if $sub {} @else {
         margin-right: #{$gutter * -1};
     }
@@ -277,10 +275,19 @@ $link__border-width: 3px;
     }
 }
 
-@mixin icon-mask($url) {
-    /*
-     * [1] for IE11 support, use image without clip path
-     */
+/// Icon mask
+///
+/// Adds mask-image properties for a provided image URL
+///
+/// @param {string} $url - url of the image to be masked
+///
+/// @example scss
+///   .warning-icon {
+///     @include ds_icon-mask('/path/to/my/icon')
+///   }
+
+@mixin ds_icon-mask($url) {
+    /// for IE11 support, use image without clip path
     background-image: url($url);
 
     @supports (-webkit-mask-image: url()) or (mask-image: url()) {
@@ -289,4 +296,82 @@ $link__border-width: 3px;
         -webkit-mask-image: url($url);
         mask-image: url($url);
     }
+}
+
+
+
+
+/// legacy non-prefixed names
+@mixin chevron($orientation: down, $size: 1em) {
+    @include ds_chevron($orientation, $size);
+}
+
+// general mixins
+@mixin media-query($breakpoint) {
+    // validate param
+    @if not map-has-key($ds_breakpoints, $breakpoint) {
+        @error 'Breakpoint "#{$breakpoint}" not defined.';
+    }
+
+    $condition: map-get($ds_breakpoints, $breakpoint);
+
+    @media #{$condition} {
+        @content;
+    }
+}
+
+@mixin link {
+    @include ds_link;
+}
+
+@mixin blocklink($link-selector: null, $hover: true) {
+    @include ds_blocklink($link-selector, hover);
+}
+
+@mixin blocklink--solid($link-selector: null) {
+    @include ds_blocklink--solid($link-selector);
+}
+
+@mixin fancy-underscore($width: 1px) {
+    @include ds_fancy-underscore($width);
+}
+
+@mixin block-margins {
+    @include ds_block-margins;
+}
+
+@mixin block-margins--bottom {
+    @include ds_block-margins--bottom;
+}
+
+@mixin box-shadow {
+    @include ds_box-shadow;
+}
+
+@mixin indicator {
+    @include ds_indicator;
+}
+
+@mixin indicator--open {
+    @include ds_indicator--open;
+}
+
+@mixin colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
+    @include ds_colwidth($columns, $total, $gutter);
+}
+
+@mixin colpush($columns: 1, $total: 12) {
+    @include ds_colpush($columns, $total);
+}
+
+@mixin colpull($columns: 1, $total: 12) {
+    @include ds_colpull($columns, $total);
+}
+
+@mixin layout($gutter: $grid-gap-x, $sub: false) {
+    @include ds_layout($gutter, $sub);
+}
+
+@mixin icon-mask($url) {
+    @include ds_icon-mask($url);
 }

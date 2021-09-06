@@ -5,7 +5,7 @@
 
 
 
-.#{$pl-prefix}contents-nav {
+.ds_contents-nav {
     margin-bottom: 48px;
 
     &__title {
@@ -16,7 +16,7 @@
     }
 
     &__list {
-        @include small-size;
+        @include ds_small-size;
         line-height: 24px;
         list-style-type: none;
         margin-left: 0;
@@ -38,13 +38,13 @@
         }
     }
 
-    &__link.#{$pl-prefix}current {
+    &__link.ds_current {
         font-weight: $bold;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}contents-nav {
+@include ds_media-query(medium) {
+    .ds_contents-nav {
         margin-top: 8px;
 
         &__title {

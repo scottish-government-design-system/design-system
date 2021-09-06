@@ -2,17 +2,15 @@
     FORM MIXINS
 \*------------------------------------*/
 
-@mixin radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
+@mixin ds_radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
 
     margin-bottom: 24px;
     padding-left: 40px;
     position: relative;
 
-    /**
-     * [1] minimum size of radio/checkbox for WCAG AAA
-     */
+    /// [1] minimum size of radio/checkbox for WCAG AAA
     &__input {
-        height: $max-input-size; /* [1] */
+        height: $max-input-size; /// [1]
         left: -2px;
         opacity: 0;
         position: absolute;
@@ -48,7 +46,7 @@
     &__label::after {
         top: -4px;
 
-        @include media-query(medium) {
+        @include ds_media-query(medium) {
             top: 0;
         }
 
@@ -58,13 +56,13 @@
 
     }
 
-    /* focus */
+    /// focus
     &__input:focus + &__label::before {
         border-width: $field-border-width--focus;
         box-shadow: 0 0 0 $field-glow-width $ds_colour__yellow;
     }
 
-    /* checked */
+    /// checked
     &__input:checked + &__label::before {
         border-color: $ds_colour__input--spot;
     }
@@ -73,12 +71,10 @@
         opacity: 1;
     }
 
-    /*
-     * [1] this negative margin makes the small checkboxes/radios align left with content
-     */
+    /// [1] this negative margin makes the small checkboxes/radios align left with content
     &--small {
         margin-bottom: 16px;
-        margin-left: -8px; /* [1] */
+        margin-left: -8px; /// [1]
     }
 
     &--small &__label::before {
@@ -95,12 +91,12 @@
         top: #{$small-pip-padding + $small-input-offset};
     }
 
-    /* hover */
+    /// hover
     &--small &__input:hover + &__label::before {
         box-shadow: 0 0 0 $small-shadow-size #ccc;
     }
 
-    /* hover-focus */
+    /// hover-focus
     &--small &__input:hover:focus + &__label::before {
         box-shadow: 0 0 0 $field-glow-width $ds_colour__yellow, 0 0 0 $small-shadow-size #b1b4b6;
     }
@@ -110,7 +106,7 @@
     }
 }
 
-@mixin field-error {
+@mixin ds_field-error {
     border-color: $ds_colour__state--negative;
     border-width: $field-border-width--error;
     padding: 4px;
@@ -119,4 +115,16 @@
         border-color: currentColor;
         box-shadow: none;
     }
+}
+
+
+
+
+/// legacy non-prefixed names
+@mixin radiocheckboxstates($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
+    @include ds_radiocheckboxstates($round, $small-pip-padding, $active-shadow-colour);
+}
+
+@mixin field-error {
+    @include ds_field-error;
 }

@@ -3,10 +3,10 @@
 \*------------------------------------*/
 
 small,
-.#{$pl-prefix}small {
-    @include small-size;
+.ds_small {
+    @include ds_small-size;
 }
 
-.#{$pl-prefix}tiny {
-    @include tiny-size;
+.ds_tiny {
+    @include ds_tiny-size;
 }

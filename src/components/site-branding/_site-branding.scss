@@ -10,7 +10,7 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
 
 
 
-.#{$pl-prefix}site-branding {
+.ds_site-branding {
     padding: 12px 0;
 
     &__logo {
@@ -28,7 +28,7 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
         position: relative;
         text-decoration: none;
 
-        @include fancy-underscore(2px);
+        @include ds_fancy-underscore(2px);
     }
 
     &__title {
@@ -57,8 +57,8 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
     }
 }
 
-@include media-query (medium) {
-    .#{$pl-prefix}site-branding {
+@include ds_media-query (medium) {
+    .ds_site-branding {
         &__link {
             margin-bottom: 0;
         }
@@ -103,8 +103,8 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
 
 
 // when branding is a child of a reversed-variant site header
-.#{$pl-prefix}reversed .#{$pl-prefix}site-branding {
-    .#{$pl-prefix}site-branding__logo {
+.ds_reversed .ds_site-branding {
+    .ds_site-branding__logo {
         color: $ds_colour__white;
 
         &:not(:last-child)::before {

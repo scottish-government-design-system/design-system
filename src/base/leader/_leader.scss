@@ -2,8 +2,8 @@
     LEADER
 \*------------------------------------*/
 
-.#{$pl-prefix}leader {
-    @include large-size;
+.ds_leader {
+    @include ds_large-size;
     font-weight: $light;
     line-height: 32px;
     margin-bottom: 32px;
@@ -15,15 +15,15 @@
         margin-bottom: inherit;
 
         > p:first-child {
-            @include large-size;
+            @include ds_large-size;
             font-weight: $light;
             margin-bottom: 32px;
         }
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}leader {
+@include ds_media-query(medium) {
+    .ds_leader {
         line-height: 40px;
         margin-bottom: 40px;
 

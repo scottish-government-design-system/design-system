@@ -3,11 +3,8 @@
 \*------------------------------------*/
 
 .#{$pl_prefix}radio {
-    @include radiocheckboxstates(true, 1px);
+    @include ds_radiocheckboxstates(true, 1px);
 
-    /*
-     * [1] for IE11 support, use image without clip path
-     */
     &__label::after {
         @supports(display: grid) {
             background-color: $ds_colour__input--spot;
@@ -15,6 +12,6 @@
         }
 
         $octothorpe: '#';
-        @include icon-mask(#{$iconsfile}#{$octothorpe}radio);
+        @include ds_icon-mask(#{$iconsfile}#{$octothorpe}radio);
     }
 }

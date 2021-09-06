@@ -2,7 +2,7 @@
     SEARCH RESULT
 \*------------------------------------*/
 
-%x#{$pl-prefix}search-result__outer {
+%xds_search-result__outer {
     border-bottom: 1px solid $ds_colour__border--light;
     border-width: 1px 0;
     margin: 0 #{$mobile-body-margin * -1};
@@ -12,7 +12,7 @@
     }
 }
 
-%x#{$pl-prefix}search-result__inner {
+%xds_search-result__inner {
     color: $ds_colour__text !important;
     padding: 24px 16px 23px;
     position: relative;
@@ -27,11 +27,11 @@
     }
 }
 
-.#{$pl-prefix}search-result {
-    @extend %x#{$pl-prefix}search-result__outer;
-    @extend %x#{$pl-prefix}search-result__inner;
+.ds_search-result {
+    @extend %xds_search-result__outer;
+    @extend %xds_search-result__inner;
 
-    @include blocklink('.#{$pl-prefix}search-result__link');
+    @include ds_blocklink('.ds_search-result__link');
 
     &__label {
         font-weight: $bold;
@@ -52,8 +52,8 @@
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}search-result {
+@include ds_media-query(medium) {
+    .ds_search-result {
         margin-left: 0;
         margin-right: 0;
     }

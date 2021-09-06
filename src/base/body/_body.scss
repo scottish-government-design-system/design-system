@@ -18,7 +18,7 @@ body {
     text-rendering: optimizeLegibility;
 }
 
-@include media-query(medium) {
+@include ds_media-query(medium) {
     html {
         font-size: $root-font-size--medium;
     }

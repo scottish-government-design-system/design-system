@@ -9,7 +9,7 @@ $breadcrumbs__font-size: $small-size--fixed;
 
 
 
-.#{$pl-prefix}breadcrumbs {
+.ds_breadcrumbs {
     color: $breadcrumbs__colour;
     font-size: $breadcrumbs__font-size;
     line-height: 24px;
@@ -24,7 +24,7 @@ $breadcrumbs__font-size: $small-size--fixed;
     }
 
     &__item:not(:first-child)::before {
-        @include chevron(right, 0.5em);
+        @include ds_chevron(right, 0.5em);
         margin: 0 -2px 0 -1px;
         position: relative;
         top: 3px;
@@ -34,13 +34,13 @@ $breadcrumbs__font-size: $small-size--fixed;
         padding-top: 16px;
     }
 
-    @include media-query(medium) {
+    @include ds_media-query(medium) {
         &__container {
             padding-top: 24px;
         }
     }
 }
 
-.#{$pl-prefix}reversed .#{$pl-prefix}breadcrumbs {
+.ds_reversed .ds_breadcrumbs {
     color: $ds_colour__white;
 }

@@ -2,32 +2,32 @@
     PADDING MODIFIERS
 \*------------------------------------*/
 
-.#{$pl-prefix}no-padding {
+.ds_no-padding {
     padding: 0 !important;
 }
 
-.#{$pl-prefix}no-padding--top {
+.ds_no-padding--top {
     padding-top: 0 !important;
 }
 
-.#{$pl-prefix}no-padding--right {
+.ds_no-padding--right {
     padding-right: 0 !important;
 }
 
-.#{$pl-prefix}no-padding--bottom {
+.ds_no-padding--bottom {
     padding-bottom: 0 !important;
 }
 
-.#{$pl-prefix}no-padding--left {
+.ds_no-padding--left {
     padding-left: 0 !important;
 }
 
-.#{$pl-prefix}no-padding--vertical {
+.ds_no-padding--vertical {
     padding-bottom: 0 !important;
     padding-top: 0 !important;
 }
 
-.#{$pl-prefix}no-padding--horizontal {
+.ds_no-padding--horizontal {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }

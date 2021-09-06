@@ -8,7 +8,7 @@ $input-height: 48px;
     position: relative;
 
     &::before {
-        @include large-size;
+        @include ds_large-size;
         content: '£';
         height: $input-height;
         font-weight: bold;

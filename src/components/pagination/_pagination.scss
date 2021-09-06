@@ -2,8 +2,8 @@
     PAGINATION
 \*------------------------------------*/
 
-.#{$pl-prefix}pagination {
-    @include small-size;
+.ds_pagination {
+    @include ds_small-size;
     text-align: center;
 
     &__list {
@@ -17,14 +17,14 @@
     }
 
     &__link {
-        @include blocklink;
+        @include ds_blocklink;
 
         line-height: 24px;
         padding: 12px 8px;
         text-decoration: none;
         min-width: 48px;
 
-        &.#{$pl-prefix}current {
+        &.ds_current {
             background-color: $ds_colour__link--current__background;
             border-bottom: 4px solid $ds_colour__border--highlight;
             padding-bottom: 12px;
@@ -43,8 +43,8 @@
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}pagination {
+@include ds_media-query(medium) {
+    .ds_pagination {
 
         &__list {
             display: block;
@@ -57,7 +57,7 @@
 }
 
 @supports (display: flex) {
-    .#{$pl-prefix}pagination {
+    .ds_pagination {
         &__list {
             display: flex;
             justify-content: center;

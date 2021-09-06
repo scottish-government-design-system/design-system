@@ -6,11 +6,11 @@
 
 
 a,
-.#{$pl-prefix}link {
+.ds_link {
     @include ds_link;
 }
 
-.#{$pl-prefix}link {
+.ds_link {
     background: transparent;
     border: 0;
     display: inline;
@@ -23,9 +23,9 @@ a,
     padding: 0;
 }
 
-.#{$pl-prefix}reversed {
+.ds_reversed {
     a,
-    .#{$pl-prefix}link {
+    .ds_link {
         color: $ds_colour__link--reversed;
 
         &:focus {

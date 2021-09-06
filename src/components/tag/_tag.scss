@@ -8,7 +8,7 @@ $tag__background-colour: $ds_colour__brand !default;
 
 
 
-.#{$pl-prefix}tag {
+.ds_tag {
     background: $tag__background-colour;
     border-radius: 2px;
     color: $ds_colour__white;
@@ -19,7 +19,7 @@ $tag__background-colour: $ds_colour__brand !default;
     text-transform: uppercase;
 }
 
-.#{$pl-prefix}reversed .#{$pl-prefix}tag {
+.ds_reversed .ds_tag {
     background-color: $ds_colour__white;
     color: $tag__background-colour;
 }

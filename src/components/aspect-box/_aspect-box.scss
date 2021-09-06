@@ -1,10 +1,8 @@
-/**
- * [1] default aspect ratio is 16:9
- */
-.#{$pl-prefix}aspect-box {
+/// [1] default aspect ratio is 16:9
+.ds_aspect-box {
     overflow: hidden;
     position: relative;
-    padding-bottom: calc(900%/16); /* [1] */
+    padding-bottom: calc(900%/16); /// [1]
 
     // 1:1 aspect ratio
     &--square {

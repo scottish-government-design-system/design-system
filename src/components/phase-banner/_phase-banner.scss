@@ -2,8 +2,8 @@
     PHASE BANNER
 \*------------------------------------*/
 
-.#{$pl-prefix}phase-banner {
-    @include small-size;
+.ds_phase-banner {
+    @include ds_small-size;
     background: $ds_colour__grey--light;
     clear: both;
     line-height: 24px;
@@ -28,7 +28,7 @@
 }
 
 @supports (display: flex) {
-    .#{$pl-prefix}phase-banner {
+    .ds_phase-banner {
 
         &__content {
             align-items: baseline;

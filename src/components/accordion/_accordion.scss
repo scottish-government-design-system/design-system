@@ -8,8 +8,8 @@ $accordion__header-colour: $ds_colour__link !default;
 
 
 
-.#{$pl-prefix}accordion {
-    @include block-margins;
+.ds_accordion {
+    @include ds_block-margins;
 
     position: relative;
 
@@ -27,32 +27,32 @@ $accordion__header-colour: $ds_colour__link !default;
 }
 
 h1,h2,h3 {
-    + .#{$pl-prefix}accordion {
+    + .ds_accordion {
         margin-top: 0
     }
 }
 
-.#{$pl-prefix}accordion.js-initialised {
-    .#{$pl-prefix}accordion__open-all {
+.ds_accordion.js-initialised {
+    .ds_accordion__open-all {
         display: block;
     }
 }
 
-.#{$pl-prefix}accordion-item {
+.ds_accordion-item {
     border-bottom: 1px solid $ds_colour__border--light;
     border-top: 1px solid $ds_colour__border--light;
 
-    /* [1] subtracting the parent's border width */
+    /// [1] subtracting the parent's border width
     &__header,
     &__header-button {
-        @include blocklink;
+        @include ds_blocklink;
 
         background-color: $ds_colour__white;
         color: $accordion__header-colour;
         font-size: 1rem;
         line-height: 24px;
         margin: 0;
-        padding: 15px 40px 15px 16px; /* [1] */
+        padding: 15px 40px 15px 16px; /// [1]
         position: relative;
         text-align: left;
         width: 100%;
@@ -83,7 +83,7 @@ h1,h2,h3 {
     }
 
     &__indicator {
-        @include indicator;
+        @include ds_indicator;
         pointer-events: none;
         top: 11px;
     }
@@ -108,7 +108,7 @@ h1,h2,h3 {
 
     &__control:checked ~ &__header &__indicator,
     &__control:checked ~ &__header-button &__indicator  {
-        @include indicator--open;
+        @include ds_indicator--open;
     }
 
     &__control:focus ~ &__header,
@@ -119,31 +119,31 @@ h1,h2,h3 {
         z-index: 2;
     }
 
-    + .#{$pl-prefix}accordion-item {
+    + .ds_accordion-item {
         margin-top: -1px;
     }
 }
 
-.#{$pl-prefix}accordion.js-initialised .#{$pl-prefix}accordion-item {
+.ds_accordion.js-initialised .ds_accordion-item {
     &__body {
         overflow: hidden;
         padding: 0 40px 0 16px;
 
-        @include media-query(medium) {
+        @include ds_media-query(medium) {
             padding-right: 100px;
         }
 
         transition: max-height $transition-in-time, padding $transition-in-time;
     }
 
-    &__control:checked ~ .#{$pl-prefix}accordion-item__body {
+    &__control:checked ~ .ds_accordion-item__body {
         padding-bottom: 32px;
         padding-top: 24px;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}accordion-item {
+@include ds_media-query(medium) {
+    .ds_accordion-item {
         &__header,
         &__header-button,
         &__body {

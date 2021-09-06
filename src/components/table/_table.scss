@@ -10,7 +10,7 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
 
 
 
-.#{$pl-prefix}table {
+.ds_table {
     // table-layout: fixed;
     width: 100%;
 
@@ -80,15 +80,15 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
         margin-bottom: 14px;
         text-align: left;
 
-        @include media-query(medium) {
+        @include ds_media-query(medium) {
             font-size: 19px;
             line-height: 28px;
         }
     }
 }
 
-@include media-query(medium-down) {
-    .#{$pl-prefix}table.js-is-scrolling {
+@include ds_media-query(medium-down) {
+    .ds_table.js-is-scrolling {
         &[data-smallscreen="scrolling"] {
             display: block;
             max-width: 100%;
@@ -137,7 +137,7 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
     }
 
     .js-enabled {
-        .#{$pl-prefix}table {
+        .ds_table {
             &[data-smallscreen="boxes"] thead {
                 clip: rect(1px 1px 1px 1px);
                 clip: rect(1px, 1px, 1px, 1px);

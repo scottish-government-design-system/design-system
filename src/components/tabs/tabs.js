@@ -131,7 +131,7 @@ class Tabs {
                 tabIndex = 0;
             }
 
-            if (window.ds_patterns.breakpoint('medium')) {
+            if (window.DS.breakpoint('medium')) {
                 tabHeader.querySelector('.ds_tab__label').setAttribute('tabindex', tabIndex);
             }
         });

@@ -15,14 +15,14 @@ $link__border-width: 3px;
 button,
 input[type="button"],
 input[type="submit"],
-.#{$pl-prefix}button {
+.ds_button {
     background: $ds_colour__button__background;
     border: 0;
     border-radius: 0;
     color: $ds_colour__button;
     cursor: pointer;
     display: inline-block;
-    @include small-size;
+    @include ds_small-size;
     font-weight: $bold;
     line-height: 24px;
     min-height: $button__height;
@@ -34,7 +34,7 @@ input[type="submit"],
     text-decoration: none;
     transition: background-color $transition-out-time;
 
-    @include block-margins;
+    @include ds_block-margins;
 
     &:hover {
         background-color: $ds_colour__button--hover__background;
@@ -53,7 +53,7 @@ input[type="submit"],
     }
 
     // ICONS ON BUTTONS
-    .#{$pl-prefix}icon {
+    .ds_icon {
         pointer-events: none;
     }
 
@@ -67,7 +67,7 @@ input[type="submit"],
     }
 }
 
-.#{$pl-prefix}reversed .#{$pl-prefix}button {
+.ds_reversed .ds_button {
     background-color: $ds_colour__white;
     color: $ds_colour__button__background;
 
@@ -92,7 +92,7 @@ input[type="submit"],
     }
 }
 
-.#{$pl-prefix}button {
+.ds_button {
     &--secondary {
         background-color: $ds_colour__button--secondary__background;
         color: $ds_colour__button--secondary;
@@ -123,9 +123,9 @@ input[type="submit"],
 }
 
 // SIZE VARIANTS
-.#{$pl-prefix}button {
+.ds_button {
     &--small {
-        @include small-size;
+        @include ds_small-size;
         min-height: $button__height--small;
         min-width: $button__height--small;
         padding-top: 12px;
@@ -134,11 +134,11 @@ input[type="submit"],
 }
 
 // WIDTH VARIANTS
-.#{$pl-prefix}button {
+.ds_button {
     &--fixed {
         width: 200px;
 
-        &.#{$pl-prefix}button--small {
+        &.ds_button--small {
             width: 160px;
         }
     }
@@ -150,10 +150,10 @@ input[type="submit"],
 }
 
 // STACKED BUTTONS
-.#{$pl-prefix}button-group {
-    @include block-margins;
+.ds_button-group {
+    @include ds_block-margins;
 
-    >.#{$pl-prefix}button {
+    >.ds_button {
         margin: 0 0 24px;
 
         &:last-child {
@@ -163,8 +163,8 @@ input[type="submit"],
 }
 
 // BUTTONS WITH ICONS
-.#{$pl-prefix}button {
-    .#{$pl-prefix}icon {
+.ds_button {
+    .ds_icon {
         bottom: 0;
         box-sizing: initial;
         height: 40px;
@@ -177,7 +177,7 @@ input[type="submit"],
     }
 
     &--small {
-        .#{$pl-prefix}icon {
+        .ds_icon {
             height: 32px;
             padding: 8px;
             width: 32px;
@@ -192,7 +192,7 @@ input[type="submit"],
         padding-left: calc(#{$button__height} + #{$button__padding--x});
         padding-right: #{$button__padding--x};
 
-        .#{$pl-prefix}icon {
+        .ds_icon {
             left: 0;
             right: auto;
         }

@@ -8,9 +8,9 @@ $category-header__title-colour: $ds_colour__text !default;
 
 
 
-.#{$pl-prefix}category-header {
-    margin-top: 16px;
-    margin-bottom: 32px;
+.ds_category-header {
+    padding-top: 16px;
+    padding-bottom: 32px;
 
     &__header {
         margin-bottom: 32px;
@@ -38,7 +38,7 @@ $category-header__title-colour: $ds_colour__text !default;
     }
 }
 
-.#{$pl-prefix}reversed .#{$pl-prefix}category-header {
+.ds_reversed .ds_category-header {
     color: $ds_colour__white;
 
     &__title {
@@ -46,25 +46,25 @@ $category-header__title-colour: $ds_colour__text !default;
     }
 }
 
-.#{$pl-prefix}category-header {
-    @include layout();
+.ds_category-header {
+    @include ds_layout();
 }
 
-.#{$pl-prefix}category-header {
+.ds_category-header {
     grid-gap: $grid-gap-y $grid-gap-x;
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}category-header {
+@include ds_media-query(medium) {
+    .ds_category-header {
         &__header {
             float: left;
-            @include colwidth(8);
+            @include ds_colwidth(8);
             margin: 40px 0;
         }
 
         &__media-container {
             float: left;
-            @include colwidth(4);
+            @include ds_colwidth(4);
         }
 
         &__summary {
@@ -74,12 +74,12 @@ $category-header__title-colour: $ds_colour__text !default;
 }
 
 @supports(display: grid) {
-    .#{$pl-prefix}category-header__header {
+    .ds_category-header__header {
         margin-bottom: 0;
     }
 
-    @include media-query(medium) {
-        .#{$pl-prefix}category-header {
+    @include ds_media-query(medium) {
+        .ds_category-header {
             align-items: center;
             grid-template-columns: repeat(12, 1fr);
 

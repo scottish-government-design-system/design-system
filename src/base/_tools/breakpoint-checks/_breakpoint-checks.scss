@@ -5,25 +5,25 @@
     display: none;
 }
 
-@include media-query(small) {
+@include ds_media-query(small) {
     #bp-small {
         display: block;
     }
 }
 
-@include media-query(medium) {
+@include ds_media-query(medium) {
     #bp-medium {
         display: block;
     }
 }
 
-@include media-query(large) {
+@include ds_media-query(large) {
     #bp-large {
         display: block;
     }
 }
 
-@include media-query(xlarge) {
+@include ds_media-query(xlarge) {
     #bp-xlarge {
         display: block;
     }

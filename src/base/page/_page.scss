@@ -8,12 +8,12 @@ html {
     position: relative;
 }
 
-.#{$pl-prefix}page {
+.ds_page {
     min-height: calc(100vh - 360px);
     margin-bottom: 360px;
 }
 
-.#{$pl-prefix}site-footer {
+.ds_site-footer {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -21,7 +21,7 @@ html {
 }
 
 @supports (display: grid) {
-    .#{$pl-prefix}page {
+    .ds_page {
         display: grid;
         margin-bottom: 0;
         min-height: 100vh;
@@ -43,7 +43,7 @@ html {
         }
     }
 
-    .#{$pl-prefix}site-footer {
+    .ds_site-footer {
         position: static;
     }
 }
@@ -52,7 +52,7 @@ html {
     CATEGORY PAGE LAYOUT
 \*------------------------------------*/
 
-.#{$pl-prefix}page__middle {
+.ds_page__middle {
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;

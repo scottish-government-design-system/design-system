@@ -3,11 +3,11 @@
 \*------------------------------------*/
 
 .#{$pl_prefix}checkbox {
-    @include radiocheckboxstates();
+    @include ds_radiocheckboxstates();
 
     &__label::after {
         $octothorpe: '#';
-        @include icon-mask(#{$iconsfile}#{$octothorpe}checkbox);
+        @include ds_icon-mask(#{$iconsfile}#{$octothorpe}checkbox);
     }
 }
 
@@ -17,7 +17,7 @@
             background-color: $ds_colour__white;
         }
 
-        /* checked */
+        /// checked
         &__input:checked + &__label::before {
             background-color: $ds_colour__text;
         }

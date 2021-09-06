@@ -2,13 +2,13 @@
     CATEGORY LIST
 \*------------------------------------*/
 
-.#{$pl-prefix}category-list-container {
+.ds_category-list-container {
     margin: 32px 0;
 }
 
 
-.#{$pl-prefix}category-list {
-    @include layout();
+.ds_category-list {
+    @include ds_layout();
 
     list-style-type: none;
     margin-bottom: 32px;
@@ -25,40 +25,40 @@
     }
 }
 
-.#{$pl-prefix}category-list--narrow {
-    @include layout($grid-gap-x--narrow)
+.ds_category-list--narrow {
+    @include ds_layout($grid-gap-x--narrow)
 }
 
-@include media-query(medium-down) {
-    .#{$pl-prefix}category-list--grid > * {
+@include ds_media-query(medium-down) {
+    .ds_category-list--grid > * {
         min-height: 0;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}category-list--grid {
+@include ds_media-query(medium) {
+    .ds_category-list--grid {
         > * {
             float: left;
-            @include colwidth(6);
+            @include ds_colwidth(6);
 
             &:nth-child(2n+1) {
                 clear: left;
             }
         }
 
-        &.#{$pl-prefix}category-list--narrow > * {
+        &.ds_category-list--narrow > * {
             margin-bottom: $grid-gap-x--narrow;
             margin-right: $grid-gap-x--narrow;
 
-            @include colwidth(6, 12, $grid-gap-x--narrow);
+            @include ds_colwidth(6, 12, $grid-gap-x--narrow);
         }
     }
 }
 
-@include media-query(large) {
-    .#{$pl-prefix}category-list--grid {
+@include ds_media-query(large) {
+    .ds_category-list--grid {
         > * {
-            @include colwidth(4);
+            @include ds_colwidth(4);
 
             &:nth-child(n) {
                 clear: none;
@@ -70,14 +70,14 @@
             }
         }
 
-        &.#{$pl-prefix}category-list--narrow > * {
-            @include colwidth(4, 12, $grid-gap-x--narrow);
+        &.ds_category-list--narrow > * {
+            @include ds_colwidth(4, 12, $grid-gap-x--narrow);
         }
     }
 }
 
 @supports(display: grid) {
-    .#{$pl-prefix}category-list {
+    .ds_category-list {
         grid-row-gap: $grid-gap-y;
         margin-left: 0;
         margin-top: 0;
@@ -88,20 +88,21 @@
         }
 
         > *[class] {
+            display: grid;
             margin: 0;
             width: 100%;
         }
     }
 
-    @include media-query(medium) {
-        .#{$pl-prefix}category-list--grid {
+    @include ds_media-query(medium) {
+        .ds_category-list--grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
         }
     }
 
-    @include media-query(large) {
-        .#{$pl-prefix}category-list--grid {
+    @include ds_media-query(large) {
+        .ds_category-list--grid {
             grid-template-columns: 1fr 1fr 1fr;
         }
     }

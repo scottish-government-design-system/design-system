@@ -2,20 +2,20 @@
     CALLOUT
 \*------------------------------------*/
 
-.#{$pl-prefix}callout {
-    @include block-margins;
+.ds_callout {
+    @include ds_block-margins;
 
     background: $ds_colour__grey--lighter;
     border-left: 4px solid $ds_colour__brand;
     padding: 16px 24px;
 
-    &__label.#{$pl-prefix}content-label {
+    &__label.ds_content-label {
         color: $ds_colour__brand;
         font-size: $small-size--fixed;
     }
 
     &__title {
-        @include h1-size;
+        @include ds_h1-size;
         line-height: 32px;
         margin-bottom: 16px;
     }
@@ -29,8 +29,8 @@
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}callout {
+@include ds_media-query(medium) {
+    .ds_callout {
         padding: 32px;
 
         &__title {

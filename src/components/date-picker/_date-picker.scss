@@ -5,12 +5,13 @@
 
 
 
-.#{$pl-prefix}datepicker {
+.ds_datepicker {
     position: relative;
 
     &__dialog {
+        @include ds_box-shadow;
+
         background-color: $ds_colour__white;
-        box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
         display: none;
         padding: 8px;
         outline: 1px solid $ds_colour__border;
@@ -38,7 +39,7 @@
         }
 
         &__title {
-            @include small-size;
+            @include ds_small-size;
             margin: 0 !important;
             text-transform: uppercase;
         }
@@ -53,10 +54,10 @@
                 padding: 4px;
                 min-width:  32px;
 
-                @include blocklink;
+                @include ds_blocklink;
                 display: inline-block;
 
-                .#{$pl-prefix}icon {
+                .ds_icon {
                     height: 32px;
                     padding: 0;
                     position: static;
@@ -79,7 +80,7 @@
             }
 
             th {
-                @include small-size;
+                @include ds_small-size;
                 color: $ds_colour__text--secondary;
                 font-weight: $normal;
             }
@@ -93,25 +94,25 @@
                 padding: 0;
                 min-width: 40px;
 
-                @include blocklink;
+                @include ds_blocklink;
 
                 &[disabled="true"] {
                     background-color: $ds_colour__link--disabled__background;
                     color: $ds_colour__link--disabled;
                 }
 
-                &.#{$pl-prefix}datepicker__current {
+                &.ds_datepicker__current {
                     $dp-current-outline-width: 2px;
                     outline: $dp-current-outline-width solid $ds_colour__border--dark !important;
                     outline-offset: #{$dp-current-outline-width * -1};
                 }
 
-                &.#{$pl-prefix}datepicker__current[tabindex="-1"] {
+                &.ds_datepicker__current[tabindex="-1"] {
                     background: $ds_colour__grey--lighter;
                     color: currentColor;
                 }
 
-                &.#{$pl-prefix}datepicker__today {
+                &.ds_datepicker__today {
                     font-weight: $bold;
 
                     &::after {
@@ -127,7 +128,7 @@
                     }
                 }
 
-                &.#{$pl-prefix}selected:not(:focus) {
+                &.ds_selected:not(:focus) {
                     background-color: $ds_colour__text;
                     color: $ds_colour__white;
                 }
@@ -135,18 +136,18 @@
         }
 
         &__table-caption {
-            @include tiny-size;
+            @include ds_tiny-size;
             caption-side: bottom;
             margin-top: 8px;
         }
 
         &__buttongroup {
-            @include layout(8px);
+            @include ds_layout(8px);
             overflow: visible;
 
             // non-grid
             button {
-                @include colwidth(1,2,8px);
+                @include ds_colwidth(1,2,8px);
                 display: block;
                 float: left;
                 margin: 0;
@@ -159,8 +160,8 @@
     }
 }
 
-@include media-query(medium-down) {
-    .#{$pl-prefix}datepicker {
+@include ds_media-query(medium-down) {
+    .ds_datepicker {
 
         &__dialog {
             clear: both;

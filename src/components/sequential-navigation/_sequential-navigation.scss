@@ -15,20 +15,20 @@ $page-nav__icon-size: 56px !default;
 
 
 
-.#{$pl-prefix}sequential-nav {
+.ds_sequential-nav {
     margin-bottom: 56px;
     margin-top: 56px;
     overflow: hidden;
 }
 
 @supports(display: grid) {
-    .#{$pl-prefix}sequential-nav {
+    .ds_sequential-nav {
         overflow: initial;
     }
 }
 
-.#{$pl-prefix}sequential-nav__button {
-    @include blocklink;
+.ds_sequential-nav__button {
+    @include ds_blocklink;
 
     background: transparent;
     display: inline-block;
@@ -82,7 +82,7 @@ $page-nav__icon-size: 56px !default;
         }
 
         &::after {
-            @include chevron(left, 30px);
+            @include ds_chevron(left, 30px);
             left: 0;
         }
     }
@@ -98,25 +98,25 @@ $page-nav__icon-size: 56px !default;
         }
 
         &::after {
-            @include chevron(right, 30px);
+            @include ds_chevron(right, 30px);
             right: 0;
         }
     }
 }
 
-.#{$pl-prefix}sequential-nav__button:hover {
+.ds_sequential-nav__button:hover {
     &::before {
         background-color: $page-nav__icon-hover;
     }
 }
 
-.#{$pl-prefix}sequential-nav__button:focus {
+.ds_sequential-nav__button:focus {
     &::before {
         background-color: $page-nav__icon-focus;
     }
 }
 
-.#{$pl-prefix}sequential-nav__text {
+.ds_sequential-nav__text {
     display: inline-block;
     padding-top: 24px;
     position: relative;
@@ -134,8 +134,8 @@ $page-nav__icon-size: 56px !default;
     }
 }
 
-@include media-query(small) {
-    .#{$pl-prefix}sequential-nav__item {
+@include ds_media-query(small) {
+    .ds_sequential-nav__item {
         width: calc(50% - 16px);
 
         &--prev {
@@ -149,13 +149,13 @@ $page-nav__icon-size: 56px !default;
 }
 
 @supports (display: grid) {
-    .#{$pl-prefix}sequential-nav {
+    .ds_sequential-nav {
         display: grid;
         grid-gap: $grid-gap-y $grid-gap-x;
         grid-template-areas: 'next' 'prev';
     }
 
-    .#{$pl-prefix}sequential-nav__item {
+    .ds_sequential-nav__item {
         float: none;
         width: 100%;
 
@@ -168,8 +168,8 @@ $page-nav__icon-size: 56px !default;
         }
     }
 
-    @include media-query (small) {
-        .#{$pl-prefix}sequential-nav {
+    @include ds_media-query (small) {
+        .ds_sequential-nav {
             grid-template-columns: 1fr 1fr;
             grid-template-areas: 'prev next';
         }

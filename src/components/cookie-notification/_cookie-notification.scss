@@ -9,11 +9,11 @@ $cookie-notification__background-colour--success: $ds_colour__state--positive !d
 
 
 
-.#{$pl-prefix}notification.#{$pl-prefix}notification--cookie {
+.ds_notification.ds_notification--cookie {
     background: $cookie-notification__background-colour;
     color: $ds_colour__text;
 }
 
-.#{$pl-prefix}notification.#{$pl-prefix}notification--cookie-success {
+.ds_notification.ds_notification--cookie-success {
     background: $cookie-notification__background-colour--success;
 }

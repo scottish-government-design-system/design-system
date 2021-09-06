@@ -2,11 +2,11 @@
     $ERROR SUMMARY
 \*------------------------------------*/
 
-/* [1] compensate for border */
-.#{$pl-prefix}error-summary {
+/// [1] compensate for border
+.ds_error-summary {
     border: 4px solid $ds_colour__state--negative;
-    padding: 20px 28px; /* [1] */
-    @include block-margins;
+    padding: 20px 28px; /// [1]
+    @include ds_block-margins;
 
     &__title {
         margin-top: 0;

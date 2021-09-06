@@ -44,17 +44,15 @@
 // width variants: fixed
 $text-input-fixed-widths: (2,3,4,5,10,20);
 
-/*
- * [1] padding + n character widths
- * [2] additional currency padding + right padding + n character widths
- */
+/// [1] padding + n character widths
+/// [2] additional currency padding + right padding + n character widths
 @each $width in $text-input-fixed-widths {
     .#{$pl_prefix}input--fixed-#{$width} {
-        max-width: calc(16px + #{($width) * 1em}); /* [1] */
+        max-width: calc(16px + #{($width) * 1em}); /// [1]
     }
 
     .#{$pl_prefix}currency-wrapper .#{$pl_prefix}input--fixed-#{$width} {
-        max-width: calc(40px + 8px + #{($width) * 1em}); /* [2] */
+        max-width: calc(40px + 8px + #{($width) * 1em}); /// [2]
     }
 }
 

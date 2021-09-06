@@ -8,7 +8,7 @@ $contact-details__border-colour: $ds_colour__border--highlight;
 
 
 
-.#{$pl-prefix}contact-details {
+.ds_contact-details {
     $social-icon-size: 24px;
     $contact-details-line-gap: 24px;
 
@@ -38,7 +38,7 @@ $contact-details__border-colour: $ds_colour__border--highlight;
     }
 
     &__list dt:not(:first-child),
-    &__list dt + dd.#{$pl-prefix}contact-details__social-item {
+    &__list dt + dd.ds_contact-details__social-item {
         margin-top: $contact-details-line-gap;
     }
 
@@ -57,8 +57,8 @@ $contact-details__border-colour: $ds_colour__border--highlight;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}contact-details {
+@include ds_media-query(medium) {
+    .ds_contact-details {
         &__social-icon {
             top: 4px;
         }

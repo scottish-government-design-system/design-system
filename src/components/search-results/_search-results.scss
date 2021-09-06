@@ -2,8 +2,8 @@
     SEARCH RESULTS
 \*------------------------------------*/
 
-.#{$pl-prefix}search-suggestions {
-    @include small-size;
+.ds_search-suggestions {
+    @include ds_small-size;
     margin: 24px 0 24px;
 
     ul {
@@ -22,7 +22,7 @@
     }
 }
 
-.#{$pl-prefix}search-results {
+.ds_search-results {
 
     &__list {
         list-style-type: none;
@@ -36,14 +36,14 @@
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}search-results {
+@include ds_media-query(medium) {
+    .ds_search-results {
         &__count {
             padding-left: 16px;
         }
     }
 
-    .#{$pl-prefix}search-suggestions {
+    .ds_search-suggestions {
         padding-left: 16px;
 
         ul li:not(:last-child)::after {

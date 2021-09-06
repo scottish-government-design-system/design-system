@@ -2,15 +2,15 @@
     #WARNING TEXT
 \*------------------------------------*/
 
-/* [1] compensate for border */
-.#{$pl-prefix}warning-text {
+/// [1] compensate for border
+.ds_warning-text {
     border: 1px solid currentColor;
     border-width: 1px 0;
     font-weight: $bold;
-    padding: 23px 16px 23px 72px; /* [1] */
+    padding: 23px 16px 23px 72px; /// [1]
     position: relative;
 
-    @include block-margins;
+    @include ds_block-margins;
 
     > :last-child {
         margin-bottom: 0;
@@ -21,7 +21,7 @@
     }
 }
 
-.#{$pl-prefix}warning-text__icon {
+.ds_warning-text__icon {
     $warning-text-icon-size: 32px;
 
     background: $ds_colour__text;
@@ -47,22 +47,22 @@
             margin: 2px;
 
             $octothorpe: '#';
-            @include icon-mask(#{$iconsfile}#{$octothorpe}priority_high);
+            @include ds_icon-mask(#{$iconsfile}#{$octothorpe}priority_high);
         }
     }
 }
 
-.#{$pl-prefix}warning-text__text > :last-child {
+.ds_warning-text__text > :last-child {
     margin-bottom: 0;
 }
 
-@include media-query(medium) {
-    /* [1] compensate for border */
-    .#{$pl-prefix}warning-text {
-        padding: 31px 72px 31px 72px;  /* [1] */
+@include ds_media-query(medium) {
+    /// [1] compensate for border
+    .ds_warning-text {
+        padding: 31px 72px 31px 72px; /// [1]
     }
 
-    .#{$pl-prefix}warning-text__icon {
+    .ds_warning-text__icon {
         top: 31px;
     }
 }

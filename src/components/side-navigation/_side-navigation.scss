@@ -10,15 +10,15 @@ $side-nav__outline-width: 2px;
 
 
 
-.#{$pl-prefix}side-navigation {
-    @include block-margins;
-    @include small-size;
+.ds_side-navigation {
+    @include ds_block-margins;
+    @include ds_small-size;
 
     border: 1px solid $ds_colour__border--light;
     position: relative;
 
     &__expand {
-        @include blocklink;
+        @include ds_blocklink;
 
         background-color: $ds_colour__white;
         color: $side-nav__expand-colour;
@@ -52,22 +52,22 @@ $side-nav__outline-width: 2px;
     }
 
     &__expand-indicator {
-        @include indicator();
+        @include ds_indicator();
         top: 14px;
     }
 
-    #show-side-navigation:focus ~ .#{$pl-prefix}side-navigation__expand {
+    #show-side-navigation:focus ~ .ds_side-navigation__expand {
         background: $ds_colour__blocklink-bg--focus;
         box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
         color: $ds_colour__link--focus;
         transition-duration: 0s;
     }
 
-    #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__expand .#{$pl-prefix}side-navigation__expand-indicator {
-        @include indicator--open();
+    #show-side-navigation:checked ~ .ds_side-navigation__expand .ds_side-navigation__expand-indicator {
+        @include ds_indicator--open;
     }
 
-    #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__expand:not(:focus):not(:hover) {
+    #show-side-navigation:checked ~ .ds_side-navigation__expand:not(:focus):not(:hover) {
         background-color: $ds_colour__link--current__background;
         color: $ds_colour__link--current;
     }
@@ -96,19 +96,17 @@ $side-nav__outline-width: 2px;
         }
     }
 
-    /**
-     * [1] vertical padding offsets the text slightly for visual balance
-     */
+    /// [1] vertical padding offsets the text slightly for visual balance
     &__link {
-        @include blocklink;
+        @include ds_blocklink;
 
         margin-bottom: 2px;
-        padding: 12px 40px 10px 16px; /* [1] */
+        padding: 12px 40px 10px 16px; /// [1]
         position: relative;
         text-decoration: none;
 
         &:hover,
-        &.#{$pl-prefix}current {
+        &.ds_current {
             position: relative;
 
             &::before {
@@ -131,7 +129,7 @@ $side-nav__outline-width: 2px;
             content: none;
         }
 
-        &.#{$pl-prefix}current:not(:focus) {
+        &.ds_current:not(:focus) {
             background-color: $ds_colour__link--current__background;
 
             &:hover {
@@ -162,7 +160,7 @@ $side-nav__outline-width: 2px;
 
         &:hover,
         &:focus,
-        &.#{$pl-prefix}current {
+        &.ds_current {
             &::before {
                 background: $ds_colour__border--highlight;
             }
@@ -170,22 +168,22 @@ $side-nav__outline-width: 2px;
     }
 }
 
-@include media-query(medium-down) {
-    .js-initialised.#{$pl-prefix}side-navigation > .#{$pl-prefix}side-navigation__list {
+@include ds_media-query(medium-down) {
+    .js-initialised.ds_side-navigation > .ds_side-navigation__list {
         margin: 0 16px;
         max-height: 0;
         overflow: hidden;
         transition: max-height $transition-in-time, padding $transition-in-time;
     }
 
-    .js-initialised.#{$pl-prefix}side-navigation #show-side-navigation:checked ~ .#{$pl-prefix}side-navigation__list {
+    .js-initialised.ds_side-navigation #show-side-navigation:checked ~ .ds_side-navigation__list {
         padding-bottom: 8px;
         padding-top: 8px;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}side-navigation {
+@include ds_media-query(medium) {
+    .ds_side-navigation {
         border-width: 0;
         line-height: 24px;
 

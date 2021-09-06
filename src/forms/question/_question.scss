@@ -22,7 +22,7 @@
 }
 
 
-@include media-query(medium) {
+@include ds_media-query(medium) {
     .#{$pl_prefix}question {
         margin-bottom: 32px;
     }

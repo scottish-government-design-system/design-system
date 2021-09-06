@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 .#{$pl_prefix}article-aside {
-    @include block-margins;
-    @include small-size;
+    @include ds_block-margins;
+    @include ds_small-size;
     line-height: 20px;
     padding-top: 24px;
     position: relative;
@@ -24,7 +24,7 @@
     }
 }
 
-@include media-query(medium) {
+@include ds_media-query(medium) {
     .#{$pl_prefix}article-aside {
         line-height: 24px;
         padding-top: 32px;

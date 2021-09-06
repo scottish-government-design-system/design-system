@@ -10,7 +10,7 @@ $wrapper__width--xlarge: 1152px !default;
 
 
 
-.#{$pl-prefix}wrapper {
+.ds_wrapper {
     margin: 0 auto;
     padding: 0 $wrapper__padding;
     width: 100%;
@@ -20,20 +20,20 @@ $wrapper__width--xlarge: 1152px !default;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}wrapper {
+@include ds_media-query(medium) {
+    .ds_wrapper {
         width: $wrapper__width--medium;
     }
 }
 
-@include media-query(large) {
-    .#{$pl-prefix}wrapper {
+@include ds_media-query(large) {
+    .ds_wrapper {
         width: $wrapper__width--large;
     }
 }
 
-@include media-query(xlarge) {
-    .#{$pl-prefix}wrapper {
+@include ds_media-query(xlarge) {
+    .ds_wrapper {
         width: $wrapper__width--xlarge;
     }
 }

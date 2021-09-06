@@ -7,11 +7,11 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
 
 
 
-.#{$pl-prefix}tab-container {
+.ds_tab-container {
     border: 1px solid $ds_colour__border;
 }
 
-.#{$pl-prefix}tab {
+.ds_tab {
     &__content {
         display: none;
         padding: 32px;
@@ -57,12 +57,12 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
     }
 
     &__radio:checked + &__header + &__content,
-    &__header.#{$pl-prefix}current + &__content {
+    &__header.ds_current + &__content {
         display: block;
     }
 
     &__radio:checked + &__header > &__label:not(:focus),
-    &__header.#{$pl-prefix}current > &__label:not(:focus) {
+    &__header.ds_current > &__label:not(:focus) {
         background: $ds_colour__white;
         color: $ds_colour__text;
         pointer-events: none;
@@ -81,7 +81,7 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
     }
 
     &__radio:checked + &__header > &__label::before,
-    &__header.#{$pl-prefix}current > &__label::before {
+    &__header.ds_current > &__label::before {
         content: '';
     }
 
@@ -97,8 +97,8 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
 }
 
 @supports (display: grid) {
-    @include media-query(medium) {
-        .#{$pl-prefix}tab-container {
+    @include ds_media-query(medium) {
+        .ds_tab-container {
             border: 0;
             display: grid;
             grid-template-areas: 't1 t2 t3 t4 t5 .'
@@ -137,7 +137,7 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
             }
         }
 
-        .#{$pl-prefix}tab {
+        .ds_tab {
             &__header {
                 align-self: stretch;
 
@@ -188,7 +188,7 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
             }
 
             &__radio:checked + &__header > &__label:not(:focus),
-            &__header.#{$pl-prefix}current > &__label:not(:focus) {
+            &__header.ds_current > &__label:not(:focus) {
                 border-left-color: $ds_colour__border;
                 border-right-color: $ds_colour__border;
             }
@@ -204,7 +204,7 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
             }
 
             &__radio:checked + &__header > &__label,
-            &__header.#{$pl-prefix}current > &__label {
+            &__header.ds_current > &__label {
                 &::after {
                     background: $ds_colour__white;
                     bottom: -1px;

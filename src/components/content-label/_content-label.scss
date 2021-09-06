@@ -2,8 +2,8 @@
     CONTENT LABEL
 \*------------------------------------*/
 
-.#{$pl-prefix}content-label {
-    @include small-size;
+.ds_content-label {
+    @include ds_small-size;
     font-weight: $normal;
     line-height: 16px;
     margin: 0;

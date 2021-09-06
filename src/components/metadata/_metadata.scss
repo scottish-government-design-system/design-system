@@ -2,7 +2,7 @@
     PAGE METADATA
 \*------------------------------------*/
 
-.#{$pl-prefix}metadata {
+.ds_metadata {
     font-size: $small-size--fixed;
     line-height: 24px;
     margin: 0;
@@ -30,18 +30,18 @@
 /**
  * Alternative display collapsing the metadata into a single line
  */
-.#{$pl-prefix}metadata--inline {
+.ds_metadata--inline {
     color: $ds_colour__text--secondary;
-    @include tiny-size;
+    @include ds_tiny-size;
     line-height: 24px;
     margin-bottom: 8px;
 
-    .#{$pl-prefix}metadata__item {
+    .ds_metadata__item {
         display: inline;
         position: relative;
     }
 
-    .#{$pl-prefix}metadata__item:not(:first-child) {
+    .ds_metadata__item:not(:first-child) {
         margin-left: 0.25em;
         padding-left: 0.5em;
 
@@ -56,7 +56,7 @@
         }
     }
 
-    .#{$pl-prefix}metadata__value {
+    .ds_metadata__value {
         font-weight: $normal;
 
         &.content-label {

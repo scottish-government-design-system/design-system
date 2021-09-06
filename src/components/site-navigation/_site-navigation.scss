@@ -16,9 +16,6 @@ $site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colo
 // common to both mobile and desktop
 $site-navigation__link-padding: 16px;
 
-// avoid breaking changes to site navigation
-$use-legacy-site-navigation: true !default;
-
 .ds_site-navigation {
     display: none;
 
@@ -51,7 +48,7 @@ $use-legacy-site-navigation: true !default;
 }
 
 // small screens
-@include media-query(medium-down) {
+@include ds_media-query(medium-down) {
     .ds_site-navigation {
         background-color: $site-navigation__mobile-menu-background;
         margin: 0 -16px;
@@ -98,9 +95,9 @@ $use-legacy-site-navigation: true !default;
     }
 }
 
-@include media-query(medium) {
+@include ds_media-query(medium) {
     .ds_site-navigation {
-        @include small-size;
+        @include ds_small-size;
 
         &:not(&--mobile) {
             display: block;
@@ -117,7 +114,16 @@ $use-legacy-site-navigation: true !default;
         }
 
         &__link {
-            @include fancy-underscore;
+            &.ds_current {
+                //background-color: $ds_colour__link--current__background;
+                color: $ds_colour__text;
+                //outline: 1px solid $ds_colour__border--light;
+                //outline-offset: 0px;
+            }
+        }
+
+        a.ds_site-navigation__link {
+            @include ds_fancy-underscore;
 
             &::after {
                 bottom: 0;
@@ -137,57 +143,6 @@ $use-legacy-site-navigation: true !default;
             &:hover:not(:focus) {
                 background-color: $ds_colour__link--hover__background;
             }
-        }
-    }
-}
-
-// legacy
-@if $use-legacy-site-navigation {
-    @warn 'The .ds_mobile-navigation class for mobile navigation is deprecated. See https://designsystem.gov.scot for the current version.';
-
-    .ds_site-header > .ds_wrapper {
-        position: relative;
-    }
-
-    .ds_mobile-navigation {
-        @extend .ds_site-navigation;
-
-        &__list {
-            @extend .ds_site-navigation__list;
-        }
-
-        &__item {
-            @extend .ds_site-navigation__item;
-        }
-
-        &__link {
-            @extend .ds_site-navigation__link;
-        }
-
-        &__button {
-            padding: 1px 16px 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-        }
-
-        &__backdrop {
-            display: none;
-        }
-
-        .ds_site-search {
-            padding: 16px;
-
-            .ds_input__wrapper {
-                margin: 0;
-            }
-        }
-    }
-
-    @include media-query(medium) {
-        .ds_mobile-navigation,
-        .ds_mobile-navigation__button {
-            display: none !important;
         }
     }
 }

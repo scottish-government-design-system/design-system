@@ -2,8 +2,8 @@
     LAYOUT
 \*------------------------------------*/
 
-.#{$pl-prefix}layout {
-    @include layout();
+.ds_layout {
+    @include ds_layout();
     margin-bottom: 91px;
 
     &__content,
@@ -14,96 +14,96 @@
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}layout {
+@include ds_media-query(medium) {
+    .ds_layout {
 
         &__feedback {
             clear: left;
-            @include colwidth(8);
+            @include ds_colwidth(8);
         }
 
         &--article {
-            .#{$pl-prefix}layout {
+            .ds_layout {
                 &__header {
                     clear: left;
                     float: left;
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
 
                 &__partner {
                     float: left;
-                    @include colwidth(4);
+                    @include ds_colwidth(4);
                 }
 
                 &__sidebar {
                     float: left;
-                    @include colwidth(4);
+                    @include ds_colwidth(4);
                 }
 
                 &__content {
                     clear: left;
                     float: left;
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
             }
         }
 
         &--guide {
-            .#{$pl-prefix}layout {
+            .ds_layout {
                 &__header {
                     clear: left;
                     float: left;
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
 
                 &__partner {
                     float: left;
-                    @include colwidth(4);
+                    @include ds_colwidth(4);
                 }
 
                 &__navigation {
                     clear: left;
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
 
                 &__content {
                     clear: left;
                     float: left;
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
 
                 &__sidebar {
                     float: left;
-                    @include colwidth(3);
-                    @include colpush(1);
+                    @include ds_colwidth(3);
+                    @include ds_colpush(1);
                 }
 
                 &__feedback {
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
             }
         }
 
         &--category-list {
-            .#{$pl-prefix}layout {
+            .ds_layout {
                 &__list {
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
 
                 &__grid {
-                    @include colwidth(12);
+                    @include ds_colwidth(12);
                 }
             }
         }
 
         &--search-results {
-            .#{$pl-prefix}layout {
+            .ds_layout {
                 &__content {
-                    @include colwidth(8)
+                    @include ds_colwidth(8)
                 }
 
                 &__list {
-                    @include colwidth(10);
+                    @include ds_colwidth(10);
                 }
             }
         }
@@ -111,46 +111,46 @@
 }
 
 
-@include media-query(large) {
-    .#{$pl-prefix}layout {
+@include ds_media-query(large) {
+    .ds_layout {
         &--article {
-            .#{$pl-prefix}layout {
+            .ds_layout {
                 &__content {
                     clear: left;
                     float: left;
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
 
                 &__sidebar {
                     float: left;
-                    @include colpush(1);
-                    @include colwidth(3);
+                    @include ds_colpush(1);
+                    @include ds_colwidth(3);
                 }
             }
         }
 
         &--guide {
-            .#{$pl-prefix}layout {
+            .ds_layout {
                 &__content {
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
 
                 &__sidebar {
                     float: left;
-                    @include colpush(1);
-                    @include colwidth(3);
+                    @include ds_colpush(1);
+                    @include ds_colwidth(3);
                 }
 
                 &__feedback {
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
             }
         }
 
         &--search-results {
-            .#{$pl-prefix}layout {
+            .ds_layout {
                 &__list {
-                    @include colwidth(8);
+                    @include ds_colwidth(8);
                 }
             }
         }
@@ -180,13 +180,13 @@
     $grid-area-sidebar:     s;
 
     // this includes body for increased specificity
-    body .#{$pl-prefix}layout > *[class] {
+    body .ds_layout > *[class] {
         margin-left: 0;
         margin-right: 0;
         width: auto;
     }
 
-    .#{$pl-prefix}layout {
+    .ds_layout {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto 1fr;
 
@@ -228,7 +228,7 @@
         &__partner {
             grid-area: $grid-area-partner;
             align-self: start;
-            @include block-margins;
+            @include ds_block-margins;
         }
 
         &__sidebar {
@@ -255,8 +255,8 @@
         }
     }
 
-    @include media-query(small) {
-        .#{$pl-prefix}layout {
+    @include ds_media-query(small) {
+        .ds_layout {
             grid-template-columns: repeat(6, 1fr);
 
             grid-template-areas:
@@ -287,8 +287,8 @@
         }
     }
 
-    @include media-query(medium) {
-        .#{$pl-prefix}layout {
+    @include ds_media-query(medium) {
+        .ds_layout {
             grid-template-columns: repeat(12, 1fr);
 
             &--article {
@@ -324,8 +324,8 @@
         }
     }
 
-    @include media-query(large) {
-        .#{$pl-prefix}layout {
+    @include ds_media-query(large) {
+        .ds_layout {
             &--article {
                 grid-template-areas:
                     'h h h h h h h h . p p p'

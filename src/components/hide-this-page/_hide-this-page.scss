@@ -2,11 +2,11 @@
     HIDE THIS PAGE
 \*------------------------------------*/
 
-.#{$pl-prefix}has-hide-page .#{$pl-prefix}page{
+.ds_has-hide-page .ds_page{
     margin-top: 56px;
 }
 
-.#{$pl-prefix}hide-page {
+.ds_hide-page {
     background-color: $ds_colour__grey--light;
     left: 0;
     position: fixed;
@@ -26,7 +26,7 @@
     }
 
     &__text {
-        @include tiny-size;
+        @include ds_tiny-size;
         margin-bottom: 0;
     }
 
@@ -40,14 +40,14 @@
         display: block;
     }
 
-    .#{$pl-prefix}has-hide-page .#{$pl-prefix}page {
+    .ds_has-hide-page .ds_page {
         margin-top: 80px;
     }
 }
 
-@include media-query(medium) {
-    .#{$pl-prefix}hide-page {
-        @include block-margins;
+@include ds_media-query(medium) {
+    .ds_hide-page {
+        @include ds_block-margins;
         background-color: rgba(255, 255, 255, 0.9);
         left: auto;
         outline: 1px solid #ebebeb;
@@ -63,23 +63,23 @@
         }
     }
 
-    .#{$pl-prefix}has-hide-page .#{$pl-prefix}page {
+    .ds_has-hide-page .ds_page {
         margin-top: 0;
     }
 }
 
 @supports (display: grid) {
-    .#{$pl-prefix}hide-page {
+    .ds_hide-page {
         width: 100%;
 
-        @include media-query(medium) {
+        @include ds_media-query(medium) {
             align-self: start;
             grid-area: 1/9/3/13;
             right: 8px;
             top: 8px;
         }
 
-        @include media-query(large) {
+        @include ds_media-query(large) {
             grid-area: 1/10/3/13;
         }
     }

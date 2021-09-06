@@ -42,7 +42,7 @@
         top: 0;
         z-index: 1;
 
-        @include chevron(down, 16px);
+        @include ds_chevron(down, 16px);
         right: 8px;
         top: 8px;
     }
@@ -67,12 +67,10 @@
     width: 100%;
 }
 
-/**
- [1] legacy, former class name
- */
+/// [1] legacy, former class name
 .#{$pl_prefix}select-wrapper {
-    &.#{$pl_prefix}input--error, /* [1] */
+    &.#{$pl_prefix}input--error, /// [1]
     &.#{$pl_prefix}select--error {
-        @include field-error;
+        @include ds_field-error;
     }
 }
