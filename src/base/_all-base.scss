@@ -31,7 +31,6 @@ $iconsfile: '/assets/images/icons/icons.stack.svg' !default;
 /// SETTINGS
 @import "_settings/colours/colours";
 @import "_settings/grid/grid";
-@import "_settings/spacing/spacing";
 @import "_settings/transition/transition";
 @import "_settings/type/type";
 
@@ -56,7 +55,6 @@ $iconsfile: '/assets/images/icons/icons.stack.svg' !default;
 /// HELPERS
 @import "_helpers/margin/margin";
 @import "_helpers/padding/padding";
-@import "_helpers/spacing/spacing";
 @import "_helpers/visibility/visibility";
 @import "_helpers/wrappers/wrappers";
 
@@ -88,9 +86,3 @@ $iconsfile: '/assets/images/icons/icons.stack.svg' !default;
 @import "button/button";
 @import "layout/layout";
 @import "page/page";
-
-
-
-
-/// OVERRIDES
-@import "_overrides/spacing/spacing";
