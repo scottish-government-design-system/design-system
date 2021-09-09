@@ -101,7 +101,7 @@
         box-shadow: 0 0 0 $field-glow-width $ds_colour__yellow, 0 0 0 $small-shadow-size #b1b4b6;
     }
 
-    > .#{$pl_prefix}hint-text {
+    > .ds_hint-text {
         padding-left: 16px;
     }
 }

@@ -1,88 +1,12 @@
-/*------------------------------------*\
-    DESIGN SYSTEM BASE
-\*------------------------------------*/
-
-$ds_breakpoints: (
-    small: '(min-width: 480px)',
-    medium: '(min-width: 768px)',
-    large: '(min-width: 992px)',
-    xlarge: '(min-width: 1200px)',
-
-    small-down: '(max-width: 479px)',
-    medium-down: '(max-width: 767px)',
-    large-down: '(max-width: 991px)',
-    small-to-medium: '(min-width: 480px) and (max-width: 767px)',
-    medium-to-large: '(min-width: 768px) and (max-width: 991px)',
-    large-to-xlarge: '(min-width: 992px) and (max-width: 1199px)',
-    xlarge-up: '(min-width: 1200px)',
-
-    medium-portrait: '(min-width: 768px) and (orientation: portrait) and (max-width : 1024px)',
-    medium-landscape: '(min-width: 768px) and (orientation: landscape)  and (max-width : 1024px)'
-) !default;
-
-$mobile-body-margin: 16px !default;
-
-$pl-prefix: 'ds_';
 $iconsfile: '/assets/images/icons/icons.stack.svg' !default;
 
+@import "settings/all";
+@import "tools/all";
+@import "helpers/all";
 
+@import "initial/all";
+@import "core/all";
+@import "objects/all";
+@import "utilities/all";
 
-
-/// SETTINGS
-@import "_settings/colours/colours";
-@import "_settings/grid/grid";
-@import "_settings/transition/transition";
-@import "_settings/type/type";
-
-
-
-
-/// TOOLS
-@import "_tools/mixins/mixins";
-@import "_tools/breakpoint-checks/breakpoint-checks";
-
-
-
-
-/// GENERIC
-@import "_generic/normalize/normalize";
-@import "_generic/reset/reset";
-@import "_generic/box-sizing/box-sizing";
-
-
-
-
-/// HELPERS
-@import "_helpers/margin/margin";
-@import "_helpers/padding/padding";
-@import "_helpers/visibility/visibility";
-@import "_helpers/wrappers/wrappers";
-
-
-
-
-/// BEHAVIOUR
-@import "scrolling/scrolling";
-
-
-
-
-/// TYPE
-@import "body/body";
-@import "headings/headings";
-@import "leader/leader";
-@import "links/links";
-@import "lists/lists";
-@import "small/small";
-@import "spacing/spacing";
-
-
-
-
-/// ELEMENTS
-@import "icon/icon";
-@import "abbreviations/abbreviations";
-@import "address/address";
-@import "button/button";
-@import "layout/layout";
-@import "page/page";
+@import "overrides/all";

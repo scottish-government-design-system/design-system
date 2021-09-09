@@ -5,7 +5,7 @@
 %xds_search-result__outer {
     border-bottom: 1px solid $ds_colour__border--light;
     border-width: 1px 0;
-    margin: 0 #{$mobile-body-margin * -1};
+    margin: 0 -16px;
 
     &:first-of-type {
         border-top: 1px solid $ds_colour__border--light;

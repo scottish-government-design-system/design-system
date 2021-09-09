@@ -2,7 +2,7 @@
 
 'use strict';
 
-import _storage from '../../base/_tools/storage/storage';
+import _storage from '../../base/tools/storage/storage';
 
 class CookieNotification {
     constructor(el, storage = _storage) {

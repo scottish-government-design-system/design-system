@@ -1,0 +1,34 @@
+/*------------------------------------*\
+    PADDING MODIFIERS
+    Deprecated, prefer use of padding override classes e.g. ds_!_padding--0, ds_!_padding-bottom--0
+\*------------------------------------*/
+
+.ds_no-padding {
+    @include ds_responsive-padding(0, null, true);
+}
+
+.ds_no-padding--top {
+    @include ds_responsive-padding(0, top, true);
+}
+
+.ds_no-padding--right {
+    @include ds_responsive-padding(0, right, true);
+}
+
+.ds_no-padding--bottom {
+    @include ds_responsive-padding(0, bottom, true);
+}
+
+.ds_no-padding--left {
+    @include ds_responsive-padding(0, left, true);
+}
+
+.ds_no-padding--vertical {
+    @include ds_responsive-padding(0, top, true);
+    @include ds_responsive-padding(0, bottom, true);
+}
+
+.ds_no-padding--horizontal {
+    @include ds_responsive-padding(0, left, true);
+    @include ds_responsive-padding(0, right, true);
+}

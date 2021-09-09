@@ -2,7 +2,7 @@
     REVEAL CONTENT
 \*------------------------------------*/
 
-.#{$pl_prefix}reveal-content {
+.ds_reveal-content {
     display: none;
     margin-top: 16px;
     padding-left: 16px;
@@ -23,6 +23,6 @@
     }
 }
 
-:checked ~ .#{$pl_prefix}reveal-content {
+:checked ~ .ds_reveal-content {
     display: block;
 }

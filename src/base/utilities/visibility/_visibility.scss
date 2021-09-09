@@ -1,0 +1,11 @@
+/*------------------------------------*\
+    VISIBILITY
+\*------------------------------------*/
+
+.visually-hidden {
+    @include ds_visually-hidden;
+}
+
+.fully-hidden {
+    display: none !important;
+}

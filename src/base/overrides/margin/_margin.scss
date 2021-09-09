@@ -1,0 +1,38 @@
+/*------------------------------------*\
+    MARGIN MODIFIERS
+    Deprecated, prefer use of margin override classes e.g. ds_!_margin--0, ds_!_margin-bottom--0
+\*------------------------------------*/
+
+.ds_block-margins {
+    @include ds_block-margins;
+}
+
+.ds_no-margin {
+    @include ds_responsive-margin(0, null, true);
+}
+
+.ds_no-margin--top {
+    @include ds_responsive-margin(0, top, true);
+}
+
+.ds_no-margin--right {
+    @include ds_responsive-margin(0, right, true);
+}
+
+.ds_no-margin--bottom {
+    @include ds_responsive-margin(0, bottom, true);
+}
+
+.ds_no-margin--left {
+    @include ds_responsive-margin(0, left, true);
+}
+
+.ds_no-margin--vertical {
+    @include ds_responsive-margin(0, top, true);
+    @include ds_responsive-margin(0, bottom, true);
+}
+
+.ds_no-margin--horizontal {
+    @include ds_responsive-margin(0, left, true);
+    @include ds_responsive-margin(0, right, true);
+}

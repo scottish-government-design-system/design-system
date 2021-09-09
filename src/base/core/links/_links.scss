@@ -1,0 +1,53 @@
+/*------------------------------------*\
+    LINKS
+\*------------------------------------*/
+
+a,
+.ds_link {
+    @include ds_link;
+}
+
+.ds_link {
+    background: transparent;
+    border: 0;
+    display: inline;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0;
+    min-height: 0;
+    min-width: 0;
+    padding: 0;
+}
+
+.ds_reversed {
+    a,
+    .ds_link {
+        color: $ds_colour__link--reversed;
+
+        &:focus {
+            color: $ds_colour__link--reversed--focus;
+        }
+
+        &:hover:not(:focus) {
+            background-color: transparent;
+            color: $ds_colour__link--reversed--hover;
+            outline-color: transparent;
+        }
+    }
+}
+
+a[disabled] {
+    pointer-events: none;
+}
+
+// no underline on header links
+h1, h2, h3, h4 {
+    a {
+        text-decoration: none;
+
+        &:hover:not(:focus) {
+            text-decoration: underline;
+        }
+    }
+}

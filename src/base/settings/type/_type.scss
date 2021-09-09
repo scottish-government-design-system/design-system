@@ -1,0 +1,137 @@
+/// TYPE
+
+$root-font-size: 16px !default;
+$root-font-size--medium: 19px !default;
+
+// heading sizes
+$h1-size: 30px !default;
+$h2-size: 22px !default;
+$h3-size: 19px !default;
+$h4-size: 16px !default;
+$h5-size: 14px !default;
+
+// heading sizes at medium breakpoint
+$h1-size--medium: 44px !default;
+$h2-size--medium: 30px !default;
+$h3-size--medium: 22px !default;
+$h4-size--medium: 19px !default;
+$h5-size--medium: 16px !default;
+
+// size variants
+$large-size: 19px !default;
+$small-size: 14px !default;
+$tiny-size: 12px !default;
+
+$large-size--medium: 24px !default;
+$small-size--medium: 16px !default;
+$tiny-size--medium: 14px !default;
+
+$small-size--fixed: 14px !default;
+
+// weights
+$light: 300 !default;
+$normal: 400 !default;
+$bold: 700 !default;
+
+// font face
+$base-font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+@mixin ds_h1-size {
+    font-size: $h1-size;
+
+    @include ds_media-query(medium) {
+        font-size: $h1-size--medium;
+    }
+}
+
+@mixin ds_h2-size {
+    font-size: $h2-size;
+
+    @include ds_media-query(medium) {
+        font-size: $h2-size--medium;
+    }
+}
+
+@mixin ds_h3-size {
+    font-size: $h3-size;
+
+    @include ds_media-query(medium) {
+        font-size: $h3-size--medium;
+    }
+}
+
+@mixin ds_h4-size {
+    font-size: $h4-size;
+
+    @include ds_media-query(medium) {
+        font-size: $h4-size--medium;
+    }
+}
+
+@mixin ds_h5-size {
+    font-size: $h5-size;
+
+    @include ds_media-query(medium) {
+        font-size: $h5-size--medium;
+    }
+}
+
+@mixin ds_tiny-size {
+    font-size: $tiny-size;
+
+    @include ds_media-query(medium) {
+        font-size: $tiny-size--medium;
+    }
+}
+
+@mixin ds_small-size {
+    font-size: $small-size;
+
+    @include ds_media-query(medium) {
+        font-size: $small-size--medium;
+    }
+}
+
+@mixin ds_large-size {
+    font-size: $large-size;
+
+    @include ds_media-query(medium) {
+        font-size: $large-size--medium;
+    }
+}
+
+
+
+
+/// legacy non-prefixed names
+@mixin h1-size {
+    @include ds_h1-size;
+}
+
+@mixin h2-size {
+    @include ds_h2-size;
+}
+
+@mixin h3-size {
+    @include ds_h3-size;
+}
+
+@mixin h4-size {
+    @include ds_h4-size;
+}
+
+@mixin h5-size {
+    @include ds_h5-size;
+}
+
+@mixin tiny-size {
+    @include ds_tiny-size;
+}
+
+@mixin small-size {
+    @include ds_small-size;
+}
+
+@mixin large-size {
+    @include ds_large-size;
+}

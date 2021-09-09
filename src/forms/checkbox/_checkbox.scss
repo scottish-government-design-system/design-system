@@ -2,7 +2,7 @@
     CHECKBOXES
 \*------------------------------------*/
 
-.#{$pl_prefix}checkbox {
+.ds_checkbox {
     @include ds_radiocheckboxstates();
 
     &__label::after {
@@ -12,7 +12,7 @@
 }
 
 @supports (-webkit-mask-image: url()) or (mask-image: url()) {
-    .#{$pl_prefix}checkbox {
+    .ds_checkbox {
         &__label::after {
             background-color: $ds_colour__white;
         }

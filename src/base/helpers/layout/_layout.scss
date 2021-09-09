@@ -1,0 +1,55 @@
+@mixin ds_colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
+    width: calc(100% * #{$columns/$total} - #{$gutter});
+}
+
+@mixin ds_colpush($columns: 1, $total: 12) {
+    margin-left: calc(100% * #{$columns/$total});
+}
+
+@mixin ds_colpull($columns: 1, $total: 12) {
+    margin-left: calc(100% * #{$columns/$total} * -1);
+}
+
+@mixin ds_layout($gutter: $grid-gap-x, $sub: false) {
+    @if $sub {} @else {
+        margin-right: #{$gutter * -1};
+    }
+    overflow: hidden;
+
+    > * {
+        margin-right: $gutter;
+    }
+
+    @supports (display: grid) {
+        display: grid;
+        grid-gap: 0 $gutter;
+        margin-right: 0;
+        overflow: visible;
+
+        > * {
+            margin-left: 0;
+            margin-right: 0;
+            width: auto !important;
+        }
+    }
+}
+
+
+
+
+/// legacy non-prefixed names
+@mixin colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
+    @include ds_colwidth($columns, $total, $gutter);
+}
+
+@mixin colpush($columns: 1, $total: 12) {
+    @include ds_colpush($columns, $total);
+}
+
+@mixin colpull($columns: 1, $total: 12) {
+    @include ds_colpull($columns, $total);
+}
+
+@mixin layout($gutter: $grid-gap-x, $sub: false) {
+    @include ds_layout($gutter, $sub);
+}

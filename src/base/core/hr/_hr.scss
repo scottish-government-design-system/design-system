@@ -1,0 +1,10 @@
+/*------------------------------------*\
+    HORIZONTAL RULE
+\*------------------------------------*/
+
+/// [1] compensate for border
+hr {
+    border: none;
+    border-top: 1px solid $ds_colour__grey--medium;
+    margin: 32px 0 31px; /// [1]
+}

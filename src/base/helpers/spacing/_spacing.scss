@@ -1,0 +1,117 @@
+/// Responsive spacing
+///
+/// Returns a spacing rule for a given property and direction at a given entry
+/// in the spacing scale, for all relevant breakpoints.
+///
+/// Allows the addition of the !important flag.
+/// Allows fine tuning by pixel amounts.
+///
+/// This low-level mixin sholuld rarely be used directly.
+/// Use ds_reponsive-margin and ds_responsive-padding instead.
+///
+/// @param {number} $spacing-unit - entry in the spacig scale to get values from
+/// @param {string} $property - property to assign a value to
+/// @param {string} $direction - direction to apply the value to (leave empty for all directions)
+/// @param {boolean} $important - whether to include the !important flag
+/// @param {string} $tuning - value to add to the output for fine tuning
+///
+/// @returns {string} CSS rule for spacing, e.g. padding-top: 8px
+///
+/// @example scss
+///   .foo {
+///     @include ds_responsive-spacing(2, 'padding', top);
+///   }
+
+@mixin ds_responsive-spacing($spacing-unit, $property, $direction, $important: false, $tuning: false) {
+    // validate params
+    $spacing-unit-type: type-of($spacing-unit);
+    @if $spacing-unit-type != 'number' {
+        @error 'Expected an integer for spacing unit but got a #{$spacing-unit-type}';
+    }
+
+    @if not map-has-key($ds_spacing-scale, $spacing-unit) {
+        @error 'Spacing unit "#{$spacing-unit}" not found in the spacing scale.';
+    }
+
+    @if not map-has-key($ds_spacing-properties, $property) {
+        @error 'Spacing property "#{$property}" not allowed.';
+    }
+
+    @if $direction {
+        @if not map-has-key($ds_spacing-directions, $direction) {
+            @error 'Invalid spacing direction specified: "#{$direction}"';
+        }
+    }
+
+    $scale-values: map-get($ds_spacing-scale, $spacing-unit);
+
+    @each $breakpoint, $value in $scale-values {
+        @if ($tuning) {
+            $value: calc(#{$value} + #{$tuning});
+        }
+
+        @if $breakpoint == null {
+            @if not $direction {
+                #{$property}: $value if($important, !important, null);
+            } @else {
+                #{$property}-#{$direction}: $value if($important, !important, null);
+            }
+        } @else {
+            @include ds_media-query($breakpoint) {
+                @if not $direction {
+                    #{$property}: $value if($important, !important, null);
+                } @else {
+                    #{$property}-#{$direction}: $value if($important, !important, null);
+                }
+            }
+        }
+    }
+}
+
+/// Responsive margin
+///
+/// Returns a spacing rule for margin at a given entry in the spacing scale,
+/// for all relevant breakpoints.
+///
+/// Allows the addition of the !important flag.
+/// Allows fine tuning by pixel amounts.
+///
+/// @param {number} $spacing-unit - entry in the spacig scale to get values from
+/// @param {string} $direction - direction to apply the value to (leave empty for all directions)
+/// @param {boolean} $important - whether to include the !important flag
+/// @param {string} $tuning - value to add to the output for fine tuning
+///
+/// @returns {string} CSS rule for margin, e.g. margin-top: 8px
+///
+/// @example scss
+///   .foo {
+///     @include ds_responsive-margin(2, top);
+///   }
+
+@mixin ds_responsive-margin($spacing-unit, $direction, $important: false, $tuning: false) {
+    @include ds_responsive-spacing($spacing-unit, 'margin', $direction, $important, $tuning);
+}
+
+/// Responsive padding
+///
+/// Returns a spacing rule for padding at a given entry in the spacing scale,
+/// for all relevant breakpoints.
+///
+/// Allows the addition of the !important flag.
+/// Allows fine tuning by pixel amounts.
+///
+/// @param {number} $spacing-unit - entry in the spacig scale to get values from
+/// @param {string} $direction - direction to apply the value to (leave empty for all directions)
+/// @param {boolean} $important - whether to include the !important flag
+/// @param {string} $tuning - value to add to the output for fine tuning
+///
+/// @returns {string} CSS rule for padding, e.g. padding-top: 8px
+///
+/// @example scss
+///   .foo {
+///     @include ds_responsive-padding(2, top);
+///   }
+
+@mixin ds_responsive-padding($spacing-unit, $direction, $important: false, $tuning: false) {
+    @include ds_responsive-spacing($spacing-unit, 'padding', $direction, $important, $tuning);
+}

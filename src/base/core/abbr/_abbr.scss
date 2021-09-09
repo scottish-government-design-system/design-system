@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    ABBREVIATIONS
+    Improved display of abbreviation styling with better readability than browser default
+\*------------------------------------*/
+
+/// [1] do not apply this if there is no title attribute
+
+abbr, acronym {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 1px;
+
+    &:not([title]) { /// [1]
+        text-decoration: none;
+    }
+}

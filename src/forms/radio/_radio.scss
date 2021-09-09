@@ -2,7 +2,7 @@
     RADIO BUTTONS
 \*------------------------------------*/
 
-.#{$pl_prefix}radio {
+.ds_radio {
     @include ds_radiocheckboxstates(true, 1px);
 
     &__label::after {

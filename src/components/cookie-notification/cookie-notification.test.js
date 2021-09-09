@@ -3,7 +3,7 @@ const testObj = {};
 jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import CookieNotification from './cookie-notification';
-import storage from '../../base/_tools/storage/storage';
+import storage from '../../base/tools/storage/storage';
 
 describe('cookie notification banners', () => {
     beforeEach(() => {

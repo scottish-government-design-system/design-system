@@ -1,0 +1,24 @@
+/// Block margins
+///
+/// Single definition for consistent spacing
+
+@mixin ds_block-margins {
+    @include ds_responsive-margin(4, top);
+    @include ds_responsive-margin(4, bottom);
+}
+
+@mixin ds_block-margins--bottom {
+    @include ds_responsive-margin(4, bottom);
+}
+
+
+
+
+/// legacy non-prefixed names
+@mixin block-margins {
+    @include ds_block-margins;
+}
+
+@mixin block-margins--bottom {
+    @include ds_block-margins--bottom;
+}

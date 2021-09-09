@@ -2,7 +2,7 @@
     ARTICLE ASIDE
 \*------------------------------------*/
 
-.#{$pl_prefix}article-aside {
+.ds_article-aside {
     @include ds_block-margins;
     @include ds_small-size;
     line-height: 20px;
@@ -25,7 +25,7 @@
 }
 
 @include ds_media-query(medium) {
-    .#{$pl_prefix}article-aside {
+    .ds_article-aside {
         line-height: 24px;
         padding-top: 32px;
 

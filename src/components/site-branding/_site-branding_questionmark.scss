@@ -1,0 +1,98 @@
+/*------------------------------------*\
+    BRANDING
+\*------------------------------------*/
+
+// modifiable vars
+$site-logo__height: 32px !default;
+$site-logo__height--medium: 40px !default;
+$branding__separator-colour: $ds_colour__border--highlight !default;
+
+
+
+
+.ds_site-branding {
+    padding: 16px 0;
+
+    &__logo {
+        height: $site-logo__height;
+    }
+
+    &__logo-image {
+        height: 100%;
+        pointer-events: none;
+    }
+
+    &__link {
+        color: currentColor;
+        display: inline-block;
+        position: relative;
+        text-decoration: none;
+
+        @include ds_fancy-underscore(2px);
+    }
+
+    &__title {
+        font-weight: $light;
+    }
+}
+
+@include ds_media-query (medium) {
+    .ds_site-branding {
+        &__link {
+            margin-bottom: 0;
+        }
+
+        &__logo {
+            height: $site-logo__height--medium;
+
+            &:not(:last-child)::before {
+                background: $branding__separator-colour;
+                bottom: 0;
+                content: '';
+                position: absolute;
+                right: -24px;
+                top: 0;
+                width: 1px;
+
+                pointer-events: none;
+            }
+        }
+
+        &__title {
+            font-size: $large-size;
+            line-height: $site-logo__height--medium;
+            margin-left: 48px;
+        }
+    }
+}
+
+@supports (display: flex) {
+    .ds_site-branding {
+        display: flex;
+        align-items: center;
+
+        &__title {
+            line-height: 1em;
+        }
+
+        &__logo,
+        &__title {
+            float: none;
+        }
+    }
+}
+
+
+
+
+
+// when branding is a child of a reversed-variant site header
+.ds_reversed .ds_site-branding {
+    .ds_site-branding__logo {
+        color: $ds_colour__white;
+
+        &:not(:last-child)::before {
+            background-color: $ds_colour__white;
+        }
+    }
+}

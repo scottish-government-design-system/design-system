@@ -3,7 +3,7 @@
     Covers text-based INPUT elements and TEXTAREA elements
 \*------------------------------------*/
 
-.#{$pl_prefix}input {
+.ds_input {
     border: $field-border-width solid currentColor;
     border-radius: 0;
     display: block;
@@ -47,11 +47,11 @@ $text-input-fixed-widths: (2,3,4,5,10,20);
 /// [1] padding + n character widths
 /// [2] additional currency padding + right padding + n character widths
 @each $width in $text-input-fixed-widths {
-    .#{$pl_prefix}input--fixed-#{$width} {
+    .ds_input--fixed-#{$width} {
         max-width: calc(16px + #{($width) * 1em}); /// [1]
     }
 
-    .#{$pl_prefix}currency-wrapper .#{$pl_prefix}input--fixed-#{$width} {
+    .ds_currency-wrapper .ds_input--fixed-#{$width} {
         max-width: calc(40px + 8px + #{($width) * 1em}); /// [2]
     }
 }
@@ -69,30 +69,30 @@ $text-input-fluid-widths: (
     $name:  nth($width, 1);
     $value: nth($width, 2);
 
-    .#{$pl_prefix}input--fluid-#{$name} {
+    .ds_input--fluid-#{$name} {
         max-width: #{($value) * 1%};
     }
 }
 
-.#{$pl_prefix}input__wrapper {
+.ds_input__wrapper {
     display: block;
     margin-bottom: 24px;
     overflow: auto;
 
-    .#{$pl_prefix}input {
+    .ds_input {
         float: left;
         margin-bottom: 0;
         margin-right: -48px;
         padding-right: 56px;
     }
 
-    .#{$pl_prefix}icon {
+    .ds_icon {
         height: 32px;
         padding: 8px;
         width: 32px;
     }
 
-    > .#{$pl_prefix}button {
+    > .ds_button {
         margin: 0;
         min-height: 48px;
         min-width: 48px;
@@ -100,7 +100,7 @@ $text-input-fluid-widths: (
 }
 
 @supports (display: flex) {
-    .#{$pl_prefix}input__wrapper {
+    .ds_input__wrapper {
         display: flex;
         overflow: visible;
     }

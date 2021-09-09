@@ -2,7 +2,7 @@
     SELECT
 \*------------------------------------*/
 
-.#{$pl_prefix}select {
+.ds_select {
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: $ds_colour__white;
@@ -24,7 +24,7 @@
     }
 }
 
-.#{$pl_prefix}select-arrow {
+.ds_select-arrow {
     background: $ds_colour__button__background;
     bottom: -2px;
     content: '';
@@ -48,7 +48,7 @@
     }
 }
 
-.#{$pl_prefix}select:focus + .#{$pl_prefix}select-arrow {
+.ds_select:focus + .ds_select-arrow {
     background-color: $ds_colour__button--focus__background;
 
     &::before {
@@ -56,7 +56,7 @@
     }
 }
 
-.#{$pl_prefix}select-wrapper {
+.ds_select-wrapper {
     border: 2px solid currentColor;
     border-radius: 0;
     display: block;
@@ -68,9 +68,9 @@
 }
 
 /// [1] legacy, former class name
-.#{$pl_prefix}select-wrapper {
-    &.#{$pl_prefix}input--error, /// [1]
-    &.#{$pl_prefix}select--error {
+.ds_select-wrapper {
+    &.ds_input--error, /// [1]
+    &.ds_select--error {
         @include ds_field-error;
     }
 }

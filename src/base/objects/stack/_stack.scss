@@ -1,0 +1,17 @@
+/*------------------------------------*\
+    STACK
+    Your classic lobotomised owl https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
+\*------------------------------------*/
+
+$text-margin-vertical: 16px !default;
+
+.ds_stack {
+    > * {
+        margin-bottom: 0;
+    }
+
+    > * + * {
+        margin-bottom: 0;
+        margin-top: $text-margin-vertical;
+    }
+}

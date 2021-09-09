@@ -1,0 +1,26 @@
+/// Spacing override class generator
+///
+/// Generates override classes for a given property (margin, padding), in all
+/// directions and individual directions (left, right, top, bottom), for each
+/// entry in the spacing scale.
+///
+/// @param {string} $property - property to generate classes for (margin/padding)
+///
+/// @returns {string} a bunch of CSS rules
+
+@mixin ds_generate-spacing-overrides-for-property($property) {
+    @each $scale-unit, $scale-map in $ds_spacing-scale {
+        .ds_\!_#{$property}--#{$scale-unit} {
+            @include ds_responsive-spacing($scale-unit, $property, null, true);
+        }
+
+        @each $direction, $value in $ds_spacing-directions {
+            .ds_\!_#{$property}-#{$direction}--#{$scale-unit} {
+                @include ds_responsive-spacing($scale-unit, $property, $direction, true);
+            }
+        }
+    }
+}
+
+@include ds_generate-spacing-overrides-for-property('margin');
+@include ds_generate-spacing-overrides-for-property('padding');

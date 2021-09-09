@@ -1,0 +1,43 @@
+/// Media query
+///
+/// Shorthand @media alias that keeps media query rules to a defined set of
+/// breakpoints.
+///
+/// @param {string} $breakpoint - name of the breakpoint to use
+///
+/// @example scss
+///   @include ds_media-query(medium) {
+///     .my-element {
+///        display: block;
+///     }
+///   }
+
+@mixin ds_media-query($breakpoint) {
+    // validate param
+    @if not map-has-key($ds_breakpoints, $breakpoint) {
+        @error 'Breakpoint "#{$breakpoint}" not defined.';
+    }
+
+    $condition: map-get($ds_breakpoints, $breakpoint);
+
+    @media #{$condition} {
+        @content;
+    }
+}
+
+
+
+
+/// legacy non-prefixed name
+@mixin media-query($breakpoint) {
+    // validate param
+    @if not map-has-key($ds_breakpoints, $breakpoint) {
+        @error 'Breakpoint "#{$breakpoint}" not defined.';
+    }
+
+    $condition: map-get($ds_breakpoints, $breakpoint);
+
+    @media #{$condition} {
+        @content;
+    }
+}

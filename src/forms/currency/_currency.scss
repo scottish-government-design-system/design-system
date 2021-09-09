@@ -4,7 +4,7 @@
 
 $input-height: 48px;
 
-.#{$pl_prefix}currency-wrapper {
+.ds_currency-wrapper {
     position: relative;
 
     &::before {
@@ -24,11 +24,11 @@ $input-height: 48px;
         content: attr(data-symbol);
     }
 
-    & > .#{$pl_prefix}input {
+    & > .ds_input {
         padding-left: 40px;
     }
 
-    & > .#{$pl_prefix}input:focus {
+    & > .ds_input:focus {
         padding-left: 39px;
     }
 

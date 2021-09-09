@@ -1,0 +1,34 @@
+/*------------------------------------*\
+    BREAKPOINT CHECKS
+\*------------------------------------*/
+
+#bp-small,
+#bp-medium,
+#bp-large,
+#bp-xlarge {
+    display: none;
+}
+
+@include ds_media-query(small) {
+    #bp-small {
+        display: block;
+    }
+}
+
+@include ds_media-query(medium) {
+    #bp-medium {
+        display: block;
+    }
+}
+
+@include ds_media-query(large) {
+    #bp-large {
+        display: block;
+    }
+}
+
+@include ds_media-query(xlarge) {
+    #bp-xlarge {
+        display: block;
+    }
+}

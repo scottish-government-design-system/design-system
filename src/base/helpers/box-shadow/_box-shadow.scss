@@ -1,0 +1,15 @@
+/// Box shadow
+///
+/// Single definition for consistent box shadows
+
+@mixin ds_box-shadow {
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+/// legacy non-prefixed names
+@mixin box-shadow {
+    @include ds_box-shadow;
+}

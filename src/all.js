@@ -10,7 +10,7 @@ import NotificationBanner from './components/notification-banner/notification-ba
 import SideNavigation from './components/side-navigation/side-navigation';
 import Tabs from './components/tabs/tabs';
 
-import tracking from './base/tracking/tracking';
+import tracking from './base/tools/tracking/tracking';
 import aspectBoxFallback from './components/aspect-box/aspect-box-fallback';
 
 const components = {

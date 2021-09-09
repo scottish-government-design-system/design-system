@@ -1,0 +1,52 @@
+/// SPACING SCALE
+
+$ds_spacing-scale: (
+  0: (
+    null:   0
+    ),
+  1: (
+    null:   8px
+    ),
+  2: (
+    null:   16px
+    ),
+  3: (
+    null:   24px
+    ),
+  4: (
+    null:   24px,
+    medium: 32px
+    ),
+  5: (
+    null:   32px,
+    medium: 40px
+    ),
+  6: (
+    null:   40px,
+    medium: 48px
+    ),
+  7: (
+    null:   40px,
+    medium: 56px
+    ),
+  8: (
+    null:   48px,
+    medium: 64px
+    ),
+  9: (
+    null:   56px,
+    medium: 72px
+    )
+) !default;
+
+$ds_spacing-directions: (
+    left: true,
+    right: true,
+    top: true,
+    bottom: true
+) !default;
+
+$ds_spacing-properties: (
+    margin: true,
+    padding: true
+) !default;

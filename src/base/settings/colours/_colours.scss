@@ -1,0 +1,120 @@
+/// COLOUR DEFINITIONS
+/// Using a BEM-like syntax for variable names.
+
+// Palette
+$ds_colour__white:          #ffffff !default;
+$ds_colour__black:          #000000 !default;
+
+$ds_colour__blue--lighter:  #e5f0f8 !default;
+$ds_colour__blue--light:    #d9effc !default;
+$ds_colour__blue:           #0065bd !default;
+$ds_colour__blue--dark:     #00437e !default;
+$ds_colour__blue--darker:   #002d54 !default;
+
+$ds_colour__grey--lighter:  #f8f8f8 !default;
+$ds_colour__grey--light:    #ebebeb !default;
+$ds_colour__grey--medium:   #b3b3b3 !default;
+$ds_colour__grey:           #727272 !default;
+$ds_colour__grey--dark:     #333333 !default;
+
+
+
+
+// extended palette
+$ds_colour__teal:       #28a197;
+$ds_colour__dark-teal:  #017878;
+$ds_colour__green:      #5eb135;
+$ds_colour__dark-green: #428542;
+$ds_colour__yellow:     #fdd522;
+$ds_colour__orange:     #f47738;
+$ds_colour__red:        #d32205;
+$ds_colour__pink:       #e5007e;
+$ds_colour__purple:     #912688;
+$ds_colour__brown:      #592c20;
+
+
+
+
+// branding
+$ds_colour__brand:              $ds_colour__blue !default;
+$ds_colour__brand--secondary:   $ds_colour__blue--darker !default;
+$ds_brand-gradient-direction:   right !default;
+
+
+
+
+// type
+$ds_colour__text:               $ds_colour__grey--dark !default;
+$ds_colour__text--secondary:    $ds_colour__grey !default;
+$ds_colour__placeholder:        $ds_colour__text--secondary !default;
+
+
+
+
+// links
+$ds_colour__link:                       $ds_colour__blue !default;
+$ds_colour__link--hover:                $ds_colour__blue--dark !default;
+$ds_colour__link--hover__background:    $ds_colour__blue--light !default;
+$ds_colour__link--focus:                $ds_colour__text !default;
+$ds_colour__link--focus__outline:       $ds_colour__yellow !default;
+$ds_colour__link--focus__background:    $ds_colour__link--focus__outline !default;
+$ds_colour__link--focus__shadow:        $ds_colour__text !default;
+$ds_colour__link--current:              $ds_colour__text !default;
+$ds_colour__link--current__background:  $ds_colour__grey--lighter !default;
+$ds_colour__link--disabled:             $ds_colour__text !default;
+$ds_colour__link--disabled__background: $ds_colour__grey--light !default;
+$ds_colour__link--reversed:             currentColor !default;
+$ds_colour__link--reversed--hover:      currentColor !default;
+$ds_colour__link--reversed--focus:      $ds_colour__link--focus !default;
+
+
+
+
+// block links
+$ds_colour__blocklink-bg:               $ds_colour__white !default;
+$ds_colour__blocklink-bg--hover:        $ds_colour__link--hover__background !default;
+$ds_colour__blocklink-bg--focus:        $ds_colour__link--focus__background !default;
+
+
+
+
+// buttons
+$ds_colour__button:                     $ds_colour__white !default;
+$ds_colour__button__background:         $ds_colour__brand !default;
+$ds_colour__button--hover__background:  $ds_colour__link--hover !default;
+$ds_colour__button--focus:              $ds_colour__link--focus !default;
+$ds_colour__button--focus__background:  $ds_colour__link--focus__background !default;
+
+$ds_colour__button--secondary:                      $ds_colour__link !default;
+$ds_colour__button--secondary__background:          transparent !default;
+$ds_colour__button--secondary--hover:               $ds_colour__link--hover !default;
+$ds_colour__button--secondary--hover__background:   $ds_colour__link--hover__background !default;
+$ds_colour__button--secondary--focus:               $ds_colour__link--focus !default;
+$ds_colour__button--cancel:                         $ds_colour__text !default;
+$ds_colour__button--cancel__background:             $ds_colour__button--secondary__background !default;
+$ds_colour__button--cancel--hover__background:      $ds_colour__grey--light !default;
+
+
+
+
+// input
+$ds_colour__input--hover__border:       $ds_colour__grey--medium !default;
+$ds_colour__input--focus__background:   $ds_colour__white !default;
+$ds_colour__input--focus__outline:      $ds_colour__link--focus__outline !default;
+$ds_colour__input--spot:                $ds_colour__text !default;
+
+
+
+
+// borders
+$ds_colour__border:             $ds_colour__grey--medium !default;
+$ds_colour__border--dark:       $ds_colour__grey--dark !default;
+$ds_colour__border--light:      $ds_colour__grey--light !default;
+$ds_colour__border--highlight:  $ds_colour__brand !default;
+
+
+
+
+// state
+$ds_colour__state--negative:    $ds_colour__red;
+$ds_colour__state--positive:    $ds_colour__dark-green;

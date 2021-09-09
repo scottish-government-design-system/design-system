@@ -1,0 +1,41 @@
+/// Fancy underscore
+///
+/// Animated underscore used on logo images, site nav
+///
+/// @param {string} $width - width of the underscore
+
+@mixin ds_fancy-underscore($width: 1px) {
+    position: relative;
+    transition-duration: 0s !important;
+
+    &:hover:not(:focus) {
+        background: transparent;
+        outline-color: transparent;
+    }
+
+    &::after {
+        background-color: currentColor;
+        bottom: -5px;
+        content: '';
+        height: $width;
+        left: 50%;
+        opacity: 0;
+        position: absolute;
+        right: 50%;
+        transition: left $transition-in-time, right $transition-in-time, opacity $transition-in-time;
+    }
+
+    &:hover::after {
+        left: 0;
+        opacity: 1;
+        right: 0;
+    }
+}
+
+
+
+
+/// legacy non-prefixed names
+@mixin fancy-underscore($width: 1px) {
+    @include ds_fancy-underscore($width);
+}

@@ -2,7 +2,7 @@
     QUESTION
 \*------------------------------------*/
 
-.#{$pl_prefix}question {
+.ds_question {
     margin-bottom: 24px;
 
     &--error {
@@ -23,7 +23,7 @@
 
 
 @include ds_media-query(medium) {
-    .#{$pl_prefix}question {
+    .ds_question {
         margin-bottom: 32px;
     }
 }
