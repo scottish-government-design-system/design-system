@@ -72,5 +72,6 @@
     &.ds_input--error, /// [1]
     &.ds_select--error {
         @include ds_field-error;
+        min-height: 52px;
     }
 }
