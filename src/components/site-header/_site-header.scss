@@ -86,6 +86,11 @@ $site-header__top-band-colour: $ds_colour__brand;
         margin-right: 8px;
         pointer-events: none;
     }
+
+    &__navigation {
+        border-top: 1px solid $ds_colour__border--light;
+        margin-top: -1px;
+    }
 }
 
 @supports(display: grid) {
