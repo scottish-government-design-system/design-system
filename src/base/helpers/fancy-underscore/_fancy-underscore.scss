@@ -25,6 +25,7 @@
         transition: left $transition-in-time, right $transition-in-time, opacity $transition-in-time;
     }
 
+    &.ds_current::after,
     &:hover::after {
         left: 0;
         opacity: 1;

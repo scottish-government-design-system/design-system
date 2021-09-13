@@ -114,20 +114,10 @@ $site-navigation__link-padding: 16px;
         }
 
         &__link {
-            &.ds_current {
-                //background-color: $ds_colour__link--current__background;
-                color: $ds_colour__text;
-                //outline: 1px solid $ds_colour__border--light;
-                //outline-offset: 0px;
-            }
-        }
-
-        a.ds_site-navigation__link {
-            @include ds_fancy-underscore;
+            @include ds_fancy-underscore(3px);
 
             &::after {
                 bottom: 0;
-                height: 3px;
             }
 
             &:focus {
@@ -140,6 +130,7 @@ $site-navigation__link-padding: 16px;
                 }
             }
 
+            &.ds_current:not(:focus),
             &:hover:not(:focus) {
                 background-color: $ds_colour__link--hover__background;
             }
