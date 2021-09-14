@@ -1864,6 +1864,16 @@
       "integrity": "sha512-Un7MIEDdUC5gNpcGDV97op1Ywk748MpHcFTHoYs6qnj1Z3j7I53VG3nwZhKzoBZmbdRNnb6WRdFlwl7tSDuZGw==",
       "dev": true
     },
+    "bindings": {
+      "version": "1.5.0",
+      "resolved": "https://registry.npmjs.org/bindings/-/bindings-1.5.0.tgz",
+      "integrity": "sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==",
+      "dev": true,
+      "optional": true,
+      "requires": {
+        "file-uri-to-path": "1.0.0"
+      }
+    },
     "blob": {
       "version": "0.0.5",
       "resolved": "https://registry.npmjs.org/blob/-/blob-0.0.5.tgz",
@@ -2251,7 +2261,6 @@
       "resolved": "https://registry.npmjs.org/chokidar/-/chokidar-3.5.1.tgz",
       "integrity": "sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw==",
       "dev": true,
-      "optional": true,
       "requires": {
         "anymatch": "~3.1.1",
         "braces": "~3.0.2",
@@ -2268,7 +2277,6 @@
           "resolved": "https://registry.npmjs.org/anymatch/-/anymatch-3.1.1.tgz",
           "integrity": "sha512-mM8522psRCqzV+6LhomX5wgp25YVibjh8Wj23I5RPkPppSVSjyKD2A2mBJmWGa+KN7f2D6LNh9jkBCeyLktzjg==",
           "dev": true,
-          "optional": true,
           "requires": {
             "normalize-path": "^3.0.0",
             "picomatch": "^2.0.4"
@@ -2278,15 +2286,13 @@
           "version": "2.2.0",
           "resolved": "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.2.0.tgz",
           "integrity": "sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==",
-          "dev": true,
-          "optional": true
+          "dev": true
         },
         "braces": {
           "version": "3.0.2",
           "resolved": "https://registry.npmjs.org/braces/-/braces-3.0.2.tgz",
           "integrity": "sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==",
           "dev": true,
-          "optional": true,
           "requires": {
             "fill-range": "^7.0.1"
           }
@@ -2296,7 +2302,6 @@
           "resolved": "https://registry.npmjs.org/fill-range/-/fill-range-7.0.1.tgz",
           "integrity": "sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==",
           "dev": true,
-          "optional": true,
           "requires": {
             "to-regex-range": "^5.0.1"
           }
@@ -2306,7 +2311,6 @@
           "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.1.1.tgz",
           "integrity": "sha512-FnI+VGOpnlGHWZxthPGR+QhR78fuiK0sNLkHQv+bL9fQi57lNNdquIbna/WrfROrolq8GK5Ek6BiMwqL/voRYQ==",
           "dev": true,
-          "optional": true,
           "requires": {
             "is-glob": "^4.0.1"
           }
@@ -2316,7 +2320,6 @@
           "resolved": "https://registry.npmjs.org/is-binary-path/-/is-binary-path-2.1.0.tgz",
           "integrity": "sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==",
           "dev": true,
-          "optional": true,
           "requires": {
             "binary-extensions": "^2.0.0"
           }
@@ -2325,15 +2328,13 @@
           "version": "7.0.0",
           "resolved": "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz",
           "integrity": "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==",
-          "dev": true,
-          "optional": true
+          "dev": true
         },
         "readdirp": {
           "version": "3.5.0",
           "resolved": "https://registry.npmjs.org/readdirp/-/readdirp-3.5.0.tgz",
           "integrity": "sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==",
           "dev": true,
-          "optional": true,
           "requires": {
             "picomatch": "^2.2.1"
           }
@@ -2343,7 +2344,6 @@
           "resolved": "https://registry.npmjs.org/to-regex-range/-/to-regex-range-5.0.1.tgz",
           "integrity": "sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==",
           "dev": true,
-          "optional": true,
           "requires": {
             "is-number": "^7.0.0"
           }
@@ -3832,6 +3832,13 @@
       "integrity": "sha512-0btnI/H8f2pavGMN8w40mlSKOfTK2SVJmBfBeVIj3kNw0swwgzyRq0d5TJVOwodFmtvpPeWPN/MCcfuWF0Ezbw==",
       "dev": true
     },
+    "file-uri-to-path": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz",
+      "integrity": "sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==",
+      "dev": true,
+      "optional": true
+    },
     "fileset": {
       "version": "2.0.3",
       "resolved": "https://registry.npmjs.org/fileset/-/fileset-2.0.3.tgz",
@@ -5250,6 +5257,7 @@
           "dev": true,
           "optional": true,
           "requires": {
+            "bindings": "^1.5.0",
             "nan": "^2.12.1"
           }
         },
@@ -6711,8 +6719,7 @@
       "version": "2.2.2",
       "resolved": "https://registry.npmjs.org/picomatch/-/picomatch-2.2.2.tgz",
       "integrity": "sha512-q0M/9eZHzmr0AulXyPwNfZjtwZ/RBZlbN3K3CErVrk50T2ASYI7Bye0EvekFY3IP1Nt2DHu0re+V2ZHIpMkuWg==",
-      "dev": true,
-      "optional": true
+      "dev": true
     },
     "pify": {
       "version": "4.0.1",
@@ -7320,6 +7327,15 @@
       "resolved": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
       "integrity": "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==",
       "dev": true
+    },
+    "sass": {
+      "version": "1.32.13",
+      "resolved": "https://registry.npmjs.org/sass/-/sass-1.32.13.tgz",
+      "integrity": "sha512-dEgI9nShraqP7cXQH+lEXVf73WOPCse0QlFzSD8k+1TcOxCMwVXfQlr0jtoluZysQOyJGnfr21dLvYKDJq8HkA==",
+      "dev": true,
+      "requires": {
+        "chokidar": ">=3.0.0 <4.0.0"
+      }
     },
     "sass-graph": {
       "version": "2.2.5",
@@ -8953,6 +8969,7 @@
           "dev": true,
           "optional": true,
           "requires": {
+            "bindings": "^1.5.0",
             "nan": "^2.12.1"
           }
         }

@@ -11,7 +11,8 @@
   "scripts": {
     "postshrinkwrap": "sealant",
     "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
-    "sass": "node-sass src --output dist/css --output-style compressed",
+    "nodesass": "node-sass src --output dist/css --output-style compressed",
+    "sass": "sass --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
     "svgsprite": "node svg-sprite",
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"
@@ -40,6 +41,7 @@
     "karma-webpack": "^4.0.2",
     "node-sass": "^4.12.0",
     "pre-commit": "^1.2.2",
+    "sass": "^1.32.13",
     "sealant": "^0.1.1",
     "svg-sprite": "^1.4.0",
     "webpack": "^4.28.3",
