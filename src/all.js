@@ -25,7 +25,7 @@ const components = {
     MobileTables,
     NotificationBanner,
     SideNavigation,
-    SkipLinks,
+    skipLinks,
     Tabs
 };
 
