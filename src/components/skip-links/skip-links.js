@@ -15,6 +15,6 @@ const skipLinks = {
             });
         });
     }
-}
+};
 
 export default skipLinks;

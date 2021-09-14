@@ -8,6 +8,7 @@ import MobileMenu from './components/site-navigation/site-navigation';
 import MobileTables from './components/table/table';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';
+import skipLinks from './components/skip-links/skip-links';
 import Tabs from './components/tabs/tabs';
 
 import tracking from './base/tools/tracking/tracking';
@@ -24,6 +25,7 @@ const components = {
     MobileTables,
     NotificationBanner,
     SideNavigation,
+    SkipLinks,
     Tabs
 };
 
@@ -40,8 +42,6 @@ function initAll(scope = document) {
     }
 
     const characterCountModules = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]'));
-    // const characterCountElements = [].slice.call(scope.querySelectorAll('input[maxlength], textarea[maxlength]'));
-    // characterCountElements.forEach(element => characterCountModules.push(element.parentNode));
     characterCountModules.forEach(characterCount => new CharacterCount(characterCount).init());
 
     const cookieNotificationEl = document.querySelector('[data-module="ds-cookie-notification"]');
@@ -70,6 +70,9 @@ function initAll(scope = document) {
     const sideNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-side-navigation"]'));
     sideNavigations.forEach(sideNavigation => new SideNavigation(sideNavigation).init());
 
+    // skip links doesn't need any special treatment -- just init it
+    skipLinks.init();
+
     const tables = [].slice.call(scope.querySelectorAll('table[data-smallscreen]'));
     if (tables.length) {
         const mobileTables = new MobileTables();
@@ -93,11 +96,13 @@ export {
     Accordion,
     BackToTop,
     CharacterCount,
+    CookieNotification,
     DSDatePicker,
     HidePage,
     MobileMenu,
     MobileTables,
     NotificationBanner,
     SideNavigation,
+    skipLinks,
     Tabs
 };
