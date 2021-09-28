@@ -5,17 +5,12 @@
 .ds_select {
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-color: $ds_colour__white;
+    background-color: transparent;
     border-radius: 0;
     border: 0;
-    bottom: 0;
-    height: 44px;
-    left: 0;
+    min-height: 48px;
     padding: 8px;
-    position: absolute;
-    right: 0;
     width: 100%;
-    top: 0;
 
     &:focus {
         box-shadow: 0 0 0 1px $ds_colour__input--spot inset;
@@ -26,12 +21,12 @@
 
 .ds_select-arrow {
     background: $ds_colour__button__background;
-    bottom: -2px;
+    bottom: 0;
     content: '';
     pointer-events: none;
     position: absolute;
-    right: -2px;
-    top: -2px;
+    right: 0;
+    top: 0;
     width: 48px;
 
     &::before {
@@ -57,11 +52,12 @@
 }
 
 .ds_select-wrapper {
-    border: 2px solid currentColor;
     border-radius: 0;
     display: block;
     margin-bottom: 24px;
     min-height: 48px;
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
     padding: 0;
     position: relative;
     width: 100%;
