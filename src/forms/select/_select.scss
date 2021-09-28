@@ -8,14 +8,13 @@
     background-color: transparent;
     border-radius: 0;
     border: 0;
+    box-shadow: inset 0 0 0 2px currentColor;
     min-height: 48px;
     padding: 8px;
     width: 100%;
 
     &:focus {
-        box-shadow: 0 0 0 1px $ds_colour__input--spot inset;
-        outline: 2px solid $ds_colour__input--focus__outline;
-        outline-offset: 2px;
+        box-shadow: inset 0 0 0 4px currentColor;
     }
 }
 
@@ -56,17 +55,26 @@
     display: block;
     margin-bottom: 24px;
     min-height: 48px;
-    outline: 2px solid currentColor;
-    outline-offset: -2px;
     padding: 0;
     position: relative;
     width: 100%;
 }
 
+/// Error state
 /// [1] legacy, former class name
 .ds_select-wrapper {
-    &.ds_input--error, /// [1]
-    &.ds_select--error {
-        @include ds_field-error;
+    &.ds_input--error .ds_select, /// [1]
+    .ds_select--error,
+    .ds_input--error {
+        box-shadow: inset 0 0 0 4px $ds_colour__state--negative;
+
+        &:focus {
+            box-shadow: inset 0 0 0 4px currentColor;
+        }
     }
+}
+
+/// [1] legacy, former class name
+.ds_select-wrapper.ds_input--error { /// [1]
+    padding: 0;
 }
