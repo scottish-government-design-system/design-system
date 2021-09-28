@@ -4,8 +4,6 @@
 
 $button__border-width: 2px !default;
 $button__outline-width: 3px !default;
-$button__height: 56px !default;
-$button__height--small: 48px !default;
 $button__padding--x: 16px !default;
 $link__border-width: 3px;
 
@@ -16,19 +14,18 @@ button,
 input[type="button"],
 input[type="submit"],
 .ds_button {
+    @include ds_small-size;
+    @include ds_button-sizing;
+
     background: $ds_colour__button__background;
     border: 0;
     border-radius: 0;
     color: $ds_colour__button;
     cursor: pointer;
     display: inline-block;
-    @include ds_small-size;
     font-weight: $bold;
     line-height: 24px;
-    min-height: $button__height;
-    min-width: $button__height;
     outline-width: 0;
-    padding: 16px;
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -126,10 +123,7 @@ input[type="submit"],
 .ds_button {
     &--small {
         @include ds_small-size;
-        min-height: $button__height--small;
-        min-width: $button__height--small;
-        padding-top: 12px;
-        padding-bottom: 12px;
+        @include ds_button-sizing--small;
     }
 }
 
@@ -163,25 +157,15 @@ input[type="submit"],
 }
 
 // BUTTONS WITH ICONS
+// n.b. icon sizing is included in the ds_button-sizing mixins
 .ds_button {
     .ds_icon {
         bottom: 0;
         box-sizing: initial;
-        height: 40px;
-        padding: 8px;
         pointer-events: none;
         position: absolute;
         right: 0;
         top: 0;
-        width: 40px;
-    }
-
-    &--small {
-        .ds_icon {
-            height: 32px;
-            padding: 8px;
-            width: 32px;
-        }
     }
 
     &--has-icon {

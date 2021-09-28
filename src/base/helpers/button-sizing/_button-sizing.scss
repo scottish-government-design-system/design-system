@@ -1,0 +1,35 @@
+/// Button sizing
+///
+/// Common definitions for consistent button sizing
+
+$button__height: 56px !default;
+$button__height--small: 48px !default;
+
+@mixin ds_button-sizing ($icon: true) {
+    min-height: $button__height;
+    min-width: $button__height;
+    padding: 16px;
+
+    @if $icon {
+        > .ds_icon {
+            height: 40px;
+            padding: 8px;
+            width: 40px;
+        }
+    }
+}
+
+@mixin ds_button-sizing--small ($icon: true) {
+    min-height: $button__height--small;
+    min-width: $button__height--small;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    @if $icon {
+        > .ds_icon {
+            height: 32px;
+            padding: 8px;
+            width: 32px;
+        }
+    }
+}
