@@ -48,8 +48,10 @@ h1,h2,h3 {
         @include ds_blocklink;
 
         background-color: $ds_colour__white;
+        border-width: 0;
         color: $accordion__header-colour;
         font-size: 1rem;
+        font-weight: $bold;
         line-height: 24px;
         margin: 0;
         padding: 15px 40px 15px 16px; /// [1]
@@ -92,9 +94,7 @@ h1,h2,h3 {
         display: none;
         padding: 24px 40px 40px 16px;
 
-        > :last-child {
-            margin-bottom: 0;
-        }
+        @include last-child-no-margin;
     }
 
     &__control:checked ~ &__body {

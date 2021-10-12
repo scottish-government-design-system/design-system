@@ -10,9 +10,6 @@ $link__border-width: 3px;
 
 
 
-button,
-input[type="button"],
-input[type="submit"],
 .ds_button {
     @include ds_small-size;
     @include ds_button-sizing;
@@ -25,7 +22,6 @@ input[type="submit"],
     display: inline-block;
     font-weight: $bold;
     line-height: 24px;
-    outline-width: 0;
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -43,8 +39,7 @@ input[type="submit"],
         background-color: $ds_colour__button--focus__background;
         box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
         color: $ds_colour__button--focus;
-        outline-color: $ds_colour__button--focus__background;
-        outline-width: 0;
+        outline: 0;
 
         transition-duration: 0s;
     }
@@ -149,10 +144,7 @@ input[type="submit"],
 
     >.ds_button {
         margin: 0 0 24px;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+        @include last-child-no-margin;
     }
 }
 

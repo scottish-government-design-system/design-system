@@ -87,6 +87,7 @@
 
             button {
                 background-color: transparent;
+                border-width: 0;
                 color: $ds_colour__text;
                 font-weight: $normal;
                 min-height: 40px;
@@ -94,6 +95,7 @@
                 padding: 0;
                 min-width: 40px;
 
+                @include ds_small-size;
                 @include ds_blocklink;
 
                 &[disabled="true"] {
