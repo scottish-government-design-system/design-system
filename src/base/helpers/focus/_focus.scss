@@ -5,6 +5,7 @@
 
 $focus__outline-width: 2px !default;
 
-:focus {
-    outline: $focus__outline-width solid $ds_colour__link--focus__background;
+@mixin focus-outline($width: $focus__outline-width) {
+    outline: $width solid $ds_colour__link--focus__background;
+    outline-offset: 0;
 }

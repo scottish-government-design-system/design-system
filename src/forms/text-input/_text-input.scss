@@ -13,8 +13,7 @@
     width: 100%;
 
     &:focus {
-        outline: $field-glow-width solid $ds_colour__input--focus__outline;
-        outline-offset: 0;
+        @include focus-outline;
         box-shadow: inset 0 0 0 #{$field-border-width--focus - $field-border-width};
     }
 
