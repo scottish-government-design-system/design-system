@@ -38,6 +38,7 @@
     "karma-jasmine": "^2.0.1",
     "karma-jasmine-jquery-2": "^0.1.1",
     "karma-jasmine-matchers": "^4.0.1",
+    "karma-viewport": "^1.0.8",
     "karma-webpack": "^4.0.2",
     "node-sass": "^4.12.0",
     "pre-commit": "^1.2.2",

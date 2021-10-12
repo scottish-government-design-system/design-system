@@ -24,7 +24,8 @@ module.exports = function (config) {
         basePath: '',
         frameworks: [
             'jasmine-jquery',
-            'jasmine'
+            'jasmine',
+            'viewport'
         ],
         reporters: [
             'dots',
