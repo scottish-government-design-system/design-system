@@ -1,8 +1,10 @@
 /// SPACING SCALE
 
+/// [1] "null" is the default, i.e. small devices
+/// sizes can be specified for any breakpoint, but fewer is better
 $ds_spacing-scale: (
   0: (
-    null:   0
+    null:   0 /// [1]
     ),
   1: (
     null:   8px

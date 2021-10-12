@@ -1,0 +1,31 @@
+/*------------------------------------*\
+    BREAKPOINT CHECK
+\*------------------------------------*/
+
+.ds_breakpoint-check {
+    display: none;
+
+    @include ds_media-query(small) {
+        &.ds_breakpoint-check--small {
+            display: block;
+        }
+    }
+
+    @include ds_media-query(medium) {
+        &.ds_breakpoint-check--medium {
+            display: block;
+        }
+    }
+
+    @include ds_media-query(large) {
+        &.ds_breakpoint-check--large {
+            display: block;
+        }
+    }
+
+    @include ds_media-query(xlarge) {
+        &.ds_breakpoint-check--xlarge {
+            display: block;
+        }
+    }
+}

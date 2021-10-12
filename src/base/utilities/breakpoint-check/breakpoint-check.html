@@ -1,0 +1,32 @@
+No markup needed. Just the styles.
+Todo: do this without the embedded styles.
+
+<style>
+.ds_breakpoint-check {
+    display: none;
+}
+
+@media screen and (min-width: 480px) {
+    .ds_breakpoint-check.ds_breakpoint-check--small {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .ds_breakpoint-check.ds_breakpoint-check--medium {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .ds_breakpoint-check.ds_breakpoint-check--large {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .ds_breakpoint-check.ds_breakpoint-check--xlarge {
+        display: block;
+    }
+}
+</style>
