@@ -18,12 +18,10 @@
     position: relative;
     text-decoration: none;
 
+    @include last-child-no-margin;
+
     &:first-of-type {
         padding-top: 23px;
-    }
-
-    > :last-child {
-        margin-bottom: 0;
     }
 }
 

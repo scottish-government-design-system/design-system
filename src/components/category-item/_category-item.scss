@@ -21,9 +21,7 @@ $border-width-size: 4px;
     transition: background-color $transition-out-time, border-color $transition-out-time;
     width: 100%;
 
-    > :last-child {
-        margin-bottom: 0;
-    }
+    @include last-child-no-margin;
 
     &__title {
         @include ds_large-size;

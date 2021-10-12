@@ -11,10 +11,7 @@
     position: relative;
 
     @include ds_block-margins;
-
-    > :last-child {
-        margin-bottom: 0;
-    }
+    @include last-child-no-margin;
 
     &:first-child {
         margin-top: 0;
@@ -52,8 +49,8 @@
     }
 }
 
-.ds_warning-text__text > :last-child {
-    margin-bottom: 0;
+.ds_warning-text__text {
+    @include last-child-no-margin;
 }
 
 @include ds_media-query(medium) {

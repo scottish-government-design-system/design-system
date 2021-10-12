@@ -16,9 +16,7 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
         display: none;
         padding: 32px;
 
-        > :last-child {
-            margin-bottom: 0;
-        }
+        @include last-child-no-margin;
     }
 
     &__label {

@@ -18,6 +18,8 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     color: $ds_colour__white;
     margin-bottom: 1px;
 
+    @include last-child-no-margin;
+
     &--large &__content {
         padding-top: 24px;
         padding-bottom: 32px;
@@ -37,13 +39,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         display: inline-block;
         margin-right: 16px;
 
-        > :last-child {
-            margin-bottom: 0;
-        }
-
-        &:last-child {
-            margin-bottom: 0;
-        }
+        @include last-child-no-margin;
     }
 
     &__actions {
@@ -94,6 +90,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     &__close {
         background: transparent;
+        border-width: 0;
         box-sizing: content-box;
         color: currentColor;
         display: none;

@@ -4,6 +4,7 @@
 
 ul, ol, dd {
     margin-left: 24px;
+    @include last-child-no-margin;
 }
 
 li {

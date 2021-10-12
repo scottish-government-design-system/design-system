@@ -24,8 +24,8 @@
         margin-top: 0;
     }
 
-    &__content > :last-child {
-        margin-bottom: 0;
+    &__content {
+        @include last-child-no-margin;
     }
 }
 
