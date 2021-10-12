@@ -36,18 +36,34 @@
     </div>
 </div>
 
-<div id="breakpoint-tests">
-    <div id="bp-small"></div>
-    <div id="bp-medium"></div>
-    <div id="bp-large"></div>
-    <div id="bp-xlarge"></div>
-</div>
 
-<script>
-window.DS = window.DS || {};
 
-window.DS.breakpoint = function(size) {
-    const breakElement = document.getElementById('bp-' + size);
-    return window.getComputedStyle(breakElement, null).display === 'block';
+<style>
+.ds_breakpoint-check {
+    display: none;
 }
-</script>
+
+@media screen and (min-width: 480px) {
+    .ds_breakpoint-check.ds_breakpoint-check--small {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .ds_breakpoint-check.ds_breakpoint-check--medium {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .ds_breakpoint-check.ds_breakpoint-check--large {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .ds_breakpoint-check.ds_breakpoint-check--xlarge {
+        display: block;
+    }
+}
+</style>

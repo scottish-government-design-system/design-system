@@ -34,6 +34,8 @@ describe('tabs', () => {
 
             testObj.tabs = new Tabs(document.querySelector('.ds_tab-container'));
             testObj.tabs.init();
+
+            viewport.reset();
         });
 
         // check focus prev
@@ -142,9 +144,7 @@ describe('tabs', () => {
 
         // check tabindex
         it('should not do anything with tabindex on mobile', () => {
-            window.DS.breakpoint = function () {
-                return false;
-            };
+            viewport.set(320);
 
             // initial state
             const tabIndex1 = testObj.tabs.tabHeaders[0].querySelector('.ds_tab__label').getAttribute('tabindex');
@@ -160,9 +160,6 @@ describe('tabs', () => {
         });
 
         it('should set tabindex to -1 on any inactive tabs', () => {
-            window.DS.breakpoint = function () {
-                return true;
-            };
 
             // initial state
             expect (testObj.tabs.tabHeaders[0].querySelector('.ds_tab__label').getAttribute('tabindex')).toEqual('0');

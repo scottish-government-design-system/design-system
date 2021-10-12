@@ -2,6 +2,8 @@
 
 'use strict';
 
+import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
+
 class Tabs {
     constructor(tabContainer) {
         this.tabContainer = tabContainer;
@@ -131,7 +133,7 @@ class Tabs {
                 tabIndex = 0;
             }
 
-            if (window.DS.breakpoint('medium')) {
+            if (breakpointCheck('medium')) {
                 tabHeader.querySelector('.ds_tab__label').setAttribute('tabindex', tabIndex);
             }
         });
