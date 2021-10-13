@@ -2,41 +2,15 @@
     LEADER
 \*------------------------------------*/
 
-.ds_leader {
+.ds_leader,
+.ds_leader-first-paragraph > p:first-child {
     @include ds_large-size;
+    @include ds_responsive-margin(5, bottom);
+
     font-weight: $light;
     line-height: 32px;
-    margin-bottom: 32px;
 
-    &--first-paragraph {
-        font-size: inherit;
-        font-weight: inherit;
-        line-height: inherit;
-        margin-bottom: inherit;
-
-        > p:first-child {
-            @include ds_large-size;
-            font-weight: $light;
-            margin-bottom: 32px;
-        }
-    }
-}
-
-@include ds_media-query(medium) {
-    .ds_leader {
+    @include media-query(medium) {
         line-height: 40px;
-        margin-bottom: 40px;
-
-        &--first-paragraph {
-            font-size: inherit;
-            font-weight: inherit;
-            line-height: inherit;
-            margin-bottom: inherit;
-
-            > p:first-child {
-                line-height: 40px;
-                margin-bottom: 40px;
-            }
-        }
     }
 }
