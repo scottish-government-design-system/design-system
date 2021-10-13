@@ -552,18 +552,6 @@ const tracking = {
             });
         },
 
-        tabs: function (scope = document) {
-            const tabSets = tracking.gatherElements('ds_tab-container', scope);
-            tabSets.forEach(tabSet => {
-                const tabs = [].slice.call(tabSet.querySelectorAll('.ds_tab__label'));
-                tabs.forEach((tab, index) => {
-                    if (!tab.getAttribute('data-navigation')) {
-                        tab.setAttribute('data-navigation', `tab-${index + 1}`);
-                    }
-                });
-            });
-        },
-
         textInputs: function (scope = document) {
             const textInputs = [].slice.call(scope.querySelectorAll('input.ds_input'));
             textInputs.forEach(textInput => {

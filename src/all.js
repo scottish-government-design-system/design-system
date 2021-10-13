@@ -9,7 +9,6 @@ import MobileTables from './components/table/table';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';
 import skipLinks from './components/skip-links/skip-links';
-import Tabs from './components/tabs/tabs';
 
 import tracking from './base/tools/tracking/tracking';
 import aspectBoxFallback from './components/aspect-box/aspect-box-fallback';
@@ -25,8 +24,7 @@ const components = {
     MobileTables,
     NotificationBanner,
     SideNavigation,
-    skipLinks,
-    Tabs
+    skipLinks
 };
 
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
@@ -79,9 +77,6 @@ function initAll(scope = document) {
         mobileTables.init();
     }
 
-    const tabSets = [].slice.call(scope.querySelectorAll('[data-module="ds-tabs"]'));
-    tabSets.forEach(tabSet => new Tabs(tabSet).init());
-
     tracking.init();
     aspectBoxFallback();
 }
@@ -103,6 +98,5 @@ export {
     MobileTables,
     NotificationBanner,
     SideNavigation,
-    skipLinks,
-    Tabs
+    skipLinks
 };

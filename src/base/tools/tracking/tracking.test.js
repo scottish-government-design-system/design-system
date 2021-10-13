@@ -1112,32 +1112,6 @@ describe('tracking', () => {
         });
     });
 
-    describe('tabs', () => {
-        beforeEach(() => {
-            testObj.scope = document.getElementById('tabs');
-        });
-
-        it('should add a generated data attribute to each tab\'s triggering element', () => {
-            const triggers = [].slice.call(testObj.scope.querySelectorAll('.ds_tab__label'));
-
-            Tracking.add.tabs();
-
-            expect(triggers[0].getAttribute('data-navigation')).toEqual('tab-1');
-            expect(triggers[1].getAttribute('data-navigation')).toEqual('tab-2');
-        });
-
-        it('should NOT add a generated data attribute to each tab\'s triggering element if there is an attribute already set', () => {
-            const triggers = [].slice.call(testObj.scope.querySelectorAll('.ds_tab__label'));
-            triggers[0].setAttribute('data-navigation', 'tab-foo');
-            triggers[1].setAttribute('data-navigation', 'tab-bar');
-
-            Tracking.add.tabs();
-
-            expect(triggers[0].getAttribute('data-navigation')).toEqual('tab-foo');
-            expect(triggers[1].getAttribute('data-navigation')).toEqual('tab-bar');
-        });
-    });
-
     describe('warning texts', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('warning-text');
