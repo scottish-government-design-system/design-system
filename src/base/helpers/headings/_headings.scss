@@ -78,7 +78,7 @@
     margin-bottom: 32px;
 
     @include ds_media-query(medium) {
-        font-size: 56px;
+        line-height: 56px;
     }
 }
 
