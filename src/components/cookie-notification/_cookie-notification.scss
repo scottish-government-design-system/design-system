@@ -1,5 +1,6 @@
 /*------------------------------------*\
-    NOTIFICATION BANNER
+    COOKIE BANNER
+    Modifications to the notification banner component for this particular use case
 \*------------------------------------*/
 
 // modifiable vars
@@ -12,6 +13,11 @@ $cookie-notification__background-colour--success: $ds_colour__state--positive !d
 .ds_notification.ds_notification--cookie {
     background: $cookie-notification__background-colour;
     color: $ds_colour__text;
+
+    .ds_notification__content {
+        padding-top: 24px;
+        padding-bottom: 32px;
+    }
 }
 
 .ds_notification.ds_notification--cookie-success {

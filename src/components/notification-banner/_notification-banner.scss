@@ -20,11 +20,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     @include last-child-no-margin;
 
-    &--large &__content {
-        padding-top: 24px;
-        padding-bottom: 32px;
-    }
-
     /// [1] compensate for bottom margin on parent
     &__content {
         padding: 16px 0 15px; /// [1]
@@ -106,8 +101,13 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         min-height: 0;
         min-width: 0;
 
-        &:hover {
-            background-color: transparent;
+        &:focus {
+            background-color: $ds_colour__button--focus__background;
+            box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
+            color: $ds_colour__button--focus;
+            outline: 0;
+
+            transition-duration: 0s;
         }
 
         &:hover:not(:focus) {

@@ -3,6 +3,7 @@
 'use strict';
 
 import _storage from '../../base/tools/storage/storage';
+import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
 
 class CookieNotification {
     constructor(el, storage = _storage) {
@@ -28,6 +29,7 @@ class CookieNotification {
 
             this.cookieNoticeElement.classList.add('fully-hidden');
             this.cookieNoticeSuccessElement.classList.remove('fully-hidden');
+            temporaryFocus(this.cookieNoticeSuccessElement);
         });
 
         // bind a click handler to the essential only button
@@ -38,6 +40,7 @@ class CookieNotification {
 
             this.cookieNoticeElement.classList.add('fully-hidden');
             this.cookieNoticeSuccessElement.classList.remove('fully-hidden');
+            temporaryFocus(this.cookieNoticeSuccessElement);
         });
     }
 
