@@ -9,13 +9,18 @@
   },
   "license": "MIT",
   "scripts": {
+    "fractal": "fractal start --sync",
+    "dev": "npm run webpackdev; npm run sassdev; npm run svgspritedev;",
     "postshrinkwrap": "sealant",
     "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
     "nodesass": "node-sass src --output dist/css --output-style compressed",
     "sass": "sass --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
+    "sassdev": "sass --style=expanded src/pattern-library.scss dev/css/pattern-library.css",
     "svgsprite": "node svg-sprite",
+    "svgspritedev": "node svg-sprite --mode=dev",
     "test": "karma start ./karma.conf.js",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "webpackdev": "webpack --env.mode=dev"
   },
   "pre-commit": [
     "test"
@@ -48,6 +53,7 @@
     "sealant": "^0.1.1",
     "svg-sprite": "^1.5.3",
     "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^3.2.1",
+    "yargs": "^17.2.1"
   }
 }

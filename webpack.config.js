@@ -1,20 +1,23 @@
 const path = require('path');
 
-module.exports = {
-  mode: 'production',
+module.exports = (env) => {
+  const dest = (env !== undefined)&&(env.mode === 'dev') ? 'dev/scripts': 'dist/scripts';
+  
+  return {
+    mode: (env !== undefined)&&(env.mode === 'dev') ? 'development': 'production',
+    entry: {
+      'pattern-library.js': [
+        path.resolve(__dirname, './src/all.js')
+      ]
+    },
 
-  entry: {
-    'pattern-library.js': [
-      path.resolve(__dirname, './src/all.js')
-    ]
-  },
+    output: {
+      path: path.resolve(__dirname, dest),
+      filename: '[name]'
+    },
 
-  output: {
-    path: path.resolve(__dirname, 'dist/scripts'),
-    filename: '[name]'
-  },
-
-  module: {
-    rules: []
-  }
+    module: {
+      rules: []
+    }
+  };
 };

@@ -49,6 +49,8 @@ fractal.docs.set('statuses', {
 /* Tell Fractal where the documentation pages will live */
 fractal.docs.set('path', __dirname + '/src/docs');
 
-
 /* Location for static assets */
-fractal.web.set('static.path', __dirname + '/dist');
+fractal.web.set('static.path', __dirname + '/dev');
+
+/* Location for build */
+fractal.web.set('builder.dest', __dirname + '/export');
