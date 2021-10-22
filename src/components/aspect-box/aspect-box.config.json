@@ -1,0 +1,36 @@
+{
+	"context": {
+		"params":{
+			"imageSrc": "https://via.placeholder.com/320x80?text=16:9"
+		}
+	},
+	"variants": [
+		{
+			"name": "1:1 aspect ratio",
+            "context": {
+                "params":{
+                    "ratio": "ds_aspect-box--square",
+                    "imageSrc": "https://via.placeholder.com/320x320?text=1:1"
+                }
+            }
+        },
+		{
+			"name": "4:3 aspect ratio",
+            "context": {
+                "params":{
+                    "ratio": "ds_aspect-box--43",
+                    "imageSrc": "https://via.placeholder.com/400x300?text=4:3"
+                }
+            }
+        },
+		{
+			"name": "2.35:1 aspect ratio",
+            "context": {
+                "params":{
+                    "ratio": "ds_aspect-box--235",
+                    "imageSrc": "https://via.placeholder.com/470x200?text=2.35:1"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,73 @@
+{
+    "context": {
+        "params": {
+            "label": "Button text"
+        }
+    },
+    "variants": [
+        {
+            "name": "Secondary style",
+            "context": {
+                "params": {
+                    "label": "Button text",
+                    "type": "ds_button--secondary"
+                }
+            }
+        },
+        {
+            "name": "Cancel calloff style",
+            "context": {
+                "params": {
+                    "label": "Button text",
+                    "type": "ds_button--cancel"
+                }
+            }
+        },
+        {
+            "name": "Disabled",
+            "context": {
+                "params": {
+                    "label": "Button text",
+                    "disabled": true
+                }
+            }
+        },
+        {
+            "name": "Fixed width",
+            "context": {
+                "params": {
+                    "label": "Button text",
+                    "type": "ds_button--fixed"
+                }
+            }
+        },
+        {
+            "name": "Maximum width",
+            "context": {
+                "params": {
+                    "label": "Button text",
+                    "type": "ds_button--max"
+                }
+            }
+        },
+        {
+            "name": "Small size",
+            "context": {
+                "params": {
+                    "label": "Button text",
+                    "type": "ds_button--small"
+                }
+            }
+        },
+        {
+            "name": "Label with icon",
+            "context": {
+                "params": {
+                    "label": "Button text",
+                    "icon": "http://localhost:3000/images/icons/icons.stack.svg#search",
+                    "iconPosition": "after"
+                }
+            }
+        }
+    ]
+}

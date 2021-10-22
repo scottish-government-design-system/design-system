@@ -1,0 +1,1 @@
+<button {%- if params.disabled %} disabled="true" {%- endif %} class="ds_button {%- if params.type %} {{ params.type }}{%- endif -%}{%- if params.icon %} ds_button--has-icon{% endif -%}">{{ params.label }}{%- if params.icon -%} <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="{{ params.icon }}"></use></svg>{% endif -%}</button>

@@ -1,0 +1,24 @@
+{
+	"context": {
+		"params": {
+			"breadcrumbs": [
+                {
+                    "label": "Home",
+                    "link": "#"
+                },
+                {
+                    "label": "Justice and the law",
+                    "link": "#"
+                },
+                {
+                    "label": "Your rights and the law",
+                    "link": "#"
+                },
+                {
+                    "label": "Data sharing of personal information",
+                    "current": true
+                }
+            ]
+		}
+	}
+}
