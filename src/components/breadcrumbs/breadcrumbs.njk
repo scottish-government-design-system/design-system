@@ -1,25 +1,15 @@
 <nav aria-label="Breadcrumb">
     <ol class="ds_breadcrumbs">
-        <li class="ds_breadcrumbs__item">
+        {%- for breadcrumb in params.breadcrumbs -%}
+        <li class="ds_breadcrumbs__item" {%- if breadcrumb.current %} aria-current="page"{%- endif %}>
+            {%- if breadcrumb.link %}
             <a class="ds_breadcrumbs__link" href="#">
-                Home
+                {{ breadcrumb.label }}
             </a>
+            {%- else %}
+            {{ breadcrumb.label }}
+            {%- endif %}
         </li>
-        
-        <li class="ds_breadcrumbs__item">
-            <a class="ds_breadcrumbs__link" href="#">
-                Justice and the law
-            </a>
-        </li>
-        
-        <li class="ds_breadcrumbs__item">
-            <a class="ds_breadcrumbs__link" href="#">
-                Your rights and the law
-            </a>
-        </li>
-
-        <li class="ds_breadcrumbs__item" aria-current="page">
-            Data sharing of personal information
-        </li>
+        {%-  endfor %} 
     </ol>
 </nav>
