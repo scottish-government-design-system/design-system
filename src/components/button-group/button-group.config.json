@@ -1,0 +1,22 @@
+{
+    "status": "wip",
+    "context": {
+        "params": {
+            "buttons": [
+                {
+                "params":{
+                    "label": "Secondary button",
+                    "type": "button",
+                    "modifiers": "ds_button--secondary"
+                    }
+                },
+                {
+                "params":{
+                    "label": "Primary button",
+                    "type": "button"
+                    }
+                }
+            ]
+        }
+    }
+}

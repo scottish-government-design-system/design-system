@@ -1,7 +1,8 @@
 {
     "context": {
         "params": {
-            "label": "Button text"
+            "label": "Button text",
+            "type": "button"
         }
     },
     "variants": [
@@ -9,8 +10,7 @@
             "name": "Secondary style",
             "context": {
                 "params": {
-                    "label": "Button text",
-                    "type": "ds_button--secondary"
+                    "modifiers": "ds_button--secondary"
                 }
             }
         },
@@ -18,8 +18,7 @@
             "name": "Cancel calloff style",
             "context": {
                 "params": {
-                    "label": "Button text",
-                    "type": "ds_button--cancel"
+                    "modifiers": "ds_button--cancel"
                 }
             }
         },
@@ -27,7 +26,6 @@
             "name": "Disabled",
             "context": {
                 "params": {
-                    "label": "Button text",
                     "disabled": true
                 }
             }
@@ -36,8 +34,7 @@
             "name": "Fixed width",
             "context": {
                 "params": {
-                    "label": "Button text",
-                    "type": "ds_button--fixed"
+                    "modifiers": "ds_button--fixed"
                 }
             }
         },
@@ -45,8 +42,7 @@
             "name": "Maximum width",
             "context": {
                 "params": {
-                    "label": "Button text",
-                    "type": "ds_button--max"
+                    "modifiers": "ds_button--max"
                 }
             }
         },
@@ -54,18 +50,48 @@
             "name": "Small size",
             "context": {
                 "params": {
-                    "label": "Button text",
-                    "type": "ds_button--small"
+                    "modifiers": "ds_button--small"
                 }
             }
         },
         {
-            "name": "Label with icon",
+            "name": "Label with icon (after)",
             "context": {
                 "params": {
-                    "label": "Button text",
                     "icon": "http://localhost:3000/images/icons/icons.stack.svg#search",
                     "iconPosition": "after"
+                }
+            }
+        },
+        {
+            "name": "Label with icon (before)",
+            "context": {
+                "params": {
+                    "icon": "http://localhost:3000/images/icons/icons.stack.svg#search",
+                    "iconPosition": "before"
+                }
+            }
+        },
+        {
+            "name": "Icon only",
+            "context": {
+                "params": {
+                    "iconOnly": true,
+                    "label" : "Search",
+                    "icon": "http://localhost:3000/images/icons/icons.stack.svg#search"
+                }
+            }
+        },
+        {
+            "name": "Link example",
+            "context": {
+                "params": {
+                    "type": "a",
+                    "link": "#",
+                    "label": "Previous",
+                    "modifiers": "ds_button--secondary ds_button--max",
+                    "icon": "http://localhost:3000/images/icons/icons.stack.svg#chevron_left",
+                    "iconPosition": "before"
                 }
             }
         }

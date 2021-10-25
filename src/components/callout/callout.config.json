@@ -1,0 +1,33 @@
+{
+    "status": "wip",
+    "context": {
+        "params": {
+            "hiddenHeading": true,
+            "heading": "Cookie definition",
+            "content": "<p>The term ’cookies’ on this page refers to:</p><ul><li>browser and HTTP-only cookies</li><li>HTML5 local storage</li><li>service workers</li><li>any other technologies you use that store files on a user's device</li></ul>"
+        }
+    },
+    "variants": [
+        {
+            "name": "Visible heading",
+            "context": {
+                "params": {
+                    "hiddenHeading": false,
+                    "heading": "Barclays world-class campus takes shape in Glasgow",
+                    "content": "<p>Glasgow's financial services sector received a major boost after Barclays announced plans to develop a new 5000-person campus on the banks for the River Clyde.</p><p>Barclays operates in 40 countries across the world, and the development in Glasgow will sit alongside Whippany in New Jersey and Pune in India as part of a global strategy to create world-class facilities for the bank's functions, technology and operations teams.</p>"
+                 }
+            }
+        },
+        {
+            "name": "Visible heading and label",
+            "context": {
+                "params": {
+                    "hiddenHeading": false,
+                    "label": "Case study",
+                    "heading": "Barclays world-class campus takes shape in Glasgow",
+                    "content": "<p>Glasgow's financial services sector received a major boost after Barclays announced plans to develop a new 5000-person campus on the banks for the River Clyde.</p><p>Barclays operates in 40 countries across the world, and the development in Glasgow will sit alongside Whippany in New Jersey and Pune in India as part of a global strategy to create world-class facilities for the bank's functions, technology and operations teams.</p>"
+                }
+            }
+        }
+    ]
+}
