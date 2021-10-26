@@ -2,6 +2,9 @@
     SELECT
 \*------------------------------------*/
 
+///
+/// [1] renders an outline/border in windows high contrast mode
+///
 .ds_select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -10,6 +13,8 @@
     border: 0;
     box-shadow: inset 0 0 0 2px currentColor;
     min-height: 48px;
+    outline: 2px solid transparent; /// [1]
+    outline-offset: -2px; /// [1]
     padding: 8px;
     width: 100%;
 
@@ -19,10 +24,15 @@
     }
 }
 
+///
+/// [1] renders an outline/border in windows high contrast mode
+///
 .ds_select-arrow {
     background: $ds_colour__button__background;
     bottom: 0;
     content: '';
+    outline: 2px solid transparent; /// [1]
+    outline-offset: -2px; /// [1]
     pointer-events: none;
     position: absolute;
     right: 0;
@@ -37,9 +47,9 @@
         top: 0;
         z-index: 1;
 
-        @include ds_chevron(down, 16px);
-        right: 8px;
-        top: 8px;
+        @include ds_chevron(down, 12px);
+        right: 18px;
+        top: 15px;
     }
 }
 

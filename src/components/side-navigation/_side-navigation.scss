@@ -52,8 +52,13 @@ $side-nav__outline-width: 2px;
     }
 
     &__expand-indicator {
-        @include ds_indicator();
-        top: 14px;
+        @include ds_chevron(down, 0.75em);
+        border-width: 0px 0px 3px 3px;
+        position: absolute;
+        right: 24px;
+        top: 20px;
+        transition: transform 0.2s, top 0.2s;
+        pointer-events: none;
     }
 
     #show-side-navigation:focus ~ .ds_side-navigation__expand {
@@ -64,7 +69,8 @@ $side-nav__outline-width: 2px;
     }
 
     #show-side-navigation:checked ~ .ds_side-navigation__expand .ds_side-navigation__expand-indicator {
-        @include ds_indicator--open;
+        top: 24px;
+        transform: rotate(-225deg);
     }
 
     #show-side-navigation:checked ~ .ds_side-navigation__expand:not(:focus):not(:hover) {

@@ -13,9 +13,9 @@ $link__border-width: 3px;
 @mixin ds_link {
     color: $ds_colour__link;
     text-decoration: underline;
-    outline: $link__outline-width solid transparent;
+    outline: 0px solid transparent;
     text-underline-offset: 1px;
-    transition: color $transition-out-time, background-color $transition-out-time, outline $transition-out-time;
+    transition: color $transition-out-time, background-color $transition-out-time, outline-color $transition-out-time;
 
     &:hover {
         background-color: $ds_colour__link--hover__background;

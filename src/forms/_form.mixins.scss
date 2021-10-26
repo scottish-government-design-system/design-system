@@ -84,13 +84,6 @@
         width: $small-input-size;
     }
 
-    &--small &__label::after {
-        bottom: calc(100% - #{$small-input-size - $small-pip-padding + $small-input-offset});
-        left: #{$small-pip-padding + $small-input-offset};
-        right: calc(100% - #{$small-input-size - $small-pip-padding + $small-input-offset});
-        top: #{$small-pip-padding + $small-input-offset};
-    }
-
     /// hover
     &--small &__input:hover + &__label::before {
         box-shadow: 0 0 0 $small-shadow-size #ccc;

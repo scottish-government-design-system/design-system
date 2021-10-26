@@ -1,41 +1,36 @@
 @mixin ds_chevron($orientation: down, $size: 1em) {
-    content: '';
-    display: inline-block;
-    height: $size * 2;
-    transition: transform 0.2s, top 0.2s;
-    width: $size * 2;
+    $chevron-width: #{$size * 0.25};
 
-    $spritename: 'expand_more';
+    content: '';
+    background-color: transparent;
+    border-style: solid;
+    border-width: 0px 0px $chevron-width $chevron-width;
+    border-top-color: transparent;
+    display: inline-block;
+    height: $size;
+    width: $size;
+
+    // content: '';
+    // display: inline-block;
+    // height: $size * 2;
+    // transition: transform 0.2s, top 0.2s;
+    // width: $size * 2;
+
+    // $spritename: 'expand_more';
     @if $orientation == down {
-        $spritename: 'expand_more';
+        transform: rotate(-45deg);
     } @else if $orientation == up {
-        $spritename: 'expand_less';
+        transform: rotate(-225deg);
     } @else if $orientation == left {
-        $spritename: 'chevron_left';
+        transform: rotate(-315deg);
     } @else if $orientation == right {
-        $spritename: 'chevron_right';
+        transform: rotate(-135deg);
     }
 
-    $octothorpe: '#';
-    @include ds_icon-mask(#{$iconsfile}#{$octothorpe}#{$spritename});
+    // $octothorpe: '#';
+    // @include ds_icon-mask(#{$iconsfile}#{$octothorpe}#{$spritename});
 }
 
-
-
-
-/// Indicator
-///
-/// Single definition for consistent open/close icons, mobile section nav, accordions, etc
-
-@mixin ds_indicator {
-    @include ds_chevron(down);
-    right: 14px;
-    position: absolute;
-}
-
-@mixin ds_indicator--open {
-    transform: rotateZ(180deg);
-}
 
 
 
@@ -68,14 +63,6 @@
 /// legacy non-prefixed names
 @mixin chevron($orientation: down, $size: 1em) {
     @include ds_chevron($orientation, $size);
-}
-
-@mixin indicator {
-    @include ds_indicator;
-}
-
-@mixin indicator--open {
-    @include ds_indicator--open;
 }
 
 @mixin icon-mask($url) {

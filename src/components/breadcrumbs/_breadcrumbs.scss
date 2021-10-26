@@ -24,10 +24,10 @@ $breadcrumbs__font-size: $small-size--fixed;
     }
 
     &__item:not(:first-child)::before {
-        @include ds_chevron(right, 0.5em);
-        margin: 0 -2px 0 -1px;
+        @include ds_chevron(right, 0.333333em);
+        margin: 0 4px 0 2px;
         position: relative;
-        top: 3px;
+        top: -1px;
     }
 
     &__container {
