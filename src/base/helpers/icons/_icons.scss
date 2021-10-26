@@ -10,12 +10,6 @@
     height: $size;
     width: $size;
 
-    // content: '';
-    // display: inline-block;
-    // height: $size * 2;
-    // transition: transform 0.2s, top 0.2s;
-    // width: $size * 2;
-
     // $spritename: 'expand_more';
     @if $orientation == down {
         transform: rotate(-45deg);
@@ -26,15 +20,15 @@
     } @else if $orientation == right {
         transform: rotate(-135deg);
     }
-
-    // $octothorpe: '#';
-    // @include ds_icon-mask(#{$iconsfile}#{$octothorpe}#{$spritename});
 }
 
 
 
 
 /// Icon mask
+///
+/// @deprecated icons displayed this way do not render in Windows
+/// "High Contrast" mode
 ///
 /// Adds mask-image properties for a provided image URL
 ///
