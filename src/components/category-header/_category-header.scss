@@ -35,6 +35,11 @@ $category-header__title-colour: $ds_colour__text !default;
         margin: 0 auto;
         max-height: 360px;
         max-width: 320px;
+
+        @include ds_media-query(medium) {
+            height: auto;
+            max-width: 100%;
+        }
     }
 }
 
@@ -93,7 +98,6 @@ $category-header__title-colour: $ds_colour__text !default;
                 float: none;
                 grid-column: 9 / span 4;
                 margin-right: 0;
-                max-width: 100%;
             }
         }
     }

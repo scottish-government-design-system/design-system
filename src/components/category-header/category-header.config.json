@@ -1,0 +1,30 @@
+{
+    "status": "wip",
+    "context": {
+        "params": {
+            "heading": "Design standards",
+            "summary": "<p>The patterns included here have been developed for use by government, public sector and third sector non-commercial organisations in Scotland.</p>"
+        }
+    },
+    "variants": [
+        {
+            "name": "With image",
+            "context": {
+                "params": {
+                    "image": "https://via.placeholder.com/320x320?text=1:1",
+                    "imageAlt": "Alt text"
+                }
+            }
+        },
+        {
+            "name": "Reversed",
+            "context": {
+                "params": {
+                    "reversed": true,
+                    "image": "https://via.placeholder.com/320x180?text=16:9",
+                    "imageAlt": "Alt text"
+                }
+            }
+        }
+    ]
+}
