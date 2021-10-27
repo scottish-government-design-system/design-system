@@ -13,7 +13,7 @@
                 "params": {
                     "modifiers": "ds_notification-panel--success",
                     "heading": "Thank you",
-                    "content": "<p>Your application form has successfully been submitted.</p>"
+                    "content": "<p>Your Saltire Scholarship Application form has been successfully submitted.</p>"
                  }
             }
         },
@@ -24,7 +24,7 @@
                     "modifiers": "ds_notification-panel--success",
                     "alert": true,
                     "heading": "Thank you",
-                    "content": "<p>Your application form has successfully been submitted.</p>"
+                    "content": "<p>Your Saltire Scholarship Application form has been successfully submitted.</p>"
                  }
             }
         },
@@ -33,8 +33,8 @@
             "context": {
                 "params": {
                     "modifiers": "ds_notification-panel--success",
-                    "heading": "Form submitted",
-                    "content": "<p class=\"ds_leader\">Your reference: <br><strong>12345ABC</strong></p>"
+                    "heading": "Application complete",
+                    "content": "<p>Your reference number is <br><strong class=\"beta\">SG0123456</strong></p>"
                  }
             }
         }
