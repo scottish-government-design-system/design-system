@@ -36,6 +36,7 @@ $link__border-width: 3px;
     &:hover {
         background-color: $ds_colour__button--hover__background;
         color: $ds_colour__button;
+        outline-color: transparent;
         transition-duration: $transition-in-time;
     }
 
