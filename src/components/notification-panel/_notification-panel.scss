@@ -1,0 +1,35 @@
+/*------------------------------------*\
+    NOTIFICATION PANEL
+\*------------------------------------*/
+
+.ds_notification-panel {
+    @include ds_responsive-margin(3, bottom);
+    @include ds_responsive-padding(6, top);
+    @include ds_responsive-padding(6, bottom);
+    @include ds_responsive-padding(4, left);
+    @include ds_responsive-padding(4, right);
+    background: $ds_colour__grey--lighter;
+    text-align: center;
+    
+    // Add top margin if placed below another item
+    &:not(:first-child) {
+        @include ds_responsive-margin(6, top);
+    }
+
+    &--success {
+        background: $ds_colour__state--positive;
+        color: $ds_colour__white;
+    }
+
+    &__title {
+        // Any heading level will display in standard way - design is separated from heading level
+        // This needs improved so line height (and maybe also margin) also comes from mixin
+        // Bottom margin reduced over normal h1 value
+        @include ds_h1-style;
+        @include ds_responsive-margin(2, bottom);
+    }
+
+    &__content {
+        @include last-child-no-margin;
+    }
+}

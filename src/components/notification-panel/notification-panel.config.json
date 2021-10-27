@@ -1,0 +1,43 @@
+{
+    "status": "prototype",
+    "context": {
+        "params": {
+            "heading": "Notification title",
+            "content": "<p>Supporting text for the notification message.</p>"
+        }
+    },
+    "variants": [
+        {
+            "name": "Success notification",
+            "context": {
+                "params": {
+                    "modifiers": "ds_notification-panel--success",
+                    "heading": "Thank you",
+                    "content": "<p>Your application form has successfully been submitted.</p>"
+                 }
+            }
+        },
+        {
+            "name": "Alert",
+            "context": {
+                "params": {
+                    "modifiers": "ds_notification-panel--success",
+                    "alert": true,
+                    "heading": "Thank you",
+                    "content": "<p>Your application form has successfully been submitted.</p>"
+                 }
+            }
+        },
+        {
+            "name": "Highlight content",
+            "context": {
+                "params": {
+                    "modifiers": "ds_notification-panel--success",
+                    "heading": "Form submitted",
+                    "content": "<p class=\"ds_leader\">Your reference: <br><strong>12345ABC</strong></p>"
+                 }
+            }
+        }
+        
+    ]
+}

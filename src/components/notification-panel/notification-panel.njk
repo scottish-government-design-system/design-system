@@ -1,0 +1,8 @@
+<div class="ds_notification-panel {%- if params.modifiers %} {{ params.modifiers }}{%- endif -%}"{%- if params.alert %} role="alert"{%- endif -%}>
+    {%- if params.heading -%}
+    <h2 class="ds_notification-panel__title">{{ params.heading }}</h2>
+    {%- endif -%}
+    {%- if params.content -%}
+    <div class="ds_notification-panel__content">{{ params.content | safe }}</div>
+    {%- endif -%}
+</div>
