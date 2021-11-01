@@ -1,8 +1,8 @@
 {   
     "status": "prototype",
 	"context": {
-		"params":{
-            "label": "Back"
-		}
+        "params": {
+		    "label": "Back"
+        }
 	}
 }

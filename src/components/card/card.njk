@@ -1,11 +1,11 @@
-<div class="ds_card{%- if params.hasHover %} ds_card--has-hover{% endif -%}">
+<{{ params.itemTag }} class="ds_card{%- if params.hasHover %} ds_card--has-hover{% endif -%}">
     {%- if params.image %}
     <div class="ds_card__media">
         <div class="ds_aspect-box">
             <img alt="" aria-hidden="true" class="ds_aspect-box__inner" src="{{ params.image }}" />
         </div>
     </div>
-    {% endif -%}
+    {%- endif -%}
     {%- if params.heading %}
     <div class="ds_card__content ds_category-item">
         <h2 class="ds_category-item__title"><a class="ds_card__cover-link" href="{{ params.link }}">{{ params.heading }}</a></h2>
@@ -18,4 +18,4 @@
         {{ params.content | safe }}
     </div>
     {% endif -%}
-</div>
+</{{ params.itemTag }}>

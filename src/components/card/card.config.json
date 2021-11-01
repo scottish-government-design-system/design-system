@@ -2,7 +2,8 @@
     "status": "wip",
     "context": {
         "params": {
-            "content": "Hello world!"
+            "content": "Hello world!",
+            "itemTag": "div"
         }
     },
     "variants": [

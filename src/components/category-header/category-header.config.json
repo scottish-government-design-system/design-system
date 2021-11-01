@@ -1,5 +1,5 @@
 {
-    "status": "wip",
+    "status": "ready",
     "context": {
         "params": {
             "heading": "Design standards",
@@ -23,6 +23,38 @@
                     "reversed": true,
                     "image": "https://via.placeholder.com/320x180?text=16:9",
                     "imageAlt": "Alt text"
+                }
+            }
+        },
+        {
+            "name": "Reversed with breadcrumbs",
+            "context": {
+                "params": {
+                    "reversed": true,
+                    "image": "https://via.placeholder.com/320x180?text=16:9",
+                    "imageAlt": "Alt text",
+                    "breadcrumbsList": {
+                        "params": {
+                            "breadcrumbs": [
+                                {
+                                    "label": "Home",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "Justice and the law",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "Your rights and the law",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "Data sharing of personal information",
+                                    "current": true
+                                }
+                            ]
+                        }
+                    }
                 }
             }
         }

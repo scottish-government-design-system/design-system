@@ -1,5 +1,10 @@
 {%- if params.reversed -%}
-<div class="ds_reversed" style="background-color:#002d54;">
+<div class="ds_reversed" style="background-color:#002d54;{%- if params.breadcrumbsList %} overflow:hidden;{%- endif -%}">
+{%- endif -%}
+{%- if params.breadcrumbsList -%}
+<div class="ds_wrapper">
+    {% render '@breadcrumbs', params.breadcrumbsList -%}
+</div>
 {%- endif -%}
 <div class="ds_wrapper">
     <div class="ds_category-header">
