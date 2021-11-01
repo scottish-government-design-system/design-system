@@ -126,6 +126,7 @@ $page-nav__icon-size: 56px !default;
     display: inline-block;
     padding-top: 24px;
     position: relative;
+    width: 100%;
 
     &::before {
         color: $page-nav__prefix-colour;

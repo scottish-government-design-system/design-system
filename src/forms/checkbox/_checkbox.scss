@@ -12,7 +12,7 @@
         border-top-color: transparent;
         left: 7px;
         height: 14px;
-        top: 10px;
+        top: 6px;
         width: 26px;
         transform: rotate(-45deg);
     }
@@ -47,5 +47,13 @@
         left: 13px;
         top: 15px;
         border-width: 0 0 3px 3px;
+    }
+}
+
+@include ds_media-query(medium) {
+    .ds_checkbox {
+        &__label::after {
+            top: 10px;
+        }
     }
 }
