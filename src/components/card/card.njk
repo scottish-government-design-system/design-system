@@ -8,7 +8,7 @@
     {%- endif -%}
     {%- if params.heading %}
     <div class="ds_card__content ds_category-item">
-        <h2 class="ds_category-item__title"><a class="ds_card__cover-link" href="{{ params.link }}">{{ params.heading }}</a></h2>
+        <h2 class="ds_category-item__title"><a class="ds_category-item__link" href="{{ params.link }}">{{ params.heading }}</a></h2>
         {%- if params.content %}
         <div class="ds_category-item__summary">{{ params.content | safe }}</div>
         {% endif -%}
