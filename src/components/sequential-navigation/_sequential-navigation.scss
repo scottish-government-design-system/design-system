@@ -48,6 +48,9 @@ $page-nav__icon-size: 56px !default;
 
     // Shared styles for left and right variations
     // ::before is the circle
+    ///
+    /// [1] renders a border in windows high contrast mode
+    ///
     &--left::before,
     &--right::before {
         content: '';
@@ -56,6 +59,7 @@ $page-nav__icon-size: 56px !default;
         background-color: $page-nav__icon-colour;
         background-position: center;
         border-radius: $page-nav__icon-size;
+        border: 2px solid $page-nav__icon-colour; /// [1]
         display: inline-block;
         position: absolute;
         top: 8px;
@@ -69,7 +73,7 @@ $page-nav__icon-size: 56px !default;
         &::after {
             color: $ds_colour__white;
             position: absolute;
-            top: 6px;
+            top: 25px;
         }
     }
 
@@ -82,8 +86,8 @@ $page-nav__icon-size: 56px !default;
         }
 
         &::after {
-            @include ds_chevron(left, 30px);
-            left: 0;
+            @include ds_chevron(left, 22px);
+            left: 24px;
         }
     }
 
@@ -98,8 +102,8 @@ $page-nav__icon-size: 56px !default;
         }
 
         &::after {
-            @include ds_chevron(right, 30px);
-            right: 0;
+            @include ds_chevron(right, 22px);
+            right: 24px;
         }
     }
 }
@@ -107,12 +111,14 @@ $page-nav__icon-size: 56px !default;
 .ds_sequential-nav__button:hover {
     &::before {
         background-color: $page-nav__icon-hover;
+        border-color: $page-nav__icon-hover;
     }
 }
 
 .ds_sequential-nav__button:focus {
     &::before {
         background-color: $page-nav__icon-focus;
+        border-color: $page-nav__icon-focus;
     }
 }
 
@@ -120,6 +126,7 @@ $page-nav__icon-size: 56px !default;
     display: inline-block;
     padding-top: 24px;
     position: relative;
+    width: 100%;
 
     &::before {
         color: $page-nav__prefix-colour;

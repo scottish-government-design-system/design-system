@@ -10,7 +10,7 @@
     font-weight: $light;
     line-height: 32px;
 
-    @include media-query(medium) {
+    @include ds_media-query(medium) {
         line-height: 40px;
     }
 }

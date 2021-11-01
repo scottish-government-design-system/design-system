@@ -9,7 +9,9 @@ $link__border-width: 3px;
 
 
 
-
+///
+/// [1] renders an outline/border in windows high contrast mode
+///
 .ds_button {
     @include ds_small-size;
     @include ds_button-sizing;
@@ -22,6 +24,8 @@ $link__border-width: 3px;
     display: inline-block;
     font-weight: $bold;
     line-height: 24px;
+    outline: 2px solid transparent; /// [1]
+    outline-offset: -2px; /// [1]
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -32,6 +36,7 @@ $link__border-width: 3px;
     &:hover {
         background-color: $ds_colour__button--hover__background;
         color: $ds_colour__button;
+        outline-color: transparent;
         transition-duration: $transition-in-time;
     }
 

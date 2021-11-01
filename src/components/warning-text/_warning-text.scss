@@ -35,17 +35,10 @@
     top: 20px;
     width: $warning-text-icon-size;
 
-
-    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
-        &::before {
-            content: '';
-            display: block;
-            height: #{$warning-text-icon-size - 4px};
-            margin: 2px;
-
-            $octothorpe: '#';
-            @include ds_icon-mask(#{$iconsfile}#{$octothorpe}priority_high);
-        }
+    &::before {
+        content: '!';
+        display: block;
+        height: #{$warning-text-icon-size - 4px};
     }
 }
 

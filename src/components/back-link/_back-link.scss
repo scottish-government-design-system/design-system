@@ -10,8 +10,9 @@
     position: relative;
 
     &::before {
-        @include ds_chevron(left, 0.75em);
-        left: -24px;
+        @include ds_chevron(left, 0.5em);
+        border-width: 0 0 2px 2px;
+        left: -14px;
         position: absolute;
     }
 }

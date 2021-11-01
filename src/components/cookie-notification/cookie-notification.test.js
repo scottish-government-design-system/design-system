@@ -80,6 +80,7 @@ describe('cookie notification banners', () => {
         allowedButton.dispatchEvent(event);
         expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBeTrue();
         expect(testObj.cookieSuccessElement.classList.contains('fully-hidden')).toBeFalse();
+        expect(document.activeElement.id).toEqual(testObj.cookieSuccessElement.id);
     });
 
     it('should use the non-mock storage module by default', () => {
