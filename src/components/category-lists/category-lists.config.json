@@ -163,8 +163,7 @@
                             "params": {
                                 "heading": "Environment and countryside",
                                 "content": "Access to and protection of the countryside and managing wildlife on your land",
-                                "itemTag": "li",    
-                                "hasHover": true,
+                                "itemTag": "li",   
                                 "link": "#"
                             }
                         },
@@ -172,8 +171,7 @@
                             "params": {
                                 "heading": "Environmental Impact Assessment (EIA)",
                                 "content": "Find out about Environmental Impact Assessments (EIAs) in your area",
-                                "itemTag": "li",    
-                                "hasHover": true,
+                                "itemTag": "li",  
                                 "link": "#"    
                             }
                         },
@@ -181,8 +179,7 @@
                             "params": {
                                 "heading": "Farming and rural issues",
                                 "content": "Guidance for farming, animal health, agriculture and food businesses in Scotland",
-                                "itemTag": "li",    
-                                "hasHover": true,
+                                "itemTag": "li",   
                                 "link": "#"    
                             }
                         },
@@ -190,8 +187,7 @@
                             "params": {
                                 "heading": "Waste and energy",
                                 "content": "Find advice and support to help your business become more environmentally aware and efficient",
-                                "itemTag": "li",    
-                                "hasHover": true,
+                                "itemTag": "li",   
                                 "link": "#"   
                             }
                         },
@@ -199,8 +195,7 @@
                             "params": {
                                 "heading": "Marine and fisheries",
                                 "content": "Includes information on safety at sea and managing crew",
-                                "itemTag": "li",    
-                                "hasHover": true,
+                                "itemTag": "li",   
                                 "link": "#"    
                             }
                         }

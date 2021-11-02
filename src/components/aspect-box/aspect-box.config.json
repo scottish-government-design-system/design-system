@@ -1,7 +1,7 @@
 {
 	"context": {
 		"params":{
-			"imageSrc": "https://via.placeholder.com/320x180?text=16:9"
+			"imageSrc": "/images/placeholders/320x180.png"
 		}
 	},
 	"variants": [
@@ -10,7 +10,7 @@
             "context": {
                 "params":{
                     "ratio": "ds_aspect-box--square",
-                    "imageSrc": "https://via.placeholder.com/320x320?text=1:1"
+                    "imageSrc": "/images/placeholders/320x320.png"
                 }
             }
         },
@@ -19,7 +19,7 @@
             "context": {
                 "params":{
                     "ratio": "ds_aspect-box--43",
-                    "imageSrc": "https://via.placeholder.com/400x300?text=4:3"
+                    "imageSrc": "/images/placeholders/400x300.png"
                 }
             }
         },
@@ -28,7 +28,7 @@
             "context": {
                 "params":{
                     "ratio": "ds_aspect-box--235",
-                    "imageSrc": "https://via.placeholder.com/470x200?text=2.35:1"
+                    "imageSrc": "/images/placeholders/470x200.png"
                 }
             }
         }
