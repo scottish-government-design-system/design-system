@@ -50,7 +50,6 @@ function initAll(scope = document) {
 
     const datePickers = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]'));
     datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
-    datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
 
     // this one is handled differently because it applies an event to the whole body and we only want that event once
     const hidePageButtons = [].slice.call(scope.querySelectorAll('.ds_hide-page'));
