@@ -2,7 +2,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 
 module.exports = (env) => {
-  const dest = (env !== undefined)&&(env.mode === 'dev') ? 'dev': 'dist';
+  const dest = (env !== undefined)&&(env.mode === 'dev') ? 'dev/assets': 'dist';
   
   return {
     mode: (env !== undefined)&&(env.mode === 'dev') ? 'development': 'production',

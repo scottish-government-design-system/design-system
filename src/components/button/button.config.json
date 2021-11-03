@@ -58,7 +58,7 @@
             "name": "Label with icon (after)",
             "context": {
                 "params": {
-                    "icon": "http://localhost:3000/images/icons/icons.stack.svg#search",
+                    "icon": "/assets/images/icons/icons.stack.svg#search",
                     "iconPosition": "after"
                 }
             }
@@ -67,7 +67,7 @@
             "name": "Label with icon (before)",
             "context": {
                 "params": {
-                    "icon": "http://localhost:3000/images/icons/icons.stack.svg#search",
+                    "icon": "/assets/images/icons/icons.stack.svg#search",
                     "iconPosition": "before"
                 }
             }
@@ -78,7 +78,7 @@
                 "params": {
                     "iconOnly": true,
                     "label" : "Search",
-                    "icon": "http://localhost:3000/images/icons/icons.stack.svg#search"
+                    "icon": "/assets/images/icons/icons.stack.svg#search"
                 }
             }
         },
@@ -90,7 +90,7 @@
                     "link": "#",
                     "label": "Previous",
                     "modifiers": "ds_button--secondary ds_button--max",
-                    "icon": "http://localhost:3000/images/icons/icons.stack.svg#chevron_left",
+                    "icon": "/assets/images/icons/icons.stack.svg#chevron_left",
                     "iconPosition": "before"
                 }
             }

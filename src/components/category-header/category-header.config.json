@@ -11,7 +11,7 @@
             "name": "With image",
             "context": {
                 "params": {
-                    "image": "https://via.placeholder.com/320x320?text=1:1",
+                    "image": "/assets/images/placeholders/320x320.png",
                     "imageAlt": "Alt text"
                 }
             }
@@ -21,7 +21,7 @@
             "context": {
                 "params": {
                     "reversed": true,
-                    "image": "https://via.placeholder.com/320x180?text=16:9",
+                    "image": "/assets/images/placeholders/320x180.png",
                     "imageAlt": "Alt text"
                 }
             }
@@ -31,7 +31,7 @@
             "context": {
                 "params": {
                     "reversed": true,
-                    "image": "https://via.placeholder.com/320x180?text=16:9",
+                    "image": "/assets/images/placeholders/320x180.png",
                     "imageAlt": "Alt text",
                     "breadcrumbsList": {
                         "params": {

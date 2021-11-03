@@ -23,7 +23,7 @@
                 "params": {
                     "link": "#",
                     "heading": "About the Design System",
-                    "image": "https://via.placeholder.com/320x180?text=16:9",
+                    "image": "/assets/images/placeholders/320x180.png",
                     "content": "The Digital Scotland Design System provides static web assets for websites and web applications for the Scottish Government and other Scottish public sector bodies."
                 }
             }

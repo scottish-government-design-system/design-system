@@ -15,7 +15,7 @@
     "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
     "nodesass": "node-sass src --output dist/css --output-style compressed",
     "sass": "sass --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
-    "sassdev": "sass --style=expanded src/pattern-library.scss dev/css/pattern-library.css",
+    "sassdev": "sass --style=expanded src/pattern-library.scss dev/assets/css/pattern-library.css",
     "svgsprite": "node svg-sprite",
     "svgspritedev": "node svg-sprite --mode=dev",
     "test": "karma start ./karma.conf.js",

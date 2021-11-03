@@ -10,7 +10,7 @@ const yargs = require('yargs/yargs');
 const { hideBin } = require('yargs/helpers');
 const argv = yargs(hideBin(process.argv)).argv;
 
-const destpath = path.resolve((argv.mode === 'dev') ? 'dev/images/icons/': 'dist/images/icons/');
+const destpath = path.resolve((argv.mode === 'dev') ? 'dev/assets/images/icons/': 'dist/images/icons/');
 
 const config = {
     "log": "",

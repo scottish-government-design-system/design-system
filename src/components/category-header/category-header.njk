@@ -16,7 +16,7 @@
         </header>
         {% if params.image %}
         <div class="ds_category-header__media-container">
-            <img class="ds_category-header__media" src="{{ params.image }}" alt="{{ params.imageAlt }}" />
+            <img class="ds_category-header__media" src="{{ params.image | path }}" alt="{{ params.imageAlt }}" />
         </div>
         {% endif %}
     </div>
