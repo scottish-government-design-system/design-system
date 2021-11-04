@@ -5,7 +5,7 @@
   "author": {
     "name": "mygov.scot Digital Engineering team",
     "email": "mygov-tech-team@gov.scot",
-    "url": "https://patternlibrary.mygov.scot"
+    "url": "https://github.com/scottishgovernment/pattern-library"
   },
   "license": "MIT",
   "scripts": {
@@ -25,15 +25,19 @@
   "pre-commit": [
     "test"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "@babel/runtime": "^7.14.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/polyfill": "^7.2.5",
     "@babel/preset-env": "^7.16.0",
     "@frctl/fractal": "^1.5.11",
     "@frctl/nunjucks": "^2.0.11",
     "ajv": "^6.9.1",
+    "babel-loader": "^8.2.2",
     "copy-webpack-plugin": "^6.0.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^2.4.1",
@@ -53,8 +57,12 @@
     "sass": "^1.43.4",
     "sealant": "^0.1.1",
     "svg-sprite": "^1.5.3",
+    "svgxuse": "^1.2.6",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.1",
     "yargs": "^17.2.1"
-  }
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }

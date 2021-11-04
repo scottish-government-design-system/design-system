@@ -3,7 +3,11 @@ const path = require('path');
 
 module.exports = (env) => {
   const dest = (env !== undefined)&&(env.mode === 'dev') ? 'dev/assets': 'dist';
-  
+  const copySrc = [{ from: path.resolve(__dirname, './src/images/placeholders/'), to: path.resolve(__dirname, './'+dest+'/images/placeholders/') }] 
+  if ((env !== undefined) && (env.mode === 'dev')) {
+    copySrc.push({ from: path.resolve(__dirname, './node_modules/svgxuse/svgxuse.min.js'), to: path.resolve(__dirname, './'+dest+'/scripts//') });
+  }
+
   return {
     mode: (env !== undefined)&&(env.mode === 'dev') ? 'development': 'production',
     entry: {
@@ -18,15 +22,28 @@ module.exports = (env) => {
     },
 
     module: {
-      rules: []
+      rules: [
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-transform-runtime']
+            }
+          }
+        }
+      ]
     },
     plugins: [
+
+      // Copy static assets from source to specified environment
       new CopyPlugin({
-        patterns: [
-          { from: path.resolve(__dirname, './src/images/placeholders/'), to: path.resolve(__dirname, './'+dest+'/images/placeholders/') },
-        ],
+        patterns: copySrc,
       }),
-    ]
+    ],
+    devtool: (env !== undefined)&&(env.mode === 'dev') ? 'eval-source-map': ''
   
 
   };
