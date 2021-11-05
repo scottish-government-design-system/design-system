@@ -111,6 +111,10 @@ $side-nav__outline-width: 2px;
         position: relative;
         text-decoration: none;
 
+        &:not([href]) {
+            pointer-events: none;
+        }
+
         &:hover,
         &.ds_current {
             position: relative;

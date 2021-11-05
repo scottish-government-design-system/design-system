@@ -18,7 +18,7 @@
     position: relative;
     text-decoration: none;
 
-    @include last-child-no-margin;
+    @include ds_last-child-no-margin;
 
     &:first-of-type {
         padding-top: 23px;

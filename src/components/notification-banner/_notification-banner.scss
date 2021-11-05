@@ -18,7 +18,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     color: $ds_colour__white;
     margin-bottom: 1px;
 
-    @include last-child-no-margin;
+    @include ds_last-child-no-margin;
 
     /// [1] compensate for bottom margin on parent
     &__content {
@@ -34,7 +34,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         display: inline-block;
         margin-right: 16px;
 
-        @include last-child-no-margin;
+        @include ds_last-child-no-margin;
     }
 
     &__actions {
