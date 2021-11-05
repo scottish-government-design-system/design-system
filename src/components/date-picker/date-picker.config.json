@@ -2,7 +2,43 @@
     "status": "ready",
     "context": {
         "params": {
-            "label": "Start date"
+            "label": "Start date",
+            "placeholder": "dd/mm/yyyy"
         }
-    }
+    },
+    "variants": [
+        {
+            "name": "Date range",
+            "context": {
+                "params": {
+                    "label": "Start date",
+                    "dateRangeEnd": "19/09/2020",
+                    "dateRangeStart": "09/08/2020",
+                    "dateFormat": "DMY"
+                }
+            }
+        },
+        {
+            "name": "MDY date format",
+            "context": {
+                "params": {
+                    "label": "Start date",
+                    "dateFormat": "MDY",
+                    "placeholder": "mm/dd/yyyy"
+                }
+            }
+        },
+        {
+            "name": "YMD date format with range",
+            "context": {
+                "params": {
+                    "label": "Start date",
+                    "dateFormat": "YMD",
+                    "dateRangeEnd": "2020/09/19",
+                    "dateRangeStart": "2020/08/09",
+                    "placeholder": "yyyy/mm/dd"
+                }
+            }
+        }
+    ]
 }

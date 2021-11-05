@@ -50,19 +50,19 @@
                     "hideLabel": true,
                     "subitems":[
                         {
-                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><image href=\"/assets/images/placeholders/icon.svg\"></image></svg>Facebook</a>",
+                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>Facebook</a>",
                             "socialItem": true
                         },
                         {
-                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><image href=\"/assets/images/placeholders/icon.svg\"></image></svg>@scotgov</a>",
+                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>@scotgov</a>",
                             "socialItem": true
                         },
                         {
-                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><image href=\"/assets/images/placeholders/icon.svg\"></image></svg>Flickr</a>",
+                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>Flickr</a>",
                             "socialItem": true
                         },
                         {
-                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><image href=\"/assets/images/placeholders/icon.svg\"></image></svg>YouTube</a>",
+                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>YouTube</a>",
                             "socialItem": true
                         }
                     ]

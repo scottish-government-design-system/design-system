@@ -13,7 +13,7 @@ class CharacterCount {
         if (!this.inputElement) {
             return;
         }
-
+console.log('Count 1');
         this.setMaxLength();
 
         if (!this.maxLength) {
@@ -40,11 +40,14 @@ class CharacterCount {
 
     setMaxLength() {
         if (this.inputElement.getAttribute('maxlength')) {
+            console.log('Count 2');
             this.maxLength = parseInt(this.inputElement.getAttribute('maxlength'), 10);
             this.inputElement.removeAttribute('maxlength');
         } else {
             this.maxLength = this.field.dataset.maxlength;
+            console.log('Count 3');
         }
+        console.log(this.maxLength);
     }
 
     /*

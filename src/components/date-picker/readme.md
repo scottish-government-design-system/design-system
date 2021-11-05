@@ -6,6 +6,8 @@ Use an attribute of data-dateformat on the input element to specify one of the f
 - ```MDY``` - 14th March 2020 would be written as 03/14/2020
 - ```YMD``` - 14th March 2020 would be written as 2020/03/14
 
+The placeholder text should match the chosen date format.
+
 ## Allowed date ranges
 
 Use an attribute of data-mindate on the input element to specify an earliest possible date for the calendar. Dates before this date cannot be selected.

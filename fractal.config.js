@@ -18,17 +18,17 @@ fractal.components.set('statuses', {
     wip: {
         label: "WIP",
         description: "Work in progress. Do not implement.",
-        color: "#ea1a13"
+        color: "#d32205"
     },
     prototype: {
         label: "Prototype",
         description: "Implement with caution.",
-        color: "#bf5909"
+        color: "#f47738"
     },
     ready: {
         label: "Ready",
         description: "Ready to implement.",
-        color: "#00853f"
+        color: "#428542"
     }
 });
 
@@ -36,12 +36,12 @@ fractal.docs.set('statuses', {
     wip: {
         label: 'WIP',
         description: 'Work in progress.',
-        color: '#ea1a13'
+        color: '#d32205'
     },
     ready: {
         label: 'Ready',
         description: 'Ready for referencing.',
-        color: '#00853f'
+        color: '#428542'
     }
 });
 
