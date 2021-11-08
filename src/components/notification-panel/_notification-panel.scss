@@ -30,6 +30,6 @@
     }
 
     &__content {
-        @include last-child-no-margin;
+        @include ds_last-child-no-margin;
     }
 }
