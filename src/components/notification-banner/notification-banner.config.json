@@ -25,7 +25,7 @@
                 "params": {
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
                     "dismissButton": true,
-                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/images/icons/icons.stack.svg#priority_high\"></use></svg>"
+                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/icons/icons.stack.svg#priority_high\"></use></svg>"
                 }
             }
         },
@@ -35,7 +35,7 @@
                 "params": {
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
                     "dismissButton": true,
-                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/images/icons/icons.stack.svg#priority_high\"></use></svg>",
+                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/icons/icons.stack.svg#priority_high\"></use></svg>",
                     "iconInverse": true
                 }
             }
@@ -46,7 +46,7 @@
                 "params": {
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
                     "dismissButton": true,
-                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/images/icons/icons.stack.svg#priority_high\"></use></svg>",
+                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/icons/icons.stack.svg#priority_high\"></use></svg>",
                     "iconColour": true
                 }
             }
@@ -57,7 +57,7 @@
                 "params": {
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
                     "dismissButton": true,
-                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/images/icons/icons.stack.svg#priority_high\"></use></svg>",
+                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/icons/icons.stack.svg#priority_high\"></use></svg>",
                     "iconInverse": true,
                     "iconColour": true
                 }
@@ -70,7 +70,7 @@
                     "modifiers": "ds_notification--success",
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
                     "dismissButton": true,
-                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/images/icons/icons.stack.svg#priority_high\"></use></svg>",
+                    "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/icons/icons.stack.svg#priority_high\"></use></svg>",
                     "iconInverse": true,
                     "iconColour": true
                 }
