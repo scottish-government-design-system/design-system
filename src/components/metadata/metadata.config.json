@@ -1,0 +1,147 @@
+{
+    "status": "ready",
+    "context": {
+        "params": {
+            "items": [
+                {
+                    "key": "Type",
+                    "value": "Consultation paper"
+                },
+                {
+                    "key": "Publication date",
+                    "value": "27 August 2017"
+                }
+            ]
+        }
+    },
+    "variants": [
+        {
+            "name": "Inline",
+            "context": {
+                "params": {
+                    "modifiers": "ds_metadata--inline"
+                }
+            }
+        },
+        {
+            "name": "Hide keys",
+            "context": {
+                "params": {
+                    "items": [
+                        {
+                            "key": "Type",
+                            "value": "Consultation paper",
+                            "hideKey": true
+                        },
+                        {
+                            "key": "Publication date",
+                            "value": "27 August 2017",
+                            "hideKey": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Hide keys inline",
+            "context": {
+                "params": {
+                    "modifiers": "ds_metadata--inline",
+                    "items": [
+                        {
+                            "key": "Type",
+                            "value": "Consultation paper",
+                            "hideKey": true
+                        },
+                        {
+                            "key": "Publication date",
+                            "value": "27 August 2017",
+                            "hideKey": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Labels",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "items": [
+                        {
+                            "key": "Type",
+                            "value": "Consultation paper",
+                            "isLabel": true
+                        },
+                        {
+                            "key": "Publication date",
+                            "value": "27 August 2017"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Inline labels",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "modifiers": "ds_metadata--inline",
+                    "items": [
+                        {
+                            "key": "Type",
+                            "value": "Consultation paper",
+                            "isLabel": true
+                        },
+                        {
+                            "key": "Publication date",
+                            "value": "27 August 2017"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Hide keys labels",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "items": [
+                        {
+                            "key": "Type",
+                            "value": "Consultation paper",
+                            "hideKey": true,
+                            "isLabel": true
+                        },
+                        {
+                            "key": "Publication date",
+                            "value": "27 August 2017",
+                            "hideKey": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Hide keys inline labels",
+            "context": {
+                "params": {
+                    "modifiers": "ds_metadata--inline",
+                    "items": [
+                        {
+                            "key": "Type",
+                            "value": "Consultation paper",
+                            "hideKey": true,
+                            "isLabel": true
+                        },
+                        {
+                            "key": "Publication date",
+                            "value": "27 August 2017",
+                            "hideKey": true
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

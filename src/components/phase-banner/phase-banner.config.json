@@ -1,0 +1,13 @@
+{
+	"context": {
+		"params": {
+			"tag": {
+                "params": {
+                    "label":  "alpha",
+                    "modifiers": "ds_phase-banner__tag"
+                }
+            },
+            "content": "This is a new service. Your <a href=\"#\">feedback</a> will help us to improve it."
+		}
+	}
+}

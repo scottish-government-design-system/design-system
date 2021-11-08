@@ -1,0 +1,71 @@
+{
+	"context": {
+		"params": {
+            "element": "div",
+            "heading": "Crofting community right to buy",
+            "link": "#"
+		}
+	},
+    "variants": [
+        {
+            "name": "Metadata",
+            "context": {
+                "params": {
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Type",
+                                    "value": "Policy",
+                                    "hideKey": true,
+                                    "isLabel": true
+                                }
+                            ]
+                        }
+                    },
+                    "heading": "Crofting community right to buy",
+                    "link": "#"
+                }
+            }
+        },
+        {
+            "name": "Content",
+            "context": {
+                "params": {
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": "Information and guidance regarding the crofting community right to buy."
+                }
+            }
+        },
+        {
+            "name": "Metadata and content",
+            "context": {
+                "params": {
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Type",
+                                    "value": "Consultation paper",
+                                    "hideKey": true,
+                                    "isLabel": true
+                                },
+                                {
+                                    "key": "Publish date",
+                                    "value": "13 August 2021",
+                                    "hideKey": true
+                                }
+                            ]
+                        }
+                    },
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": "Information and guidance regarding the crofting community right to buy."
+                }
+            }
+        }
+    ]
+}

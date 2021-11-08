@@ -1,0 +1,118 @@
+{
+    "status": "prototype",
+    "context": {
+        "params": {
+            "label": "Search result pages",
+            "items": [
+                {
+                    "label": "1",
+                    "current": true
+                },
+                {
+                    "label": "2",
+                    "link": "#"
+                },
+                {
+                    "label": "3",
+                    "link": "#"
+                },
+                {
+                    "label": "4",
+                    "link": "#"
+                },
+                {
+                    "label": "5",
+                    "link": "#"
+                }
+            ]
+        }
+    },
+    "variants": [
+        {
+            "name": "Next and Previous",
+            "context": {
+                "params": {
+                    "items": [
+                        {
+                            "label": "Previous",
+                            "textLabel": true,
+                            "link": "#"
+                        },
+                        {
+                            "label": "12",
+                            "link": "#"
+                        },
+                        {
+                            "label": "13",
+                            "link": "#"
+                        },
+                        {
+                            "label": "14",
+                            "current": true
+                        },
+                        {
+                            "label": "15",
+                            "link": "#"
+                        },
+                        {
+                            "label": "16",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Next",
+                            "textLabel": true,
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Ellipsis",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "items": [
+                        {
+                            "label": "Previous",
+                            "textLabel": true,
+                            "link": "#"
+                        },
+                        {
+                            "label": "12",
+                            "link": "#"
+                        },
+                        {
+                            "label": "13",
+                            "link": "#"
+                        },
+                        {
+                            "label": "14",
+                            "current": true
+                        },
+                        {
+                            "label": "15",
+                            "link": "#"
+                        },
+                        {
+                            "label": "16",
+                            "link": "#"
+                        },
+                        {
+                            "ellipsis": true
+                        },
+                        {
+                            "label": "27",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Next",
+                            "textLabel": true,
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
