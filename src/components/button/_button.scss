@@ -149,7 +149,7 @@ $link__border-width: 3px;
 
     >.ds_button {
         margin: 0 0 24px;
-        @include last-child-no-margin;
+        @include ds_last-child-no-margin;
     }
 }
 

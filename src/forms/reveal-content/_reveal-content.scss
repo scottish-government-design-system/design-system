@@ -7,7 +7,7 @@
     margin-top: 16px;
     padding-left: 16px;
     position: relative;
-    @include last-child-no-margin;
+    @include ds_last-child-no-margin;
 
     &::before {
         background-color: $ds_colour__border;

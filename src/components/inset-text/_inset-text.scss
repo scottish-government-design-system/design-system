@@ -7,11 +7,11 @@
     padding: 16px;
 
     @include ds_block-margins;
-    @include last-child-no-margin;
+    @include ds_last-child-no-margin;
 }
 
 .ds_inset-text__text {
-    @include last-child-no-margin;
+    @include ds_last-child-no-margin;
 }
 
 @include ds_media-query(medium) {

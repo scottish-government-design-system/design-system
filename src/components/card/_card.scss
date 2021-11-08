@@ -11,7 +11,7 @@
     z-index: 1;
 
     @include ds_box-shadow;
-    @include last-child-no-margin;
+    @include ds_last-child-no-margin;
 
     &--has-hover:hover {
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
@@ -34,7 +34,7 @@
             margin-top: 0;
         }
 
-        @include last-child-no-margin;
+        @include ds_last-child-no-margin;
     }
 
     // specificity hack
