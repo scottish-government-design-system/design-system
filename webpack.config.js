@@ -3,9 +3,21 @@ const path = require('path');
 
 module.exports = (env) => {
   const dest = (env !== undefined)&&(env.mode === 'dev') ? 'dev/assets': 'dist';
-  const copySrc = [{ from: path.resolve(__dirname, './src/images/placeholders/'), to: path.resolve(__dirname, './'+dest+'/images/placeholders/') }] 
+  const copySrc = []; 
+  const wpPlugins = [];
+
   if ((env !== undefined) && (env.mode === 'dev')) {
     copySrc.push({ from: path.resolve(__dirname, './node_modules/svgxuse/svgxuse.min.js'), to: path.resolve(__dirname, './'+dest+'/scripts//') });
+    copySrc.push({ from: path.resolve(__dirname, './src/images/placeholders/'), to: path.resolve(__dirname, './'+dest+'/images/placeholders/') });
+  }
+
+  if (copySrc.length) {
+    wpPlugins.push(
+      // Copy static assets from source to specified environment
+      new CopyPlugin({
+        patterns: copySrc,
+      })
+    )
   }
 
   return {
@@ -36,13 +48,7 @@ module.exports = (env) => {
         }
       ]
     },
-    plugins: [
-
-      // Copy static assets from source to specified environment
-      new CopyPlugin({
-        patterns: copySrc,
-      }),
-    ],
+    plugins: wpPlugins,
     devtool: (env !== undefined)&&(env.mode === 'dev') ? 'eval-source-map': ''
   
 
