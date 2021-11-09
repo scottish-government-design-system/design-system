@@ -12,7 +12,7 @@ fractal.set('project.title', 'Scottish Government Pattern Library');
 fractal.components.engine(nunj); // register the Nunjucks adapter for your components
 fractal.components.set("ext", ".njk"); // look for files with a .njk file extension
 /* Tell Fractal where the components will live */
-fractal.components.set('path', __dirname + '/src/components');
+fractal.components.set('path', __dirname + '/src');
 
 fractal.components.set('statuses', {
     wip: {
