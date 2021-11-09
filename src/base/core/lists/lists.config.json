@@ -1,0 +1,77 @@
+{
+    "status": "ready",
+    "context": {
+        "params": {
+            "intro": "<p>You can use your Blue Badge to park in certain restricted areas for free, including:</p>",
+            "listType": "ul",
+            "list": [
+                {
+                    "content": "at on-street parking meters"
+                },
+                {
+                    "content": "in pay and display bays"
+                },
+                {
+                    "content": "in disabled parking spaces"
+                },
+                {
+                    "content": "on single and double yellow lines if there are no loading restrictions"
+                }
+            ]
+        }
+    },
+    "variants": [
+        {
+            "name": "Ordered list",
+            "context": {
+                "params": {
+                    "intro": "<p>Follow these 3 steps to apply:</p>",
+                    "listType": "ol",
+                    "list": [
+                        {
+                            "content": "Create an account."
+                        },
+                        {
+                            "content": "Create and complete your planning proposal."
+                        },
+                        {
+                            "content": "Pay the application fee."
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Definition list"
+        },
+        {
+            "name": "Unordered list no bullets",
+            "context": {
+                "params": {
+                    "modifiers": "ds_no-bullets"
+                }
+            }
+        },
+        {
+            "name": "Ordered list no bullets",
+            "context": {
+                "params": {
+                    "modifiers": "ds_no-bullets",
+                    "intro": "<p>Follow these 3 steps to apply:</p>",
+                    "listType": "ol",
+                    "list": [
+                        {
+                            "content": "Create an account."
+                        },
+                        {
+                            "content": "Create and complete your planning proposal."
+                        },
+                        {
+                            "content": "Pay the application fee."
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}
