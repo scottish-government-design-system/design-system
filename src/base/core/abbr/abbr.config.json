@@ -1,0 +1,18 @@
+{
+    "status": "ready",
+    "context": {
+        "params": {
+            "content": "The <abbr title=\"World Health Organization\">WHO</abbr> was founded in 1948."
+        }
+    },
+    "variants": [
+        {
+            "name": "No title",
+            "context": {
+                "params": {
+                    "content": "The <abbr>WHO</abbr> was founded in 1948."
+                }
+            }
+        }
+    ]
+}

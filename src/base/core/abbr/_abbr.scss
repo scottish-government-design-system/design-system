@@ -3,13 +3,12 @@
     Improved display of abbreviation styling with better readability than browser default
 \*------------------------------------*/
 
-/// [1] do not apply this if there is no title attribute
+/// [1] only apply this if there is a title attribute
 
 abbr, acronym {
-    text-decoration-thickness: 1px;
-    text-underline-offset: 1px;
-
-    &:not([title]) { /// [1]
-        text-decoration: none;
+    &[title] { /// [1]
+        text-decoration: underline dotted;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 1px;
     }
 }
