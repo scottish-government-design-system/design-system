@@ -169,10 +169,15 @@ $side-nav__outline-width: 2px;
         }
 
         &:hover,
-        &:focus,
         &.ds_current {
             &::before {
                 background: $ds_colour__border--highlight;
+            }
+        }
+
+        &:focus {
+            &::before {
+                background: $ds_colour__link--focus;
             }
         }
     }
