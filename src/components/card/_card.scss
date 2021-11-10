@@ -56,6 +56,11 @@
         }
     }
 
+    &:focus-within &__cover-link {
+        box-shadow: none;
+        background-color: transparent;
+    }
+
     &--small {
         font-size: $small-size--fixed;
         line-height: 24px;
