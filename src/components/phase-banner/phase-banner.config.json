@@ -1,4 +1,5 @@
 {
+    "preview": "@preview--full",
 	"context": {
 		"params": {
 			"tag": {

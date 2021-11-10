@@ -1,0 +1,223 @@
+{
+	"context": {
+		"params": {
+            "label": "Sections",
+            "longLabel": "Pages in this section",
+            "menu": [
+                {
+                    "label": "Apples",
+                    "link": "#"
+                },
+                {
+                    "label": "Bananas",
+                    "link": "#"
+                },
+                {
+                    "label": "Cherries",
+                    "link": "#"
+                },
+                {
+                    "label": "Dates",
+                    "link": "#"
+                }
+            ]
+		}
+	},
+    "variants": [
+        {
+            "name": "Selected item",
+            "context": {
+                "params": {
+                    "label": "Sections",
+                    "longLabel": "Pages in this section",
+                    "menu": [
+                        {
+                            "label": "Apples",
+                            "current": true
+                        },
+                        {
+                            "label": "Bananas",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Cherries",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Dates",
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Two levels",
+            "context": {
+                "params": {
+                    "label": "Sections",
+                    "longLabel": "Pages in this section",
+                    "menu": [
+                        {
+                            "label": "Apples",
+                            "link": "#",
+                            "menu": [
+                                {
+                                    "label": "Green apples",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "Red apples",
+                                    "link": "#"
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Bananas",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Cherries",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Dates",
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Two levels selected",
+            "context": {
+                "params": {
+                    "label": "Sections",
+                    "longLabel": "Pages in this section",
+                    "menu": [
+                        {
+                            "label": "Apples",
+                            "link": "#",
+                            "menu": [
+                                {
+                                    "label": "Green apples",
+                                    "current": true
+                                },
+                                {
+                                    "label": "Red apples",
+                                    "link": "#"
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Bananas",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Cherries",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Dates",
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Three levels",
+            "context": {
+                "params": {
+                    "label": "Sections",
+                    "longLabel": "Pages in this section",
+                    "menu": [
+                        {
+                            "label": "Apples",
+                            "link": "#",
+                            "menu": [
+                                {
+                                    "label": "Green apples",
+                                    "link": "#",
+                                    "menu": [
+                                        {
+                                            "label": "Bramley",
+                                            "link": "#"
+                                        },
+                                        {
+                                            "label": "Granny Smith",
+                                            "link": "#"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Red apples",
+                                    "link": "#"
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Bananas",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Cherries",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Dates",
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Three levels selected",
+            "context": {
+                "params": {
+                    "label": "Sections",
+                    "longLabel": "Pages in this section",
+                    "menu": [
+                        {
+                            "label": "Apples",
+                            "link": "#",
+                            "menu": [
+                                {
+                                    "label": "Green apples",
+                                    "link": "#",
+                                    "menu": [
+                                        {
+                                            "label": "Bramley",
+                                            "current": true
+                                        },
+                                        {
+                                            "label": "Granny Smith",
+                                            "link": "#"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "label": "Red apples",
+                                    "link": "#"
+                                }
+                            ]
+                        },
+                        {
+                            "label": "Bananas",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Cherries",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Dates",
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

@@ -1,5 +1,6 @@
 {
     "status": "ready",
+    "preview": "@preview--full",
     "context": {
         "params": {
             "heading": "Design standards",
