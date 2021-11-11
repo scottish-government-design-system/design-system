@@ -74,7 +74,8 @@ $border-width-size: 4px;
         margin: 0;
     }
 
-    &:hover &__summary {
+    &:hover &__summary,
+    &:focus-within &__summary {
         color: $ds_colour__text;
     }
 }
