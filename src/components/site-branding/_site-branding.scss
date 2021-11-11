@@ -34,7 +34,10 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
     &__title {
         font-weight: $light;
         line-height: $site-logo__height;
-        margin-left: 24px;
+
+        &:not(:first-child){
+            margin-left: 24px;
+        }
     }
 
     &__logo,
@@ -77,7 +80,10 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
         &__title {
             font-size: $large-size;
             line-height: $site-logo__height--medium;
-            margin-left: 48px;
+
+            &:not(:first-child){
+                margin-left: 48px;
+            }
         }
     }
 }
@@ -104,6 +110,8 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
 
 // when branding is a child of a reversed-variant site header
 .ds_reversed .ds_site-branding {
+    color: $ds_colour__white;
+    
     .ds_site-branding__logo {
         color: $ds_colour__white;
 

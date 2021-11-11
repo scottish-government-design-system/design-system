@@ -1,0 +1,68 @@
+{
+	"context": {
+		"params": {
+            "logo": "/assets/images/placeholders/470x200.png",
+            "logoAlt": "Digital Scotland",
+            "logoLink": "#"
+		}
+	},
+    "variants": [
+        {
+            "name": "Text title",
+            "context": {
+                "params": {
+                    "logo": false,
+                    "title": "Design System",
+                    "titleLink": "#"
+                }
+            }
+        },
+        {
+            "name": "Text title two line",
+            "context": {
+                "params": {
+                    "logo": false,
+                    "title": "Design System<br> Second line",
+                    "titleLink": "#"
+                }
+            }
+        },
+        {
+            "name": "Logo and text",
+            "context": {
+                "params": {
+                    "logo": "/assets/images/placeholders/470x200.png",
+                    "logoAlt": "Digital Scotland",
+                    "logoLink": "#",
+                    "title": "Design System",
+                    "titleLink": "#"
+                }
+            }
+        },
+        {
+            "name": "Logo and text two line",
+            "context": {
+                "params": {
+                    "logo": "/assets/images/placeholders/470x200.png",
+                    "logoAlt": "Digital Scotland",
+                    "logoLink": "#",
+                    "title": "Design System<br> Second line",
+                    "titleLink": "#"
+                }
+            }
+        },
+        {
+            "name": "Reversed",
+            "preview": "@preview--full",
+            "context": {
+                "params": {
+                    "logo": "/assets/images/placeholders/470x200.png",
+                    "logoAlt": "Digital Scotland",
+                    "logoLink": "#",
+                    "title": "Design System<br> Second line",
+                    "titleLink": "#"
+                }
+            }
+        }
+    ]
+}
