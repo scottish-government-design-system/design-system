@@ -1,0 +1,117 @@
+{
+    "preview": "@preview--full",
+	"context": {
+		"params": {
+        }
+	},
+    "variants": [
+        {
+            "name": "Gradient top band",
+            "context": {
+                "params": {
+                    "gradient": true
+                }
+            }
+        },
+        {
+            "name": "Site branding",
+            "context": {
+                "params": {
+                    "siteBranding": {
+                        "params": {
+                            "logo": "/assets/images/placeholders/470x200.png",
+                            "logoAlt": "Digital Scotland",
+                            "logoLink": "#",
+                            "title": "Design System",
+                            "titleLink": "#"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Search",
+            "context": {
+                "params": {
+                    "search": true
+                }
+            }
+        },
+        {
+            "name": "Navigation",
+            "context": {
+                "params": {
+                    "navigation": true
+                }
+            }
+        },
+        {
+            "name": "Search and Navigation",
+            "context": {
+                "params": {
+                    "search": true,
+                    "navigation": true
+                }
+            }
+        },
+        {
+            "name": "Branding and phase banner",
+            "context": {
+                "params": {
+                    "siteBranding": {
+                        "params": {
+                            "logo": "/assets/images/placeholders/470x200.png",
+                            "logoAlt": "Digital Scotland",
+                            "logoLink": "#",
+                            "title": "Design System",
+                            "titleLink": "#"
+                        }
+                    },
+                    "phaseBanner": true
+                }
+            }
+        },
+        {
+            "name": "All elements",
+            "context": {
+                "params": {
+                    "gradient": true,
+                    "siteBranding": {
+                        "params": {
+                            "logo": "/assets/images/placeholders/470x200.png",
+                            "logoAlt": "Digital Scotland",
+                            "logoLink": "#",
+                            "title": "Design System",
+                            "titleLink": "#"
+                        }
+                    },
+                    "phaseBanner": true,
+                    "search": true,
+                    "navigation": true
+                }
+            }
+        },
+        {
+            "name": "All elements reversed",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "reversed": true,
+                    "styles": "background:#428542;",
+                    "siteBranding": {
+                        "params": {
+                            "logo": "/assets/images/placeholders/470x200.png",
+                            "logoAlt": "Digital Scotland",
+                            "logoLink": "#",
+                            "title": "Design System",
+                            "titleLink": "#"
+                        }
+                    },
+                    "phaseBanner": true,
+                    "search": true,
+                    "navigation": true
+                }
+            }
+        }
+    ]
+}

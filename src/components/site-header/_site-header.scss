@@ -8,6 +8,7 @@ $site-header__border-colour--reversed: $ds_colour__brand--secondary !default;
 // fixed vars
 $site-header__border-colour: $ds_colour__border--light;
 $site-header__top-band-colour: $ds_colour__brand;
+$site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
 .ds_site-header {
     background-color: $ds_colour__white;
@@ -20,6 +21,10 @@ $site-header__top-band-colour: $ds_colour__brand;
         display: block;
         content: '';
         height: 4px;
+    }
+
+    &--gradient::before {
+        background: linear-gradient(to $ds_brand-gradient-direction, $site-header__top-band-colour--secondary, $site-header__top-band-colour);
     }
 
     &__content {
