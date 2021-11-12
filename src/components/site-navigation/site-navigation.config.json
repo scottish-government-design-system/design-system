@@ -1,0 +1,53 @@
+{
+    "status": "prototype",
+	"context": {
+		"params": {
+            "label": "Main menu",
+            "menu": [
+                {
+                    "label": "Apples",
+                    "link": "#"
+                },
+                {
+                    "label": "Bananas",
+                    "link": "#"
+                },
+                {
+                    "label": "Cherries",
+                    "link": "#"
+                },
+                {
+                    "label": "Dates",
+                    "link": "#"
+                }
+            ]
+		}
+	},
+    "variants": [
+        {
+            "name": "Selected item",
+            "context": {
+                "params": {
+                    "menu": [
+                        {
+                            "label": "Apples",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Bananas",
+                            "current": true
+                        },
+                        {
+                            "label": "Cherries",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Dates",
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

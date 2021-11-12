@@ -3,5 +3,10 @@
 		"params": {
 			"label": "Beta"
 		}
-	}
+	},
+    "variants": [
+        {
+            "name": "Reversed"
+		}
+	]
 }

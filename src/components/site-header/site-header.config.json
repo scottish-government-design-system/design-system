@@ -2,6 +2,15 @@
     "preview": "@preview--full",
 	"context": {
 		"params": {
+            "siteBranding": {
+                "params": {
+                    "logo": "/assets/images/placeholders/470x200.png",
+                    "logoAlt": "Digital Scotland",
+                    "logoLink": "#",
+                    "title": "Design System",
+                    "titleLink": "#"
+                }
+            }
         }
 	},
     "variants": [
@@ -14,26 +23,14 @@
             }
         },
         {
-            "name": "Site branding",
-            "context": {
-                "params": {
-                    "siteBranding": {
-                        "params": {
-                            "logo": "/assets/images/placeholders/470x200.png",
-                            "logoAlt": "Digital Scotland",
-                            "logoLink": "#",
-                            "title": "Design System",
-                            "titleLink": "#"
-                        }
-                    }
-                }
-            }
-        },
-        {
             "name": "Search",
             "context": {
                 "params": {
-                    "search": true
+                    "search": {
+                        "params": {
+                            "modifiers": "ds_site-header__search"
+                        }
+                    }
                 }
             }
         },
@@ -49,24 +46,19 @@
             "name": "Search and Navigation",
             "context": {
                 "params": {
-                    "search": true,
+                    "search": {
+                        "params": {
+                            "modifiers": "ds_site-header__search"
+                        }
+                    },
                     "navigation": true
                 }
             }
         },
         {
-            "name": "Branding and phase banner",
+            "name": "Phase banner",
             "context": {
                 "params": {
-                    "siteBranding": {
-                        "params": {
-                            "logo": "/assets/images/placeholders/470x200.png",
-                            "logoAlt": "Digital Scotland",
-                            "logoLink": "#",
-                            "title": "Design System",
-                            "titleLink": "#"
-                        }
-                    },
                     "phaseBanner": true
                 }
             }
@@ -76,17 +68,12 @@
             "context": {
                 "params": {
                     "gradient": true,
-                    "siteBranding": {
+                    "phaseBanner": true,
+                    "search": {
                         "params": {
-                            "logo": "/assets/images/placeholders/470x200.png",
-                            "logoAlt": "Digital Scotland",
-                            "logoLink": "#",
-                            "title": "Design System",
-                            "titleLink": "#"
+                            "modifiers": "ds_site-header__search"
                         }
                     },
-                    "phaseBanner": true,
-                    "search": true,
                     "navigation": true
                 }
             }
@@ -98,17 +85,12 @@
                 "params": {
                     "reversed": true,
                     "styles": "background:#428542;",
-                    "siteBranding": {
+                    "phaseBanner": true,
+                    "search": {
                         "params": {
-                            "logo": "/assets/images/placeholders/470x200.png",
-                            "logoAlt": "Digital Scotland",
-                            "logoLink": "#",
-                            "title": "Design System",
-                            "titleLink": "#"
+                            "modifiers": "ds_site-header__search"
                         }
                     },
-                    "phaseBanner": true,
-                    "search": true,
                     "navigation": true
                 }
             }

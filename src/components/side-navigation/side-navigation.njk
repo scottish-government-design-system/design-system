@@ -14,7 +14,7 @@
                 {%- for subItem in item.menu %}
                 <li class="ds_side-navigation__item"{%- if subItem.current %} aria-current="page"{%- endif %}>
                     {%- if subItem.link %}
-                    <a href="{{ item.link }}" class="ds_side-navigation__link">{{ subItem.label }}</a>
+                    <a href="{{ subItemitem.link }}" class="ds_side-navigation__link">{{ subItem.label }}</a>
                     {%- elseif subItem.current %}
                     <span class="ds_side-navigation__link ds_current">{{ subItem.label }}</span>
                     {%- endif %}
@@ -23,7 +23,7 @@
                         {%- for subSubItem in subItem.menu %}
                         <li class="ds_side-navigation__item"{%- if subSubItem.current %} aria-current="page"{%- endif %}>
                             {%- if subSubItem.link %}
-                            <a href="{{ item.link }}" class="ds_side-navigation__link">{{ subSubItem.label }}</a>
+                            <a href="{{ subSubItemitem.link }}" class="ds_side-navigation__link">{{ subSubItem.label }}</a>
                             {%- elseif subSubItem.current %}
                             <span class="ds_side-navigation__link ds_current">{{ subSubItem.label }}</span>
                             {%- endif %}
