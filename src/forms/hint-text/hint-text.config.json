@@ -1,0 +1,18 @@
+{
+	"context": {
+		"params": {
+			"hint": "This is hint text"
+		}
+	},
+    "variants": [
+        {
+            "name": "Hint with id",
+			"context": {
+				"params": {
+                    "hint": "This is hint text with an associated id",
+                    "id": "hint-id"
+				}
+			}
+		}
+	]
+}

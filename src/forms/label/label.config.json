@@ -1,0 +1,18 @@
+{
+	"context": {
+		"params": {
+			"label": "This is a label"
+		}
+	},
+    "variants": [
+        {
+            "name": "Label with id",
+			"context": {
+				"params": {
+                    "label": "This is a label with an associated id",
+                    "id": "hint-id"
+				}
+			}
+		}
+	]
+}

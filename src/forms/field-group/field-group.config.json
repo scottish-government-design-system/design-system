@@ -1,0 +1,205 @@
+{
+	"context": {
+		"params": {
+            "legend": "What are the coordinates?",
+            "hint": {
+                "params": {
+                    "hint": "This is hint text",
+                    "id": "hint_id"
+                }
+            },
+            "fields": [
+                {
+                    "label": {
+                        "params": {
+                            "label": "Latitude",
+                            "id": "unique-id"
+                        }
+                    },
+                    "textInput": {
+                        "params": {
+                            "id": "unique-id",
+                            "size": "ds_input--fixed-10"
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "params": {
+                            "label": "Longitude",
+                            "id": "unique-id2"
+                        }
+                    },
+                    "textInput": {
+                        "params": {
+                            "id": "unique-id2",
+                            "size": "ds_input--fixed-10"
+                        }
+                    }
+                }
+            ]
+		}
+	},
+    "variants": [
+        {
+            "name": "Error message",
+            "context": {
+                "params": {
+                    "error": "Invalid format error",
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Latitude",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id",
+                                    "size": "ds_input--fixed-10",
+                                    "error": true
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Longitude",
+                                    "id": "unique-id2"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id2",
+                                    "size": "ds_input--fixed-10",
+                                    "error": true
+                                }
+                            }
+                        }
+                    ]    
+                }
+            }
+        },
+        {
+            "name": "Inline fields",
+            "context": {
+                "params": {
+                    "legend": "What is your date of birth?",
+                    "inline": true,
+                    "hint": {
+                        "params": {
+                            "hint": "For example, 31 3 1980",
+                            "id": "hint_id"
+                        }
+                    },
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Day",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id",
+                                    "size": "ds_input--fixed-2"
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Month",
+                                    "id": "unique-id2"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id2",
+                                    "size": "ds_input--fixed-2"
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Year",
+                                    "id": "unique-id3"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id3",
+                                    "size": "ds_input--fixed-4"
+                                }
+                            }
+                        }
+                    ]    
+                }
+            }
+        },
+        {
+            "name": "Inline fields error",
+            "context": {
+                "params": {
+                    "legend": "What is your date of birth?",
+                    "inline": true,
+                    "error": "Invalid month",
+                    "hint": {
+                        "params": {
+                            "hint": "For example, 31 3 1980",
+                            "id": "hint_id"
+                        }
+                    },
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Day",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id",
+                                    "size": "ds_input--fixed-2"
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Month",
+                                    "id": "unique-id2"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id2",
+                                    "size": "ds_input--fixed-2",
+                                    "error": true
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Year",
+                                    "id": "unique-id3"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id3",
+                                    "size": "ds_input--fixed-4"
+                                }
+                            }
+                        }
+                    ]    
+                }
+            }
+        }			
+	]
+}

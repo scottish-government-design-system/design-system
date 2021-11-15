@@ -1,0 +1,11 @@
+<div class="ds_question {%- if params.error %} ds_question--error{%- endif %}">
+{%- if params.label %}
+{% render '@label', params.label %}
+{%- endif -%}
+{%- if params.hint %}
+{% render '@hint-text', params.hint %}
+{%- endif -%}
+{%- if params.textInput -%}
+{% render '@text-input', params.textInput %}
+{%- endif -%}
+</div>

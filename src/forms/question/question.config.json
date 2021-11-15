@@ -1,0 +1,128 @@
+{
+	"context": {
+		"params": {
+			"label": {
+                "params": {
+                    "label": "Text label",
+                    "id": "unique-id"
+                }
+            },
+            "textInput": {
+                "params": {
+                    "id": "unique-id"
+                }
+            }
+		}
+	},
+    "variants": [
+        {
+            "name": "Text input error",
+			"context": {
+				"params": {
+                    "error": true,
+                    "textInput": {
+                        "params": {
+                            "error": true
+                        }
+                    }
+				}
+			}
+		},
+        {
+            "name": "Textarea",
+			"context": {
+				"params": {
+                    "textInput": {
+                        "params": {
+                            "type": "textarea",
+                            "rows": "5"
+                        }
+                    }
+				}
+			}
+		},
+        {
+            "name": "Textarea error",
+			"context": {
+				"params": {
+                    "error": true,
+                    "textInput": {
+                        "params": {
+                            "type": "textarea",
+                            "rows": "5",
+                            "error": true
+                        }
+                    }
+				}
+			}
+		},
+        {
+            "name": "Hint text",
+			"context": {
+				"params": {
+                    "hint": {
+                        "params": {
+                            "hint": "This is hint text"
+                        }
+                    }
+				}
+			}
+		},
+        {
+            "name": "Hint text error",
+			"context": {
+				"params": {
+                    "error": true,
+                    "textInput": {
+                        "params": {
+                            "error": true
+                        }
+                    },
+                    "hint": {
+                        "params": {
+                            "hint": "This is hint text"
+                        }
+                    }
+				}
+			}
+		},
+        {
+            "name": "Hint text with textarea",
+			"context": {
+				"params": {
+                    "textInput": {
+                        "params": {
+                            "type": "textarea",
+                            "rows": "5"
+                        }
+                    },
+                    "hint": {
+                        "params": {
+                            "hint": "This is hint text"
+                        }
+                    }
+				}
+			}
+		},
+        {
+            "name": "Hint text error with textarea",
+			"context": {
+				"params": {
+                    "error": true,
+                    "textInput": {
+                        "params": {
+                            "type": "textarea",
+                            "rows": "5",
+                            "error": true
+                        }
+                    },
+                    "hint": {
+                        "params": {
+                            "hint": "This is hint text"
+                        }
+                    }
+				}
+			}
+		}
+	]
+}
