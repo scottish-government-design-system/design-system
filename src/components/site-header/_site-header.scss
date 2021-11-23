@@ -93,6 +93,13 @@ $site-header__top-band-colour: $ds_colour__brand;
     }
 }
 
+/// variant with the top colour bar set to a gradient of site brand colours
+.ds_site-header--gradient {
+    &::before {
+        background: linear-gradient(to $ds_brand-gradient-direction, $ds_colour__brand, $ds_colour__brand--secondary);
+    }
+}
+
 @supports(display: grid) {
     .ds_site-header {
         &__content {
