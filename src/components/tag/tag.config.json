@@ -6,7 +6,8 @@
 	},
     "variants": [
         {
-            "name": "Reversed"
+            "name": "Reversed",
+			"preview": "@preview--reversed"
 		}
 	]
 }

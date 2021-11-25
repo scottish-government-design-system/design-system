@@ -16,34 +16,7 @@
     },
     "variants": [
         {
-            "name": "Inline",
-            "context": {
-                "params": {
-                    "modifiers": "ds_metadata--inline"
-                }
-            }
-        },
-        {
-            "name": "Hide keys",
-            "context": {
-                "params": {
-                    "items": [
-                        {
-                            "key": "Type",
-                            "value": "Consultation paper",
-                            "hideKey": true
-                        },
-                        {
-                            "key": "Publication date",
-                            "value": "27 August 2017",
-                            "hideKey": true
-                        }
-                    ]
-                }
-            }
-        },
-        {
-            "name": "Hide keys inline",
+            "name": "Hide keys when inline",
             "context": {
                 "params": {
                     "modifiers": "ds_metadata--inline",
@@ -63,7 +36,18 @@
             }
         },
         {
+            "name": "Inline with visible keys",
+			"preview": "@preview--avoid",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "modifiers": "ds_metadata--inline"
+                }
+            }
+        },
+        {
             "name": "Labels",
+			"preview": "@preview--avoid",
             "status": "wip",
             "context": {
                 "params": {
@@ -83,6 +67,7 @@
         },
         {
             "name": "Inline labels",
+			"preview": "@preview--avoid",
             "status": "wip",
             "context": {
                 "params": {
@@ -102,7 +87,29 @@
             }
         },
         {
+            "name": "Hide keys stacked",
+			"preview": "@preview--avoid",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "items": [
+                        {
+                            "key": "Type",
+                            "value": "Consultation paper",
+                            "hideKey": true
+                        },
+                        {
+                            "key": "Publication date",
+                            "value": "27 August 2017",
+                            "hideKey": true
+                        }
+                    ]
+                }
+            }
+        },
+        {
             "name": "Hide keys labels",
+			"preview": "@preview--avoid",
             "status": "wip",
             "context": {
                 "params": {
@@ -124,6 +131,8 @@
         },
         {
             "name": "Hide keys inline labels",
+			"preview": "@preview--avoid",
+            "status": "wip",
             "context": {
                 "params": {
                     "modifiers": "ds_metadata--inline",

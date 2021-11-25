@@ -89,37 +89,43 @@
 						{
 							"params": {
 								"id": "fixed-20",
-								"size": "ds_input--fixed-20"
+								"size": "ds_input--fixed-20",
+								"value": "20"
 							}
 						},
 						{
 							"params": {
 								"id": "fixed-10",
-								"size": "ds_input--fixed-10"
+								"size": "ds_input--fixed-10",
+								"value": "10"
 							}
 						},
 						{
 							"params": {
 								"id": "fixed-5",
-								"size": "ds_input--fixed-5"
+								"size": "ds_input--fixed-5",
+								"value": "5"
 							}
 						},
 						{
 							"params": {
 								"id": "fixed-4",
-								"size": "ds_input--fixed-4"
+								"size": "ds_input--fixed-4",
+								"value": "4"
 							}
 						},
 						{
 							"params": {
 								"id": "fixed-3",
-								"size": "ds_input--fixed-3"
+								"size": "ds_input--fixed-3",
+								"value": "3"
 							}
 						},
 						{
 							"params": {
 								"id": "fixed-2",
-								"size": "ds_input--fixed-2"
+								"size": "ds_input--fixed-2",
+								"value": "2"
 							}
 						}
 					]
@@ -134,31 +140,36 @@
 						{
 							"params": {
 								"id": "fluid-75p",
-								"size": "ds_input--fluid-three-quarters"
+								"size": "ds_input--fluid-three-quarters",
+								"value": "75%"
 							}
 						},
 						{
 							"params": {
 								"id": "fluid-67p",
-								"size": "ds_input--fluid-two-thirds"
+								"size": "ds_input--fluid-two-thirds",
+								"value": "66.667%"
 							}
 						},
 						{
 							"params": {
 								"id": "fluid-50p",
-								"size": "ds_input--fluid-half"
+								"size": "ds_input--fluid-half",
+								"value": "50%"
 							}
 						},
 						{
 							"params": {
 								"id": "fluid-33p",
-								"size": "ds_input--fluid-one-third"
+								"size": "ds_input--fluid-one-third",
+								"value": "33.333%"
 							}
 						},
 						{
 							"params": {
 								"id": "fluid-25p",
-								"size": "ds_input--fluid-one-quarter"
+								"size": "ds_input--fluid-one-quarter",
+								"value": "25%"
 							}
 						}
 					]

@@ -82,19 +82,19 @@
                         },
                         {
                             "iconSrc": "/assets/images/icons/icons.stack.svg#search",
-                            "iconWrapperStart": "<div>",
+                            "iconWrapperStart": "<div style=\"background:lightgrey;\">",
                             "iconWrapperEnd": "</div>",
                             "iconFill": true
                         },
                         {
                             "iconSrc": "/assets/images/icons/icons.stack.svg#search",
-                            "iconWrapperStart": "<div style=\"width:50px;height:50px;\">",
+                            "iconWrapperStart": "<div style=\"width:50px;height:50px;background:lightgrey;\">",
                             "iconWrapperEnd": "</div>",
                             "iconFill": true
                         },
                         {
                             "iconSrc": "/assets/images/icons/icons.stack.svg#search",
-                            "iconWrapperStart": "<div style=\"width:150px;height:50px;\">",
+                            "iconWrapperStart": "<div style=\"width:150px;height:50px;background:lightgrey;\">",
                             "iconWrapperEnd": "</div>",
                             "iconFill": true
                         }

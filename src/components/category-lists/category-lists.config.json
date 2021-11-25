@@ -100,14 +100,6 @@
             }
         },
         {
-            "name": "Grid layout narrow gaps",
-            "context": {
-                "params": {
-                    "modifiers": "ds_category-list--grid ds_category-list--narrow"
-                }
-            }
-        },
-        {
             "name": "Grid layout headings only",
             "context": {
                 "params": {
@@ -261,6 +253,16 @@
                             }
                         }
                     ]
+                }
+            }
+        },
+        {
+            "name": "Grid layout narrow gaps",
+			"preview": "@preview--avoid",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "modifiers": "ds_category-list--grid ds_category-list--narrow"
                 }
             }
         }
