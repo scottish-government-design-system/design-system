@@ -1,7 +1,7 @@
 {
     "status": "prototype",
-	"context": {
-		"params": {
+    "context": {
+        "params": {
             "label": "Main menu",
             "menu": [
                 {
@@ -21,8 +21,8 @@
                     "link": "#"
                 }
             ]
-		}
-	},
+        }
+    },
     "variants": [
         {
             "name": "Selected item",

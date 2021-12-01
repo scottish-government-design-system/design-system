@@ -1,7 +1,7 @@
 {
-	"context": {
-		"params": {
-			"breadcrumbs": [
+    "context": {
+        "params": {
+            "breadcrumbs": [
                 {
                     "label": "Home",
                     "link": "#"
@@ -19,11 +19,11 @@
                     "current": true
                 }
             ]
-		}
-	},
-	"variants": [
-		{
-			"name": "Omit current page",
+        }
+    },
+    "variants": [
+        {
+            "name": "Omit current page",
             "context": {
                 "params":{
                     "breadcrumbs": [

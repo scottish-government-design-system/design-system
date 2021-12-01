@@ -3,12 +3,12 @@ const path = require('path');
 
 module.exports = (env) => {
   const dest = (env !== undefined)&&(env.mode === 'dev') ? 'dev/assets': 'dist';
-  const copySrc = []; 
+  const copySrc = [];
   const wpPlugins = [];
 
   if ((env !== undefined) && (env.mode === 'dev')) {
-    copySrc.push({ from: path.resolve(__dirname, './node_modules/svgxuse/svgxuse.min.js'), to: path.resolve(__dirname, './'+dest+'/scripts//') });
-    copySrc.push({ from: path.resolve(__dirname, './src/images/placeholders/'), to: path.resolve(__dirname, './'+dest+'/images/placeholders/') });
+    copySrc.push({ from: path.resolve(__dirname, './node_modules/svgxuse/svgxuse.min.js'), to: path.resolve(__dirname, './'+dest+'/scripts/') });
+    copySrc.push({ from: path.resolve(__dirname, './fractal/images/'), to: path.resolve(__dirname, './'+dest+'/images/') });
   }
 
   if (copySrc.length) {
@@ -50,7 +50,7 @@ module.exports = (env) => {
     },
     plugins: wpPlugins,
     devtool: (env !== undefined)&&(env.mode === 'dev') ? 'eval-source-map': ''
-  
+
 
   };
 };

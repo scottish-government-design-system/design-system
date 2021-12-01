@@ -1,12 +1,14 @@
 {
-    "preview": "@preview--full",
-	"context": {
-		"params": {
+    "meta": {
+        "styles": ["preview-full"]
+    },
+    "context": {
+        "params": {
             "reversed": true,
-            "orgLogo": "/assets/images/placeholders/470x200.png",
+            "orgLogo": "/assets/images/logos/scottish-government.svg",
             "orgLogoAlt": "gov.scot",
             "orgLogoLink": "#",
-            "copyrightLogo": "/assets/images/placeholders/320x320.png",
+            "copyrightLogo": "/assets/images/logos/ogl.svg",
             "copyrightLogoAlt": "Open Government License",
             "copyrightLink": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
             "copyrightContent": "<p>All content is available under the <a href=\"http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\">Open Government Licence v3.0</a>, except for graphic assets and where otherwise stated</p><p>&copy; Crown Copyright</p>",
@@ -25,7 +27,7 @@
                 }
             ]
         }
-	},
+    },
     "variants": [
         {
             "name": "Reversed",

@@ -1,10 +1,12 @@
 {
-    "preview": "@preview--full",
-	"context": {
-		"params": {
+    "meta": {
+        "styles": ["preview-full"]
+    },
+    "context": {
+        "params": {
             "siteBranding": {
                 "params": {
-                    "logo": "/assets/images/placeholders/470x200.png",
+                    "logo": "/assets/images/logos/digital-scotland.svg",
                     "logoAlt": "Digital Scotland",
                     "logoLink": "#",
                     "title": "Design System",
@@ -12,7 +14,7 @@
                 }
             }
         }
-	},
+    },
     "variants": [
         {
             "name": "Gradient top band",
@@ -83,6 +85,7 @@
             "status": "wip",
             "context": {
                 "params": {
+                    "logo": "/assets/images/logos/digital-scotland--reversed.svg",
                     "reversed": true,
                     "styles": "background:#428542;",
                     "phaseBanner": true,

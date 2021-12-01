@@ -1,11 +1,11 @@
 {
-	"context": {
-		"params": {
-            "logo": "/assets/images/placeholders/470x200.png",
+    "context": {
+        "params": {
+            "logo": "/assets/images/logos/digital-scotland.svg",
             "logoAlt": "Digital Scotland",
             "logoLink": "#"
-		}
-	},
+        }
+    },
     "variants": [
         {
             "name": "Text title",
@@ -31,7 +31,7 @@
             "name": "Logo and text",
             "context": {
                 "params": {
-                    "logo": "/assets/images/placeholders/470x200.png",
+                    "logo": "/assets/images/logos/digital-scotland.svg",
                     "logoAlt": "Digital Scotland",
                     "logoLink": "#",
                     "title": "Design System",
@@ -43,7 +43,7 @@
             "name": "Logo and text two line",
             "context": {
                 "params": {
-                    "logo": "/assets/images/placeholders/470x200.png",
+                    "logo": "/assets/images/logos/digital-scotland.svg",
                     "logoAlt": "Digital Scotland",
                     "logoLink": "#",
                     "title": "Design System<br> Second line",
@@ -53,10 +53,12 @@
         },
         {
             "name": "Reversed",
-            "preview": "@preview--full",
+            "meta": {
+                "styles": ["preview-full"]
+            },
             "context": {
                 "params": {
-                    "logo": "/assets/images/placeholders/470x200.png",
+                    "logo": "/assets/images/logos/digital-scotland--reversed.svg",
                     "logoAlt": "Digital Scotland",
                     "logoLink": "#",
                     "title": "Design System<br> Second line",

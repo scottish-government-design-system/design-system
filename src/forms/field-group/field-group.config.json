@@ -1,6 +1,6 @@
 {
-	"context": {
-		"params": {
+    "context": {
+        "params": {
             "legend": "What are the coordinates?",
             "hint": {
                 "params": {
@@ -38,8 +38,8 @@
                     }
                 }
             ]
-		}
-	},
+        }
+    },
     "variants": [
         {
             "name": "Error message",
@@ -77,7 +77,7 @@
                                 }
                             }
                         }
-                    ]    
+                    ]
                 }
             }
         },
@@ -136,7 +136,7 @@
                                 }
                             }
                         }
-                    ]    
+                    ]
                 }
             }
         },
@@ -197,9 +197,9 @@
                                 }
                             }
                         }
-                    ]    
+                    ]
                 }
             }
-        }			
-	]
+        }
+    ]
 }

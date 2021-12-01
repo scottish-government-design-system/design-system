@@ -10,7 +10,7 @@
             "name": "Link class",
             "context": {
                 "params": {
-                    "content": "This is some <a href=\"#\" class=\"ds_link\">link text</a>"
+                    "content": "This is a <button class=\"ds_link\">button that is styled to look like a link</button>"
                 }
             }
         },
@@ -26,7 +26,7 @@
             "name": "Image",
             "context": {
                 "params": {
-                    "content": "<a href=\"#\"><img src=\"/assets/images/placeholders/320x180.png\"></a>"
+                    "content": "<a href=\"#\"><img src=\"/assets/images/placeholders/thistles.jpg\"></a>"
                 }
             }
         }

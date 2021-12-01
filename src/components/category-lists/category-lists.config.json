@@ -8,7 +8,7 @@
                         "heading": "Environment and countryside",
                         "content": "Access to and protection of the countryside and managing wildlife on your land",
                         "itemTag": "li",
-                        "link": "#"    
+                        "link": "#"
                     }
                 },
                 {
@@ -16,7 +16,7 @@
                         "heading": "Environmental Impact Assessment (EIA)",
                         "content": "Find out about Environmental Impact Assessments (EIAs) in your area",
                         "itemTag": "li",
-                        "link": "#"    
+                        "link": "#"
                     }
                 },
                 {
@@ -24,7 +24,7 @@
                         "heading": "Farming and rural issues",
                         "content": "Guidance for farming, animal health, agriculture and food businesses in Scotland",
                         "itemTag": "li",
-                        "link": "#"    
+                        "link": "#"
                     }
                 },
                 {
@@ -32,7 +32,7 @@
                         "heading": "Waste and energy",
                         "content": "Find advice and support to help your business become more environmentally aware and efficient",
                         "itemTag": "li",
-                        "link": "#"    
+                        "link": "#"
                     }
                 },
                 {
@@ -40,7 +40,7 @@
                         "heading": "Marine and fisheries",
                         "content": "Includes information on safety at sea and managing crew",
                         "itemTag": "li",
-                        "link": "#"    
+                        "link": "#"
                     }
                 }
             ]
@@ -56,35 +56,35 @@
                             "params": {
                                 "heading": "Environment and countryside",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Environmental Impact Assessment (EIA)",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Farming and rural issues",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Waste and energy",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Marine and fisheries",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         }
                     ]
@@ -109,35 +109,35 @@
                             "params": {
                                 "heading": "Environment and countryside",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Environmental Impact Assessment (EIA)",
                                 "itemTag": "li",
-                                "link": "#"   
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Farming and rural issues",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Waste and energy",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Marine and fisheries",
                                 "itemTag": "li",
-                                "link": "#"    
+                                "link": "#"
                             }
                         }
                     ]
@@ -155,7 +155,7 @@
                             "params": {
                                 "heading": "Environment and countryside",
                                 "content": "Access to and protection of the countryside and managing wildlife on your land",
-                                "itemTag": "li",   
+                                "itemTag": "li",
                                 "link": "#"
                             }
                         },
@@ -163,32 +163,32 @@
                             "params": {
                                 "heading": "Environmental Impact Assessment (EIA)",
                                 "content": "Find out about Environmental Impact Assessments (EIAs) in your area",
-                                "itemTag": "li",  
-                                "link": "#"    
+                                "itemTag": "li",
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Farming and rural issues",
                                 "content": "Guidance for farming, animal health, agriculture and food businesses in Scotland",
-                                "itemTag": "li",   
-                                "link": "#"    
+                                "itemTag": "li",
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Waste and energy",
                                 "content": "Find advice and support to help your business become more environmentally aware and efficient",
-                                "itemTag": "li",   
-                                "link": "#"   
+                                "itemTag": "li",
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Marine and fisheries",
                                 "content": "Includes information on safety at sea and managing crew",
-                                "itemTag": "li",   
-                                "link": "#"    
+                                "itemTag": "li",
+                                "link": "#"
                             }
                         }
                     ]
@@ -206,8 +206,8 @@
                             "params": {
                                 "heading": "Environment and countryside",
                                 "content": "Access to and protection of the countryside and managing wildlife on your land",
-                                "itemTag": "li",    
-                                "image": "/assets/images/placeholders/320x180.png",
+                                "itemTag": "li",
+                                "image": "/assets/images/placeholders/clyde.jpg",
                                 "hasHover": true,
                                 "link": "#"
                             }
@@ -216,40 +216,40 @@
                             "params": {
                                 "heading": "Environmental Impact Assessment (EIA)",
                                 "content": "Find out about Environmental Impact Assessments (EIAs) in your area",
-                                "itemTag": "li",    
-                                "image": "/assets/images/placeholders/320x180.png",
+                                "itemTag": "li",
+                                "image": "/assets/images/placeholders/coast.jpg",
                                 "hasHover": true,
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Farming and rural issues",
                                 "content": "Guidance for farming, animal health, agriculture and food businesses in Scotland",
-                                "itemTag": "li",    
-                                "image": "/assets/images/placeholders/320x180.png",
+                                "itemTag": "li",
+                                "image": "/assets/images/placeholders/edcastle.jpg",
                                 "hasHover": true,
-                                "link": "#"    
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Waste and energy",
                                 "content": "Find advice and support to help your business become more environmentally aware and efficient",
-                                "itemTag": "li",    
-                                "image": "/assets/images/placeholders/320x180.png",
+                                "itemTag": "li",
+                                "image": "/assets/images/placeholders/processedcoo.jpg",
                                 "hasHover": true,
-                                "link": "#"   
+                                "link": "#"
                             }
                         },
                         {
                             "params": {
                                 "heading": "Marine and fisheries",
                                 "content": "Includes information on safety at sea and managing crew",
-                                "itemTag": "li",    
-                                "image": "/assets/images/placeholders/320x180.png",
+                                "itemTag": "li",
+                                "image": "/assets/images/placeholders/thistles.jpg",
                                 "hasHover": true,
-                                "link": "#"    
+                                "link": "#"
                             }
                         }
                     ]
@@ -258,8 +258,7 @@
         },
         {
             "name": "Grid layout narrow gaps",
-			"preview": "@preview--avoid",
-            "status": "wip",
+            "status": "invalid",
             "context": {
                 "params": {
                     "modifiers": "ds_category-list--grid ds_category-list--narrow"

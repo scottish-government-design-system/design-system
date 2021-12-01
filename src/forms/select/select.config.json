@@ -1,6 +1,6 @@
 {
-	"context": {
-		"params": {
+    "context": {
+        "params": {
             "list": [
                 {
                     "value": ""
@@ -18,8 +18,8 @@
                     "value": "option-3"
                 }
             ]
-		}
-	},
+        }
+    },
     "variants": [
         {
             "name": "Error",
@@ -61,6 +61,6 @@
                     ]
                 }
             }
-        }				
-	]
+        }
+    ]
 }

@@ -1,6 +1,8 @@
 {
     "status": "ready",
-    "preview": "@preview--full",
+    "meta": {
+        "styles": ["preview-full"]
+    },
     "context": {
         "params": {
             "areas": [

@@ -1,6 +1,6 @@
 {
-	"context": {
-		"params": {
+    "context": {
+        "params": {
             "suggestion": "crafting",
             "suggestionLink": "#",
             "resultsCount": "68",
@@ -116,6 +116,6 @@
                     ]
                 }
             }
-		}
-	}
+        }
+    }
 }
