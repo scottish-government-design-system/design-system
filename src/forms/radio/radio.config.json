@@ -32,7 +32,7 @@
             }
         },
         {
-            "name": "Hint text per checkbox",
+            "name": "Hint text per radio",
             "context": {
                 "params": {
                     "legend": "How will the payments be paid in?",
@@ -54,7 +54,7 @@
             }
         },
         {
-            "name": "Small checkboxes",
+            "name": "Small radios",
             "context": {
                 "params": {
                     "hint": "Select an option",

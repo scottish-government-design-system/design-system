@@ -1,17 +1,21 @@
 {
     "context": {
         "params": {
-            "label": {
-                "params": {
-                    "label": "Text label",
-                    "id": "unique-id"
+            "fields": [
+                {
+                    "label": {
+                        "params": {
+                            "label": "Text label",
+                            "id": "unique-id"
+                        }
+                    },
+                    "textInput": {
+                        "params": {
+                            "id": "unique-id"
+                        }
+                    }
                 }
-            },
-            "textInput": {
-                "params": {
-                    "id": "unique-id"
-                }
-            },
+            ],
             "errorMessage": "Meaningful error message for this field"
         }
     },
@@ -21,11 +25,22 @@
             "context": {
                 "params": {
                     "error": true,
-                    "textInput": {
-                        "params": {
-                            "error": true
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Text label",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "error": true,
+                                    "id": "unique-id"
+                                }
+                            }
                         }
-                    }
+                    ]
                 }
             }
         },
@@ -33,12 +48,23 @@
             "name": "Textarea",
             "context": {
                 "params": {
-                    "textInput": {
-                        "params": {
-                            "type": "textarea",
-                            "rows": "5"
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Text label",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "type": "textarea",
+                                    "rows": "5",
+                                    "id": "unique-id"
+                                }
+                            }
                         }
-                    }
+                    ]
                 }
             }
         },
@@ -47,13 +73,24 @@
             "context": {
                 "params": {
                     "error": true,
-                    "textInput": {
-                        "params": {
-                            "type": "textarea",
-                            "rows": "5",
-                            "error": true
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Text label",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "type": "textarea",
+                                    "rows": "5",
+                                    "error": true,
+                                    "id": "unique-id"
+                                }
+                            }
                         }
-                    }
+                    ]
                 }
             }
         },
@@ -61,11 +98,26 @@
             "name": "Hint text",
             "context": {
                 "params": {
-                    "hint": {
-                        "params": {
-                            "hint": "This is hint text"
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Text label",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id"
+                                }
+                            },
+                            "hint": {
+                                "params": {
+                                    "hint": "This is hint text"
+                                }
+                            }
                         }
-                    }
+                    ]
                 }
             }
         },
@@ -74,16 +126,27 @@
             "context": {
                 "params": {
                     "error": true,
-                    "textInput": {
-                        "params": {
-                            "error": true
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Text label",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id",
+                                    "error": true
+                                }
+                            },
+                            "hint": {
+                                "params": {
+                                    "hint": "This is hint text"
+                                }
+                            }
                         }
-                    },
-                    "hint": {
-                        "params": {
-                            "hint": "This is hint text"
-                        }
-                    }
+                    ]
                 }
             }
         },
@@ -91,17 +154,28 @@
             "name": "Hint text with textarea",
             "context": {
                 "params": {
-                    "textInput": {
-                        "params": {
-                            "type": "textarea",
-                            "rows": "5"
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Text label",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "type": "textarea",
+                                    "rows": "5",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "hint": {
+                                "params": {
+                                    "hint": "This is hint text"
+                                }
+                            }
                         }
-                    },
-                    "hint": {
-                        "params": {
-                            "hint": "This is hint text"
-                        }
-                    }
+                    ]
                 }
             }
         },
@@ -110,18 +184,29 @@
             "context": {
                 "params": {
                     "error": true,
-                    "textInput": {
-                        "params": {
-                            "type": "textarea",
-                            "rows": "5",
-                            "error": true
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Text label",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "type": "textarea",
+                                    "rows": "5",
+                                    "error": true,
+                                    "id": "unique-id"
+                                }
+                            },
+                            "hint": {
+                                "params": {
+                                    "hint": "This is hint text"
+                                }
+                            }
                         }
-                    },
-                    "hint": {
-                        "params": {
-                            "hint": "This is hint text"
-                        }
-                    }
+                    ]
                 }
             }
         },
@@ -130,35 +215,37 @@
             "status": "prototype",
             "context": {
                 "params": {
-
-                },
-
-                "fields": [{
-                    "label": {
-                        "params": {
-                            "label": "Building",
-                            "id": "building"
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Building",
+                                    "id": "building"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "building",
+                                    "type": "text"
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Street",
+                                    "id": "street"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "street",
+                                    "type": "text"
+                                }
+                            }
                         }
-                    },
-                    "textInput": {
-                        "params": {
-                            "id": "building"
-                        }
-                    }
-                },
-                {
-                    "label": {
-                        "params": {
-                            "label": "Street",
-                            "id": "street"
-                        }
-                    },
-                    "textInput": {
-                        "params": {
-                            "id": "street"
-                        }
-                    }
-                }]
+                    ]
+                }
             }
         },
         {
@@ -166,36 +253,40 @@
             "status": "prototype",
             "context": {
                 "params": {
-                    "error": true
-                },
-                "fields": [{
-                    "label": {
-                        "params": {
-                            "label": "Building",
-                            "id": "building"
+                    "error": true,
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Building",
+                                    "id": "building"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "building",
+                                    "error": true,
+                                    "errorMessage": "Enter an address, including building or street",
+                                    "type": "text"
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Street",
+                                    "id": "street"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "street",
+                                    "type": "text"
+                                }
+                            }
                         }
-                    },
-                    "textInput": {
-                        "params": {
-                            "id": "building",
-                            "error": true,
-                            "errorMessage": "Enter an address, including building or street"
-                        }
-                    }
-                },
-                {
-                    "label": {
-                        "params": {
-                            "label": "Street",
-                            "id": "street"
-                        }
-                    },
-                    "textInput": {
-                        "params": {
-                            "id": "street"
-                        }
-                    }
-                }]
+                    ]
+                }
             }
         }
     ]
