@@ -10,7 +10,7 @@
     @include ds_responsive-padding(4, right);
     background: $ds_colour__grey--lighter;
     text-align: center;
-    
+
     // Add top margin if placed below another item
     &:not(:first-child) {
         @include ds_responsive-margin(6, top);
@@ -31,5 +31,9 @@
 
     &__content {
         @include ds_last-child-no-margin;
+    }
+
+    &__reference {
+        @include ds_large-size;
     }
 }

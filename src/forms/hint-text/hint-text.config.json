@@ -1,7 +1,7 @@
 {
-	"context": {
-		"params": {
-			"hint": "This is hint text"
-		}
-	}
+    "context": {
+        "params": {
+            "hint": "This is hint text"
+        }
+    }
 }

@@ -1,12 +1,23 @@
 {
-	"context": {
-		"params": {
+    "context": {
+        "params": {
             "element": "div",
             "heading": "Crofting community right to buy",
+            "content": "Information and guidance regarding the crofting community right to buy.",
             "link": "#"
-		}
-	},
+        }
+    },
     "variants": [
+        {
+            "name": "No content",
+            "context": {
+                "params": {
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": false
+                }
+            }
+        },
         {
             "name": "Metadata",
             "context": {
@@ -26,16 +37,6 @@
                     },
                     "heading": "Crofting community right to buy",
                     "link": "#"
-                }
-            }
-        },
-        {
-            "name": "Content",
-            "context": {
-                "params": {
-                    "heading": "Crofting community right to buy",
-                    "link": "#",
-                    "content": "Information and guidance regarding the crofting community right to buy."
                 }
             }
         },

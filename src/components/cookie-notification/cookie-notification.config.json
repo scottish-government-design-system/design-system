@@ -1,6 +1,8 @@
 {
     "status": "prototype",
-    "preview": "@preview--full",
+    "meta": {
+        "styles": ["preview-full"]
+    },
     "context": {
         "params": {
             "heading": "Cookies on this website",

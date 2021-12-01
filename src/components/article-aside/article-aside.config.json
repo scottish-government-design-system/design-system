@@ -1,8 +1,8 @@
 {
-	"context": {
-		"params":{
+    "context": {
+        "params":{
             "heading": "Related content",
-			"list": [
+            "list": [
                 {
                     "label": "Help with benefits",
                     "link": "#"
@@ -12,6 +12,6 @@
                     "link": "#"
                 }
             ]
-		}
-	}
+        }
+    }
 }

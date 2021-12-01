@@ -1,7 +1,7 @@
 {
-	"context": {
-		"params":{
-			"accordions": [
+    "context": {
+        "params":{
+            "accordions": [
                 {
                     "heading": "Healthcare for veterans",
                     "content": "<p>Veterans are entitled to the same healthcare as any citizen. And there are <a href=\"#\">health care options and support</a> available specifically for veterans.  </p><p>If you have a health condition that's related to your service, you're entitled to priority treatment based on clinical need. </p>"
@@ -15,11 +15,11 @@
                     "content": "<p>If you need <a href=\"#\">help finding a place to live</a> there's support specifically for veterans.</p>"
                 }
             ]
-		}
-	},
-	"variants": [
-		{
-			"name": "Open all",
+        }
+    },
+    "variants": [
+        {
+            "name": "Open all",
             "context": {
                 "params":{
                     "openall": true,

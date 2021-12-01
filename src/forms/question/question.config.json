@@ -1,7 +1,7 @@
 {
-	"context": {
-		"params": {
-			"label": {
+    "context": {
+        "params": {
+            "label": {
                 "params": {
                     "label": "Text label",
                     "id": "unique-id"
@@ -11,40 +11,41 @@
                 "params": {
                     "id": "unique-id"
                 }
-            }
-		}
-	},
+            },
+            "errorMessage": "Meaningful error message for this field"
+        }
+    },
     "variants": [
         {
             "name": "Text input error",
-			"context": {
-				"params": {
+            "context": {
+                "params": {
                     "error": true,
                     "textInput": {
                         "params": {
                             "error": true
                         }
                     }
-				}
-			}
-		},
+                }
+            }
+        },
         {
             "name": "Textarea",
-			"context": {
-				"params": {
+            "context": {
+                "params": {
                     "textInput": {
                         "params": {
                             "type": "textarea",
                             "rows": "5"
                         }
                     }
-				}
-			}
-		},
+                }
+            }
+        },
         {
             "name": "Textarea error",
-			"context": {
-				"params": {
+            "context": {
+                "params": {
                     "error": true,
                     "textInput": {
                         "params": {
@@ -53,25 +54,25 @@
                             "error": true
                         }
                     }
-				}
-			}
-		},
+                }
+            }
+        },
         {
             "name": "Hint text",
-			"context": {
-				"params": {
+            "context": {
+                "params": {
                     "hint": {
                         "params": {
                             "hint": "This is hint text"
                         }
                     }
-				}
-			}
-		},
+                }
+            }
+        },
         {
             "name": "Hint text error",
-			"context": {
-				"params": {
+            "context": {
+                "params": {
                     "error": true,
                     "textInput": {
                         "params": {
@@ -83,13 +84,13 @@
                             "hint": "This is hint text"
                         }
                     }
-				}
-			}
-		},
+                }
+            }
+        },
         {
             "name": "Hint text with textarea",
-			"context": {
-				"params": {
+            "context": {
+                "params": {
                     "textInput": {
                         "params": {
                             "type": "textarea",
@@ -101,13 +102,13 @@
                             "hint": "This is hint text"
                         }
                     }
-				}
-			}
-		},
+                }
+            }
+        },
         {
             "name": "Hint text error with textarea",
-			"context": {
-				"params": {
+            "context": {
+                "params": {
                     "error": true,
                     "textInput": {
                         "params": {
@@ -121,8 +122,81 @@
                             "hint": "This is hint text"
                         }
                     }
-				}
-			}
-		}
-	]
+                }
+            }
+        },
+        {
+            "name": "Multiple fields",
+            "status": "prototype",
+            "context": {
+                "params": {
+
+                },
+
+                "fields": [{
+                    "label": {
+                        "params": {
+                            "label": "Building",
+                            "id": "building"
+                        }
+                    },
+                    "textInput": {
+                        "params": {
+                            "id": "building"
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "params": {
+                            "label": "Street",
+                            "id": "street"
+                        }
+                    },
+                    "textInput": {
+                        "params": {
+                            "id": "street"
+                        }
+                    }
+                }]
+            }
+        },
+        {
+            "name": "Multiple fields with error",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "error": true
+                },
+                "fields": [{
+                    "label": {
+                        "params": {
+                            "label": "Building",
+                            "id": "building"
+                        }
+                    },
+                    "textInput": {
+                        "params": {
+                            "id": "building",
+                            "error": true,
+                            "errorMessage": "Enter an address, including building or street"
+                        }
+                    }
+                },
+                {
+                    "label": {
+                        "params": {
+                            "label": "Street",
+                            "id": "street"
+                        }
+                    },
+                    "textInput": {
+                        "params": {
+                            "id": "street"
+                        }
+                    }
+                }]
+            }
+        }
+    ]
 }

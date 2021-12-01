@@ -2,12 +2,12 @@
     <ul class="ds_category-list{%- if params.modifiers %} {{ params.modifiers }}{%- endif -%}">
         {%- if params.cards -%}
         {%- for item in params.items -%}
-	        {% render '@card', item -%}
-        {% endfor %} 
+            {% render '@card', item -%}
+        {% endfor %}
         {%- else -%}
         {%- for item in params.items -%}
-	        {% render '@category-item', item -%}
-        {% endfor %} 
+            {% render '@category-item', item -%}
+        {% endfor %}
         {%- endif -%}
     </ul>
 </nav>

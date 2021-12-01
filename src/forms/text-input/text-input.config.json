@@ -1,188 +1,188 @@
 {
-	"context": {
-		"params": {
-			"id": "unique-id",
-			"type": "text"
-		}
-	},
+    "context": {
+        "params": {
+            "id": "unique-id",
+            "type": "text"
+        }
+    },
     "variants": [
-		{
+        {
             "name": "Required field",
-			"context": {
-				"params": {
-					"id": "unique-id",
-					"required": true
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "id": "unique-id",
+                    "required": true
+                }
+            }
+        },
+        {
             "name": "Error",
-			"context": {
-				"params": {
-					"id": "unique-id",
-					"error": true
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "id": "unique-id",
+                    "error": true
+                }
+            }
+        },
+        {
             "name": "Textarea",
-			"context": {
-				"params": {
-					"id": "unique-id",
-					"type": "textarea",
-					"rows": "3"
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "id": "unique-id",
+                    "type": "textarea",
+                    "rows": "3"
+                }
+            }
+        },
+        {
             "name": "Textarea error",
-			"context": {
-				"params": {
-					"id": "unique-id",
-					"type": "textarea",
-					"rows": "3",
-					"error": true
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "id": "unique-id",
+                    "type": "textarea",
+                    "rows": "3",
+                    "error": true
+                }
+            }
+        },
+        {
             "name": "Email",
-			"context": {
-				"params": {
-					"id": "unique-id",
-					"type": "email"
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "id": "unique-id",
+                    "type": "email"
+                }
+            }
+        },
+        {
             "name": "Password",
-			"context": {
-				"params": {
-					"id": "unique-id",
-					"type": "password"
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "id": "unique-id",
+                    "type": "password"
+                }
+            }
+        },
+        {
             "name": "Telephone",
-			"context": {
-				"params": {
-					"id": "unique-id",
-					"type": "tel"
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "id": "unique-id",
+                    "type": "tel"
+                }
+            }
+        },
+        {
             "name": "Numeric",
-			"context": {
-				"params": {
-					"id": "unique-id",
-					"type": "numeric"
-				}
-			}
-		},
+            "context": {
+                "params": {
+                    "id": "unique-id",
+                    "type": "numeric"
+                }
+            }
+        },
         {
             "name": "Fixed width",
-			"context": {
-				"params": {
-					"list": [
-						{
-							"params": {
-								"id": "fixed-20",
-								"size": "ds_input--fixed-20",
-								"value": "20"
-							}
-						},
-						{
-							"params": {
-								"id": "fixed-10",
-								"size": "ds_input--fixed-10",
-								"value": "10"
-							}
-						},
-						{
-							"params": {
-								"id": "fixed-5",
-								"size": "ds_input--fixed-5",
-								"value": "5"
-							}
-						},
-						{
-							"params": {
-								"id": "fixed-4",
-								"size": "ds_input--fixed-4",
-								"value": "4"
-							}
-						},
-						{
-							"params": {
-								"id": "fixed-3",
-								"size": "ds_input--fixed-3",
-								"value": "3"
-							}
-						},
-						{
-							"params": {
-								"id": "fixed-2",
-								"size": "ds_input--fixed-2",
-								"value": "2"
-							}
-						}
-					]
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "list": [
+                        {
+                            "params": {
+                                "id": "fixed-20",
+                                "size": "ds_input--fixed-20",
+                                "value": "20"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fixed-10",
+                                "size": "ds_input--fixed-10",
+                                "value": "10"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fixed-5",
+                                "size": "ds_input--fixed-5",
+                                "value": "5"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fixed-4",
+                                "size": "ds_input--fixed-4",
+                                "value": "4"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fixed-3",
+                                "size": "ds_input--fixed-3",
+                                "value": "3"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fixed-2",
+                                "size": "ds_input--fixed-2",
+                                "value": "2"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
             "name": "Fluid width",
-			"context": {
-				"params": {
-					"list": [
-						{
-							"params": {
-								"id": "fluid-75p",
-								"size": "ds_input--fluid-three-quarters",
-								"value": "75%"
-							}
-						},
-						{
-							"params": {
-								"id": "fluid-67p",
-								"size": "ds_input--fluid-two-thirds",
-								"value": "66.667%"
-							}
-						},
-						{
-							"params": {
-								"id": "fluid-50p",
-								"size": "ds_input--fluid-half",
-								"value": "50%"
-							}
-						},
-						{
-							"params": {
-								"id": "fluid-33p",
-								"size": "ds_input--fluid-one-third",
-								"value": "33.333%"
-							}
-						},
-						{
-							"params": {
-								"id": "fluid-25p",
-								"size": "ds_input--fluid-one-quarter",
-								"value": "25%"
-							}
-						}
-					]
-				}
-			}
-		},
-		{
+            "context": {
+                "params": {
+                    "list": [
+                        {
+                            "params": {
+                                "id": "fluid-75p",
+                                "size": "ds_input--fluid-three-quarters",
+                                "value": "75%"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fluid-67p",
+                                "size": "ds_input--fluid-two-thirds",
+                                "value": "66.667%"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fluid-50p",
+                                "size": "ds_input--fluid-half",
+                                "value": "50%"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fluid-33p",
+                                "size": "ds_input--fluid-one-third",
+                                "value": "33.333%"
+                            }
+                        },
+                        {
+                            "params": {
+                                "id": "fluid-25p",
+                                "size": "ds_input--fluid-one-quarter",
+                                "value": "25%"
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
             "name": "Input with button",
-			"context": {
-				"params": {
-					"id": "unique-id"
-				}
-			}
-		}
-	]
+            "context": {
+                "params": {
+                    "id": "unique-id"
+                }
+            }
+        }
+    ]
 }

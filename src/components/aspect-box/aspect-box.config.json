@@ -1,34 +1,31 @@
 {
-	"context": {
-		"params":{
-			"imageSrc": "/assets/images/placeholders/320x180.png"
-		}
-	},
-	"variants": [
-		{
-			"name": "1:1 aspect ratio",
+    "context": {
+        "params":{
+
+        }
+    },
+    "variants": [
+        {
+            "name": "1:1 aspect ratio",
             "context": {
                 "params":{
-                    "ratio": "ds_aspect-box--square",
-                    "imageSrc": "/assets/images/placeholders/320x320.png"
+                    "ratio": "ds_aspect-box--square"
                 }
             }
         },
-		{
-			"name": "4:3 aspect ratio",
+        {
+            "name": "4:3 aspect ratio",
             "context": {
                 "params":{
-                    "ratio": "ds_aspect-box--43",
-                    "imageSrc": "/assets/images/placeholders/400x300.png"
+                    "ratio": "ds_aspect-box--43"
                 }
             }
         },
-		{
-			"name": "2.35:1 aspect ratio",
+        {
+            "name": "2.35:1 aspect ratio",
             "context": {
                 "params":{
-                    "ratio": "ds_aspect-box--235",
-                    "imageSrc": "/assets/images/placeholders/470x200.png"
+                    "ratio": "ds_aspect-box--235"
                 }
             }
         }

@@ -20,6 +20,10 @@ This has been built and tested by the developers and may be used in limited live
 
 This has been fully tested and has sufficient evidence to show that it is fit to be used in live projects.
 
+### Invalid
+
+This is an invalid combination of component properties (e.g. styles or child elements) that is not to be used. It is included for illustration purposes only.
+
 ## Documentation statuses
 
 ### WIP

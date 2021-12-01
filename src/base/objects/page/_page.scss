@@ -58,7 +58,8 @@ html {
     position: relative;
 }
 
-.category-lower {
+.category-lower,
+.ds_category-lower {
     padding-bottom: 72px;
     background: $ds_colour__grey--lighter;
     border-top: 1px solid $ds_colour__grey--light;

@@ -1,13 +1,15 @@
 {
-	"context": {
-		"params": {
-			"label": "Beta"
-		}
-	},
+    "context": {
+        "params": {
+            "label": "Beta"
+        }
+    },
     "variants": [
         {
             "name": "Reversed",
-			"preview": "@preview--reversed"
-		}
-	]
+            "meta": {
+                "styles": ["preview-reversed"]
+            }
+        }
+    ]
 }

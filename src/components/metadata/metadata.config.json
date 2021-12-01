@@ -37,8 +37,7 @@
         },
         {
             "name": "Inline with visible keys",
-			"preview": "@preview--avoid",
-            "status": "wip",
+            "status": "invalid",
             "context": {
                 "params": {
                     "modifiers": "ds_metadata--inline"
@@ -47,8 +46,7 @@
         },
         {
             "name": "Labels",
-			"preview": "@preview--avoid",
-            "status": "wip",
+            "status": "invalid",
             "context": {
                 "params": {
                     "items": [
@@ -67,8 +65,7 @@
         },
         {
             "name": "Inline labels",
-			"preview": "@preview--avoid",
-            "status": "wip",
+            "status": "invalid",
             "context": {
                 "params": {
                     "modifiers": "ds_metadata--inline",
@@ -88,8 +85,7 @@
         },
         {
             "name": "Hide keys stacked",
-			"preview": "@preview--avoid",
-            "status": "wip",
+            "status": "invalid",
             "context": {
                 "params": {
                     "items": [
@@ -109,8 +105,7 @@
         },
         {
             "name": "Hide keys labels",
-			"preview": "@preview--avoid",
-            "status": "wip",
+            "status": "invalid",
             "context": {
                 "params": {
                     "items": [
@@ -131,8 +126,7 @@
         },
         {
             "name": "Hide keys inline labels",
-			"preview": "@preview--avoid",
-            "status": "wip",
+            "status": "prototype",
             "context": {
                 "params": {
                     "modifiers": "ds_metadata--inline",

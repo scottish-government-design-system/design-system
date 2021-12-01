@@ -1,6 +1,6 @@
 {
-	"context": {
-		"params": {
+    "context": {
+        "params": {
             "label": "Article navigation",
             "prev": {
                 "label": "Previous",
@@ -10,8 +10,8 @@
                 "label": "Next",
                 "content": "Eligibility: who can have one?"
             }
-		}
-	},
+        }
+    },
     "variants": [
         {
             "name": "Previous only",

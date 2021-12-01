@@ -6,6 +6,19 @@ const nunj = require("@frctl/nunjucks")({
   paths: ["public"]
 });
 
+const mandelbrot = require('@frctl/mandelbrot');
+
+const dsTheme = mandelbrot({
+    skin: {
+        name: 'white',
+        links: '#0065bd',
+        complement: '#fff',
+        accent: '#0065bd'
+    }
+});
+
+fractal.web.theme(dsTheme);
+
 /* Set the title of the project and include the version number */
 fractal.set('project.title', 'Scottish Government Pattern Library');
 
@@ -14,7 +27,13 @@ fractal.components.set("ext", ".njk"); // look for files with a .njk file extens
 /* Tell Fractal where the components will live */
 fractal.components.set('path', __dirname + '/src');
 
+
 fractal.components.set('statuses', {
+    invalid: {
+        label: "Invalid",
+        description: "Invalid. Do not implement.",
+        color: "#d32205"
+    },
     wip: {
         label: "WIP",
         description: "Work in progress. Do not implement.",

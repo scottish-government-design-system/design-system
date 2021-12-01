@@ -1,6 +1,6 @@
 {
-	"context": {
-		"params": {
+    "context": {
+        "params": {
             "label": "Sections",
             "longLabel": "Pages in this section",
             "menu": [
@@ -21,8 +21,8 @@
                     "link": "#"
                 }
             ]
-		}
-	},
+        }
+    },
     "variants": [
         {
             "name": "Selected item",

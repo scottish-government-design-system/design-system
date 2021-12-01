@@ -36,10 +36,9 @@
                 "params": {
                     "modifiers": "ds_notification-panel--success",
                     "heading": "Application complete",
-                    "content": "<p>Your reference number is <br><strong class=\"beta\">SG0123456</strong></p>"
+                    "content": "<p>Your reference number is <br><strong class=\"ds_notification-panel__reference\">SG0123456</strong></p>"
                  }
             }
         }
-        
     ]
 }
