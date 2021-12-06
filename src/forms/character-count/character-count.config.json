@@ -1,4 +1,5 @@
 {
+    "label": "Character count",
     "status": "ready",
     "context": {
         "params": {
@@ -10,6 +11,7 @@
     "variants": [
         {
             "name": "Data attribute",
+            "label": "Data attribute",
             "context": {
                 "params": {
                     "maxLength": "40",
@@ -20,6 +22,7 @@
         },
         {
             "name": "Threshold",
+            "label": "Threshold",
             "context": {
                 "params": {
                     "label": "80% threshold input of 10 max",
@@ -31,6 +34,7 @@
         },
         {
             "name": "Textarea",
+            "label": "Textarea",
             "context": {
                 "params": {
                     "maxLength": "250"

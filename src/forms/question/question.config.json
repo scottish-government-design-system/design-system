@@ -22,6 +22,7 @@
     "variants": [
         {
             "name": "Text input error",
+            "label": "Text input error",
             "context": {
                 "params": {
                     "error": true,
@@ -46,6 +47,7 @@
         },
         {
             "name": "Textarea",
+            "label": "Textarea",
             "context": {
                 "params": {
                     "fields": [
@@ -70,6 +72,7 @@
         },
         {
             "name": "Textarea error",
+            "label": "Textarea error",
             "context": {
                 "params": {
                     "error": true,
@@ -96,6 +99,7 @@
         },
         {
             "name": "Hint text",
+            "label": "Hint text",
             "context": {
                 "params": {
                     "fields": [
@@ -123,6 +127,7 @@
         },
         {
             "name": "Hint text error",
+            "label": "Hint text error",
             "context": {
                 "params": {
                     "error": true,
@@ -152,6 +157,7 @@
         },
         {
             "name": "Hint text with textarea",
+            "label": "Hint text with textarea",
             "context": {
                 "params": {
                     "fields": [
@@ -181,6 +187,7 @@
         },
         {
             "name": "Hint text error with textarea",
+            "label": "Hint text error with textarea",
             "context": {
                 "params": {
                     "error": true,
@@ -212,6 +219,7 @@
         },
         {
             "name": "Multiple fields",
+            "label": "Multiple fields",
             "status": "prototype",
             "context": {
                 "params": {
@@ -250,6 +258,7 @@
         },
         {
             "name": "Multiple fields with error",
+            "label": "Multiple fields with error",
             "status": "prototype",
             "context": {
                 "params": {

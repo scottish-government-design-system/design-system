@@ -1,4 +1,5 @@
 {
+    "label": "Article aside",
     "context": {
         "params":{
             "heading": "Related content",

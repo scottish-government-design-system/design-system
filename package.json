@@ -9,18 +9,15 @@
   },
   "license": "MIT",
   "scripts": {
-    "fractal": "fractal start --sync",
-    "dev": "npm run webpackdev; npm run sassdev; npm run svgspritedev;",
+    "fractal": "npm run dev; fractal start --sync",
+    "dev": "npm run svgsprite; npm run webpack -- --env.mode=dev; sass --style=expanded src/pattern-library.scss dev/assets/css/pattern-library.css;",
     "postshrinkwrap": "sealant",
     "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
     "nodesass": "node-sass src --output dist/css --output-style compressed",
     "sass": "sass --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
-    "sassdev": "sass --style=expanded src/pattern-library.scss dev/assets/css/pattern-library.css",
     "svgsprite": "node svg-sprite",
-    "svgspritedev": "node svg-sprite --mode=dev",
     "test": "karma start ./karma.conf.js",
-    "webpack": "webpack",
-    "webpackdev": "webpack --env.mode=dev"
+    "webpack": "webpack"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.0"
@@ -33,8 +30,7 @@
     "@babel/preset-env": "^7.16.0",
     "@frctl/fractal": "^1.5.11",
     "@frctl/nunjucks": "^2.0.11",
-    "ajv": "^6.9.1",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^6.0.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^2.4.1",
@@ -56,8 +52,7 @@
     "svg-sprite": "^1.5.3",
     "svgxuse": "^1.2.6",
     "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.1",
-    "yargs": "^17.2.1"
+    "webpack-cli": "^3.2.1"
   },
   "browserslist": [
     "defaults"

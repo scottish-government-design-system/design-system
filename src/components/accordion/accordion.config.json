@@ -20,6 +20,7 @@
     "variants": [
         {
             "name": "Open all",
+            "label": "Open all",
             "context": {
                 "params":{
                     "openall": true,

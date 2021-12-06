@@ -24,6 +24,7 @@
     "variants": [
         {
             "name": "Class overrides",
+            "Label": "Class overrides",
             "context": {
                 "params": {
                     "headings": [
@@ -48,6 +49,7 @@
         },
         {
             "name": "Class overrides inline",
+            "Label": "Class overrides inline",
             "context": {
                 "params": {
                     "headings": [

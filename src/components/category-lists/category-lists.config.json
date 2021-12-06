@@ -1,4 +1,5 @@
 {
+    "label": "Category lists",
     "status": "ready",
     "context": {
         "params": {
@@ -49,6 +50,7 @@
     "variants": [
         {
             "name": "Headings only",
+            "label": "Headings only",
             "context": {
                 "params": {
                     "items": [
@@ -93,6 +95,7 @@
         },
         {
             "name": "Grid layout",
+            "label": "Grid layout",
             "context": {
                 "params": {
                     "modifiers": "ds_category-list--grid"
@@ -101,6 +104,7 @@
         },
         {
             "name": "Grid layout headings only",
+            "label": "Grid layout headings only",
             "context": {
                 "params": {
                     "modifiers": "ds_category-list--grid",
@@ -146,6 +150,7 @@
         },
         {
             "name": "Grid layout with cards",
+            "label": "Grid layout with cards",
             "context": {
                 "params": {
                     "modifiers": "ds_category-list--grid ds_category-list--narrow",
@@ -197,6 +202,7 @@
         },
         {
             "name": "Grid layout with image cards",
+            "label": "Grid layout with image cards",
             "context": {
                 "params": {
                     "modifiers": "ds_category-list--grid ds_category-list--narrow",
@@ -258,6 +264,7 @@
         },
         {
             "name": "Grid layout narrow gaps",
+            "label": "Grid layout narrow gaps",
             "status": "invalid",
             "context": {
                 "params": {

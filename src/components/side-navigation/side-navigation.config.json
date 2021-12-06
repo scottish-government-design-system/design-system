@@ -1,4 +1,5 @@
 {
+    "label": "Side navigation",
     "context": {
         "params": {
             "label": "Sections",
@@ -26,6 +27,7 @@
     "variants": [
         {
             "name": "Selected item",
+            "label": "Selected item",
             "context": {
                 "params": {
                     "label": "Sections",
@@ -53,6 +55,7 @@
         },
         {
             "name": "Two levels",
+            "label": "Two levels",
             "context": {
                 "params": {
                     "label": "Sections",
@@ -90,6 +93,7 @@
         },
         {
             "name": "Two levels selected",
+            "label": "Two levels selected",
             "context": {
                 "params": {
                     "label": "Sections",
@@ -127,6 +131,7 @@
         },
         {
             "name": "Three levels",
+            "label": "Three levels",
             "context": {
                 "params": {
                     "label": "Sections",
@@ -174,6 +179,7 @@
         },
         {
             "name": "Three levels selected",
+            "label": "Three levels selected",
             "context": {
                 "params": {
                     "label": "Sections",

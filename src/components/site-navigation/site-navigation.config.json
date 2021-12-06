@@ -1,4 +1,5 @@
 {
+    "label": "Site navigation",
     "status": "prototype",
     "context": {
         "params": {
@@ -26,6 +27,7 @@
     "variants": [
         {
             "name": "Selected item",
+            "label": "Selected item",
             "context": {
                 "params": {
                     "menu": [

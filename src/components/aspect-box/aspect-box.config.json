@@ -1,4 +1,5 @@
 {
+    "label": "Aspect box",
     "context": {
         "params":{
 
@@ -7,6 +8,7 @@
     "variants": [
         {
             "name": "1:1 aspect ratio",
+            "label": "1:1 aspect ratio",
             "context": {
                 "params":{
                     "ratio": "ds_aspect-box--square"
@@ -15,6 +17,7 @@
         },
         {
             "name": "4:3 aspect ratio",
+            "label": "4:3 aspect ratio",
             "context": {
                 "params":{
                     "ratio": "ds_aspect-box--43"
@@ -23,6 +26,7 @@
         },
         {
             "name": "2.35:1 aspect ratio",
+            "label": "2.35:1 aspect ratio",
             "context": {
                 "params":{
                     "ratio": "ds_aspect-box--235"

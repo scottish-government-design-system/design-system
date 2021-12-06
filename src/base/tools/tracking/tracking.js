@@ -502,11 +502,13 @@ const tracking = {
         siteFooter: function (scope = document) {
             const siteFooters = tracking.gatherElements('ds_site-footer', scope);
             siteFooters.forEach(footer => {
-                const logo = footer.querySelector('.ds_site-footer__org-link');
+                const logoLinks = [].slice.call(footer.querySelectorAll('.ds_site-footer__org-link'));
 
-                if (!logo.getAttribute('data-footer')) {
-                    logo.setAttribute('data-footer', 'footer-logo');
-                }
+                logoLinks.forEach(link => {
+                    if (!link.getAttribute('data-footer')) {
+                        link.setAttribute('data-footer', 'footer-logo');
+                    }
+                });
 
                 const copyrightLinks = [].slice.call(footer.querySelectorAll('.ds_site-footer__copyright a'));
                 copyrightLinks.forEach(link => {

@@ -23,6 +23,7 @@
     "variants": [
         {
             "name": "Error",
+            "label": "Error",
             "context": {
                 "params": {
                     "error": true
@@ -31,6 +32,7 @@
         },
         {
             "name": "Adjust size",
+            "label": "Adjust size",
             "context": {
                 "params": {
                     "size": "ds_input--fluid-one-third"
@@ -39,6 +41,7 @@
         },
         {
             "name": "Selected option",
+            "label": "Selected option",
             "context": {
                 "params": {
                     "list": [

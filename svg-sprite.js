@@ -1,3 +1,5 @@
+/* global require, process */
+
 'use strict';
 
 const SVGSpriter = require('svg-sprite');
@@ -6,11 +8,13 @@ const mkdirp = require('mkdirp');
 const fs = require('fs');
 const File = require('vinyl');
 const glob = require('glob');
-const yargs = require('yargs/yargs');
-const { hideBin } = require('yargs/helpers');
-const argv = yargs(hideBin(process.argv)).argv;
 
-const destpath = path.resolve((argv.mode === 'dev') ? 'dev/assets/images/icons/': 'dist/images/icons/');
+let destpath;
+if (process.argv.slice(2)[0] === '--dev') {
+    destpath = 'dev/assets/images/icons/';
+} else {
+    destpath = 'dist/images/icons/';
+}
 
 const config = {
     "log": "",

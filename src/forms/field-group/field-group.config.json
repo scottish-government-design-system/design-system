@@ -1,4 +1,5 @@
 {
+    "label": "Field group",
     "context": {
         "params": {
             "legend": "What are the coordinates?",
@@ -43,6 +44,7 @@
     "variants": [
         {
             "name": "Error message",
+            "label": "Error message",
             "context": {
                 "params": {
                     "error": "Invalid format error",
@@ -83,6 +85,7 @@
         },
         {
             "name": "Inline fields",
+            "label": "Inline fields",
             "context": {
                 "params": {
                     "legend": "What is your date of birth?",
@@ -142,6 +145,7 @@
         },
         {
             "name": "Inline fields error",
+            "label": "Inline fields error",
             "context": {
                 "params": {
                     "legend": "What is your date of birth?",

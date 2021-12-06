@@ -1,4 +1,5 @@
 {
+    "label": "Skip links",
     "meta": {
         "contentAfter": "<div class=\"ds_inset-text\"><div  class=\"ds_inset-text__text\">Press the tab key to show the \"skip links\".</div></div>"
     }

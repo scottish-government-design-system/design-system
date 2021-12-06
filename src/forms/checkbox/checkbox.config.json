@@ -21,6 +21,7 @@
     "variants": [
         {
             "name": "Hint text",
+            "label": "Hint text",
             "context": {
                 "params": {
                     "hint": "Select as many as you like"
@@ -29,6 +30,7 @@
         },
         {
             "name": "Hint text per checkbox",
+            "label": "Hint text per checkbox",
             "context": {
                 "params": {
                     "hint": "Select as many as you like",
@@ -53,7 +55,8 @@
             }
         },
         {
-            "name": "Small checkboxed",
+            "name": "Small checkboxes",
+            "label": "Small checkboxes",
             "context": {
                 "params": {
                     "hint": "Select as many as you like",
@@ -79,6 +82,7 @@
         },
         {
             "name": "Error state",
+            "label": "Error state",
             "context": {
                 "params": {
                     "hint": "Select as many as you like",

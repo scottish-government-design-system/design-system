@@ -12,6 +12,7 @@
     "variants": [
         {
             "name": "Sizes",
+            "label": "Sizes",
             "context": {
                 "params": {
                     "icons": [
@@ -73,6 +74,7 @@
         },
         {
             "name": "Fill",
+            "label": "Fill",
             "context": {
                 "params": {
                     "icons": [
@@ -104,6 +106,7 @@
         },
         {
             "name": "Inline",
+            "label": "Inline",
             "context": {
                 "params": {
                     "icons": [
@@ -118,6 +121,7 @@
         },
         {
             "name": "Inherit text colour",
+            "label": "Inherit text colour",
             "context": {
                 "params": {
                     "icons": [
@@ -132,6 +136,7 @@
         },
         {
             "name": "Set icon colour",
+            "label": "Set icon colour",
             "context": {
                 "params": {
                     "icons": [

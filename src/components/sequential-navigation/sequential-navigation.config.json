@@ -1,4 +1,5 @@
 {
+    "label": "Sequential navigation",
     "context": {
         "params": {
             "label": "Article navigation",
@@ -15,6 +16,7 @@
     "variants": [
         {
             "name": "Previous only",
+            "label": "Previous only",
             "context": {
                 "params": {
                     "label": "Article navigation",
@@ -28,6 +30,7 @@
         },
         {
             "name": "Next only",
+            "label": "Next only",
             "context": {
                 "params": {
                     "label": "Article navigation",

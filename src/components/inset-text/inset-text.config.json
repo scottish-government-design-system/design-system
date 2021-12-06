@@ -1,9 +1,9 @@
 {
-    "label": "Content label",
+    "label": "Inset text",
     "status": "ready",
     "context": {
         "params": {
-            "label": "Guide"
+
         }
     }
 }

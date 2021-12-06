@@ -10,6 +10,7 @@
     "variants": [
         {
             "name": "Visible heading",
+            "label": "Visible heading",
             "context": {
                 "params": {
                     "hiddenHeading": false,
@@ -20,6 +21,7 @@
         },
         {
             "name": "Visible heading and label",
+            "label": "Visible heading and label",
             "context": {
                 "params": {
                     "hiddenHeading": false,
