@@ -1,4 +1,5 @@
 {
+    "label": "Cookie notification",
     "status": "prototype",
     "meta": {
         "styles": ["preview-full"]

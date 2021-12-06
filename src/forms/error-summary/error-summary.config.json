@@ -1,4 +1,5 @@
 {
+    "label": "Error summary",
     "context": {
         "params": {
             "heading": "There is a problem",

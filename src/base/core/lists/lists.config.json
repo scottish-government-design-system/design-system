@@ -23,6 +23,7 @@
     "variants": [
         {
             "name": "Ordered list",
+            "label": "Ordered list",
             "context": {
                 "params": {
                     "intro": "<p>Follow these 3 steps to apply:</p>",
@@ -42,10 +43,15 @@
             }
         },
         {
-            "name": "Definition list"
+            "name": "Definition list",
+            "label": "Definition list"
         },
         {
             "name": "Unordered list no bullets",
+            "label": "Unordered list no bullets",
+            "meta": {
+                "contentBefore": "<div class=\"ds_inset-text  ds_no-margin--top\"><div class=\"ds_inset-text__text\">The \"no bullet\" variant is not to be used for lists in text content. An example of a valid use case would be a list of links in an \"Article aside\" block where space is limited.</div></div>"
+            },
             "context": {
                 "params": {
                     "modifiers": "ds_no-bullets"
@@ -54,6 +60,10 @@
         },
         {
             "name": "Ordered list no bullets",
+            "label": "Ordered list no bullets",
+            "meta": {
+                "contentBefore": "<div class=\"ds_inset-text  ds_no-margin--top\"><div class=\"ds_inset-text__text\">The \"no bullet\" variant is not to be used for lists in text content.</div></div>"
+            },
             "context": {
                 "params": {
                     "modifiers": "ds_no-bullets",

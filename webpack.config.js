@@ -1,41 +1,58 @@
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
-module.exports = (env) => {
-  const dest = (env !== undefined)&&(env.mode === 'dev') ? 'dev/assets': 'dist';
-  const copySrc = [];
-  const wpPlugins = [];
+const isDevEnv = function (env) {
+  return (env !== undefined) && (env.mode === 'dev');
+};
 
-  if ((env !== undefined) && (env.mode === 'dev')) {
-    copySrc.push({ from: path.resolve(__dirname, './node_modules/svgxuse/svgxuse.min.js'), to: path.resolve(__dirname, './'+dest+'/scripts/') });
-    copySrc.push({ from: path.resolve(__dirname, './fractal/images/'), to: path.resolve(__dirname, './'+dest+'/images/') });
+module.exports = (env) => {
+  const dest = isDevEnv(env) ? 'dev/assets' : 'dist';
+  const copySrc = [];
+
+  const baseConfig = {
+    mode: isDevEnv(env) ? 'development' : 'production',
+    entry: {
+      'pattern-library': path.resolve(__dirname, './src/all.js')
+    },
+    output: {
+      path: path.resolve(__dirname, dest + '/scripts'),
+      filename: '[name].js'
+    },
+    plugins: [],
+    devtool: isDevEnv(env) ? 'eval-source-map' : '',
+    module: {
+      rules: []
+    }
+  };
+
+  if (isDevEnv(env)) {
+    copySrc.push({ from: path.resolve(__dirname, './node_modules/svgxuse/svgxuse.min.js'), to: path.resolve(__dirname, `./${dest}/scripts/`) });
+    copySrc.push({ from: path.resolve(__dirname, './fractal/images/'), to: path.resolve(__dirname, `./${dest}/images/`) });
+    copySrc.push({ from: path.resolve(__dirname, './dist/images/'), to: path.resolve(__dirname, `./${dest}/images/`) });
   }
 
   if (copySrc.length) {
-    wpPlugins.push(
+    baseConfig.plugins.push(
       // Copy static assets from source to specified environment
       new CopyPlugin({
         patterns: copySrc,
       })
-    )
+    );
   }
 
-  return {
-    mode: (env !== undefined)&&(env.mode === 'dev') ? 'development': 'production',
-    entry: {
-      'pattern-library.js': [
-        path.resolve(__dirname, './src/all.js')
-      ]
-    },
+  return [
+    // first output: for modern browsers
+    baseConfig,
 
-    output: {
-      path: path.resolve(__dirname, dest+'/scripts'),
-      filename: '[name]'
-    },
-
-    module: {
-      rules: [
-        {
+    // second output: for ES5 browsers
+    {
+      ...baseConfig,
+      output: {
+        path: path.resolve(__dirname, dest + '/scripts'),
+        filename: '[name].es5.js'
+      },
+      module: {
+        rules: baseConfig.module.rules.concat([{
           test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
@@ -45,12 +62,8 @@ module.exports = (env) => {
               plugins: ['@babel/plugin-transform-runtime']
             }
           }
-        }
-      ]
-    },
-    plugins: wpPlugins,
-    devtool: (env !== undefined)&&(env.mode === 'dev') ? 'eval-source-map': ''
-
-
-  };
+        }])
+      }
+    }
+  ];
 };

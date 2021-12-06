@@ -1,9 +1,9 @@
 {
-    "label": "Content label",
+    "label": "Hide this page",
     "status": "ready",
     "context": {
         "params": {
-            "label": "Guide"
+
         }
     }
 }

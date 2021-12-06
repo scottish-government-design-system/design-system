@@ -27,6 +27,7 @@
     "variants": [
         {
             "name": "Include footer",
+            "label": "Include footer",
             "context": {
                 "params": {
                     "areas": [
@@ -51,6 +52,7 @@
         },
         {
             "name": "Category lower",
+            "label": "Category lower",
             "context": {
                 "params": {
                     "areas": [

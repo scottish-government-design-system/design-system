@@ -24,6 +24,7 @@
     "variants": [
         {
             "name": "Omit current page",
+            "label": "Omit current page",
             "context": {
                 "params":{
                     "breadcrumbs": [

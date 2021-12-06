@@ -37,7 +37,7 @@ fractal.components.set('statuses', {
     wip: {
         label: "WIP",
         description: "Work in progress. Do not implement.",
-        color: "#d32205"
+        color: "#727272"
     },
     prototype: {
         label: "Prototype",

@@ -1,4 +1,5 @@
 {
+    "label": "Date picker",
     "status": "ready",
     "context": {
         "params": {
@@ -9,6 +10,7 @@
     "variants": [
         {
             "name": "Date range",
+            "label": "Date range",
             "context": {
                 "params": {
                     "label": "Start date",
@@ -20,6 +22,7 @@
         },
         {
             "name": "MDY date format",
+            "label": "MDY date format",
             "context": {
                 "params": {
                     "label": "Start date",
@@ -30,6 +33,7 @@
         },
         {
             "name": "YMD date format with range",
+            "label": "YMD date format with range",
             "context": {
                 "params": {
                     "label": "Start date",

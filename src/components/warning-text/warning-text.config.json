@@ -1,4 +1,5 @@
 {
+    "label": "Warning text",
     "context": {
         "params": {
             "label": "Warning",

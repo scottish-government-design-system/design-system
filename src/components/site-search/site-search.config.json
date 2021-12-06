@@ -1,9 +1,9 @@
 {
-    "label": "Content label",
+    "label": "Site search",
     "status": "ready",
     "context": {
         "params": {
-            "label": "Guide"
+
         }
     }
 }

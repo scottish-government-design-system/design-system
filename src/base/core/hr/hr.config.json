@@ -1,9 +1,9 @@
 {
-    "label": "Content label",
+    "label": "HR",
     "status": "ready",
     "context": {
         "params": {
-            "label": "Guide"
+
         }
     }
 }

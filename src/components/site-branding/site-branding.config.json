@@ -1,4 +1,5 @@
 {
+    "label": "Site branding",
     "context": {
         "params": {
             "logo": "/assets/images/logos/digital-scotland.svg",
@@ -9,6 +10,7 @@
     "variants": [
         {
             "name": "Text title",
+            "label": "Text title",
             "context": {
                 "params": {
                     "logo": false,
@@ -19,6 +21,7 @@
         },
         {
             "name": "Text title two line",
+            "label": "Text title two line",
             "context": {
                 "params": {
                     "logo": false,
@@ -29,6 +32,7 @@
         },
         {
             "name": "Logo and text",
+            "label": "Logo and text",
             "context": {
                 "params": {
                     "logo": "/assets/images/logos/digital-scotland.svg",
@@ -41,6 +45,7 @@
         },
         {
             "name": "Logo and text two line",
+            "label": "Logo and text two line",
             "context": {
                 "params": {
                     "logo": "/assets/images/logos/digital-scotland.svg",
@@ -53,6 +58,7 @@
         },
         {
             "name": "Reversed",
+            "label": "Reversed",
             "meta": {
                 "styles": ["preview-full"]
             },

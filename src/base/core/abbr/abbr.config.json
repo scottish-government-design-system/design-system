@@ -8,6 +8,7 @@
     "variants": [
         {
             "name": "No title attribute",
+            "label": "No title attribute",
             "context": {
                 "params": {
                     "content": "The <abbr>WHO</abbr> was founded in 1948."

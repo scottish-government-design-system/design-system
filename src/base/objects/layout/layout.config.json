@@ -37,6 +37,7 @@
     "variants": [
         {
             "name": "Article",
+            "label": "Article",
             "context": {
                 "params": {
                     "modifiers": "ds_layout--article",
@@ -72,6 +73,7 @@
         },
         {
             "name": "Guide",
+            "label": "Guide",
             "context": {
                 "params": {
                     "modifiers": "ds_layout--guide",
@@ -112,6 +114,7 @@
         },
         {
             "name": "Category list",
+            "label": "Category list",
             "context": {
                 "params": {
                     "modifiers": "ds_layout--category-list",
@@ -147,6 +150,7 @@
         },
         {
             "name": "Search results",
+            "label": "Search results",
             "context": {
                 "params": {
                     "modifiers": "ds_layout--search-results",

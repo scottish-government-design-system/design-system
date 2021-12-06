@@ -1,4 +1,5 @@
 {
+    "label": "Notification banner",
     "status": "ready",
     "meta": {
         "styles": ["preview-full"]
@@ -13,6 +14,7 @@
     "variants": [
         {
             "name": "Success notification",
+            "label": "Success notification",
             "context": {
                 "params": {
                     "modifiers": "ds_notification--success",
@@ -24,6 +26,7 @@
         },
         {
             "name": "Icon",
+            "label": "Icon",
             "context": {
                 "params": {
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
@@ -34,6 +37,7 @@
         },
         {
             "name": "Icon inverse",
+            "label": "Icon inverse",
             "context": {
                 "params": {
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
@@ -45,6 +49,7 @@
         },
         {
             "name": "Icon colour",
+            "label": "Icon colour",
             "context": {
                 "params": {
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
@@ -56,6 +61,7 @@
         },
         {
             "name": "Icon colour inverse",
+            "label": "Icon colour inverse",
             "context": {
                 "params": {
                     "content": "<p>We need to tell you about <a href=\"#\">something</a></p>",
@@ -68,6 +74,7 @@
         },
         {
             "name": "Success icon colour inverse",
+            "label": "Success icon colour inverse",
             "status": "invalid",
             "context": {
                 "params": {

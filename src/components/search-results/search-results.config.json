@@ -1,4 +1,5 @@
 {
+    "label": "Search results",
     "context": {
         "params": {
             "suggestion": "crafting",

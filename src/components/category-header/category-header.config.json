@@ -1,4 +1,5 @@
 {
+    "label": "Category header",
     "status": "ready",
     "meta": {
         "styles": ["preview-full"]
@@ -12,29 +13,32 @@
     "variants": [
         {
             "name": "With image",
+            "label": "With image",
             "context": {
                 "params": {
-                    "image": "/assets/images/placeholders/320x320.png",
+                    "image": "/assets/images/placeholders/category-header-design-standards.svg",
                     "imageAlt": "Alt text"
                 }
             }
         },
         {
             "name": "Reversed",
+            "label": "Reversed",
             "context": {
                 "params": {
                     "reversed": true,
-                    "image": "/assets/images/placeholders/320x180.png",
+                    "image": "/assets/images/placeholders/category-header-design-standards--reversed.svg",
                     "imageAlt": "Alt text"
                 }
             }
         },
         {
             "name": "Reversed with breadcrumbs",
+            "label": "Reversed with breadcrumbs",
             "context": {
                 "params": {
                     "reversed": true,
-                    "image": "/assets/images/placeholders/320x180.png",
+                    "image": "/assets/images/placeholders/category-header-design-standards--reversed.svg",
                     "imageAlt": "Alt text",
                     "breadcrumbsList": {
                         "params": {

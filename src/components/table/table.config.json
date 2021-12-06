@@ -75,6 +75,7 @@
     "variants": [
         {
             "name": "No head",
+            "label": "No head",
             "context": {
                 "params": {
                     "head": false
@@ -83,6 +84,7 @@
         },
         {
             "name": "Large scroll table",
+            "label": "Large scroll table",
             "context": {
                 "params": {
                     "caption": "Highest peaks in Scotland",
@@ -216,6 +218,7 @@
         },
         {
             "name": "Large boxed table",
+            "label": "Large boxed table",
             "context": {
                 "params": {
                     "caption": "Highest peaks in Scotland",

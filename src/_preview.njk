@@ -83,7 +83,7 @@
         </div>
     {% endif %}
     <div id="page-top" class="preview-container">
-        {{_target.meta.content | safe}}
+        {{_target.meta.contentBefore | safe}}
         {{ yield | safe}}
         {{_target.meta.contentAfter | safe}}
     </div>

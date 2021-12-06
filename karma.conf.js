@@ -16,7 +16,7 @@ const instrumentationConfig = {
     }
 };
 
-const testWebpackConfig = webpackConfig();
+const testWebpackConfig = webpackConfig()[0];
 testWebpackConfig.mode = 'development';
 testWebpackConfig.module.rules.push(instrumentationConfig);
 
