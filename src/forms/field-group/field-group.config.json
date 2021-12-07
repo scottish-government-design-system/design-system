@@ -1,5 +1,6 @@
 {
     "label": "Field group",
+    "status": "prototype",
     "context": {
         "params": {
             "legend": "What are the coordinates?",
@@ -20,7 +21,8 @@
                     "textInput": {
                         "params": {
                             "id": "unique-id",
-                            "size": "ds_input--fixed-10"
+                            "size": "ds_input--fixed-10",
+                            "type": "input"
                         }
                     }
                 },
@@ -34,7 +36,8 @@
                     "textInput": {
                         "params": {
                             "id": "unique-id2",
-                            "size": "ds_input--fixed-10"
+                            "size": "ds_input--fixed-10",
+                            "type": "input"
                         }
                     }
                 }
@@ -47,7 +50,8 @@
             "label": "Error message",
             "context": {
                 "params": {
-                    "error": "Invalid format error",
+                    "error": "Error message that applies to all fields in the group",
+                    "errorId": "unique-id-error",
                     "fields": [
                         {
                             "label": {
@@ -60,7 +64,9 @@
                                 "params": {
                                     "id": "unique-id",
                                     "size": "ds_input--fixed-10",
-                                    "error": true
+                                    "error": true,
+                                    "type": "input",
+                                    "errorId": "unique-id-error"
                                 }
                             }
                         },
@@ -75,7 +81,53 @@
                                 "params": {
                                     "id": "unique-id2",
                                     "size": "ds_input--fixed-10",
-                                    "error": true
+                                    "error": true,
+                                    "type": "input",
+                                    "errorId": "unique-id-error"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Partial error message",
+            "label": "Partial error message",
+            "context": {
+                "params": {
+                    "error": "Error message that applies to some fields",
+                    "errorId": "unique-id-error",
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Latitude",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id",
+                                    "size": "ds_input--fixed-10",
+                                    "error": true,
+                                    "errorId": "unique-id-error",
+                                    "type": "input"
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Longitude",
+                                    "id": "unique-id2"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id2",
+                                    "size": "ds_input--fixed-10",
+                                    "type": "input"
                                 }
                             }
                         }
@@ -107,7 +159,8 @@
                             "textInput": {
                                 "params": {
                                     "id": "unique-id",
-                                    "size": "ds_input--fixed-2"
+                                    "size": "ds_input--fixed-2",
+                                    "type": "input"
                                 }
                             }
                         },
@@ -121,7 +174,8 @@
                             "textInput": {
                                 "params": {
                                     "id": "unique-id2",
-                                    "size": "ds_input--fixed-2"
+                                    "size": "ds_input--fixed-2",
+                                    "type": "input"
                                 }
                             }
                         },
@@ -135,7 +189,8 @@
                             "textInput": {
                                 "params": {
                                     "id": "unique-id3",
-                                    "size": "ds_input--fixed-4"
+                                    "size": "ds_input--fixed-4",
+                                    "type": "input"
                                 }
                             }
                         }
@@ -150,7 +205,8 @@
                 "params": {
                     "legend": "What is your date of birth?",
                     "inline": true,
-                    "error": "Invalid month",
+                    "error": "Error message that applies to all fields in the group",
+                    "errorId": "unique-id-error",
                     "hint": {
                         "params": {
                             "hint": "For example, 31 3 1980",
@@ -168,7 +224,10 @@
                             "textInput": {
                                 "params": {
                                     "id": "unique-id",
-                                    "size": "ds_input--fixed-2"
+                                    "size": "ds_input--fixed-2",
+                                    "error": true,
+                                    "errorId": "unique-id-error",
+                                    "type": "input"
                                 }
                             }
                         },
@@ -183,7 +242,9 @@
                                 "params": {
                                     "id": "unique-id2",
                                     "size": "ds_input--fixed-2",
-                                    "error": true
+                                    "error": true,
+                                    "errorId": "unique-id-error",
+                                    "type": "input"
                                 }
                             }
                         },
@@ -197,7 +258,77 @@
                             "textInput": {
                                 "params": {
                                     "id": "unique-id3",
-                                    "size": "ds_input--fixed-4"
+                                    "size": "ds_input--fixed-4",
+                                    "error": true,
+                                    "errorId": "unique-id-error",
+                                    "type": "input"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Inline fields partial error",
+            "label": "Inline fields partial error",
+            "context": {
+                "params": {
+                    "legend": "What is your date of birth?",
+                    "inline": true,
+                    "error": "Invalid month",
+                    "errorId": "unique-id-error",
+                    "hint": {
+                        "params": {
+                            "hint": "For example, 31 3 1980",
+                            "id": "hint_id"
+                        }
+                    },
+                    "fields": [
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Day",
+                                    "id": "unique-id"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id",
+                                    "size": "ds_input--fixed-2",
+                                    "type": "input"
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Month",
+                                    "id": "unique-id2"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id2",
+                                    "size": "ds_input--fixed-2",
+                                    "error": true,
+                                    "errorId": "unique-id-error",
+                                    "type": "input"
+                                }
+                            }
+                        },
+                        {
+                            "label": {
+                                "params": {
+                                    "label": "Year",
+                                    "id": "unique-id3"
+                                }
+                            },
+                            "textInput": {
+                                "params": {
+                                    "id": "unique-id3",
+                                    "size": "ds_input--fixed-4",
+                                    "type": "input"
                                 }
                             }
                         }

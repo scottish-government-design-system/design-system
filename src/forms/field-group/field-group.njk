@@ -5,7 +5,7 @@
         {%- render '@hint-text', params.hint %}
         {%- endif %}
         {%- if params.error %}
-            <p class="ds_question__error-message">{{ params.error }}</p>
+            <p class="ds_question__error-message" {%- if params.errorId %} id="{{params.errorId}}"{%- endif %}>{{ params.error }}</p>
         {%- endif %}
         <div class="ds_field-group {%- if params.inline %} ds_field-group--inline{%- endif %}">
             {%- for field in params.fields %}
