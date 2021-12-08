@@ -1,16 +1,11 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
-const isDevEnv = function (env) {
-  return (env !== undefined) && (env.mode === 'dev');
-};
-
-module.exports = (env) => {
-  const dest = isDevEnv(env) ? 'dev/assets' : 'dist';
+module.exports = (env, argv) => {
+  const dest = argv.mode === 'development' ? 'dev/assets' : 'dist';
   const copySrc = [];
 
   const baseConfig = {
-    mode: isDevEnv(env) ? 'development' : 'production',
     entry: {
       'pattern-library': path.resolve(__dirname, './src/all.js')
     },
@@ -19,13 +14,13 @@ module.exports = (env) => {
       filename: '[name].js'
     },
     plugins: [],
-    devtool: isDevEnv(env) ? 'eval-source-map' : '',
+    devtool: argv.mode === 'development' ? 'eval-source-map' : '',
     module: {
       rules: []
     }
   };
 
-  if (isDevEnv(env)) {
+  if (argv.mode === 'development') {
     copySrc.push({ from: path.resolve(__dirname, './node_modules/svgxuse/svgxuse.min.js'), to: path.resolve(__dirname, `./${dest}/scripts/`) });
     copySrc.push({ from: path.resolve(__dirname, './fractal/images/'), to: path.resolve(__dirname, `./${dest}/images/`) });
     copySrc.push({ from: path.resolve(__dirname, './dist/images/'), to: path.resolve(__dirname, `./${dest}/images/`) });
