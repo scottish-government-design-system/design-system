@@ -1,0 +1,27 @@
+/*------------------------------------*\
+    PREFILLED VALUE LIST
+\*------------------------------------*/
+
+.ds_prefilled-value-list {
+
+    &__key {
+        margin: 0 0 8px;
+        padding: 0;
+    }
+
+    &__value {
+        margin: 0 0 24px;
+        padding: 0;
+
+        @include ds_media-query(medium) {
+            display: flex;
+
+            &-actions {
+                margin-left: 24px;
+            }
+        
+        }
+
+    }
+
+}
