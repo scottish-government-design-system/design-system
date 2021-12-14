@@ -9,7 +9,6 @@
     &__list {
         list-style-type: none;
         margin: 0;
-        display: none;
     }
 
     &__item {
@@ -43,23 +42,11 @@
     }
 }
 
-@include ds_media-query(medium) {
-    .ds_pagination {
-
-        &__list {
-            display: block;
-        }
-
-        &__load-more {
-            display: none;
-        }
-    }
-}
-
 @supports (display: flex) {
     .ds_pagination {
         &__list {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
         }
 
