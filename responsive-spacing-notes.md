@@ -2,7 +2,7 @@
 
 ## General notes
 
-Font sizes in type settings are left in PX. These are converted to REM in the font size mixins (ds_h1-size, etc) and not in the type settings because I want to use those pixes values elsewhere.
+Font sizes in type settings are left in PX. These are converted to REM in the font size mixins (ds_h1-size, etc) and not in the type settings because I want to use those pixel values elsewhere.
 
 Line heights for headings and leader text have been converted to relative (unitless) values, and are baked into the font size mixins so that anywhere we use e.g. ds_h1-size the line height is included with it (I have not stripped out the old fixed line heights everywhere yet).
 
@@ -38,28 +38,28 @@ HR (this was fixed at 32px on all viewports. Have changed to 24/32, which feels 
 
 ### Components
 
-Article aside
-Notification panel (it was already done)
-Warning text
+* Article aside
+* Notification panel (it was already done)
+* Warning text
 
 ### Forms
 
-Question
+* Question
 
 
 ## Specific issues/notes
 
 ### Base
 
-Headings: H1 has margins on mobile/desktop that do not match responsive scale (32px both, closest in responsive is 24px/32px or 32px/40px)
+* Headings: H1 has margins on mobile/desktop that do not match responsive scale (32px both, closest in responsive is 24px/32px or 32px/40px)
 
 ### Components
 
-Article aside LI bottom margin: 8px/16px bottom margin (responsive 1 is 8/8, 2 is 16/16)
-Breadcrumbs: ds_breadcrumbs__container has spacing that doesn't fit the responsive sizes. Also, what is this container for? Is it legacy code that should be deleted?
-Callout: padding doesn't match responsive sizes, callout also a v low priority component so meh?
-Card: Not touching this yet -- whole component needs some review now we have firmer use cases thanks to gov
-Page header: top margin doesn't fit responsive scale (it is 16/32)
+* Article aside LI bottom margin: 8px/16px bottom margin (responsive 1 is 8/8, 2 is 16/16)
+* Breadcrumbs: ds_breadcrumbs__container has spacing that doesn't fit the responsive sizes. Also, what is this container for? Is it legacy code that should be deleted?
+* Callout: padding doesn't match responsive sizes, callout also a v low priority component so meh?
+* Card: Not touching this yet -- whole component needs some review now we have firmer use cases thanks to gov
+* Page header: top margin doesn't fit responsive scale (it is 16/32)
 
 ## And a rando query prompted by DK's observation that leader is larger than H3
 
