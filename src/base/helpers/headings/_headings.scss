@@ -1,67 +1,104 @@
 ///
 /// Heading size mixins
 ///
+
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@function get-unit($value) {
+  @return str-slice($value * 0 + "", 2, -1);
+}
+
+@function px-to-rem ($px, $base: $root-font-size) {
+    @return ($px/$base) * 1rem;
+}
+
+@function rem-to-px ($rem, $base: $root-font-size) {
+    @return strip-unit($rem * $base) * 1px;
+}
+
+@function nearest-grid-size ($value, $grid: 8px) {
+    @return round($value / $grid) * $grid;
+}
+
+@function line-height-on-grid ($font-size, $line-height: 1.5) {
+    @return nearest-grid-size($font-size * $line-height) / $font-size;
+}
+
 @mixin ds_h1-size {
-    font-size: $h1-size;
+    font-size: px-to-rem($h1-size);
+    line-height: line-height-on-grid($h1-size, 1.3);
 
     @include ds_media-query(medium) {
-        font-size: $h1-size--medium;
+        font-size: px-to-rem($h1-size--medium, $root-font-size--medium);
+        line-height: line-height-on-grid($h1-size--medium, 1.3);
     }
 }
 
 @mixin ds_h2-size {
-    font-size: $h2-size;
+    font-size: px-to-rem($h2-size);
+    line-height: line-height-on-grid($h2-size, 1.3);
 
     @include ds_media-query(medium) {
-        font-size: $h2-size--medium;
+        font-size: px-to-rem($h2-size--medium, $root-font-size--medium);
+        line-height: line-height-on-grid($h2-size--medium, 1.3);
     }
 }
 
 @mixin ds_h3-size {
-    font-size: $h3-size;
+    font-size: px-to-rem($h3-size);
+    line-height: line-height-on-grid($h3-size);
 
     @include ds_media-query(medium) {
-        font-size: $h3-size--medium;
+        font-size: px-to-rem($h3-size--medium, $root-font-size--medium);
+        line-height: line-height-on-grid($h3-size--medium);
     }
 }
 
 @mixin ds_h4-size {
-    font-size: $h4-size;
+    font-size: px-to-rem($h4-size);
+    line-height: line-height-on-grid($h4-size, 1.3);
 
     @include ds_media-query(medium) {
-        font-size: $h4-size--medium;
+        font-size: px-to-rem($h4-size--medium, $root-font-size--medium);
+        line-height: line-height-on-grid($h4-size--medium, 1.3);
     }
 }
 
 @mixin ds_h5-size {
-    font-size: $h5-size;
+    font-size: px-to-rem($h5-size);
+    line-height: line-height-on-grid($h5-size);
 
     @include ds_media-query(medium) {
-        font-size: $h5-size--medium;
+        font-size: px-to-rem($h5-size--medium, $root-font-size--medium);
+        line-height: line-height-on-grid($h5-size--medium);
     }
 }
 
 @mixin ds_tiny-size {
-    font-size: $tiny-size;
+    font-size: px-to-rem($tiny-size);
 
     @include ds_media-query(medium) {
-        font-size: $tiny-size--medium;
+        font-size: px-to-rem($tiny-size--medium, $root-font-size--medium);
     }
 }
 
 @mixin ds_small-size {
-    font-size: $small-size;
+    font-size: px-to-rem($small-size);
 
     @include ds_media-query(medium) {
-        font-size: $small-size--medium;
+        font-size: px-to-rem($small-size--medium, $root-font-size--medium);
     }
 }
 
 @mixin ds_large-size {
-    font-size: $large-size;
+    font-size: px-to-rem($large-size);
+    line-height: line-height-on-grid($large-size);
 
     @include ds_media-query(medium) {
-        font-size: $large-size--medium;
+        font-size: px-to-rem($large-size--medium, $root-font-size--medium);
+        line-height: line-height-on-grid($large-size--medium);
     }
 }
 
@@ -74,22 +111,15 @@
 @mixin ds_h1-style {
     @include ds_h1-size;
     font-weight: $bold;
-    line-height: 40px;
     margin-bottom: 32px;
-
-    @include ds_media-query(medium) {
-        line-height: 56px;
-    }
 }
 
 @mixin ds_h2-style {
     @include ds_h2-size;
     font-weight: $bold;
-    line-height: 32px;
     margin-bottom: 8px;
 
     @include ds_media-query(medium) {
-        line-height: 40px;
         margin-bottom: 16px;
     }
 }
@@ -97,24 +127,17 @@
 @mixin ds_h3-style {
     @include ds_h3-size;
     font-weight: $bold;
-    line-height: 24px;
     margin-bottom: 8px;
-
-    @include ds_media-query(medium) {
-        line-height: 32px;
-    }
 }
 
 @mixin ds_h4-style {
     @include ds_h4-size;
     font-weight: $bold;
-    line-height: 24px;
 }
 
 @mixin ds_h5-style {
     @include ds_h5-size;
     font-weight: $bold;
-    line-height: 24px;
 }
 
 

@@ -6,5 +6,7 @@
 hr {
     border: none;
     border-top: 1px solid $ds_colour__grey--medium;
-    margin: 32px 0 31px; /// [1]
+
+    @include ds_responsive-margin(4, top);
+    @include ds_responsive-margin(4, bottom, false, -1px); /// [1]
 }

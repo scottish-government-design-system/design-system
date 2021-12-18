@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .ds_question {
-    margin-bottom: 24px;
+    @include ds_responsive-margin(4, bottom);
 
     &--error {
         border-left: 4px solid $ds_colour__state--negative;
@@ -18,12 +18,5 @@
         color: $ds_colour__state--negative;
         font-weight: bold;
         margin-bottom: 16px;
-    }
-}
-
-
-@include ds_media-query(medium) {
-    .ds_question {
-        margin-bottom: 32px;
     }
 }
