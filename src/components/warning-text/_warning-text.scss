@@ -13,8 +13,8 @@
 
     @include ds_block-margins;
     @include ds_last-child-no-margin;
-    @include ds_reponsive-padding(4, top, false, -1px); /// 1
-    @include ds_reponsive-padding(4, bottom, false, -1px); /// 1
+    @include ds_responsive-padding(4, top, false, -1px); /// 1
+    @include ds_responsive-padding(4, bottom, false, -1px); /// 1
 
     &:first-child {
         margin-top: 0;
