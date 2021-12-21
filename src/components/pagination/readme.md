@@ -1,0 +1,1 @@
+Limit the number of pagination links to reduce the chances of wrapping on multiple lines at smaller widths.

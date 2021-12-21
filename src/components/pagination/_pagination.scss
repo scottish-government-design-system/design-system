@@ -7,6 +7,7 @@
     text-align: center;
 
     &__list {
+        display: none;
         list-style-type: none;
         margin: 0;
     }
@@ -17,7 +18,6 @@
 
     &__link {
         @include ds_blocklink;
-
         line-height: 24px;
         padding: 12px 8px;
         text-decoration: none;
@@ -30,11 +30,11 @@
             pointer-events: none;
         }
 
-        &--text {
+        /*&--text {
             padding-left: 24px;
             padding-right: 24px;
             width: auto;
-        }
+        }*/
 
         &--ellipsis {
             pointer-events: none;
@@ -42,16 +42,29 @@
     }
 }
 
-@supports (display: flex) {
+@include ds_media-query(medium) {
     .ds_pagination {
+
         &__list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: block;
         }
 
-        &__item:not(:last-child) {
-            margin-right: 4px;
+        &__load-more {
+            display: none;
+        }
+    }
+    
+    @supports (display: flex) {
+        .ds_pagination {
+            &__list {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            &__item:not(:last-child) {
+                margin-right: 4px;
+            }
         }
     }
 }
