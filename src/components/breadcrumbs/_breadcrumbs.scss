@@ -25,7 +25,7 @@ $breadcrumbs__font-size: $small-size--fixed;
 
     &__item:not(:first-child)::before {
         @include ds_chevron(right, 0.333333em);
-        margin: 0 4px 0 2px;
+        margin: 0 5px;
         position: relative;
         top: -1px;
     }
@@ -38,6 +38,11 @@ $breadcrumbs__font-size: $small-size--fixed;
         &__container {
             padding-top: 24px;
         }
+    }
+
+    @supports (display: flex) {
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 
