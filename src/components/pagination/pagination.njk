@@ -8,7 +8,7 @@
         {%- for item in params.items -%}
         <li class="ds_pagination__item" {%- if item.current %} aria-current="page"{%- endif -%} {%- if item.ellipsis %} aria-hidden="true"{%- endif -%}>
             {%- if item.link %}
-            <a class="ds_pagination__link {%- if item.textLabel %}  ds_pagination__link--text{% endif %}" href="{{ item.link }}">
+            <a class="ds_pagination__link {%- if item.textLabel %}  ds_pagination__link--text  ds_pagination__link--icon{% endif %}" href="{{ item.link }}">
                 {%- if item.previous %}
                 <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron_left"></use></svg>
                 {%- endif %}
