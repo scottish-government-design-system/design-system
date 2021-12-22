@@ -4,9 +4,9 @@
         <li class="ds_breadcrumbs__item" {%- if breadcrumb.current %} aria-current="page"{%- endif %}>
             {%- if breadcrumb.link %}
             <a class="ds_breadcrumbs__link" href="#">{{ breadcrumb.label }}</a>
-            {%- else %}
+            {%- else -%}
             {{ breadcrumb.label }}
-            {%- endif %}
+            {%- endif -%}
         </li>
         {%-  endfor %} 
     </ol>
