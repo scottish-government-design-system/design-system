@@ -40,12 +40,6 @@
             width: auto;
         }
 
-        &--icon {
-            .ds_pagination__link-label {
-                display: none;
-            }
-        }
-
         &--ellipsis {
             pointer-events: none;
         }
@@ -67,9 +61,15 @@
             padding-left: 24px;
             padding-right: 24px;
             width: auto;
+        }
+    }
+}
 
+@include ds_media-query(medium-down) {
+    .ds_pagination {
+        &__link--icon {
             .ds_pagination__link-label {
-                display: inline-block;
+                @include ds_visually-hidden;
             }
         }
     }

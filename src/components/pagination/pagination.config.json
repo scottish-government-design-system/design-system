@@ -70,6 +70,29 @@
             }
         },
         {
+            "name": "Next and Previous only",
+            "label": "Next and Previous only",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "items": [
+                        {
+                            "label": "Previous",
+                            "textLabel": true,
+                            "previous": true,
+                            "link": "#"
+                        },
+                        {
+                            "label": "Next",
+                            "textLabel": true,
+                            "next": true,
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        },
+        {
             "name": "Ellipsis",
             "label": "Ellipsis",
             "status": "prototype",
