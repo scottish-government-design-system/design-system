@@ -18,7 +18,7 @@ Doesn't really bear mentioning, but I'm noting it here because it's basically do
 
 ### Margins/padding
 
-REM might be more complex than EM, though the pxtorem function might be able to handle things for us. Interaction between responsive margin/padding functions and the conversion to REM might be fiddly.
+REM might be more complex than EM, though the px-to-rem function might be able to handle things for us. Interaction between responsive margin/padding functions and the conversion to REM might be fiddly.
 
 ### Line heights
 Is this necessary? It looks like browsers scale this well with pixels, but the hardcoding to px isn't great.

@@ -7,37 +7,37 @@ $ds_spacing-scale: (
     null:   0 /// [1]
     ),
   1: (
-    null:   pxtorem(8px)
+    null:   px-to-rem(8px)
     ),
   2: (
-    null:   pxtorem(16px)
+    null:   px-to-rem(16px)
     ),
   3: (
-    null:   pxtorem(24px)
+    null:   px-to-rem(24px)
     ),
   4: (
-    null:   pxtorem(24px),
-    medium: pxtorem(32px, $root-font-size--medium)
+    null:   px-to-rem(24px),
+    medium: px-to-rem(32px, $root-font-size--medium)
     ),
   5: (
-    null:   pxtorem(32px),
-    medium: pxtorem(40px, $root-font-size--medium)
+    null:   px-to-rem(32px),
+    medium: px-to-rem(40px, $root-font-size--medium)
     ),
   6: (
-    null:   pxtorem(40px),
-    medium: pxtorem(48px, $root-font-size--medium)
+    null:   px-to-rem(40px),
+    medium: px-to-rem(48px, $root-font-size--medium)
     ),
   7: (
-    null:   pxtorem(40px),
-    medium: pxtorem(56px, $root-font-size--medium)
+    null:   px-to-rem(40px),
+    medium: px-to-rem(56px, $root-font-size--medium)
     ),
   8: (
-    null:   pxtorem(48px),
-    medium: pxtorem(64px, $root-font-size--medium)
+    null:   px-to-rem(48px),
+    medium: px-to-rem(64px, $root-font-size--medium)
     ),
   9: (
-    null:   pxtorem(56px),
-    medium: pxtorem(72px, $root-font-size--medium)
+    null:   px-to-rem(56px),
+    medium: px-to-rem(72px, $root-font-size--medium)
     )
 ) !default;
 

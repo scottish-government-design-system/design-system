@@ -140,7 +140,7 @@ $page-nav__icon-size: 56px !default;
         top: 0;
 
         @include media-query(medium) {
-            font-size: pxtorem(16px, $root-font-size--medium);
+            font-size: px-to-rem(16px, $root-font-size--medium);
         }
     }
 }
