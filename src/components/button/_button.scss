@@ -83,7 +83,7 @@ $link__border-width: 3px;
         color: $ds_colour__white;
 
         &:hover:not(:focus) {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.3);
             color: $ds_colour__white;
         }
     }
