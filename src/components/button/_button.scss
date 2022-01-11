@@ -85,6 +85,7 @@ $link__border-width: 3px;
         &:hover:not(:focus) {
             background-color: rgba(0, 0, 0, 0.3);
             color: $ds_colour__white;
+            outline-color: currentColor;
         }
     }
 }
