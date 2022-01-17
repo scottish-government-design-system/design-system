@@ -13,7 +13,7 @@ $tag__background-colour: $ds_colour__brand !default;
     border-radius: 2px;
     color: $ds_colour__white;
     display: inline-block;
-    font-size: px-to-rem(16px);
+    font-size: px-to-rem(15px);
     font-weight: $bold;
     padding: 0 10px;
     text-transform: uppercase;
@@ -22,4 +22,10 @@ $tag__background-colour: $ds_colour__brand !default;
 .ds_reversed .ds_tag {
     background-color: $ds_colour__white;
     color: $tag__background-colour;
+}
+
+@include media-query(medium) {
+    .ds_tag {
+        font-size: px-to-rem(15px, $root-font-size--medium);
+    }
 }

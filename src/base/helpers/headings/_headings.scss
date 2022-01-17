@@ -2,30 +2,6 @@
 /// Heading size mixins
 ///
 
-@function strip-unit($num) {
-    @return $num / ($num * 0 + 1);
-}
-
-@function get-unit($value) {
-  @return str-slice($value * 0 + "", 2, -1);
-}
-
-@function px-to-rem ($px, $base: $root-font-size) {
-    @return ($px/$base) * 1rem;
-}
-
-@function rem-to-px ($rem, $base: $root-font-size) {
-    @return strip-unit($rem * $base) * 1px;
-}
-
-@function nearest-grid-size ($value, $grid: 8px) {
-    @return round($value / $grid) * $grid;
-}
-
-@function line-height-on-grid ($font-size, $line-height: 1.5) {
-    @return nearest-grid-size($font-size * $line-height) / $font-size;
-}
-
 @mixin ds_h1-size {
     font-size: px-to-rem($h1-size);
     line-height: line-height-on-grid($h1-size, 1.3);

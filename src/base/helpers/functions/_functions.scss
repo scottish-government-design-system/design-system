@@ -1,0 +1,31 @@
+///
+/// Miscellaneous functions, mostly used in the headings helpers
+///
+
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@function get-unit($value) {
+  @return str-slice($value * 0 + "", 2, -1);
+}
+
+@function px-to-em ($px, $base: $root-font-size) {
+    @return ($px/$base) * 1em;
+}
+
+@function px-to-rem ($px, $base: $root-font-size) {
+    @return ($px/$base) * 1rem;
+}
+
+@function rem-to-px ($rem, $base: $root-font-size) {
+    @return strip-unit($rem * $base) * 1px;
+}
+
+@function nearest-grid-size ($value, $grid: 8px) {
+    @return round($value / $grid) * $grid;
+}
+
+@function line-height-on-grid ($font-size, $line-height: 1.5) {
+    @return nearest-grid-size($font-size * $line-height) / $font-size;
+}
