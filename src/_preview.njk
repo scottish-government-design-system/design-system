@@ -87,9 +87,13 @@
         {{ yield | safe}}
         {{_target.meta.contentAfter | safe}}
     </div>
-    <script src="{{ '/assets/scripts/pattern-library.js' | path }}"></script>
+
+    <script type="module" src="{{ '/assets/scripts/pattern-library.js' | path }}"></script>
+    <script nomodule src="{{ '/assets/scripts/pattern-library.es5.js' | path }}"></script>
     <script>
-        window.DS.initAll();
+        window.setTimeout(function () {
+            window.DS.initAll();
+        }, 0);
     </script>
 </body>
 </html>
