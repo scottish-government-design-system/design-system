@@ -10,6 +10,8 @@
                     "logo": "/assets/images/logos/digital-scotland.svg",
                     "logoAlt": "Digital Scotland",
                     "logoLink": "#",
+                    "logoWidth": "300",
+                    "logoHeight": "93",
                     "title": "Design System",
                     "titleLink": "#"
                 }

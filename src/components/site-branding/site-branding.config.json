@@ -4,7 +4,9 @@
         "params": {
             "logo": "/assets/images/logos/digital-scotland.svg",
             "logoAlt": "Digital Scotland",
-            "logoLink": "#"
+            "logoLink": "#",
+            "logoWidth": "300",
+            "logoHeight": "93"
         }
     },
     "variants": [

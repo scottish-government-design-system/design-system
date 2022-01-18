@@ -12,10 +12,10 @@
             {%- endif %}
             {%- if params.copyrightContent %}
             <div class="ds_site-footer__copyright">
-                {%- if params.copyrightLogoLink %}
-                <a class="ds_site-footer__copyright-logo" href="{{ params.copyrightLink }}"><img src="{{ params.copyrightLogo }}" alt="{{ params.copyrightLogoAlt }}" /></a>
+                {%- if params.copyrightLink %}
+                <a class="ds_site-footer__copyright-logo" href="{{ params.copyrightLink }}"><img src="{{ params.copyrightLogo }}" alt="{{ params.copyrightLogoAlt }}" width="{{ params.copyrightLogoWidth }}" height="{{ params.copyrightLogoHeight }}"/></a>
                 {%- else %}
-                <span class="ds_site-footer__copyright-logo"><img src="{{ params.copyrightLogo }}" alt="{{ params.copyrightLogoAlt }}" /></span>
+                <span class="ds_site-footer__copyright-logo"><img src="{{ params.copyrightLogo }}" alt="{{ params.copyrightLogoAlt }}" width="{{ params.copyrightLogoWidth }}" height="{{ params.copyrightLogoHeight }}"/></span>
                 {%- endif %}
                 {{ params.copyrightContent | safe }}
             </div>
@@ -23,9 +23,9 @@
             {%- if params.orgLogo %}
             <div class="ds_site-footer__org">
                 {%- if params.orgLogoLink %}
-                <a class="ds_site-footer__org-link" href="{{ params.orgLink }}"><img class="ds_site-footer__org-logo" src="{{ params.orgLogo }}" alt="{{ params.orgLogoAlt }}" /></a>
+                <a class="ds_site-footer__org-link" href="{{ params.orgLink }}"><img class="ds_site-footer__org-logo" src="{{ params.orgLogo }}" alt="{{ params.orgLogoAlt }}" width="{{ params.orgLogoWidth }}" height="{{ params.orgLogoHeight }}"/></a>
                 {%- else %}
-                <img class="ds_site-footer__org-logo" src="{{ params.orgLogo }}" alt="{{ params.orgLogoAlt }}" />
+                <img class="ds_site-footer__org-logo" src="{{ params.orgLogo }}" alt="{{ params.orgLogoAlt }}" width="{{ params.orgLogoWidth }}" height="{{ params.orgLogoHeight }}" />
                 {%- endif %}
             </div>
             {%- endif %}
