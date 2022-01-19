@@ -18,7 +18,7 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
     }
 
     &__logo-image {
-        max-height: 100%;
+        height: $site-logo__height;
         pointer-events: none;
         width: 100%;
     }
@@ -73,6 +73,10 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
             &:not(:last-child)::before {
                 right: -24px;
             }
+        }
+
+        &__logo-image {
+            height: $site-logo__height--medium;
         }
 
         /*
