@@ -2,7 +2,7 @@
     "label": "Aspect box",
     "context": {
         "params":{
-
+            "altText": "Alt text"
         }
     },
     "variants": [
@@ -30,6 +30,17 @@
             "context": {
                 "params":{
                     "ratio": "ds_aspect-box--235"
+                }
+            }
+        },
+        {
+            "name": "Presentation only",
+            "label": "Presentation only",
+            "context": {
+                "params":{
+                    "ratio": "ds_aspect-box--235",
+                    "presentation": true,
+                    "altText": false
                 }
             }
         }
