@@ -5,6 +5,6 @@
 .ds_label {
     color: $ds_colour__text;
     display: inline-block;
-    font-weight: bold;
+    font-weight: $bold;
     margin-bottom: 8px;
 }

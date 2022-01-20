@@ -16,11 +16,10 @@
 
     &__error-message {
         color: $ds_colour__state--negative;
-        font-weight: bold;
+        font-weight: $bold;
         margin-bottom: 16px;
     }
 }
-
 
 @include ds_media-query(medium) {
     .ds_question {
