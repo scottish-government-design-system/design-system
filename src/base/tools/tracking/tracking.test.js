@@ -1112,6 +1112,27 @@ describe('tracking', () => {
         });
     });
 
+    describe('skip links', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('skip-links');
+        });
+
+        it('should add a generated data attribute on skip links without attributes already set', () => {
+            const link = testObj.scope.querySelector('.ds_skip-links__link[data-unit="without-attribute"]');
+            Tracking.add.skipLinks();
+
+            // this is the second item in the list, hence the 2
+            expect(link.getAttribute('data-navigation')).toEqual('skip-link-1');
+        });
+
+        it('should NOT add a generated data attribute on skip links links with attributes already set', () => {
+            const link = testObj.scope.querySelector('.ds_skip-links__link[data-unit="with-attribute"]');
+            Tracking.add.skipLinks();
+
+            expect(link.getAttribute('data-navigation')).toEqual('skip-link-foo');
+        });
+    });
+
     describe('warning texts', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('warning-text');
