@@ -12,8 +12,11 @@ $site-footer__background: $ds_colour__brand !default;
     @include ds_small-size;
     background-color: $site-footer__background;
     line-height: 24px;
-    padding-bottom: 32px;
-    padding-top: 24px;
+
+    &__content {
+        padding-bottom: 32px;
+        padding-top: 24px;
+    }
 
     /// [1] subtracting the border width
     &__site-items {
@@ -63,7 +66,7 @@ $site-footer__background: $ds_colour__brand !default;
     }
 }
 
-.ds_reversed.ds_site-footer {
+.ds_reversed .ds_site-footer__content {
     color: $ds_colour__white;
 }
 

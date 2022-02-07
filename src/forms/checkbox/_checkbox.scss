@@ -48,6 +48,10 @@
         top: 15px;
         border-width: 0 0 3px 3px;
     }
+
+    .ds_question__error-message {
+        margin-left: 16px;
+    }
 }
 
 @include ds_media-query(medium) {

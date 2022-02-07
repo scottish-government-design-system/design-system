@@ -11,7 +11,7 @@ $input-height: 48px;
         @include ds_large-size;
         content: '£';
         height: $input-height;
-        font-weight: bold;
+        font-weight: $bold;
         line-height: $input-height;
         pointer-events: none;
         position: absolute;
