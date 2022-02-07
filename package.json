@@ -5,28 +5,33 @@
   "author": {
     "name": "mygov.scot Digital Engineering team",
     "email": "mygov-tech-team@gov.scot",
-    "url": "https://patternlibrary.mygov.scot"
+    "url": "https://github.com/scottishgovernment/pattern-library"
   },
   "license": "MIT",
   "scripts": {
+    "fractal": "npm run dev; fractal start --sync",
+    "dev": "npm run sass -- -d; npm run svgsprite -- -d; npm run webpack -- -d;",
     "postshrinkwrap": "sealant",
     "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
     "nodesass": "node-sass src --output dist/css --output-style compressed",
-    "sass": "sass --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
-    "svgsprite": "node svg-sprite",
+    "sass": "node tasks/sass",
+    "svgsprite": "node tasks/svg-sprite",
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"
   },
-  "pre-commit": [
-    "test"
-  ],
-  "dependencies": {},
+  "dependencies": {
+    "@babel/runtime": "^7.14.0"
+  },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.4",
-    "ajv": "^6.9.1",
+    "@babel/preset-env": "^7.16.0",
+    "@frctl/fractal": "^1.5.11",
+    "@frctl/nunjucks": "^2.0.11",
+    "babel-loader": "^8.2.3",
+    "copy-webpack-plugin": "^6.0.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^2.4.1",
     "jasmine-jquery": "^2.1.1",
@@ -40,12 +45,17 @@
     "karma-jasmine-matchers": "^4.0.1",
     "karma-viewport": "^1.0.8",
     "karma-webpack": "^4.0.2",
+    "minimist": "^1.2.5",
     "node-sass": "^4.12.0",
     "pre-commit": "^1.2.2",
-    "sass": "^1.32.13",
+    "sass": "^1.43.4",
     "sealant": "^0.1.1",
-    "svg-sprite": "^1.4.0",
+    "svg-sprite": "^1.5.3",
+    "svgxuse": "^1.2.6",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.1"
-  }
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }

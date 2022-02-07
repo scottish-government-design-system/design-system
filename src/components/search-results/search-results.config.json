@@ -1,0 +1,122 @@
+{
+    "label": "Search results",
+    "context": {
+        "params": {
+            "suggestion": "crafting",
+            "suggestionLink": "#",
+            "resultsCount": "68",
+            "resultsList": [
+                {
+                    "params": {
+                        "element": "li",
+                        "metadata": {
+                            "params": {
+                                "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                                "items": [
+                                    {
+                                        "key": "Type",
+                                        "value": "Policy",
+                                        "hideKey": true,
+                                        "isLabel": true
+                                    }
+                                ]
+                            }
+                        },
+                        "heading": "Crofting community right to buy",
+                        "link": "#",
+                        "content": "Information and guidance regarding the crofting community right to buy."
+                    }
+                },
+                {
+                    "params": {
+                        "element": "li",
+                        "metadata": {
+                            "params": {
+                                "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                                "items": [
+                                    {
+                                        "key": "Type",
+                                        "value": "Consultation paper",
+                                        "hideKey": true,
+                                        "isLabel": true
+                                    },
+                                    {
+                                        "key": "Publication date",
+                                        "value": "28 Aug 2017",
+                                        "hideKey": true
+                                    }
+                                ]
+                            }
+                        },
+                        "heading": "Crofting consultation 2017",
+                        "link": "#",
+                        "content": "We are seeking the views of crofters, and those with an interest, on the pathway of any potential new legislation to reform crofting law."
+                    }
+                },
+                {
+                    "params": {
+                        "element": "li",
+                        "metadata": {
+                            "params": {
+                                "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                                "items": [
+                                    {
+                                        "key": "Type",
+                                        "value": "Consultation analysis",
+                                        "hideKey": true,
+                                        "isLabel": true
+                                    },
+                                    {
+                                        "key": "Publication date",
+                                        "value": "1 September 2017",
+                                        "hideKey": true
+                                    }
+                                ]
+                            }
+                        },
+                        "heading": "Crofting Elections 2017: consultation responses analysis",
+                        "link": "#",
+                        "content": "Analysis of the responses to the Crofting Elections 2017 consultation."
+                    }
+                }
+            ],
+            "pagination": {
+                "params": {
+                    "label": "Search result pages",
+                    "items": [
+                        {
+                            "label": "Previous",
+                            "textLabel": true,
+                            "link": "#"
+                        },
+                        {
+                            "label": "12",
+                            "link": "#"
+                        },
+                        {
+                            "label": "13",
+                            "link": "#"
+                        },
+                        {
+                            "label": "14",
+                            "current": true
+                        },
+                        {
+                            "label": "15",
+                            "link": "#"
+                        },
+                        {
+                            "label": "16",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Next",
+                            "textLabel": true,
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

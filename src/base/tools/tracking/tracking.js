@@ -503,6 +503,7 @@ const tracking = {
             const siteFooters = tracking.gatherElements('ds_site-footer', scope);
             siteFooters.forEach(footer => {
                 const logoLinks = [].slice.call(footer.querySelectorAll('.ds_site-footer__org-link'));
+
                 logoLinks.forEach(link => {
                     if (!link.getAttribute('data-footer')) {
                         link.setAttribute('data-footer', 'footer-logo');

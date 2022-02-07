@@ -41,7 +41,7 @@ function initAll(scope = document) {
 
     const characterCountModules = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]'));
     characterCountModules.forEach(characterCount => new CharacterCount(characterCount).init());
-
+ 
     const cookieNotificationEl = document.querySelector('[data-module="ds-cookie-notification"]');
     if (cookieNotificationEl) {
         const cookieNotification = new CookieNotification(cookieNotificationEl);

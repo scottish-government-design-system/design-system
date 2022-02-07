@@ -1,0 +1,22 @@
+<nav class="ds_pagination" aria-label="{{ params.label }}">
+    {#- REMOVE THIS?
+    <div class="ds_pagination__load-more">
+        <button class="ds_button">Load more</button>
+    </div>
+    -#}
+    <ul class="ds_pagination__list">
+        {%- for item in params.items -%}
+        <li class="ds_pagination__item" {%- if item.current %} aria-current="page"{%- endif -%} {%- if item.ellipsis %} aria-hidden="true"{%- endif -%}>
+            {%- if item.link %}
+            <a class="ds_pagination__link" href="{{ item.link }}">{{ item.label }}</a>
+            {%- elseif item.current %}
+            <span class="ds_pagination__link ds_current">{{ item.label }}</span>
+            {%- elseif item.ellipsis %}
+            <span class="ds_pagination__link ds_pagination__link--ellipsis">&hellip;</span>
+            {%- elseif item.textLabel %}
+            <a class="ds_pagination__link ds_pagination__link--text" href="{{ item.link }}">{{ item.label }}</a>
+            {%- endif %}
+        </li>
+        {%- endfor %} 
+    </ul>
+</nav>

@@ -4,14 +4,12 @@
 
 // modifiable vars
 $notification-banner__background-colour: $ds_colour__grey--dark !default;
+$notification-banner__background-colour--success: $ds_colour__state--positive !default;
 $notification-banner__colour-icon-colour: $ds_colour__yellow !default;
 
 // fixed vars
 $notification-banner__close-padding: 4px;
 $notification-banner__icon-padding: $notification-banner__close-padding;
-
-
-
 
 .ds_notification {
     background: $notification-banner__background-colour;
@@ -19,6 +17,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     margin-bottom: 1px;
 
     @include ds_last-child-no-margin;
+
+    &--success {
+        background: $notification-banner__background-colour--success;
+    }
 
     /// [1] compensate for bottom margin on parent
     &__content {

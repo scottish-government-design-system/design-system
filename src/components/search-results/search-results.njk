@@ -1,0 +1,29 @@
+<div class="ds_search-results">
+    {%- if params.suggestion %}
+    <nav id="suggestions" class="ds_search-suggestions" aria-label="Alternative search suggestions">
+        <span aria-hidden="true">Did you mean:</span>
+        <ul>
+            <li>
+                <a aria-label="Did you mean '{{ params.suggestion }}'?" href="{{ params.suggestionLink }}">{{ params.suggestion }}</a>
+            </li>
+        </ul>
+    </nav>
+    {%- endif %}
+    {%- if params.heading %}
+    <h2 class="visually-hidden">{{ params.heading }}</h2>
+    {%- endif %}
+    {%- if params.resultsCount %}
+    <p class="ds_search-results__count js-search-results-count"><b>{{ params.resultsCount }}</b> results</p>
+    {%- endif %}
+    {%- if params.resultsList %}
+    <ol id="search-results-list" class="ds_search-results__list" {%- if params.resultsCount %} data-total="{{ params.resultsCount }}"{%- endif -%}>
+        {%- for result in params.resultsList %}
+        {% render '@search-result', result %}
+        {%- endfor %}     
+    </ol>
+    {%- endif %}
+
+    {%- if params.pagination %}
+        {% render '@pagination', params.pagination %}
+    {%- endif %}
+</div>

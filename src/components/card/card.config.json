@@ -1,0 +1,34 @@
+{
+    "status": "wip",
+    "context": {
+        "params": {
+            "content": "Hello world!",
+            "itemTag": "div"
+        }
+    },
+    "variants": [
+        {
+            "name": "Heading",
+            "label": "Heading",
+            "context": {
+                "params": {
+                    "link": "#",
+                    "heading": "About the Design System",
+                    "content": "The Digital Scotland Design System provides static web assets for websites and web applications for the Scottish Government and other Scottish public sector bodies."
+                }
+            }
+        },
+        {
+            "name": "Image card",
+            "label": "Image card",
+            "context": {
+                "params": {
+                    "link": "#",
+                    "heading": "About the Design System",
+                    "image": "/assets/images/placeholders/thistles.jpg",
+                    "content": "The Digital Scotland Design System provides static web assets for websites and web applications for the Scottish Government and other Scottish public sector bodies."
+                }
+            }
+        }
+    ]
+}

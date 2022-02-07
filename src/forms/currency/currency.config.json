@@ -1,0 +1,18 @@
+{
+    "context": {
+        "params": {
+            "size": "ds_input--fixed-4"
+        }
+    },
+    "variants": [
+        {
+            "name": "Alternate currency",
+            "label": "Alternate currency",
+            "context": {
+                "params": {
+                    "currency": "$"
+                }
+            }
+        }
+    ]
+}

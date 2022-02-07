@@ -10,12 +10,11 @@ $contact-details__border-colour: $ds_colour__border--highlight;
 
 .ds_contact-details {
     $social-icon-size: 24px;
-    $contact-details-line-gap: 24px;
 
     &__title {
+        @include ds_responsive-padding(1, top);
         display: inline-block;
-        margin-bottom: $contact-details-line-gap;
-        padding-top: 8px;
+        margin-bottom: 0;
         position: relative;
 
         &::after {
@@ -37,13 +36,12 @@ $contact-details__border-colour: $ds_colour__border--highlight;
         font-weight: $bold;
     }
 
-    &__list dt:not(:first-child),
-    &__list dt + dd.ds_contact-details__social-item {
-        margin-top: $contact-details-line-gap;
+    &__item {
+        @include ds_responsive-margin(2, top);
     }
 
     &__social-item {
-        margin-bottom: 8px;
+        @include ds_responsive-margin(1, bottom);
         padding-left: #{$social-icon-size + 8px};
         position: relative;
     }
