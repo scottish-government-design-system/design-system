@@ -7,13 +7,16 @@ $ds_spacing-scale: (
     null:   0 /// [1]
     ),
   1: (
-    null:   px-to-rem(8px)
+    null:   px-to-rem(8px),
+    medium: px-to-rem(8px, $root-font-size--medium)
     ),
   2: (
-    null:   px-to-rem(16px)
+    null:   px-to-rem(16px),
+    medium: px-to-rem(16px, $root-font-size--medium)
     ),
   3: (
-    null:   px-to-rem(24px)
+    null:   px-to-rem(24px),
+    medium: px-to-rem(24px, $root-font-size--medium)
     ),
   4: (
     null:   px-to-rem(24px),

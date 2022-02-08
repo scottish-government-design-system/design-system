@@ -15,6 +15,7 @@ $tag__background-colour: $ds_colour__brand !default;
     display: inline-block;
     font-size: px-to-rem(15px);
     font-weight: $bold;
+    line-height: line-height-on-grid(15px);
     padding: 0 10px;
     text-transform: uppercase;
 }
@@ -27,5 +28,6 @@ $tag__background-colour: $ds_colour__brand !default;
 @include media-query(medium) {
     .ds_tag {
         font-size: px-to-rem(15px, $root-font-size--medium);
+        line-height: line-height-on-grid(15px);
     }
 }

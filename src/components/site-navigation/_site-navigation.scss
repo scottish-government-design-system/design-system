@@ -17,6 +17,8 @@ $site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colo
 $site-navigation__link-padding: 16px;
 
 .ds_site-navigation {
+    @include ds_small-size;
+
     display: none;
 
     &__toggle {
@@ -93,7 +95,7 @@ $site-navigation__link-padding: 16px;
 
 @include ds_media-query(medium) {
     .ds_site-navigation {
-        @include ds_small-size;
+        line-height: 2;
 
         &:not(&--mobile) {
             display: block;

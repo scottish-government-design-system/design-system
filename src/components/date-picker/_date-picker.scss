@@ -3,8 +3,6 @@
 \*------------------------------------*/
 
 
-
-
 .ds_datepicker {
     position: relative;
 
@@ -12,34 +10,37 @@
         @include ds_box-shadow;
 
         background-color: $ds_colour__white;
+        clear: both;
         display: none;
         padding: 8px;
         outline: 1px solid $ds_colour__border;
         outline-offset: -1px;
-        position: absolute;
+        position: static;
         top: 0;
         transition: background-color 0.2s, outline-color 0.2s;
         width: 296px;
         z-index: 2;
 
         &__header {
+            position: relative;
             text-align: center;
 
             > :nth-child(1) {
                 position: absolute;
-                left: 8px;
-                top: 8px;
+                left: 0;
+                top: -2px;
             }
 
             > :nth-child(3) {
                 position: absolute;
-                right: 8px;
-                top: 8px;
+                right: 0;
+                top: -2px;
             }
         }
 
         &__title {
             @include ds_small-size;
+            line-height: line-height-on-grid($small-size, 2);
             margin: 0 !important;
             text-transform: uppercase;
         }
@@ -140,6 +141,7 @@
         &__table-caption {
             @include ds_tiny-size;
             caption-side: bottom;
+            line-height: 2;
             margin-top: 8px;
         }
 
@@ -162,25 +164,34 @@
     }
 }
 
-@include ds_media-query(medium-down) {
+@include ds_media-query (medium) {
     .ds_datepicker {
-
         &__dialog {
-            clear: both;
-            position: static;
+            position: absolute;
+
+            &__title {
+                line-height: line-height-on-grid($small-size--medium, 1.5);
+                padding: 8px 0;
+            }
 
             &__header {
-                position: relative;
-
                 > :nth-child(1) {
-                    left: 0;
-                    top: -2px;
+                    // left: 8px;
+                    top: 0;
                 }
 
                 > :nth-child(3) {
-                    right: 0;
-                    top: -2px;
+                    // right: 8px;
+                    top: 0;
                 }
+            }
+
+            &__table th {
+                line-height: line-height-on-grid($small-size--medium, 2);
+            }
+
+            &__table-caption {
+                line-height: line-height-on-grid($tiny-size--medium, 2);
             }
         }
     }
