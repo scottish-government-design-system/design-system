@@ -553,6 +553,15 @@ const tracking = {
             });
         },
 
+        skipLinks: function (scope = document) {
+            const skipLinks = [].slice.call(scope.querySelectorAll('.ds_skip-links__link'));
+            skipLinks.forEach((link, index) => {
+                if (!link.getAttribute('data-navigation')) {
+                    link.setAttribute('data-navigation', `skip-link-${index + 1}`);
+                }
+            });
+        },
+
         textInputs: function (scope = document) {
             const textInputs = [].slice.call(scope.querySelectorAll('input.ds_input'));
             textInputs.forEach(textInput => {
