@@ -1,0 +1,18 @@
+{
+    "label": "Article aside",
+    "context": {
+        "params":{
+            "heading": "Related content",
+            "list": [
+                {
+                    "label": "Help with benefits",
+                    "link": "#"
+                },
+                {
+                    "label": "Self-Isolation Support Grant (&pound;500)",
+                    "link": "#"
+                }
+            ]
+        }
+    }
+}

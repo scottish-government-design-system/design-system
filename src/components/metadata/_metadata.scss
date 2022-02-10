@@ -10,6 +10,7 @@
 
     &__key {
         display: inline;
+        font-weight: normal;
 
         &::after {
             content: ':';

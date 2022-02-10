@@ -74,7 +74,8 @@ $site-navigation__link-padding: 16px;
             padding-bottom: $site-navigation__link-padding;
             padding-top: $site-navigation__link-padding;
 
-            &:hover:not(:focus) {
+            &:hover:not(:focus),
+            &.ds_current {
                 $site-navigation__mobile-border-width: 4px;
                 border-left: $site-navigation__mobile-border-width solid $ds_colour__brand;
                 padding-left: #{$site-navigation__link-padding - $site-navigation__mobile-border-width};
@@ -146,5 +147,13 @@ $site-navigation__link-padding: 16px;
                 background-color: $ds_colour__link--hover__background;
             }
         }
+    }
+}
+
+
+// when site navigation is a child of a reversed-variant site header
+.ds_reversed .ds_site-navigation {
+    @include ds_media-query(medium) {
+        color: $ds_colour__white;
     }
 }

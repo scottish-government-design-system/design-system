@@ -1,0 +1,9 @@
+{
+    "label": "Content label",
+    "status": "ready",
+    "context": {
+        "params": {
+            "label": "Guide"
+        }
+    }
+}

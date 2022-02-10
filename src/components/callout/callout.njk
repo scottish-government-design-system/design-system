@@ -1,0 +1,9 @@
+<section class="ds_callout" aria-labelledby="ds_callout__title">
+    <header {%- if params.hiddenHeading %} class="visually-hidden"{% endif %}>
+        {%- if params.label %}<div class="ds_callout__label ds_content-label">{{ params.label }}</div>{% endif %}
+        <h2 class="ds_callout__title" id="ds_callout__title">{{ params.heading }}</h2>
+    </header>
+    <div class="ds_callout__content">
+        {{ params.content | safe }}
+    </div>
+</section>

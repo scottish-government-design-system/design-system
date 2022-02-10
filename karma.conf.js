@@ -16,8 +16,9 @@ const instrumentationConfig = {
     }
 };
 
-webpackConfig.mode = 'development';
-webpackConfig.module.rules.push(instrumentationConfig);
+const testWebpackConfig = webpackConfig()[0];
+testWebpackConfig.mode = 'development';
+testWebpackConfig.module.rules.push(instrumentationConfig);
 
 module.exports = function (config) {
     config.set({
@@ -62,6 +63,6 @@ module.exports = function (config) {
             }
         },
 
-        webpack: webpackConfig
+        webpack: testWebpackConfig
     });
 };

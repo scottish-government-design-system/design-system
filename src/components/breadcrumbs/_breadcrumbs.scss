@@ -18,16 +18,21 @@ $breadcrumbs__font-size: $small-size--fixed;
 
     &__item {
         display: inline-block;
-        margin-bottom: 0;
-        margin-left: 0;
+        margin: 0;
         padding: 0;
     }
 
-    &__item:not(:first-child)::before {
-        @include ds_chevron(right, 0.333333em);
-        margin: 0 4px 0 2px;
-        position: relative;
-        top: -1px;
+    &__item:not(:first-child){
+        .ds_breadcrumbs__link {
+            margin-left: -2px; // Negative margin to offset the 2px outline on links
+        }
+
+        &::before {
+            @include ds_chevron(right, 0.333333em);
+            margin: 0 8px 0 6px;
+            position: relative;
+            top: -1px;
+        }
     }
 
     &__container {
@@ -38,6 +43,11 @@ $breadcrumbs__font-size: $small-size--fixed;
         &__container {
             padding-top: 24px;
         }
+    }
+
+    @supports (display: flex) {
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 
