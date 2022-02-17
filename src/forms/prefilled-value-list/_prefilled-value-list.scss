@@ -5,19 +5,21 @@
 .ds_prefilled-value-list {
 
     &__key {
-        margin: 0 0 8px;
+        margin: 0;
+        @include ds_responsive-margin(1, bottom);
         padding: 0;
     }
 
     &__value {
-        margin: 0 0 24px;
+        margin: 0;
+        @include ds_responsive-margin(3, bottom);
         padding: 0;
 
         @include ds_media-query(medium) {
             display: flex;
 
             &-actions {
-                margin-left: 24px;
+                @include ds_responsive-margin(3, left);
             }
         
         }
