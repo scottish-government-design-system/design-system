@@ -7,7 +7,17 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
-## [Unreleased]
+## [0.0.225] - 2022-02-17
+### Added
+- Prefilled value list within form components.
+
+## [0.0.224] - 2022-02-13
+### Added
+- Responsive spacing helpers.
+### Changed
+- Fixed dimensions changed to use responsive spacing.
+
+## [0.0.223] - 2022-02-07
 ### Added
 - Inclusion of [Fractal](https://fractal.build/) now provides a way to browse components, and their variants, locally without requiring to add the pattern library to another project first.
 - Dev set of build tasks.
