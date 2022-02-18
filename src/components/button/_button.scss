@@ -45,8 +45,9 @@ $link__border-width: 3px;
         box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
         color: $ds_colour__button--focus;
         outline: 0;
-
         transition-duration: 0s;
+
+        @include ds_high-contrast-focus(4px);
     }
 
     // ICONS ON BUTTONS

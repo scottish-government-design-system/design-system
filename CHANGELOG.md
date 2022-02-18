@@ -7,6 +7,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.226] - 2022-02-18
+### Added
+- Mixin to help with focus states in Windows high contrast mode.
+
 ## [0.0.225] - 2022-02-17
 ### Added
 - Prefilled value list within form components.

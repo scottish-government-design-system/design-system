@@ -1,0 +1,13 @@
+///
+/// High contrast focus
+///
+
+@mixin ds_high-contrast-focus($width: 2px) {
+    @media screen and (forced-colors: active) and (prefers-contrast: more) {
+        outline-color: highlight !important;
+        outline-style: solid !important;
+        outline-width: $width !important;
+
+        @content;
+    }
+}

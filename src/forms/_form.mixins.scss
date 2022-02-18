@@ -60,6 +60,10 @@
     &__input:focus + &__label::before {
         border-width: $field-border-width--focus;
         box-shadow: 0 0 0 $field-glow-width $ds_colour__yellow;
+
+        @include ds_high-contrast-focus(4px) {
+            outline-offset: -4px;
+        };
     }
 
     /// checked
