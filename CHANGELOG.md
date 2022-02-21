@@ -7,7 +7,7 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
-## [0.0.227]
+## [0.0.227] - 2022-02-21
 ### Changed
 - Site branding text is a link only when not appearing alongside a linked logo. 
 ### Fixed
