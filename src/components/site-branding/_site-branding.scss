@@ -20,7 +20,7 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
     &__logo-image {
         height: $site-logo__height;
         pointer-events: none;
-        width: 100%;
+        width: auto;
     }
 
     &__link {

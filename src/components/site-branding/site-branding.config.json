@@ -40,8 +40,7 @@
                     "logo": "/assets/images/logos/digital-scotland.svg",
                     "logoAlt": "Digital Scotland",
                     "logoLink": "#",
-                    "title": "Design System",
-                    "titleLink": "#"
+                    "title": "Design System"
                 }
             }
         },
@@ -53,8 +52,7 @@
                     "logo": "/assets/images/logos/digital-scotland.svg",
                     "logoAlt": "Digital Scotland",
                     "logoLink": "#",
-                    "title": "Design System<br> Second line",
-                    "titleLink": "#"
+                    "title": "Design System<br> Second line"
                 }
             }
         },
@@ -69,8 +67,7 @@
                     "logo": "/assets/images/logos/digital-scotland--reversed.svg",
                     "logoAlt": "Digital Scotland",
                     "logoLink": "#",
-                    "title": "Design System<br> Second line",
-                    "titleLink": "#"
+                    "title": "Design System<br> Second line"
                 }
             }
         }

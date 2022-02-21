@@ -7,6 +7,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.227]
+### Changed
+- Site branding text is a link only when not appearing alongside a linked logo. 
+### Fixed
+- Inconsistent width of site branding logo in Safari browser when SVG.
+
 ## [0.0.226] - 2022-02-18
 ### Added
 - Mixin to help with focus states in Windows high contrast mode.
