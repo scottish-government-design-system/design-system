@@ -85,6 +85,7 @@ const tracking = {
                         items.forEach((item, index) => {
                             setAccordionItem(item, index);
                         });
+                        setOpenAll(openAll);
                     });
                 }
 

@@ -121,6 +121,10 @@ class DSDatePicker {
 
         // populates calendar with inital dates, avoids Wave errors about null buttons
         this.updateCalendar();
+
+        if (window.DS.tracking) {
+            window.DS.tracking.init(document.getElementByIf(dialog.id));
+        }
     }
 
     buttonTemplate() {

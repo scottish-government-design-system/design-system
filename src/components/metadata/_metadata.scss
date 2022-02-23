@@ -32,14 +32,16 @@
  * Alternative display collapsing the metadata into a single line
  */
 .ds_metadata--inline {
-    color: $ds_colour__text--secondary;
     @include ds_tiny-size;
+
+    color: $ds_colour__text--secondary;
     line-height: 24px;
     margin-bottom: 8px;
 
     .ds_metadata__item {
         display: inline;
         position: relative;
+        z-index: -1;
     }
 
     .ds_metadata__item:not(:first-child) {
@@ -48,8 +50,8 @@
 
         &::before {
             background: currentColor;
-            bottom: 2px;
             content: '';
+            height: calc(1em -1px);
             left: 0;
             position: absolute;
             top: 2px;

@@ -1,5 +1,4 @@
 {
-    "status": "prototype",
     "context": {
         "params": {
             "label": "Search result pages",
@@ -37,6 +36,7 @@
                         {
                             "label": "Previous",
                             "textLabel": true,
+                            "previous": true,
                             "link": "#"
                         },
                         {
@@ -62,6 +62,30 @@
                         {
                             "label": "Next",
                             "textLabel": true,
+                            "next": true,
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Next and Previous only",
+            "label": "Next and Previous only",
+            "status": "wip",
+            "context": {
+                "params": {
+                    "items": [
+                        {
+                            "label": "Previous",
+                            "textLabel": true,
+                            "previous": true,
+                            "link": "#"
+                        },
+                        {
+                            "label": "Next",
+                            "textLabel": true,
+                            "next": true,
                             "link": "#"
                         }
                     ]
@@ -78,6 +102,7 @@
                         {
                             "label": "Previous",
                             "textLabel": true,
+                            "previous": true,
                             "link": "#"
                         },
                         {
@@ -110,6 +135,45 @@
                         {
                             "label": "Next",
                             "textLabel": true,
+                            "next": true,
+                            "link": "#"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Load more",
+            "label": "Load more",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "loadMore": true,
+                    "items": [
+                        {
+                            "label": "1",
+                            "link": "#"
+                        },
+                        {
+                            "label": "2",
+                            "link": "#"
+                        },
+                        {
+                            "label": "3",
+                            "current": true
+                        },
+                        {
+                            "label": "4",
+                            "link": "#"
+                        },
+                        {
+                            "label": "5",
+                            "link": "#"
+                        },
+                        {
+                            "label": "Next",
+                            "textLabel": true,
+                            "next": true,
                             "link": "#"
                         }
                     ]

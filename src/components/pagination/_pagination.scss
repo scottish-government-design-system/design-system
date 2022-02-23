@@ -9,29 +9,32 @@
     &__list {
         list-style-type: none;
         margin: 0;
+    }
+
+    // Hide pagination if load more button present
+    &__load-more + &__list {
         display: none;
     }
 
     &__item {
         display: inline-block;
+        margin-bottom: 4px; // override default margin on li
     }
 
     &__link {
         @include ds_blocklink;
-
-        line-height: 24px;
-        padding: 12px 8px;
-        text-decoration: none;
+        line-height: 48px;
+        min-height: 48px;
         min-width: 48px;
+        text-decoration: none;
 
         &.ds_current {
             background-color: $ds_colour__link--current__background;
             box-shadow: inset 0 -3px 0 0px currentColor;
-            padding-bottom: 12px;
             pointer-events: none;
         }
 
-        &--text {
+        &--text:not(&--icon) {
             padding-left: 24px;
             padding-right: 24px;
             width: auto;
@@ -46,25 +49,53 @@
 @include ds_media-query(medium) {
     .ds_pagination {
 
-        &__list {
+        &__load-more + &__list {
             display: block;
         }
 
         &__load-more {
             display: none;
         }
+
+        &__link--icon {
+            padding-left: 24px;
+            padding-right: 24px;
+            width: auto;
+        }
     }
 }
 
+@include ds_media-query(medium-down) {
+    .ds_pagination {
+        &__link--icon {
+            .ds_pagination__link-label {
+                @include ds_visually-hidden;
+            }
+        }
+    }
+}
+
+    
 @supports (display: flex) {
     .ds_pagination {
+        &__item {
+            margin-bottom: 0; // No longer need margin for wrapping as flexbox gap handles this
+        }
+
         &__list {
             display: flex;
+            flex-wrap: wrap;
+<<<<<<< Updated upstream
+            gap: 4px;
+=======
+>>>>>>> Stashed changes
             justify-content: center;
         }
 
-        &__item:not(:last-child) {
-            margin-right: 4px;
+        &__link {
+            align-items: center;
+            display: flex;
+            justify-content: center;
         }
     }
 }

@@ -7,6 +7,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.228] - 2022-02-22
+### Changed
+- Pagination "load more" button is now a variant of the component.
+- Date picker component sets tracking on itself after initialisation.
+- Responsive spacing mixins now have a default value for the "direction" property.
+### Fixed
+- Tracking attributes now set correctly on accordion "open all" buttons.
+
 ## [0.0.227] - 2022-02-21
 ### Changed
 - Site branding text is a link only when not appearing alongside a linked logo. 
