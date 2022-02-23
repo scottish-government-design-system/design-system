@@ -9,7 +9,7 @@
 /// This low-level mixin sholuld rarely be used directly.
 /// Use ds_reponsive-margin and ds_responsive-padding instead.
 ///
-/// @param {number} $spacing-unit - entry in the spacig scale to get values from
+/// @param {number} $spacing-unit - entry in the spacing scale to get values from
 /// @param {string} $property - property to assign a value to
 /// @param {string} $direction - direction to apply the value to (leave empty for all directions)
 /// @param {boolean} $important - whether to include the !important flag
@@ -76,7 +76,7 @@
 /// Allows the addition of the !important flag.
 /// Allows fine tuning by pixel amounts.
 ///
-/// @param {number} $spacing-unit - entry in the spacig scale to get values from
+/// @param {number} $spacing-unit - entry in the spacing scale to get values from
 /// @param {string} $direction - direction to apply the value to (leave empty for all directions)
 /// @param {boolean} $important - whether to include the !important flag
 /// @param {string} $tuning - value to add to the output for fine tuning
@@ -100,7 +100,7 @@
 /// Allows the addition of the !important flag.
 /// Allows fine tuning by pixel amounts.
 ///
-/// @param {number} $spacing-unit - entry in the spacig scale to get values from
+/// @param {number} $spacing-unit - entry in the spacing scale to get values from
 /// @param {string} $direction - direction to apply the value to (leave empty for all directions)
 /// @param {boolean} $important - whether to include the !important flag
 /// @param {string} $tuning - value to add to the output for fine tuning

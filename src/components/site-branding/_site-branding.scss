@@ -18,8 +18,9 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
     }
 
     &__logo-image {
-        height: 100%;
+        height: $site-logo__height;
         pointer-events: none;
+        width: 100%;
     }
 
     &__link {
@@ -74,11 +75,14 @@ $branding__separator-colour: $ds_colour__border--highlight !default;
             }
         }
 
+        &__logo-image {
+            height: $site-logo__height--medium;
+        }
+
         /*
          * [1] magic number: maximum we can accommodate in the branding content area for two-line titles
          */
         &__title {
-            font-size: $large-size;
             line-height: $site-logo__height--medium;
 
             &:not(:first-child){

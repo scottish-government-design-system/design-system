@@ -3,27 +3,18 @@
 \*------------------------------------*/
 
 .ds_question {
-    margin-bottom: 24px;
-
     &--error {
         border-left: 4px solid $ds_colour__state--negative;
         padding-left: 20px;
     }
 
-    &__message {
-        margin-bottom: 16px;
+    &__message,
+    &__error-message {
+        @include ds_responsive-margin(2, bottom);
     }
 
     &__error-message {
         color: $ds_colour__state--negative;
-        font-weight: bold;
-        margin-bottom: 16px;
-    }
-}
-
-
-@include ds_media-query(medium) {
-    .ds_question {
-        margin-bottom: 32px;
+        font-weight: $bold;
     }
 }

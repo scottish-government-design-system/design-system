@@ -7,11 +7,14 @@
     border: 1px solid currentColor;
     border-width: 1px 0;
     font-weight: $bold;
-    padding: 23px 16px 23px 72px; /// [1]
+    padding-left: 72px;
+    padding-right: 16px;
     position: relative;
 
     @include ds_block-margins;
     @include ds_last-child-no-margin;
+    @include ds_responsive-padding(4, top, false, -1px); /// 1
+    @include ds_responsive-padding(4, bottom, false, -1px); /// 1
 
     &:first-child {
         margin-top: 0;
@@ -47,9 +50,8 @@
 }
 
 @include ds_media-query(medium) {
-    /// [1] compensate for border
     .ds_warning-text {
-        padding: 31px 72px 31px 72px; /// [1]
+        padding-right: 72px;
     }
 
     .ds_warning-text__icon {

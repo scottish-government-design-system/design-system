@@ -131,13 +131,17 @@ $page-nav__icon-size: 56px !default;
     &::before {
         color: $page-nav__prefix-colour;
         content: attr(data-label);
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: $bold;
         left: 0;
         position: absolute;
         right: 0;
         text-transform: uppercase;
         top: 0;
+
+        @include media-query(medium) {
+            font-size: px-to-rem(16px, $root-font-size--medium);
+        }
     }
 }
 

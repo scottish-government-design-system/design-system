@@ -16,8 +16,10 @@
             "label": "With image",
             "context": {
                 "params": {
-                    "image": "/assets/images/placeholders/category-header-design-standards.svg",
-                    "imageAlt": "Alt text"
+                    "image": "/assets/images/placeholders/coast.jpg",
+                    "imageAlt": "Alt text",
+                    "imageWidth": "656",
+                    "imageHeight": "369"
                 }
             }
         },
@@ -27,8 +29,10 @@
             "context": {
                 "params": {
                     "reversed": true,
-                    "image": "/assets/images/placeholders/category-header-design-standards--reversed.svg",
-                    "imageAlt": "Alt text"
+                    "image": "/assets/images/placeholders/coast.jpg",
+                    "imageAlt": "Alt text",
+                    "imageWidth": "656",
+                    "imageHeight": "369"
                 }
             }
         },
@@ -38,8 +42,10 @@
             "context": {
                 "params": {
                     "reversed": true,
-                    "image": "/assets/images/placeholders/category-header-design-standards--reversed.svg",
+                    "image": "/assets/images/placeholders/coast.jpg",
                     "imageAlt": "Alt text",
+                    "imageWidth": "656",
+                    "imageHeight": "369",
                     "breadcrumbsList": {
                         "params": {
                             "breadcrumbs": [

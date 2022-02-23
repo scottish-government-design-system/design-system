@@ -45,8 +45,9 @@ $link__border-width: 3px;
         box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
         color: $ds_colour__button--focus;
         outline: 0;
-
         transition-duration: 0s;
+
+        @include ds_high-contrast-focus(4px);
     }
 
     // ICONS ON BUTTONS
@@ -83,8 +84,9 @@ $link__border-width: 3px;
         color: $ds_colour__white;
 
         &:hover:not(:focus) {
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.3);
             color: $ds_colour__white;
+            outline-color: currentColor;
         }
     }
 }

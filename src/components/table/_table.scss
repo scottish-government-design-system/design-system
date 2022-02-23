@@ -22,7 +22,7 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
 
     th {
         background-color: $table-header-background-colour;
-        font-weight: bold;
+        font-weight: $bold;
         position: relative;
         text-align: left;
     }
@@ -74,15 +74,14 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
 
 
     caption {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: $bold;
-        line-height: 21px;
-        margin-bottom: 14px;
+        line-height: 24px;
+        margin-bottom: 16px;
         text-align: left;
 
         @include ds_media-query(medium) {
-            font-size: 19px;
-            line-height: 28px;
+            line-height: 32px;
         }
     }
 }
@@ -189,7 +188,7 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
                 content: attr(data-heading);
                 display: block;
                 position: absolute;
-                font-weight: bold;
+                font-weight: $bold;
                 left: 0;
                 margin-left: 16px;
                 margin-right: 16px;

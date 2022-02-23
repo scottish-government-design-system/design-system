@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 html {
-    font-size: $root-font-size;
+    font-size: px-to-rem($root-font-size);
 }
 
 body {
@@ -13,17 +13,17 @@ body {
     font-style: normal;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
-    line-height: 24px;
+    line-height: line-height-on-grid($root-font-size);
     margin: 0;
     text-rendering: optimizeLegibility;
 }
 
 @include ds_media-query(medium) {
     html {
-        font-size: $root-font-size--medium;
+        font-size: px-to-rem($root-font-size--medium);
     }
 
     body {
-        line-height: 32px;
+        line-height: line-height-on-grid($root-font-size--medium);
     }
 }

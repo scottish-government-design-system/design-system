@@ -5,8 +5,9 @@
 .ds_article-aside {
     @include ds_block-margins;
     @include ds_small-size;
+    @include ds_responsive-padding(4, top);
+
     line-height: 20px;
-    padding-top: 24px;
     position: relative;
 
     &:first-child {
@@ -27,7 +28,6 @@
 @include ds_media-query(medium) {
     .ds_article-aside {
         line-height: 24px;
-        padding-top: 32px;
 
         li {
             margin-bottom: 16px;
