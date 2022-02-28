@@ -3,6 +3,7 @@
     "context": {
         "params": {
             "hiddenHeading": true,
+            "headingLevel": "h2",
             "heading": "Cookie definition",
             "content": "<p>The term ’cookies’ on this page refers to:</p><ul><li>browser and HTTP-only cookies</li><li>HTML5 local storage</li><li>service workers</li><li>any other technologies you use that store files on a user's device</li></ul>"
         }
@@ -25,6 +26,7 @@
             "context": {
                 "params": {
                     "hiddenHeading": false,
+                    "headingLevel": "h3",
                     "removeBorder": true,
                     "heading": "Related searches",
                     "content": "<ul class=\"ds_no-bullets\"><li><a href=\"#\">A similar search</a></li><li><a href=\"#\">Another search term</a></li><li><a href=\"#\">Yet another different but similar search</a></li></ul>"

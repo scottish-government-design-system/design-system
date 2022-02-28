@@ -21,10 +21,6 @@
         font-size: $small-size--fixed;
     }
 
-    &__title {
-        @include ds_h2-size;
-    }
-
     &__label +  &__title {
         margin-top: 0;
     }
