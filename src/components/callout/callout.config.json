@@ -20,6 +20,18 @@
             }
         },
         {
+            "name": "No border",
+            "label": "No border",
+            "context": {
+                "params": {
+                    "hiddenHeading": false,
+                    "removeBorder": true,
+                    "heading": "Related searches",
+                    "content": "<ul class=\"ds_no-bullets\"><li><a href=\"#\">A similar search</a></li><li><a href=\"#\">Another search term</a></li><li><a href=\"#\">Yet another different but similar search</a></li></ul>"
+                 }
+            }
+        },
+        {
             "name": "Visible heading and label",
             "label": "Visible heading and label",
             "context": {

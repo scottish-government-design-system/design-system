@@ -4,10 +4,17 @@
 
 .ds_callout {
     @include ds_block-margins;
+    @include ds_responsive-padding(2, top);
+    @include ds_responsive-padding(2, bottom);
+    @include ds_responsive-padding(3, left);
+    @include ds_responsive-padding(3, right);
 
     background: $ds_colour__grey--lighter;
     border-left: 4px solid $ds_colour__brand;
-    padding: 16px 24px;
+
+    &--no-border {
+        border: none;
+    }
 
     &__label.ds_content-label {
         color: $ds_colour__brand;
@@ -15,9 +22,7 @@
     }
 
     &__title {
-        @include ds_h1-size;
-        line-height: 32px;
-        margin-bottom: 16px;
+        @include ds_h2-size;
     }
 
     &__label +  &__title {
@@ -26,15 +31,5 @@
 
     &__content {
         @include ds_last-child-no-margin;
-    }
-}
-
-@include ds_media-query(medium) {
-    .ds_callout {
-        padding: 32px;
-
-        &__title {
-            line-height: 56px;
-        }
     }
 }
