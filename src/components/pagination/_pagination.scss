@@ -75,7 +75,7 @@
     }
 }
 
-    
+
 @supports (display: flex) {
     .ds_pagination {
         &__item {
@@ -85,10 +85,7 @@
         &__list {
             display: flex;
             flex-wrap: wrap;
-<<<<<<< Updated upstream
             gap: 4px;
-=======
->>>>>>> Stashed changes
             justify-content: center;
         }
 

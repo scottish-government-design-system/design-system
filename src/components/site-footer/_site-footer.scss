@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$site-footer__background: $ds_colour__brand !default;
+$site-footer__background: $ds_colour__grey--light !default;
 
 
 
@@ -19,7 +19,7 @@ $site-footer__background: $ds_colour__brand !default;
 
     /// [1] subtracting the border width
     &__site-items {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         font-size: $small-size--fixed;
         font-weight: $bold;
         line-height: line-height-on-grid($small-size--fixed);
@@ -68,6 +68,10 @@ $site-footer__background: $ds_colour__brand !default;
 
 .ds_reversed .ds_site-footer__content {
     color: $ds_colour__white;
+}
+
+.ds_reversed .ds_footer__site-items {
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .ds_site-items {
