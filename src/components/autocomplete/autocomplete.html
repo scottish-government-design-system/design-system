@@ -1,0 +1,31 @@
+<div class="ds_site-search  ds_autocomplete" id="autocomplete">
+    <form role="search" class="ds_site-search__form" method="GET" action="#">
+        <label class="ds_label  visually-hidden" for="site-search">Search</label>
+
+        <div class="ds_input__wrapper  ds_input__wrapper--has-icon">
+            <input
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-owns="autocomplete-suggestions"
+            autocomplete="off"
+            class="ds_input  ds_site-search__input  js-autocomplete-input"
+            haspopup="true"
+            id="site-search"
+            name="q"
+            placeholder="Search"
+            required=""
+            type="text"
+            />
+            <input name="cat" value="sitesearch" hidden>
+
+            <button type="submit" class="ds_button  js-site-search-button">
+                <span class="visually-hidden">Search gov.scot</span>
+                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="#search"></use></svg>
+            </button>
+
+            <div id="autocomplete-suggestions" class="ds_autocomplete__suggestions">
+                <ol class="ds_autocomplete__suggestions-list" role="listbox" aria-labelledby="site-search-label"></ol>
+            </div>
+        </div>
+    </form>
+</div>

@@ -7,6 +7,26 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.233] - 2022-03-04
+## Added
+- Alpha "autocomplete" component
+
+## [0.0.232] - 2022-03-04
+## Fixed
+- Regression introduced in Date Picker component
+
+## [0.0.231] - 2022-03-03
+## Changed
+- Update site footer component with new grey colourway
+
+## [0.0.230] - 2022-02-23
+## Fixed
+- Incorrect syntax on calc() expression
+
+## [0.0.229] - 2022-02-23
+## Changed
+- Improve stability of Date Picker component
+
 ## [0.0.228] - 2022-02-22
 ### Changed
 - Pagination "load more" button is now a variant of the component.
