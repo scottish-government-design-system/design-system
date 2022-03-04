@@ -3,6 +3,9 @@
 \*------------------------------------*/
 
 $tab__background-colour: $ds_colour__link--disabled__background !default;
+$tab__background-colour--current: $ds_colour__white !default;
+$tab__border-width: 1px !default;
+$tab__border-width--current: 2px !default;
 
 .ds_tabs {
 
@@ -13,17 +16,47 @@ $tab__background-colour: $ds_colour__link--disabled__background !default;
 
         @include ds_media-query(medium) {
             display: flex;
+            flex-wrap: wrap;
             gap: 4px;
         }
     }
 
     &__tab-link {
-        padding: 16px;
+        @include ds_blocklink;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+    &__tab {
+        background-color: $tab__background-colour;
+        margin: 0;
+        
+        &.ds_current,
+        &:focus-within {
+            margin-bottom: -$tab__border-width !important;
+            .ds_tabs__tab-link {
+                padding-bottom: calc(8px + $tab__border-width);
+            }
+        }
+        
+        &.ds_current:not(:focus-within) {
+            background-color: $tab__background-colour--current;
+            border-top: $tab__border-width--current solid $ds_colour__border--highlight;
+            border-left: $tab__border-width solid $ds_colour__border;
+            border-right: $tab__border-width solid $ds_colour__border;
+            border-bottom: 0;
+
+            .ds_tabs__tab-link {
+                color: $ds_colour__text;
+                padding: calc(8px - $tab__border-width--current) calc(16px - $tab__border-width) calc(8px + $tab__border-width);
+                text-decoration: none;
+            }
+        }
     }
 
     &__content {
         border-top: 1px solid $ds_colour__border;
-        display: none;
+        //display: none;
         padding: 16px;
     }
 

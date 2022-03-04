@@ -2,47 +2,69 @@
     "status": "wip",
     "context": {
         "params": {
-            "hiddenHeading": true,
-            "headingLevel": "h2",
-            "heading": "Cookie definition",
-            "content": "<p>The term ’cookies’ on this page refers to:</p><ul><li>browser and HTTP-only cookies</li><li>HTML5 local storage</li><li>service workers</li><li>any other technologies you use that store files on a user's device</li></ul>"
+            "tabs": [
+                {
+                    "tabTitle": "Tab 1",
+                    "tabId": "tab1",
+                    "tabContent": "<p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                },
+                {
+                    "tabTitle": "Tab 2",
+                    "tabId": "tab2",
+                    "tabContent": "<p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                },
+                {
+                    "tabTitle": "Tab 3",
+                    "tabId": "tab3",
+                    "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                },
+                {
+                    "tabTitle": "Tab 4",
+                    "tabId": "tab4",
+                    "tabContent": "<p>Content for Tab 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                }
+            ]
         }
     },
     "variants": [
         {
-            "name": "Visible heading",
-            "label": "Visible heading",
+            "name": "Lots of tabs",
+            "label": "Lots of tabs",
             "context": {
                 "params": {
-                    "hiddenHeading": false,
-                    "heading": "Barclays world-class campus takes shape in Glasgow",
-                    "content": "<p>Glasgow's financial services sector received a major boost after Barclays announced plans to develop a new 5000-person campus on the banks for the River Clyde.</p><p>Barclays operates in 40 countries across the world, and the development in Glasgow will sit alongside Whippany in New Jersey and Pune in India as part of a global strategy to create world-class facilities for the bank's functions, technology and operations teams.</p>"
+                    "tabs": [
+                        {
+                            "tabTitle": "Tab title 1",
+                            "tabId": "tab1",
+                            "tabContent": "<p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "This is another title 2",
+                            "tabId": "tab2",
+                            "tabContent": "<p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "Further tab 3",
+                            "tabId": "tab3",
+                            "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "Tab 4",
+                            "tabId": "tab4",
+                            "tabContent": "<p>Content for Tab 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "A longer tab title 5",
+                            "tabId": "tab5",
+                            "tabContent": "<p>Content for Tab 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "Last tab 6",
+                            "tabId": "tab6",
+                            "tabContent": "<p>Content for Tab 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        }
+                    ]
                  }
-            }
-        },
-        {
-            "name": "No border",
-            "label": "No border",
-            "context": {
-                "params": {
-                    "hiddenHeading": false,
-                    "headingLevel": "h3",
-                    "removeBorder": true,
-                    "heading": "Related searches",
-                    "content": "<ul class=\"ds_no-bullets\"><li><a href=\"#\">A similar search</a></li><li><a href=\"#\">Another search term</a></li><li><a href=\"#\">Yet another different but similar search</a></li></ul>"
-                 }
-            }
-        },
-        {
-            "name": "Visible heading and label",
-            "label": "Visible heading and label",
-            "context": {
-                "params": {
-                    "hiddenHeading": false,
-                    "label": "Case study",
-                    "heading": "Barclays world-class campus takes shape in Glasgow",
-                    "content": "<p>Glasgow's financial services sector received a major boost after Barclays announced plans to develop a new 5000-person campus on the banks for the River Clyde.</p><p>Barclays operates in 40 countries across the world, and the development in Glasgow will sit alongside Whippany in New Jersey and Pune in India as part of a global strategy to create world-class facilities for the bank's functions, technology and operations teams.</p>"
-                }
             }
         }
     ]

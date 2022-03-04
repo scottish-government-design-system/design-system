@@ -1,21 +1,20 @@
-<div class="ds_tabs">
+<div class="ds_tabs" data-module="ds-tabs">
+    <!--
     <input type="checkbox" class="fully-hidden js-toggle-tabs" id="show-tabs" aria-controls="tabs-root" />
     <label class="ds_tabs__expand  ds_link" for="show-tabs"><span class="visually-hidden">Current tab</span> Tab 1 <span class="ds_side-navigation__expand-indicator"></span></label>
+    -->
+    {%- if params.tabs %}
     <ul class="ds_tabs__list">
-        <li class="ds_tabs__tab ds_current">
-            <a class="ds_tabs__tab-link" href="#tab-1">Tab 1</a>
+        {%- for tab in params.tabs %}
+        <li class="ds_tabs__tab {%- if tab.current %} ds_current{%- endif %}">
+            <a class="ds_tabs__tab-link" href="#{{ tab.tabId }}">{{ tab.tabTitle }}</a>
         </li>
-        <li class="ds_tabs__tab">
-            <a class="ds_tabs__tab-link" href="#tab-2">Tab 2</a>
-        </li>
-        <li class="ds_tabs__tab">
-            <a class="ds_tabs__tab-link" href="#tab-3">Tab 3</a>
-        </li>
-        <li class="ds_tabs__tab">
-            <a class="ds_tabs__tab-link" href="#tab-4">Tab 4</a>
-        </li>
+        {%- endfor %}
     </ul>
-    <div class="ds_tabs__content">
-        This is the tab content
+    {%- for tab in params.tabs %}
+    <div class="ds_tabs__content" id="{{ tab.tabId }}">
+        {{ tab.tabContent | safe }}
     </div>
+    {%- endfor %}
+    {%- endif %}
 </div>
