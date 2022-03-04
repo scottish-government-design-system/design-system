@@ -38,4 +38,12 @@ describe('aspect box fallback', () => {
         aspectBoxFallback(documentObj);
         expect(document.innerHTML).toEqual(html);
     });
+
+    it('should clone alt attributes into sensible alternative locations', () => {
+        testObj.aspectBox.querySelector('img').setAttribute('alt', 'my alt text');
+        aspectBoxFallback(documentObj);
+
+        expect(testObj.aspectBox.getAttribute('role')).toEqual('img');
+        expect(testObj.aspectBox.getAttribute('aria-label')).toEqual('my alt text');
+    });
 });

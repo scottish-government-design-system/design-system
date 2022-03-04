@@ -123,7 +123,7 @@ class DSDatePicker {
         this.updateCalendar();
 
         if (window.DS && window.DS.tracking) {
-            window.DS.tracking.init(document.getElementByIf(dialog.id));
+            window.DS.tracking.init(document.getElementById(dialog.id));
         }
     }
 
