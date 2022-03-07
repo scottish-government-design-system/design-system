@@ -20,51 +20,51 @@ class Tabs {
             'right': 39,
             'down': 40
         };
+
+        // Handle hashchange events
+        this.boundOnHashChange = this.onHashChange.bind(this)
+        window.addEventListener('hashchange', this.boundOnHashChange, true);
     }
 
     init() {
         if (!this.tabContainer.classList.contains('js-initialised')) {
             this.tabList.setAttribute('role', 'tablist');
             this.tabHeaders.forEach((tabHeader, index) => this.initTab(tabHeader, index));
-            //this.updateTabIndexes(); 
 
             // Set the active tab based on the URL's hash or the first tab
             let currentTabLink = this.getTab(window.location.hash) || this.tabHeaders[0].querySelector('.ds_tabs__tab-link');
             let currentTab = currentTabLink.parentElement;
-            this.activateTab(currentTab)    
-
-            // Handle hashchange events
-            //window.addEventListener('hashchange', this.onHashChange, true);
+            this.activateTab(currentTab);   
 
             // Mark as initialised for specific layout support
             this.tabContainer.classList.add('js-initialised');
-            console.log('tabs activated');
         }
     }
 
     onHashChange() {
-        let hash = window.location.hash;
-        console.log('Hash',hash);
-        console.log('getTab',this.getTab(window.location.hash));
-        let tabWithHash = this.getTab(window.location.hash);
+        let tabWithHashLink = this.getTab(window.location.hash);
+        let tabWithHash = tabWithHashLink.parentElement;
         if (!tabWithHash) {
-          return
+          return;
         }
-        console.log('tabhas',tabWithHash);
-      /*
+      
         // Prevent changing the hash
         if (this.changingHash) {
-          this.changingHash = false
-          return
+          this.changingHash = false;
+          return;
         }
-      */
-        // Show either the active tab according to the URL's hash or the first tab
-        /*var $previousTab = this.getCurrentTab()
-      
-        this.hideTab($previousTab)
-        this.showTab($tabWithHash)
-        $tabWithHash.focus()*/
-      }
+
+        let currentTab = this.getCurrentTab();
+        this.deactivateTab(currentTab);
+        this.activateTab(tabWithHash);
+        tabWithHash.querySelector('.ds_tabs__tab-link').focus();
+    }
+
+    createHistoryEntry(tab) {
+        let tabId = this.getHref(tab);
+        this.changingHash = true;
+        window.location.hash = tabId;
+    }
 
     initTab(tabHeader, index) {
         tabHeader.setAttribute('role', 'presentation');
@@ -73,16 +73,18 @@ class Tabs {
         const tabContent = this.tabContents[index];
         const tabId = tabContent.getAttribute('id');
 
-        tabLink.setAttribute('role', 'tab')
-        tabLink.setAttribute('aria-controls', tabId)
-        tabLink.setAttribute('aria-selected', 'false')
-        tabLink.setAttribute('tabindex', '-1')
+        tabLink.setAttribute('role', 'tab');
+        tabLink.setAttribute('aria-controls', tabId);
+        tabLink.setAttribute('aria-selected', 'false');
+        tabLink.setAttribute('tabindex', '-1');
+
+        tabContent.setAttribute('hidden', 'hidden');
 
         tabLink.addEventListener('click', () => {
             let currentTab = this.getCurrentTab();
-            console.log('Current tab', currentTab);
             this.deactivateTab(currentTab);
             this.activateTab(tabHeader);
+            this.createHistoryEntry(tabHeader);
         });
 
         tabLink.addEventListener('keydown', (event) => {
@@ -108,27 +110,25 @@ class Tabs {
     }
 
     activateNextTab() {
-       /* let active = 0;
-        this.tabHeaders.forEach(function (tabHeader, index) {
-            if (document.activeElement === tabHeader.querySelector('.ds_tabs__tab-link')) {
-                active = index;
-            }
-        });
-        this.tabHeaders[(active + 1) % this.tabHeaders.length].querySelector('.ds_tabs__tab-link').focus();
-        */
+        let currentTab = this.getCurrentTab();
+        let nextTab = currentTab.nextElementSibling;
+        if (nextTab){
+            this.deactivateTab(currentTab);
+            this.activateTab(nextTab);
+            nextTab.querySelector('.ds_tabs__tab-link').focus();
+            this.createHistoryEntry(nextTab);
+        }
     }
 
     activatePreviousTab() {
-        /*
-        let active = 0;
-
-        this.tabHeaders.forEach(function (tabHeader, index) {
-            if (document.activeElement === tabHeader.querySelector('.ds_tabs__tab-link')) {
-                active = index;
-            }
-        });
-        this.tabHeaders[(active + this.tabHeaders.length - 1) % this.tabHeaders.length].querySelector('.ds_tabs__tab-link').focus();
-        */
+        let currentTab = this.getCurrentTab();
+        let previousTab = currentTab.previousElementSibling;
+        if (previousTab){
+            this.deactivateTab(currentTab);
+            this.activateTab(previousTab);
+            previousTab.querySelector('.ds_tabs__tab-link').focus();
+            this.createHistoryEntry(previousTab);
+        }
     }
 
     activateTab(targetTab) {
@@ -153,21 +153,6 @@ class Tabs {
 
         // Hide content for tab
         targetTabContent.setAttribute('hidden', 'hidden');
-    }
-
-    updateTabIndexes() {
-        this.tabHeaders.forEach(tabHeader => {
-            let tabIndex = -1;
-
-            if (tabHeader.classList.contains('ds_current')) {
-                tabIndex = 0;
-            }
-            /*
-            if (breakpointCheck('medium')) {
-                tabHeader.querySelector('.mg_tab__label').setAttribute('tabindex', tabIndex);
-            }
-            */
-        });
     }
 
     getTab(hash) {

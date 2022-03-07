@@ -79,7 +79,6 @@ function initAll(scope = document) {
     }
 
     const tabSets = [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]'));
-    console.log('tabs',tabSets)
     tabSets.forEach(tabSet => new Tabs(tabSet).init());
 
     tracking.init();
