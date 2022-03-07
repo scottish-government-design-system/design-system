@@ -16,13 +16,13 @@
                                     {
                                         "key": "Type",
                                         "value": "Policy",
-                                        "hideKey": true,
-                                        "isLabel": true
+                                        "hideKey": true
                                     }
                                 ]
                             }
                         },
                         "heading": "Crofting community right to buy",
+                        "headingLevel": "h3",
                         "link": "#",
                         "content": "Information and guidance regarding the crofting community right to buy."
                     }
@@ -37,8 +37,7 @@
                                     {
                                         "key": "Type",
                                         "value": "Consultation paper",
-                                        "hideKey": true,
-                                        "isLabel": true
+                                        "hideKey": true
                                     },
                                     {
                                         "key": "Publication date",
@@ -49,6 +48,7 @@
                             }
                         },
                         "heading": "Crofting consultation 2017",
+                        "headingLevel": "h3",
                         "link": "#",
                         "content": "We are seeking the views of crofters, and those with an interest, on the pathway of any potential new legislation to reform crofting law."
                     }
@@ -63,8 +63,7 @@
                                     {
                                         "key": "Type",
                                         "value": "Consultation analysis",
-                                        "hideKey": true,
-                                        "isLabel": true
+                                        "hideKey": true
                                     },
                                     {
                                         "key": "Publication date",
@@ -75,6 +74,7 @@
                             }
                         },
                         "heading": "Crofting Elections 2017: consultation responses analysis",
+                        "headingLevel": "h3",
                         "link": "#",
                         "content": "Analysis of the responses to the Crofting Elections 2017 consultation."
                     }

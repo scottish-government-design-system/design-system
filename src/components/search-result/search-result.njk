@@ -1,13 +1,17 @@
 <{{ params.element }} class="ds_search-result">
-    <header class="ds_search-result__header">
-        {%- if params.metadata %}
-        {% render '@metadata', params.metadata %}
-        {%- endif %}
-        <h2 class="gamma  ds_search-result__title">
-            <a class="ds_search-result__link" href="{{ params.link }}">{{ params.heading }}</a>
-        </h2>
-    </header>
+    <{{ params.headingLevel }} class="ds_search-result__title">
+        <a class="ds_search-result__link" href="{{ params.link }}">{{ params.heading }}</a>
+    </{{ params.headingLevel }}>
     {%- if params.content %}
      <p class="ds_search-result__summary">{{ params.content }}</p>
-        {%- endif %}
+    {%- endif %}
+    {%- if params.metadata %}
+    {% render '@metadata', params.metadata %}
+    {%- endif %}
+    {%- if params.parent %}
+    <dl class="ds_search-result__context">
+        <dt class="ds_search-result__context-key">{{ params.parent.heading }}</dt>
+        <dd class="ds_search-result__context-value"><a href="{{ params.parent.link }}">{{ params.parent.linkLabel }}</a></dd>
+    </dl>
+    {%- endif %}
 </{{ params.element }}>

@@ -2,57 +2,56 @@
     SEARCH RESULT
 \*------------------------------------*/
 
-%xds_search-result__outer {
-    border-bottom: 1px solid $ds_colour__border--light;
-    border-width: 1px 0;
-    margin: 0 -16px;
-
-    &:first-of-type {
-        border-top: 1px solid $ds_colour__border--light;
-    }
-}
-
-%xds_search-result__inner {
-    color: $ds_colour__text !important;
-    padding: 24px 16px 23px;
-    position: relative;
-    text-decoration: none;
-
-    @include ds_last-child-no-margin;
-
-    &:first-of-type {
-        padding-top: 23px;
-    }
-}
-
 .ds_search-result {
-    @extend %xds_search-result__outer;
-    @extend %xds_search-result__inner;
+    @include ds_responsive-padding(2, top);
+    @include ds_responsive-padding(2, bottom);
 
-    @include ds_blocklink('.ds_search-result__link');
-
-    &__label {
-        font-weight: $bold;
-        text-transform: uppercase;
-    }
-
-    &__date {
-        color: $ds_colour__text--secondary;
-        font-weight: $normal;
-    }
+    border-bottom: 1px $ds_colour__border solid;
 
     &__title {
-        color: $ds_colour__link;
-        margin-bottom: 8px;
-        margin-top: 0 !important;
-
-        transition: color $transition-out-time;
+        @include ds_h3-style;
+        margin: 0 0 4px !important; // !important needed to support deprecated markup
     }
-}
 
-@include ds_media-query(medium) {
-    .ds_search-result {
-        margin-left: 0;
-        margin-right: 0;
+    &__summary {
+        margin: 0;
     }
+
+    &__metadata {
+        @include ds_responsive-margin(1, top);
+        margin-bottom: 0;
+    }
+
+    &__context {
+        margin: 0;
+        padding: 0;
+        @include ds_responsive-margin(2, top);
+        @include ds_responsive-padding(2, left, -3);
+        position: relative;
+        
+        &:before {
+            background: $ds_colour__blue;
+            content: '';
+            height: 1em;
+            position: absolute;
+                top: 0;
+                left: 0;
+            width: 3px;
+        }
+
+        &-key {
+            @include ds_small-size;
+            margin: 0;
+            padding: 0;
+        }
+
+        &-value {
+            @include ds_small-size;
+            margin: 0;
+            padding: 0;
+            @include ds_responsive-margin(1, top);
+        }
+
+    }
+
 }

@@ -4,6 +4,7 @@
         "params": {
             "element": "div",
             "heading": "Crofting community right to buy",
+            "headingLevel": "h3",
             "content": "Information and guidance regarding the crofting community right to buy.",
             "link": "#"
         }
@@ -32,8 +33,7 @@
                                 {
                                     "key": "Type",
                                     "value": "Policy",
-                                    "hideKey": true,
-                                    "isLabel": true
+                                    "hideKey": true
                                 }
                             ]
                         }
@@ -46,6 +46,68 @@
         {
             "name": "Metadata and content",
             "label": "Metadata and content",
+            "context": {
+                "params": {
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Type",
+                                    "value": "Consultation paper",
+                                    "hideKey": true
+                                },
+                                {
+                                    "key": "Publish date",
+                                    "value": "13 August 2021",
+                                    "hideKey": true
+                                }
+                            ]
+                        }
+                    },
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": "Information and guidance regarding the crofting community right to buy."
+                }
+            }
+        },
+        {
+            "name": "Parent link",
+            "label": "Parent link",
+            "context": {
+                "params": {
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Type",
+                                    "value": "Consultation paper",
+                                    "hideKey": true
+                                },
+                                {
+                                    "key": "Publish date",
+                                    "value": "13 August 2021",
+                                    "hideKey": true
+                                }
+                            ]
+                        }
+                    },
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": "Information and guidance regarding the crofting community right to buy.",
+                    "parent": {
+                        "heading": "Part of:",
+                        "linkLabel": "Land reform",
+                        "link": "#"
+                    }
+                }
+            }
+        },
+        {
+            "name": "Deprecated",
+            "label": "Deprecated markup",
+            "status": "invalid",
             "context": {
                 "params": {
                     "metadata": {
