@@ -26,6 +26,6 @@
     @return round($value / $grid) * $grid;
 }
 
-@function line-height-on-grid ($font-size, $line-height: 1.5) {
-    @return nearest-grid-size($font-size * $line-height) / $font-size;
+@function line-height-on-grid ($font-size, $line-height: 1.5, $grid: 8px) {
+    @return nearest-grid-size($font-size * $line-height, $grid) / $font-size;
 }

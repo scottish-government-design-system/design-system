@@ -2,83 +2,93 @@
 /// Heading size mixins
 ///
 
-@mixin ds_h1-size {
+@mixin ds_h1-size($type-grid: 8px) {
     font-size: px-to-rem($h1-size);
-    line-height: line-height-on-grid($h1-size, 1.3);
+    line-height: line-height-on-grid($h1-size, 1.3, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($h1-size--medium, $root-font-size--medium);
-        line-height: line-height-on-grid($h1-size--medium, 1.3);
+        line-height: line-height-on-grid($h1-size--medium, 1.3, $grid: $type-grid);
     }
 }
 
-@mixin ds_h2-size {
+@mixin ds_h2-size($type-grid: 8px) {
     font-size: px-to-rem($h2-size);
-    line-height: line-height-on-grid($h2-size, 1.3);
+    line-height: line-height-on-grid($h2-size, 1.3, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($h2-size--medium, $root-font-size--medium);
-        line-height: line-height-on-grid($h2-size--medium, 1.3);
+        line-height: line-height-on-grid($h2-size--medium, 1.3, $grid: $type-grid);
     }
 }
 
-@mixin ds_h3-size {
+@mixin ds_h3-size($type-grid: 8px) {
     font-size: px-to-rem($h3-size);
-    line-height: line-height-on-grid($h3-size, 1.3);
+    line-height: line-height-on-grid($h3-size, 1.3, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($h3-size--medium, $root-font-size--medium);
-        line-height: line-height-on-grid($h3-size--medium);
+        line-height: line-height-on-grid($h3-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_h4-size {
+@mixin ds_h4-size($type-grid: 8px) {
     font-size: px-to-rem($h4-size);
-    line-height: line-height-on-grid($h4-size, 1.3);
+    line-height: line-height-on-grid($h4-size, 1.3, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($h4-size--medium, $root-font-size--medium);
-        line-height: line-height-on-grid($h4-size--medium, 1.3);
+        line-height: line-height-on-grid($h4-size--medium, 1.3, $grid: $type-grid);
     }
 }
 
-@mixin ds_h5-size {
+@mixin ds_h5-size($type-grid: 8px) {
     font-size: px-to-rem($h5-size);
-    line-height: line-height-on-grid($h5-size);
+    line-height: line-height-on-grid($h5-size, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($h5-size--medium, $root-font-size--medium);
-        line-height: line-height-on-grid($h5-size--medium);
+        line-height: line-height-on-grid($h5-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_tiny-size {
+@mixin ds_tiny-size($type-grid: 8px) {
     font-size: px-to-rem($tiny-size);
-    line-height: line-height-on-grid($tiny-size);
+    line-height: line-height-on-grid($tiny-size, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($tiny-size--medium, $root-font-size--medium);
-        line-height: line-height-on-grid($tiny-size--medium);
+        line-height: line-height-on-grid($tiny-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_small-size {
+@mixin ds_small-size($type-grid: 8px) {
     font-size: px-to-rem($small-size);
-    line-height: line-height-on-grid($small-size);
+    line-height: line-height-on-grid($small-size, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($small-size--medium, $root-font-size--medium);
-        line-height: line-height-on-grid($small-size--medium);
+        line-height: line-height-on-grid($small-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_large-size {
+@mixin ds_large-size($type-grid: 8px) {
     font-size: px-to-rem($large-size);
-    line-height: line-height-on-grid($large-size);
+    line-height: line-height-on-grid($large-size, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($large-size--medium, $root-font-size--medium);
-        line-height: line-height-on-grid($large-size--medium);
+        line-height: line-height-on-grid($large-size--medium, $grid: $type-grid);
+    }
+}
+
+@mixin ds_root-size($type-grid: 8px) {
+    font-size: px-to-rem($root-font-size);
+    line-height: line-height-on-grid($root-font-size, $grid: $type-grid);
+
+    @include ds_media-query(medium) {
+        font-size: px-to-rem($root-font-size--medium, $root-font-size--medium);
+        line-height: line-height-on-grid($root-font-size--medium, $grid: $type-grid);
     }
 }
 
