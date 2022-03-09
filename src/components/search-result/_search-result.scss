@@ -3,14 +3,22 @@
 \*------------------------------------*/
 
 .ds_search-result {
+    margin: 0;
+    padding: 0;
     @include ds_responsive-padding(2, top);
     @include ds_responsive-padding(2, bottom);
 
     border-bottom: 1px $ds_colour__border solid;
 
-    &__title {
-        @include ds_h3-style;
+    &__heading {
+        @include ds_root-size;
         margin: 0 0 4px !important; // !important needed to support deprecated markup
+    }
+
+    &__sub-heading {
+        @include ds_root-size;
+        margin: 0;
+        @include ds_responsive-margin(1, bottom);
     }
 
     &__summary {
@@ -26,12 +34,20 @@
 
     &__has-media {
         display: flex;
+        gap: 16px; // Switch to responsive spacing function
     }
 
-    // So the minimum size would be 90x90px and that would be fluid with the container and top out at a maximum size of 132x132px once it reached 479px?
     &__media {
-        width: 20%;
-        max-width: 132px;
+        padding-top: 2px; // Aligns the image with the text
+        width: 96px; // Aligns to 2 columns on grid from medium size upwards
+
+        @include ds_media-query(large) {
+            width: 128px;
+        }
+
+        @include ds_media-query(xlarge) {
+            width: 160px;
+        }
     }
 
     &__context {
@@ -70,7 +86,7 @@
         margin-bottom: 0;
         @include ds_responsive-margin(2, top);
 
-        &-title {
+        &-heading {
             @include ds_visually-hidden;
         }
     }

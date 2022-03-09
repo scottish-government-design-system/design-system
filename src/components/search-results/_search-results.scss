@@ -23,31 +23,19 @@
 }
 
 .ds_search-results {
-
     &__list {
         list-style-type: none;
-        margin: 0 0 24px;
+        margin: 0;
+        @include ds_responsive-margin(4, bottom);
     }
 
-    &__pagination {
-        background: $ds_colour__grey--light;
-        text-align: center;
-        padding: 8px 0;
-    }
-}
+    &__related {
+        @include ds_small-size;
 
-@include ds_media-query(medium) {
-    .ds_search-results {
-        &__count {
-            padding-left: 16px;
-        }
-    }
-
-    .ds_search-suggestions {
-        padding-left: 16px;
-
-        ul li:not(:last-child)::after {
-            margin-left: -3px;
+        &-heading {
+            @include ds_root-size;
+            margin: 0;
+            @include ds_responsive-margin(1, bottom);
         }
     }
 }

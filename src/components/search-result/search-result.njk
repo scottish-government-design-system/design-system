@@ -1,20 +1,23 @@
 <{{ params.element }} class="ds_search-result">
-    <{{ params.headingLevel }} class="ds_search-result__title">
-        <a class="ds_search-result__link" href="{{ params.link }}">{{ params.heading }}</a>
+    <{{ params.headingLevel }} class="ds_search-result__heading">
+        <a href="{{ params.link }}">{{ params.heading }}</a>
     </{{ params.headingLevel }}>
     {%- if params.image %}
     <div class="ds_search-result__has-media">
-        <div class="ds_search-result__media">
-            <div class="ds_aspect-box  ds_aspect-box--square">
-                <img alt="" aria-hidden="true" class="ds_aspect-box__inner" src="{{ params.image }}" width="656" height="369"/>
+        <div>
+            <div class="ds_search-result__media  ds_aspect-box  ds_aspect-box--square">
+                <a href="{{ params.link }}" tabindex="-1">
+                    <img alt="" aria-hidden="true" class="ds_aspect-box__inner" src="{{ params.image }}" width="656" height="369"/>
+                </a>
             </div>
         </div>
+        <div>
+    {%- endif %}
+    {%- if params.subHeading %}
+    <{{ params.subHeadingLevel }} class="ds_search-result__sub-heading">{{ params.subHeading }}</{{ params.subHeadingLevel }}>
     {%- endif %}
     {%- if params.content %}
     <p class="ds_search-result__summary">{{ params.content }}</p>
-    {%- endif %}
-    {%- if params.image %}
-    </div>
     {%- endif %}
     {%- if params.metadata %}
     {% render '@metadata', params.metadata %}
@@ -26,7 +29,7 @@
     </dl>
     {%- endif %}
     {%- if params.subLinks %}
-    <{{ params.subLinksHeadingLevel }} class="ds_search-result__sublinks-title">Included within this result</{{ params.subLinksHeadingLevel }}>
+    <{{ params.subLinksHeadingLevel }} class="ds_search-result__sublinks-heading">Included within this result</{{ params.subLinksHeadingLevel }}>
     <ul class="ds_search-result__sublinks  ds_contents-nav__list">
         {%- for subLink in params.subLinks -%}
         <li class="ds_contents-nav__item">
@@ -36,5 +39,9 @@
         </li>
         {%-  endfor %} 
     </ul>
+    {%- endif %}
+    {%- if params.image %}
+        </div>
+    </div>
     {%- endif %}
 </{{ params.element }}>
