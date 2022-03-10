@@ -2,10 +2,7 @@
     SEARCH RESULTS
 \*------------------------------------*/
 
-.ds_search-suggestions {
-    @include ds_small-size;
-    margin: 24px 0 24px;
-
+%ds_search-results__suggestions {
     ul {
         display: inline-block;
         list-style-type: none;
@@ -23,6 +20,27 @@
 }
 
 .ds_search-results {
+
+    &__suggestions {
+        @extend %ds_search-results__suggestions;
+    }
+
+    &__title {
+        @include ds_root-size;
+        margin-top: 0 !important;
+        @include ds_responsive-margin(1, bottom, $important: true);
+        font-weight: $normal;
+
+        &-count,
+        &-query {
+            font-weight: $bold;
+        }
+    }
+
+    &__suggestions + &__title {
+        @include ds_responsive-margin(2, top, $important: true);
+    }    
+
     &__list {
         list-style-type: none;
         margin: 0;
@@ -31,11 +49,21 @@
 
     &__related {
         @include ds_small-size;
+        @include ds_block-margins;
+        @include ds_last-child-no-margin;
+        @include ds_responsive-padding(2);
+        background: $ds_colour__grey--lighter;
 
-        &-heading {
+        &-title {
             @include ds_root-size;
             margin: 0;
             @include ds_responsive-margin(1, bottom);
         }
     }
+}
+
+
+// Legacy class name
+.ds_search-suggestions {
+    @extend %ds_search-results__suggestions;
 }

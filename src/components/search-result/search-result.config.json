@@ -28,7 +28,7 @@
                 "params": {
                     "metadata": {
                         "params": {
-                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
                             "items": [
                                 {
                                     "key": "Format",
@@ -39,7 +39,8 @@
                         }
                     },
                     "heading": "Crofting community right to buy",
-                    "link": "#"
+                    "link": "#",
+                    "content": false
                 }
             }
         },
@@ -50,7 +51,7 @@
                 "params": {
                     "metadata": {
                         "params": {
-                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
                             "items": [
                                 {
                                     "key": "Format",
@@ -72,13 +73,41 @@
             }
         },
         {
+            "name": "Highlighted search match",
+            "label": "Highlighted search match",
+            "context": {
+                "params": {
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Format",
+                                    "value": "Publication - Consultation paper",
+                                    "hideKey": true
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "13 August 2021",
+                                    "hideKey": true
+                                }
+                            ]
+                        }
+                    },
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": "Information and guidance regarding the <mark>crofting</mark> community right to buy."
+                }
+            }
+        },
+        {
             "name": "Parent link",
             "label": "Parent link",
             "context": {
                 "params": {
                     "metadata": {
                         "params": {
-                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
                             "items": [
                                 {
                                     "key": "Format",
@@ -126,7 +155,7 @@
                 "params": {
                     "metadata": {
                         "params": {
-                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
                             "items": [
                                 {
                                     "key": "Date",
@@ -153,7 +182,7 @@
                 "params": {
                     "metadata": {
                         "params": {
-                            "modifiers": "ds_search-result__metadata ds_metadata--inline",
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
                             "items": [
                                 {
                                     "key": "Date",
@@ -178,9 +207,89 @@
             }
         },
         {
+            "name": "Promoted",
+            "label": "Promoted",
+            "context": {
+                "params": {
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Format",
+                                    "value": "Publication - Consultation paper",
+                                    "hideKey": true
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "13 August 2021",
+                                    "hideKey": true
+                                }
+                            ]
+                        }
+                    },
+                    "promoted": "Recommended by gov.scot",
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": "Information and guidance regarding the crofting community right to buy."
+                }
+            }
+        },
+        {
+            "name": "Promoted with parent",
+            "label": "Promoted with parent",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Format",
+                                    "value": "Publication - Consultation paper",
+                                    "hideKey": true
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "13 August 2021",
+                                    "hideKey": true
+                                }
+                            ]
+                        }
+                    },
+                    "promoted": "Recommended by gov.scot",
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": "Information and guidance regarding the crofting community right to buy.",
+                    "parent": {
+                        "heading": "Part of:",
+                        "linkLabel": "Land reform",
+                        "link": "#"
+                    }
+                }
+            }
+        },
+        {
+            "name": "Promoted with image",
+            "label": "Promoted with image",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "promoted": "Recommended by gov.scot",
+                    "heading": "First Minister",
+                    "link": "#",
+                    "image": "/assets/images/placeholders/thistles.jpg",
+                    "subHeading": "Incumbent's name",
+                    "subHeadingLevel": "h4",
+                    "content": "The First Minister is head of the Scottish Government and has ultimate responsibility for all policy and decisions."
+                }
+            }
+        },
+        {
             "name": "Sub links",
             "label": "Sub links",
-            "status": "wip",
+            "status": "prototype",
             "context": {
                 "params": {
                     "heading": "Apply for a new Blue Badge",

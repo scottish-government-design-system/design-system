@@ -10,12 +10,38 @@
 
     border-bottom: 1px $ds_colour__border solid;
 
-    &__heading {
-        @include ds_root-size;
-        margin: 0 0 4px !important; // !important needed to support deprecated markup
+    &--promoted {
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &-content {
+            background: $ds_colour__grey--lighter;
+            border-left: 3px solid $ds_colour__brand;
+            padding-top: 12px; // Hardwired as not on the scale
+            @include ds_responsive-padding(2, left);
+            @include ds_responsive-padding(2, right);
+            @include ds_responsive-padding(2, bottom);
+        }
+
+        &-title {
+            @include ds_responsive-margin(1, bottom);
+            @include ds_tiny-size;
+            color: $ds_colour__text--secondary;
+            font-weight: $bold;
+        }
     }
 
-    &__sub-heading {
+    &__title {
+        @include ds_root-size;
+        margin: 0 0 4px !important; // !important needed for deprecated support
+
+        &:last-child {
+            margin-bottom: 0 !important; // only needed if title is the only part of the result
+        }
+    }
+
+    &__sub-title {
         @include ds_root-size;
         margin: 0;
         @include ds_responsive-margin(1, bottom);
@@ -24,12 +50,22 @@
     &__summary {
         @include ds_root-size(4px); // Use 4px type grid
         margin: 0;
+
+        mark {
+            background-color: inherit;
+            color: inherit;
+            font-weight: $bold;
+        }
     }
 
     &__metadata {
         @include ds_responsive-margin(1, top);
         @include ds_tiny-size(4px);
         margin-bottom: 0;
+
+        .ds_metadata__item {
+            z-index: auto; // Fix for current metadata component
+        }
     }
 
     &__has-media {
@@ -62,6 +98,9 @@
             background: $ds_colour__blue;
             content: '';
             height: nearest-grid-size(($small-size * 1.5), $grid: 4px); // Match height to line-height
+            @include ds_media-query(medium) {
+                height: nearest-grid-size(($small-size--medium * 1.5), $grid: 4px); // Match height to line-height
+            }
             position: absolute;
                 top: 0;
                 left: 0;
@@ -69,6 +108,7 @@
         }
 
         &-key {
+            color: $ds_colour__text--secondary;
             margin: 0;
             padding: 0;
         }
@@ -86,7 +126,7 @@
         margin-bottom: 0;
         @include ds_responsive-margin(2, top);
 
-        &-heading {
+        &-title {
             @include ds_visually-hidden;
         }
     }

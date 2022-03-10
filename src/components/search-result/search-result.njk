@@ -1,5 +1,9 @@
-<{{ params.element }} class="ds_search-result">
-    <{{ params.headingLevel }} class="ds_search-result__heading">
+<{{ params.element }} class="ds_search-result {%- if params.promoted %}  ds_search-result--promoted{%- endif %}">
+    {%- if params.promoted %}
+    <div class="ds_search-result--promoted-content">
+    <header class="ds_search-result--promoted-title">{{ params.promoted }}</header>
+    {%- endif %}
+    <{{ params.headingLevel }} class="ds_search-result__title">
         <a href="{{ params.link }}">{{ params.heading }}</a>
     </{{ params.headingLevel }}>
     {%- if params.image %}
@@ -14,10 +18,10 @@
         <div>
     {%- endif %}
     {%- if params.subHeading %}
-    <{{ params.subHeadingLevel }} class="ds_search-result__sub-heading">{{ params.subHeading }}</{{ params.subHeadingLevel }}>
+    <{{ params.subHeadingLevel }} class="ds_search-result__sub-title">{{ params.subHeading }}</{{ params.subHeadingLevel }}>
     {%- endif %}
     {%- if params.content %}
-    <p class="ds_search-result__summary">{{ params.content }}</p>
+    <p class="ds_search-result__summary">{{ params.content | safe }}</p>
     {%- endif %}
     {%- if params.metadata %}
     {% render '@metadata', params.metadata %}
@@ -29,7 +33,7 @@
     </dl>
     {%- endif %}
     {%- if params.subLinks %}
-    <{{ params.subLinksHeadingLevel }} class="ds_search-result__sublinks-heading">Included within this result</{{ params.subLinksHeadingLevel }}>
+    <{{ params.subLinksHeadingLevel }} class="ds_search-result__sublinks-title">Included within this result</{{ params.subLinksHeadingLevel }}>
     <ul class="ds_search-result__sublinks  ds_contents-nav__list">
         {%- for subLink in params.subLinks -%}
         <li class="ds_contents-nav__item">
@@ -42,6 +46,9 @@
     {%- endif %}
     {%- if params.image %}
         </div>
+    </div>
+    {%- endif %}
+    {%- if params.promoted %}
     </div>
     {%- endif %}
 </{{ params.element }}>
