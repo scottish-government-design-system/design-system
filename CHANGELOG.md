@@ -7,6 +7,18 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.229] - 2022-03-11
+### Added 
+- Related searches within search results pattern.
+- Support for 4px typography grid.
+- Function for calculating root font size and line height.
+### Changed
+- Search result component has additional layout options and some styling changes.
+- Search results pattern has minor styling changes. 
+- Pagination ellipsis example now shows both directions.
+### Fixed
+- Support for mark tag in Windows high contrast mode.
+
 ## [0.0.228] - 2022-02-22
 ### Changed
 - Pagination "load more" button is now a variant of the component.

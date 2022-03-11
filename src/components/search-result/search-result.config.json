@@ -22,6 +22,18 @@
             }
         },
         {
+            "name": "Character limits",
+            "label": "Character limits",
+            "context": {
+                "params": {
+                    "heading": "Proposals on secondary legislation the Land Reform (Scotland) Act 2003 part three: crofting community right to buy as amended by the Community Empowerment (Scotland) Act 2015: consultation",
+                    "headingLevel": "h3",
+                    "link": "#",
+                    "content": "Consultation relating to secondary legislation for the Land Reform (Scotland) Act 2003 part three, crofting community right to buy as amended by the Community ..." 
+                }
+            }
+        },
+        {
             "name": "Metadata",
             "label": "Metadata",
             "context": {
