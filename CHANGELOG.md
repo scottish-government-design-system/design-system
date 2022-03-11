@@ -7,7 +7,7 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
-## [0.0.229] - 2022-03-11
+## [UNRELEASED]
 ### Added 
 - Related searches within search results pattern.
 - Support for 4px typography grid.
