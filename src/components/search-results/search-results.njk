@@ -1,6 +1,6 @@
 <div class="ds_search-results">
     {%- if params.suggestions %}
-    <nav class="ds_search-results__suggestions" aria-label="Alternative search suggestions">
+    <nav class="ds_search-suggestions" aria-label="Alternative search suggestions">
         <span aria-hidden="true">Did you mean:</span>
         <ul>
             {%- for suggestion in params.suggestions %}
@@ -17,7 +17,7 @@
     {%- endif %}
 
     {%- if params.resultsList %}
-    <ol class="ds_search-results__list">
+    <ol class="ds_search-results__list" data-total="{{ params.resultsCount }}">
         {%- for result in params.resultsList %}
         {% render '@search-result', result %}
         {%- endfor %}     

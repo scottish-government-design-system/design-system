@@ -364,12 +364,12 @@ const tracking = {
             const searchResultsSets = tracking.gatherElements('ds_search-results', scope);
             searchResultsSets.forEach(searchResults => {
                 const list = searchResults.querySelector('.ds_search-results__list');
-
                 if (!list) {
                     return;
                 }
 
                 const items = [].slice.call(searchResults.querySelectorAll('.ds_search-result'));
+                const promotedItems = [].slice.call(searchResults.querySelectorAll('.ds_search-result--promoted'));
 
                 let start = 1;
                 if (list.getAttribute('start')) {
@@ -378,18 +378,36 @@ const tracking = {
 
                 items.forEach((item, index) => {
                     const link = item.querySelector('.ds_search-result__link');
-                    let count;
-                    if (list.getAttribute('data-total')) {
-                        count = list.getAttribute('data-total');
-                    }
+                    const mediaLink = item.querySelector('.ds_search-result__media-link');
+                    const parentLink = item.querySelector('.ds_search-result__context a');
 
-                    let attributeValue = `search-result-${start + index}`;
-                    if (count) {
-                        attributeValue += `/${count}`;
+                    if(item.classList.contains('ds_search-result--promoted')){
+                        let attributeValue = `search-promoted-${index + 1}/${promotedItems.length}`;
+                        link.setAttribute('data-search', attributeValue);
+                    } else {
+                    
+                        let count;
+                        if (list.getAttribute('data-total')) {
+                            count = list.getAttribute('data-total');
+                        }
+
+                        let attributeValue = `search-result-${start + index - promotedItems.length}`;
+                        let parentAttributeValue = `search-parent-link-${start + index - promotedItems.length}`;
+                        if (count) {
+                            attributeValue += `/${count}`;
+                            parentAttributeValue += `/${count}`;
+                        }
+                        link.setAttribute('data-search', attributeValue);
+                        if(mediaLink){
+                            mediaLink.setAttribute('data-search', attributeValue);
+                        }
+                        if(parentLink){
+                            parentLink.setAttribute('data-search', parentAttributeValue);
+                        }
+
                     }
-                    link.setAttribute('data-search', attributeValue);
                 });
-            });
+            }); 
         },
 
         searchSuggestions: function (scope = document) {
@@ -398,6 +416,16 @@ const tracking = {
                 const searchSuggestionLinks = [].slice.call(searchSuggestionBlock.querySelectorAll('.ds_search-suggestions a'));
                 searchSuggestionLinks.forEach((link, index) => {
                     link.setAttribute('data-search', `suggestion-result-${index + 1}/${searchSuggestionLinks.length}`);
+                });
+            });
+        },
+
+        searchRelated: function (scope = document) {
+            const searchRelatedBlocks = tracking.gatherElements('ds_search-results__related', scope);
+            searchRelatedBlocks.forEach(searchRelatedBlock => {
+                const searchRelatedLinks = [].slice.call(searchRelatedBlock.querySelectorAll('.ds_search-results__related a'));
+                searchRelatedLinks.forEach((link, index) => {
+                    link.setAttribute('data-search', `search-related-${index + 1}/${searchRelatedLinks.length}`);
                 });
             });
         },

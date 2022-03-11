@@ -2,7 +2,7 @@
     SEARCH RESULTS
 \*------------------------------------*/
 
-%ds_search-results__suggestions {
+.ds_search-suggestions {
     ul {
         display: inline-block;
         list-style-type: none;
@@ -20,10 +20,6 @@
 }
 
 .ds_search-results {
-
-    &__suggestions {
-        @extend %ds_search-results__suggestions;
-    }
 
     &__title {
         @include ds_root-size;
@@ -60,10 +56,4 @@
             @include ds_responsive-margin(1, bottom);
         }
     }
-}
-
-
-// Legacy class name
-.ds_search-suggestions {
-    @extend %ds_search-results__suggestions;
 }

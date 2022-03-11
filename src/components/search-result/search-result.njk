@@ -4,13 +4,13 @@
     <header class="ds_search-result--promoted-title">{{ params.promoted }}</header>
     {%- endif %}
     <{{ params.headingLevel }} class="ds_search-result__title">
-        <a href="{{ params.link }}">{{ params.heading }}</a>
+        <a class="ds_search-result__link" href="{{ params.link }}">{{ params.heading }}</a>
     </{{ params.headingLevel }}>
     {%- if params.image %}
     <div class="ds_search-result__has-media">
         <div class="ds_search-result__media-wrapper">
             <div class="ds_search-result__media  ds_aspect-box  ds_aspect-box--square">
-                <a href="{{ params.link }}" tabindex="-1">
+                <a class="ds_search-result__media-link" href="{{ params.link }}" tabindex="-1">
                     <img alt="" aria-hidden="true" class="ds_aspect-box__inner" src="{{ params.image }}" width="656" height="369"/>
                 </a>
             </div>
