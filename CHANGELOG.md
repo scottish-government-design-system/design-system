@@ -7,6 +7,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.235] - 2022-03-14
+### Added
+- First draft of "file info" component
+### Fixed
+- Incorrect icon sizing on buttons in IE11
+- Incorrect metadata colour on focused search results
+- Use "none" instead of "unset" for side navigation and site navigation height on small viewports, to support IE11
+- Wait until the end of the event loop to change side navigation height property when opening the side navigation on small devices
+
 ## [0.0.234] - 2022-03-11
 ### Added 
 - Related searches within search results pattern.

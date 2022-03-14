@@ -41,7 +41,6 @@
     .ds_metadata__item {
         display: inline;
         position: relative;
-        z-index: -1;
     }
 
     .ds_metadata__item:not(:first-child) {
@@ -67,8 +66,4 @@
             font-weight: $bold;
         }
     }
-}
-
-:focus-within .ds_metadata--inline {
-    color: currentColor;
 }

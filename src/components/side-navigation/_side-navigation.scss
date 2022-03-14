@@ -209,7 +209,7 @@ $side-nav__outline-width: 2px;
         &__list {
             display: block !important;
             margin: 0;
-            max-height: unset !important;
+            max-height: none !important;
         }
 
         #show-side-navigation {

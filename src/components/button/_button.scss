@@ -160,7 +160,7 @@ $link__border-width: 3px;
 .ds_button {
     .ds_icon {
         bottom: 0;
-        box-sizing: initial;
+        box-sizing: content-box;
         pointer-events: none;
         position: absolute;
         right: 0;

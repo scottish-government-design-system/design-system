@@ -86,10 +86,10 @@ $site-navigation__link-padding: 16px;
     .ds_site-navigation__toggle:checked ~ .ds_site-navigation,
     .ds_site-navigation--open {
         border-top: 1px solid $ds_colour__grey--light;
-        max-height: unset;
+        max-height: none;
 
         @supports (color: var(--mobile-menu-height)) {
-            max-height: var(--mobile-menu-height, unset);
+            max-height: var(--mobile-menu-height, none);
         }
     }
 }
