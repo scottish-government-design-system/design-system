@@ -1,0 +1,43 @@
+[{
+    "key": "apply for a new blue badge",
+    "disp": "Apply for a new Blue Badge",
+    "disp_t": "T",
+    "wt": "100",
+    "cat": "",
+    "cat_t": ""
+}, {
+    "key": "renew a blue badge",
+    "disp": "Renew a Blue Badge",
+    "disp_t": "T",
+    "wt": "99",
+    "cat": "",
+    "cat_t": ""
+}, {
+    "key": "report a lost stolen or misused blue badge",
+    "disp": "Report a lost, stolen or misused Blue Badge",
+    "disp_t": "T",
+    "wt": "58",
+    "cat": "",
+    "cat_t": ""
+}, {
+    "key": "changing or handing back a blue badge",
+    "disp": "Changing or handing back a Blue Badge",
+    "disp_t": "T",
+    "wt": "28.11",
+    "cat": "",
+    "cat_t": ""
+}, {
+    "key": "get further help with a blue badge",
+    "disp": "Get further help with a Blue Badge",
+    "disp_t": "T",
+    "wt": "27.36",
+    "cat": "",
+    "cat_t": ""
+}, {
+    "key": "using your blue badge",
+    "disp": "Using your Blue Badge",
+    "disp_t": "T",
+    "wt": "24.22",
+    "cat": "s",
+    "cat_t": ""
+}]

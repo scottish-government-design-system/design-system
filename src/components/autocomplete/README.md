@@ -38,7 +38,7 @@ autocomplete.init();
 ```
 <div class="ds_site-search  ds_autocomplete" id="site-search-autocomplete">
     <form role="search" class="ds_site-search__form" method="GET" action="/path/to/search/">
-        <label class="ds_label  visually-hidden" for="site-search id="site-search-label">Search</label>
+        <label class="ds_label  visually-hidden" for="site-search" id="site-search-label">Search</label>
 
         <div class="ds_input__wrapper  ds_input__wrapper--has-icon">
             <input

@@ -7,6 +7,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.236] - 2022-03-16
+### Added
+- Autocompolete component added to Fractal
+- File info component added to Fractal
+- File type icons added (CSV, Excel, "file", geodata, PDF, Powerpoint, RTF, TXT, Word, XML)
+### Changed
+- Remove reset styles for "search" input types
+
 ## [0.0.235] - 2022-03-14
 ### Added
 - First draft of "file info" component

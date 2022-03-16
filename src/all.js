@@ -1,3 +1,4 @@
+import Autocomplete from './components/autocomplete/autocomplete';
 import Accordion from './components/accordion/accordion';
 import BackToTop from './components/back-to-top/back-to-top';
 import CharacterCount from './forms/character-count/character-count';
@@ -15,6 +16,7 @@ import aspectBoxFallback from './components/aspect-box/aspect-box-fallback';
 
 const components = {
     Accordion,
+    Autocomplete,
     BackToTop,
     CharacterCount,
     CookieNotification,
@@ -30,6 +32,7 @@ const components = {
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
 // defaults to document
 function initAll(scope = document) {
+
     const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
     accordions.forEach(accordion => new Accordion(accordion).init());
 
@@ -41,7 +44,7 @@ function initAll(scope = document) {
 
     const characterCountModules = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]'));
     characterCountModules.forEach(characterCount => new CharacterCount(characterCount).init());
- 
+
     const cookieNotificationEl = document.querySelector('[data-module="ds-cookie-notification"]');
     if (cookieNotificationEl) {
         const cookieNotification = new CookieNotification(cookieNotificationEl);
@@ -88,6 +91,7 @@ window.DS.initAll = initAll;
 export {
     initAll,
     Accordion,
+    Autocomplete,
     BackToTop,
     CharacterCount,
     CookieNotification,
