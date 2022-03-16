@@ -66,7 +66,7 @@ describe('storage', () => {
         });
     });
 
-    describe('get', () => {
+    xdescribe('get', () => {
         it('should get from cookies if requested', () => {
             spyOn(storage.cookie, 'get');
             storage.get({ type: 'cookie', name: 'name' });

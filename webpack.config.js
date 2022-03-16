@@ -27,11 +27,14 @@ module.exports = (env, argv = {}) => {
       filename: '[name].js'
     },
     plugins: [],
-    devtool: argv.mode === 'development' ? 'eval-source-map' : '',
     module: {
       rules: []
     }
   };
+
+  if (argv.mode === 'development') {
+    baseConfig.devtool = 'eval-source-map';
+  }
 
   const configModern = structuredClone(baseConfig);
   const configES5 = Object.assign(structuredClone(baseConfig), {

@@ -26,7 +26,8 @@ module.exports = function (config) {
         frameworks: [
             'jasmine-jquery',
             'jasmine',
-            'viewport'
+            'viewport',
+            'webpack'
         ],
         reporters: [
             'dots',

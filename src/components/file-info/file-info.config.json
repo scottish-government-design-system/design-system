@@ -1,5 +1,5 @@
 {
-    "status": "wip",
+    "status": "prototype",
     "context": {
         "params": {
             "items": [
@@ -18,7 +18,7 @@
         {
             "name": "Highlighted",
             "label": "Highlighted",
-            "status": "wip",
+            "status": "prototype",
             "context": {
                 "params": {
                     "highlighted": "true"
@@ -28,7 +28,7 @@
         {
             "name": "Cover image",
             "label": "With cover image",
-            "status": "wip",
+            "status": "prototype",
             "context": {
                 "params": {
                     "image": "/assets/images/placeholders/document-thumbnail.png"
@@ -38,7 +38,7 @@
         {
             "name": "Highlighted cover image",
             "label": "Highlighted with cover image",
-            "status": "wip",
+            "status": "prototype",
             "context": {
                 "params": {
                     "highlighted": "true",

@@ -7,6 +7,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.237] - 2022-03-16
+### Changed
+- Mark file info as "prototype"
+### Security
+- Updated package versions
+### Removed
+- "reversed" site footer variant from Fractal
+
 ## [0.0.236] - 2022-03-16
 ### Added
 - Autocompolete component added to Fractal
