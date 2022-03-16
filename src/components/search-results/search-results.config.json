@@ -104,8 +104,12 @@
                         "content": "Elections regulations put before parliament.",
                         "parent": {
                             "heading": "Part of:",
-                            "linkLabel": "Equality and rights",
-                            "link": "#"
+                            "links": [
+                                {
+                                    "linkLabel": "Equality and rights",
+                                    "link": "#"
+                                }
+                            ]
                         }
                     }
                 },
@@ -135,8 +139,12 @@
                         "content": "Consultation relating to secondary legislation for the Land Reform (Scotland) Act 2003 part three, crofting community right to buy as amended by the Community ...",
                         "parent": {
                             "heading": "Part of:",
-                            "linkLabel": "Farming and rural",
-                            "link": "#"
+                            "links": [
+                                {
+                                    "linkLabel": "Farming and rural",
+                                    "link": "#"
+                                }
+                            ]
                         }
                     }
                 },
@@ -178,8 +186,12 @@
                         "content": "We are seeking the views of crofters, and those with an interest, on the pathway of any potential new legislation to reform <mark>crofting</mark> law.",
                         "parent": {
                             "heading": "Part of:",
-                            "linkLabel": "Crofting consultation 2017",
-                            "link": "#"
+                            "links": [
+                                {
+                                    "linkLabel": "Crofting consultation 2017",
+                                    "link": "#"
+                                }
+                            ]
                         }
                     }
                 }
@@ -314,8 +326,16 @@
                                 "content": "Elections regulations put before parliament.",
                                 "parent": {
                                     "heading": "Part of:",
-                                    "linkLabel": "Equality and rights",
-                                    "link": "#"
+                                    "links": [
+                                        {
+                                            "linkLabel": "Equality and rights",
+                                            "link": "#"
+                                        },
+                                        {
+                                            "linkLabel": "Rural affairs",
+                                            "link": "#"
+                                        }
+                                    ]
                                 }
                             }
                         },
@@ -345,8 +365,12 @@
                                 "content": "Consultation relating to secondary legislation for the Land Reform (Scotland) Act 2003 part three, crofting community right to buy as amended by the Community ...",
                                 "parent": {
                                     "heading": "Part of:",
-                                    "linkLabel": "Farming and rural",
-                                    "link": "#"
+                                    "links": [
+                                        {
+                                            "linkLabel": "Farming and rural",
+                                            "link": "#"
+                                        }
+                                    ]
                                 }
                             }
                         },
@@ -388,8 +412,12 @@
                                 "content": "We are seeking the views of crofters, and those with an interest, on the pathway of any potential new legislation to reform <mark>crofting</mark> law.",
                                 "parent": {
                                     "heading": "Part of:",
-                                    "linkLabel": "Crofting consultation 2017",
-                                    "link": "#"
+                                    "links": [
+                                        {
+                                            "linkLabel": "Crofting consultation 2017",
+                                            "link": "#"
+                                        }
+                                    ]
                                 }
                             }
                         }
