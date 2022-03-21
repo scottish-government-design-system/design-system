@@ -10,6 +10,7 @@ The customisation settings can have the following properties:
 
 * suggestionMappingFunction: a function to map the data returned from the endpoint to the format that the autocomplete will use to populate its options
 * throttleDelay: amount of time to wait after a keypress before sending the request, to prevent sending many requests if someone is typing quickly (default is 100ms)
+* minLength: number of character that need to be in the search input before requesting suggestions (default is 2)
 
 ## Example JavaScript
 

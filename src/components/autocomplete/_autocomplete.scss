@@ -18,13 +18,16 @@
         margin: 0;
     }
 
+    /*
+     [1] 18px = 20px (associated site search input) minus 2px (suggestions border)
+     */
     &__suggestion {
         background-color: $ds_colour__white;
         color: $ds_colour__text--secondary;
         cursor: pointer;
         font-style: italic;
         margin-bottom: 0;
-        padding: 11px 16px;
+        padding: 11px 18px; /* [1] */
         transition: background-color 0.2s;
 
         &:hover {

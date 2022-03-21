@@ -12,6 +12,7 @@ class Autocomplete {
         this.endpointUrl = endpointUrl;
         this.suggestionMappingFunction = options.suggestionMappingFunction || (suggestions => suggestions);
         this.throttleDelay = options.throttleDelay || 100;
+        this.minLength = options.minLength || 2;
 
         this.PromiseRequest = PromiseRequest;
 
@@ -22,6 +23,7 @@ class Autocomplete {
             'up': 'ArrowUp',
             'down': 'ArrowDown'
         };
+        this.statusElement = document.querySelector('#autocomplete-status');
     }
 
     init() {
@@ -55,11 +57,13 @@ class Autocomplete {
 
         this.inputElement.addEventListener('input', () => {
             window.clearTimeout(this.keypressTimeout);
-            if (this.inputElement.value) {
+            if (this.inputElement.value && this.inputElement.value.length >= this.minLength) {
                 this.keypressTimeout = window.setTimeout(() => {
                     this.fetchSuggestions(this.inputElement.value).then(suggestions => {
                         this.suggestions = suggestions;
                         this.showSuggestions(this.suggestions);
+
+                        this.updateStatus(`There ${suggestions.length === 1 ? 'is' : 'are'} ${suggestions.length} ${suggestions.length === 1 ? 'option' : 'options'}`, 1500);
                     });
                 }, this.throttleDelay);
             } else {
@@ -81,7 +85,7 @@ class Autocomplete {
             this.clearSuggestions();
         });
 
-        this.listBoxElement.addEventListener('click', event => {
+        this.listBoxElement.addEventListener('mousedown', event => {
             event.preventDefault();
             const suggestionElement = event.target.classList.contains('ds_autocomplete__suggestion') ? event.target : event.target.closest('.ds_autocomplete__suggestion');
             if (suggestionElement) {
@@ -131,6 +135,8 @@ class Autocomplete {
                 suggestion.active = true;
                 this.activeSuggestion = suggestion;
                 this.inputElement.setAttribute('aria-activedescendant', 'suggestion-' + index);
+
+                this.updateStatus(`${suggestion.displayText} (${index + 1} of ${this.suggestions.length} is selected)`);
             } else {
                 delete suggestion.active;
             }
@@ -148,6 +154,7 @@ class Autocomplete {
                 const suggestionElement = document.createElement('li');
                 suggestionElement.id = 'suggestion-' + i;
                 suggestionElement.classList.add('ds_autocomplete__suggestion');
+                suggestionElement.setAttribute('role', 'option');
 
                 const suggestionText = document.createElement('span');
                 suggestionText.classList.add('js-suggestion-text');
@@ -173,6 +180,16 @@ class Autocomplete {
         } else {
             this.clearSuggestions();
         }
+    }
+
+    updateStatus(text, delay = 100) {
+        if (this.statusTimeout) {
+            window.clearTimeout(this.statusTimeout);
+        }
+
+        this.statusTimeout = window.setTimeout(() => {
+            this.statusElement.innerText = text;
+        }, delay);
     }
 
     modulo (a, b) {
