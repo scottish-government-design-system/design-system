@@ -352,10 +352,12 @@ describe('"autocomplete" component', () => {
             let focusEvent = new Event('focus');
             testObj.autocompleteModule.inputElement.dispatchEvent(focusEvent);
 
-            let event = new MouseEvent('click', {
+            let event = new MouseEvent('mousedown', {
                 'bubbles': true
             });
+
             const elementToClick = testObj.autocompleteModule.listBoxElement.querySelector('.ds_autocomplete__suggestion:last-of-type');
+
             const selectedItemText = elementToClick.innerText;
             elementToClick.dispatchEvent(event);
 

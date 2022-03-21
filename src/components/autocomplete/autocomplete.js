@@ -176,7 +176,6 @@ class Autocomplete {
 
                 suggestions = suggestions.splice(suggestions.length - 1);
             }
-
         } else {
             this.clearSuggestions();
         }

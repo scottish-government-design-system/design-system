@@ -1,20 +1,21 @@
 <div class="ds_site-search  ds_autocomplete" id="autocomplete">
     <form role="search" class="ds_site-search__form" method="GET" action="#">
         <label class="ds_label  visually-hidden" for="site-search">Search</label>
-
+        <div class="visually-hidden" id="autocomplete-status" role="status" aria-atomic="true" aria-live="polite"></div>
         <div class="ds_input__wrapper  ds_input__wrapper--has-icon">
             <input
-            aria-autocomplete="list"
-            aria-expanded="false"
-            aria-owns="autocomplete-suggestions"
-            autocomplete="off"
-            class="ds_input  ds_site-search__input  js-autocomplete-input"
-            haspopup="true"
-            id="site-search"
-            name="q"
-            placeholder="Search"
-            required=""
-            type="text"
+                aria-autocomplete="list"
+                aria-expanded="false"
+                aria-owns="autocomplete-suggestions"
+                aria-popup="listbox"
+                autocomplete="off"
+                class="ds_input  ds_site-search__input  js-autocomplete-input"
+                id="site-search"
+                name="q"
+                placeholder="Search"
+                required=""
+                role="combobox"
+                type="search"
             />
             <input name="cat" value="sitesearch" hidden>
 
