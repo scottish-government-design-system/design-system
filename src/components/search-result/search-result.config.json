@@ -257,8 +257,12 @@
                     "content": "The First Minister is head of the Scottish Government and has ultimate responsibility for all policy and decisions.",
                     "parent": {
                         "heading": "Part of:",
-                        "linkLabel": "Parent link",
-                        "link": "#"
+                        "links": [
+                            {
+                                "linkLabel": "Land reform",
+                                "link": "#"
+                            }
+                        ]
                     }
                 }
             }
@@ -321,8 +325,12 @@
                     "content": "Information and guidance regarding the crofting community right to buy.",
                     "parent": {
                         "heading": "Part of:",
-                        "linkLabel": "Land reform",
-                        "link": "#"
+                        "links": [
+                            {
+                                "linkLabel": "Land reform",
+                                "link": "#"
+                            }
+                        ]
                     }
                 }
             }
@@ -408,8 +416,12 @@
                     "content": "The First Minister is head of the Scottish Government and has ultimate responsibility for all policy and decisions.",
                     "parent": {
                         "heading": "Part of:",
-                        "linkLabel": "Parent link",
-                        "link": "#"
+                        "links": [
+                            {
+                                "linkLabel": "Land reform",
+                                "link": "#"
+                            }
+                        ]
                     },
                     "subLinksHeadingLevel": "h4",
                     "subLinks": [
