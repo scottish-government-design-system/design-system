@@ -42,7 +42,7 @@ class DSDatePicker {
     }
 
     init() {
-        if (!this.inputElement) {
+        if (!this.inputElement || this.datePickerParent.classList.contains('js-initialised')) {
             return;
         }
 
@@ -50,6 +50,7 @@ class DSDatePicker {
         const calendarButtonTempContainer = document.createElement('div');
         calendarButtonTempContainer.innerHTML = this.buttonTemplate();
         this.calendarButtonElement = calendarButtonTempContainer.firstChild;
+        this.calendarButtonElement.setAttribute('data-button', `datepicker-${this.inputElement.id}-toggle`);
 
         this.inputElement.parentNode.appendChild(this.calendarButtonElement);
         this.inputElement.parentNode.classList.add('ds_input__wrapper--has-icon');
@@ -122,9 +123,7 @@ class DSDatePicker {
         // populates calendar with inital dates, avoids Wave errors about null buttons
         this.updateCalendar();
 
-        if (window.DS && window.DS.tracking) {
-            window.DS.tracking.init(document.getElementById(dialog.id));
-        }
+        this.datePickerParent.classList.add('js-initialised');
     }
 
     buttonTemplate() {
