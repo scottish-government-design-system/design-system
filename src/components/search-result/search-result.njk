@@ -29,7 +29,9 @@
     {%- if params.parent %}
     <dl class="ds_search-result__context">
         <dt class="ds_search-result__context-key">{{ params.parent.heading }}</dt>
-        <dd class="ds_search-result__context-value"><a href="{{ params.parent.link }}">{{ params.parent.linkLabel }}</a></dd>
+        {%- for parentLink in params.parent.links -%}
+            <dd class="ds_search-result__context-value"><a href="{{ parentLink.link }}">{{ parentLink.linkLabel }}</a></dd>
+        {%-  endfor %} 
     </dl>
     {%- endif %}
     {%- if params.subLinks %}

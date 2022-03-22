@@ -6,14 +6,15 @@
     margin: 0;
     padding: 0;
     @include ds_responsive-padding(2, top);
-    @include ds_responsive-padding(2, bottom);
+    @include ds_responsive-padding(3, bottom);
 
-    border-bottom: 1px $ds_colour__border solid;
+    & + &:not(&--promoted) {
+        border-top: 1px $ds_colour__border solid;
+    }
 
     &--promoted {
-        &:first-child {
-            padding-top: 0;
-        }
+
+        padding-top: 0;
 
         &-content {
             background: $ds_colour__grey--lighter;
@@ -62,10 +63,6 @@
         @include ds_responsive-margin(1, top);
         @include ds_tiny-size(4px);
         margin-bottom: 0;
-
-        .ds_metadata__item {
-            z-index: auto; // Fix for current metadata component
-        }
     }
 
     &__has-media {
@@ -78,7 +75,7 @@
     }
 
     &__media {
-        padding-top: 2px; // Aligns the image with the text
+        padding-top: 4px; // Aligns the image with the text
         width: 96px; // Aligns to 2 columns on grid from medium size upwards
 
         @include ds_media-query(large) {
@@ -120,7 +117,6 @@
         &-value {
             margin: 0;
             padding: 0;
-            @include ds_root-size(4px); // Use 4px type grid
             @include ds_responsive-margin(1, top);
         }
 

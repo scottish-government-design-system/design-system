@@ -139,8 +139,53 @@
                     "content": "Information and guidance regarding the crofting community right to buy.",
                     "parent": {
                         "heading": "Part of:",
-                        "linkLabel": "Land reform",
-                        "link": "#"
+                        "links": [
+                            {
+                                "linkLabel": "Land reform",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "Multiple parent links",
+            "label": "Multiple parent links",
+            "context": {
+                "params": {
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_search-result__metadata  ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Format",
+                                    "value": "Publication - Consultation paper",
+                                    "hideKey": true
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "13 August 2021",
+                                    "hideKey": true
+                                }
+                            ]
+                        }
+                    },
+                    "heading": "Crofting community right to buy",
+                    "link": "#",
+                    "content": "Information and guidance regarding the crofting community right to buy.",
+                    "parent": {
+                        "heading": "Part of:",
+                        "links": [
+                            {
+                                "linkLabel": "Land reform",
+                                "link": "#"
+                            },
+                            {
+                                "linkLabel": "Rural affairs",
+                                "link": "#"
+                            }
+                        ]
                     }
                 }
             }
@@ -212,8 +257,12 @@
                     "content": "The First Minister is head of the Scottish Government and has ultimate responsibility for all policy and decisions.",
                     "parent": {
                         "heading": "Part of:",
-                        "linkLabel": "Parent link",
-                        "link": "#"
+                        "links": [
+                            {
+                                "linkLabel": "Land reform",
+                                "link": "#"
+                            }
+                        ]
                     }
                 }
             }
@@ -276,8 +325,12 @@
                     "content": "Information and guidance regarding the crofting community right to buy.",
                     "parent": {
                         "heading": "Part of:",
-                        "linkLabel": "Land reform",
-                        "link": "#"
+                        "links": [
+                            {
+                                "linkLabel": "Land reform",
+                                "link": "#"
+                            }
+                        ]
                     }
                 }
             }
@@ -363,8 +416,12 @@
                     "content": "The First Minister is head of the Scottish Government and has ultimate responsibility for all policy and decisions.",
                     "parent": {
                         "heading": "Part of:",
-                        "linkLabel": "Parent link",
-                        "link": "#"
+                        "links": [
+                            {
+                                "linkLabel": "Land reform",
+                                "link": "#"
+                            }
+                        ]
                     },
                     "subLinksHeadingLevel": "h4",
                     "subLinks": [

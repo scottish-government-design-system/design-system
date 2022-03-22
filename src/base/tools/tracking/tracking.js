@@ -392,6 +392,7 @@ const tracking = {
                         }
 
                         let attributeValue = `search-result-${start + index - promotedItems.length}`;
+                        let mediaAttributeValue = `search-image-${start + index - promotedItems.length}`;
                         let parentAttributeValue = `search-parent-link-${start + index - promotedItems.length}`;
                         if (count) {
                             attributeValue += `/${count}`;
@@ -399,7 +400,7 @@ const tracking = {
                         }
                         link.setAttribute('data-search', attributeValue);
                         if(mediaLink){
-                            mediaLink.setAttribute('data-search', attributeValue);
+                            mediaLink.setAttribute('data-search', mediaAttributeValue);
                         }
                         if(parentLink){
                             parentLink.setAttribute('data-search', parentAttributeValue);

@@ -38,6 +38,7 @@
     }    
 
     &__list {
+        border-bottom: 1px $ds_colour__border solid;
         list-style-type: none;
         margin: 0;
         @include ds_responsive-margin(4, bottom);
