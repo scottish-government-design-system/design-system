@@ -15,7 +15,6 @@ module.exports = (env, argv = {}) => {
     copySrc.push({ from: path.resolve(__dirname, './fractal/images/'), to: path.resolve(__dirname, `./${dest}/images/`) });
     copySrc.push({ from: path.resolve(__dirname, './fractal/data/'), to: path.resolve(__dirname, `./${dest}/data/`) });
     copySrc.push({ from: path.resolve(__dirname, './src/images/documents/svg/'), to: path.resolve(__dirname, `./${dest}/images/documents/svg/`) });
-    copySrc.push({ from: path.resolve(__dirname, './src/images/documents/svg/'), to: path.resolve(__dirname, `./${dest}/images/documents/svg/`) });
   }
 
   const baseConfig = {
@@ -33,7 +32,9 @@ module.exports = (env, argv = {}) => {
   };
 
   if (argv.mode === 'development') {
-    baseConfig.devtool = 'eval-source-map';
+    baseConfig.mode = 'development';
+  } else {
+    baseConfig.mode = 'production';
   }
 
   const configModern = structuredClone(baseConfig);

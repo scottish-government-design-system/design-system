@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.239] - 2022-03-22
+### Fixed
+- Webpack build failing in development mode
+
 ## [0.0.238] - 2022-03-21
 ### Fixed
 - Date picker open/close button now gets a data attribute added on init()

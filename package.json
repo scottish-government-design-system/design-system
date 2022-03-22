@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "fractal": "npm run dev; fractal start --sync",
-    "dev": "npm run sass -- -d; npm run svgsprite -- -d; npm run webpack -- -d eval-source-map;",
+    "dev": "npm run sass -- -d; npm run svgsprite -- -d; npm run webpack -- --mode=development --devtool eval-source-map;",
     "postshrinkwrap": "sealant",
     "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
     "nodesass": "node-sass src --output dist/css --output-style compressed",
