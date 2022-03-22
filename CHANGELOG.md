@@ -6,6 +6,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.240] - 2022-03-22
+### Changed
+- Small styling changes to search result component
+- Tracking attribute for images within search results
+### Fixed
+- Various typos in Fractal search result examples
+
 ## [0.0.239] - 2022-03-22
 ### Fixed
 - Webpack build failing in development mode
