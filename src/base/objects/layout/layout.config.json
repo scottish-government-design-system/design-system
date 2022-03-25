@@ -158,17 +158,48 @@
                         {
                             "name": "ds_layout__header",
                             "styles": "border:3px dashed #0065bd;padding:1em;",
-                            "content": "A ds_article-header component or other header content"
+                            "content": "Includes the search form"
+                        },
+                        {
+                            "name": "ds_layout__navigation",
+                            "styles": "border:3px dashed #28a197;padding:1em;",
+                            "content": "Optional tab navigation"
                         },
                         {
                             "name": "ds_layout__content",
                             "styles": "border:3px dashed #592c20;padding:1em;",
-                            "content": "The article content"
+                            "content": "Main content area for the results"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Search results with sidebar",
+            "label": "Search results with sidebar",
+            "context": {
+                "params": {
+                    "modifiers": "ds_layout--search-results-with-sidebar",
+                    "areas": [
+                        {
+                            "name": "ds_layout__header",
+                            "styles": "border:3px dashed #0065bd;padding:1em;",
+                            "content": "Includes the search form"
                         },
                         {
-                            "name": "ds_layout__list",
+                            "name": "ds_layout__navigation",
+                            "styles": "border:3px dashed #28a197;padding:1em;",
+                            "content": "Optional tab navigation"
+                        },
+                        {
+                            "name": "ds_layout__sidebar",
                             "styles": "border:3px dashed #f47738;padding:1em;",
-                            "content": "List content"
+                            "content": "Sidebar for filters"
+                        },
+                        {
+                            "name": "ds_layout__content",
+                            "styles": "border:3px dashed #592c20;padding:1em;",
+                            "content": "Main content area for the results"
                         }
                     ]
                 }

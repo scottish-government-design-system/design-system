@@ -99,12 +99,28 @@
 
         &--search-results {
             .ds_layout {
+                &__header {
+                    @include ds_colwidth(8);
+                }
                 &__content {
-                    @include ds_colwidth(8)
+                    @include ds_colwidth(8);
+                }
+            }
+        }
+
+        &--search-results-with-sidebar {
+            .ds_layout {
+                &__header {
+                    @include ds_colwidth(8);
                 }
 
-                &__list {
-                    @include ds_colwidth(10);
+                &__sidebar {
+                    float: left;
+                    @include ds_colwidth(4);
+                }
+                &__content {
+                    float: left;
+                    @include ds_colwidth(8);
                 }
             }
         }
@@ -150,7 +166,27 @@
 
         &--search-results {
             .ds_layout {
-                &__list {
+                &__header {
+                    @include ds_colwidth(8);
+                }
+                &__content {
+                    @include ds_colwidth(8);
+                }
+            }
+        }
+
+        &--search-results-with-sidebar {
+            .ds_layout {
+                &__header {
+                    @include ds_colwidth(8);
+                }
+
+                &__sidebar {
+                    float: left;
+                    @include ds_colwidth(4);
+                }
+                &__content {
+                    float: left;
                     @include ds_colwidth(8);
                 }
             }
@@ -255,6 +291,21 @@
                 's s'
                 'f f'
         }
+
+        &--search-results {
+            grid-template-areas:
+                'h h'
+                'n n'
+                'c c'
+        }
+
+        &--search-results-with-sidebar {
+            grid-template-areas:
+                'h h'
+                'n n'
+                's s'
+                'c c'
+        }
     }
 
     @include ds_media-query(small) {
@@ -285,6 +336,21 @@
                     'c c c c c c'
                     's s s s s s'
                     'f f f f f f'
+            }
+
+            &--search-results {
+                grid-template-areas:
+                    'h h h h h h'
+                    'n n n n n n'
+                    'c c c c c c'
+            }
+    
+            &--search-results-with-sidebar {
+                grid-template-areas:
+                    'h h h h h h'
+                    'n n n n n n'
+                    's s s s s s'
+                    'c c c c c c'
             }
         }
     }
@@ -319,9 +385,16 @@
 
             &--search-results {
                 grid-template-areas:
-                    'h h h h h h h h h h h h'
-                    'c c c c c c c c . . . .'
-                    'l l l l l l l l l l . .';
+                    'h h h h h h h h . . . .'
+                    'n n n n n n n n n n n n'
+                    'c c c c c c c c . . . .';
+            }
+
+            &--search-results-with-sidebar {
+                grid-template-areas:
+                    'h h h h h h h h . . . .'
+                    'n n n n n n n n n n n n'
+                    's s s s c c c c c c c c';
             }
         }
     }
@@ -341,13 +414,6 @@
                     'n n n n n n n n . . . .'
                     'c c c c c c c c . s s s'
                     'f f f f f f f f . . . .'
-            }
-
-            &--search-results {
-                grid-template-areas:
-                    'h h h h h h h h h h h h'
-                    'c c c c c c c c . . . .'
-                    'l l l l l l l l . . . .';
             }
         }
     }

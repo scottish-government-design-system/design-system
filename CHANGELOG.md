@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.241] - 2022-03-25
+### Changed
+- Layout grid for search results
+
 ## [0.0.240] - 2022-03-22
 ### Changed
 - Small styling changes to search result component
