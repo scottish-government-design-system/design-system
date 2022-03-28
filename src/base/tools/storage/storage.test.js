@@ -66,6 +66,7 @@ describe('storage', () => {
         });
     });
 
+    // todo: spec disabled because it causes intermittent failures. needs investigation.
     xdescribe('get', () => {
         it('should get from cookies if requested', () => {
             spyOn(storage.cookie, 'get');

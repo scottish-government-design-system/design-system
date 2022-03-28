@@ -43,6 +43,11 @@ const tracking = {
             const accordions = tracking.gatherElements('ds_accordion', scope);
 
             accordions.forEach(accordion => {
+                let name = '';
+                if (accordion.dataset.name) {
+                    name = accordion.dataset.name;
+                }
+
                 if (!accordion.classList.contains('js-initialised')) {
                     return;
                 }
@@ -60,9 +65,9 @@ const tracking = {
                         const open = checkOpenAll(openAll);
 
                         if (open) {
-                            openAll.setAttribute('data-accordion', 'accordion-close-all');
+                            openAll.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}close-all`);
                         } else {
-                            openAll.setAttribute('data-accordion', 'accordion-open-all');
+                            openAll.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}open-all`);
                         }
                     }
                 }
@@ -70,7 +75,7 @@ const tracking = {
                 function setAccordionItem(item, index) {
                     const itemButton = item.querySelector('.ds_accordion-item__header-button');
                     const itemControl = item.querySelector('.ds_accordion-item__control');
-                    itemButton.setAttribute('data-accordion', `accordion-${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
+                    itemButton.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
                 }
 
                 setOpenAll(openAll);
@@ -93,7 +98,7 @@ const tracking = {
                     const itemButton = item.querySelector('.ds_accordion-item__header-button');
                     const itemControl = item.querySelector('.ds_accordion-item__control');
                     itemButton.addEventListener('click', () => {
-                        itemButton.setAttribute('data-accordion', `accordion-${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
+                        itemButton.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
                         setOpenAll(openAll);
                     });
                 });
@@ -385,7 +390,7 @@ const tracking = {
                         let attributeValue = `search-promoted-${index + 1}/${promotedItems.length}`;
                         link.setAttribute('data-search', attributeValue);
                     } else {
-                    
+
                         let count;
                         if (list.getAttribute('data-total')) {
                             count = list.getAttribute('data-total');
@@ -408,7 +413,7 @@ const tracking = {
 
                     }
                 });
-            }); 
+            });
         },
 
         searchSuggestions: function (scope = document) {

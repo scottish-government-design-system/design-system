@@ -31,7 +31,7 @@
         <dt class="ds_search-result__context-key">{{ params.parent.heading }}</dt>
         {%- for parentLink in params.parent.links -%}
             <dd class="ds_search-result__context-value"><a href="{{ parentLink.link }}">{{ parentLink.linkLabel }}</a></dd>
-        {%-  endfor %} 
+        {%-  endfor %}
     </dl>
     {%- endif %}
     {%- if params.subLinks %}
@@ -43,7 +43,7 @@
                 {{ subLink.linkLabel }}
             </a>
         </li>
-        {%-  endfor %} 
+        {%-  endfor %}
     </ul>
     {%- endif %}
     {%- if params.image %}

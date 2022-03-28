@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.242] - 2022-03-28
+### Added
+- Unit tests for search results tracking (promoted, media, related)
+### Changed
+- Set pointer-events: none on children of notification close buttons
+
 ## [0.0.241] - 2022-03-25
 ### Changed
 - Layout grid for search results
