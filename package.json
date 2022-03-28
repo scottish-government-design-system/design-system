@@ -10,16 +10,18 @@
   "license": "MIT",
   "scripts": {
     "fractal": "npm run dev; fractal start --sync",
-    "dev": "npm run sass -- -d; npm run svgsprite -- -d; npm run webpack -- --mode=development --devtool eval-source-map;",
+    "dev": "del-cli --force ./dev; npm run sass -- -d; npm run svgsprite -- -d; npm run webpack -- --mode=development --devtool eval-source-map;",
     "postshrinkwrap": "sealant",
-    "prepublish": "npm run webpack; npm run sass; npm run svgsprite; npm run test",
+    "prepublish": "del-cli --force ./dist; npm run webpack; npm run sass; npm run svgsprite; npm run test",
     "nodesass": "node-sass src --output dist/css --output-style compressed",
     "sass": "node tasks/sass",
     "svgsprite": "node tasks/svg-sprite",
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"
   },
-  "dependencies": {},
+  "dependencies": {
+    "del-cli": "^4.0.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.7",
@@ -52,7 +54,7 @@
     "svg-sprite": "^1.5.4",
     "svgxuse": "^1.2.6",
     "webpack": "^5.70.0",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^3.3.12"
   },
   "browserslist": [
     "defaults"
