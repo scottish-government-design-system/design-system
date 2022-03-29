@@ -84,7 +84,6 @@ class Tabs {
             let currentTab = this.getCurrentTab();
             this.deactivateTab(currentTab);
             this.activateTab(tabHeader);
-            this.createHistoryEntry(tabHeader);
         });
 
         tabLink.addEventListener('keydown', (event) => {
@@ -115,8 +114,8 @@ class Tabs {
         if (nextTab){
             this.deactivateTab(currentTab);
             this.activateTab(nextTab);
-            nextTab.querySelector('.ds_tabs__tab-link').focus();
             this.createHistoryEntry(nextTab);
+            nextTab.querySelector('.ds_tabs__tab-link').focus();
         }
     }
 
@@ -126,8 +125,8 @@ class Tabs {
         if (previousTab){
             this.deactivateTab(currentTab);
             this.activateTab(previousTab);
-            previousTab.querySelector('.ds_tabs__tab-link').focus();
             this.createHistoryEntry(previousTab);
+            previousTab.querySelector('.ds_tabs__tab-link').focus();
         }
     }
 

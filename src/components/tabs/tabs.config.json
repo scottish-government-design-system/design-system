@@ -2,6 +2,7 @@
     "status": "wip",
     "context": {
         "params": {
+            "dynamic": true,
             "tabs": [
                 {
                     "tabTitle": "Tab 1",
@@ -62,6 +63,87 @@
                             "tabTitle": "Last tab 6",
                             "tabId": "tab6",
                             "tabContent": "<p>Content for Tab 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        }
+                    ]
+                 }
+            }
+        },
+        {
+            "name": "Tabs with count",
+            "label": "Tabs with count",
+            "context": {
+                "params": {
+                    "tabs": [
+                        {
+                            "tabTitle": "Tab title 1 (12833)",
+                            "tabId": "tab1",
+                            "tabContent": "<p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "This is another title 2 (232)",
+                            "tabId": "tab2",
+                            "tabContent": "<p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "Further tab 3 (0)",
+                            "tabId": "tab3",
+                            "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        }
+                    ]
+                 }
+            }
+        },
+        {
+            "name": "Tabs as links",
+            "label": "Tabs as links",
+            "context": {
+                "params": {
+                    "dynamic": false,
+                    "tabs": [
+                        {
+                            "tabTitle": "Tab title 1",
+                            "tabId": "tab1",
+                            "tabLink": "#",
+                            "tabContent": "<p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "current": true
+                        },
+                        {
+                            "tabTitle": "This is another title 2",
+                            "tabId": "tab2",
+                            "tabLink": "#"
+                        },
+                        {
+                            "tabTitle": "Further tab 3",
+                            "tabId": "tab3",
+                            "tabLink": "#"
+                        }
+                    ]
+                 }
+            }
+        },
+        {
+            "name": "Tabs as links - selected",
+            "label": "Tabs as links - selected",
+            "context": {
+                "params": {
+                    "dynamic": false,
+                    "tabs": [
+                        {
+                            "tabTitle": "Tab title 1",
+                            "tabId": "tab1",
+                            "tabLink": "#"
+                        },
+                        {
+                            "tabTitle": "This is another title 2",
+                            "tabId": "tab2",
+                            "tabLink": "#"
+                        },
+                        {
+                            "tabTitle": "Further tab 3",
+                            "tabId": "tab3",
+                            "tabLink": "#",
+                            "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "current": true
                         }
                     ]
                  }
