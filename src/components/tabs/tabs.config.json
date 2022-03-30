@@ -99,6 +99,7 @@
             "context": {
                 "params": {
                     "dynamic": false,
+                    "heading": "Contents",
                     "tabs": [
                         {
                             "tabTitle": "Tab title 1",
@@ -127,6 +128,7 @@
             "context": {
                 "params": {
                     "dynamic": false,
+                    "heading": "Contents",
                     "tabs": [
                         {
                             "tabTitle": "Tab title 1",

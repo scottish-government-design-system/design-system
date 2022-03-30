@@ -9,6 +9,20 @@ $tab__border-width--current: 2px !default;
 
 .ds_tabs {
 
+    &__title {
+        margin: 0;
+        padding: 0;
+
+        @include ds_media-query(medium-down) {
+            @include ds_small-size;
+            @include ds_responsive-margin(2, bottom);            
+            font-weight: $normal;
+        }
+        @include ds_media-query(medium) {
+            @include ds_visually-hidden;
+        }
+    }
+
     &__list {
         list-style: none;
         margin: 0;
@@ -56,13 +70,8 @@ $tab__border-width--current: 2px !default;
 
     &__content {
         border-top: 1px solid $ds_colour__border;
-        //display: none;
         padding: 16px;
     }
-
-
-
-
 
     &__label {
         @include ds_link;
@@ -91,8 +100,9 @@ $tab__border-width--current: 2px !default;
             outline-width: 0;
         }
     }
+}
 
-    &__header:first-child > &__label {
+/*    &__header:first-child > &__label {
         border-top: 0;
         padding-top: 16px;
     }
@@ -267,3 +277,4 @@ $tab__border-width--current: 2px !default;
         }
     }
 }
+*/

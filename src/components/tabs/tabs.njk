@@ -1,6 +1,7 @@
 <div class="ds_tabs" {%- if params.dynamic %} data-module="ds-tabs"{% endif %}>
     {%- if not params.dynamic %}
-    <nav>
+    <nav aria-labelledby="ds_tabs__title">
+    <h2 id="ds_tabs__title" class="ds_tabs__title">{{ params.heading }}</h2>
     {%- endif %}
     {%- if params.tabs %}
     <ul class="ds_tabs__list">
