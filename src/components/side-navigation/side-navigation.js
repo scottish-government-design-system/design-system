@@ -64,7 +64,9 @@ class SideNavigation {
 
     openSideNav() {
         this.navList.style.display = 'block';
-        this.navList.style.maxHeight = this.navList.scrollHeight + 16 +  'px';
+        window.setTimeout(() => {
+            this.navList.style.maxHeight = this.navList.scrollHeight + 16 + 'px';
+        }, 0);
     }
 
     closeSideNav() {

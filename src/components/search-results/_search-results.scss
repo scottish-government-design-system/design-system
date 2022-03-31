@@ -3,9 +3,6 @@
 \*------------------------------------*/
 
 .ds_search-suggestions {
-    @include ds_small-size;
-    margin: 24px 0 24px;
-
     ul {
         display: inline-block;
         list-style-type: none;
@@ -24,30 +21,40 @@
 
 .ds_search-results {
 
-    &__list {
-        list-style-type: none;
-        margin: 0 0 24px;
-    }
+    &__title {
+        @include ds_root-size;
+        margin-top: 0 !important;
+        @include ds_responsive-margin(1, bottom, $important: true);
+        font-weight: $normal;
 
-    &__pagination {
-        background: $ds_colour__grey--light;
-        text-align: center;
-        padding: 8px 0;
-    }
-}
-
-@include ds_media-query(medium) {
-    .ds_search-results {
-        &__count {
-            padding-left: 16px;
+        &-count,
+        &-query {
+            font-weight: $bold;
         }
     }
 
-    .ds_search-suggestions {
-        padding-left: 16px;
+    &__suggestions + &__title {
+        @include ds_responsive-margin(2, top, $important: true);
+    }    
 
-        ul li:not(:last-child)::after {
-            margin-left: -3px;
+    &__list {
+        border-bottom: 1px $ds_colour__border solid;
+        list-style-type: none;
+        margin: 0;
+        @include ds_responsive-margin(4, bottom);
+    }
+
+    &__related {
+        @include ds_small-size;
+        @include ds_block-margins;
+        @include ds_last-child-no-margin;
+        @include ds_responsive-padding(2);
+        background: $ds_colour__grey--lighter;
+
+        &-title {
+            @include ds_root-size;
+            margin: 0;
+            @include ds_responsive-margin(1, bottom);
         }
     }
 }

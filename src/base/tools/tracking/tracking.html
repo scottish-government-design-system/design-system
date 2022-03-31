@@ -101,7 +101,54 @@
 </div>
 
 <div id="accordions">
-    <div class="ds_accordion" data-module="ds-accordion">
+    <div class="ds_accordion" data-module="ds-accordion" id="standard-accordion">
+        <button data-accordion="accordion-open-all" type="button" class="ds_link  ds_accordion__open-all  js-open-all">Open all <span class="visually-hidden">sections</span></button>
+
+        <div class="ds_accordion-item">
+            <input type="checkbox" class="visually-hidden  ds_accordion-item__control" id="panel-1" aria-labelledby="panel-1-heading">
+            <div class="ds_accordion-item__header">
+                <h3 id="panel-1-heading" class="ds_accordion-item__title">
+                    Healthcare for veterans
+                </h3>
+                <span class="ds_accordion-item__indicator"></span>
+                <label class="ds_accordion-item__label" for="panel-1"><span class="visually-hidden">Show this section</span></label>
+            </div>
+            <div class="ds_accordion-item__body">
+                <p>Veterans are entitled to the same healthcare as any citizen. And there are <a href="#">health care options and support</a> available specifically for veterans.  </p>
+                <p>If you have a health condition that's related to your service, you're entitled to priority treatment based on clinical need. </p>
+            </div>
+        </div>
+
+        <div class="ds_accordion-item">
+            <input checked type="checkbox" class="visually-hidden  ds_accordion-item__control" id="panel-2" aria-labelledby="panel-2-heading">
+            <div class="ds_accordion-item__header">
+                <h3 id="panel-2-heading" class="ds_accordion-item__title">
+                    Employability for veterans
+                </h3>
+                <span class="ds_accordion-item__indicator"></span>
+                <label class="ds_accordion-item__label" for="panel-2"><span class="visually-hidden">Show this section</span></label>
+            </div>
+            <div class="ds_accordion-item__body">
+                <p>If you're looking for a job, there are several organisations that can help you <a href="#">find a job or develop new skills</a>.</p>
+            </div>
+        </div>
+
+        <div class="ds_accordion-item">
+            <input type="checkbox" class="visually-hidden  ds_accordion-item__control" id="panel-3" aria-labelledby="panel-3-heading">
+            <div class="ds_accordion-item__header">
+                <h3 id="panel-3-heading" class="ds_accordion-item__title">
+                    Housing for veterans
+                </h3>
+                <span class="ds_accordion-item__indicator"></span>
+                <label class="ds_accordion-item__label" for="panel-3"><span class="visually-hidden">Show this section</span></label>
+            </div>
+            <div class="ds_accordion-item__body">
+                <p>If you need <a href="#">help finding a place to live</a> there's support specifically for veterans.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ds_accordion" data-module="ds-accordion" data-name="foo" id="accordion-with-name">
         <button data-accordion="accordion-open-all" type="button" class="ds_link  ds_accordion__open-all  js-open-all">Open all <span class="visually-hidden">sections</span></button>
 
         <div class="ds_accordion-item">
@@ -569,7 +616,7 @@
         </form>
     </div>
 
-    <nav id="suggestions" class="ds_search-suggestions" aria-label="Alternative search suggestions">
+    <nav id="search-suggestions" class="ds_search-suggestions" aria-label="Alternative search suggestions">
         <span aria-hidden="true">Did you mean:</span>
 
         <ul>
@@ -589,65 +636,119 @@
         <p class="ds_search-results__count js-search-results-count"><b>68</b> results</p>
 
         <ol id="search-results-list" class="ds_search-results__list">
-            <li class="ds_search-result">
-                <header class="ds_search-result__header">
-                    <dl class="ds_search-result__metadata  ds_metadata  ds_metadata--inline">
-                        <span class="ds_metadata__item">
-                            <dt class="ds_metadata__key  visually-hidden">Type</dt>
-                            <dd class="ds_metadata__value  ds_content-label">Policy</dd>
-                        </span>
-                    </dl>
-
-                    <h2 class="gamma  ds_search-result__title">
+            <li class="ds_search-result  ds_search-result--promoted">
+                <div class="ds_search-result--promoted-content">
+                    <header class="ds_search-result--promoted-title">Recommended by gov.scot</header>
+                    <h3 class="ds_search-result__title">
                         <a class="ds_search-result__link" href="#">Crofting community right to buy</a>
-                    </h2>
-                </header>
-
-                <p class="ds_search-result__summary">Information and guidance regarding the crofting community right to buy.</p>
+                    </h3>
+                    <p class="ds_search-result__summary">Information and guidance regarding the <mark>crofting</mark> community right to buy.</p>
+                    <dl class="ds_metadata ds_search-result__metadata  ds_metadata--inline">
+                        <div class="ds_metadata__item">
+                            <dt class="ds_metadata__key visually-hidden">Format</dt>
+                            <dd class="ds_metadata__value">Policy</dd>
+                        </div>
+                    </dl>
+                </div>
             </li>
 
-            <li class="ds_search-result">
-                <header class="ds_search-result__header">
-                    <dl class="ds_search-result__metadata  ds_metadata  ds_metadata--inline">
-                        <span class="ds_metadata__item">
-                            <dt class="ds_metadata__key  visually-hidden">Type</dt>
-                            <dd class="ds_metadata__value  ds_content-label">Consultation paper</dd>
-                        </span>
-
-                        <span class="ds_metadata__item">
-                            <dt class="ds_metadata__key  visually-hidden">Publication date</dt>
-                            <dd class="ds_metadata__value">28 Aug 2017</dd>
-                        </span>
-                    </dl>
-
-                    <h2 class="gamma  ds_search-result__title">
+            <li class="ds_search-result  ds_search-result--promoted">
+                <div class="ds_search-result--promoted-content">
+                    <header class="ds_search-result--promoted-title">Recommended by gov.scot</header>
+                    <h3 class="ds_search-result__title">
                         <a class="ds_search-result__link" href="#">Crofting consultation 2017</a>
-                    </h2>
-                </header>
-
-                <p class="ds_search-result__summary">We are seeking the views of crofters, and those with an interest, on the pathway of any potential new legislation to reform crofting law.</p>
+                    </h3>
+                    <p class="ds_search-result__summary">We are seeking the views of crofters, and those with an interest, on the pathway of any potential new legislation to reform <mark>crofting</mark> law.</p>
+                    <dl class="ds_metadata ds_search-result__metadata ds_metadata--inline">
+                        <div class="ds_metadata__item">
+                            <dt class="ds_metadata__key visually-hidden">Format</dt>
+                            <dd class="ds_metadata__value">Publication - Consultation paper</dd>
+                        </div>
+                        <div class="ds_metadata__item">
+                            <dt class="ds_metadata__key visually-hidden">Date</dt>
+                            <dd class="ds_metadata__value">28 August 2017</dd>
+                        </div>
+                    </dl>
+                </div>
             </li>
 
             <li class="ds_search-result">
-                <header class="ds_search-result__header">
-                    <dl class="ds_search-result__metadata  ds_metadata  ds_metadata--inline">
-                        <span class="ds_metadata__item">
-                            <dt class="ds_metadata__key  visually-hidden">Type</dt>
-                            <dd class="ds_metadata__value  ds_content-label">Consultation analysis</dd>
-                        </span>
+                <h3 class="ds_search-result__title">
+                    <a class="ds_search-result__link" href="#">Crofting Elections 2017: consultation responses analysis</a>
+                </h3>
+                <p class="ds_search-result__summary">Analysis of the responses to the <mark>Crofting</mark> Elections 2017 consultation.</p>
+                <dl class="ds_metadata ds_search-result__metadata ds_metadata--inline">
+                    <div class="ds_metadata__item">
+                        <dt class="ds_metadata__key visually-hidden">Format</dt>
+                        <dd class="ds_metadata__value">Publication - Consultation analysis</dd>
+                    </div>
+                    <div class="ds_metadata__item">
+                        <dt class="ds_metadata__key visually-hidden">Date</dt>
+                        <dd class="ds_metadata__value">1 September 2017</dd>
+                    </div>
+                </dl>
+            </li>
 
-                        <span class="ds_metadata__item">
-                            <dt class="ds_metadata__key  visually-hidden">Publication date</dt>
-                            <dd class="ds_metadata__value"><time datetime="2016-09-01">01 Sep 2016</time></dd>
-                        </span>
-                    </dl>
+            <li class="ds_search-result">
+                <h3 class="ds_search-result__title">
+                    <a class="ds_search-result__link" href="#">Crofting Commision</a>
+                </h3>
+                <p class="ds_search-result__summary">Elections regulations put before parliament.</p>
+                <dl class="ds_metadata ds_search-result__metadata ds_metadata--inline">
+                    <div class="ds_metadata__item">
+                        <dt class="ds_metadata__key visually-hidden">Format</dt>
+                        <dd class="ds_metadata__value">News</dd>
+                    </div>
+                    <div class="ds_metadata__item">
+                        <dt class="ds_metadata__key visually-hidden">Date</dt>
+                        <dd class="ds_metadata__value">25 October 2016</dd>
+                    </div>
+                </dl>
+                <dl class="ds_search-result__context">
+                    <dt class="ds_search-result__context-key">Part of:</dt>
+                    <dd class="ds_search-result__context-value"><a href="#">Equality and rights</a></dd>
+                    <dd class="ds_search-result__context-value"><a href="#">Rural affairs</a></dd>
+                </dl>
+            </li>
 
-                    <h2 class="gamma  ds_search-result__title">
-                        <a class="ds_search-result__link" href="#">Crofting Elections 2017: consultation responses analysis</a>
-                    </h2>
-                </header>
+            <li class="ds_search-result">
+                <h3 class="ds_search-result__title">
+                    <a class="ds_search-result__link" href="#">Proposals on secondary legislation the Land Reform (Scotland) Act 2003 part three: crofting community right to buy as amended by the Community Empowerment (Scotland) Act 2015: consultation</a>
+                </h3>
+                <p class="ds_search-result__summary">Consultation relating to secondary legislation for the Land Reform (Scotland) Act 2003 part three, crofting community right to buy as amended by the Community ...</p>
+                <dl class="ds_metadata ds_search-result__metadata ds_metadata--inline">
+                    <div class="ds_metadata__item">
+                        <dt class="ds_metadata__key visually-hidden">Format</dt>
+                        <dd class="ds_metadata__value">Publication - Research and Analysis</dd>
+                    </div>
+                    <div class="ds_metadata__item">
+                        <dt class="ds_metadata__key visually-hidden">Date</dt>
+                        <dd class="ds_metadata__value">1 September 2016</dd>
+                    </div>
+                </dl>
+                <dl class="ds_search-result__context">
+                    <dt class="ds_search-result__context-key">Part of:</dt>
+                    <dd class="ds_search-result__context-value"><a href="#">Farming and rural</a></dd>
+                </dl>
+            </li>
 
-                <p class="ds_search-result__summary">Analysis of the responses to the Crofting Elections 2017 consultation.</p>
+            <li class="ds_search-result">
+                <h3 class="ds_search-result__title">
+                    <a class="ds_search-result__link" href="#">Cabinet Secretary for Rural Affairs and Islands</a>
+                </h3>
+                <div class="ds_search-result__has-media">
+                    <div class="ds_search-result__media-wrapper">
+                        <div class="ds_search-result__media  ds_aspect-box  ds_aspect-box--square">
+                            <a class="ds_search-result__media-link" href="#" tabindex="-1">
+                                <img alt="" aria-hidden="true" class="ds_aspect-box__inner" src="/assets/images/placeholders/thistles.jpg" width="656" height="369" />
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="ds_search-result__sub-title">Incumbent&#39;s name</h4>
+                        <p class="ds_search-result__summary">The Cabinet Secretary is responsible for: cross-government co-ordination on islands, Islands Bond, carbon-neutral islands, <mark>crofting</mark></p>
+                    </div>
+                </div>
             </li>
         </ol>
 
@@ -694,6 +795,14 @@
                 </li>
             </ul>
         </nav>
+
+        <aside id="search-related" class="ds_search-results__related" aria-labelledby="search-results__related-title">
+            <h2 id="search-results__related-title" class="ds_search-results__related-title">Related searches</h2>
+            <ul class="ds_no-bullets">
+                <li><a href="#">Related link 1</a></li>
+                <li><a href="#">Related link 2</a></li>
+            </ul>
+        </aside>
     </section>
 </div>
 

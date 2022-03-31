@@ -243,7 +243,7 @@ describe('tracking', () => {
         describe('attributes', () => {
             beforeEach(() => {
                 testObj.scope = document.getElementById('accordions');
-                testObj.accordionElement = testObj.scope.querySelector('.ds_accordion');
+                testObj.accordionElement = testObj.scope.querySelector('#standard-accordion');
                 testObj.accordionModule = new Accordion(testObj.accordionElement);
                 testObj.accordionModule.init();
             });
@@ -257,7 +257,7 @@ describe('tracking', () => {
                 Tracking.add.accordions();
 
                 expect(buttons[0].getAttribute('data-accordion')).toEqual('accordion-open-1');
-                // accordion iten 2 is open on load and it should have a different attribute
+                // accordion item 2 is open on load and it should have a different attribute
                 expect(buttons[1].getAttribute('data-accordion')).toEqual('accordion-close-2');
                 expect(buttons[2].getAttribute('data-accordion')).toEqual('accordion-open-3');
             });
@@ -268,6 +268,37 @@ describe('tracking', () => {
                 Tracking.add.accordions();
 
                 expect(openAll.getAttribute('data-accordion')).toEqual('accordion-open-all');
+            });
+        });
+
+        describe('attributes for accordion with data-name attribute', () => {
+            beforeEach(() => {
+                testObj.scope = document.getElementById('accordions');
+                testObj.accordionElement = testObj.scope.querySelector('#accordion-with-name');
+                testObj.accordionModule = new Accordion(testObj.accordionElement);
+                testObj.accordionModule.init();
+            });
+
+            it('should add data attributes, with name, to accordion buttons', () => {
+                const openAll = testObj.accordionElement.querySelector('.js-open-all');
+                openAll.parentNode.removeChild(openAll);
+
+                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header-button'));
+
+                Tracking.add.accordions();
+
+                expect(buttons[0].getAttribute('data-accordion')).toEqual('accordion-foo-open-1');
+                // accordion item 2 is open on load and it should have a different attribute
+                expect(buttons[1].getAttribute('data-accordion')).toEqual('accordion-foo-close-2');
+                expect(buttons[2].getAttribute('data-accordion')).toEqual('accordion-foo-open-3');
+            });
+
+            it('should add a data attribute to the accordion "open all" button', () => {
+                const openAll = testObj.accordionElement.querySelector('.js-open-all');
+
+                Tracking.add.accordions();
+
+                expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-open-all');
             });
         });
 
@@ -341,6 +372,79 @@ describe('tracking', () => {
                 buttons.forEach((button, index) => {
                     expect(button.getAttribute('data-accordion')).toEqual(`accordion-open-${index + 1}`);
                 });
+            });
+        });
+    });
+
+    describe('events for accordion with data-name attribute', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('accordions');
+            testObj.accordionElement = testObj.scope.querySelector('#accordion-with-name');
+            testObj.accordionModule = new Accordion(testObj.accordionElement);
+            testObj.accordionModule.init();
+        });
+
+        it('should toggle the attribute value on accordion item buttons when they open or close', () => {
+            const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
+            const itemButton = items[0].querySelector('.ds_accordion-item__header-button');
+            const itemControl = items[0].querySelector('.ds_accordion-item__control');
+
+            Tracking.add.accordions();
+
+            let event = new Event('click');
+            itemControl.checked = true;
+            itemButton.dispatchEvent(event);
+
+            expect(itemButton.getAttribute('data-accordion')).toEqual('accordion-foo-close-1');
+        });
+
+        it('should toggle the "open all" button to "close all" when all accordion items are open', () => {
+            const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
+            const itemButton1 = items[0].querySelector('.ds_accordion-item__header-button');
+            const itemControl1 = items[0].querySelector('.ds_accordion-item__control');
+            const itemButton3 = items[2].querySelector('.ds_accordion-item__header-button');
+            const itemControl3 = items[2].querySelector('.ds_accordion-item__control');
+            const openAll = testObj.accordionElement.querySelector('.js-open-all');
+
+            Tracking.add.accordions();
+
+            // run through a number of open/close interactions
+            let event = new Event('click');
+
+            itemControl1.checked = true;
+            itemButton1.dispatchEvent(event);
+            expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-open-all');
+
+            // second item is already open
+
+            itemControl3.checked = true;
+            itemButton3.dispatchEvent(event);
+            expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-close-all');
+
+            // and now back to open all
+            itemControl1.checked = false;
+            itemButton1.dispatchEvent(event);
+            expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-open-all');
+        });
+
+        it('should modify all panels\' data-attributes on click of "open all"', () => {
+            const openAll = testObj.accordionElement.querySelector('.js-open-all');
+            const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header-button'));
+
+            Tracking.add.accordions();
+
+            let event = new Event('click');
+
+            // open them all
+            openAll.dispatchEvent(event);
+            buttons.forEach((button, index) => {
+                expect(button.getAttribute('data-accordion')).toEqual(`accordion-foo-close-${index + 1}`);
+            });
+
+            // and now close them all
+            openAll.dispatchEvent(event);
+            buttons.forEach((button, index) => {
+                expect(button.getAttribute('data-accordion')).toEqual(`accordion-foo-open-${index + 1}`);
             });
         });
     });
@@ -736,37 +840,54 @@ describe('tracking', () => {
     describe('search results', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('search-results');
+            testObj.promoted = [].slice.call(testObj.scope.querySelectorAll('.ds_search-result--promoted'));
+            testObj.notPromoted = [].slice.call(testObj.scope.querySelectorAll('.ds_search-result:not(.ds_search-result--promoted)'));
         });
 
-        it('should set a generated data attribute on each result with the result`s position in the results, one-indexed', () => {
-            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_search-result__link'));
+        it('should set a generated data attribute on each PROMOTED result with the result`s position in the PROMOTED results, one-indexed', () => {
             Tracking.add.searchResults();
 
-            // check a link in the middle
-            expect(links[1].getAttribute('data-search')).toEqual('search-result-2');
+            testObj.promoted.forEach((item, index) => {
+                const link = item.querySelector('.ds_search-result__link');
+                expect(link.getAttribute('data-search')).toEqual(`search-promoted-${index+1}/${testObj.promoted.length}`);
+            });
         });
 
-        it('should include the total number of results to the data attribute if known', () => {
-            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_search-result__link'));
+        it('should set a generated data attribute on each NOT PROMOTED result with the result`s position in the NOT PROMOTED results, one-indexed', () => {
+            Tracking.add.searchResults();
+
+            testObj.notPromoted.forEach((item, index) => {
+                const link = item.querySelector('.ds_search-result__link');
+                expect(link.getAttribute('data-search')).toEqual(`search-result-${index+1}`);
+            });
+        });
+
+        it('should include the total number of results from the data attribute if known', () => {
             const list = testObj.scope.querySelector('.ds_search-results__list');
-            list.setAttribute('data-total', 68);
+            const count = 68;
+
+            list.setAttribute('data-total', count);
             Tracking.add.searchResults();
 
-            // check a link in the middle
-            expect(links[1].getAttribute('data-search')).toEqual('search-result-2/68');
+            testObj.notPromoted.forEach((item, index) => {
+                const link = item.querySelector('.ds_search-result__link');
+                expect(link.getAttribute('data-search')).toEqual(`search-result-${index+1}/${count}`);
+            });
         });
 
         it('should base the number of the search result on the start point of the list, if given', () => {
-            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_search-result__link'));
             const list = testObj.scope.querySelector('.ds_search-results__list');
+
             list.setAttribute('start', 11);
             Tracking.add.searchResults();
 
-            // check a link in the middle
-            expect(links[1].getAttribute('data-search')).toEqual('search-result-12');
+            testObj.notPromoted.forEach((item, index) => {
+                const link = item.querySelector('.ds_search-result__link');
+                expect(link.getAttribute('data-search')).toEqual(`search-result-${index+1+10}`);
+            });
         });
 
-        it('should not have syntax errors if there is no lisf results', () => {
+        it('should not have syntax errors if there is no list of results', () => {
             const list = testObj.scope.querySelector('.ds_search-results__list');
             list.parentNode.removeChild(list);
 
@@ -778,7 +899,7 @@ describe('tracking', () => {
 
     describe('search suggestions', () => {
         beforeEach(() => {
-            testObj.scope = document.getElementById('suggestions');
+            testObj.scope = document.getElementById('search-suggestions');
         });
 
         it('should set a generated data attribute on each suggestion with the suggestion`s position in the suggestions, one-indexed', () => {
@@ -787,6 +908,21 @@ describe('tracking', () => {
 
             expect(links[0].getAttribute('data-search')).toEqual('suggestion-result-1/2');
             expect(links[1].getAttribute('data-search')).toEqual('suggestion-result-2/2');
+            // etc if more suggestions
+        });
+    });
+
+    describe('search related', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('search-related');
+        });
+
+        it('should set a generated data attribute on each related item with the suggestion`s position in the list, one-indexed', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('a'));
+            Tracking.add.searchRelated();
+
+            expect(links[0].getAttribute('data-search')).toEqual('search-related-1/2');
+            expect(links[1].getAttribute('data-search')).toEqual('search-related-2/2');
             // etc if more suggestions
         });
     });

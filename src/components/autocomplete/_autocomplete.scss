@@ -1,0 +1,66 @@
+.ds_autocomplete {
+    position: relative;
+
+    &__suggestions {
+        @include ds_box-shadow;
+
+        border: 2px solid $ds_colour__grey--medium;
+        display: none;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        z-index: 10;
+    }
+
+    &__suggestions-list {
+        list-style-type: none;
+        margin: 0;
+    }
+
+    /*
+     [1] 18px = 20px (associated site search input) minus 2px (suggestions border)
+     */
+    &__suggestion {
+        background-color: $ds_colour__white;
+        color: $ds_colour__text--secondary;
+        cursor: pointer;
+        font-style: italic;
+        margin-bottom: 0;
+        padding: 11px 18px; /* [1] */
+        transition: background-color 0.2s;
+
+        &:hover {
+            background-color: $ds_colour__blue--light;
+        }
+
+        &.active {
+            background-color: $ds_colour__link--focus__background;
+            box-shadow: inset 4px 0 0 $ds_colour__link--focus;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 2px solid $ds_colour__grey--medium;
+        }
+
+        &__text {
+            font-style: normal;
+            color: $ds_colour__text;
+        }
+
+        &__category {
+            color: $ds_colour__brand;
+        }
+    }
+}
+
+.js-autocomplete-input[aria-expanded="true"] ~ .ds_autocomplete__suggestions {
+    display: block;
+}
+
+@include media-query(medium) {
+    .ds_autocomplete__suggestions {
+        font-size: px-to-rem(16px, $root-font-size--medium);
+        line-height: line-height-on-grid(16px);
+    }
+}

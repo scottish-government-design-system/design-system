@@ -6,6 +6,92 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.243] - 2022-03-31
+### Changed
+- Accessibility improvements on prototype autocomplete component
+- Increase z-index of autocomplete suggestions
+
+## [0.0.242] - 2022-03-28
+### Added
+- Unit tests for search results tracking (promoted, media, related)
+### Changed
+- Set pointer-events: none on children of notification close buttons
+
+## [0.0.241] - 2022-03-25
+### Changed
+- Layout grid for search results
+
+## [0.0.240] - 2022-03-22
+### Changed
+- Small styling changes to search result component
+- Tracking attribute for images within search results
+### Fixed
+- Various typos in Fractal search result examples
+
+## [0.0.239] - 2022-03-22
+### Fixed
+- Webpack build failing in development mode
+
+## [0.0.238] - 2022-03-21
+### Fixed
+- Date picker open/close button now gets a data attribute added on init()
+
+## [0.0.237] - 2022-03-16
+### Changed
+- Mark file info as "prototype"
+### Security
+- Updated package versions
+### Removed
+- "reversed" site footer variant from Fractal
+
+## [0.0.236] - 2022-03-16
+### Added
+- Autocompolete component added to Fractal
+- File info component added to Fractal
+- File type icons added (CSV, Excel, "file", geodata, PDF, Powerpoint, RTF, TXT, Word, XML)
+### Changed
+- Remove reset styles for "search" input types
+
+## [0.0.235] - 2022-03-14
+### Added
+- First draft of "file info" component
+### Fixed
+- Incorrect icon sizing on buttons in IE11
+- Incorrect metadata colour on focused search results
+- Use "none" instead of "unset" for side navigation and site navigation height on small viewports, to support IE11
+- Wait until the end of the event loop to change side navigation height property when opening the side navigation on small devices
+
+## [0.0.234] - 2022-03-11
+### Added 
+- Related searches within search results pattern.
+- Support for 4px typography grid.
+- Function for calculating root font size and line height.
+### Changed
+- Search result component has additional layout options and some styling changes.
+- Search results pattern has minor styling changes. 
+- Pagination ellipsis example now shows both directions.
+### Fixed
+- Support for mark tag in Windows high contrast mode.
+
+## [0.0.233] - 2022-03-04
+## Added
+- Alpha "autocomplete" component
+
+## [0.0.232] - 2022-03-04
+## Fixed
+- Regression introduced in Date Picker component
+
+## [0.0.231] - 2022-03-03
+## Changed
+- Update site footer component with new grey colourway
+
+## [0.0.230] - 2022-02-23
+## Fixed
+- Incorrect syntax on calc() expression
+
+## [0.0.229] - 2022-02-23
+## Changed
+- Improve stability of Date Picker component
 
 ## [0.0.228] - 2022-02-22
 ### Changed

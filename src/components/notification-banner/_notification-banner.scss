@@ -117,6 +117,10 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             color: currentColor;
             outline: 2px solid currentColor;
         }
+
+        > * {
+            pointer-events: none;
+        }
     }
 }
 

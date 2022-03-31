@@ -13,6 +13,8 @@ module.exports = (env, argv = {}) => {
   if (argv.mode === 'development') {
     copySrc.push({ from: path.resolve(__dirname, './node_modules/svgxuse/svgxuse.min.js'), to: path.resolve(__dirname, `./${dest}/scripts/`) });
     copySrc.push({ from: path.resolve(__dirname, './fractal/images/'), to: path.resolve(__dirname, `./${dest}/images/`) });
+    copySrc.push({ from: path.resolve(__dirname, './fractal/data/'), to: path.resolve(__dirname, `./${dest}/data/`) });
+    copySrc.push({ from: path.resolve(__dirname, './src/images/documents/svg/'), to: path.resolve(__dirname, `./${dest}/images/documents/svg/`) });
   }
 
   const baseConfig = {
@@ -24,11 +26,16 @@ module.exports = (env, argv = {}) => {
       filename: '[name].js'
     },
     plugins: [],
-    devtool: argv.mode === 'development' ? 'eval-source-map' : '',
     module: {
       rules: []
     }
   };
+
+  if (argv.mode === 'development') {
+    baseConfig.mode = 'development';
+  } else {
+    baseConfig.mode = 'production';
+  }
 
   const configModern = structuredClone(baseConfig);
   const configES5 = Object.assign(structuredClone(baseConfig), {

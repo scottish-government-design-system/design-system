@@ -2,57 +2,133 @@
     SEARCH RESULT
 \*------------------------------------*/
 
-%xds_search-result__outer {
-    border-bottom: 1px solid $ds_colour__border--light;
-    border-width: 1px 0;
-    margin: 0 -16px;
-
-    &:first-of-type {
-        border-top: 1px solid $ds_colour__border--light;
-    }
-}
-
-%xds_search-result__inner {
-    color: $ds_colour__text !important;
-    padding: 24px 16px 23px;
-    position: relative;
-    text-decoration: none;
-
-    @include ds_last-child-no-margin;
-
-    &:first-of-type {
-        padding-top: 23px;
-    }
-}
-
 .ds_search-result {
-    @extend %xds_search-result__outer;
-    @extend %xds_search-result__inner;
+    margin: 0;
+    padding: 0;
+    @include ds_responsive-padding(2, top);
+    @include ds_responsive-padding(3, bottom);
 
-    @include ds_blocklink('.ds_search-result__link');
-
-    &__label {
-        font-weight: $bold;
-        text-transform: uppercase;
+    & + &:not(&--promoted) {
+        border-top: 1px $ds_colour__border solid;
     }
 
-    &__date {
-        color: $ds_colour__text--secondary;
-        font-weight: $normal;
+    &--promoted {
+
+        padding-top: 0;
+
+        &-content {
+            background: $ds_colour__grey--lighter;
+            border-left: 3px solid $ds_colour__brand;
+            padding-top: 12px; // Hardwired as not on the scale
+            @include ds_responsive-padding(2, left);
+            @include ds_responsive-padding(2, right);
+            @include ds_responsive-padding(2, bottom);
+        }
+
+        &-title {
+            @include ds_responsive-margin(1, bottom);
+            @include ds_tiny-size;
+            color: $ds_colour__text--secondary;
+            font-weight: $bold;
+        }
     }
 
     &__title {
-        color: $ds_colour__link;
-        margin-bottom: 8px;
-        margin-top: 0 !important;
+        @include ds_root-size;
+        margin: 0 0 4px !important; // !important needed for deprecated support
 
-        transition: color $transition-out-time;
+        &:last-child {
+            margin-bottom: 0 !important; // only needed if title is the only part of the result
+        }
     }
-}
 
-@include ds_media-query(medium) {
-    .ds_search-result {
-        margin-left: 0;
-        margin-right: 0;
+    &__sub-title {
+        @include ds_root-size;
+        margin: 0;
+        @include ds_responsive-margin(1, bottom);
     }
+
+    &__summary {
+        @include ds_root-size(4px); // Use 4px type grid
+        margin: 0;
+
+        mark {
+            background-color: inherit;
+            color: inherit;
+            font-weight: $bold;
+        }
+    }
+
+    &__metadata {
+        @include ds_responsive-margin(1, top);
+        @include ds_tiny-size(4px);
+        margin-bottom: 0;
+    }
+
+    &__has-media {
+        display: flex;
+    }
+
+    &__media-wrapper {
+        padding-top: 2px;
+        @include ds_responsive-padding(2, right);
+    }
+
+    &__media {
+        padding-top: 4px; // Aligns the image with the text
+        width: 96px; // Aligns to 2 columns on grid from medium size upwards
+
+        @include ds_media-query(large) {
+            width: 128px;
+        }
+
+        @include ds_media-query(xlarge) {
+            width: 160px;
+        }
+    }
+
+    &__context {
+        margin: 0;
+        padding: 0;
+        @include ds_responsive-margin(2, top);
+        @include ds_responsive-padding(2, left, $tuning: 3px);
+        @include ds_small-size(4px); // Use 4px type grid
+        position: relative;
+        
+        &:before {
+            background: $ds_colour__blue;
+            content: '';
+            height: nearest-grid-size(($small-size * 1.5), $grid: 4px); // Match height to line-height
+            @include ds_media-query(medium) {
+                height: nearest-grid-size(($small-size--medium * 1.5), $grid: 4px); // Match height to line-height
+            }
+            position: absolute;
+                top: 0;
+                left: 0;
+            width: 3px;
+        }
+
+        &-key {
+            color: $ds_colour__text--secondary;
+            margin: 0;
+            padding: 0;
+        }
+
+        &-value {
+            margin: 0;
+            padding: 0;
+            @include ds_responsive-margin(1, top);
+        }
+
+    }
+
+    &__sublinks {
+        margin-bottom: 0;
+        @include ds_responsive-margin(2, top);
+
+        &-title {
+            @include ds_visually-hidden;
+        }
+    }
+
 }

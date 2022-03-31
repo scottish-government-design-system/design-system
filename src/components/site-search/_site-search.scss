@@ -15,7 +15,8 @@ $site-search__background-colour: $ds_colour__grey--light !default;
     color: $ds_colour__text;
     min-height: $site-search__height;
 
-    &__input[type=text] {
+    &__input[type=text],
+    &__input[type=search] {
         background: $site-search__background-colour;
         border-width: 0;
         margin-bottom: 0;

@@ -5,7 +5,6 @@
     },
     "context": {
         "params": {
-            "reversed": true,
             "orgLogo": "/assets/images/logos/scottish-government.svg",
             "orgLogoAlt": "gov.scot",
             "orgLogoLink": "#",
@@ -32,17 +31,5 @@
                 }
             ]
         }
-    },
-    "variants": [
-        {
-            "name": "Reversed",
-            "status": "wip",
-            "context": {
-                "params": {
-                    "reversed": false,
-                    "styles": "background:#ebebeb;"
-                }
-            }
-        }
-    ]
+    }
 }

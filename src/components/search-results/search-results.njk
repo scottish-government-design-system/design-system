@@ -1,22 +1,23 @@
 <div class="ds_search-results">
-    {%- if params.suggestion %}
-    <nav id="suggestions" class="ds_search-suggestions" aria-label="Alternative search suggestions">
+    {%- if params.suggestions %}
+    <nav class="ds_search-suggestions" aria-label="Alternative search suggestions">
         <span aria-hidden="true">Did you mean:</span>
         <ul>
+            {%- for suggestion in params.suggestions %}
             <li>
-                <a aria-label="Did you mean '{{ params.suggestion }}'?" href="{{ params.suggestionLink }}">{{ params.suggestion }}</a>
+                <a aria-label="Did you mean '{{ suggestion.suggestionLabel }}'?" href="{{ suggestion.suggestionLink }}">{{ suggestion.suggestionLabel }}</a>
             </li>
+            {%- endfor %} 
         </ul>
     </nav>
     {%- endif %}
-    {%- if params.heading %}
-    <h2 class="visually-hidden">{{ params.heading }}</h2>
-    {%- endif %}
+
     {%- if params.resultsCount %}
-    <p class="ds_search-results__count js-search-results-count"><b>{{ params.resultsCount }}</b> results</p>
+    <h2 class="ds_search-results__title"><span class="ds_search-results__title-count">{{ params.resultsCount }}</span> results for <span class="ds_search-results__title-query">{{ params.resultsTitle }}</span></h2>
     {%- endif %}
+
     {%- if params.resultsList %}
-    <ol id="search-results-list" class="ds_search-results__list" {%- if params.resultsCount %} data-total="{{ params.resultsCount }}"{%- endif -%}>
+    <ol class="ds_search-results__list" data-total="{{ params.resultsCount }}">
         {%- for result in params.resultsList %}
         {% render '@search-result', result %}
         {%- endfor %}     
@@ -26,12 +27,15 @@
     {%- if params.pagination %}
         {% render '@pagination', params.pagination %}
     {%- endif %}
+
+    {%- if params.relatedList %}
+    <aside class="ds_search-results__related" aria-labelledby="search-results__related-title">
+        <h2 id="search-results__related-title" class="ds_search-results__related-title">Related searches</h2>
+        <ul class="ds_no-bullets">
+        {%- for related in params.relatedList %}
+            <li><a href="{{ related.relatedLink }}">{{ related.relatedLabel }}</a></li>
+        {%- endfor %}     
+        </ul>
+    </aside>
+    {%- endif %}
 </div>
-<aside aria-labelledby="search-results__related-heading">
-    <h2 id="search-results__related-heading">Related searches</h2>
-    <ul class="ds_no-bullets">
-        <li><a href="#">crofting law scotland</a></li>
-        <li><a href="#">crofting register</a></li>
-        <li><a href="#">crofting grants</a></li>
-    </ul>
-</aside>
