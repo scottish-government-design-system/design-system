@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.244] - 2022-03-31
+### Changed
+- Use webpack-cli v4.9.2
+
 ## [0.0.243] - 2022-03-31
 ### Changed
 - Accessibility improvements on prototype autocomplete component
