@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.243] - 2022-03-31
+### Changed
+- Accessibility improvements on prototype autocomplete component
+- Increase z-index of autocomplete suggestions
+
 ## [0.0.242] - 2022-03-28
 ### Added
 - Unit tests for search results tracking (promoted, media, related)
