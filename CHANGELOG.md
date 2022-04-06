@@ -6,6 +6,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.246] - 2022-04-06
+### Changed
+- Autocomplete readme includes the aria status div 
+- Autocomplete codes for the presence of the aria status div before trying to populate it
+- Replace uses of "xlink:href" (deprecated) in SVG "use" elements with "href"
+### Removed
+- Fractal-related files no longer included in the npm package
+- Prune some no longer needed items (e.g. jest config)
+
 ## [0.0.244] - 2022-03-31
 ### Changed
 - Use webpack-cli v4.9.2
