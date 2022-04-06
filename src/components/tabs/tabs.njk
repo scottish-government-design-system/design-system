@@ -1,8 +1,6 @@
-<div class="ds_tabs" {%- if params.dynamic %} data-module="ds-tabs"{% endif %}>
-    {%- if not params.dynamic %}
-    <nav aria-labelledby="ds_tabs__title">
+<div class="ds_tabs {%- if params.links %}  ds_tabs--links{% endif %}" {%- if params.dynamic %} data-module="ds-tabs"{% endif %}>
+    <nav class="ds_tabs__navigation" aria-labelledby="ds_tabs__title">
     <h2 id="ds_tabs__title" class="ds_tabs__title">{{ params.heading }}</h2>
-    {%- endif %}
     {%- if params.tabs %}
     <ul class="ds_tabs__list">
         {%- for tab in params.tabs %}
@@ -15,12 +13,10 @@
         </li>
         {%- endfor %}
     </ul>
-    {%- if not params.dynamic %}
     </nav>
-    {%- endif %}
     {%- for tab in params.tabs %}
     {%- if tab.tabContent %}
-    <div class="ds_tabs__content" id="{{ tab.tabId }}">
+    <div class="ds_tabs__content {%- if tab.tabContentBorder %}  ds_tabs__content--bordered{%- endif %}" id="{{ tab.tabId }}">
         {{ tab.tabContent | safe }}
     </div>
     {%- endif %}

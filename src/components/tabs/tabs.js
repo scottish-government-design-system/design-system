@@ -43,10 +43,10 @@ class Tabs {
 
     onHashChange() {
         let tabWithHashLink = this.getTab(window.location.hash);
-        let tabWithHash = tabWithHashLink.parentElement;
-        if (!tabWithHash) {
+        if (!tabWithHashLink) {
           return;
         }
+        let tabWithHash = tabWithHashLink.parentElement;
       
         // Prevent changing the hash
         if (this.changingHash) {

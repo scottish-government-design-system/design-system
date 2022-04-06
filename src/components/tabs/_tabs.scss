@@ -2,279 +2,178 @@
     TABS
 \*------------------------------------*/
 
-$tab__background-colour: $ds_colour__link--disabled__background !default;
+$tab__background-colour: $ds_colour__grey--lighter !default;
 $tab__background-colour--current: $ds_colour__white !default;
-$tab__border-width: 1px !default;
-$tab__border-width--current: 2px !default;
+$tab__link-colour: $ds_colour__text;
+$tab__link-colour--current: $ds_colour__text; 
+$tab__border-width: 2px !default;
+$tab__border-width--current: 3px !default;
+$tab__padding--vertical: 12px !default;
+$tab__padding--horizontal: 16px !default;
+$tab__gap: 8px !default;
 
 .ds_tabs {
 
+    // Default title style matches contents list heading
     &__title {
+        font-size: px-to-rem($root-font-size);
+        line-height: line-height-on-grid($root-font-size);
         margin: 0;
         padding: 0;
+        @include ds_responsive-margin(2, bottom);            
+        font-weight: $normal;
 
-        @include ds_media-query(medium-down) {
-            @include ds_small-size;
-            @include ds_responsive-margin(2, bottom);            
-            font-weight: $normal;
-        }
+        // Adjust to keep the same...
         @include ds_media-query(medium) {
-            @include ds_visually-hidden;
+            font-size: px-to-rem($root-font-size, $root-font-size--medium);
+            line-height: line-height-on-grid($root-font-size);
         }
     }
 
+    // Default list style matches contents list
     &__list {
+        @include ds_small-size;
+        @include ds_responsive-margin(6, bottom);   
         list-style: none;
-        margin: 0;
-        padding: 0;
-
-        @include ds_media-query(medium) {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-        }
-    }
-
-    &__tab-link {
-        @include ds_blocklink;
-        display: inline-block;
-        padding: 8px 16px;
+        margin-left: 0;
+        padding-left: 32px;
     }
 
     &__tab {
-        background-color: $tab__background-colour;
-        margin: 0;
-        
-        &.ds_current,
-        &:focus-within {
-            margin-bottom: -$tab__border-width !important;
-            .ds_tabs__tab-link {
-                padding-bottom: calc(8px + $tab__border-width);
-            }
-        }
-        
-        &.ds_current:not(:focus-within) {
-            background-color: $tab__background-colour--current;
-            border-top: $tab__border-width--current solid $ds_colour__border--highlight;
-            border-left: $tab__border-width solid $ds_colour__border;
-            border-right: $tab__border-width solid $ds_colour__border;
-            border-bottom: 0;
-
-            .ds_tabs__tab-link {
-                color: $ds_colour__text;
-                padding: calc(8px - $tab__border-width--current) calc(16px - $tab__border-width) calc(8px + $tab__border-width);
-                text-decoration: none;
-            }
-        }
-    }
-
-    &__content {
-        border-top: 1px solid $ds_colour__border;
-        padding: 16px;
-    }
-
-    &__label {
-        @include ds_link;
-        @include ds_small-size;
-
-        background: $tab__background-colour;
-        border-bottom: 0;
-        border-top: 1px solid $ds_colour__white;
-        display: block;
-        font-weight: 400;
-        line-height: 24px;
-        margin: 0;
-        outline-width: 1px;
-        padding: 15px 32px 16px;
-        text-align: left;
-        transition: color $transition-out-time, background-color $transition-out-time;
-        width: 100%;
-
-        &:focus {
-            position: relative;
-            z-index: 1;
-            outline-width: 0;
-        }
-
-        &:hover {
-            outline-width: 0;
-        }
-    }
-}
-
-/*    &__header:first-child > &__label {
-        border-top: 0;
-        padding-top: 16px;
-    }
-
-    &__radio {
-        @include ds_visually-hidden;
-    }
-
-    &__radio:checked + &__header + &__content,
-    &__header.ds_current + &__content {
-        display: block;
-    }
-
-    &__radio:checked + &__header > &__label:not(:focus),
-    &__header.ds_current > &__label:not(:focus) {
-        background: $ds_colour__white;
-        color: $ds_colour__text;
-        pointer-events: none;
         position: relative;
-        text-decoration: none;
-    }
-
-    &__radio + &__header > &__label::before,
-    &__header > &__label::before {
-        background: $ds_colour__border--highlight;
-        bottom: 0;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 4px;
-    }
-
-    &__radio:checked + &__header > &__label::before,
-    &__header.ds_current > &__label::before {
-        content: '';
-    }
-
-    &__radio &__header > &__label:focus,
-    &__header > &__label:focus {
-        box-shadow: none;
 
         &::before {
-            content: '';
-            background-color: $ds_colour__text;
+            background: currentColor;
+            content: "—";
+            height: 1px;
+            left: -32px;
+            overflow: hidden;
+            position: absolute;
+            top: 12px;
+            width: 20px;
+        }
+
+        &.ds_current {
+            font-weight: $bold;
         }
     }
-}
 
-@supports (display: grid) {
-    @include ds_media-query(medium) {
-        .ds_tab-container {
-            border: 0;
-            display: grid;
-            grid-template-areas: 't1 t2 t3 t4 t5 .'
-                                 'tc tc tc tc tc tc';
-            grid-gap: 0 8px;
-            grid-template-columns: repeat(5, minmax(min-content, max-content)) auto;
-
-            &--2 {
-                grid-template-areas: 't1 t2 .'
-                                     'tc tc tc';
-                grid-template-columns: repeat(2, minmax(min-content, max-content)) auto;
-            }
-
-            &--3 {
-                grid-template-areas: 't1 t2 t3 .'
-                                     'tc tc tc tc';
-                grid-template-columns: repeat(3, minmax(min-content, max-content)) auto;
-            }
-
-            &--4 {
-                grid-template-areas: 't1 t2 t3 t4 .'
-                                     'tc tc tc tc tc';
-                grid-template-columns: repeat(4, minmax(min-content, max-content)) auto;
-            }
-
-            &--5 {
-                grid-template-areas: 't1 t2 t3 t4 t5 .'
-                                     'tc tc tc tc tc tc';
-                grid-template-columns: repeat(5, minmax(min-content, max-content)) auto;
-            }
-
-            &--6 {
-                grid-template-areas: 't1 t2 t3 t4 t5 t6 .'
-                                     'tc tc tc tc tc tc tc';
-                grid-template-columns: repeat(6, minmax(min-content, max-content)) auto;
-            }
-        }
-
-        .ds_tab {
-            &__header {
-                align-self: stretch;
+    // Add space between stacked content blocks
+    &__content + &__content {
+        @include ds_responsive-margin(3, top); 
+    }
 
 
-                &:nth-of-type(1) {
-                    grid-area: t1;
+    // Change layout when dynamic tabs initialised or when tabs are links
+    &.js-initialised,
+    &.ds_tabs--links {
+
+        .ds_tabs {
+
+            // Dropdown menu
+            @include ds_media-query(medium-down) {
+            
+                &__list {
+                    margin: 0;
+                    padding: 0;
                 }
 
-                &:nth-of-type(3) {
-                    grid-area: t2;
+                &__tab {
+
+                    &::before {
+                        display: none;
+                    }
+                }
+            
+            }
+
+            // Tabs format
+            @include ds_media-query(medium) {
+
+                &__list {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: $tab__gap;
+                    margin: 0;
+                    padding: 0;
+                }
+            
+                &__tab-link { 
+                    @include ds_blocklink;// Not fully using typical blocklink styling so requires overrides
+                    color: $tab__link-colour;
+                    display: inline-block;
+                    padding: $tab__padding--vertical $tab__padding--horizontal;
+
+                    &:hover {
+                        color: $ds_colour__link--hover;
+                    }
+
+                    &:focus {
+                        color: $ds_colour__link--focus;
+                    }
+                }
+            
+                &__tab {
+
+                    &::before {
+                        display: none;
+                    }
+
+                    background-color: $tab__background-colour;
+                    margin: 0;
+
+                    &.ds_current {
+                        background-color: $tab__background-colour--current;
+                        font-weight: $normal;
+                        margin-bottom: -$tab__border-width !important;
+
+                        .ds_tabs__tab-link {
+                            border-top: $tab__border-width--current solid $ds_colour__border--highlight;
+                            border-left: $tab__border-width solid $ds_colour__border;
+                            border-right: $tab__border-width solid $ds_colour__border;
+                            border-bottom: 0;
+                            color: $tab__link-colour--current;
+                            padding: calc($tab__padding--vertical - $tab__border-width--current) calc($tab__padding--horizontal - $tab__border-width) calc($tab__padding--vertical + $tab__border-width);
+                            text-decoration: none;
+
+                            &:focus {
+                                border: 0;
+                                padding: $tab__padding--vertical $tab__padding--horizontal calc($tab__padding--vertical + $tab__border-width);
+                            }
+                        }
+                    }
+
+                    &:focus-within {
+                        margin-bottom: -$tab__border-width !important;
+
+                        .ds_tabs__tab-link {
+                            padding: $tab__padding--vertical $tab__padding--horizontal calc($tab__padding--vertical + $tab__border-width);
+                        }
+                    }            
+                    
                 }
 
-                &:nth-of-type(5) {
-                    grid-area: t3;
-                }
-
-                &:nth-of-type(7) {
-                    grid-area: t4;
-                }
-
-                &:nth-of-type(9) {
-                    grid-area: t5;
-                }
-
-                &:nth-of-type(11) {
-                    grid-area: t6;
+                &__title {
+                    @include ds_visually-hidden;
                 }
             }
 
             &__content {
-                border-top: 1px solid $ds_colour__border;
-                grid-area: tc;
-            }
+                border-top: $tab__border-width solid $ds_colour__border;
+                margin: 0;
+                @include ds_responsive-padding(3, top);
 
-            &__label {
-                border-left: 1px solid $tab__background-colour;
-                border-right: 1px solid $tab__background-colour;
-                border-top: 0;
-                height: 100%;
-                padding-left: 31px;
-                padding-right: 31px;
-                padding-top: 16px;
-
-                &:focus {
-                    border-left-color: $ds_colour__link--focus__background;
-                    border-right-color: $ds_colour__link--focus__background;
+                &--bordered {
+                    border: $tab__border-width solid $ds_colour__border;
+                    @include ds_responsive-padding(3, top);
+                    @include ds_responsive-padding(2, right);
+                    @include ds_responsive-padding(3, bottom);
+                    @include ds_responsive-padding(2, left);
+                    @include ds_last-child-no-margin;
                 }
             }
 
-            &__radio:checked + &__header > &__label:not(:focus),
-            &__header.ds_current > &__label:not(:focus) {
-                border-left-color: $ds_colour__border;
-                border-right-color: $ds_colour__border;
-            }
-
-            &__radio + &__header > &__label::before,
-            &__header> &__label::before {
-                background-color: $ds_colour__border--highlight;
-                bottom: 100%;
-                left: -1px;
-                right: -1px;
-                top: -4px;
-                width: auto;
-            }
-
-            &__radio:checked + &__header > &__label,
-            &__header.ds_current > &__label {
-                &::after {
-                    background: $ds_colour__white;
-                    bottom: -1px;
-                    content: '';
-                    left: 0;
-                    position: absolute;
-                    right: 0;
-                    top: 100%;
-                }
-
-                &:focus::after {
-                    background-color: $ds_colour__link--focus__background;
-                }
-            }
         }
     }
+
 }
-*/

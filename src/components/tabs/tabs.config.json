@@ -3,26 +3,27 @@
     "context": {
         "params": {
             "dynamic": true,
+            "heading": "Contents",
             "tabs": [
                 {
                     "tabTitle": "Tab 1",
                     "tabId": "tab1",
-                    "tabContent": "<p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                    "tabContent": "<h2>Tab 1</h2><p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                 },
                 {
                     "tabTitle": "Tab 2",
                     "tabId": "tab2",
-                    "tabContent": "<p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                    "tabContent": "<h2>Tab 2</h2><p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                 },
                 {
                     "tabTitle": "Tab 3",
                     "tabId": "tab3",
-                    "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                    "tabContent": "<h2>Tab 3</h2><p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                 },
                 {
                     "tabTitle": "Tab 4",
                     "tabId": "tab4",
-                    "tabContent": "<p>Content for Tab 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                    "tabContent": "<h2>Tab 4</h2><p>Content for Tab 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                 }
             ]
         }
@@ -37,32 +38,78 @@
                         {
                             "tabTitle": "Tab title 1",
                             "tabId": "tab1",
-                            "tabContent": "<p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>Tab title 1</h2><p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                         },
                         {
                             "tabTitle": "This is another title 2",
                             "tabId": "tab2",
-                            "tabContent": "<p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>This is another title 2</h2><p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                         },
                         {
                             "tabTitle": "Further tab 3",
                             "tabId": "tab3",
-                            "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>Further tab 3</h2><p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                         },
                         {
                             "tabTitle": "Tab 4",
                             "tabId": "tab4",
-                            "tabContent": "<p>Content for Tab 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>Tab 4</h2><p>Content for Tab 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                         },
                         {
                             "tabTitle": "A longer tab title 5",
                             "tabId": "tab5",
-                            "tabContent": "<p>Content for Tab 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>A longer tab title 5</h2><p>Content for Tab 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                         },
                         {
                             "tabTitle": "Last tab 6",
                             "tabId": "tab6",
-                            "tabContent": "<p>Content for Tab 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>Last tab 6</h2><p>Content for Tab 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        }
+                    ]
+                 }
+            }
+        },
+        {
+            "name": "Content with border",
+            "label": "Content with border",
+            "context": {
+                "params": {
+                    "tabs": [
+                        {
+                            "tabTitle": "Tab title 1",
+                            "tabId": "tab1",
+                            "tabContent": "<h2>Tab title 1</h2><p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "tabContentBorder": true
+                        },
+                        {
+                            "tabTitle": "This is another title 2",
+                            "tabId": "tab2",
+                            "tabContent": "<h2>This is another title 2</h2><p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "tabContentBorder": true
+                        },
+                        {
+                            "tabTitle": "Further tab 3",
+                            "tabId": "tab3",
+                            "tabContent": "<h2>Further tab 3</h2><p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "tabContentBorder": true
+                        },
+                        {
+                            "tabTitle": "Tab 4",
+                            "tabId": "tab4",
+                            "tabContent": "<h2>Tab 4</h2><p>Content for Tab 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "tabContentBorder": true
+                        },
+                        {
+                            "tabTitle": "A longer tab title 5",
+                            "tabId": "tab5",
+                            "tabContent": "<h2>A longer tab title 5</h2><p>Content for Tab 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "tabContentBorder": true
+                        },
+                        {
+                            "tabTitle": "Last tab 6",
+                            "tabId": "tab6",
+                            "tabContent": "<h2>Last tab 6</h2><p>Content for Tab 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "tabContentBorder": true
                         }
                     ]
                  }
@@ -77,17 +124,44 @@
                         {
                             "tabTitle": "Tab title 1 (12833)",
                             "tabId": "tab1",
-                            "tabContent": "<p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>12833 results</h2><p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                         },
                         {
                             "tabTitle": "This is another title 2 (232)",
                             "tabId": "tab2",
-                            "tabContent": "<p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>232 results</h2><p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                         },
                         {
                             "tabTitle": "Further tab 3 (0)",
                             "tabId": "tab3",
-                            "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                            "tabContent": "<h2>0 results</h2><p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        }
+                    ]
+                 }
+            }
+        },
+        {
+            "name": "Tabs not initialised",
+            "label": "Tabs not initialised",
+            "context": {
+                "params": {
+                    "dynamic": false,
+                    "links": false,
+                    "tabs": [
+                        {
+                            "tabTitle": "Tab title 1",
+                            "tabId": "tab1",
+                            "tabContent": "<h2>Tab title 1</h2><p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "This is another title 2",
+                            "tabId": "tab2",
+                            "tabContent": "<h2>This is another title 2</h2><p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
+                        },
+                        {
+                            "tabTitle": "Further tab 3",
+                            "tabId": "tab3",
+                            "tabContent": "<h2>Further tab 3</h2><p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>"
                         }
                     ]
                  }
@@ -99,13 +173,13 @@
             "context": {
                 "params": {
                     "dynamic": false,
-                    "heading": "Contents",
+                    "links": true,
                     "tabs": [
                         {
                             "tabTitle": "Tab title 1",
                             "tabId": "tab1",
                             "tabLink": "#",
-                            "tabContent": "<p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "tabContent": "<h2>Tab title 1</h2><p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
                             "current": true
                         },
                         {
@@ -123,12 +197,12 @@
             }
         },
         {
-            "name": "Tabs as links - selected",
-            "label": "Tabs as links - selected",
+            "name": "Tabs as links with other selected",
+            "label": "Tabs as links with other selected",
             "context": {
                 "params": {
                     "dynamic": false,
-                    "heading": "Contents",
+                    "links": true,
                     "tabs": [
                         {
                             "tabTitle": "Tab title 1",
@@ -144,7 +218,7 @@
                             "tabTitle": "Further tab 3",
                             "tabId": "tab3",
                             "tabLink": "#",
-                            "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "tabContent": "<h2>Further tab 3</h2><p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
                             "current": true
                         }
                     ]
