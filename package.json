@@ -19,9 +19,7 @@
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"
   },
-  "dependencies": {
-    "del-cli": "^4.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.7",
@@ -33,6 +31,7 @@
     "@frctl/nunjucks": "^2.0.14",
     "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^10.2.4",
+    "del-cli": "^4.0.1",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^4.0.1",
     "jasmine-jquery": "^2.1.1",
