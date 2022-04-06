@@ -34,7 +34,7 @@
     }
 
     &__title {
-        @include ds_root-size;
+        @include ds_h3-size;
         margin: 0 0 4px !important; // !important needed for deprecated support
 
         &:last-child {

@@ -10,11 +10,11 @@
             {%- if item.link %}
             <a class="ds_pagination__link {%- if item.textLabel %}  ds_pagination__link--text  ds_pagination__link--icon{% endif %}" href="{{ item.link }}">
                 {%- if item.previous %}
-                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron_left"></use></svg>
+                <svg class="ds_icon" aria-hidden="true" role="img"><use href="/assets/images/icons/icons.stack.svg#chevron_left"></use></svg>
                 {%- endif %}
                 <span class="ds_pagination__link-label">{{ item.label }}</span>
                 {%- if item.next %}
-                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/assets/images/icons/icons.stack.svg#chevron_right"></use></svg>
+                <svg class="ds_icon" aria-hidden="true" role="img"><use href="/assets/images/icons/icons.stack.svg#chevron_right"></use></svg>
                 {%- endif %}
             </a>
             {%- elseif item.current %}

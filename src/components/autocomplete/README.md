@@ -59,7 +59,7 @@ autocomplete.init();
 
             <button type="submit" class="ds_button">
                 <span class="visually-hidden">Search gov.scot</span>
-                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/path/to/icons.svg#search"></use></svg>
+                <svg class="ds_icon" aria-hidden="true" role="img"><use href="/path/to/icons.svg#search"></use></svg>
             </button>
 
             <div id="autocomplete-suggestions" class="ds_autocomplete__suggestions">

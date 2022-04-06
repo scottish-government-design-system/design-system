@@ -1,5 +1,5 @@
 {%- if params.icon %} 
-    {%- set moduleIcon = ["<svg class=\"ds_icon\" aria-hidden=\"true\" role=\"img\"><use xlink:href=\"", params.icon | path, "\"></use></svg>"] | join %}
+    {%- set moduleIcon = ["<svg class=\"ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"", params.icon | path, "\"></use></svg>"] | join %}
 {%- endif %}
 {%- if params.iconPosition == 'before' %} 
     {%- set moduleSlotBefore = moduleIcon | safe %}
