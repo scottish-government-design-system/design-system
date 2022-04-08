@@ -19,7 +19,7 @@
         &-content {
             background: $ds_colour__grey--lighter;
             border-left: 3px solid $ds_colour__brand;
-            padding-top: 12px; // Hardwired as not on the scale
+            @include ds_responsive-padding(1, top);
             @include ds_responsive-padding(2, left);
             @include ds_responsive-padding(2, right);
             @include ds_responsive-padding(2, bottom);
@@ -34,8 +34,9 @@
     }
 
     &__title {
-        @include ds_root-size;
-        margin: 0 0 4px !important; // !important needed for deprecated support
+        @include ds_h3-size;
+        margin: 0 !important;
+        @include ds_responsive-margin(1, bottom, true);
 
         &:last-child {
             margin-bottom: 0 !important; // only needed if title is the only part of the result
@@ -43,13 +44,13 @@
     }
 
     &__sub-title {
-        @include ds_root-size;
+        @include ds_h4-size;
         margin: 0;
         @include ds_responsive-margin(1, bottom);
     }
 
     &__summary {
-        @include ds_root-size(4px); // Use 4px type grid
+        @include ds_root-size;
         margin: 0;
 
         mark {
@@ -75,7 +76,6 @@
     }
 
     &__media {
-        padding-top: 4px; // Aligns the image with the text
         width: 96px; // Aligns to 2 columns on grid from medium size upwards
 
         @include ds_media-query(large) {
