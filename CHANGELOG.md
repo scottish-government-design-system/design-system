@@ -6,6 +6,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+
+## [0.0.247] - 2022-04-08
+## Added
+- Search result variant to include a sub heading
+### Changed
+- Search results spelling suggestions
+
 ## [0.0.246] - 2022-04-06
 ### Changed
 - Autocomplete readme includes the aria status div 
