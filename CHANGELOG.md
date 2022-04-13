@@ -7,7 +7,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
-## [0.0.247] - 2022-04-08
+## [0.0.249] - 2022-04-13
+## Fixed
+- Icon position on back to top button
+- Icon position on currency input field
+
+## [0.0.248] - 2022-04-08
 ## Added
 - Search result variant to include a sub heading
 ### Changed
