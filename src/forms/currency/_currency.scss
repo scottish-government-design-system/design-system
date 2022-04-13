@@ -12,7 +12,7 @@ $input-height: 48px;
         content: '£';
         height: $input-height;
         font-weight: $bold;
-        line-height: $input-height;
+        line-height: $input-height !important;
         pointer-events: none;
         position: absolute;
         text-align: center;
