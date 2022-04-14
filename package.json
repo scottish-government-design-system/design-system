@@ -47,7 +47,6 @@
     "karma-webpack": "^5.0.0",
     "minimist": "^1.2.5",
     "node-sass": "^7.0.1",
-    "pre-commit": "^1.2.2",
     "sass": "^1.49.9",
     "sealant": "^0.1.1",
     "svg-sprite": "^1.5.4",
