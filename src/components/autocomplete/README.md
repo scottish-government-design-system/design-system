@@ -40,7 +40,7 @@ autocomplete.init();
 <div class="ds_site-search  ds_autocomplete" id="site-search-autocomplete">
     <form role="search" class="ds_site-search__form" method="GET" action="/path/to/search/">
         <label class="ds_label  visually-hidden" for="site-search" id="site-search-label">Search</label>
-
+        <div class="visually-hidden" id="autocomplete-status" role="status" aria-atomic="true" aria-live="polite"></div>
         <div class="ds_input__wrapper  ds_input__wrapper--has-icon">
             <input
                 aria-autocomplete="list"
@@ -59,7 +59,7 @@ autocomplete.init();
 
             <button type="submit" class="ds_button">
                 <span class="visually-hidden">Search gov.scot</span>
-                <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="/path/to/icons.svg#search"></use></svg>
+                <svg class="ds_icon" aria-hidden="true" role="img"><use href="/path/to/icons.svg#search"></use></svg>
             </button>
 
             <div id="autocomplete-suggestions" class="ds_autocomplete__suggestions">

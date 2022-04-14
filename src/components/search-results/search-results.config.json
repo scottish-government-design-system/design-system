@@ -204,16 +204,10 @@
             "label": "Spellings",
             "context": {
                 "params": {
-                    "suggestions": [
-                        {
-                            "suggestionLabel": "crafting",
-                            "suggestionLink": "#"
-                        },
-                        {
-                            "suggestionLabel": "crofts",
-                            "suggestionLink": "#"
-                        }
-                    ]
+                    "resultsTitle": "crfting",
+                    "resultsLink": "#",
+                    "suggestionLabel": "crafting",
+                    "suggestionLink": "#"
                 }
             }
         },

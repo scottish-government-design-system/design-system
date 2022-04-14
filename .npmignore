@@ -1,4 +1,9 @@
-node_modules
-coverage
-tests
 dev
+fractal
+fractal.config.js
+node_modules
+src/docs
+src/**/*.config.json
+src/**/*.html
+src/**/*.njk
+test

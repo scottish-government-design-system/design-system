@@ -182,13 +182,17 @@ class Autocomplete {
     }
 
     updateStatus(text, delay = 100) {
-        if (this.statusTimeout) {
-            window.clearTimeout(this.statusTimeout);
-        }
+        if (this.statueElement) {
+            if (this.statusTimeout) {
+                window.clearTimeout(this.statusTimeout);
+            }
 
-        this.statusTimeout = window.setTimeout(() => {
-            this.statusElement.innerText = text;
-        }, delay);
+            this.statusTimeout = window.setTimeout(() => {
+                this.statusElement.innerText = text;
+            }, delay);
+        } else {
+            console.log('autocomplete status element not present');
+        }
     }
 
     modulo (a, b) {

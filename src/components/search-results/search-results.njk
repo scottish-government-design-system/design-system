@@ -1,19 +1,13 @@
 <div class="ds_search-results">
-    {%- if params.suggestions %}
+    {%- if params.suggestionLabel %}
     <nav class="ds_search-suggestions" aria-label="Alternative search suggestions">
-        <span aria-hidden="true">Did you mean:</span>
-        <ul>
-            {%- for suggestion in params.suggestions %}
-            <li>
-                <a aria-label="Did you mean '{{ suggestion.suggestionLabel }}'?" href="{{ suggestion.suggestionLink }}">{{ suggestion.suggestionLabel }}</a>
-            </li>
-            {%- endfor %} 
-        </ul>
+        <p>Also showing results for <a href="{{ params.suggestionLink }}">{{ params.suggestionLabel }}</a><br>
+        Show results only for <a href="{{ params.resultsLink }}">{{ params.resultsTitle }}</a></p> 
     </nav>
     {%- endif %}
 
     {%- if params.resultsCount %}
-    <h2 class="ds_search-results__title"><span class="ds_search-results__title-count">{{ params.resultsCount }}</span> results for <span class="ds_search-results__title-query">{{ params.resultsTitle }}</span></h2>
+    <h2 class="ds_search-results__title"><span class="ds_search-results__title-count">{{ params.resultsCount }}</span> results for <span class="ds_search-results__title-query">{{ params.resultsTitle }}</span>{%- if params.suggestionLabel %} and <span class="ds_search-results__title-query">{{ params.suggestionLabel }}</span>{%- endif %}</h2>
     {%- endif %}
 
     {%- if params.resultsList %}

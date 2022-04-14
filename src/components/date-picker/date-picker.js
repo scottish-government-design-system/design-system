@@ -129,7 +129,7 @@ class DSDatePicker {
     buttonTemplate() {
         return `<button class="ds_button  ds_button--icon-only  js-calendar-button">
             <span class="visually-hidden">Choose date</span>
-            <svg class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#calendar_today"></use></svg>
+            <svg class="ds_icon" aria-hidden="true" role="img"><use href="${this.imagePath}icons.stack.svg#calendar_today"></use></svg>
         </button>
         `;
     }
@@ -139,12 +139,12 @@ class DSDatePicker {
         <div class="ds_datepicker__dialog__navbuttons">
             <button class="ds_button  ds_button--icon-only  js-datepicker-prev-year" aria-label="previous year" data-button="button-datepicker-prevyear">
                 <span class="visually-hidden">Previous year</span>
-                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#double_chevron_left"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use href="${this.imagePath}icons.stack.svg#double_chevron_left"></use></svg>
             </button>
 
             <button class="ds_button  ds_button--icon-only  js-datepicker-prev-month" aria-label="previous month" data-button="button-datepicker-prevmonth">
                 <span class="visually-hidden">Previous month</span>
-                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#chevron_left"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use href="${this.imagePath}icons.stack.svg#chevron_left"></use></svg>
             </button>
         </div>
 
@@ -153,12 +153,12 @@ class DSDatePicker {
         <div class="ds_datepicker__dialog__navbuttons">
             <button class="ds_button  ds_button--icon-only  js-datepicker-next-month" aria-label="next month" data-button="button-datepicker-nextmonth">
                 <span class="visually-hidden">Next month</span>
-                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#chevron_right"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use href="${this.imagePath}icons.stack.svg#chevron_right"></use></svg>
             </button>
 
             <button class="ds_button  ds_button--icon-only  js-datepicker-next-year" aria-label="next year" data-button="button-datepicker-nextyear">
                 <span class="visually-hidden">Next year</span>
-                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use xlink:href="${this.imagePath}icons.stack.svg#double_chevron_right"></use></svg>
+                <svg focusable="false" class="ds_icon" aria-hidden="true" role="img"><use href="${this.imagePath}icons.stack.svg#double_chevron_right"></use></svg>
             </button>
         </div>
       </div>

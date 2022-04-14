@@ -40,10 +40,4 @@
             top: 8px;
         }
     }
-
-    @include ds_media-query(medium) {
-        .ds_back-to-top__icon {
-            top: 12px;
-        }
-    }
 }

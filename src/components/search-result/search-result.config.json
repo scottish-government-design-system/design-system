@@ -191,6 +191,19 @@
             }
         },
         {
+            "name": "Result with subheading",
+            "label": "Result with subheading",
+            "context": {
+                "params": {
+                    "heading": "First Minister",
+                    "link": "#",
+                    "subHeading": "Incumbent's name",
+                    "subHeadingLevel": "h4",
+                    "content": "The First Minister is head of the Scottish Government and has ultimate responsibility for all policy and decisions."
+                }
+            }
+        },
+        {
             "name": "Result with image",
             "label": "Result with image",
             "context": {
