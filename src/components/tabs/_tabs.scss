@@ -63,9 +63,7 @@ $tab__gap: 8px !default;
         @include ds_responsive-margin(3, top); 
     }
 
-
-    // Change layout when dynamic tabs initialised or when tabs are links
-    &.js-initialised,
+    // Change to dropdown menu when tabs are links
     &.ds_tabs--links {
 
         .ds_tabs {
@@ -86,6 +84,14 @@ $tab__gap: 8px !default;
                 }
             
             }
+        }
+    }
+
+    // Change to tab layout when dynamic tabs initialised or when tabs are links
+    &.js-initialised,
+    &.ds_tabs--links {
+
+        .ds_tabs {
 
             // Tabs format
             @include ds_media-query(medium) {
@@ -156,23 +162,28 @@ $tab__gap: 8px !default;
                 &__title {
                     @include ds_visually-hidden;
                 }
-            }
 
-            &__content {
-                border-top: $tab__border-width solid $ds_colour__border;
-                margin: 0;
-                @include ds_responsive-padding(3, top);
-
-                &--bordered {
-                    border: $tab__border-width solid $ds_colour__border;
+                &__content {
+                    border-top: $tab__border-width solid $ds_colour__border;
+                    margin: 0;
                     @include ds_responsive-padding(3, top);
-                    @include ds_responsive-padding(2, right);
-                    @include ds_responsive-padding(3, bottom);
-                    @include ds_responsive-padding(2, left);
-                    @include ds_last-child-no-margin;
+    
+                    &--bordered {
+                        border: $tab__border-width solid $ds_colour__border;
+                        @include ds_responsive-padding(3, top);
+                        @include ds_responsive-padding(2, right);
+                        @include ds_responsive-padding(3, bottom);
+                        @include ds_responsive-padding(2, left);
+                        @include ds_last-child-no-margin;
+                    }
                 }
-            }
 
+                // Hide content that is not in view
+                &__content--hidden {
+                    display: none;
+                }
+
+            }
         }
     }
 

@@ -72,6 +72,7 @@
         {
             "name": "Content with border",
             "label": "Content with border",
+            "status": "prototype",
             "context": {
                 "params": {
                     "tabs": [
@@ -178,19 +179,19 @@
                         {
                             "tabTitle": "Tab title 1",
                             "tabId": "tab1",
-                            "tabLink": "#",
+                            "tabLink": "tab-page-1",
                             "tabContent": "<h2>Tab title 1</h2><p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
                             "current": true
                         },
                         {
                             "tabTitle": "This is another title 2",
                             "tabId": "tab2",
-                            "tabLink": "#"
+                            "tabLink": "tab-page-2"
                         },
                         {
                             "tabTitle": "Further tab 3",
                             "tabId": "tab3",
-                            "tabLink": "#"
+                            "tabLink": "tab-page-3"
                         }
                     ]
                  }
@@ -207,17 +208,17 @@
                         {
                             "tabTitle": "Tab title 1",
                             "tabId": "tab1",
-                            "tabLink": "#"
+                            "tabLink": "tab-page-1"
                         },
                         {
                             "tabTitle": "This is another title 2",
                             "tabId": "tab2",
-                            "tabLink": "#"
+                            "tabLink": "tab-page-2"
                         },
                         {
                             "tabTitle": "Further tab 3",
                             "tabId": "tab3",
-                            "tabLink": "#",
+                            "tabLink": "tab-page-3",
                             "tabContent": "<h2>Further tab 3</h2><p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
                             "current": true
                         }

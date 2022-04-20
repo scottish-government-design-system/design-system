@@ -6,6 +6,8 @@ import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-ch
 
 class Tabs {
     constructor(tabContainer) {
+        this.resizeTimer = null;
+
         this.tabContainer = tabContainer;
         // The list containing the tabs
         this.tabList = tabContainer.querySelector('.ds_tabs__list'); 
@@ -24,6 +26,10 @@ class Tabs {
         // Handle hashchange events
         this.boundOnHashChange = this.onHashChange.bind(this)
         window.addEventListener('hashchange', this.boundOnHashChange, true);
+
+        // Handle resize events
+        this.boundOnResize = this.onResize.bind(this)
+        window.addEventListener('resize', this.boundOnResize, true);
     }
 
     init() {
@@ -41,6 +47,30 @@ class Tabs {
         }
     }
 
+    disable() {
+        // The opposite of init
+        if (this.tabContainer.classList.contains('js-initialised')) {
+
+            // reset attributes to default behaviour
+            this.tabList.removeAttribute('role', 'tablist');
+
+            this.tabContainer.classList.remove('js-initialised');    
+        }
+    }
+
+    onResize() {
+        clearTimeout(this.resizeTimer);
+        this.resizeTimer = setTimeout(() => { 
+            if (breakpointCheck('medium')) {
+                console.log('medium');
+                this.init();
+            } else {
+                console.log('small');
+                this.disable();
+            }
+        }, 500);
+    }
+
     onHashChange() {
         let tabWithHashLink = this.getTab(window.location.hash);
         if (!tabWithHashLink) {
@@ -54,10 +84,12 @@ class Tabs {
           return;
         }
 
-        let currentTab = this.getCurrentTab();
-        this.deactivateTab(currentTab);
-        this.activateTab(tabWithHash);
-        tabWithHash.querySelector('.ds_tabs__tab-link').focus();
+        if (breakpointCheck('medium')) {
+            let currentTab = this.getCurrentTab();
+            this.deactivateTab(currentTab);
+            this.activateTab(tabWithHash);
+            tabWithHash.querySelector('.ds_tabs__tab-link').focus();
+        }
     }
 
     createHistoryEntry(tab) {
@@ -78,32 +110,44 @@ class Tabs {
         tabLink.setAttribute('aria-selected', 'false');
         tabLink.setAttribute('tabindex', '-1');
 
-        tabContent.setAttribute('hidden', 'hidden');
+        tabContent.classList.add('ds_tabs__content--hidden');
 
         tabLink.addEventListener('click', () => {
-            let currentTab = this.getCurrentTab();
-            this.deactivateTab(currentTab);
-            this.activateTab(tabHeader);
+            if (breakpointCheck('medium')) {
+                let currentTab = this.getCurrentTab();
+                this.deactivateTab(currentTab);
+                this.activateTab(tabHeader);
+            }
         });
 
         tabLink.addEventListener('keydown', (event) => {
             let tabNavKey = true;
 
             if (event.keyCode === this.keycodes.right) {
-                this.activateNextTab(event);
+                if (breakpointCheck('medium')) {
+                    this.activateNextTab(event);
+                }
             } else if (event.keyCode === this.keycodes.left) {
-                this.activatePreviousTab(event);
+                if (breakpointCheck('medium')) {
+                    this.activatePreviousTab(event);
+                }
             } else if (event.keyCode === this.keycodes.up) {
-                this.activatePreviousTab(event);
+                if (breakpointCheck('medium')) {
+                    this.activatePreviousTab(event);
+                }
             } else if (event.keyCode === this.keycodes.down) {
-                this.activateNextTab(event);
+                if (breakpointCheck('medium')) {
+                    this.activateNextTab(event);
+                }
             } else {
                 tabNavKey = false;
             }
 
             if (tabNavKey) {
-                event.preventDefault();
-                event.stopPropagation();
+                if (breakpointCheck('medium')) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
             }
         });
     }
@@ -139,7 +183,7 @@ class Tabs {
         targetTabLink.setAttribute('tabindex', '0')
 
         // Show content for tab
-        targetTabContent.removeAttribute('hidden');
+        targetTabContent.classList.remove('ds_tabs__content--hidden');
     }
 
     deactivateTab(targetTab) {
@@ -151,7 +195,7 @@ class Tabs {
         targetTabLink.setAttribute('tabindex', '-1')
 
         // Hide content for tab
-        targetTabContent.setAttribute('hidden', 'hidden');
+        targetTabContent.classList.add('ds_tabs__content--hidden');
     }
 
     getTab(hash) {
