@@ -1,8 +1,8 @@
-<div class="ds_tabs {%- if params.links %}  ds_tabs--links{% endif %}" {%- if params.dynamic %} data-module="ds-tabs"{% endif %}>
+<div class="ds_tabs {%- if params.links %}  ds_tabs--links{% endif %}" {%- if params.dynamic %} data-module="ds-tabs"{% endif %} {%- if params.links %} data-module="ds-tabs-navigation"{% endif %}>
     <nav class="ds_tabs__navigation" aria-labelledby="ds_tabs__title">
     <h2 id="ds_tabs__title" class="ds_tabs__title">{{ params.heading }}</h2>
     {%- if params.tabs %}
-    <ul class="ds_tabs__list">
+    <ul class="ds_tabs__list" id="tablist">
         {%- for tab in params.tabs %}
         <li class="ds_tabs__tab {%- if tab.current %}  ds_current{%- endif %}" {%- if tab.current %}aria-current="page"{%- endif %}>
             {%- if tab.tabLink %}

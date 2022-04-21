@@ -11,6 +11,7 @@ import NotificationBanner from './components/notification-banner/notification-ba
 import SideNavigation from './components/side-navigation/side-navigation';
 import skipLinks from './components/skip-links/skip-links';
 import Tabs from './components/tabs/tabs';
+import TabsNavigation from './components/tabs/tabs-navigation';
 
 import tracking from './base/tools/tracking/tracking';
 import aspectBoxFallback from './components/aspect-box/aspect-box-fallback';
@@ -28,7 +29,8 @@ const components = {
     NotificationBanner,
     SideNavigation,
     skipLinks,
-    Tabs
+    Tabs,
+    TabsNavigation
 };
 
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
@@ -84,6 +86,9 @@ function initAll(scope = document) {
     const tabSets = [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]'));
     tabSets.forEach(tabSet => new Tabs(tabSet).init());
 
+    const tabNavigationSets = [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]'));
+    tabNavigationSets.forEach(tabNavigationSets => new TabsNavigation(tabNavigationSets).init());
+
     tracking.init();
     aspectBoxFallback();
 }
@@ -107,5 +112,6 @@ export {
     NotificationBanner,
     SideNavigation,
     skipLinks,
-    Tabs
+    Tabs,
+    TabsNavigation
 };

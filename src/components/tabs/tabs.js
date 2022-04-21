@@ -7,6 +7,7 @@ import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-ch
 class Tabs {
     constructor(tabContainer) {
         this.resizeTimer = null;
+        this.eventsEnabled = false;
 
         this.tabContainer = tabContainer;
         // The list containing the tabs
@@ -32,7 +33,8 @@ class Tabs {
         window.addEventListener('resize', this.boundOnResize, true);
     }
 
-    init() {
+    // Setup tabs
+    set() {
         if (!this.tabContainer.classList.contains('js-initialised')) {
             this.tabList.setAttribute('role', 'tablist');
             this.tabHeaders.forEach((tabHeader, index) => this.initTab(tabHeader, index));
@@ -47,30 +49,39 @@ class Tabs {
         }
     }
 
-    disable() {
-        // The opposite of init
-        if (this.tabContainer.classList.contains('js-initialised')) {
-
-            // reset attributes to default behaviour
-            this.tabList.removeAttribute('role', 'tablist');
-
-            this.tabContainer.classList.remove('js-initialised');    
+    // Initialise tabs if medium size or larger
+    init() {
+        if (breakpointCheck('medium')) {
+            this.set();
+            this.eventsEnabled = true;
         }
     }
 
+    // Reset tabs to original 
+    reset() {
+        if (this.tabContainer.classList.contains('js-initialised')) {
+            this.tabContainer.classList.remove('js-initialised');   
+
+            // reset attributes to default behaviour
+            this.tabList.removeAttribute('role');
+            this.tabHeaders.forEach((tabHeader, index) => this.resetTab(tabHeader, index));
+ 
+        }
+    }
+
+    // Runs when the browser is resized - includes debounce to prevent multiple calls in quick succession
     onResize() {
         clearTimeout(this.resizeTimer);
         this.resizeTimer = setTimeout(() => { 
             if (breakpointCheck('medium')) {
-                console.log('medium');
-                this.init();
+                this.set();
             } else {
-                console.log('small');
-                this.disable();
+                this.reset();
             }
-        }, 500);
+        }, 150);
     }
 
+    // Runs when the hash value in the browser changes
     onHashChange() {
         let tabWithHashLink = this.getTab(window.location.hash);
         if (!tabWithHashLink) {
@@ -92,12 +103,31 @@ class Tabs {
         }
     }
 
+    // Add the specified tab to the browser history
     createHistoryEntry(tab) {
         let tabId = this.getHref(tab);
         this.changingHash = true;
         window.location.hash = tabId;
     }
 
+    // Reset tab back to original state
+    resetTab(tabHeader, index) {
+        tabHeader.removeAttribute('role');
+        tabHeader.classList.remove('ds_current');
+        
+        const tabLink = tabHeader.querySelector('.ds_tabs__tab-link');
+        const tabContent = this.tabContents[index];
+        const tabId = tabContent.getAttribute('id');
+
+        tabLink.removeAttribute('role');
+        tabLink.removeAttribute('aria-controls');
+        tabLink.removeAttribute('aria-selected');
+        tabLink.removeAttribute('tabindex');
+
+        tabContent.classList.remove('ds_tabs__content--hidden');
+    }
+
+    // Initialise tab and add event listeners for click and arrow keys
     initTab(tabHeader, index) {
         tabHeader.setAttribute('role', 'presentation');
         
@@ -112,46 +142,52 @@ class Tabs {
 
         tabContent.classList.add('ds_tabs__content--hidden');
 
-        tabLink.addEventListener('click', () => {
-            if (breakpointCheck('medium')) {
-                let currentTab = this.getCurrentTab();
-                this.deactivateTab(currentTab);
-                this.activateTab(tabHeader);
-            }
-        });
+        // Only set event listeners on initial setup
+        if(!this.eventsEnabled){
+            tabLink.addEventListener('click', () => {
+                if (breakpointCheck('medium')) {
+                    let currentTab = this.getCurrentTab();
+                    this.deactivateTab(currentTab);
+                    this.activateTab(tabHeader);
+                }
+            });
 
-        tabLink.addEventListener('keydown', (event) => {
-            let tabNavKey = true;
+            tabLink.addEventListener('keydown', (event) => {
+                let tabNavKey = true;
 
-            if (event.keyCode === this.keycodes.right) {
-                if (breakpointCheck('medium')) {
-                    this.activateNextTab(event);
+                if (event.keyCode === this.keycodes.right) {
+                    if (breakpointCheck('medium')) {
+                        this.activateNextTab(event);
+                    }
+                } else if (event.keyCode === this.keycodes.left) {
+                    if (breakpointCheck('medium')) {
+                        this.activatePreviousTab(event);
+                    }
+                } else if (event.keyCode === this.keycodes.up) {
+                    if (breakpointCheck('medium')) {
+                        this.activatePreviousTab(event);
+                    }
+                } else if (event.keyCode === this.keycodes.down) {
+                    if (breakpointCheck('medium')) {
+                        this.activateNextTab(event);
+                    }
+                } else {
+                    tabNavKey = false;
                 }
-            } else if (event.keyCode === this.keycodes.left) {
-                if (breakpointCheck('medium')) {
-                    this.activatePreviousTab(event);
-                }
-            } else if (event.keyCode === this.keycodes.up) {
-                if (breakpointCheck('medium')) {
-                    this.activatePreviousTab(event);
-                }
-            } else if (event.keyCode === this.keycodes.down) {
-                if (breakpointCheck('medium')) {
-                    this.activateNextTab(event);
-                }
-            } else {
-                tabNavKey = false;
-            }
 
-            if (tabNavKey) {
-                if (breakpointCheck('medium')) {
-                    event.preventDefault();
-                    event.stopPropagation();
+                if (tabNavKey) {
+                    if (breakpointCheck('medium')) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
                 }
-            }
-        });
+            });
+
+        }
+
     }
 
+    // Activate next tab from the current selected tab
     activateNextTab() {
         let currentTab = this.getCurrentTab();
         let nextTab = currentTab.nextElementSibling;
@@ -163,6 +199,7 @@ class Tabs {
         }
     }
 
+    // Activate previous tab from the current selected tab
     activatePreviousTab() {
         let currentTab = this.getCurrentTab();
         let previousTab = currentTab.previousElementSibling;
@@ -174,6 +211,7 @@ class Tabs {
         }
     }
 
+    // Activate specified tab
     activateTab(targetTab) {
         let targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
         let targetTabContent = this.getTabContent(targetTab);
@@ -186,6 +224,7 @@ class Tabs {
         targetTabContent.classList.remove('ds_tabs__content--hidden');
     }
 
+    // Deactivate specified tab
     deactivateTab(targetTab) {
         let targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
         let targetTabContent = this.getTabContent(targetTab);
@@ -198,20 +237,24 @@ class Tabs {
         targetTabContent.classList.add('ds_tabs__content--hidden');
     }
 
+    // Returns the tab which matches the specified hash value
     getTab(hash) {
         return this.tabContainer.querySelector('.ds_tabs__tab-link[href="' + hash + '"]');
     }  
 
+    // Returns the current tab
     getCurrentTab() {
         return this.tabList.querySelector('.ds_tabs__tab.ds_current')    
     }
 
+    // Returns the href of the specified tab
     getHref(tab) {
         let tabLink = tab.querySelector('.ds_tabs__tab-link');
         let href = tabLink.getAttribute('href');
         return href.slice(href.indexOf('#'), href.length);
     }
 
+    // Returns the content for the specified tab
     getTabContent(tab) {
         return this.tabContainer.querySelector(this.getHref(tab))
     }

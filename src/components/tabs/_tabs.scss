@@ -13,6 +13,7 @@ $tab__padding--horizontal: 16px !default;
 $tab__gap: 8px !default;
 
 .ds_tabs {
+    @include ds_responsive-margin(4, bottom);  
 
     // Default title style matches contents list heading
     &__title {
