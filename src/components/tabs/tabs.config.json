@@ -176,6 +176,7 @@
                 "params": {
                     "dynamic": false,
                     "links": true,
+                    "heading": "Change category",
                     "tabs": [
                         {
                             "tabTitle": "Tab title 1",
@@ -205,6 +206,7 @@
                 "params": {
                     "dynamic": false,
                     "links": true,
+                    "heading": "Change category",
                     "tabs": [
                         {
                             "tabTitle": "Tab title 1",
@@ -221,6 +223,37 @@
                             "tabId": "tab3",
                             "tabLink": "tab-page-3",
                             "tabContent": "<h2>Further tab 3</h2><p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
+                            "current": true
+                        }
+                    ]
+                 }
+            }
+        },
+        {
+            "name": "Tabs as links showing current page",
+            "label": "Tabs as links showing current page",
+            "context": {
+                "params": {
+                    "dynamic": false,
+                    "links": true,
+                    "heading": "Change category",
+                    "currentPage": "Further tab 3",
+                    "tabs": [
+                        {
+                            "tabTitle": "Tab title 1",
+                            "tabId": "tab1",
+                            "tabLink": "tab-page-1"
+                        },
+                        {
+                            "tabTitle": "This is another title 2",
+                            "tabId": "tab2",
+                            "tabLink": "tab-page-2"
+                        },
+                        {
+                            "tabTitle": "Further tab 3",
+                            "tabId": "tab3",
+                            "tabLink": "tab-page-3",
+                            "tabContent": "<p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>",
                             "current": true
                         }
                     ]
@@ -266,10 +299,12 @@
         {
             "name": "Multiple links",
             "label": "Multiple tabs as links",
+            "status": "invalid",
             "context": {
                 "params": {
                     "dynamic": false,
                     "links": true,
+                    "heading": "Change category",
                     "tabs": [
                         {
                             "tabTitle": "Tab title 1",

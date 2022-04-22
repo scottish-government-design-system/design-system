@@ -13,6 +13,9 @@
         </li>
         {%- endfor %}
     </ul>
+    {%- if params.currentPage %}
+        <div id="ds_tabs__current" class="ds_tabs__current"><strong>Current category</strong> {{ params.currentPage }}</div>
+    {%- endif %}
     </nav>
     {%- for tab in params.tabs %}
     {%- if tab.tabContent %}

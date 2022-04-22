@@ -31,14 +31,26 @@ class TabsNavigation {
             // Swap title to button
             const navButton = document.createElement('button');
             const tabListId = this.tabList.getAttribute('id');
-            navButton.classList.add('ds_link');
+            navButton.classList.add('ds_tabs__toggle');
             navButton.setAttribute('aria-expanded', false);
             navButton.innerHTML = this.tabTitle.innerHTML;
             navButton.setAttribute('aria-controls', tabListId);
-            this.tabTitle.parentNode.removeChild(this.tabTitle);
             this.tabNavigation.insertBefore(navButton, this.tabList);
-            // Hide navigation menu
+
             // Event listener for button toggle
+            navButton.addEventListener('click', () => {
+                if (navButton.getAttribute('aria-expanded') === 'true') {
+                    navButton.setAttribute('aria-expanded', false);
+                } else {
+                    navButton.setAttribute('aria-expanded', true);
+                }
+            });
+
+            // If current page label is shown use it as aria label for navigation
+            const currentPage = this.tabContainer.querySelector('.ds_tabs__current'); 
+            if(currentPage) {
+                this.tabNavigation.setAttribute('aria-labelledby','ds_tabs__current');
+            }
 
             // Mark as initialised for specific layout support
             this.tabNavigation.classList.add('js-initialised');
@@ -60,8 +72,12 @@ class TabsNavigation {
         if (this.tabNavigation.classList.contains('js-initialised')) {
             this.tabNavigation.classList.remove('js-initialised');   
 
-        
- 
+            // Remove button
+            const navButton = this.tabContainer.querySelector('.ds_tabs__toggle'); 
+            navButton.parentNode.removeChild(navButton);
+
+            // Set aria-labelledby back to using the tab list heading
+            this.tabNavigation.setAttribute('aria-labelledby','ds_tabs__title');
         }
     }
 

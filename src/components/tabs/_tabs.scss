@@ -11,6 +11,7 @@ $tab__border-width--current: 3px !default;
 $tab__padding--vertical: 12px !default;
 $tab__padding--horizontal: 16px !default;
 $tab__gap: 8px !default;
+$tab__toggle-colour: $ds_colour__brand !default;
 
 .ds_tabs {
     @include ds_responsive-margin(4, bottom);  
@@ -64,27 +65,121 @@ $tab__gap: 8px !default;
         @include ds_responsive-margin(3, top); 
     }
 
-    // Change to dropdown menu when tabs are links
+    
     &.ds_tabs--links {
 
-        .ds_tabs {
+        // Change to dropdown menu when tabs are links and javascript is initialised
+        .ds_tabs__navigation.js-initialised {
 
             // Dropdown menu
             @include ds_media-query(medium-down) {
-            
-                &__list {
-                    margin: 0;
-                    padding: 0;
-                }
 
-                &__tab {
+                @include ds_responsive-margin(4, bottom); 
 
-                    &::before {
+                .ds_tabs {
+
+                    &__toggle {
+                        @include ds_blocklink;
+                
+                        background-color: $ds_colour__white;
+                        border: 1px solid $ds_colour__border;
+                        color: $tab__toggle-colour;
+                        font-weight: $bold;
+                        margin: 0;
+                        padding: 15px 39px 15px 15px;
+                        text-align: left;
+                        text-decoration: none;
+                        width: 100%;
+                
+                
+                        &::after {
+                            @include ds_chevron(down, 0.75em);
+                            border-width: 0px 0px 3px 3px;
+                            position: absolute;
+                            right: 24px;
+                            top: 19px;
+                            transition: transform 0.2s, top 0.2s;
+                            pointer-events: none;
+                        }
+
+                        // Hide menu after button
+                        & + .ds_tabs__list {
+                            display: none;
+                        }
+
+                        // Change button state and open menu
+                        &[aria-expanded="true"] {
+                            
+                            &::after {
+                                top: 23px;
+                                transform: rotate(-225deg);
+                            }
+
+                            & + .ds_tabs__list {
+                                display: block;
+                            }
+                        }
+
+                    }
+                
+                    &__list {
+                        border: 1px solid $ds_colour__border;
+                        border-top: 0;
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    &__tab {
+                        margin: 0;
+                        padding: 0;
+
+                        &::before {
+                            display: none;
+                        }
+
+                        &-link {
+                            @include ds_blocklink;
+                            padding: 11px 15px;
+                        }
+
+                        &.ds_current {
+
+                            .ds_tabs__tab-link:not(:focus) {
+                                background-color: $ds_colour__link--current__background;
+                                border-left: 4px solid $ds_colour__brand;
+                                padding-left: 12px;
+
+
+                            }
+
+                        }
+                    }
+
+                    &__title {
                         display: none;
                     }
+
+                    &__current {
+                        @include ds_responsive-margin(1, top); 
+                    }
+                
                 }
-            
             }
+        }
+
+        @include ds_media-query(medium) {
+            .ds_tabs {
+            // Hide toggle button when not needed
+                &__toggle {
+                    display: none;
+                }
+
+                // Hide current page label when not needed
+                &__current {
+                    display: none;
+                }
+            }
+
         }
     }
 
