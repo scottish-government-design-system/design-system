@@ -8,9 +8,4 @@
     @include ds_responsive-margin(5, bottom);
 
     font-weight: $light;
-    line-height: 32px;
-
-    @include ds_media-query(medium) {
-        line-height: 40px;
-    }
 }
