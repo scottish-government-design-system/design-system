@@ -7,13 +7,20 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.252] - 2022-04-29
+### Added
+- Mixin for small font size which stays the same size over all breakpoints.
+### Changed
+- Font sizes now calculated relative to single base.
+- Tag component font size change to match typography scale.
+
 ## [0.0.249] - 2022-04-13
-## Fixed
+### Fixed
 - Icon position on back to top button
 - Icon position on currency input field
 
 ## [0.0.248] - 2022-04-08
-## Added
+### Added
 - Search result variant to include a sub heading
 ### Changed
 - Search results spelling suggestions
