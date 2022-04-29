@@ -60,7 +60,7 @@
 
 @include media-query(medium) {
     .ds_autocomplete__suggestions {
-        font-size: px-to-rem(16px, $root-font-size--medium);
-        line-height: line-height-on-grid(16px);
+        font-size: px-to-rem($root-font-size);
+        line-height: line-height-on-grid($root-font-size);
     }
 }

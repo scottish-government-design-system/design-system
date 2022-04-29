@@ -4,16 +4,9 @@
 
 .ds_icon {
     fill: currentColor;
-    height: calc(24rem/#{$root-font-size/1px});
+    height: 1.5em;
     vertical-align: middle;
-    width: calc(24rem/#{$root-font-size/1px});
-}
-
-@include ds_media-query(medium) {
-    .ds_icon {
-        height: calc(24rem/#{$root-font-size--medium/1px});
-        width: calc(24rem/#{$root-font-size--medium/1px});
-    }
+    width: 1.5em;
 }
 
 @for $size from 3 through 20 {

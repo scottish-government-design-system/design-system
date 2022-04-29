@@ -2,14 +2,11 @@
     BODY
 \*------------------------------------*/
 
-html {
-    font-size: px-to-rem($root-font-size);
-}
-
 body {
     background: $ds_colour__white;
     color: $ds_colour__text;
     font-family: $base-font-family;
+    font-size: px-to-rem($root-font-size); // 1rem
     font-style: normal;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
@@ -19,11 +16,8 @@ body {
 }
 
 @include ds_media-query(medium) {
-    html {
-        font-size: px-to-rem($root-font-size--medium);
-    }
-
     body {
+        font-size: px-to-rem($root-font-size--medium);
         line-height: line-height-on-grid($root-font-size--medium);
     }
 }
