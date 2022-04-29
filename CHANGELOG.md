@@ -7,6 +7,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.0.253] - 2022-04-29
+### Changed
+- Content label component no longer forces text to uppercase
+- Autocomplete uses the "mark" element to highlight matched text
+### Fixed
+- Unit tests no longer output compoled scripts to the dist folder
+
 ## [0.0.252] - 2022-04-29
 ### Added
 - Mixin for small font size which stays the same size over all breakpoints.
