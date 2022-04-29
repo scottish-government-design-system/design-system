@@ -43,7 +43,7 @@
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-jquery-2": "^0.1.1",
     "karma-jasmine-matchers": "^5.0.0",
-    "karma-viewport": "^1.0.8",
+    "karma-viewport": "^1.0.9",
     "karma-webpack": "^5.0.0",
     "minimist": "^1.2.5",
     "node-sass": "^7.0.1",
