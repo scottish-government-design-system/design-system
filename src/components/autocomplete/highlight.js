@@ -1,6 +1,6 @@
 function highlight(element, pattern, options) {
     const defaults = {
-        tagName: 'B',
+        tagName: 'MARK',
         className: 'ds_autocomplete__highlight'
     };
 

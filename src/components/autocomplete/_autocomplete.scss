@@ -52,6 +52,12 @@
             color: $ds_colour__brand;
         }
     }
+
+    &__highlight {
+        background-color: transparent;
+        color: $ds_colour__text;
+        font-weight: $bold;
+    }
 }
 
 .js-autocomplete-input[aria-expanded="true"] ~ .ds_autocomplete__suggestions {
