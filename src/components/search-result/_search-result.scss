@@ -76,14 +76,10 @@
     }
 
     &__media {
-        width: 96px; // Aligns to 2 columns on grid from medium size upwards
+        width: 96px;
 
-        @include ds_media-query(large) {
+        @include ds_media-query(small) {
             width: 128px;
-        }
-
-        @include ds_media-query(xlarge) {
-            width: 160px;
         }
     }
 
@@ -94,7 +90,7 @@
         @include ds_responsive-padding(2, left, $tuning: 3px);
         @include ds_small-size(4px); // Use 4px type grid
         position: relative;
-        
+
         &:before {
             background: $ds_colour__blue;
             content: '';

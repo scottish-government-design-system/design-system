@@ -136,7 +136,7 @@ class Autocomplete {
                 this.activeSuggestion = suggestion;
                 this.inputElement.setAttribute('aria-activedescendant', 'suggestion-' + index);
 
-                this.updateStatus(`${suggestion.displayText} (${index + 1} of ${this.suggestions.length} is selected)`);
+                this.updateStatus(`${suggestion.displayText} (${index + 1} of ${this.suggestions.length}) is selected`);
             } else {
                 delete suggestion.active;
             }
@@ -182,7 +182,7 @@ class Autocomplete {
     }
 
     updateStatus(text, delay = 100) {
-        if (this.statueElement) {
+        if (this.statusElement) {
             if (this.statusTimeout) {
                 window.clearTimeout(this.statusTimeout);
             }

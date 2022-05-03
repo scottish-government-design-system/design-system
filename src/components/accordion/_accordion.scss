@@ -46,13 +46,12 @@ h1,h2,h3 {
     &__header,
     &__header-button {
         @include ds_blocklink;
+        @include ds_h4-size;
 
         background-color: $ds_colour__white;
         border-width: 0;
         color: $accordion__header-colour;
-        font-size: 1rem;
         font-weight: $bold;
-        line-height: 24px;
         margin: 0;
         padding: 15px 40px 15px 16px; /// [1]
         position: relative;
@@ -70,8 +69,7 @@ h1,h2,h3 {
     }
 
     &__title {
-        font-size: 1rem;
-        line-height: 24px;
+        @include ds_h4-size;
         margin-bottom: 0;
     }
 

@@ -49,14 +49,9 @@
 
 @include ds_media-query(medium) {
     .ds_file-info {
-        padding: px-to-rem(16px, $root-font-size--medium);
-
-        &__thumbnail {
-            margin-right: px-to-rem(16px, $root-font-size--medium);
-        }
 
         &__thumbnail-link {
-            width: px-to-rem(104px, $root-font-size--medium);
+            width: px-to-rem(104px);
         }
     }
 }

@@ -52,6 +52,12 @@
             color: $ds_colour__brand;
         }
     }
+
+    &__highlight {
+        background-color: transparent;
+        color: $ds_colour__text;
+        font-weight: $bold;
+    }
 }
 
 .js-autocomplete-input[aria-expanded="true"] ~ .ds_autocomplete__suggestions {
@@ -60,7 +66,7 @@
 
 @include media-query(medium) {
     .ds_autocomplete__suggestions {
-        font-size: px-to-rem(16px, $root-font-size--medium);
-        line-height: line-height-on-grid(16px);
+        font-size: px-to-rem($root-font-size);
+        line-height: line-height-on-grid($root-font-size);
     }
 }

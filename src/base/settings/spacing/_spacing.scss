@@ -8,39 +8,39 @@ $ds_spacing-scale: (
     ),
   1: (
     null:   px-to-rem(8px),
-    medium: px-to-rem(8px, $root-font-size--medium)
+    medium: px-to-rem(8px)
     ),
   2: (
     null:   px-to-rem(16px),
-    medium: px-to-rem(16px, $root-font-size--medium)
+    medium: px-to-rem(16px)
     ),
   3: (
     null:   px-to-rem(24px),
-    medium: px-to-rem(24px, $root-font-size--medium)
+    medium: px-to-rem(24px)
     ),
   4: (
     null:   px-to-rem(24px),
-    medium: px-to-rem(32px, $root-font-size--medium)
+    medium: px-to-rem(32px)
     ),
   5: (
     null:   px-to-rem(32px),
-    medium: px-to-rem(40px, $root-font-size--medium)
+    medium: px-to-rem(40px)
     ),
   6: (
     null:   px-to-rem(40px),
-    medium: px-to-rem(48px, $root-font-size--medium)
+    medium: px-to-rem(48px)
     ),
   7: (
     null:   px-to-rem(40px),
-    medium: px-to-rem(56px, $root-font-size--medium)
+    medium: px-to-rem(56px)
     ),
   8: (
     null:   px-to-rem(48px),
-    medium: px-to-rem(64px, $root-font-size--medium)
+    medium: px-to-rem(64px)
     ),
   9: (
     null:   px-to-rem(56px),
-    medium: px-to-rem(72px, $root-font-size--medium)
+    medium: px-to-rem(72px)
     )
 ) !default;
 
