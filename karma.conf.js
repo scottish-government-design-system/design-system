@@ -17,7 +17,7 @@ const instrumentationConfig = {
 };
 
 const testWebpackConfig = webpackConfig()[0];
-testWebpackConfig.mode = 'production';
+testWebpackConfig.mode = 'development';
 testWebpackConfig.module.rules.push(instrumentationConfig);
 delete testWebpackConfig.entry;
 delete testWebpackConfig.output;
@@ -32,7 +32,7 @@ module.exports = function (config) {
             'webpack'
         ],
         reporters: [
-            'dots',
+            'mocha',
             'coverage-istanbul'
         ],
         port: 9876,

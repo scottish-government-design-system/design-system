@@ -19,7 +19,8 @@
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.7",
@@ -43,6 +44,7 @@
     "karma-jasmine": "^4.0.1",
     "karma-jasmine-jquery-2": "^0.1.1",
     "karma-jasmine-matchers": "^5.0.0",
+    "karma-mocha-reporter": "^2.2.5",
     "karma-viewport": "^1.0.9",
     "karma-webpack": "^5.0.0",
     "minimist": "^1.2.5",
