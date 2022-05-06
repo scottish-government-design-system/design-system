@@ -13,6 +13,7 @@ fdescribe('tabs', () => {
 
     afterEach(() => {
         viewport.reset();
+        window.location.hash = '';
     });
 
     it('should not be initialised if smaller than medium size', () => {
@@ -94,7 +95,7 @@ fdescribe('tabs', () => {
         clock.uninstall();
     });
 
-    describe('tab navigation items', () => {
+    describe('tab items', () => {
         it ('should show first tab on init if no hash present', () => {
             const firstTabItem = testObj.tabsElement.querySelector('.ds_tabs__tab');
 
@@ -144,7 +145,110 @@ fdescribe('tabs', () => {
             }
         });
 
+        it ('should show specified tab on init if hash present', () => {
+            window.location.hash = '#tab2';
+            testObj.tabsModule.init();
+            
+            // Is initialised
+            expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(true);
+
+            // Check current tab matches hash
+            const currentTabItem = testObj.tabsElement.querySelector('.ds_current');
+            expect(currentTabItem.querySelector('.ds_tabs__tab-link').getAttribute('href')).toBe('#tab2');
+        });
+
+        it ('should only change tab if a valid value is used on hash change event', () => {
+            testObj.tabsModule.init();
+            
+            // Is initialised
+            expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(true);
+
+            // Change hash
+            window.location.hash = '#tab2';
+            const event = new Event('hashchange');
+            window.dispatchEvent(event);
+
+            console.log(testObj.tabsElement);
+
+            // Check current tab matches hash
+            let currentTabItem = testObj.tabsElement.querySelector('.ds_current');
+
+            console.log(currentTabItem.querySelector('.ds_tabs__tab-link').getAttribute('href'));
+            //expect(currentTabItem.querySelector('.ds_tabs__tab-link').getAttribute('href')).toBe('#tab2');
+
+            /*
+            // Change hash to one that doesnt exist which should not change tabs
+            window.location.hash = '#nonsense';
+            const event2 = new Event('hashchange');
+            window.dispatchEvent(event2);
+
+            // Check current tab is still unchanged
+            currentTabItem = testObj.tabsElement.querySelector('.ds_current');
+            expect(currentTabItem.querySelector('.ds_tabs__tab-link').getAttribute('href')).toBe('#tab2');*/
+
+        });
+
+        it ('should change the selected tab to the one that is clicked if different to the current tab', () => {
+            const firstTabItem = testObj.tabsElement.querySelector('.ds_tabs__tab');
+            const firstTabLink = firstTabItem.querySelector('.ds_tabs__tab-link');
+            // Set 2nd tab to be selected
+            window.location.hash = '#tab2';
+            testObj.tabsModule.init();
+
+            // Click event on first tab
+            const event = new Event('click');
+            firstTabLink.dispatchEvent(event);
+
+            // Check current tab is first tab
+            const currentTabItem = testObj.tabsElement.querySelector('.ds_current');
+            expect(currentTabItem.querySelector('.ds_tabs__tab-link').getAttribute('href')).toBe('#tab1');
+
+            // On click hash is automatically changed in the browser to clicked tabs href
+
+        });
+
+        it ('should not change the tab on hash change if smaller than medium size', () => {
+            viewport.set(400); // set to a size smaller than medium
+            testObj.tabsModule.init();
+            
+            // Change hash
+            window.location.hash = '#tab2';
+            const event = new Event('hashchange');
+            window.dispatchEvent(event);
+            
+            // Is not initialised
+            expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(false);
+
+            // Get all tabs
+            const tabItems = testObj.tabsElement.querySelectorAll('.ds_tabs__tab');
+
+            // Check all tabs that none are selected
+            for (let i = 0, il = tabItems.length; i < il; i++) {
+                expect(tabItems[i].querySelector('.ds_current')).toBeFalsy();
+            }
+        });
+
+        it ('should add the specified tab to the browser history', () => {
+
+        });
+
+        it ('should deactivate specified tab with deactivateTab()', () => {
+
+        });
+
+        it ('should return the tab that matches the specified hash', () => {
+
+        });
+
         it ('should return currect tab on getCurrentTab()', () => {
+
+        });
+
+        it ('should return the href of the specified tab', () => {
+
+        });
+
+        it ('should return the content of the specified tab', () => {
 
         });
 
