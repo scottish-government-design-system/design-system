@@ -94,7 +94,7 @@ class Tabs {
           this.changingHash = false;
           return;
         }
-
+        
         if (breakpointCheck('medium')) {
             let currentTab = this.getCurrentTab();
             this.deactivateTab(currentTab);
@@ -226,6 +226,9 @@ class Tabs {
 
     // Deactivate specified tab
     deactivateTab(targetTab) {
+        if(!targetTab){
+            return;
+        }
         let targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
         let targetTabContent = this.getTabContent(targetTab);
         
