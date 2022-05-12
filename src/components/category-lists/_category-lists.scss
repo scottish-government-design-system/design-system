@@ -17,7 +17,10 @@
     padding: 8px;
 
     > * {
-        margin-bottom: $grid-gap-y;
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 $grid-gap-y;
+        width: 100%;
     }
 
     &--narrow > * {
@@ -88,9 +91,7 @@
         }
 
         > *[class] {
-            display: grid;
-            margin: 0;
-            width: 100%;
+            margin-bottom: 0;
         }
     }
 

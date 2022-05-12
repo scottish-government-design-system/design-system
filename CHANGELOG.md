@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.255] - 2022-05-12
+### Changed
+- reverted package-lock.json back to npm-shrinkwrap.json
+### Fixed
+- alignment defect on category list items
+
 ## [0.0.254] - 2022-05-12
 ### Changed
 - package now uses package-lock.json instead of npm-shrinkwrap.json
