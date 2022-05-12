@@ -19,7 +19,11 @@
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"
   },
-  "dependencies": {},
+  "files": [
+    "dist",
+    "src",
+    "LICENSE.txt"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.7",

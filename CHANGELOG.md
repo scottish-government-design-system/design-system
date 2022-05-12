@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.254] - 2022-05-12
+### Changed
+- package now uses package-lock.json instead of npm-shrinkwrap.json
+- npm module files restricted to licence, /dist, and /src
 
 ## [0.0.253] - 2022-04-29
 ### Changed
