@@ -598,6 +598,18 @@ const tracking = {
             });
         },
 
+        tabs: function (scope = document) {
+            const tabComponent = tracking.gatherElements('ds_tabs', scope);
+            tabComponent.forEach(tabs => {
+                const tabLinks = [].slice.call(tabs.querySelectorAll('.ds_tabs__tab-link'));
+                tabLinks.forEach((link, index) => {
+                    if (!link.getAttribute('data-tab')) {
+                        link.setAttribute('data-tab', `tab-link-${index + 1}`);
+                    }
+                });
+            });
+        },
+
         textInputs: function (scope = document) {
             const textInputs = [].slice.call(scope.querySelectorAll('input.ds_input'));
             textInputs.forEach(textInput => {

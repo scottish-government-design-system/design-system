@@ -17,7 +17,7 @@ const instrumentationConfig = {
 };
 
 const testWebpackConfig = webpackConfig()[0];
-testWebpackConfig.mode = 'development';
+testWebpackConfig.mode = 'production';
 testWebpackConfig.module.rules.push(instrumentationConfig);
 delete testWebpackConfig.entry;
 delete testWebpackConfig.output;

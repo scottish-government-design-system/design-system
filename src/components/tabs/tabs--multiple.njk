@@ -6,11 +6,15 @@
     <ul class="ds_tabs__list">
         {%- for tab in params.tabs %}
         <li class="ds_tabs__tab {%- if tab.current %}  ds_current{%- endif %}" {%- if tab.current %}aria-current="page"{%- endif %}>
-            {%- if tab.tabLink %}
-            <a class="ds_tabs__tab-link" href="{{ tab.tabLink }}">{{ tab.tabTitle }}</a>
+        {%- if tab.tabLink %}
+            {%- if tab.current %}
+            <span class="ds_tabs__tab-link">{{ tab.tabTitle }}</span>
             {%- else %}
-            <a class="ds_tabs__tab-link" href="#{{ tab.tabId }}">{{ tab.tabTitle }}</a>
+            <a class="ds_tabs__tab-link" href="{{ tab.tabLink }}">{{ tab.tabTitle }}</a>
             {%- endif %}
+        {%- else %}
+            <a class="ds_tabs__tab-link" href="#{{ tab.tabId }}">{{ tab.tabTitle }}</a>
+        {%- endif %}
         </li>
         {%- endfor %}
     </ul>

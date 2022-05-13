@@ -4,14 +4,15 @@
 
 $tab__background-colour: $ds_colour__grey--lighter !default;
 $tab__background-colour--current: $ds_colour__white !default;
-$tab__link-colour: $ds_colour__text;
-$tab__link-colour--current: $ds_colour__text; 
+$tab__link-colour: $ds_colour__text !default;
+$tab__link-colour--current: $ds_colour__text !default; 
 $tab__border-width: 2px !default;
 $tab__border-width--current: 3px !default;
 $tab__padding--vertical: 12px !default;
 $tab__padding--horizontal: 16px !default;
 $tab__gap: 8px !default;
-$tab__toggle-colour: $ds_colour__brand !default;
+$tab__toggle-colour: $ds_colour__link !default;
+$tab__toggle-colour--hover: $ds_colour__link--hover !default;
 
 .ds_tabs {
     @include ds_responsive-margin(4, bottom);  
@@ -82,24 +83,38 @@ $tab__toggle-colour: $ds_colour__brand !default;
                         @include ds_blocklink;
                 
                         background-color: $ds_colour__white;
-                        border: 1px solid $ds_colour__border;
+                        border: 2px solid $ds_colour__border--light;
                         color: $tab__toggle-colour;
                         font-weight: $bold;
                         margin: 0;
-                        padding: 15px 39px 15px 15px;
+                        padding: 14px 38px 14px 14px;
                         text-align: left;
                         text-decoration: none;
                         width: 100%;
-                
+
+                        &:hover:not(:focus) {
+                            color: $tab__toggle-colour--hover;
+                        }
                 
                         &::after {
                             @include ds_chevron(down, 0.75em);
                             border-width: 0px 0px 3px 3px;
                             position: absolute;
-                            right: 24px;
-                            top: 19px;
-                            transition: transform 0.2s, top 0.2s;
+                            right: 16px;
+                            top: 17px;
+                            transition: transform 0.2s;
                             pointer-events: none;
+                        }
+
+                        &:focus {
+                            // focus state encompasses border
+                            border: 0;
+                            padding: 16px 40px 16px 16px;
+
+                            &::after {
+                                right: 18px;
+                                top: 19px;
+                            }
                         }
 
                         // Hide menu after button
@@ -109,10 +124,26 @@ $tab__toggle-colour: $ds_colour__brand !default;
 
                         // Change button state and open menu
                         &[aria-expanded="true"] {
-                            
+
+                            border-bottom: 0;
+                            color: $tab__link-colour;
+                            padding-bottom: 16px; // increased to take up space from removed border
+
+                            &:not(:focus){
+                                background-color: $ds_colour__link--current__background;
+                            }
+
+                            &:hover:not(:focus) {
+                                background-color: $ds_colour__blocklink-bg--hover;
+                            }
+
                             &::after {
                                 top: 23px;
                                 transform: rotate(-225deg);
+                            }
+
+                            &:focus::after {
+                                top: 25px;
                             }
 
                             & + .ds_tabs__list {
@@ -123,14 +154,15 @@ $tab__toggle-colour: $ds_colour__brand !default;
                     }
                 
                     &__list {
-                        border: 1px solid $ds_colour__border;
+                        @include ds_root-size;
+                        border: 2px solid $ds_colour__border--light;
                         border-top: 0;
                         margin: 0;
-                        padding: 0;
+                        padding: 8px 6px 6px 6px;
                     }
 
                     &__tab {
-                        margin: 0;
+                        margin: 0 0 2px 0;
                         padding: 0;
 
                         &::before {
@@ -139,17 +171,19 @@ $tab__toggle-colour: $ds_colour__brand !default;
 
                         &-link {
                             @include ds_blocklink;
-                            padding: 11px 15px;
+                            padding: 11px 16px; // 11px so 2px margin keeps to grid
+                            text-decoration: none;
                         }
 
                         &.ds_current {
 
+                            font-weight: $normal;
+
                             .ds_tabs__tab-link:not(:focus) {
                                 background-color: $ds_colour__link--current__background;
-                                border-left: 4px solid $ds_colour__brand;
-                                padding-left: 12px;
-
-
+                                border-left: 2px solid $ds_colour__brand;
+                                color: $tab__link-colour--current;
+                                padding-left: 14px;
                             }
 
                         }
@@ -279,6 +313,26 @@ $tab__toggle-colour: $ds_colour__brand !default;
                     display: none;
                 }
 
+            }
+        }
+    }
+
+    // Different behaviour when tab not interactive
+    &.ds_tabs--links {
+        // When tabs format
+        @include ds_media-query(medium) {
+            .ds_tabs__tab {
+
+                &.ds_current {
+            
+                    .ds_tabs__tab-link {
+
+                        &:hover {
+                            background-color: inherit;
+                            color: inherit;
+                        }
+                    }
+                }
             }
         }
     }
