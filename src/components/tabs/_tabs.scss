@@ -8,7 +8,7 @@ $tab__link-colour: $ds_colour__text !default;
 $tab__link-colour--current: $ds_colour__text !default; 
 $tab__border-width: 2px !default;
 $tab__border-width--current: 3px !default;
-$tab__padding--vertical: 12px !default;
+$tab__padding--vertical: 16px !default;
 $tab__padding--horizontal: 16px !default;
 $tab__gap: 8px !default;
 $tab__toggle-colour: $ds_colour__link !default;
@@ -19,18 +19,10 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
 
     // Default title style matches contents list heading
     &__title {
-        font-size: px-to-rem($root-font-size);
-        line-height: line-height-on-grid($root-font-size);
+        @include ds_h3-size;
         margin: 0;
         padding: 0;
-        @include ds_responsive-margin(2, bottom);            
-        font-weight: $normal;
-
-        // Adjust to keep the same...
-        @include ds_media-query(medium) {
-            font-size: px-to-rem($root-font-size, $root-font-size--medium);
-            line-height: line-height-on-grid($root-font-size);
-        }
+        @include ds_responsive-margin(1, bottom);  
     }
 
     // Default list style matches contents list
@@ -238,7 +230,7 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                     @include ds_blocklink;// Not fully using typical blocklink styling so requires overrides
                     color: $tab__link-colour;
                     display: inline-block;
-                    padding: $tab__padding--vertical $tab__padding--horizontal;
+                    padding: $tab__padding--vertical $tab__padding--horizontal calc($tab__padding--vertical - $tab__border-width);
 
                     &:hover {
                         color: $ds_colour__link--hover;
@@ -269,12 +261,12 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                             border-right: $tab__border-width solid $ds_colour__border;
                             border-bottom: 0;
                             color: $tab__link-colour--current;
-                            padding: calc($tab__padding--vertical - $tab__border-width--current) calc($tab__padding--horizontal - $tab__border-width) calc($tab__padding--vertical + $tab__border-width);
+                            padding: calc($tab__padding--vertical - $tab__border-width--current) calc($tab__padding--horizontal - $tab__border-width) $tab__padding--vertical;
                             text-decoration: none;
 
                             &:focus {
                                 border: 0;
-                                padding: $tab__padding--vertical $tab__padding--horizontal calc($tab__padding--vertical + $tab__border-width);
+                                padding: $tab__padding--vertical $tab__padding--horizontal $tab__padding--vertical;
                             }
                         }
                     }
@@ -283,7 +275,7 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                         margin-bottom: -$tab__border-width !important;
 
                         .ds_tabs__tab-link {
-                            padding: $tab__padding--vertical $tab__padding--horizontal calc($tab__padding--vertical + $tab__border-width);
+                            padding: $tab__padding--vertical $tab__padding--horizontal;
                         }
                     }            
                     
@@ -301,9 +293,9 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                     &--bordered {
                         border: $tab__border-width solid $ds_colour__border;
                         @include ds_responsive-padding(3, top);
-                        @include ds_responsive-padding(2, right);
-                        @include ds_responsive-padding(3, bottom);
-                        @include ds_responsive-padding(2, left);
+                        @include ds_responsive-padding(2, right, $tuning: -$tab__border-width);
+                        @include ds_responsive-padding(3, bottom, $tuning: -$tab__border-width);
+                        @include ds_responsive-padding(2, left, $tuning: -$tab__border-width);
                         @include ds_last-child-no-margin;
                     }
                 }

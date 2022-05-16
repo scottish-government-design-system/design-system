@@ -6,19 +6,18 @@
 
 
 .ds_contents-nav {
-    margin-bottom: 48px;
 
     &__title {
-        font-size: 1em;
-        font-weight: $normal;
-        line-height: 24px;
-        margin-bottom: 16px;
+        @include ds_h3-size;
+        margin: 0;
+        padding: 0;
+        @include ds_responsive-margin(1, bottom);  
     }
 
     &__list {
         @include ds_small-size;
-        line-height: 24px;
-        list-style-type: none;
+        @include ds_responsive-margin(6, bottom);   
+        list-style: none;
         margin-left: 0;
         padding-left: 32px;
     }
@@ -40,17 +39,5 @@
 
     &__link.ds_current {
         font-weight: $bold;
-    }
-}
-
-@include ds_media-query(medium) {
-    .ds_contents-nav {
-        margin-top: 8px;
-
-        &__title {
-            font-size: $small-size--medium;
-            line-height: 32px;
-            margin-bottom: 8px;
-        }
     }
 }
