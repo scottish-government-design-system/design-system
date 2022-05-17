@@ -5,6 +5,8 @@ jasmine.getFixtures().fixturesPath = 'base/src/';
 import Tracking from './tracking';
 import Accordion from '../../../components/accordion/accordion';
 import SideNavigation from '../../../components/side-navigation/side-navigation';
+import Tabs from '../../../components/tabs/tabs';
+import tabsNavigation from '../../../components/tabs/tabs-navigation';
 
 describe('tracking', () => {
     beforeEach(() => {
@@ -1268,6 +1270,60 @@ describe('tracking', () => {
             expect(link.getAttribute('data-navigation')).toEqual('skip-link-foo');
         });
     });
+
+    describe('tabs', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('tab');
+        });
+
+        it('should add a data attribute on tabs', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_tabs__tab-link'));
+            Tracking.add.tabs();
+
+            expect(links[0].getAttribute('data-tab')).toEqual('tab-link-1-1');
+            expect(links[1].getAttribute('data-tab')).toEqual('tab-link-1-2');
+            expect(links[2].getAttribute('data-tab')).toEqual('tab-link-1-3');
+            expect(links[3].getAttribute('data-tab')).toEqual('tab-link-1-4');
+        });
+
+        it('should NOT add a generated data attribute on tabs with attributes already set', () => {
+            Tracking.add.tabs();
+            // Select the first tab link
+            const link = testObj.scope.querySelector('.ds_tabs__tab-link[data-tab="tab-link-1-1"]');
+            // Change attribute and call tracking function again
+            link.setAttribute('data-tab',"tab-link-foo");
+            Tracking.add.tabs();
+            // Check attribute has not changed
+            expect(link.getAttribute('data-tab')).toEqual('tab-link-foo');
+        });
+    });
+
+    describe('tabNavigation', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('tab-navigation');
+        });
+
+        it('should add a data attribute on tabs', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_tabs__tab-link'));
+            Tracking.add.tabs();
+
+            expect(links[0].getAttribute('data-tab')).toEqual('tab-link-2-1');
+            expect(links[1].getAttribute('data-tab')).toEqual('tab-link-2-2');
+            expect(links[2].getAttribute('data-tab')).toEqual('tab-link-2-3');
+        });
+
+        it('should NOT add a generated data attribute on tabs with attributes already set', () => {
+            Tracking.add.tabs();
+            // Select the first tab link
+            const link = testObj.scope.querySelector('.ds_tabs__tab-link[data-tab="tab-link-2-1"]');
+            // Change attribute and call tracking function again
+            link.setAttribute('data-tab',"tab-link-foo");
+            Tracking.add.tabs();
+            // Check attribute has not changed
+            expect(link.getAttribute('data-tab')).toEqual('tab-link-foo');
+        });
+    });
+    
 
     describe('warning texts', () => {
         beforeEach(() => {

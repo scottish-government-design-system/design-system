@@ -1,0 +1,50 @@
+<style>
+    .ds_breakpoint-check {
+        display: none;
+    }
+    
+    @media screen and (min-width: 480px) {
+        .ds_breakpoint-check.ds_breakpoint-check--small {
+            display: block;
+        }
+    }
+    
+    @media screen and (min-width: 768px) {
+        .ds_breakpoint-check.ds_breakpoint-check--medium {
+            display: block;
+        }
+    }
+    
+    @media screen and (min-width: 992px) {
+        .ds_breakpoint-check.ds_breakpoint-check--large {
+            display: block;
+        }
+    }
+    
+    @media screen and (min-width: 1200px) {
+        .ds_breakpoint-check.ds_breakpoint-check--xlarge {
+            display: block;
+        }
+    }
+</style>
+
+<div class="ds_tabs  ds_tabs--links" data-module="ds-tabs-navigation" id="tab">
+    <nav class="ds_tabs__navigation" aria-labelledby="ds_tabs__title">
+        <h2 id="ds_tabs__title" class="ds_tabs__title">Change category</h2>
+        <ul class="ds_tabs__list" id="tablist">
+            <li class="ds_tabs__tab">
+                <a class="ds_tabs__tab-link" href="tab-page-1">Tab title 1</a>
+            </li>
+            <li class="ds_tabs__tab">
+                <a class="ds_tabs__tab-link" href="tab-page-2">This is another title 2</a>
+            </li>
+            <li class="ds_tabs__tab  ds_current" aria-current="page">
+                <span class="ds_tabs__tab-link">Further tab 3</span>
+            </li>
+        </ul>
+        <div id="ds_tabs__current" class="ds_tabs__current"><strong>Current category</strong> Further tab 3</div>
+    </nav>
+    <div class="ds_tabs__content" id="tab3">
+        <p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<style>
+    .ds_breakpoint-check {
+        display: none;
+    }
+    
+    @media screen and (min-width: 480px) {
+        .ds_breakpoint-check.ds_breakpoint-check--small {
+            display: block;
+        }
+    }
+    
+    @media screen and (min-width: 768px) {
+        .ds_breakpoint-check.ds_breakpoint-check--medium {
+            display: block;
+        }
+    }
+    
+    @media screen and (min-width: 992px) {
+        .ds_breakpoint-check.ds_breakpoint-check--large {
+            display: block;
+        }
+    }
+    
+    @media screen and (min-width: 1200px) {
+        .ds_breakpoint-check.ds_breakpoint-check--xlarge {
+            display: block;
+        }
+    }
+</style>
+
+<div id="tab" class="ds_tabs" data-module="ds-tabs">
+    <nav class="ds_tabs__navigation" aria-labelledby="ds_tabs__title">
+        <h2 id="ds_tabs__title" class="ds_tabs__title">Contents</h2>
+        <ul class="ds_tabs__list" id="tablist">
+            <li class="ds_tabs__tab">
+                <a class="ds_tabs__tab-link" href="#tab1">Tab 1</a>
+            </li>
+            <li class="ds_tabs__tab">
+                <a class="ds_tabs__tab-link" href="#tab2">Tab 2</a>
+            </li>
+            <li class="ds_tabs__tab">
+                <a class="ds_tabs__tab-link" href="#tab3">Tab 3</a>
+            </li>
+            <li class="ds_tabs__tab">
+                <a class="ds_tabs__tab-link" href="#tab4">Tab 4</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="ds_tabs__content" id="tab1">
+        <h2>Tab 1</h2>
+        <p>Content for Tab 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>
+    </div>
+    <div class="ds_tabs__content" id="tab2">
+        <h2>Tab 2</h2>
+        <p>Content for Tab 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>
+    </div>
+    <div class="ds_tabs__content" id="tab3">
+        <h2>Tab 3</h2>
+        <p>Content for Tab 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper neque a odio porta, eu auctor sem auctor. Mauris euismod massa nibh, at ullamcorper sem tincidunt sed. In condimentum ligula nec velit efficitur accumsan. Vivamus fringilla volutpat ligula, nec commodo leo consequat vitae. Quisque a diam nunc.</p>
+    </div>
+    <div class="ds_tabs__content" id="tab4">
+        Tab 4 content
+    </div>
+</div>

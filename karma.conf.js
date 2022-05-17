@@ -32,7 +32,7 @@ module.exports = function (config) {
             'webpack'
         ],
         reporters: [
-            'dots',
+            'mocha',
             'coverage-istanbul'
         ],
         port: 9876,
