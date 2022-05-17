@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.256] - 2022-05-17
+### Added
+- tabs component
+### Changed
+- contents navigation minor style changes to match tabs component
+
 ## [0.0.255] - 2022-05-12
 ### Changed
 - reverted package-lock.json back to npm-shrinkwrap.json
