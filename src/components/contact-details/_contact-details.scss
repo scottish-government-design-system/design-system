@@ -9,7 +9,7 @@ $contact-details__border-colour: $ds_colour__border--highlight;
 
 
 .ds_contact-details {
-    $social-icon-size: 24px;
+    $social-icon-size: px-to-rem(24px);
 
     &__title {
         @include ds_responsive-padding(1, top);
@@ -42,23 +42,23 @@ $contact-details__border-colour: $ds_colour__border--highlight;
 
     &__social-item {
         @include ds_responsive-margin(1, bottom);
-        padding-left: #{$social-icon-size + 8px};
+        padding-left: #{$social-icon-size + px-to-rem(8px)};
         position: relative;
     }
 
     &__social-icon {
-        height: $social-icon-size;
+        height: $social-icon-size !important;
         pointer-events: none;
         position: absolute;
         left: 0;
-        width: $social-icon-size;
+        width: $social-icon-size !important;
     }
 }
 
 @include ds_media-query(medium) {
     .ds_contact-details {
         &__social-icon {
-            top: 4px;
+            top: px-to-rem(4px);
         }
     }
 }

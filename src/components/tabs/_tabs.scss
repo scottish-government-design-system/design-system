@@ -230,7 +230,7 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                     @include ds_blocklink;// Not fully using typical blocklink styling so requires overrides
                     color: $tab__link-colour;
                     display: inline-block;
-                    padding: $tab__padding--vertical $tab__padding--horizontal calc($tab__padding--vertical - $tab__border-width);
+                    padding: $tab__padding--vertical $tab__padding--horizontal calc(#{$tab__padding--vertical} - #{$tab__border-width});
 
                     &:hover {
                         color: $ds_colour__link--hover;
@@ -261,7 +261,7 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                             border-right: $tab__border-width solid $ds_colour__border;
                             border-bottom: 0;
                             color: $tab__link-colour--current;
-                            padding: calc($tab__padding--vertical - $tab__border-width--current) calc($tab__padding--horizontal - $tab__border-width) $tab__padding--vertical;
+                            padding: calc(#{$tab__padding--vertical} - #{$tab__border-width--current}) calc(#{$tab__padding--horizontal} - #{$tab__border-width}) $tab__padding--vertical;
                             text-decoration: none;
 
                             &:focus {

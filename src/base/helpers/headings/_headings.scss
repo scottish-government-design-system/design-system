@@ -34,11 +34,11 @@
 
 @mixin ds_h4-size($type-grid: 8px) {
     font-size: px-to-rem($h4-size);
-    line-height: line-height-on-grid($h4-size, 1.3, $grid: $type-grid);
+    line-height: line-height-on-grid($h4-size, $grid: $type-grid);
 
     @include ds_media-query(medium) {
         font-size: px-to-rem($h4-size--medium);
-        line-height: line-height-on-grid($h4-size--medium, 1.3, $grid: $type-grid);
+        line-height: line-height-on-grid($h4-size--medium, $grid: $type-grid);
     }
 }
 
