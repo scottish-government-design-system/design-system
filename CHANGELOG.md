@@ -6,6 +6,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.258] - 2022-05-18
+### Changed
+- heading 4 line height changes for typography scale
+### Fixed
+- icon size on contact details
+- Sass changes to tabs to support deprecated compilers
+
 ## [0.0.257] - 2022-05-17
 ### Added
 - tabs component
