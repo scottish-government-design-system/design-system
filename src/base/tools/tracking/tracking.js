@@ -604,8 +604,8 @@ const tracking = {
             tabComponent.forEach(tabs => {
                 const tabLinks = [].slice.call(tabs.querySelectorAll('.ds_tabs__tab-link'));
                 tabLinks.forEach((link, index) => {
-                    if (!link.getAttribute('data-tab')) {
-                        link.setAttribute('data-tab', `tab-link-${tabSet}-${index + 1}`);
+                    if (!link.getAttribute('data-navigation')) {
+                        link.setAttribute('data-navigation', `tab-link-${tabSet}-${index + 1}`);
                     }
                 });
                 tabSet++;
