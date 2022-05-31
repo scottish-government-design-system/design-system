@@ -6,7 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
-## [0.0.259] - 2022-05-31
+## [0.0.261] - 2022-05-31
+### Changed
+- improved spacing for site footer navigation items
+- add dividing line at top of site footer
+
+## [0.0.260] - 2022-05-31
 ### Changed
 - improved spacing for site footer navigation items
 
