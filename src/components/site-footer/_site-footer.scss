@@ -9,10 +9,11 @@ $site-footer__background: $ds_colour__grey--light !default;
 
 
 .ds_site-footer {
+    /// [1] subtracting the border width
     @include ds_small-size;
     background-color: $site-footer__background;
-    box-shadow: 0px -1px 0 $ds_colour__border;
-    padding-top: 16px;
+    border-top: 1px solid $ds_colour__border;
+    padding-top: 15px; /// [1]
 
     &__content {
         padding-bottom: 32px;
