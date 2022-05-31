@@ -6,10 +6,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.259] - 2022-05-31
+### Changed
+- improved spacing for site footer navigation items
+
 ## [0.0.259] - 2022-05-25
 ### Fixed
 - correction to tracking data attribute for tabs
-
 
 ## [0.0.258] - 2022-05-18
 ### Changed

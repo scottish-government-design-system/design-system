@@ -14,18 +14,17 @@ $site-footer__background: $ds_colour__grey--light !default;
 
     &__content {
         padding-bottom: 32px;
-        padding-top: 24px;
+        padding-top: 16px;
     }
 
     /// [1] subtracting the border width
     &__site-items {
         border-bottom: 1px solid rgba(0, 0, 0, 0.2);
         font-size: $small-size--fixed;
-        font-weight: $bold;
         line-height: line-height-on-grid($small-size--fixed);
         list-style-type: none;
-        margin: 0 0 23px; /// [1]
-        padding-bottom: 16px;
+        margin: 0 0 24px;
+        padding-bottom: 15px; /// [1]
     }
 
     &__copyright {
@@ -77,6 +76,7 @@ $site-footer__background: $ds_colour__grey--light !default;
 .ds_site-items {
     &__item {
         display: inline-block;
+        margin-bottom: 0;
 
         &:not(:last-child) {
             margin-right: 20px;
