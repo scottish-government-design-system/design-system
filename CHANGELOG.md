@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.263] - 2022-06-06
+### Changed
+- children of pagination links have pointer-events: none
+- autocomplete trims the search string before using it
+
 ## [0.0.262] - 2022-05-31
 ### Changed
 - correction to dividing line at top of site footer

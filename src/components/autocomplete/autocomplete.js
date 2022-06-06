@@ -57,9 +57,10 @@ class Autocomplete {
 
         this.inputElement.addEventListener('input', () => {
             window.clearTimeout(this.keypressTimeout);
-            if (this.inputElement.value && this.inputElement.value.length >= this.minLength) {
+            const value = this.inputElement.value.trim();
+            if (value.length >= this.minLength) {
                 this.keypressTimeout = window.setTimeout(() => {
-                    this.fetchSuggestions(this.inputElement.value).then(suggestions => {
+                    this.fetchSuggestions(value).then(suggestions => {
                         this.suggestions = suggestions;
                         this.showSuggestions(this.suggestions);
 
@@ -76,7 +77,7 @@ class Autocomplete {
                 if (this.suggestions) {
                     this.showSuggestions(this.suggestions);
                 } else {
-                    this.fetchSuggestions(this.inputElement.value);
+                    this.fetchSuggestions(this.inputElement.value.trim());
                 }
             }
         });
