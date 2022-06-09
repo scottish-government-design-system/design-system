@@ -128,11 +128,13 @@
 @mixin ds_h4-style {
     @include ds_h4-size;
     font-weight: $bold;
+    margin-bottom: 16px;
 }
 
 @mixin ds_h5-style {
     @include ds_h5-size;
     font-weight: $bold;
+    margin-bottom: 16px;
 }
 
 

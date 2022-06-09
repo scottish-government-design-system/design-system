@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.264] - 2022-06-09
+### Changed
+- minor typography updates: alternate heading level classnames renamed, bottom margin explicitly set on h4 and h5
+
 ## [0.0.263] - 2022-06-06
 ### Changed
 - children of pagination links have pointer-events: none

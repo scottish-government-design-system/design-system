@@ -2,11 +2,16 @@
     HEADINGS
 \*------------------------------------*/
 
-h1, .alpha {
+$use-legacy-heading-styles: true !default;
+
+
+
+
+h1, .ds_h1 {
     @include ds_h1-style;
 }
 
-h2, .beta {
+h2, .ds_h2 {
     @include ds_h2-style;
 
     &:not(:first-child) {
@@ -14,7 +19,7 @@ h2, .beta {
     }
 }
 
-h3, .gamma {
+h3, .ds_h3 {
     @include ds_h3-style;
 
     &:not(:first-child) {
@@ -22,10 +27,36 @@ h3, .gamma {
     }
 }
 
-h4, .delta {
+h4, .ds_h4 {
     @include ds_h4-style;
 }
 
-h5, .epsilon {
+h5, .ds_h5 {
     @include ds_h5-style;
+}
+
+
+
+
+@if $use-legacy-heading-styles {
+    // legacy
+    .alpha {
+        @extend .ds_h1;
+    }
+
+    .beta {
+        @extend .ds_h2;
+    }
+
+    .gamma {
+        @extend .ds_h3;
+    }
+
+    .delta {
+        @extend .ds_h4;
+    }
+
+    .epsilon {
+        @extend .ds_h5;
+    }
 }
