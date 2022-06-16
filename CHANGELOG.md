@@ -10,6 +10,7 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 ### Changed
 - search results examples in Fractal show new presentation of result totals when pagination is used
 - search results status changed to prototype
+- improved screen reader support for search results alternative search suggestions
 ### Fixed
 - correction to tracking data attribute on search results examples in Fractal
 
