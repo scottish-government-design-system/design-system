@@ -6,6 +6,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.265] - 2022-06-16
+### Changed
+- search results examples in Fractal show new presentation of result totals when pagination is used
+- search results status changed to prototype
+### Fixed
+- correction to tracking data attribute on search results examples in Fractal
+
 ## [0.0.264] - 2022-06-09
 ### Changed
 - minor typography updates: alternate heading level classnames renamed, bottom margin explicitly set on h4 and h5

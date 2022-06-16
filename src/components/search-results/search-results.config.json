@@ -1,5 +1,6 @@
 {
     "label": "Search results",
+    "status": "prototype",
     "context": {
         "params": {
             "resultsCount": "7",
@@ -446,7 +447,9 @@
             "label": "Pagination",
             "context": {
                 "params": {
-                    "resultsCount": "87",
+                    "resultsCount": "107",
+                    "resultsStart": "21",
+                    "resultsEnd": "30",
                     "pagination": {
                         "params": {
                             "items": [
@@ -461,25 +464,34 @@
                                     "link": "#"
                                 },
                                 {
-                                    "ellipsis": true
-                                },
-                                {
-                                    "label": "13",
+                                    "label": "2",
                                     "link": "#"
                                 },
                                 {
-                                    "label": "14",
+                                    "label": "3",
                                     "current": true
                                 },
                                 {
-                                    "label": "15",
+                                    "label": "4",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "5",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "6",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "7",
                                     "link": "#"
                                 },
                                 {
                                     "ellipsis": true
                                 },
                                 {
-                                    "label": "27",
+                                    "label": "11",
                                     "link": "#"
                                 },
                                 {
@@ -511,28 +523,38 @@
                                 },
                                 {
                                     "label": "1",
-                                    "link": "#"
-                                },
-                                {
-                                    "ellipsis": true
-                                },
-                                {
-                                    "label": "13",
-                                    "link": "#"
-                                },
-                                {
-                                    "label": "14",
                                     "current": true
                                 },
                                 {
-                                    "label": "15",
+                                    "label": "2",
                                     "link": "#"
                                 },
                                 {
-                                    "ellipsis": true
+                                    "label": "3",
+                                    "link": "#"
                                 },
                                 {
-                                    "label": "27",
+                                    "label": "4",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "5",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "6",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "7",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "8",
+                                    "link": "#"
+                                },
+                                {
+                                    "label": "9",
                                     "link": "#"
                                 },
                                 {

@@ -28,7 +28,6 @@
         @include ds_responsive-margin(1, bottom, $important: true);
         font-weight: $normal;
 
-        &-count,
         &-query {
             font-weight: $bold;
         }
