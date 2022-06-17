@@ -3,7 +3,7 @@
 'use strict';
 
 import highlight from './highlight';
-import PromiseRequest from './promise-request';
+import PromiseRequest from '../../base/tools/promise-request/promise-request';
 
 class Autocomplete {
     constructor(element, endpointUrl, options = {}) {
@@ -114,7 +114,7 @@ class Autocomplete {
     }
 
     clearSuggestions () {
-        this.suggestions = [];
+        // this.suggestions = [];
         delete this.activeSuggestion;
         delete this.selectedSuggestion;
         this.listBoxElement.innerHTML = '';

@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.267] - 2022-06-16
+### Changed
+- moved "promise request" script to base/tools
+
 ## [0.0.265] - 2022-06-16
 ### Changed
 - search results examples in Fractal show new presentation of result totals when pagination is used
