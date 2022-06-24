@@ -1,0 +1,200 @@
+.ds_cb__inner {
+    position: relative;
+}
+
+// colors
+
+$colors: (
+    'white'     $ds_colour__white       'normal',
+    'grey'      $ds_colour__grey--light 'normal',
+    'blue'      $ds_colour__blue        'reversed',
+    'darkblue'  $ds_colour__blue--dark  'reversed',
+    'teal'      $ds_colour__teal        'dark',
+    'darkteal'  $ds_colour__dark-teal   'reversed',
+    'green'     $ds_colour__green       'dark',
+    'darkgreen' $ds_colour__dark-green  'reversed',
+    'orange'    $ds_colour__orange      'dark',
+    'red'       $ds_colour__red         'reversed',
+    'pink'      $ds_colour__pink        'reversed',
+    'purple'    $ds_colour__purple      'reversed',
+    'brown'     $ds_colour__brown       'reversed',
+    'black'     $ds_colour__black       'reversed'
+);
+
+%texttheme-reversed {
+    color: white;
+
+    a:not(:hover):not(:focus) {
+        color: currentColor;
+    }
+}
+
+%texttheme-dark {
+    color: $ds_colour__black;
+
+    a:not(:hover):not(:focus) {
+        color: currentColor;
+    }
+}
+
+.ds_cb {
+    @each $color in $colors {
+        $name: nth($color, 1);
+        $hex: nth($color, 2);
+        $texttheme: nth($color, 3);
+
+        &--fullwidth.ds_cb--bg-#{$name},
+        &:not(&--fullwidth).ds_cb--bg-#{$name} .ds_wrapper {
+            background-color: #{$hex};
+        }
+
+        &--bg-#{$name} {
+            @if ($texttheme == 'reversed') {
+                @extend %texttheme-reversed;
+            }
+
+            @if ($texttheme == 'dark') {
+                @extend %texttheme-dark;
+            }
+        }
+
+        // foreground theming
+        &--fg-#{$name}:not([class*="ds_cb--bg-"]),
+        &--fg-#{$name}.ds_cb--bg-white {
+            color: #{$hex};
+        }
+    }
+}
+
+
+
+
+// modifications to DS components
+
+.ds_cb {
+    .ds_page-header {
+        margin: 0 0 24px;
+
+        @include ds_media-query(medium) {
+            margin-bottom: 32px;
+        }
+
+        @include ds_media-query(large) {
+            margin-top: 16px;
+        }
+    }
+
+    .ds_cb__text:last-of-type:first-of-type .ds_page-header {
+        margin-top: 0;
+    }
+}
+
+
+
+
+
+
+// subcomponents
+
+.ds_cb__inner > :last-of-type,
+.ds_cb__text > :last-child {
+    margin-bottom: 0;
+}
+
+.ds_cb__inner {
+    @include ds_layout();
+
+    > * + * {
+        margin-top: 24px;
+    }
+
+    @include ds_media-query(medium) {
+        > * + * {
+            margin-top: 0;
+        }
+
+        @supports(display: grid) {
+            grid-gap: 0 32px;
+            grid-template-columns: repeat(12, 1fr);
+        }
+    }
+}
+
+.ds_cb__text {
+    position: relative;
+
+    @include ds_media-query(medium) {
+        float: left;
+        @include ds_colwidth(6);
+
+        &:last-of-type:first-of-type {
+            float: none;
+            @include ds_colwidth(8);
+        }
+
+        &--middle:last-of-type:first-of-type {
+            @include ds_colpush(2);
+        }
+
+        &--right:last-of-type:first-of-type {
+            @include ds_colpush(4);
+        }
+
+        @supports(display: grid) {
+            grid-column: span 6;
+
+            &:last-of-type:first-of-type {
+                grid-area: 1/1/1/9;
+                width: auto;
+            }
+
+            &--middle:last-of-type:first-of-type {
+                grid-area: 1/3/1/11;
+                margin-left: 0;
+            }
+
+            &--right:last-of-type:first-of-type {
+                grid-area: 1/5/1/13;
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.ds_cb__poster {
+    overflow: auto;
+
+    img,
+    iframe,
+    video {
+        display: block;
+        float: right;
+        height: auto;
+        max-width: 100%;
+    }
+
+    &:first-of-type {
+        img,
+        iframe,
+        video {
+            float: left;
+        }
+    }
+
+    @include ds_media-query(medium-down) {
+        img,
+        iframe,
+        video {
+            float: none;
+        }
+    }
+
+    @include ds_media-query(medium) {
+        float: left;
+        @include ds_colwidth(6);
+
+        @supports(display: grid) {
+            grid-column: span 6;
+        }
+    }
+}

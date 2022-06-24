@@ -1,0 +1,256 @@
+{
+    "status": "wip",
+    "meta": {
+        "styles": ["preview-full"]
+    },
+    "context": {
+        "params": {
+            "heading": "Page heading",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id blandit velit. Sed iaculis justo vitae cursus vestibulum.</p><p>Suspendisse arcu nibh, vulputate congue aliquet semper, tristique vel justo. <a href=\"#\">Nunc libero sapien</a>, mattis ac sodales a, ultrices eu odio. Integer aliquam, ipsum sit amet sollicitudin faucibus, ante tortor sagittis velit, vel consectetur massa massa ut risus. In at purus quis purus gravida maximus a at ante. Cras nunc augue, suscipit euismod nisi at, bibendum sagittis turpis.</p>",
+            "image": "/assets/images/placeholders/thistles.jpg",
+            "imageAlt": "Thistles",
+            "imageWidth": "656",
+            "imageHeight": "369"
+        }
+    },
+    "variants": [
+        {
+            "name": "Text only",
+            "label": "Text only",
+            "context": {
+                "params": {
+                    "image": false
+                 }
+            }
+        },
+        {
+            "name": "Full width",
+            "label": "Full width",
+            "context": {
+                "params": {
+                    "fullwidth": true
+                 }
+            }
+        },
+        {
+            "name": "Theme white blue",
+            "label": "Theme (white / blue)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "blue"
+                 }
+            }
+        },
+        {
+            "name": "Theme white darkblue",
+            "label": "Theme (white / dark blue)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "darkblue"
+                 }
+            }
+        },
+        {
+            "name": "Theme white darkteal",
+            "label": "Theme (white / dark teal)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "darkteal"
+                 }
+            }
+        },
+        {
+            "name": "Theme white darkgreen",
+            "label": "Theme (white / dark green)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "darkgreen"
+                 }
+            }
+        },
+        {
+            "name": "Theme white red",
+            "label": "Theme (white / red)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "red"
+                 }
+            }
+        },
+        {
+            "name": "Theme white pink",
+            "label": "Theme (white / pink)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "pink"
+                 }
+            }
+        },
+        {
+            "name": "Theme white purple",
+            "label": "Theme (white / purple)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "purple"
+                 }
+            }
+        },
+        {
+            "name": "Theme white brown",
+            "label": "Theme (white / brown)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "brown"
+                 }
+            }
+        },
+        {
+            "name": "Theme white black",
+            "label": "Theme (white / black)",
+            "context": {
+                "params": {
+                    "background": "",
+                    "foreground": "black"
+                 }
+            }
+        },
+        {
+            "name": "Theme grey",
+            "label": "Theme (grey)",
+            "context": {
+                "params": {
+                    "background": "grey",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme blue",
+            "label": "Theme (blue)",
+            "context": {
+                "params": {
+                    "background": "blue",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme darkblue",
+            "label": "Theme (dark blue)",
+            "context": {
+                "params": {
+                    "background": "darkblue",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme teal",
+            "label": "Theme (teal)",
+            "context": {
+                "params": {
+                    "background": "teal",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme darkteal",
+            "label": "Theme (dark teal)",
+            "context": {
+                "params": {
+                    "background": "darkteal",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme green",
+            "label": "Theme (green)",
+            "context": {
+                "params": {
+                    "background": "green",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme darkteal",
+            "label": "Theme (dark green)",
+            "context": {
+                "params": {
+                    "background": "darkgreen",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme orange",
+            "label": "Theme (orange)",
+            "context": {
+                "params": {
+                    "background": "orange",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme red",
+            "label": "Theme (red)",
+            "context": {
+                "params": {
+                    "background": "red",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme pink",
+            "label": "Theme (pink)",
+            "context": {
+                "params": {
+                    "background": "pink",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme purple",
+            "label": "Theme (purple)",
+            "context": {
+                "params": {
+                    "background": "purple",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme brown",
+            "label": "Theme (brown)",
+            "context": {
+                "params": {
+                    "background": "brown",
+                    "foreground": ""
+                 }
+            }
+        },
+        {
+            "name": "Theme black",
+            "label": "Theme (black)",
+            "context": {
+                "params": {
+                    "background": "black",
+                    "foreground": ""
+                 }
+            }
+        }
+    ]
+}

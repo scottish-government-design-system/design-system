@@ -1,0 +1,16 @@
+/*------------------------------------*\
+    PAGE TITLE
+\*------------------------------------*/
+
+.ds_cb--page-title {
+    .ds_cb__inner {
+        padding: 40px 0;
+        position: relative;
+
+        @include ds_layout();
+
+        @include ds_media-query(medium) {
+            padding: 48px 0;
+        }
+    }
+}
