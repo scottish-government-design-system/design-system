@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.268] - 2022-06-28
+### Changed
+- tighter spacing and sizing for pagination
+- update "ellipsis" pagination example to the new correct number of links
+
 ## [0.0.267] - 2022-06-16
 ### Changed
 - moved "promise request" script to base/tools

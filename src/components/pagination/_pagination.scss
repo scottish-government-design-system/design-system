@@ -23,9 +23,9 @@
 
     &__link {
         @include ds_blocklink;
-        line-height: 48px;
-        min-height: 48px;
-        min-width: 48px;
+        line-height: 40px;
+        min-height: 40px;
+        min-width: 40px;
         text-decoration: none;
 
         &.ds_current {
@@ -41,6 +41,7 @@
         }
 
         &--ellipsis {
+            min-width: 0;
             pointer-events: none;
         }
 
@@ -79,7 +80,6 @@
     }
 }
 
-
 @supports (display: flex) {
     .ds_pagination {
         &__item {
@@ -89,7 +89,7 @@
         &__list {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 2px;
             justify-content: center;
         }
 
