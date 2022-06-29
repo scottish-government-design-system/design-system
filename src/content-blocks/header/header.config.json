@@ -5,21 +5,26 @@
     },
     "context": {
         "params": {
-            "heading": "Page heading",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id blandit velit. Sed iaculis justo vitae cursus vestibulum.</p><p>Suspendisse arcu nibh, vulputate congue aliquet semper, tristique vel justo. <a href=\"#\">Nunc libero sapien</a>, mattis ac sodales a, ultrices eu odio. Integer aliquam, ipsum sit amet sollicitudin faucibus, ante tortor sagittis velit, vel consectetur massa massa ut risus. In at purus quis purus gravida maximus a at ante. Cras nunc augue, suscipit euismod nisi at, bibendum sagittis turpis.</p>",
-            "image": "/assets/images/placeholders/thistles.jpg",
-            "imageAlt": "Thistles",
-            "imageWidth": "656",
-            "imageHeight": "369"
+            "heading": "This is the heading",
+            "headingLevel": "h2"
         }
     },
     "variants": [
         {
-            "name": "Text only",
-            "label": "Text only",
+            "name": "Text right",
+            "label": "Text right",
             "context": {
                 "params": {
-                    "image": false
+                    "position": "right"
+                 }
+            }
+        },
+        {
+            "name": "Text middle",
+            "label": "Text middle",
+            "context": {
+                "params": {
+                    "position": "middle"
                  }
             }
         },
@@ -29,6 +34,15 @@
             "context": {
                 "params": {
                     "fullwidth": true
+                 }
+            }
+        },
+        {
+            "name": "Heading level 3",
+            "label": "Heading level 3",
+            "context": {
+                "params": {
+                    "headingLevel": "h3"
                  }
             }
         },

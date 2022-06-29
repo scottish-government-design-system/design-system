@@ -198,3 +198,33 @@ $colors: (
         }
     }
 }
+
+// Placeholder for image and video blocks
+%ds_cb--image-video {
+    .ds_cb__inner {
+        padding: 16px 0 24px;
+    }
+
+    @include ds_media-query(medium) {
+        .ds_cb__inner {
+            padding: 24px 0 32px;
+        }
+    }
+
+    // this is ugly but it using flex for this means we can put the image under the text in IE11
+    @include ds_media-query(medium-down) {
+        .ds_cb__inner {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ds_cb__poster:first-of-type {
+            order: 2;
+            margin-top: 24px;
+        }
+
+        .ds_cb__text:last-child {
+            margin-top: 0;
+        }
+    }
+}

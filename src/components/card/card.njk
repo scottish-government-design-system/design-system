@@ -1,6 +1,6 @@
 <{{ params.itemTag }} class="ds_card{%- if params.hasHover %} ds_card--has-hover{% endif -%}">
     {%- if params.image %}
-    <div class="ds_card__media">
+    <div class="ds_card__media {%- if params.smallImage %}  ds_card__media--small-mobile{%- endif -%}">
         <div class="ds_aspect-box">
             <img alt="" aria-hidden="true" class="ds_aspect-box__inner" src="{{ params.image }}" width="656" height="369"/>
         </div>

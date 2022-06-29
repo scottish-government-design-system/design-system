@@ -29,6 +29,19 @@
                     "content": "The Digital Scotland Design System provides static web assets for websites and web applications for the Scottish Government and other Scottish public sector bodies."
                 }
             }
+        },
+        {
+            "name": "Small image card",
+            "label": "Small image card",
+            "context": {
+                "params": {
+                    "smallImage": true,
+                    "link": "#",
+                    "heading": "About the Design System",
+                    "image": "/assets/images/placeholders/thistles.jpg",
+                    "content": "The Digital Scotland Design System provides static web assets for websites and web applications for the Scottish Government and other Scottish public sector bodies."
+                }
+            }
         }
     ]
 }

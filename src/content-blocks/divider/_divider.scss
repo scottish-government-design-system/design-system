@@ -1,0 +1,26 @@
+/*------------------------------------*\
+    DIVIDER
+\*------------------------------------*/
+
+.ds_cb--divider {
+    align-items: center;
+    display: grid;
+    min-height: 16px;
+
+    hr {
+        border: 0;
+        margin: 0;
+        padding: 8px 0;
+        position: relative;
+
+        &::after {
+            background-color: currentColor;
+            content: '';
+            height: 1px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            z-index: 1;
+        }
+    }
+}
