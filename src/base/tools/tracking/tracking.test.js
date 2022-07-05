@@ -4,9 +4,10 @@ jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import Tracking from './tracking';
 import Accordion from '../../../components/accordion/accordion';
+import Autocomplete from "../../../components/autocomplete/autocomplete";
 import SideNavigation from '../../../components/side-navigation/side-navigation';
 import Tabs from '../../../components/tabs/tabs';
-import tabsNavigation from '../../../components/tabs/tabs-navigation';
+import TabsNavigation from '../../../components/tabs/tabs-navigation';
 
 describe('tracking', () => {
     beforeEach(() => {
@@ -374,6 +375,78 @@ describe('tracking', () => {
                 buttons.forEach((button, index) => {
                     expect(button.getAttribute('data-accordion')).toEqual(`accordion-open-${index + 1}`);
                 });
+            });
+        });
+    });
+
+    describe('autocompletes', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('autocompletes');
+            testObj.autocompleteElement = testObj.scope.querySelector('.ds_autocomplete');
+            testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, '#foo');
+            testObj.autocompleteModule.init();
+
+            window.dataLayer = window.dataLayer || [];
+
+            Tracking.add.autocompletes();
+        });
+
+        it('should set a datalayer value when an item is selected via keyboard', () => {
+            // arrange
+            const inputElement = testObj.autocompleteElement.querySelector('.js-autocomplete-input');
+            inputElement.setAttribute('aria-activedescendant', 'suggestion-1');
+
+            spyOn(window.dataLayer, 'push');
+
+            // act
+            const event = new KeyboardEvent('keydown', { key: 'Enter' });
+            inputElement.dispatchEvent(event);
+
+            // assert
+            expect(window.dataLayer.push).toHaveBeenCalledWith({
+                event: 'autocomplete',
+                searchText: '',
+                clickText: 'bar',
+                resultsCount: 3,
+                clickedResults: 'result 2 of 3'
+            });
+        });
+
+        it('should NOT set a datalayer value when an item is NOT selected via keyboard', () => {
+            // arrange
+            const inputElement = testObj.autocompleteElement.querySelector('.js-autocomplete-input');
+
+            spyOn(window.dataLayer, 'push');
+
+            // act
+            const event = new KeyboardEvent('keydown', { key: 'Enter' });
+            inputElement.dispatchEvent(event);
+
+            // assert
+            expect(window.dataLayer.push).not.toHaveBeenCalled();
+        });
+
+        it('should set a datalayer value when an item is clicked', () => {
+            // arrange
+            const suggestion1 = testObj.autocompleteElement.querySelector('#suggestion-1');
+
+            spyOn(window.dataLayer, 'push');
+
+            // prevent problematic calls not relevant to this spec
+            spyOn(testObj.autocompleteModule, 'selectSuggestion');
+            spyOn(testObj.autocompleteModule, 'acceptSelectedSuggestion');
+
+            // act
+            const event = new Event('mousedown', {bubbles: true});
+            suggestion1.dispatchEvent(event);
+
+            // assert
+            expect(window.dataLayer.push).toHaveBeenCalledWith({
+                event: 'autocomplete',
+                searchText: '',
+                clickText: 'bar',
+                resultsCount: 3,
+                clickedResults: 'result 2 of 3'
             });
         });
     });

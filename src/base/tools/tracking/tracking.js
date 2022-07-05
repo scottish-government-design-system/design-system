@@ -118,6 +118,46 @@ const tracking = {
             });
         },
 
+        autocompletes: function (scope = document) {
+            const autocompletes = tracking.gatherElements('ds_autocomplete', scope);
+            autocompletes.forEach(autocomplete => {
+                const inputElement = autocomplete.querySelector('.js-autocomplete-input');
+                const listBoxElement = document.querySelector('#' + inputElement.getAttribute('aria-owns') + ' .ds_autocomplete__suggestions-list');
+
+                let storedValue = inputElement.value;
+
+                inputElement.addEventListener('keydown', (event) => {
+                    const selectedItem = document.querySelector('#' + inputElement.getAttribute('aria-activedescendant'));
+                    const suggestions = [].slice.call(listBoxElement.querySelectorAll('li'));
+
+                    if (event.key === 'Enter' && selectedItem) {
+                        window.dataLayer.push({
+                            event: 'autocomplete',
+                            searchText: storedValue,
+                            clickText: selectedItem.innerText, // text of selected option
+                            resultsCount: suggestions.length, // number of suggestions
+                            clickedResults: `result ${[].slice.call(listBoxElement.childNodes).filter(item => item.tagName === 'LI').indexOf(selectedItem) + 1} of ${suggestions.length}` // "result 2 of 6"
+                        });
+                    }
+
+                    storedValue = inputElement.value;
+                });
+
+                listBoxElement.addEventListener('mousedown', (event) => {
+                    const selectedItem = event.target.closest('.ds_autocomplete__suggestion');
+                    const suggestions = [].slice.call(listBoxElement.querySelectorAll('li'));
+
+                    window.dataLayer.push({
+                        event: 'autocomplete',
+                        searchText: inputElement.value,
+                        clickText: selectedItem.innerText, // text of selected option
+                        resultsCount: suggestions.length, // number of suggestions
+                        clickedResults: `result ${[].slice.call(listBoxElement.childNodes).filter(item => item.tagName === 'LI').indexOf(selectedItem) + 1} of ${suggestions.length}` // "result 2 of 6"
+                    });
+                });
+            });
+        },
+
         backToTop: function (scope = document) {
             const backToTops = tracking.gatherElements('ds_back-to-top__button', scope);
             backToTops.forEach(backToTop => {

@@ -208,6 +208,37 @@
     </ul>
 </div>
 
+<div id="autocompletes">
+    <div class="ds_site-search  ds_autocomplete">
+        <form role="search" method="GET" action="#">
+            <label class="ds_label  visually-hidden" for="autocomplete-search" id="autocomplete-search-label">Search</label>
+
+            <div class="ds_input__wrapper  ds_input__wrapper--has-icon">
+                <input aria-autocomplete="list" aria-expanded="false" aria-owns="autocomplete-suggestions" autocomplete="off" class="ds_input js-autocomplete-input" haspopup="true" id="autocomplete-search" name="q" placeholder="Search" required="" type="search">
+
+                <button type="submit" class="ds_button">
+                    <span class="visually-hidden">Search gov.scot</span>
+                    <svg class="ds_icon" aria-hidden="true" role="img"><use href="#search" xlink:href="#search"></use></svg>
+                </button>
+
+                <div id="autocomplete-suggestions" class="ds_autocomplete__suggestions">
+                    <ol class="ds_autocomplete__suggestions-list" role="listbox" aria-labelledby="autocomplete-search-label">
+                        <li class="ds_autocomplete__suggestion" id="suggestion-0" role="option">
+                            <span class="ds_autocomplete__suggestion__text  js-suggestion-text">foo</span>
+                        </li>
+                        <li class="ds_autocomplete__suggestion" id="suggestion-1" role="option">
+                            <span class="ds_autocomplete__suggestion__text  js-suggestion-text">bar</span>
+                        </li>
+                        <li class="ds_autocomplete__suggestion" id="suggestion-2" role="option">
+                            <span class="ds_autocomplete__suggestion__text  js-suggestion-text">baz</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 <div id="back-to-top">
     <div class="ds_back-to-top">
         <a href="#" class="ds_back-to-top__button">Back to top <svg class="ds_icon  ds_back-to-top__icon" aria-hidden="true" role="img"><use href="/assets/images/icons/icons.stack.svg#arrow_upward"></use></svg></a>
