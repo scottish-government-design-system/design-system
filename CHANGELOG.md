@@ -6,6 +6,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.270] - 2022-07-05
+### Changed
+- reduce number of branches in tabs javascript
+
+## [0.0.269] - 2022-07-05
+### Added
+- add tracking rules for autocomplete
+
 ## [0.0.268] - 2022-06-28
 ### Changed
 - tighter spacing and sizing for pagination

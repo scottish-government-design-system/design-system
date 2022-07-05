@@ -11,7 +11,7 @@ class Tabs {
 
         this.tabContainer = tabContainer;
         // The list containing the tabs
-        this.tabList = tabContainer.querySelector('.ds_tabs__list'); 
+        this.tabList = tabContainer.querySelector('.ds_tabs__list');
         // The tab items
         this.tabHeaders = [].slice.call(tabContainer.querySelectorAll('.ds_tabs__tab'));
         // The tabs contents
@@ -42,7 +42,7 @@ class Tabs {
             // Set the active tab based on the URL's hash or the first tab
             let currentTabLink = this.getTab(window.location.hash) || this.tabHeaders[0].querySelector('.ds_tabs__tab-link');
             let currentTab = currentTabLink.parentElement;
-            this.activateTab(currentTab);   
+            this.activateTab(currentTab);
 
             // Mark as initialised for specific layout support
             this.tabContainer.classList.add('js-initialised');
@@ -57,22 +57,22 @@ class Tabs {
         }
     }
 
-    // Reset tabs to original 
+    // Reset tabs to original
     reset() {
         if (this.tabContainer.classList.contains('js-initialised')) {
-            this.tabContainer.classList.remove('js-initialised');   
+            this.tabContainer.classList.remove('js-initialised');
 
             // reset attributes to default behaviour
             this.tabList.removeAttribute('role');
             this.tabHeaders.forEach((tabHeader, index) => this.resetTab(tabHeader, index));
- 
+
         }
     }
 
     // Runs when the browser is resized - includes debounce to prevent multiple calls in quick succession
     onResize() {
         clearTimeout(this.resizeTimer);
-        this.resizeTimer = setTimeout(() => { 
+        this.resizeTimer = setTimeout(() => {
             if (breakpointCheck('medium')) {
                 this.set();
             } else {
@@ -88,13 +88,13 @@ class Tabs {
           return;
         }
         let tabWithHash = tabWithHashLink.parentElement;
-      
+
         // Prevent changing the hash
         if (this.changingHash) {
           this.changingHash = false;
           return;
         }
-        
+
         if (breakpointCheck('medium')) {
             let currentTab = this.getCurrentTab();
             this.deactivateTab(currentTab);
@@ -114,7 +114,7 @@ class Tabs {
     resetTab(tabHeader, index) {
         tabHeader.removeAttribute('role');
         tabHeader.classList.remove('ds_current');
-        
+
         const tabLink = tabHeader.querySelector('.ds_tabs__tab-link');
         const tabContent = this.tabContents[index];
         const tabId = tabContent.getAttribute('id');
@@ -130,7 +130,7 @@ class Tabs {
     // Initialise tab and add event listeners for click and arrow keys
     initTab(tabHeader, index) {
         tabHeader.setAttribute('role', 'presentation');
-        
+
         const tabLink = tabHeader.querySelector('.ds_tabs__tab-link');
         const tabContent = this.tabContents[index];
         const tabId = tabContent.getAttribute('id');
@@ -155,36 +155,26 @@ class Tabs {
             tabLink.addEventListener('keydown', (event) => {
                 let tabNavKey = true;
 
-                if (event.keyCode === this.keycodes.right) {
-                    if (breakpointCheck('medium')) {
+                if (breakpointCheck('medium')) {
+                    if (event.keyCode === this.keycodes.right) {
                         this.activateNextTab(event);
-                    }
-                } else if (event.keyCode === this.keycodes.left) {
-                    if (breakpointCheck('medium')) {
+                    } else if (event.keyCode === this.keycodes.left) {
                         this.activatePreviousTab(event);
-                    }
-                } else if (event.keyCode === this.keycodes.up) {
-                    if (breakpointCheck('medium')) {
+                    } else if (event.keyCode === this.keycodes.up) {
                         this.activatePreviousTab(event);
-                    }
-                } else if (event.keyCode === this.keycodes.down) {
-                    if (breakpointCheck('medium')) {
+                    } else if (event.keyCode === this.keycodes.down) {
                         this.activateNextTab(event);
+                    } else {
+                        tabNavKey = false;
                     }
-                } else {
-                    tabNavKey = false;
-                }
 
-                if (tabNavKey) {
-                    if (breakpointCheck('medium')) {
+                    if (tabNavKey) {
                         event.preventDefault();
                         event.stopPropagation();
                     }
                 }
             });
-
         }
-
     }
 
     // Activate next tab from the current selected tab
@@ -215,7 +205,7 @@ class Tabs {
     activateTab(targetTab) {
         let targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
         let targetTabContent = this.getTabContent(targetTab);
-        
+
         targetTab.classList.add('ds_current');
         targetTabLink.setAttribute('aria-selected', true);
         targetTabLink.setAttribute('tabindex', '0')
@@ -231,7 +221,7 @@ class Tabs {
         }
         let targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
         let targetTabContent = this.getTabContent(targetTab);
-        
+
         targetTab.classList.remove('ds_current');
         targetTabLink.setAttribute('aria-selected', false);
         targetTabLink.setAttribute('tabindex', '-1')
@@ -243,11 +233,11 @@ class Tabs {
     // Returns the tab which matches the specified hash value
     getTab(hash) {
         return this.tabContainer.querySelector('.ds_tabs__tab-link[href="' + hash + '"]');
-    }  
+    }
 
     // Returns the current tab
     getCurrentTab() {
-        return this.tabList.querySelector('.ds_tabs__tab.ds_current')    
+        return this.tabList.querySelector('.ds_tabs__tab.ds_current')
     }
 
     // Returns the href of the specified tab
