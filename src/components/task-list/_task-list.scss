@@ -1,0 +1,109 @@
+/*------------------------------------*\
+    TASK LIST
+\*------------------------------------*/
+
+.ds_task-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    &__task {
+        border-top: 2px $ds_colour__grey--light solid;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0;
+        position: relative;
+        @include ds_responsive-padding(2, top);
+        @include ds_responsive-padding(2, bottom);
+
+        &:last-child {
+            border-bottom: 2px $ds_colour__grey--light solid;
+        }
+
+        // Stack at small size
+        @include ds_media-query(small-down) {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        &-details {
+            max-width: 100%;
+        }
+
+        &-link {
+            // Expand link to cover entire task block
+            &::after {
+                bottom: 0;
+                content: "";
+                height: 100%;
+                left: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+
+        &-summary {
+            margin: 0;
+            @include ds_responsive-margin(1, top);
+        }
+
+        &-status {
+            @include ds_small-size;
+            @include ds_responsive-margin(2, left);
+            background-color: $ds_colour__grey--light;
+            font-weight: $bold;
+            padding: px-to-rem(4px) px-to-rem(16px);
+            white-space: nowrap;
+
+            @include ds_media-query(small-down) {
+                margin-left: 0;
+                @include ds_responsive-margin(2, top);
+            }
+
+            &--complete {
+                background: $ds_colour__white;
+                color: $ds_colour__state--positive;
+                border: 2px $ds_colour__state--positive solid;
+                padding: px-to-rem(2px) px-to-rem(16px);
+            }
+        }
+    }
+
+    &__heading {
+        @include ds_h3-style;
+    }
+}
+
+.ds_task-list-group {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    &__section {
+        margin: 0;
+        padding: 0;
+        @include ds_responsive-margin(5, bottom);
+
+        &:last-child {
+            @include ds_responsive-margin(4, bottom);
+        }
+    }
+
+    &--ordered {
+        @include ds_responsive-margin(4, left);
+        list-style-type: decimal;
+
+        .ds_task-list-group__section::marker {
+            @include ds_h3-size;
+            font-weight: $bold;
+        }
+
+        // Stack at small size
+        @include ds_media-query(small-down) {
+            list-style-position: inside;
+            margin-left: 0;
+        }
+    }
+}

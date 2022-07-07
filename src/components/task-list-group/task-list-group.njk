@@ -1,0 +1,9 @@
+{% set listtype = "ul"%}
+{% if params.ordered %}
+    {% set listtype = "ol" %}
+{% endif %}
+<{{ listtype }} class="ds_task-list-group {%- if params.ordered %}  ds_task-list-group--ordered{% endif %}">
+{%- for tasklist in params.lists -%}
+    <li class="ds_task-list-group__section">{% render '@task-list', tasklist -%}</li>
+{% endfor %}
+</{{ listtype }}>
