@@ -6,6 +6,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.272] - 2022-07-07
+### Fixed
+- correction to tracking behaviour for autocomplete keyboard interactions
+
+## [0.0.271] - 2022-07-07
+### Changed
+- adjustment to default number of characters required to for autocomplete requests
+
 ## [0.0.270] - 2022-07-05
 ### Changed
 - reduce number of branches in tabs javascript

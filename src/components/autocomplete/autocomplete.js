@@ -98,7 +98,14 @@ class Autocomplete {
     }
 
     acceptSelectedSuggestion() {
-        this.inputElement.value = document.querySelector('#' + this.inputElement.getAttribute('aria-activedescendant') + ' .js-suggestion-text').innerText;
+        const selectedItem = document.querySelector('#' + this.inputElement.getAttribute('aria-activedescendant'));
+        this.inputElement.value = selectedItem.querySelector('.js-suggestion-text').innerText;
+
+        // required for tracking
+        this.inputElement.dataset.autocompletetext = this.inputElement.value;
+        this.inputElement.dataset.autocompletecount = this.suggestions.length;
+        this.inputElement.dataset.autocompleteposition = [].slice.call(this.listBoxElement.childNodes).filter(item => item.tagName === 'LI').indexOf(selectedItem) + 1;
+
         this.clearSuggestions();
     }
 

@@ -119,6 +119,20 @@ const tracking = {
         },
 
         autocompletes: function (scope = document) {
+            function autocompleteDataLayerPush(storedValue, inputElement) {
+                window.dataLayer.push({
+                    event: 'autocomplete',
+                    searchText: storedValue,
+                    clickText: inputElement.dataset.autocompletetext,
+                    resultsCount: inputElement.dataset.autocompletecount,
+                    clickedResults: `result ${inputElement.dataset.autocompleteposition} of ${inputElement.dataset.autocompletecount}`
+                });
+
+                delete inputElement.dataset.autocompletetext;
+                delete inputElement.dataset.autocompletecount;
+                delete inputElement.dataset.autocompleteposition;
+            }
+
             const autocompletes = tracking.gatherElements('ds_autocomplete', scope);
             autocompletes.forEach(autocomplete => {
                 const inputElement = autocomplete.querySelector('.js-autocomplete-input');
@@ -127,33 +141,15 @@ const tracking = {
                 let storedValue = inputElement.value;
 
                 inputElement.addEventListener('keydown', (event) => {
-                    const selectedItem = document.querySelector('#' + inputElement.getAttribute('aria-activedescendant'));
-                    const suggestions = [].slice.call(listBoxElement.querySelectorAll('li'));
-
-                    if (event.key === 'Enter' && selectedItem) {
-                        window.dataLayer.push({
-                            event: 'autocomplete',
-                            searchText: storedValue,
-                            clickText: selectedItem.innerText, // text of selected option
-                            resultsCount: suggestions.length, // number of suggestions
-                            clickedResults: `result ${[].slice.call(listBoxElement.childNodes).filter(item => item.tagName === 'LI').indexOf(selectedItem) + 1} of ${suggestions.length}` // "result 2 of 6"
-                        });
+                    if (event.key === 'Enter' && inputElement.dataset.autocompletetext) {
+                        autocompleteDataLayerPush(storedValue, inputElement);
                     }
 
                     storedValue = inputElement.value;
                 });
 
-                listBoxElement.addEventListener('mousedown', (event) => {
-                    const selectedItem = event.target.closest('.ds_autocomplete__suggestion');
-                    const suggestions = [].slice.call(listBoxElement.querySelectorAll('li'));
-
-                    window.dataLayer.push({
-                        event: 'autocomplete',
-                        searchText: inputElement.value,
-                        clickText: selectedItem.innerText, // text of selected option
-                        resultsCount: suggestions.length, // number of suggestions
-                        clickedResults: `result ${[].slice.call(listBoxElement.childNodes).filter(item => item.tagName === 'LI').indexOf(selectedItem) + 1} of ${suggestions.length}` // "result 2 of 6"
-                    });
+                listBoxElement.addEventListener('mousedown', () => {
+                    autocompleteDataLayerPush(storedValue, inputElement);
                 });
             });
         },
