@@ -12,7 +12,7 @@ class Autocomplete {
         this.endpointUrl = endpointUrl;
         this.suggestionMappingFunction = options.suggestionMappingFunction || (suggestions => suggestions);
         this.throttleDelay = options.throttleDelay || 100;
-        this.minLength = options.minLength || 2;
+        this.minLength = options.minLength || 3;
 
         this.PromiseRequest = PromiseRequest;
 
