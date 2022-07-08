@@ -124,7 +124,7 @@ const tracking = {
                     event: 'autocomplete',
                     searchText: storedValue,
                     clickText: inputElement.dataset.autocompletetext,
-                    resultsCount: inputElement.dataset.autocompletecount,
+                    resultsCount: parseInt(inputElement.dataset.autocompletecount),
                     clickedResults: `result ${inputElement.dataset.autocompleteposition} of ${inputElement.dataset.autocompletecount}`
                 });
 

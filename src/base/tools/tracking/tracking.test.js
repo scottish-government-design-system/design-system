@@ -395,12 +395,15 @@ describe('tracking', () => {
             // arrange
             const inputElement = testObj.autocompleteElement.querySelector('.js-autocomplete-input');
             inputElement.setAttribute('aria-activedescendant', 'suggestion-1');
+            testObj.autocompleteModule.activeSuggestion = true;
+            testObj.autocompleteModule.suggestions = [1,2,3];
+            testObj.autocompleteModule.inputElement.dataset.autocompleteposition = 2;
 
             spyOn(window.dataLayer, 'push');
 
             // act
-            const event = new KeyboardEvent('keydown', { key: 'Enter' });
-            inputElement.dispatchEvent(event);
+            const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
+            inputElement.dispatchEvent(enterEvent);
 
             // assert
             expect(window.dataLayer.push).toHaveBeenCalledWith({
@@ -429,6 +432,11 @@ describe('tracking', () => {
         it('should set a datalayer value when an item is clicked', () => {
             // arrange
             const suggestion1 = testObj.autocompleteElement.querySelector('#suggestion-1');
+            testObj.autocompleteModule.activeSuggestion = true;
+            testObj.autocompleteModule.suggestions = [1,2,3];
+            testObj.autocompleteModule.inputElement.dataset.autocompleteposition = 2;
+            testObj.autocompleteModule.inputElement.dataset.autocompletetext = 'bar';
+            testObj.autocompleteModule.inputElement.dataset.autocompletecount = 3;
 
             spyOn(window.dataLayer, 'push');
 
