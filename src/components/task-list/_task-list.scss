@@ -74,6 +74,10 @@
     &__heading {
         @include ds_h3-style;
     }
+
+    &__intro {
+        @include ds_responsive-margin(1, bottom);
+    }
 }
 
 .ds_task-list-group {

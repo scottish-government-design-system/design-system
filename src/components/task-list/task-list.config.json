@@ -44,6 +44,19 @@
                     }
                 }
             }
+        },
+        {
+            "name": "Task list heading with intro",
+            "label": "Task list heading with intro",
+            "context": {
+                "params": {
+                    "listHeading": {
+                        "heading": "Heading for tasks",
+                        "level" : "h2"
+                    },
+                    "listIntro" : "This is some introduction text for this task list."
+                }
+            }
         }
     ]
 }
