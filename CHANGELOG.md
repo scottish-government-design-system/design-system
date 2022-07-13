@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.273] - 2022-07-13
+### Added
+- task list component (experimental)
+
 ## [0.0.272] - 2022-07-07
 ### Fixed
 - correction to tracking behaviour for autocomplete keyboard interactions
