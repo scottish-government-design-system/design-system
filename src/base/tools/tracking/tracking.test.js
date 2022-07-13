@@ -1397,6 +1397,26 @@ describe('tracking', () => {
         });
     });
 
+    describe('task list', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('tasklist');
+        });
+
+        it('should add a generated data attribute on task links without attributes already set', () => {
+            const link = testObj.scope.querySelector('.ds_task-list__task-link[data-unit="without-attribute"]');
+            Tracking.add.taskList();
+
+            expect(link.getAttribute('data-navigation')).toEqual('tasklist');
+        });
+
+        it('should NOT add a generated data attribute on task links links with attributes already set', () => {
+            const link = testObj.scope.querySelector('.ds_task-list__task-link[data-unit="with-attribute"]');
+            Tracking.add.taskList();
+
+            expect(link.getAttribute('data-navigation')).toEqual('task-link-foo');
+        });
+    });
+
 
     describe('warning texts', () => {
         beforeEach(() => {

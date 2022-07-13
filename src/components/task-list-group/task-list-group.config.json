@@ -62,7 +62,6 @@
                             },
                             {
                                 "taskLabel": "This is a task to perform last",
-                                "taskLink": "#",
                                 "statusLabel": "Cannot start yet",
                                 "complete": false
                             }
@@ -78,13 +77,11 @@
                         "taskList": [
                             {
                                 "taskLabel": "This is yet another task which needs to be done",
-                                "taskLink": "#",
                                 "statusLabel": "Cannot start yet",
                                 "complete": false
                             },
                             {
                                 "taskLabel": "This is a task to perform last",
-                                "taskLink": "#",
                                 "statusLabel": "Cannot start yet",
                                 "complete": false
                             }

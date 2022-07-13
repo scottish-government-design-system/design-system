@@ -25,7 +25,6 @@
                 },
                 {
                     "taskLabel": "This is a task to perform last",
-                    "taskLink": "#",
                     "statusLabel": "Cannot start yet",
                     "complete": false
                 }
