@@ -1,0 +1,107 @@
+{
+    "label": "Task list group",
+    "status": "prototype",
+    "context": {
+        "params": {
+            "ordered": false,
+            "lists": [
+                {
+                    "params": {
+                        "listHeading": {
+                            "heading": "Heading for tasks",
+                            "level" : "h2"
+                        },
+                        "taskList": [
+                            {
+                                "taskLabel": "This is a task",
+                                "taskLink": "#",
+                                "statusLabel": "Completed",
+                                "complete": true
+                            },
+                            {
+                                "taskLabel": "This is another task",
+                                "taskLink": "#",
+                                "taskContent": "This is some additional content around this specific task.",
+                                "statusLabel": "Completed",
+                                "complete": true
+                            },
+                            {
+                                "taskLabel": "This is yet another task which needs to be done",
+                                "taskLink": "#",
+                                "statusLabel": "Completed",
+                                "complete": true
+                            },
+                            {
+                                "taskLabel": "This is a task to perform last",
+                                "taskLink": "#",
+                                "statusLabel": "Completed",
+                                "complete": true
+                            }
+                        ]
+                    }
+                },
+                {
+                    "params": {
+                        "listHeading": {
+                            "heading": "Another heading for further tasks",
+                            "level" : "h2"
+                        },
+                        "taskList": [
+                            {
+                                "taskLabel": "This is another task",
+                                "taskLink": "#",
+                                "taskContent": "This is some additional content around this specific task.",
+                                "statusLabel": "In progress",
+                                "complete": false
+                            },
+                            {
+                                "taskLabel": "This is yet another task which needs to be done",
+                                "taskLink": "#",
+                                "statusLabel": "Not started",
+                                "complete": false
+                            },
+                            {
+                                "taskLabel": "This is a task to perform last",
+                                "statusLabel": "Cannot start yet",
+                                "complete": false
+                            }
+                        ]
+                    }
+                },
+                {
+                    "params": {
+                        "listHeading": {
+                            "heading": "A final list of tasks",
+                            "level" : "h2"
+                        },
+                        "taskList": [
+                            {
+                                "taskLabel": "This is yet another task which needs to be done",
+                                "statusLabel": "Cannot start yet",
+                                "complete": false
+                            },
+                            {
+                                "taskLabel": "This is a task to perform last",
+                                "statusLabel": "Cannot start yet",
+                                "complete": false
+                            }
+                        ]
+                    }
+                }
+            ]
+            
+        }
+    },
+    "variants": [
+        {
+            "name": "Ordered task lists",
+            "label": "Ordered task lists",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "ordered": true
+                }
+            }
+        }
+    ]
+}

@@ -648,6 +648,15 @@ const tracking = {
             });
         },
 
+        taskList: function (scope = document) {
+            const taskListLinks = tracking.gatherElements('ds_task-list__task-link', scope);
+            taskListLinks.forEach(link => {
+                if (!link.getAttribute('data-navigation')) {
+                    link.setAttribute('data-navigation', `tasklist`);
+                }
+            });
+        },
+
         textInputs: function (scope = document) {
             const textInputs = [].slice.call(scope.querySelectorAll('input.ds_input'));
             textInputs.forEach(textInput => {
