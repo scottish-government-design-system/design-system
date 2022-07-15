@@ -2,16 +2,11 @@
     "status": "prototype",
     "context": {
         "params": {
-            "items": [
-                {
-                    "key": "Type",
-                    "value": "Consultation paper"
-                },
-                {
-                    "key": "Publication date",
-                    "value": "27 August 2017"
-                }
-            ]
+            "title": "National Autism Post-Diagnostic Support Service: Evaluation of pilot programme 1st Dec 2020 - 1st June 2021",
+            "size": "3.0 MB",
+            "type": "53 page PDF",
+            "link": "#",
+            "icon": "/assets/images/documents/svg/pdf.svg"
         }
     },
     "variants": [
@@ -21,7 +16,7 @@
             "status": "prototype",
             "context": {
                 "params": {
-                    "highlighted": "true"
+                    "highlighted": true
                 }
             }
         },
@@ -41,7 +36,7 @@
             "status": "prototype",
             "context": {
                 "params": {
-                    "highlighted": "true",
+                    "highlighted": true,
                     "image": "/assets/images/placeholders/document-thumbnail.png"
                 }
             }
