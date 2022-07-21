@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.276] - 2022-07-21
+### Changed
+- task list component style changes and support for multiple groups
+
 ## [0.0.275] - 2022-07-14
 ### Fixed
 - aspect box fallback invalid CSS
