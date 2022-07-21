@@ -8,25 +8,29 @@
                     "taskLabel": "This is a task",
                     "taskLink": "#",
                     "statusLabel": "Completed",
-                    "complete": true
+                    "complete": true,
+                    "id": "task1"
                 },
                 {
                     "taskLabel": "This is another task",
                     "taskLink": "#",
                     "taskContent": "This is some additional content around this specific task.",
                     "statusLabel": "In progress",
-                    "complete": false
+                    "complete": false,
+                    "id": "task2"
                 },
                 {
                     "taskLabel": "This is yet another task which needs to be done",
                     "taskLink": "#",
                     "statusLabel": "Not started",
-                    "complete": false
+                    "complete": false,
+                    "id": "task3"
                 },
                 {
                     "taskLabel": "This is a task to perform last",
                     "statusLabel": "Cannot start yet",
-                    "complete": false
+                    "complete": false,
+                    "id": "task4"
                 }
             ]
         }

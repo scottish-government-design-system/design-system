@@ -4,6 +4,10 @@
     "context": {
         "params": {
             "ordered": false,
+            "status": "Application incomplete",
+            "statusDescription": "You have completed 4 of 9 sections.",
+            "statusLink": "#task5",
+            "statusLinkLabel": "Skip to first incomplete section",
             "lists": [
                 {
                     "params": {
@@ -16,26 +20,30 @@
                                 "taskLabel": "This is a task",
                                 "taskLink": "#",
                                 "statusLabel": "Completed",
-                                "complete": true
+                                "complete": true,
+                                "id": "task1"
                             },
                             {
                                 "taskLabel": "This is another task",
                                 "taskLink": "#",
                                 "taskContent": "This is some additional content around this specific task.",
                                 "statusLabel": "Completed",
-                                "complete": true
+                                "complete": true,
+                                "id": "task2"
                             },
                             {
                                 "taskLabel": "This is yet another task which needs to be done",
                                 "taskLink": "#",
                                 "statusLabel": "Completed",
-                                "complete": true
+                                "complete": true,
+                                "id": "task3"
                             },
                             {
                                 "taskLabel": "This is a task to perform last",
                                 "taskLink": "#",
                                 "statusLabel": "Completed",
-                                "complete": true
+                                "complete": true,
+                                "id": "task4"
                             }
                         ]
                     }
@@ -52,18 +60,21 @@
                                 "taskLink": "#",
                                 "taskContent": "This is some additional content around this specific task.",
                                 "statusLabel": "In progress",
-                                "complete": false
+                                "complete": false,
+                                "id": "task5"
                             },
                             {
                                 "taskLabel": "This is yet another task which needs to be done",
                                 "taskLink": "#",
                                 "statusLabel": "Not started",
-                                "complete": false
+                                "complete": false,
+                                "id": "task6"
                             },
                             {
                                 "taskLabel": "This is a task to perform last",
                                 "statusLabel": "Cannot start yet",
-                                "complete": false
+                                "complete": false,
+                                "id": "task7"
                             }
                         ]
                     }
@@ -78,18 +89,19 @@
                             {
                                 "taskLabel": "This is yet another task which needs to be done",
                                 "statusLabel": "Cannot start yet",
-                                "complete": false
+                                "complete": false,
+                                "id": "task8"
                             },
                             {
                                 "taskLabel": "This is a task to perform last",
                                 "statusLabel": "Cannot start yet",
-                                "complete": false
+                                "complete": false,
+                                "id": "task9"
                             }
                         ]
                     }
                 }
-            ]
-            
+            ] 
         }
     },
     "variants": [
@@ -100,6 +112,120 @@
             "context": {
                 "params": {
                     "ordered": true
+                }
+            }
+        },
+        {
+            "name": "Multiple",
+            "label": "Multiple task list groups",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "ordered": true,
+                    "groups": [
+                        {
+                            "heading": "Section heading",
+                            "lists": [
+                                {
+                                    "params": {
+                                        "listHeading": {
+                                            "heading": "Heading for tasks",
+                                            "level" : "h3"
+                                        },
+                                        "taskList": [
+                                            {
+                                                "taskLabel": "This is a task",
+                                                "taskLink": "#",
+                                                "statusLabel": "Completed",
+                                                "complete": true,
+                                                "id": "task1"
+                                            },
+                                            {
+                                                "taskLabel": "This is another task",
+                                                "taskLink": "#",
+                                                "taskContent": "This is some additional content around this specific task.",
+                                                "statusLabel": "Completed",
+                                                "complete": true,
+                                                "id": "task2"
+                                            },
+                                            {
+                                                "taskLabel": "This is yet another task which needs to be done",
+                                                "taskLink": "#",
+                                                "statusLabel": "Completed",
+                                                "complete": true,
+                                                "id": "task3"
+                                            },
+                                            {
+                                                "taskLabel": "This is a task to perform last",
+                                                "taskLink": "#",
+                                                "statusLabel": "Completed",
+                                                "complete": true,
+                                                "id": "task4"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "heading": "Another section",
+                            "lists": [
+                                {
+                                    "params": {
+                                        "listHeading": {
+                                            "heading": "Another heading for further tasks",
+                                            "level" : "h3"
+                                        },
+                                        "taskList": [
+                                            {
+                                                "taskLabel": "This is another task",
+                                                "taskLink": "#",
+                                                "taskContent": "This is some additional content around this specific task.",
+                                                "statusLabel": "In progress",
+                                                "complete": false,
+                                                "id": "task5"
+                                            },
+                                            {
+                                                "taskLabel": "This is yet another task which needs to be done",
+                                                "taskLink": "#",
+                                                "statusLabel": "Not started",
+                                                "complete": false,
+                                                "id": "task6"
+                                            },
+                                            {
+                                                "taskLabel": "This is a task to perform last",
+                                                "statusLabel": "Cannot start yet",
+                                                "complete": false,
+                                                "id": "task7"
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "params": {
+                                        "listHeading": {
+                                            "heading": "A final list of tasks",
+                                            "level" : "h3"
+                                        },
+                                        "taskList": [
+                                            {
+                                                "taskLabel": "This is yet another task which needs to be done",
+                                                "statusLabel": "Cannot start yet",
+                                                "complete": false,
+                                                "id": "task8"
+                                            },
+                                            {
+                                                "taskLabel": "This is a task to perform last",
+                                                "statusLabel": "Cannot start yet",
+                                                "complete": false,
+                                                "id": "task9"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    ]
                 }
             }
         }

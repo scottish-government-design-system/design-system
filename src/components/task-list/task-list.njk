@@ -7,7 +7,7 @@
 {%- if params.taskList %}
 <ul class="ds_task-list">
     {%- for task in params.taskList %}
-    <li class="ds_task-list__task">
+    <li class="ds_task-list__task" id="{{ task.id }}">
         <div class="ds_task-list__task-details">
             {% if task.taskLink %}<a class="ds_task-list__task-link" href="{{ task.taskLink }}">{%- endif -%}
             {{ task.taskLabel }} <span class="visually-hidden">({{ task.statusLabel }})</span>

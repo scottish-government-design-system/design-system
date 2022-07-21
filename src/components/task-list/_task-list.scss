@@ -79,13 +79,14 @@
     margin: 0;
     padding: 0;
 
-    &__section {
+    &__section,
+    &__section:last-child {
         margin: 0;
         padding: 0;
         @include ds_responsive-margin(5, bottom);
 
-        &:last-child {
-            @include ds_responsive-margin(4, bottom);
+        @include ds_media-query(small-down) {
+            @include ds_responsive-margin(6, bottom);
         }
     }
 
@@ -97,5 +98,21 @@
             @include ds_h3-size;
             font-weight: $bold;
         }
+    }
+}
+
+.ds_task-list-status {
+    @include ds_responsive-margin(5, bottom);
+
+    @include ds_media-query(small-down) {
+        @include ds_responsive-margin(6, bottom);
+    }
+
+    > p {
+        @include ds_responsive-margin(1, bottom);
+    }
+
+    &-heading {
+        @include ds_h3-style;
     }
 }
