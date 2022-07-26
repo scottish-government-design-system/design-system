@@ -31,6 +31,17 @@
             max-width: 100%;
         }
 
+        // remove heading styles
+        &-heading {
+            @include ds_root-size;
+            font-weight: $normal;
+            margin: 0;
+        }
+
+        &-link {
+            text-decoration: underline;
+        }
+
         &-summary {
             margin: 0;
             @include ds_responsive-margin(1, top);

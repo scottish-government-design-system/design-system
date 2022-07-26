@@ -9,11 +9,13 @@
     {%- for task in params.taskList %}
     <li class="ds_task-list__task" id="{{ task.id }}">
         <div class="ds_task-list__task-details">
-            {% if task.taskLink %}<a class="ds_task-list__task-link" href="{{ task.taskLink }}">{%- endif -%}
-            {{ task.taskLabel }} <span class="visually-hidden">({{ task.statusLabel }})</span>
-            {%- if task.taskLink %}</a>{%- endif %}
+            <{{ task.taskHeading.level }} class="ds_task-list__task-heading">   
+                {% if task.taskLink %}<a class="ds_task-list__task-link" href="{{ task.taskLink }}">{%- endif -%}
+                {{ task.taskHeading.heading }} <span class="visually-hidden">({{ task.statusLabel }})</span>
+                {%- if task.taskLink %}</a>{%- endif %}
+            </{{ task.taskHeading.level }}>
             {%- if task.taskContent -%}
-            <p class="ds_task-list__task-summary">{{ task.taskContent }}</p>
+            <p class="ds_hint-text  ds_task-list__task-summary">{{ task.taskContent }}</p>
             {%- endif %}
         </div>
         {% if task.statusLabel -%}

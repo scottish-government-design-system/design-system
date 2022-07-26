@@ -17,14 +17,20 @@
                         },
                         "taskList": [
                             {
-                                "taskLabel": "This is a task",
+                                "taskHeading": {
+                                    "heading": "This is a task",
+                                    "level": "h3"
+                                },
                                 "taskLink": "#",
                                 "statusLabel": "Completed",
                                 "complete": true,
                                 "id": "task1"
                             },
                             {
-                                "taskLabel": "This is another task",
+                                "taskHeading": {
+                                    "heading": "This is another task",
+                                    "level": "h3"
+                                },
                                 "taskLink": "#",
                                 "taskContent": "This is some additional content around this specific task.",
                                 "statusLabel": "Completed",
@@ -32,14 +38,20 @@
                                 "id": "task2"
                             },
                             {
-                                "taskLabel": "This is yet another task which needs to be done",
+                                "taskHeading": {
+                                    "heading": "This is yet another task which needs to be done",
+                                    "level": "h3"
+                                },
                                 "taskLink": "#",
                                 "statusLabel": "Completed",
                                 "complete": true,
                                 "id": "task3"
                             },
                             {
-                                "taskLabel": "This is a task to perform last",
+                                "taskHeading": {
+                                    "heading": "This is a task to perform last",
+                                    "level": "h3"
+                                },
                                 "taskLink": "#",
                                 "statusLabel": "Completed",
                                 "complete": true,
@@ -56,7 +68,10 @@
                         },
                         "taskList": [
                             {
-                                "taskLabel": "This is another task",
+                                "taskHeading": {
+                                    "heading": "This is another task",
+                                    "level": "h3"
+                                },
                                 "taskLink": "#",
                                 "taskContent": "This is some additional content around this specific task.",
                                 "statusLabel": "In progress",
@@ -64,14 +79,20 @@
                                 "id": "task5"
                             },
                             {
-                                "taskLabel": "This is yet another task which needs to be done",
+                                "taskHeading": {
+                                    "heading": "This is yet another task which needs to be done",
+                                    "level": "h3"
+                                },
                                 "taskLink": "#",
                                 "statusLabel": "Not started",
                                 "complete": false,
                                 "id": "task6"
                             },
                             {
-                                "taskLabel": "This is a task to perform last",
+                                "taskHeading": {
+                                    "heading": "This is a task to perform last",
+                                    "level": "h3"
+                                },
                                 "statusLabel": "Cannot start yet",
                                 "complete": false,
                                 "id": "task7"
@@ -87,13 +108,19 @@
                         },
                         "taskList": [
                             {
-                                "taskLabel": "This is yet another task which needs to be done",
+                                "taskHeading": {
+                                    "heading": "This is yet another task which needs to be done",
+                                    "level": "h3"
+                                },
                                 "statusLabel": "Cannot start yet",
                                 "complete": false,
                                 "id": "task8"
                             },
                             {
-                                "taskLabel": "This is a task to perform last",
+                                "taskHeading": {
+                                    "heading": "This is a task to perform last",
+                                    "level": "h3"
+                                },
                                 "statusLabel": "Cannot start yet",
                                 "complete": false,
                                 "id": "task9"
@@ -134,14 +161,20 @@
                                         },
                                         "taskList": [
                                             {
-                                                "taskLabel": "This is a task",
+                                                "taskHeading": {
+                                                    "heading": "This is a task",
+                                                    "level": "h4"
+                                                },
                                                 "taskLink": "#",
                                                 "statusLabel": "Completed",
                                                 "complete": true,
                                                 "id": "task1"
                                             },
                                             {
-                                                "taskLabel": "This is another task",
+                                                "taskHeading": {
+                                                    "heading": "This is another task",
+                                                    "level": "h4"
+                                                },
                                                 "taskLink": "#",
                                                 "taskContent": "This is some additional content around this specific task.",
                                                 "statusLabel": "Completed",
@@ -149,14 +182,20 @@
                                                 "id": "task2"
                                             },
                                             {
-                                                "taskLabel": "This is yet another task which needs to be done",
+                                                "taskHeading": {
+                                                    "heading": "This is yet another task which needs to be done",
+                                                    "level": "h4"
+                                                },
                                                 "taskLink": "#",
                                                 "statusLabel": "Completed",
                                                 "complete": true,
                                                 "id": "task3"
                                             },
                                             {
-                                                "taskLabel": "This is a task to perform last",
+                                                "taskHeading": {
+                                                    "heading": "This is a task to perform last",
+                                                    "level": "h4"
+                                                },
                                                 "taskLink": "#",
                                                 "statusLabel": "Completed",
                                                 "complete": true,
@@ -178,7 +217,10 @@
                                         },
                                         "taskList": [
                                             {
-                                                "taskLabel": "This is another task",
+                                                "taskHeading": {
+                                                    "heading": "This is another task",
+                                                    "level": "h4"
+                                                },
                                                 "taskLink": "#",
                                                 "taskContent": "This is some additional content around this specific task.",
                                                 "statusLabel": "In progress",
@@ -186,14 +228,20 @@
                                                 "id": "task5"
                                             },
                                             {
-                                                "taskLabel": "This is yet another task which needs to be done",
+                                                "taskHeading": {
+                                                    "heading": "This is yet another task which needs to be done",
+                                                    "level": "h4"
+                                                },
                                                 "taskLink": "#",
                                                 "statusLabel": "Not started",
                                                 "complete": false,
                                                 "id": "task6"
                                             },
                                             {
-                                                "taskLabel": "This is a task to perform last",
+                                                "taskHeading": {
+                                                    "heading": "This is a task to perform last",
+                                                    "level": "h4"
+                                                },
                                                 "statusLabel": "Cannot start yet",
                                                 "complete": false,
                                                 "id": "task7"
@@ -209,13 +257,19 @@
                                         },
                                         "taskList": [
                                             {
-                                                "taskLabel": "This is yet another task which needs to be done",
+                                                "taskHeading": {
+                                                    "heading": "This is yet another task which needs to be done",
+                                                    "level": "h4"
+                                                },
                                                 "statusLabel": "Cannot start yet",
                                                 "complete": false,
                                                 "id": "task8"
                                             },
                                             {
-                                                "taskLabel": "This is a task to perform last",
+                                                "taskHeading": {
+                                                    "heading": "This is a task to perform last",
+                                                    "level": "h4"
+                                                },
                                                 "statusLabel": "Cannot start yet",
                                                 "complete": false,
                                                 "id": "task9"

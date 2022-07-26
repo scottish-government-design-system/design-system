@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.277] - 2022-07-26
+### Changed
+- task list component heading structure and use of hint text for summaries
+
 ## [0.0.276] - 2022-07-21
 ### Changed
 - task list component style changes and support for multiple groups

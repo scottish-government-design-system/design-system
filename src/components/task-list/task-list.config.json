@@ -5,14 +5,20 @@
         "params": {
             "taskList": [
                 {
-                    "taskLabel": "This is a task",
+                    "taskHeading": {
+                        "heading": "This is a task",
+                        "level": "h3"
+                    },
                     "taskLink": "#",
                     "statusLabel": "Completed",
                     "complete": true,
                     "id": "task1"
                 },
                 {
-                    "taskLabel": "This is another task",
+                    "taskHeading": {
+                        "heading": "This is another task",
+                        "level": "h3"
+                    },
                     "taskLink": "#",
                     "taskContent": "This is some additional content around this specific task.",
                     "statusLabel": "In progress",
@@ -20,14 +26,20 @@
                     "id": "task2"
                 },
                 {
-                    "taskLabel": "This is yet another task which needs to be done",
+                    "taskHeading": {
+                        "heading": "This is yet another task which needs to be done",
+                        "level": "h3"
+                    },
                     "taskLink": "#",
                     "statusLabel": "Not started",
                     "complete": false,
                     "id": "task3"
                 },
                 {
-                    "taskLabel": "This is a task to perform last",
+                    "taskHeading": {
+                        "heading": "This is a task to perform last",
+                        "level": "h3"
+                    },
                     "statusLabel": "Cannot start yet",
                     "complete": false,
                     "id": "task4"
