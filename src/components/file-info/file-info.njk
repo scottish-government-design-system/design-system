@@ -1,6 +1,6 @@
 <div class="ds_file-info  {%- if params.highlighted == "true" %}  ds_file-info--highlighted{%- endif -%}">
     <div class="ds_file-info__thumbnail">
-        <a class="ds_file-info__thumbnail-link" aria-hidden="true" href="#">
+        <a class="ds_file-info__thumbnail-link" aria-hidden="true" tabindex="-1" href="#">
             {% if params.image %}
                 <img class="ds_file-info__thumbnail-image" src="/assets/images/placeholders/document-thumbnail.png" alt="">
             {% else %}
@@ -10,15 +10,13 @@
     </div>
 
     <div class="ds_file-info__content">
-        <h3 class="ds_file-info__title">
-            <a href="#">National Autism Post-Diagnostic Support Service: Evaluation of pilot programme 1st Dec 2020 -1st June 2021</a>
-        </h3>
+        <a class="ds_file-info__title" aria-describedby="file-info-1" href="#">National Autism Post-Diagnostic Support Service: Evaluation of pilot programme 1st Dec 2020 -1st June 2021</a>
 
-        <div class="ds_file-info__details">
+        <div id="file-info-1" class="ds_file-info__details">
             <dl class="ds_metadata  ds_metadata--inline">
                 <div class="ds_metadata__item">
                     <dt class="ds_metadata__key  visually-hidden">File type</dt>
-                    <dd class="ds_metadata__value">53 page PDF</dd>
+                    <dd class="ds_metadata__value">53 page PDF<span class="visually-hidden">,</span></dd>
                 </div>
 
                 <div class="ds_metadata__item">
@@ -29,7 +27,7 @@
         </div>
 
         <div>
-            <a data-title="National Autism Post-Diagnostic Support Service: Evaluation of pilot programme 1st Dec 2020 -1st June 2021" href="#" class="ds_file-info__download  ds_button  ds_button--small  {% if params.highlighted != "true" %}ds_button--secondary{% endif %}  ds_no-margin">
+            <a aria-hidden="true" tabindex="-1" href="#" class="ds_file-info__download  ds_button  ds_button--small  {% if params.highlighted != "true" %}ds_button--secondary{% endif %}  ds_no-margin">
                 Download
             </a>
         </div>

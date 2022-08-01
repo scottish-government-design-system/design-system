@@ -28,6 +28,7 @@
     }
 
     &__title {
+        @include ds_h3-style;
         @include ds_responsive-margin(2, bottom);
     }
 

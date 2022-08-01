@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.278] - 2022-08-01
+### Changed
+- improve accessibility of "file info" component
+
 ## [0.0.277] - 2022-07-26
 ### Changed
 - task list component heading structure and use of hint text for summaries
