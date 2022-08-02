@@ -26,6 +26,7 @@ $colors: (
 
     a:not(:hover):not(:focus) {
         color: currentColor;
+        text-decoration: underline;
     }
 }
 
@@ -34,6 +35,7 @@ $colors: (
 
     a:not(:hover):not(:focus) {
         color: currentColor;
+        text-decoration: underline;
     }
 }
 
@@ -61,7 +63,19 @@ $colors: (
         // foreground theming
         &--fg-#{$name}:not([class*="ds_cb--bg-"]),
         &--fg-#{$name}.ds_cb--bg-white {
-            color: #{$hex};
+            h1, 
+            h2, 
+            h3, 
+            h4, 
+            h5, 
+            h6,
+            a {
+                color: #{$hex};
+            }
+
+            a:not(:hover):not(:focus) {
+                text-decoration: underline;
+            }
         }
     }
 }
