@@ -1,5 +1,6 @@
-import Autocomplete from './components/autocomplete/autocomplete';
 import Accordion from './components/accordion/accordion';
+import AspectBox from './components/aspect-box/aspect-box-fallback';
+import Autocomplete from './components/autocomplete/autocomplete';
 import BackToTop from './components/back-to-top/back-to-top';
 import CharacterCount from './forms/character-count/character-count';
 import CookieNotification from './components/cookie-notification/cookie-notification';
@@ -14,10 +15,10 @@ import Tabs from './components/tabs/tabs';
 import TabsNavigation from './components/tabs/tabs-navigation';
 
 import tracking from './base/tools/tracking/tracking';
-import aspectBoxFallback from './components/aspect-box/aspect-box-fallback';
 
 const components = {
     Accordion,
+    AspectBox,
     Autocomplete,
     BackToTop,
     CharacterCount,
@@ -39,6 +40,9 @@ function initAll(scope = document) {
 
     const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
     accordions.forEach(accordion => new Accordion(accordion).init());
+
+    const aspectBoxes = [].slice.call(_document.querySelectorAll('.ds_aspect-box:not(.ds_aspect-box--fallback)'));
+    aspectBoxes.forEach(aspectBox => new AspectBox(aspectBox).init());
 
     const backToTopEl = scope.querySelector('[data-module="ds-back-to-top"]');
     if (backToTopEl) {
@@ -101,6 +105,7 @@ window.DS.initAll = initAll;
 export {
     initAll,
     Accordion,
+    AspectBox,
     Autocomplete,
     BackToTop,
     CharacterCount,

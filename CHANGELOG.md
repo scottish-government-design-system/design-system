@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.279] - 2022-08-03
+### Changed
+- refactor the "aspect box" fallback to be a JS class
+
 ## [0.0.278] - 2022-08-01
 ### Changed
 - improve accessibility of "file info" component

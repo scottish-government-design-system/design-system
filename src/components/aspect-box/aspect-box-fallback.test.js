@@ -2,7 +2,7 @@ const testObj = {};
 
 jasmine.getFixtures().fixturesPath = 'base/src/';
 
-import aspectBoxFallback from './aspect-box-fallback';
+import AspectBox from './aspect-box-fallback';
 
 // mock window
 const documentObj = {
@@ -22,12 +22,14 @@ describe('aspect box fallback', () => {
 
     it('should exit without doing anything if object-fit is supported', () => {
         const html = document.innerHTML;
-        aspectBoxFallback();
+        const aspectBox = new AspectBox(testObj.aspectBox);
+        aspectBox.init();
         expect(document.innerHTML).toEqual(html);
     });
 
     it('should "move" the image to the background if object-fit not supported', () => {
-        aspectBoxFallback(documentObj);
+        const aspectBox = new AspectBox(testObj.aspectBox, documentObj);
+        aspectBox.init();
         expect(testObj.aspectBox.style.backgroundImage).toEqual(`url("${testObj.aspectBoxInner.src}")`);
         expect(testObj.aspectBox.classList.contains('ds_aspect-box--fallback')).toBeTruthy();
     });
@@ -35,13 +37,15 @@ describe('aspect box fallback', () => {
     it('should do nothing if object-fit not supported but there is no image', () => {
         testObj.aspectBox.removeChild(testObj.aspectBoxInner);
         const html = document.innerHTML;
-        aspectBoxFallback(documentObj);
+        const aspectBox = new AspectBox(testObj.aspectBox, documentObj);
+        aspectBox.init();
         expect(document.innerHTML).toEqual(html);
     });
 
     it('should clone alt attributes into sensible alternative locations', () => {
         testObj.aspectBox.querySelector('img').setAttribute('alt', 'my alt text');
-        aspectBoxFallback(documentObj);
+        const aspectBox = new AspectBox(testObj.aspectBox, documentObj);
+        aspectBox.init();
 
         expect(testObj.aspectBox.getAttribute('role')).toEqual('img');
         expect(testObj.aspectBox.getAttribute('aria-label')).toEqual('my alt text');
