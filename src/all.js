@@ -91,10 +91,9 @@ function initAll(scope = document) {
     tabSets.forEach(tabSet => new Tabs(tabSet).init());
 
     const tabNavigationSets = [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]'));
-    tabNavigationSets.forEach(tabNavigationSets => new TabsNavigation(tabNavigationSets).init());
+    tabNavigationSets.forEach(tabNavigationSet => new TabsNavigation(tabNavigationSet).init());
 
     tracking.init();
-    aspectBoxFallback();
 }
 
 window.DS = window.DS || {};
