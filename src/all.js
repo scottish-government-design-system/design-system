@@ -41,7 +41,7 @@ function initAll(scope = document) {
     const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
     accordions.forEach(accordion => new Accordion(accordion).init());
 
-    const aspectBoxes = [].slice.call(_document.querySelectorAll('.ds_aspect-box:not(.ds_aspect-box--fallback)'));
+    const aspectBoxes = [].slice.call(document.querySelectorAll('.ds_aspect-box:not(.ds_aspect-box--fallback)'));
     aspectBoxes.forEach(aspectBox => new AspectBox(aspectBox).init());
 
     const backToTopEl = scope.querySelector('[data-module="ds-back-to-top"]');

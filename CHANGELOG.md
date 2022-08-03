@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.281] - 2022-08-03
+### Fixed
+- typo in all.js
+
 ## [0.0.280] - 2022-08-03
 ### Fixed
 - remove unecessary aspectBoxFallback call in all.js
