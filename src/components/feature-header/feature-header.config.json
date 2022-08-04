@@ -1,0 +1,65 @@
+{
+    "label": "Feature header",
+    "status": "wip",
+    "context": {
+        "params":{
+            "altText": "Alt text"
+        }
+    },
+    "variants": [
+        {
+            "name": "No summary",
+            "label": "No summary",
+            "context": {
+                "params":{
+                    "nosummary": true
+                }
+            }
+        },
+        {
+            "name": "Grey background",
+            "label": "Grey background",
+            "context": {
+                "params":{
+                    "modifiers": "ds_feature-header--grey"
+                }
+            }
+        },
+        {
+            "name": "Wide",
+            "label": "Wide",
+            "context": {
+                "params":{
+                    "modifiers": "ds_feature-header--wide"
+                }
+            }
+        },
+        {
+            "name": "Grey and wide",
+            "label": "Grey and wide",
+            "context": {
+                "params":{
+                    "modifiers": "ds_feature-header--grey  ds_feature-header--wide"
+                }
+            }
+        },
+        {
+            "name": "Full image",
+            "label": "Full image",
+            "context": {
+                "params":{
+                    "modifiers": "ds_feature-header--full-image"
+                }
+            }
+        },
+        {
+            "name": "Full image and wide",
+            "label": "Full image and wide",
+            "context": {
+                "params":{
+                    "modifiers": "ds_feature-header--full-image ds_feature-header--wide"
+                }
+            }
+        }
+    ]
+}
