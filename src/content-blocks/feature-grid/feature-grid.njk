@@ -8,7 +8,7 @@
         {%- for item in params.items -%}
             <div class="ds_cb--feature-grid__item">
                 {%- if item.image %}
-                <div class="ds_cb--feature-grid__item-media">
+                <div class="ds_cb--feature-grid__item-media {%- if item.smallImage %}  ds_cb--feature-grid__item-media--small-mobile{%- endif -%}">
                     <div class="ds_aspect-box">
                         {%- if item.link -%}
                         <a href="{{ item.link }}" tabindex="-1">

@@ -292,75 +292,24 @@
                     "fullwidth": true,
                     "items": [
                         {
-                            "params": {
-                                "heading": "Environment and countryside",
-                                "content": "Access to and protection of the countryside and managing wildlife on your land",
-                                "itemTag": "div",
-                                "image": "/assets/images/placeholders/clyde.jpg",
-                                "hasHover": true,
-                                "link": "#",
-                                "smallImage": true
-                            }
+                            "heading": {
+                                "label": "Environment and countryside",
+                                "level": "h2"
+                            },
+                            "content": "<p>Access to and protection of the countryside and managing wildlife on your land.</p>",
+                            "image": "/assets/images/placeholders/clyde.jpg",
+                            "link": "#",
+                            "smallImage": true
                         },
                         {
-                            "params": {
-                                "heading": "Environmental Impact Assessment (EIA)",
-                                "content": "Find out about Environmental Impact Assessments (EIAs) in your area",
-                                "itemTag": "div",
-                                "image": "/assets/images/placeholders/coast.jpg",
-                                "hasHover": true,
-                                "link": "#",
-                                "smallImage": true
-                            }
-                        },
-                        {
-                            "params": {
-                                "heading": "Farming and rural issues",
-                                "content": "Guidance for farming, animal health, agriculture and food businesses in Scotland",
-                                "itemTag": "div",
-                                "image": "/assets/images/placeholders/edcastle.jpg",
-                                "hasHover": true,
-                                "link": "#",
-                                "smallImage": true
-                            }
-                        }
-                    ]
-                 }
-            }
-        },
-        {
-            "name": "No images",
-            "label": "No images",
-            "context": {
-                "params": {
-                    "fullwidth": true,
-                    "items": [
-                        {
-                            "params": {
-                                "heading": "Environment and countryside",
-                                "content": "Access to and protection of the countryside and managing wildlife on your land",
-                                "itemTag": "div",
-                                "hasHover": true,
-                                "link": "#"
-                            }
-                        },
-                        {
-                            "params": {
-                                "heading": "Environmental Impact Assessment (EIA)",
-                                "content": "Find out about Environmental Impact Assessments (EIAs) in your area",
-                                "itemTag": "div",
-                                "hasHover": true,
-                                "link": "#"
-                            }
-                        },
-                        {
-                            "params": {
-                                "heading": "Farming and rural issues",
-                                "content": "Guidance for farming, animal health, agriculture and food businesses in Scotland",
-                                "itemTag": "div",
-                                "hasHover": true,
-                                "link": "#"
-                            }
+                            "heading": {
+                                "label": "Environmental Impact Assessment (EIA)",
+                                "level": "h2"
+                            },
+                            "content": "<p>Find out about Environmental Impact Assessments (EIAs) in your area.</p>",
+                            "image": "/assets/images/placeholders/coast.jpg",
+                            "link": "#",
+                            "smallImage": true
                         }
                     ]
                  }

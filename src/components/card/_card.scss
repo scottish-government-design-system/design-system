@@ -3,108 +3,92 @@
 \*------------------------------------*/
 
 .ds_card {
-    background-color: $ds_colour__white;
-    display: block;
-    padding: 0;
-    position: relative;
-    transition: background-color 0.2s, outline-color 0.2s;
-    z-index: 1;
-
     @include ds_box-shadow;
-    @include ds_last-child-no-margin;
+    @include ds_small-size;
+    background-color: $ds_colour__white;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    position: relative;
 
-    &--has-hover:hover {
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    &--grey {
+        background-color: $ds_colour__grey--lighter;
+        color: $ds_colour__text;
+
+        &:focus-within {
+            color: $ds_colour__link--focus;
+        }
+
+        &:not(:focus-within) {
+            box-shadow: none !important;
+        }
     }
 
+    &--hover,
+    &--has-hover {
+        &:hover {
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+        }
+        &:hover:not(:focus) {
+            background-color: $ds_colour__link--hover__background;
+        }
+
+        &:focus-within {
+            background-color: $ds_colour__link--focus__background !important;
+            box-shadow: inset 0 -3px $ds_colour__link--focus__shadow, inset 0 -3px $ds_colour__link--focus__shadow;
+            transition-duration: 0s;
+
+            .ds_card__link--cover {
+                background-color: transparent;
+                box-shadow: none;
+                outline: none;
+            }
+        }
+    }
 
     &__media {
         @include ds_media-query (medium-down) {
             &--small-mobile {
-                max-width: 291px;
-                margin: 16px auto 0;
+                margin: px-to-rem(16px) px-to-rem(16px) 0;
+                max-width: 384px;
             }
         }
     }
 
     &__content {
-        padding: 24px 16px;
-
-        > :first-child {
-            margin-top: 0;
-        }
-
         @include ds_last-child-no-margin;
-    }
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        padding: px-to-rem(16px);
 
-    // specificity hack
-    .ds_card__content {
-        position: static;
-    }
-
-    &__cover-link {
-        &::after {
-            bottom: 0;
-            content: "";
-            height: 100%;
-            left: 0;
-            position: absolute;
-            right: 0;
-            top: 0;
-            transition: background-color 0.2s;
-            z-index: 0;
+        &-footer {
+            align-self: end;
         }
     }
 
-    &:focus-within &__cover-link {
-        box-shadow: none;
-        background-color: transparent;
+    &__title {
+        @include ds_h3-style;
+        margin-bottom: px-to-rem(8px);
+        margin-top: 0 !important;
     }
 
-    &--small {
-        font-size: $small-size--fixed;
-        line-height: 24px;
-
-        h2 {
-            font-size: 1.105263rem;
-            line-height: 32px;
-            margin-bottom: 0;
-        }
+    &__link--cover:after {
+        content: "";
+        height: 100%;
+        left: 0px;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+        z-index: 0;
     }
-
-    &--transparent {
-        background-color: transparent;
-        box-shadow: none;
-
-        .ds_card__content {
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }
-
-    &--padding {
-        padding: 16px;
-    }
-
-    &--has-hover &__cover-link:hover::after {
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
-    }
-
-    &--dark {
-        background-color: $ds_colour__grey--dark;
-        color: $ds_colour__white;
-
-        &:focus-within {
-            color: $ds_colour__link--focus;
-        }
-    }
-
-
 }
 
-@supports(object-fit: contain) {
-    .ds_card__image {
-        object-fit: cover;
-        width: 100%;
+/* Support for old markup */
+.ds_card {
+    .ds_category-item__link {
+        &:hover {
+            &:before {
+                display: none;
+            }
+        }
     }
 }

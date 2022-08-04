@@ -89,18 +89,32 @@
     &__item {
         @include ds_responsive-padding(3, top);
         @include ds_responsive-padding(4, bottom);
-    }
-
-    &__item-title {
         margin: 0;
-        @include ds_responsive-margin(3, top, true);
+        
+        &-media {
+            @include ds_media-query (medium-down) {
+                &--small-mobile {
+                    max-width: 384px;
+                    margin: 0 auto;
+                }
+            }
+        }
+        
+        &-title {
+            margin: 0;
+            @include ds_responsive-margin(3, top, true);
+        }
+
+        &-summary {
+            margin: 0;
+            @include ds_responsive-margin(2, top);
+            @include ds_last-child-no-margin;
+        }
+
     }
 
-    &__item-summary {
-        margin: 0;
-        @include ds_responsive-margin(2, top);
-        @include ds_last-child-no-margin;
 
-    }
+
+    
 
 }
