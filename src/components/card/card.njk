@@ -15,5 +15,10 @@
         {%- if params.content %}
         <p>{{ params.content | safe }}</p>
         {% endif -%}
+        {%- if params.metadata %}
+        <div class="ds_card__content-footer">
+            {% render '@metadata', params.metadata %}
+        </div>
+        {% endif -%}
     </div>
 </{{ params.itemTag }}>

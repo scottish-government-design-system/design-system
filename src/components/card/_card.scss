@@ -30,6 +30,11 @@
         }
         &:hover:not(:focus) {
             background-color: $ds_colour__link--hover__background;
+
+            // override metadata colour to meet contrast
+            .ds_metadata {
+                color: inherit;
+            }
         }
 
         &:focus-within {
@@ -41,6 +46,11 @@
                 background-color: transparent;
                 box-shadow: none;
                 outline: none;
+            }
+
+            // override metadata colour to meet contrast
+            .ds_metadata {
+                color: inherit;
             }
         }
     }
@@ -58,9 +68,11 @@
         @include ds_last-child-no-margin;
         display: grid;
         grid-template-rows: auto auto 1fr;
+        height: 100%;
         padding: px-to-rem(16px);
 
         &-footer {
+            @include ds_last-child-no-margin;
             align-self: end;
         }
     }
@@ -78,7 +90,7 @@
         position: absolute;
         top: 0px;
         width: 100%;
-        z-index: 0;
+        z-index: 1;
     }
 }
 

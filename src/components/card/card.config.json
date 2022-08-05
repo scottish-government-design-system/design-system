@@ -20,11 +20,10 @@
             }
         },
         {
-            "name": "Grey card",
-            "label": "Grey card",
+            "name": "Image card",
+            "label": "Image card",
             "context": {
                 "params": {
-                    "colour": "ds_card--grey",
                     "link": "#",
                     "hasHover": true,
                     "heading": "About the Design System",
@@ -34,10 +33,42 @@
             }
         },
         {
-            "name": "Image card",
-            "label": "Image card",
+            "name": "Metadata footer",
+            "label": "Metadata footer",
             "context": {
                 "params": {
+                    "link": "#",
+                    "hasHover": true,
+                    "heading": "About the Design System",
+                    "image": "/assets/images/placeholders/thistles.jpg",
+                    "content": "The Digital Scotland Design System provides static web assets for websites and web applications for the Scottish Government and other Scottish public sector bodies.",
+                    "metadata": {
+                        "params": {
+                            "modifiers": "ds_metadata--inline",
+                            "items": [
+                                {
+                                    "key": "Type",
+                                    "value": "Consultation paper",
+                                    "hideKey": true,
+                                    "isLabel": true
+                                },
+                                {
+                                    "key": "Publish date",
+                                    "value": "13 August 2021",
+                                    "hideKey": true
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "Grey card",
+            "label": "Grey card",
+            "context": {
+                "params": {
+                    "colour": "ds_card--grey",
                     "link": "#",
                     "hasHover": true,
                     "heading": "About the Design System",

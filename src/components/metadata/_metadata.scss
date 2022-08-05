@@ -45,7 +45,7 @@
 
     .ds_metadata__item:not(:first-child) {
         margin-left: 0.25em;
-        padding-left: 0.5em;
+        padding-left: calc(0.5em + 1px);
 
         &::before {
             background: currentColor;
