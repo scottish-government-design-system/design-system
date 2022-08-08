@@ -17,11 +17,11 @@
             }
         },
         {
-            "name": "Grey background",
-            "label": "Grey background",
+            "name": "Background colour",
+            "label": "Background colour",
             "context": {
                 "params":{
-                    "modifiers": "ds_feature-header--grey"
+                    "modifiers": "ds_feature-header--background"
                 }
             }
         },
@@ -35,11 +35,11 @@
             }
         },
         {
-            "name": "Grey and wide",
-            "label": "Grey and wide",
+            "name": "Background colour and wide",
+            "label": "Background colour and wide",
             "context": {
                 "params":{
-                    "modifiers": "ds_feature-header--grey  ds_feature-header--wide"
+                    "modifiers": "ds_feature-header--background  ds_feature-header--wide"
                 }
             }
         },
@@ -57,7 +57,17 @@
             "label": "Full image and wide",
             "context": {
                 "params":{
-                    "modifiers": "ds_feature-header--full-image ds_feature-header--wide"
+                    "modifiers": "ds_feature-header--full-image  ds_feature-header--wide"
+                }
+            }
+        },
+        {
+            "name": "Reversed",
+            "label": "Reversed",
+            "context": {
+                "params":{
+                    "modifiers": "ds_feature-header--background  ds_reversed",
+                    "style": "background-color: #002d54"
                 }
             }
         }

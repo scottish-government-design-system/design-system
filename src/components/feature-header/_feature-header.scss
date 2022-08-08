@@ -12,17 +12,14 @@
         font-weight: $light;
     }
 
-    &--grey {
+    &--background {
         background-color: $ds_colour__grey--light;
     }
 
     &__content {
         padding: px-to-rem(16px) 0;
-
         position: relative;
         z-index: 2;
-
-
 
         @include media-query(medium) {
             padding: px-to-rem(24px) 0;
@@ -33,7 +30,7 @@
         }
     }
 
-    &--grey &__content {
+    &--background &__content {
         padding-left: px-to-rem(16px);
 
         @include media-query(medium-down) {
@@ -125,7 +122,10 @@
     }
 }
 
-
+.ds_reversed .ds_feature-header__content,
+.ds_reversed .ds_feature-header__content a {
+    color: $ds_colour__white;
+}
 
 
 // ie
