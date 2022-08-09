@@ -24,6 +24,12 @@ $colors: (
 %texttheme-reversed {
     color: white;
 
+    a:hover:not(:focus) {
+        background-color: rgba($ds_colour__white, 0.75);
+        color: $ds_colour__text;
+        outline-color: rgba($ds_colour__white, 0.75);
+    }
+
     a:not(:hover):not(:focus) {
         color: currentColor;
         text-decoration: underline;
@@ -32,6 +38,12 @@ $colors: (
 
 %texttheme-dark {
     color: $ds_colour__black;
+
+    a:hover:not(:focus) {
+        background-color: rgba($ds_colour__black, 0.75);
+        color: $ds_colour__white;
+        outline-color: rgba($ds_colour__black, 0.75);
+    }
 
     a:not(:hover):not(:focus) {
         color: currentColor;
@@ -68,14 +80,24 @@ $colors: (
             h3, 
             h4, 
             h5, 
-            h6,
-            a {
+            h6 {
                 color: #{$hex};
             }
 
-            a:not(:hover):not(:focus) {
-                text-decoration: underline;
+            // Retain default links when blue
+            @if ($name != 'blue') {
+                a:not(:hover):not(:focus) {
+                    color: #{$hex};
+                    text-decoration: underline;
+                }
+
+                a:hover:not(:focus) {
+                    background-color: mix($hex, $ds_colour__white, 15);
+                    color: $ds_colour__text;
+                    outline-color: mix($hex, $ds_colour__white, 15);
+                }
             }
+
         }
     }
 }
