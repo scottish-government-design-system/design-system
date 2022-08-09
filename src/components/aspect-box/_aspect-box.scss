@@ -14,9 +14,14 @@
         padding-bottom: calc(300%/4);
     }
 
-    // 2.35:1 (anamorphic widescreen) aspect ratio
+    // 2.35:1 (anamorphic widescreen) aspect ratio, deprecated
     &--235 {
         padding-bottom: calc(10000%/235);
+    }
+
+    // 21:9 (more accurate anamorphic widescreen) aspect ratio
+    &--219 {
+        padding-bottom: calc(900%/21);
     }
 
     &--fallback {

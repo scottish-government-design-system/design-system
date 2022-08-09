@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.282] - 2022-08-09
+### Changed
+- add 21:9 aspect ratio to "aspect box" options
+
 ## [0.0.281] - 2022-08-03
 ### Fixed
 - typo in all.js
