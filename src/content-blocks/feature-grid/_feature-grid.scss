@@ -95,7 +95,6 @@
             @include ds_media-query (medium-down) {
                 &--small-mobile {
                     max-width: 384px;
-                    margin: 0 auto;
                 }
             }
         }

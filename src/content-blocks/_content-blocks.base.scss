@@ -5,20 +5,20 @@
 // colors
 
 $colors: (
-    'white'     $ds_colour__white       'normal',
-    'grey'      $ds_colour__grey--light 'normal',
-    'blue'      $ds_colour__blue        'reversed',
-    'darkblue'  $ds_colour__blue--dark  'reversed',
-    'teal'      $ds_colour__teal        'dark',
-    'darkteal'  $ds_colour__dark-teal   'reversed',
-    'green'     $ds_colour__green       'dark',
-    'darkgreen' $ds_colour__dark-green  'reversed',
-    'orange'    $ds_colour__orange      'dark',
-    'red'       $ds_colour__red         'reversed',
-    'pink'      $ds_colour__pink        'reversed',
-    'purple'    $ds_colour__purple      'reversed',
-    'brown'     $ds_colour__brown       'reversed',
-    'black'     $ds_colour__black       'reversed'
+    'white'     $ds_colour__white       'normal'    $ds_colour__link--hover $ds_colour__link--hover__background,
+    'grey'      $ds_colour__grey--light 'normal'    $ds_colour__link--hover $ds_colour__link--hover__background,
+    'blue'      $ds_colour__blue        'reversed'  $ds_colour__link--hover $ds_colour__link--hover__background,
+    'darkblue'  $ds_colour__blue--dark  'reversed'  $ds_colour__text        $ds_colour__link--hover__background,
+    'teal'      $ds_colour__teal        'dark'      $ds_colour__text        $ds_colour__link--hover__background,
+    'darkteal'  $ds_colour__dark-teal   'reversed'  $ds_colour__text        #d9ebeb,
+    'green'     $ds_colour__green       'dark'      $ds_colour__text        $ds_colour__link--hover__background,
+    'darkgreen' $ds_colour__dark-green  'reversed'  $ds_colour__text        #d9e7d9,
+    'orange'    $ds_colour__orange      'dark'      $ds_colour__text        $ds_colour__link--hover__background,
+    'red'       $ds_colour__red         'reversed'  $ds_colour__text        #f6d3cd,
+    'pink'      $ds_colour__pink        'reversed'  $ds_colour__text        #facce5,
+    'purple'    $ds_colour__purple      'reversed'  $ds_colour__text        #efdeed,
+    'brown'     $ds_colour__brown       'reversed'  $ds_colour__text        #eeeae9,
+    'black'     $ds_colour__black       'reversed'  $ds_colour__text        #e5e5e5
 );
 
 %texttheme-reversed {
@@ -56,6 +56,8 @@ $colors: (
         $name: nth($color, 1);
         $hex: nth($color, 2);
         $texttheme: nth($color, 3);
+        $linkhoverhex: nth($color, 4);
+        $linkhoverbghex: nth($color, 5);
 
         &--fullwidth.ds_cb--bg-#{$name},
         &:not(&--fullwidth).ds_cb--bg-#{$name} .ds_wrapper {
@@ -84,18 +86,16 @@ $colors: (
                 color: #{$hex};
             }
 
-            // Retain default links when blue
-            @if ($name != 'blue') {
-                a:not(:hover):not(:focus) {
-                    color: #{$hex};
-                    text-decoration: underline;
-                }
+            
+            a:not(:hover):not(:focus) {
+                color: #{$hex};
+                text-decoration: underline;
+            }
 
-                a:hover:not(:focus) {
-                    background-color: mix($hex, $ds_colour__white, 15);
-                    color: $ds_colour__text;
-                    outline-color: mix($hex, $ds_colour__white, 15);
-                }
+            a:hover:not(:focus) {
+                background-color: $linkhoverbghex;
+                color: $linkhoverhex;
+                outline-color: $linkhoverbghex;
             }
 
         }
