@@ -141,7 +141,7 @@ $colors: (
     @include ds_layout();
 
     > * + * {
-        margin-top: 24px;
+        margin-top: px-to-rem(24px);
     }
 
     @include ds_media-query(medium) {
@@ -150,7 +150,7 @@ $colors: (
         }
 
         @supports(display: grid) {
-            grid-gap: 0 32px;
+            grid-gap: 0 px-to-rem(32px);
             grid-template-columns: repeat(12, 1fr);
         }
     }

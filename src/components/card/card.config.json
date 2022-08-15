@@ -49,8 +49,7 @@
                                 {
                                     "key": "Type",
                                     "value": "Consultation paper",
-                                    "hideKey": true,
-                                    "isLabel": true
+                                    "hideKey": true
                                 },
                                 {
                                     "key": "Publish date",

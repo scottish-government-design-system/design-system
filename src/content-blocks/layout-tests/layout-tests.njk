@@ -15,5 +15,7 @@
     {% render '@video-text', contentblock -%}
     {%- elif contentblock.text %}
     {% render '@text', contentblock -%}
+    {%- elif contentblock.cardText %}
+    {% render '@card-text', contentblock -%}
     {% endif -%}
 {% endfor %}

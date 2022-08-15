@@ -17,10 +17,6 @@
         &:focus-within {
             color: $ds_colour__link--focus;
         }
-
-        &:not(:focus-within) {
-            box-shadow: none !important;
-        }
     }
 
     &--hover,

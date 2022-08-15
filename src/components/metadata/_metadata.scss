@@ -3,8 +3,7 @@
 \*------------------------------------*/
 
 .ds_metadata {
-    font-size: $small-size--fixed;
-    line-height: 24px;
+    @include ds_small-size--fixed;
     margin: 0;
     overflow: hidden;
 
@@ -35,8 +34,7 @@
     @include ds_tiny-size;
 
     color: $ds_colour__text--secondary;
-    line-height: 24px;
-    margin-bottom: 8px;
+    margin-bottom: px-to-rem(8px);
 
     .ds_metadata__item {
         display: inline;
@@ -60,10 +58,5 @@
 
     .ds_metadata__value {
         font-weight: $normal;
-
-        &.content-label {
-            color: $ds_colour__text;
-            font-weight: $bold;
-        }
     }
 }
