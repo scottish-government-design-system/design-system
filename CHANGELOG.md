@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.284] - 2022-08-18
+### Added
+- add "feature header" component, which replaces "category header"
+
 ## [0.0.283] - 2022-08-12
 ### Removed
 - remove node-sass as a dependency
