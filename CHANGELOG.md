@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.286] - 2022-08-19
+### Changed
+- increase margin on feature header
+
 ## [0.0.285] - 2022-08-19
 ### Removed
 - remove "full image" variant of feature header

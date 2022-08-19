@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 .ds_feature-header {
-    @include ds_responsive-margin(4, bottom);
+    @include ds_responsive-margin(8, bottom);
 
     &__title {
         @include ds_h1-style;
