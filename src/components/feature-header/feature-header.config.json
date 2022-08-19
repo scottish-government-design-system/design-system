@@ -44,24 +44,6 @@
             }
         },
         {
-            "name": "Full image",
-            "label": "Full image",
-            "context": {
-                "params":{
-                    "modifiers": "ds_feature-header--full-image"
-                }
-            }
-        },
-        {
-            "name": "Full image and wide",
-            "label": "Full image and wide",
-            "context": {
-                "params":{
-                    "modifiers": "ds_feature-header--full-image  ds_feature-header--wide"
-                }
-            }
-        },
-        {
             "name": "Reversed",
             "label": "Reversed",
             "context": {

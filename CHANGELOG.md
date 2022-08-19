@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.285] - 2022-08-19
+### Removed
+- remove "full image" variant of feature header
+### Changed
+- rename content/media containers in feature header to use more generic names
+
 ## [0.0.284] - 2022-08-18
 ### Added
 - add "feature header" component, which replaces "category header"

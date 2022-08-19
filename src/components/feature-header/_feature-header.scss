@@ -16,7 +16,7 @@
         background-color: $ds_colour__grey--light;
     }
 
-    &__content {
+    &__primary {
         padding: px-to-rem(16px) 0;
         position: relative;
         z-index: 2;
@@ -30,7 +30,7 @@
         }
     }
 
-    &--background &__content {
+    &--background &__primary {
         padding-left: px-to-rem(16px);
 
         @include media-query(medium-down) {
@@ -46,7 +46,7 @@
         }
     }
 
-    &__media {
+    &__secondary {
         position: relative;
         z-index: 1;
     }
@@ -63,7 +63,7 @@
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 32px;
 
-        &__content {
+        &__primary {
             grid-area: 1/1/2/7;
             margin-right: 0;
 
@@ -72,58 +72,25 @@
             }
         }
 
-        &__media {
+        &__secondary {
             grid-area: 1/7/2/13;
         }
 
         &--wide {
-            .ds_feature-header__content{
+            .ds_feature-header__primary {
                 grid-area: 1/1/2/9;
                 margin-right: 0;
             }
 
-            .ds_feature-header__media {
+            .ds_feature-header__secondary {
                 grid-area: 1/9/2/13;
             }
         }
     }
-
-    &--full-image &__media {
-        grid-area: 1/1/2/13;
-        margin: 0 px-to-rem(-16px) px-to-rem(8px);
-
-        @include media-query(medium) {
-            margin: 0;
-        }
-    }
-
-    &--full-image &__content{
-        @include media-query(medium-down) {
-            padding: 0;
-        }
-    }
-
-    &--full-image {
-        padding: 0;
-    }
-
-    &--full-image &__content {
-        align-self: start;
-        padding-top: 0;
-    }
-
-    &--full-image &__title {
-        padding: 0 px-to-rem(16px) px-to-rem(8px) 0;
-    }
-
-    &--full-image &__content > * {
-        background: $ds_colour__white;
-        display: inline-block;
-    }
 }
 
-.ds_reversed .ds_feature-header__content,
-.ds_reversed .ds_feature-header__content a {
+.ds_reversed .ds_feature-header__primary,
+.ds_reversed .ds_feature-header__primary a {
     color: $ds_colour__white;
 }
 
@@ -138,22 +105,13 @@
             -ms-grid-columns: 8fr 1fr;
         }
 
-        &__content {
+        &__primary {
             -ms-grid-column: 1;
             -ms-grid-row-align: center;
         }
 
-        &__media {
+        &__secondary {
             -ms-grid-column: 2;
-        }
-
-        &--full-image &__media {
-            -ms-grid-column: 1;
-            -ms-grid-column-span: 2;
-        }
-
-        &--full-image &__content {
-            -ms-grid-row-align: start;
         }
     }
 }
