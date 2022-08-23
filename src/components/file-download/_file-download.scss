@@ -1,8 +1,9 @@
-.ds_file-info {
+.ds_file-download {
     background-color: $ds_colour__grey--lighter;
     display: flex;
     padding: px-to-rem(16px);
     @include ds_responsive-margin(2, bottom);
+
     &--highlighted {
         box-shadow: inset 4px 0 0 $ds_colour__brand, 0 4px 0 rgba(0,0,0,0.25);
     }
@@ -28,8 +29,8 @@
     }
 
     &__title {
-        @include ds_h3-style;
-        @include ds_responsive-margin(2, bottom);
+        font-weight: $bold;
+        @include ds_responsive-margin(1, bottom);
     }
 
     &__title a:not(:focus) {
@@ -38,15 +39,15 @@
 }
 
 @include ds_media-query('medium-down') {
-    .ds_file-info .ds_file-info__download {
+    .ds_file-download .ds_file-download__button {
         width: 100%;
     }
 }
 
 @include ds_media-query(medium) {
-    .ds_file-info {
+    .ds_file-download {
 
-        &__thumbnail-link {
+        &__thumbnail-image {
             width: px-to-rem(104px);
         }
     }

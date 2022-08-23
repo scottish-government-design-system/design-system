@@ -2,7 +2,7 @@
     "label": "Aspect box",
     "context": {
         "params":{
-            "altText": "Alt text"
+            "altText": "Thistle flowers in a field"
         }
     },
     "variants": [
@@ -25,11 +25,11 @@
             }
         },
         {
-            "name": "2.35:1 aspect ratio",
-            "label": "2.35:1 aspect ratio",
+            "name": "21:9 aspect ratio",
+            "label": "21:9 aspect ratio",
             "context": {
                 "params":{
-                    "ratio": "ds_aspect-box--235"
+                    "ratio": "ds_aspect-box--219"
                 }
             }
         },
@@ -38,9 +38,8 @@
             "label": "Presentation only",
             "context": {
                 "params":{
-                    "ratio": "ds_aspect-box--235",
                     "presentation": true,
-                    "altText": false
+                    "altText": ""
                 }
             }
         }

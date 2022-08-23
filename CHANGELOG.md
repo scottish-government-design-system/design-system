@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.287] - 2022-08-23
+### Changed
+- rename the "file info" component to "file download"
+- improve alt text on aspect box Fractal examples
+
 ## [0.0.286] - 2022-08-19
 ### Changed
 - increase margin on feature header
