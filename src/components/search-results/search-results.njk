@@ -1,14 +1,16 @@
 <div class="ds_search-results">
 
-    {%- if params.resultsCount %}
-    <h2 class="ds_search-results__title">{%- if params.resultsStart %}Showing {{ params.resultsStart }} to {{ params.resultsEnd }} of {% endif %}{{ params.resultsCount }} results for <span class="ds_search-results__title-query">{{ params.resultsTitle }}</span>{%- if params.suggestionLabel %} and <span class="ds_search-results__title-query">{{ params.suggestionLabel }}</span>{%- endif %}</h2>
-    {%- endif %}
+    
     {%- if params.suggestionLabel %}
     <nav class="ds_search-suggestions" aria-label="Alternative search suggestions">
         <h2 class="visually-hidden">Also showing results for {{ params.suggestionLabel }}</h2>
         <p><span aria-hidden="true">Also showing results for</span> <a aria-label="Show results only for {{ params.suggestionLabel }}" href="{{ params.suggestionLink }}">{{ params.suggestionLabel }}</a><br>
         <span aria-hidden="true">Show results only for</span> <a aria-label="Show results only for {{ params.resultsTitle }}" href="{{ params.resultsLink }}">{{ params.resultsTitle }}</a></p> 
     </nav>
+    {%- endif %}
+
+    {%- if params.resultsCount %}
+    <h2 class="ds_search-results__title">{%- if params.resultsStart %}Showing {{ params.resultsStart }} to {{ params.resultsEnd }} of {% endif %}{{ params.resultsCount }} results for <span class="ds_search-results__title-query">{{ params.resultsTitle }}</span>{%- if params.suggestionLabel %} or <span class="ds_search-results__title-query">{{ params.suggestionLabel }}</span>{%- endif %}</h2>
     {%- endif %}
 
     {%- if params.resultsList %}
