@@ -207,7 +207,7 @@
                 "params": {
                     "resultsTitle": "crfting",
                     "resultsLink": "#",
-                    "suggestionLabel": "crafting",
+                    "suggestionLabel": "crofting",
                     "suggestionLink": "#"
                 }
             }
@@ -473,18 +473,6 @@
                                 },
                                 {
                                     "label": "4",
-                                    "link": "#"
-                                },
-                                {
-                                    "label": "5",
-                                    "link": "#"
-                                },
-                                {
-                                    "label": "6",
-                                    "link": "#"
-                                },
-                                {
-                                    "label": "7",
                                     "link": "#"
                                 },
                                 {

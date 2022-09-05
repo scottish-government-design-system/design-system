@@ -113,10 +113,6 @@
                             "ellipsis": true
                         },
                         {
-                            "label": "12",
-                            "link": "#"
-                        },
-                        {
                             "label": "13",
                             "link": "#"
                         },
@@ -126,10 +122,6 @@
                         },
                         {
                             "label": "15",
-                            "link": "#"
-                        },
-                        {
-                            "label": "16",
                             "link": "#"
                         },
                         {
@@ -152,7 +144,7 @@
         {
             "name": "Load more",
             "label": "Load more",
-            "status": "prototype",
+            "status": "wip",
             "context": {
                 "params": {
                     "loadMore": true,
