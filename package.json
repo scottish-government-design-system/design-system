@@ -11,7 +11,6 @@
   "scripts": {
     "fractal": "npm run dev; fractal start --sync",
     "dev": "del-cli --force ./dev; npm run sass -- -d; npm run svgsprite -- -d; npm run webpack -- --mode=development --devtool eval-source-map;",
-    "postshrinkwrap": "sealant",
     "prepublish": "del-cli --force ./dist; npm run webpack; npm run sass; npm run svgsprite; npm run test",
     "sass": "node tasks/sass",
     "svgsprite": "node tasks/svg-sprite",
