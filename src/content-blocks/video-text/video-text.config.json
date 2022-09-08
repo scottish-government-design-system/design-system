@@ -24,6 +24,19 @@
             }
         },
         {
+            "name": "Neutral links",
+            "label": "Neutral links",
+            "context": {
+                "params": {
+                    "neutralLinks": true
+                 }
+            }
+        },
+        {
+            "name": "Reversed",
+            "label": "Reversed"
+        },
+        {
             "name": "Theme white blue",
             "label": "Theme (white / blue)",
             "context": {

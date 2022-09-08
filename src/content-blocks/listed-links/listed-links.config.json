@@ -160,6 +160,15 @@
             }
         },
         {
+            "name": "Neutral links",
+            "label": "Neutral links",
+            "context": {
+                "params": {
+                    "neutralLinks": true
+                 }
+            }
+        },
+        {
             "name": "No metadata",
             "label": "No metadata",
             "context": {

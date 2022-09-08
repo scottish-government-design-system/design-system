@@ -4,13 +4,29 @@
 
 .ds_cb--page-title {
     .ds_cb__inner {
-        padding: 40px 0;
-        position: relative;
+        
+        @include ds_responsive-padding(6, top);
+        @include ds_responsive-padding(6, bottom);
+
+        //position: relative;
 
         @include ds_layout();
 
-        @include ds_media-query(medium) {
-            padding: 48px 0;
+        .ds_page-header {
+            margin-top: 0;
+            @include ds_responsive-margin(2, bottom);
+
+            &:first-child:last-child{
+                margin-bottom: 0;
+            }
+        }
+
+        .ds_cb__poster {
+            // Alignment options
+
+            &--middle {
+                align-self: center;    
+            }
         }
     }
 }

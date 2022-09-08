@@ -30,6 +30,15 @@
             }
         },
         {
+            "name": "Neutral links",
+            "label": "Neutral links",
+            "context": {
+                "params": {
+                    "neutralLinks": true
+                 }
+            }
+        },
+        {
             "name": "Small image card",
             "label": "Small image card",
             "context": {

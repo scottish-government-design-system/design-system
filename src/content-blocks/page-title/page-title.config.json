@@ -3,6 +3,8 @@
     "meta": {
         "styles": ["preview-full"]
     },
+    "name": "Page title",
+    "label": "Page header",
     "context": {
         "params": {
             "heading": "Page heading",
@@ -24,11 +26,40 @@
             }
         },
         {
+            "name": "Heading only",
+            "label": "Heading only",
+            "context": {
+                "params": {
+                    "heading": "Page heading",
+                    "content": false,
+                    "image": false
+                }
+            }
+        },
+        {
             "name": "Full width",
             "label": "Full width",
             "context": {
                 "params": {
                     "fullwidth": true
+                 }
+            }
+        },
+        {
+            "name": "Image vertically centred",
+            "label": "Image vertically centred",
+            "context": {
+                "params": {
+                    "imageAlignment": "ds_cb__poster--middle"
+                 }
+            }
+        },
+        {
+            "name": "Neutral links",
+            "label": "Neutral links",
+            "context": {
+                "params": {
+                    "neutralLinks": true
                  }
             }
         },

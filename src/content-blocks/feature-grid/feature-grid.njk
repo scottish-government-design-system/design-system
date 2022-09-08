@@ -2,7 +2,8 @@
 {%- if params.background %}  ds_cb--bg-{{ params.background }}{% endif -%}
 {%- if params.foreground %}  ds_cb--fg-{{ params.foreground }}{% endif -%}
 {%- if params.fullwidth %}  ds_cb--fullwidth{% endif -%}
-{%- if params.modifier %}  {{ params.modifier }}{% endif -%}">
+{%- if params.modifier %}  {{ params.modifier }}{% endif -%}
+{%- if params.neutralLinks %}  ds_cb--neutral-links{% endif -%}">
     <div class="ds_wrapper">
         <div class="ds_cb__inner">
         {%- for item in params.items -%}
