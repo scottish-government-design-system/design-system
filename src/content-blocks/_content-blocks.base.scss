@@ -128,7 +128,7 @@ $colors: (
     @include ds_layout();
 
     > * + * {
-        margin-top: px-to-rem(24px);
+        @include ds_responsive-margin(4, top);
     }
 
     @include ds_media-query(medium) {

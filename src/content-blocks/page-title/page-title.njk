@@ -14,8 +14,23 @@
                 {% endif -%}
             </div>
             {%- if params.image %}
-            <div class="ds_cb__poster  {%- if params.imageAlignment %}  {{ params.imageAlignment }}{% endif -%}">
-                <img alt="{{ params.imageAlt }}" src="{{ params.image }}" width="{{ params.imageWidth }}" height="{{ params.imageHeight }}"/>
+            <div class="ds_cb__poster  {%- if params.imageAlignment %}  {{ params.imageAlignment }}{% endif -%}  {%- if params.imageCover %}  ds_cb__poster--cover{% endif -%}">
+                <picture>
+                    {%- if params.imageHideOnMobile %}
+                    <source media="(max-width: 767px)"
+                            sizes="1px"
+                            srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7 1w"/>
+                    {% elseif params.imageCover -%}
+                    <source media="(max-width: 767px)"
+                            sizes="{{ params.imageWidth }}px"
+                            srcset="{{ params.image }} {{ params.imageWidth }}w"/>
+                    {% endif -%}
+                    {%- if params.imageCover %}
+                    <img alt="{{ params.imageCoverAlt }}" src="{{ params.imageCover }}" width="{{ params.imageCoverWidth }}" height="{{ params.imageCoverHeight }}"/>
+                    {% else %}
+                    <img alt="{{ params.imageAlt }}" src="{{ params.image }}" width="{{ params.imageWidth }}" height="{{ params.imageHeight }}"/>
+                    {% endif -%}
+                </picture>
             </div>
             {% endif -%}
         </div>

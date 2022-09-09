@@ -4,28 +4,77 @@
 
 .ds_cb--page-title {
     .ds_cb__inner {
-        
-        @include ds_responsive-padding(6, top);
-        @include ds_responsive-padding(6, bottom);
-
-        //position: relative;
 
         @include ds_layout();
+
+
+        .ds_cb__text {
+            @include ds_responsive-margin(6, top);
+            
+            &:first-child:last-child {
+                @include ds_responsive-margin(6, bottom);
+            }
+            
+            @include ds_media-query (medium) {
+                @include ds_responsive-margin(6, bottom);    
+            }
+        }
 
         .ds_page-header {
             margin-top: 0;
             @include ds_responsive-margin(2, bottom);
 
-            &:first-child:last-child{
+            &:first-child:last-child {
                 margin-bottom: 0;
             }
         }
 
         .ds_cb__poster {
-            // Alignment options
 
+            @include ds_responsive-margin(4, bottom);  
+
+            // Alignment options
             &--middle {
                 align-self: center;    
+            }
+
+            // Cover image option - available when not stacked
+            @include ds_media-query (medium) {
+
+                &:not(.ds_cb__poster--cover) {
+                    @include ds_responsive-margin(6, top);  
+                    @include ds_responsive-margin(6, bottom);   
+                }
+        
+                &--cover {
+                    margin: 0;
+
+                    img {
+                        height: 100%;
+                        object-fit: cover; 
+                        width: 100%;  
+                    }
+                }
+            }
+
+            // Mobile alignment - left by default
+            @include ds_media-query (medium-down) {
+                &--hidden-mobile {
+                    margin: 0;
+                    img {
+                        display: none;
+                    }
+                }
+                &--middle-mobile {
+                    img {
+                        margin: 0 auto;
+                    }   
+                }
+                &--right-mobile {
+                    img {
+                        margin-left: auto;
+                    }   
+                }
             }
         }
     }
