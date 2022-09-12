@@ -3,6 +3,7 @@ import AspectBox from './components/aspect-box/aspect-box-fallback';
 import Autocomplete from './components/autocomplete/autocomplete';
 import BackToTop from './components/back-to-top/back-to-top';
 import CharacterCount from './forms/character-count/character-count';
+import Checkboxes from './forms/checkbox/checkboxes';
 import CookieNotification from './components/cookie-notification/cookie-notification';
 import DSDatePicker from './components/date-picker/date-picker';
 import HidePage from './components/hide-this-page/hide-this-page';
@@ -22,6 +23,7 @@ const components = {
     Autocomplete,
     BackToTop,
     CharacterCount,
+    Checkboxes,
     CookieNotification,
     DSDatePicker,
     HidePage,
@@ -52,6 +54,9 @@ function initAll(scope = document) {
 
     const characterCountModules = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]'));
     characterCountModules.forEach(characterCount => new CharacterCount(characterCount).init());
+
+    const checkboxesModules = [].slice.call(scope.querySelectorAll('[data-module="ds-checkboxes"]'));
+    checkboxesModules.forEach(checkboxes => new Checkboxes(checkboxes).init());
 
     const cookieNotificationEl = document.querySelector('[data-module="ds-cookie-notification"]');
     if (cookieNotificationEl) {
@@ -108,6 +113,7 @@ export {
     Autocomplete,
     BackToTop,
     CharacterCount,
+    Checkboxes,
     CookieNotification,
     DSDatePicker,
     HidePage,

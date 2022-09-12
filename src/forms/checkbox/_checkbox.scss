@@ -54,6 +54,13 @@
     }
 }
 
+.ds_checkbox-separator {
+    font-weight: 700;
+    margin: 24px 0;
+    text-align: center;
+    width: 40px;
+}
+
 @include ds_media-query(medium) {
     .ds_checkbox {
         &__label::after {

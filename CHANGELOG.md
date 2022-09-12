@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.290] - 2022-09-12
+### Added
+- add first pass at "exclusive" checkboxes
+### Changed
+- use DS standard box shadow for highlighted file download blocks
+
 ## [0.0.287] - 2022-08-23
 ### Changed
 - rename the "file info" component to "file download"
