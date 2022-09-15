@@ -12,7 +12,16 @@
             "image": "/assets/images/placeholders/thistles.jpg",
             "imageAlt": "Thistles",
             "imageWidth": "656",
-            "imageHeight": "369"
+            "imageHeight": "369",
+            "button": {
+                "params":{
+                    "label": "Call to action",
+                    "type": "a",
+                    "link": "#",
+                    "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
+                    "iconPosition": "after"
+                }
+            }
         }
     },
     "variants": [
@@ -42,6 +51,23 @@
             "context": {
                 "params": {
                     "fullwidth": true
+                }
+            }
+        },
+        {
+            "name": "Call to action",
+            "label": "Call to action",
+            "context": {
+                "params": {
+                    "button": {
+                        "params":{
+                            "label": "Call to action",
+                            "type": "a",
+                            "link": "#",
+                            "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
+                            "iconPosition": "after"
+                        }
+                    }
                 }
             }
         },
@@ -116,6 +142,93 @@
             "context": {
                 "params": {
                     "neutralLinks": true
+                }
+            }
+        },
+        {
+            "name": "Aside",
+            "label": "Aside",
+            "context": {
+                "params": {
+                    "aside": {
+                        "content": "<p>This is some text with a <a href=\"#\">link</a></p>"
+                    }
+                }
+            }
+        },
+        {
+            "name": "Aside full width",
+            "label": "Aside full width",
+            "context": {
+                "params": {
+                    "fullwidth": true,
+                    "background": "blue",
+                    "foreground": "",
+                    "aside": {
+                        "content": "<p>This is some text with a <a href=\"#\">link</a></p>",
+                        "background": "darkblue",
+                        "foreground": ""
+                    }
+                }
+            }
+        },
+        {
+            "name": "Aside full width with icon",
+            "label": "Aside full width with icon",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "fullwidth": true,
+                    "aside": {
+                        "content": "<p>This is some text with a <a href=\"#\">link</a> and some <strong>important text</strong> that is longer to wrap over multiple lines.</p>",
+                        "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>"
+                    }
+                }
+            }
+        },
+        {
+            "name": "Aside with icon white red",
+            "label": "Aside with icon white red",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "aside": {
+                        "content": "<p>This is some text with a <a href=\"#\">link</a> and some <strong>important text</strong> that is longer to wrap over multiple lines.</p>",
+                        "background": "",
+                        "foreground": "red",
+                        "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>"
+                    }
+                }
+            }
+        },
+        {
+            "name": "Aside with icon theme orange",
+            "label": "Aside with icon theme orange",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "aside": {
+                        "content": "<p>This is some text with a <a href=\"#\">link</a> and some <strong>important text</strong> that is longer to wrap over multiple lines.</p>",
+                        "background": "orange",
+                        "foreground": "",
+                        "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>"
+                    }
+                }
+            }
+        },
+        {
+            "name": "Aside with icon theme blue",
+            "label": "Aside with icon theme blue",
+            "status": "prototype",
+            "context": {
+                "params": {
+                    "fullwidth": true,
+                    "aside": {
+                        "content": "<p>This is some text with a <a href=\"#\">link</a> and some <strong>important text</strong> that is longer to wrap over multiple lines.</p>",
+                        "background": "blue",
+                        "foreground": "",
+                        "icon": "<svg class=\"ds_icon ds_icon--fill\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>"
+                    }
                 }
             }
         },

@@ -8,7 +8,7 @@ $colors: (
     'white'     $ds_colour__white       'normal',
     'grey'      $ds_colour__grey--light 'normal',
     'blue'      $ds_colour__blue        'reversed',
-    'darkblue'  $ds_colour__blue--dark  'reversed',
+    'darkblue'  $ds_colour__blue--darker 'reversed',
     'teal'      $ds_colour__teal        'dark',
     'darkteal'  $ds_colour__dark-teal   'reversed',
     'green'     $ds_colour__green       'dark',
@@ -18,40 +18,75 @@ $colors: (
     'pink'      $ds_colour__pink        'reversed',
     'purple'    $ds_colour__purple      'reversed',
     'brown'     $ds_colour__brown       'reversed',
-    'black'     $ds_colour__black       'reversed'
+    'black'     $ds_colour__black       'black'
 );
 
 %texttheme-reversed {
     color: white;
 
-    /*
-    a:hover:not(:focus) {
-        background-color: rgba($ds_colour__white, 0.75);
-        color: $ds_colour__text;
-        outline-color: rgba($ds_colour__white, 0.75);
-    }
-    */
-
-    a:not(:hover):not(:focus) {
+    a:not(:hover):not(:focus):not(.ds_button) {
         color: currentColor;
         text-decoration: underline;
+    }
+
+    // Button theming
+    .ds_button:not(:hover):not(:focus) {
+        background-color: transparent;
+        color: currentColor;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+    }
+    .ds_button:hover:not(:focus) {
+        background-color: rgba($ds_colour__black, 20%);
+        color: currentColor;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
     }
 }
 
 %texttheme-dark {
     color: $ds_colour__black;
 
-    /*
-    a:hover:not(:focus) {
-        background-color: rgba($ds_colour__black, 0.75);
-        color: $ds_colour__white;
-        outline-color: rgba($ds_colour__black, 0.75);
-    }
-    */
-
-    a:not(:hover):not(:focus) {
+    a:not(:hover):not(:focus):not(.ds_button) {
         color: currentColor;
         text-decoration: underline;
+    }
+
+    // Button theming
+    .ds_button:not(:hover):not(:focus) {
+        background-color: transparent;
+        color: currentColor;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+    }
+    .ds_button:hover:not(:focus) {
+        background-color: rgba($ds_colour__white, 20%);
+        color: currentColor;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+    }
+}
+
+%texttheme-black {
+    color: $ds_colour__white;
+
+    a:not(:hover):not(:focus):not(.ds_button) {
+        color: currentColor;
+        text-decoration: underline;
+    }
+
+    // Button theming
+    .ds_button:not(:hover):not(:focus) {
+        background-color: transparent;
+        color: currentColor;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+    }
+    .ds_button:hover:not(:focus) {
+        background-color: rgba($ds_colour__white, 20%);
+        color: currentColor;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
     }
 }
 
@@ -85,6 +120,10 @@ $colors: (
             @if ($texttheme == 'dark') {
                 @extend %texttheme-dark;
             }
+
+            @if ($texttheme == 'black') {
+                @extend %texttheme-black;
+            }
         }
 
         // foreground theming
@@ -98,19 +137,18 @@ $colors: (
             h6 {
                 color: #{$hex};
             }
-
- /*  
-            a:hover:not(:focus) {
-                background-color: $linkhoverbghex;
-                color: $linkhoverhex;
-                outline-color: $linkhoverbghex;
+            // Coloured icon in Page header aside content block
+            &.ds_cb--page-title__aside {
+                .ds_icon {
+                    fill: #{$hex};
+                }
             }
-*/
         }
 
         // Option to replace default links with neutral colour
-        &--neutral-links {
-            a:not(:hover):not(:focus) {
+        &--neutral-links:not([class*="ds_cb--bg-"]),
+        &--neutral-links.ds_cb--bg-white  {
+            a:not(:hover):not(:focus):not(.ds_button) {
                 color: $ds_colour__text;
             }    
         }
@@ -234,7 +272,7 @@ $colors: (
         }
     }
 
-    // this is ugly but it using flex for this means we can put the image under the text in IE11
+    // this is ugly but using flex for this means we can put the image under the text in IE11
     @include ds_media-query(medium-down) {
         .ds_cb__inner {
             display: flex;

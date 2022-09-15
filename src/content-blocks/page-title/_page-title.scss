@@ -7,15 +7,15 @@
 
         @include ds_layout();
 
-
         .ds_cb__text {
-            @include ds_responsive-margin(6, top);
+            @include ds_responsive-margin(5, top);
             
             &:first-child:last-child {
                 @include ds_responsive-margin(6, bottom);
             }
             
             @include ds_media-query (medium) {
+                @include ds_responsive-margin(6, top);
                 @include ds_responsive-margin(6, bottom);    
             }
         }
@@ -39,20 +39,54 @@
             }
 
             // Cover image option - available when not stacked
+/*
+            @include ds_media-query (medium-down) {
+                // Override aspect box when stacked
+                &--cover.ds_aspect-box {
+                    overflow: auto;
+
+                    .ds_aspect-box__inner  {
+                        height: auto;
+                        left: auto;
+                        width: auto;
+                        object-fit: initial;
+                        //position: relative;
+                        right: auto;
+                    }     
+                    
+                    // Override fallback
+                    &--fallback {
+                        background: none !important;
+
+                        .ds_aspect-box__inner {
+                            display: block !important;
+                        }
+                    }
+                }
+            }
+*/
             @include ds_media-query (medium) {
 
-                &:not(.ds_cb__poster--cover) {
-                    @include ds_responsive-margin(6, top);  
-                    @include ds_responsive-margin(6, bottom);   
-                }
+                @include ds_responsive-margin(6, top);  
+                @include ds_responsive-margin(6, bottom);   
+                
         
-                &--cover {
-                    margin: 0;
+                // Ignore cover option on IE11
+                @supports (object-fit: cover) {
+                    &--cover {
+                        margin: 0;
+                        overflow: hidden;
+                        padding: 0;
+                        position: relative;
 
-                    img {
-                        height: 100%;
-                        object-fit: cover; 
-                        width: 100%;  
+                        img {
+                            height: 100%;
+                            left: 0;
+                            width: 100%;
+                            object-fit: cover;
+                            position: absolute;
+                            right: 0;
+                        }
                     }
                 }
             }
@@ -61,9 +95,7 @@
             @include ds_media-query (medium-down) {
                 &--hidden-mobile {
                     margin: 0;
-                    img {
-                        display: none;
-                    }
+                    display: none;
                 }
                 &--middle-mobile {
                     img {
@@ -77,5 +109,57 @@
                 }
             }
         }
+
+        // Button overrides
+        .ds_button {
+            @include ds_responsive-margin(1, top);
+        }
     }
+
+    &__aside {
+        .ds_wrapper {
+            @include ds_small-size;
+            @include ds_last-child-no-margin;
+            @include ds_responsive-padding(2, top);
+            @include ds_responsive-padding(2, bottom);
+            position: relative;
+        }
+
+        &-icon {
+            display: block;
+            position: absolute;
+            height: 32px;
+            line-height: 0;
+            margin-left: -4px;
+            margin-top: -4px;
+            padding: 2px;
+            width: 32px;
+
+            & + * {
+                margin-left: 40px;
+            }
+        }
+        
+    }
+
+    // Add top border to aside when both header and aside have white or transparent backgrounds
+    &:not([class*="ds_cb--bg-"]),
+    &.ds_cb--bg-white {
+        .ds_cb--page-title__aside:not([class*="ds_cb--bg-"]),
+        &.ds_cb--bg-white {
+            &.ds_cb--fullwidth {
+                border-top: 1px $ds_colour__border--light solid;    
+                .ds_wrapper {
+                    @include ds_responsive-padding(2, top, $tuning:-1px);
+                }
+            }
+            &:not(.ds_cb--fullwidth) {
+                .ds_wrapper {
+                    border-top: 1px $ds_colour__border--light solid;   
+                    @include ds_responsive-padding(2, top, $tuning:-1px); 
+                }
+            }
+        }
+    }
+    
 }
