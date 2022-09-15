@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.291] - 2022-09-15
+### Fixed
+- hover & focus state now visible on file download thumbnail link
+
 ## [0.0.290] - 2022-09-12
 ### Added
 - add first pass at "exclusive" checkboxes

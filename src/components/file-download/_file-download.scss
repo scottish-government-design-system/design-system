@@ -21,6 +21,10 @@
         width: px-to-rem(72px);
     }
 
+    &__thumbnail-link {
+        display: block;
+    }
+
     &__thumbnail-image--generic {
         box-shadow: none;
         padding: 0;
@@ -39,6 +43,8 @@
         text-decoration: underline;
     }
 }
+
+
 
 @include ds_media-query('medium-down') {
     .ds_file-download .ds_file-download__button {
