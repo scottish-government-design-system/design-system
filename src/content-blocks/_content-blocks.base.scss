@@ -145,9 +145,10 @@ $colors: (
             }
         }
 
-        // Option to replace default links with neutral colour
+        // Option to replace default links with neutral colour if transparent, white or light grey background
         &--neutral-links:not([class*="ds_cb--bg-"]),
-        &--neutral-links.ds_cb--bg-white  {
+        &--neutral-links.ds_cb--bg-white,
+        &--neutral-links.ds_cb--bg-grey {
             a:not(:hover):not(:focus):not(.ds_button) {
                 color: $ds_colour__text;
             }    

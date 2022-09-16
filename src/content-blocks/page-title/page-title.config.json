@@ -12,16 +12,7 @@
             "image": "/assets/images/placeholders/thistles.jpg",
             "imageAlt": "Thistles",
             "imageWidth": "656",
-            "imageHeight": "369",
-            "button": {
-                "params":{
-                    "label": "Call to action",
-                    "type": "a",
-                    "link": "#",
-                    "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
-                    "iconPosition": "after"
-                }
-            }
+            "imageHeight": "369"
         }
     },
     "variants": [
@@ -141,7 +132,16 @@
             "label": "Neutral links",
             "context": {
                 "params": {
-                    "neutralLinks": true
+                    "neutralLinks": true,
+                    "button": {
+                        "params":{
+                            "label": "Call to action",
+                            "type": "a",
+                            "link": "#",
+                            "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
+                            "iconPosition": "after"
+                        }
+                    }
                 }
             }
         },
@@ -268,7 +268,16 @@
             "context": {
                 "params": {
                     "background": "",
-                    "foreground": "darkgreen"
+                    "foreground": "darkgreen",
+                    "button": {
+                        "params":{
+                            "label": "Call to action",
+                            "type": "a",
+                            "link": "#",
+                            "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
+                            "iconPosition": "after"
+                        }
+                    }
                 }
             }
         },
@@ -329,7 +338,16 @@
                 "params": {
                     "background": "grey",
                     "foreground": "",
-                    "fullwidth": true
+                    "fullwidth": true,
+                    "button": {
+                        "params":{
+                            "label": "Call to action",
+                            "type": "a",
+                            "link": "#",
+                            "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
+                            "iconPosition": "after"
+                        }
+                    }
                 }
             }
         },
@@ -362,7 +380,16 @@
                 "params": {
                     "background": "teal",
                     "foreground": "",
-                    "fullwidth": true
+                    "fullwidth": true,
+                    "button": {
+                        "params":{
+                            "label": "Call to action",
+                            "type": "a",
+                            "link": "#",
+                            "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
+                            "iconPosition": "after"
+                        }
+                    }
                 }
             }
         },
@@ -373,7 +400,16 @@
                 "params": {
                     "background": "darkteal",
                     "foreground": "",
-                    "fullwidth": true
+                    "fullwidth": true,
+                    "button": {
+                        "params":{
+                            "label": "Call to action",
+                            "type": "a",
+                            "link": "#",
+                            "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
+                            "iconPosition": "after"
+                        }
+                    }
                 }
             }
         },
@@ -461,7 +497,16 @@
                 "params": {
                     "background": "black",
                     "foreground": "",
-                    "fullwidth": true
+                    "fullwidth": true,
+                    "button": {
+                        "params":{
+                            "label": "Call to action",
+                            "type": "a",
+                            "link": "#",
+                            "icon": "/assets/images/icons/icons.stack.svg#chevron_right",
+                            "iconPosition": "after"
+                        }
+                    }
                 }
             }
         }
