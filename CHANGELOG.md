@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.293] - 2022-09-20
+### Fixed
+- split the pre-footer-background's :has() and its fallback CSS into two declarations
+
 ## [0.0.292] - 2022-09-20
 ### Added
 - new method of handling when there is a coloured background preceding the footer

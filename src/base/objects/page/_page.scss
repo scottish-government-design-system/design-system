@@ -63,7 +63,10 @@ html {
     for when a block imediately preceding the footer has a non-white background
 \*------------------------------------*/
 
-.ds_page__middle:has(.ds_pre-footer-background),
+.ds_page__middle:has(.ds_pre-footer-background) {
+    padding-bottom: 0;
+}
+
 .ds_page__middle.js-pre-footer-background {
     padding-bottom: 0;
 }
