@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.292] - 2022-09-20
+### Added
+- new method of handling when there is a coloured background preceding the footer
+
 ## [0.0.291] - 2022-09-15
 ### Fixed
 - hover & focus state now visible on file download thumbnail link

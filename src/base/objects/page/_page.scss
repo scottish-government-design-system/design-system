@@ -48,19 +48,40 @@ html {
     }
 }
 
+.ds_page__middle {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding-bottom: 4rem;
+    position: relative;
+}
+
+
+
+
+/*------------------------------------*\
+    PRE FOOTER BACKGROUND
+    for when a block imediately preceding the footer has a non-white background
+\*------------------------------------*/
+
+.ds_page__middle:has(.ds_pre-footer-background),
+.ds_page__middle.js-pre-footer-background {
+    padding-bottom: 0;
+}
+
+.ds_pre-footer-background {
+    padding-bottom: 4rem;
+}
+
+
+
+
 /*------------------------------------*\
     CATEGORY PAGE LAYOUT
 \*------------------------------------*/
 
-.ds_page__middle {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    position: relative;
-}
-
+// todo: Does this belong here? Feels like no.
 .category-lower,
 .ds_category-lower {
-    padding-bottom: 72px;
     background: $ds_colour__grey--lighter;
     border-top: 1px solid $ds_colour__grey--light;
     margin-top: -1px;

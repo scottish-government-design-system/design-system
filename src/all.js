@@ -1,3 +1,4 @@
+import page from './base/objects/page/page';
 import Accordion from './components/accordion/accordion';
 import AspectBox from './components/aspect-box/aspect-box-fallback';
 import Autocomplete from './components/autocomplete/autocomplete';
@@ -16,6 +17,10 @@ import Tabs from './components/tabs/tabs';
 import TabsNavigation from './components/tabs/tabs-navigation';
 
 import tracking from './base/tools/tracking/tracking';
+
+const base = {
+    page
+};
 
 const components = {
     Accordion,
@@ -39,6 +44,7 @@ const components = {
 // Similar to gov.uk approach, allow DS to be applied in a more targeted way than the whole document if needed
 // defaults to document
 function initAll(scope = document) {
+    page.init();
 
     const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
     accordions.forEach(accordion => new Accordion(accordion).init());
@@ -102,6 +108,7 @@ function initAll(scope = document) {
 }
 
 window.DS = window.DS || {};
+window.DS.base = base;
 window.DS.components = components;
 window.DS.tracking = tracking;
 window.DS.initAll = initAll;
@@ -120,6 +127,7 @@ export {
     MobileMenu,
     MobileTables,
     NotificationBanner,
+    page,
     SideNavigation,
     skipLinks,
     Tabs,
