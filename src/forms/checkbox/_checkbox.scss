@@ -54,6 +54,10 @@
     }
 }
 
+.ds_checkboxes > .ds_checkbox:last-child {
+    margin-bottom: 4px;
+}
+
 .ds_checkbox-separator {
     font-weight: 700;
     margin: 24px 0;

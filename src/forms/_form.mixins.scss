@@ -82,10 +82,14 @@
     }
 
     &--small &__label::before {
-        height: $small-input-size;
-        left: $small-input-offset;
-        top: $small-input-offset;
-        width: $small-input-size;
+        height: px-to-rem(24px);
+        left: 8px;
+        top: 4px;
+        width: px-to-rem(24px);
+
+        @include ds_media-query(medium) {
+            top: 8px;
+        }
     }
 
     /// hover
