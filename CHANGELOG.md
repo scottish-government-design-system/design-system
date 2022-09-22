@@ -6,6 +6,17 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.295] - 2022-09-22
+### Fixed
+- improved width rules for "file download" thumbnail that won't clash with image width rules set on `.ds_layout__content img`
+
+## [0.0.294] - 2022-09-21
+### Added
+- new "ds_checkboxes" wrapper element that bakes in a bottom margin equal to how much the last checkbox in a group overflows its parent
+### Fixed
+- vertical alignment of small variant of radios and checkboxes
+- a minor typo in a comment in _page.scss
+
 ## [0.0.293] - 2022-09-20
 ### Fixed
 - split the pre-footer-background's :has() and its fallback CSS into two declarations
