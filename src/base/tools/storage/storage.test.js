@@ -135,7 +135,7 @@ describe('storage', () => {
             const cookieData = storage.cookie.set('foo', 'bar', 1);
 
             expect(cookieData.name).toEqual('foo');
-            expect(cookieData.value).toEqual('bar');
+            expect(cookieData.value).toEqual(window.btoa('bar'));
             expect(cookieData.expires).toEqual(newDate.toUTCString());
         });
 
@@ -144,7 +144,7 @@ describe('storage', () => {
             const cookieData = storage.cookie.set('foo', 'bar');
 
             expect(cookieData.name).toEqual('foo');
-            expect(cookieData.value).toEqual('bar');
+            expect(cookieData.value).toEqual(window.btoa('bar'));
             expect(cookieData.expires).toBeUndefined();
         });
     });

@@ -133,6 +133,15 @@ const storage = {
             const nameEQ = name + '=',
                 cookiesArray = document.cookie.split(';');
 
+            function isBase64(str) {
+                if (str ==='' || str.trim() ===''){ return false; }
+                try {
+                    return window.btoa(window.atob(str)) == str;
+                } catch (err) {
+                    return false;
+                }
+            }
+
             // find a matching cookie
             for (let i = 0, il = cookiesArray.length; i < il; i++) {
                 let cookie = cookiesArray[i];
@@ -143,9 +152,10 @@ const storage = {
 
                 if (cookie.indexOf(nameEQ) === 0) {
                     const string = cookie.substring(nameEQ.length, cookie.length);
-                    try {
+
+                    if (isBase64(string)) {
                         return window.atob(string);
-                    } catch (e) {
+                    } else {
                         return string;
                     }
                 }

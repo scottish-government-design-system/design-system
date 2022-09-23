@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.297] - 2022-09-23
+### Fixed
+- fix failing storage.js specs 
+- improve the check for whether the cookie value is encoded 
+
 ## [0.0.296] - 2022-09-23
 ### Changed
 - use base64 encoding for cookie values set via storage.js
