@@ -106,7 +106,7 @@ const storage = {
         set: function (name, value, expires) {
             const cookieData = {
                 name: name,
-                value: value
+                value: window.btoa(value)
             };
 
             if (expires) {
@@ -142,7 +142,12 @@ const storage = {
                 }
 
                 if (cookie.indexOf(nameEQ) === 0) {
-                    return cookie.substring(nameEQ.length, cookie.length);
+                    const string = cookie.substring(nameEQ.length, cookie.length);
+                    try {
+                        return window.atob(string);
+                    } catch (e) {
+                        return string;
+                    }
                 }
             }
 

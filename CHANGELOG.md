@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.296] - 2022-09-23
+### Changed
+- use base64 encoding for cookie values set via storage.js
+
 ## [0.0.295] - 2022-09-22
 ### Fixed
 - improved width rules for "file download" thumbnail that won't clash with image width rules set on `.ds_layout__content img`
