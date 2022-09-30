@@ -6,6 +6,21 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.298] - 2022-09-30
+### Added
+- Sass colour helpers for tint and shade
+- Grey background option for card
+- Link list component containing link item components
+### Changed
+- Image is now left aligned on a card with small image option at mobile size
+- Metadata spacing to use relative values
+### Deprecated
+- Category item no longer needed within a card
+### Removed
+- Metadata content labels
+### Fixed
+- Minor fixes to Fractal examples for search results and pagination
+
 ## [0.0.297] - 2022-09-23
 ### Fixed
 - fix failing storage.js specs 
