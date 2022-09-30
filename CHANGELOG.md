@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.299] - 2022-09-30
+### Fixed
+- base64 encoding of cookie value not happening in the correct location
+- incorrect margins for narrow card category grid variant
+
 ## [0.0.298] - 2022-09-30
 ### Added
 - Sass colour helpers for tint and shade

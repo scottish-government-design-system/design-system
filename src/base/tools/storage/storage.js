@@ -104,9 +104,11 @@ const storage = {
 
     cookie: {
         set: function (name, value, expires) {
+            value = window.btoa(value);
+
             const cookieData = {
                 name: name,
-                value: window.btoa(value)
+                value: value
             };
 
             if (expires) {

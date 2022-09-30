@@ -50,9 +50,6 @@
         }
 
         &.ds_category-list--narrow > * {
-            margin-bottom: $grid-gap-x--narrow;
-            margin-right: $grid-gap-x--narrow;
-
             @include ds_colwidth(6, 12, $grid-gap-x--narrow);
         }
     }
