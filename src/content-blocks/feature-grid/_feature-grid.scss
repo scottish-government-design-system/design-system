@@ -1,0 +1,119 @@
+/*------------------------------------*\
+    FEATURE GRID
+    Support for 2 (default), 3 and 4 items
+\*------------------------------------*/
+
+.ds_cb--feature-grid {
+
+    @include ds_responsive-padding(4, bottom);
+
+    // 2 items
+    .ds_cb__inner {
+
+        @include ds_media-query(medium) {
+
+            > * {
+                float: left;
+                @include ds_colwidth(6);
+            }
+
+            @supports(display: grid) {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            
+        }
+    
+    }
+
+    // 3 items
+    &-3-items {
+
+        .ds_cb__inner {
+
+            @include ds_media-query(medium) {
+    
+                > * {
+                    float: left;
+                    @include ds_colwidth(4);
+                }
+    
+                @supports(display: grid) {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                }
+                
+            }
+        
+        }
+
+    }
+
+    // 4 items
+    &-4-items {
+
+        .ds_cb__inner {
+
+            @include ds_media-query(medium) {
+    
+                > * {
+                    float: left;
+                    @include ds_colwidth(6);
+
+                    &:nth-child(3) {
+                        clear: left;
+                    }
+                }
+    
+                @supports(display: grid) {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+                
+            }
+
+            @include ds_media-query(large) {
+    
+                > * {
+                    float: left;
+                    @include ds_colwidth(3);
+                }
+    
+                @supports(display: grid) {
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                }
+                
+            }
+        
+        }
+
+    }
+
+    &__item {
+        @include ds_responsive-padding(3, top);
+        @include ds_responsive-padding(4, bottom);
+        margin: 0;
+        
+        &-media {
+            @include ds_media-query (medium-down) {
+                &--small-mobile {
+                    max-width: 384px;
+                }
+            }
+        }
+        
+        &-title {
+            margin: 0;
+            @include ds_responsive-margin(3, top, true);
+        }
+
+        &-summary {
+            margin: 0;
+            @include ds_responsive-margin(2, top);
+            @include ds_last-child-no-margin;
+        }
+
+    }
+
+
+
+    
+
+}

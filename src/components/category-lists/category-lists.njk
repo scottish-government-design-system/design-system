@@ -1,3 +1,6 @@
+{%- if params.containerStart %}
+    {{ params.containerStart | safe}}
+{%- endif -%}
 <nav aria-label="Category navigation">
     <ul class="ds_category-list{%- if params.modifiers %} {{ params.modifiers }}{%- endif -%}">
         {%- if params.cards -%}
@@ -11,3 +14,6 @@
         {%- endif -%}
     </ul>
 </nav>
+{%- if params.containerEnd %}
+    {{ params.containerEnd | safe}}
+{%- endif -%}

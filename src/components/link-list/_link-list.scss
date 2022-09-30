@@ -1,0 +1,34 @@
+/*------------------------------------*\
+    LINK LIST
+\*------------------------------------*/
+
+.ds_link-list {
+    @include ds_layout();
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include ds_media-query(medium-down) {
+        .ds_link-item + .ds_link-item {
+            @include ds_responsive-margin(3, top);
+        }
+    }
+
+    @include ds_media-query(medium) {
+        .ds_link-item {
+            float: left;
+            @include ds_colwidth(4);
+
+            &:nth-child(3n+1) {
+                clear: left;
+                margin-left: 0;
+            }
+        }
+
+        @supports(display: grid) {
+            display: grid;
+            row-gap: px-to-rem(24px);
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}

@@ -1,0 +1,13 @@
+///
+/// Colour helpers
+///
+
+// Tint
+@function ds_tint($color, $percentage) {
+    @return mix(white, $color, $percentage);
+}
+
+// Shade
+@function ds_shade($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}
