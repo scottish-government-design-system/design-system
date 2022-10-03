@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.300] - 2022-10-03
+### Changed
+- card component now uses responsive spacing
+
 ## [0.0.299] - 2022-09-30
 ### Fixed
 - base64 encoding of cookie value not happening in the correct location
@@ -13,18 +17,18 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ## [0.0.298] - 2022-09-30
 ### Added
-- Sass colour helpers for tint and shade
-- Grey background option for card
-- Link list component containing link item components
+- sass colour helpers for tint and shade
+- grey background option for card
+- link list component containing link item components
 ### Changed
-- Image is now left aligned on a card with small image option at mobile size
-- Metadata spacing to use relative values
+- image is now left aligned on a card with small image option at mobile size
+- metadata spacing to use relative values
 ### Deprecated
-- Category item no longer needed within a card
+- category item no longer needed within a card
 ### Removed
-- Metadata content labels
+- metadata content labels
 ### Fixed
-- Minor fixes to Fractal examples for search results and pagination
+- minor fixes to Fractal examples for search results and pagination
 
 ## [0.0.297] - 2022-09-23
 ### Fixed

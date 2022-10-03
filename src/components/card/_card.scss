@@ -65,7 +65,10 @@
         display: grid;
         grid-template-rows: auto auto 1fr;
         height: 100%;
-        padding: px-to-rem(16px);
+        @include ds_responsive-padding(2, top);
+        @include ds_responsive-padding(2, right);
+        @include ds_responsive-padding(3, bottom);
+        @include ds_responsive-padding(2, left);
 
         &-footer {
             @include ds_last-child-no-margin;
@@ -75,7 +78,7 @@
 
     &__title {
         @include ds_h3-style;
-        margin-bottom: px-to-rem(8px);
+        @include ds_responsive-margin(1, bottom);
         margin-top: 0 !important;
     }
 
