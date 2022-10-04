@@ -32,7 +32,7 @@ function compileSass(options = {}) {
 if (argv.d) {
     // dev version
     compileSass({
-        src : 'src/pattern-library.scss',
+        src : 'src/dev.scss',
         dest: 'dev/assets/css/pattern-library.css',
         style: 'expanded'
     });
