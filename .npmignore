@@ -2,8 +2,10 @@ dev
 fractal
 fractal.config.js
 node_modules
-src/docs
+src/docs/
 src/**/*.config.json
 src/**/*.html
 src/**/*.njk
+src/content-blocks/
+tasks/
 test
