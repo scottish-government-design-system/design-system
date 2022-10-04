@@ -12,10 +12,6 @@ If you need any help or want to give any feedback you can e-mail the Design Syst
 
 We recommend [installing the pattern library using node package manager (npm)](https://designsystem.gov.scot/get-started/installation/).
 
-## Run the pattern library locally
-
-The pattern library uses [Fractal](https://fractal.build/), to display components and their variants, which simplifies development and testing.
-
 ### Install
 
 To install your own local copy of the pattern library follow these steps:
@@ -26,30 +22,6 @@ To install your own local copy of the pattern library follow these steps:
 ### Run tasks
 
 Once installed the following tasks can be run:
-
-#### Build development files
-
-These are the CSS, JavaScript files and static assets that Fractal references to present the various components.
-
-Run:
-
-```
-npm run dev
-```
-
-This will compile the various files and conduct a series of automated tests before updating the contents of the `/dev` directory with the newly generated files.
-
-#### View the pattern library
-
-This launches Fractal to let you browse the components at the specified local URL.
-
-Run:
-
-```
-npm run fractal
-```
-
-This will start a new instance of Fractal on a local URL which will be specified in the terminal. This task remains running in the background as any new changes to Fractal config files will then automatically be updated in the browser.
 
 #### Build production files
 
