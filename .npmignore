@@ -7,5 +7,6 @@ src/**/*.config.json
 src/**/*.html
 src/**/*.njk
 src/content-blocks/
+src/dev.scss
 tasks/
 test
