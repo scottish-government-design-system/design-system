@@ -6,6 +6,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.301] - 2022-10-05
+### Added
+- content blocks for local development use only
+### Changed
+- content blocks not published to npm
+### Removed
+- files property from package.json
+- readme content for local development
+
 ## [0.0.300] - 2022-10-03
 ### Changed
 - card component now uses responsive spacing
