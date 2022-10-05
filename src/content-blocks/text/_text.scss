@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    TEXT
+\*------------------------------------*/
+
+.ds_cb--text {
+    .ds_cb__inner {
+        padding: 16px 0 24px;
+
+        @include ds_media-query(medium) {
+            padding: 24px 0 32px;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<div class="ds_cb  ds_cb--cards  ds_cb--bg-grey
+{%- if params.fullwidth %}  ds_cb--fullwidth{% endif -%}
+{%- if params.neutralLinks %}  ds_cb--neutral-links{% endif -%}">
+    <div class="ds_wrapper">
+        <div class="ds_cb__inner">
+        {%- for item in params.items -%}
+            {% render '@card', item -%}
+        {% endfor %}
+        </div>
+    </div>
+</div>
