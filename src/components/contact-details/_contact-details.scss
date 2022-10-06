@@ -42,8 +42,11 @@ $contact-details__border-colour: $ds_colour__border--highlight;
 
     &__social-item {
         @include ds_responsive-margin(1, bottom);
-        padding-left: #{$social-icon-size + px-to-rem(8px)};
         position: relative;
+    }
+
+    &__social-link {
+        padding-left: #{$social-icon-size + px-to-rem(8px)};
     }
 
     &__social-icon {

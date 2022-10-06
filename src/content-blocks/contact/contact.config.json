@@ -5,28 +5,80 @@
     },
     "context": {
         "params": {
-            "content": "<h2>Heading 2</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque id blandit velit. Sed iaculis justo vitae cursus vestibulum.</p><h3><a href=\"#\">Heading 3 is a link</a></h3><p>Suspendisse arcu nibh, vulputate congue aliquet semper, tristique vel justo. <a href=\"#\">Nunc libero sapien</a>, mattis ac sodales a, ultrices eu odio. Integer aliquam, ipsum sit amet sollicitudin faucibus, ante tortor sagittis velit, vel consectetur massa massa ut risus. In at purus quis purus gravida maximus a at ante. Cras nunc augue, suscipit euismod nisi at, bibendum sagittis turpis.</p>"
+            "heading": {
+                "label": "Contact",
+                "level": "h2"
+            },
+            "contactList": [
+                {
+                    "label": "Address",
+                    "subitems":[
+                        {
+                            "content": "<address>Scottish Government<br>St. Andrew's House<br>Regent Road<br>Edinburgh<br>EH1 3DG</address>",
+                            "ignoreTranslate": true
+                        }
+                    ]
+                },
+                {
+                    "label": "Email",
+                    "subitems":[
+                        {
+                            "content": "<a href=\"mailto:#\">email@gov.scot</a>"
+                        }
+                    ]
+                },
+                {
+                    "label": "Phone",
+                    "subitems":[
+                        {
+                            "content": "0123 456 7000<br>Main line is open 8am-5pm<br><a href=\"https://www.gov.uk/call-charges\">Find out about call charges</a>"
+                        }
+                    ]
+                },
+                {
+                    "label": "Out of hours",
+                    "subitems":[
+                        {
+                            "content": "0123 456 7001"
+                        }
+                    ]
+                },
+                {
+                    "label": "Fax",
+                    "subitems":[
+                        {
+                            "content": "0123 456 7002"
+                        }
+                    ]
+                }
+            ],
+            "socialList": [
+                {
+                    "label": "Social media",
+                    "hideLabel": true,
+                    "subitems":[
+                        {
+                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>Facebook</a>",
+                            "socialItem": true
+                        },
+                        {
+                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>@scotgov</a>",
+                            "socialItem": true
+                        },
+                        {
+                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>Flickr</a>",
+                            "socialItem": true
+                        },
+                        {
+                            "content": "<a class=\"ds_contact-details__social-link\" href=\"#\"><svg class=\"ds_contact-details__social-icon  ds_icon\" aria-hidden=\"true\" role=\"img\"><use href=\"/assets/images/placeholders/icon.svg#widget\"></use></svg>YouTube</a>",
+                            "socialItem": true
+                        }
+                    ]
+                }
+            ]
         }
     },
     "variants": [
-        {
-            "name": "Text right",
-            "label": "Text right",
-            "context": {
-                "params": {
-                    "position": "right"
-                 }
-            }
-        },
-        {
-            "name": "Text centered",
-            "label": "Text centered",
-            "context": {
-                "params": {
-                    "position": "center"
-                 }
-            }
-        },
         {
             "name": "Full width",
             "label": "Full width",
@@ -46,8 +98,31 @@
             }
         },
         {
+            "name": "Two columns",
+            "label": "Two columns",
+            "context": {
+                "params": {
+                    "modifier": "ds_cb--contact--2-cols"
+                }
+            }
+        },
+        {
+            "name": "Main heading level 3",
+            "label": "Main heading level 3",
+            "context": {
+                "params": {
+                    "fullwidth": true,
+                    "heading": {
+                        "label": "Contact information",
+                        "level": "h3"
+                    }
+                 }
+            }
+        },
+        {
             "name": "Theme white blue",
             "label": "Theme (white / blue)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",
@@ -58,6 +133,7 @@
         {
             "name": "Theme white darkblue",
             "label": "Theme (white / dark blue)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",
@@ -68,6 +144,7 @@
         {
             "name": "Theme white darkteal",
             "label": "Theme (white / dark teal)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",
@@ -78,6 +155,7 @@
         {
             "name": "Theme white darkgreen",
             "label": "Theme (white / dark green)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",
@@ -88,6 +166,7 @@
         {
             "name": "Theme white red",
             "label": "Theme (white / red)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",
@@ -98,6 +177,7 @@
         {
             "name": "Theme white pink",
             "label": "Theme (white / pink)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",
@@ -108,6 +188,7 @@
         {
             "name": "Theme white purple",
             "label": "Theme (white / purple)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",
@@ -118,6 +199,7 @@
         {
             "name": "Theme white brown",
             "label": "Theme (white / brown)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",
@@ -128,6 +210,7 @@
         {
             "name": "Theme white black",
             "label": "Theme (white / black)",
+            "status": "invalid",
             "context": {
                 "params": {
                     "background": "",

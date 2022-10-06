@@ -5,6 +5,7 @@
     },
     "context": {
         "params": {
+            "background": "grey",
             "items": [
                 {
                     "params": {
@@ -55,6 +56,50 @@
             "context": {
                 "params": {
                     "neutralLinks": true
+                 }
+            }
+        },
+        {
+            "name": "Grey cards",
+            "label": "Grey cards",
+            "context": {
+                "params": {
+                    "background": false,
+                    "items": [
+                        {
+                            "params": {
+                                "colour": "ds_card--grey",
+                                "heading": "Environment and countryside",
+                                "content": "Access to and protection of the countryside and managing wildlife on your land",
+                                "itemTag": "div",
+                                "image": "/assets/images/placeholders/clyde.jpg",
+                                "hasHover": true,
+                                "link": "#"
+                            }
+                        },
+                        {
+                            "params": {
+                                "colour": "ds_card--grey",
+                                "heading": "Environmental Impact Assessment (EIA)",
+                                "content": "Find out about Environmental Impact Assessments (EIAs) in your area",
+                                "itemTag": "div",
+                                "image": "/assets/images/placeholders/coast.jpg",
+                                "hasHover": true,
+                                "link": "#"
+                            }
+                        },
+                        {
+                            "params": {
+                                "colour": "ds_card--grey",
+                                "heading": "Farming and rural issues",
+                                "content": "Guidance for farming, animal health, agriculture and food businesses in Scotland",
+                                "itemTag": "div",
+                                "image": "/assets/images/placeholders/edcastle.jpg",
+                                "hasHover": true,
+                                "link": "#"
+                            }
+                        }
+                    ]
                  }
             }
         },

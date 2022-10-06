@@ -1,0 +1,44 @@
+/*------------------------------------*\
+    CONTACT
+\*------------------------------------*/
+
+.ds_cb--contact {
+
+    @include ds_responsive-padding(3, top);
+    @include ds_responsive-padding(4, bottom);
+
+    .ds_cb--contact__address {
+        grid-template-columns: 1fr; 
+
+        &--2-cols {
+            @include ds_media-query(medium) {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+
+    @include ds_media-query(medium) {
+        &--2-cols {
+            .ds_cb__inner {
+                > .ds_contact-details__list {
+                    float: left;
+                    @include ds_colwidth(4);
+                }
+    
+                @supports(display: grid) {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                }
+            }
+        }
+    }
+
+    .ds_contact-details__list {
+        margin-top: 0;
+    }
+
+    .ds_contact-details__item {
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}

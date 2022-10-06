@@ -37,6 +37,34 @@
             }
         },
         {
+            "name": "Text vertically centred",
+            "label": "Text vertically centred",
+            "context": {
+                "params": {
+                    "textAlignment": "ds_cb__text--middle",
+                    "content": false
+                }
+            }
+        },
+        {
+            "name": "Lighter heading weight",
+            "label": "Lighter heading weight",
+            "context": {
+                "params": {
+                    "headingWeight": "ds_page-header__title--light"
+                }
+            }
+        },
+        {
+            "name": "Wide text",
+            "label": "Wide text",
+            "context": {
+                "params": {
+                    "wideText": true
+                }
+            }
+        },
+        {
             "name": "Full width",
             "label": "Full width",
             "context": {
@@ -59,6 +87,15 @@
                             "iconPosition": "after"
                         }
                     }
+                }
+            }
+        },
+        {
+            "name": "Image with no vertical margin",
+            "label": "Image with no vertical margin",
+            "context": {
+                "params": {
+                    "imageAlignment": "ds_cb__poster--no-margin"
                 }
             }
         },

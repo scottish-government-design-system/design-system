@@ -99,10 +99,10 @@
 .ds_feature-header {
     @include media-query(medium) {
         display: -ms-grid;
-        -ms-grid-columns: 6fr 6fr;
+        -ms-grid-columns: 1fr 32px 1fr;
 
         &--wide {
-            -ms-grid-columns: 8fr 1fr;
+            -ms-grid-columns: 2fr 32px 1fr;
         }
 
         &__primary {
@@ -111,7 +111,7 @@
         }
 
         &__secondary {
-            -ms-grid-column: 2;
+            -ms-grid-column: 3;
         }
     }
 }

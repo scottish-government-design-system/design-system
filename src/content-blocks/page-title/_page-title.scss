@@ -18,6 +18,11 @@
                 @include ds_responsive-margin(6, top);
                 @include ds_responsive-margin(6, bottom);    
             }
+
+            // Alignment options
+            &--middle {
+                align-self: center;    
+            }
         }
 
         .ds_page-header {
@@ -26,6 +31,12 @@
 
             &:first-child:last-child {
                 margin-bottom: 0;
+            }
+
+            &__title {
+                &--light {
+                    font-weight: $light;
+                }
             }
         }
 
@@ -38,43 +49,18 @@
                 align-self: center;    
             }
 
-            // Cover image option - available when not stacked
-/*
-            @include ds_media-query (medium-down) {
-                // Override aspect box when stacked
-                &--cover.ds_aspect-box {
-                    overflow: auto;
-
-                    .ds_aspect-box__inner  {
-                        height: auto;
-                        left: auto;
-                        width: auto;
-                        object-fit: initial;
-                        //position: relative;
-                        right: auto;
-                    }     
-                    
-                    // Override fallback
-                    &--fallback {
-                        background: none !important;
-
-                        .ds_aspect-box__inner {
-                            display: block !important;
-                        }
-                    }
-                }
-            }
-*/
             @include ds_media-query (medium) {
 
                 @include ds_responsive-margin(6, top);  
                 @include ds_responsive-margin(6, bottom);   
-                
+
+                &--no-margin {
+                    margin: 0;
+                }
         
                 // Ignore cover option on IE11
                 @supports (object-fit: cover) {
                     &--cover {
-                        margin: 0;
                         overflow: hidden;
                         padding: 0;
                         position: relative;
@@ -113,6 +99,43 @@
         // Button overrides
         .ds_button {
             @include ds_responsive-margin(1, top);
+        }
+    }
+
+    // Wide text option
+    &--wide {
+    
+        .ds_cb__text {
+        
+            @include ds_media-query(medium) {
+                float: left;
+                @include ds_colwidth(8);
+        
+                &:last-of-type:first-of-type {
+                    float: none;
+                }
+
+                @supports(display: grid) {
+                    grid-column: span 8;
+        
+                    &:last-of-type:first-of-type {
+                        grid-area: 1/1/1/9;
+                        width: auto;
+                    }
+                }
+            }
+        }
+
+        .ds_cb__poster {
+
+            @include ds_media-query(medium) {
+                float: left;
+                @include ds_colwidth(4);
+        
+                @supports(display: grid) {
+                    grid-column: span 4;
+                }
+            }
         }
     }
 
@@ -159,6 +182,14 @@
                     @include ds_responsive-padding(2, top, $tuning:-1px); 
                 }
             }
+        }
+    }
+
+    // Avoid parent background being forced on aside wrapper when parent is not full width
+    &:not(&--fullwidth)[class*="ds_cb--bg-"] {
+    
+        .ds_cb--page-title__aside .ds_wrapper {
+            background-color: inherit;
         }
     }
     

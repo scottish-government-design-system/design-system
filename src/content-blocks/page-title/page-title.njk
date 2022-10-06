@@ -1,13 +1,14 @@
 <header class="ds_cb  ds_cb--page-title
+{%- if params.wideText %}  ds_cb--page-title--wide{% endif -%}
 {%- if params.background %}  ds_cb--bg-{{ params.background }}{% endif -%}
 {%- if params.foreground %}  ds_cb--fg-{{ params.foreground }}{% endif -%}
 {%- if params.fullwidth %}  ds_cb--fullwidth{% endif -%}
 {%- if params.neutralLinks %}  ds_cb--neutral-links{% endif -%}">
     <div class="ds_wrapper">
         <div class="ds_cb__inner">
-            <div class="ds_cb__text  ds_cb__content">
+            <div class="ds_cb__text  ds_cb__content  {%- if params.textAlignment %}  {{ params.textAlignment }}{% endif -%}">
                 <div class="ds_page-header">
-                    <h1 class="ds_page-header__title">{{ params.heading }}</h1>
+                    <h1 class="ds_page-header__title  {%- if params.headingWeight %}  {{ params.headingWeight }}{% endif -%}">{{ params.heading }}</h1>
                 </div>
                 {%- if params.content %}
                 {{ params.content | safe }}
