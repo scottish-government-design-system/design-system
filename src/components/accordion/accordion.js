@@ -61,6 +61,7 @@ class Accordion {
 
         itemButton.setAttribute('aria-expanded', startsOpen);
         itemButton.setAttribute('aria-controls', itemBody.id);
+        itemButton.setAttribute('type', 'button');
 
         // events
         itemButton.addEventListener('click', event => {
