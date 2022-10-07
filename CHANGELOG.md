@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.302] - 2022-10-07
+### Changed
+- social icons now part of link target area within contact component
+### Fixed 
+- ie grid support for feature header component
+
 ## [0.0.301] - 2022-10-05
 ### Added
 - content blocks for local development use only
