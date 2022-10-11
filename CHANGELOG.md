@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.303] - 2022-10-11
+### Fixed 
+- buttons used for accordion open/close have type "button" so they don't interfere with form submissions
+
 ## [0.0.302] - 2022-10-07
 ### Changed
 - social icons now part of link target area within contact component
