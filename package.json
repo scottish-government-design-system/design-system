@@ -46,7 +46,7 @@
     "minimist": "^1.2.5",
     "sass": "^1.49.9",
     "sealant": "^0.1.1",
-    "svg-sprite": "^1.5.4",
+    "svg-sprite": "^2.0.0",
     "svgxuse": "^1.2.6",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2"
