@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.304] - 2022-10-19
+### Fixed 
+- alignment of small variant checkbox and radio button "checked" states on viewports under 768px
+
 ## [0.0.303] - 2022-10-11
 ### Fixed 
 - buttons used for accordion open/close have type "button" so they don't interfere with form submissions
