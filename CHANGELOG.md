@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.305] - 2022-11-01
+### Added 
+- add draft "step navigation" component
+
 ## [0.0.304] - 2022-10-19
 ### Fixed 
 - alignment of small variant checkbox and radio button "checked" states on viewports under 768px

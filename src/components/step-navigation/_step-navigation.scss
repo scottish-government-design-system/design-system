@@ -1,0 +1,142 @@
+/*------------------------------------*\
+    #STEP NAVIGATION
+    Step navigation is an enhancement the DS accordion
+\*------------------------------------*/
+
+$step-count-margin: 40px;
+$step-count-margin--medium: 48px;
+$step-count-size: 32px;
+$step-count-size--medium: 40px;
+$step-content-line-height: 24px;
+$step-content-line-height--medium: 32px;
+
+.ds_step-navigation {
+    counter-reset: section;
+
+    &__title-link {
+        display: block;
+        border-top: 1px solid $ds_colour__border--light;
+        border-bottom: 1px solid $ds_colour__border--light;
+        @include ds_responsive-margin(2, bottom);
+        @include ds_responsive-margin(1, top);
+        @include ds_responsive-padding(3, bottom);
+        @include ds_responsive-padding(3, top);
+    }
+
+    &__current-link::before {
+        content: '';
+        position: absolute;
+        left: #{($step-count-size / 2) - $step-count-margin};
+        right: 100%;
+        height: 1px;
+        background: $ds_colour__border--dark;
+        margin-top: #{$step-content-line-height / 2};
+    }
+
+    &__count {
+        @include ds_h4-size;
+
+        background-color: $ds_colour__white;
+        border: 1px solid currentColor;
+        border-radius: 20px;
+        color: $ds_colour__border--dark;
+        content: counter(section);
+        counter-increment: section;
+        display: block;
+        font-weight: $bold;
+        height: $step-count-size;
+        left: #{$step-count-margin * -1};
+        line-height: #{$step-count-size - 2px};
+        position: absolute;
+        text-align: center;
+        top: px-to-rem(11px);
+        width: $step-count-size;
+    }
+
+    .ds_current &__count {
+        background-color: $ds_colour__link--current__background;
+        border: 2px solid $ds_colour__border--highlight;
+        line-height: #{$step-count-size - 4px};
+    }
+
+    .ds_accordion {
+        margin-left: $step-count-margin;
+    }
+
+    .ds_accordion-item {
+        position: relative;
+
+        &::before {
+            background: $ds_colour__border--dark;
+            bottom: px-to-rem(-17px);
+            content: '';
+            display: block;
+            left: #{($step-count-size / 2) - $step-count-margin};
+            position: absolute;
+            top: px-to-rem(39px);
+            width: 1px;
+        }
+
+        &:last-child::before {
+            bottom: 0;
+        }
+
+        &:last-child::after {
+            background: $ds_colour__border--dark;
+            bottom: -1px;
+            content: '';
+            display: block;
+            height: 1px;
+            left: #{($step-count-size / 2) - $step-count-margin - 6px};
+            position: absolute;
+            width: 13px;
+        }
+    }
+
+    &__or,
+    &__and {
+        counter-increment: section -1;
+    }
+
+    &__or &__count,
+    &__and &__count {
+        background-color: transparent;
+        border: none;
+    }
+}
+
+@include ds_media-query(medium) {
+    .ds_step-navigation {
+        &__count {
+            height: $step-count-size--medium;
+            left: #{$step-count-margin--medium * -1};
+            line-height: #{$step-count-size--medium - 2px};
+            width: $step-count-size--medium;
+        }
+
+        .ds_current &__count {
+            line-height: #{$step-count-size--medium - 4px};
+        }
+
+        &__current-link::before {
+            left: #{($step-count-size--medium / 2) - $step-count-margin--medium};
+            margin-top: #{$step-content-line-height--medium / 2};
+        }
+
+        .ds_accordion {
+            margin-left: $step-count-margin--medium;
+        }
+
+        .ds_accordion-item {
+            &::before {
+                bottom: px-to-rem(-17px);
+                left: #{($step-count-size--medium / 2) - $step-count-margin--medium};
+                top: px-to-rem(49px);
+            }
+
+            &:last-child::after {
+                left: #{($step-count-size--medium / 2) - $step-count-margin--medium - 6px};
+            }
+        }
+    }
+}
