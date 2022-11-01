@@ -13,6 +13,7 @@ import MobileTables from './components/table/table';
 import NotificationBanner from './components/notification-banner/notification-banner';
 import SideNavigation from './components/side-navigation/side-navigation';
 import skipLinks from './components/skip-links/skip-links';
+import StepNavigation from './components/step-navigation/step-navigation';
 import Tabs from './components/tabs/tabs';
 import TabsNavigation from './components/tabs/tabs-navigation';
 
@@ -92,6 +93,9 @@ function initAll(scope = document) {
     // skip links doesn't need any special treatment -- just init it
     skipLinks.init();
 
+    const stepNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-step-navigation"]'));
+    stepNavigations.forEach(stepNavigation => new StepNavigation(stepNavigation).init());
+
     const tables = [].slice.call(scope.querySelectorAll('table[data-smallscreen]'));
     if (tables.length) {
         const mobileTables = new MobileTables();
@@ -130,6 +134,7 @@ export {
     page,
     SideNavigation,
     skipLinks,
+    StepNavigation,
     Tabs,
     TabsNavigation
 };
