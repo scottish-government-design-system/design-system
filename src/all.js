@@ -38,6 +38,7 @@ const components = {
     NotificationBanner,
     SideNavigation,
     skipLinks,
+    StepNavigation,
     Tabs,
     TabsNavigation
 };

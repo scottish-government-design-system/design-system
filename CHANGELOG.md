@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.307] - 2022-11-01
+### Added 
+- include draft "step navigation" component window.DS.components
+
 ## [0.0.306] - 2022-11-01
 ### Added 
 - include draft "step navigation" component in all-components.scss and all.js
