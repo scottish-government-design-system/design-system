@@ -8,6 +8,7 @@
     @include ds_responsive-padding(2, bottom);
     @include ds_responsive-padding(3, left);
     @include ds_responsive-padding(3, right);
+    @include ds_last-child-no-margin;
 
     background: $ds_colour__grey--lighter;
     border-left: 4px solid $ds_colour__brand;
@@ -23,9 +24,5 @@
 
     &__label +  &__title {
         margin-top: 0;
-    }
-
-    &__content {
-        @include ds_last-child-no-margin;
     }
 }

@@ -13,6 +13,11 @@ $step-content-line-height--medium: 32px;
 .ds_step-navigation {
     counter-reset: section;
 
+    &__title {
+        font-size: $h3-size;
+        line-height: 1.5rem;
+    }
+
     &__title-link {
         display: block;
         border-top: 1px solid $ds_colour__border--light;
@@ -34,8 +39,6 @@ $step-content-line-height--medium: 32px;
     }
 
     &__count {
-        @include ds_h4-size;
-
         background-color: $ds_colour__white;
         border: 1px solid currentColor;
         border-radius: 20px;
@@ -43,13 +46,14 @@ $step-content-line-height--medium: 32px;
         content: counter(section);
         counter-increment: section;
         display: block;
+        font-size: $root-font-size;
         font-weight: $bold;
         height: $step-count-size;
         left: #{$step-count-margin * -1};
         line-height: #{$step-count-size - 2px};
         position: absolute;
         text-align: center;
-        top: px-to-rem(11px);
+        top: px-to-rem(12px);
         width: $step-count-size;
     }
 
@@ -78,7 +82,7 @@ $step-content-line-height--medium: 32px;
         }
 
         &:last-child::before {
-            bottom: 0;
+            bottom: 0 !important;
         }
 
         &:last-child::after {
@@ -106,19 +110,20 @@ $step-content-line-height--medium: 32px;
 }
 
 @include ds_media-query(medium) {
-    .ds_step-navigation {
-        &__count {
+    .ds_step-navigation:not(.ds_step-navigation--small) {
+        .ds_step-navigation__count {
+            font-size: $root-font-size--medium;
             height: $step-count-size--medium;
             left: #{$step-count-margin--medium * -1};
             line-height: #{$step-count-size--medium - 2px};
             width: $step-count-size--medium;
         }
 
-        .ds_current &__count {
+        .ds_current .ds_step-navigation__count {
             line-height: #{$step-count-size--medium - 4px};
         }
 
-        &__current-link::before {
+        .ds_step-navigation__current-link::before {
             left: #{($step-count-size--medium / 2) - $step-count-margin--medium};
             margin-top: #{$step-content-line-height--medium / 2};
         }
@@ -127,16 +132,14 @@ $step-content-line-height--medium: 32px;
             margin-left: $step-count-margin--medium;
         }
 
-        .ds_accordion-item {
-            &::before {
-                bottom: px-to-rem(-17px);
-                left: #{($step-count-size--medium / 2) - $step-count-margin--medium};
-                top: px-to-rem(49px);
-            }
+        .ds_accordion-item::before {
+            bottom: px-to-rem(-17px);
+            left: #{($step-count-size--medium / 2) - $step-count-margin--medium};
+            top: px-to-rem(49px);
+        }
 
-            &:last-child::after {
-                left: #{($step-count-size--medium / 2) - $step-count-margin--medium - 6px};
-            }
+        .ds_accordion-item:last-child::after {
+            left: #{($step-count-size--medium / 2) - $step-count-margin--medium - 6px};
         }
     }
 }

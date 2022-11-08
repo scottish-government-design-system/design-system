@@ -6,6 +6,17 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.308] - 2022-11-08
+### Added 
+- add "small" accordion variant
+- add "small" step navigation variant
+### Fixed
+- use correct outline colour for checkbox/radio hover state
+- adjust spacing of accordion so that it fits on the 8px grid correctly
+### Changed
+- move "last child no margin" to the correct part of callout
+- minor spacing corrections to step navigation
+
 ## [0.0.307] - 2022-11-01
 ### Added 
 - include draft "step navigation" component window.DS.components

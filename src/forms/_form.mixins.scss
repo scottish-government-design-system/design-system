@@ -94,7 +94,7 @@
 
     /// hover
     &--small &__input:hover + &__label::before {
-        box-shadow: 0 0 0 $small-shadow-size #ccc;
+        box-shadow: 0 0 0 $small-shadow-size $ds_colour__grey--medium;
     }
 
     /// hover-focus

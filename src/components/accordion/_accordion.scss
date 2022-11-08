@@ -9,7 +9,8 @@ $accordion__header-colour: $ds_colour__link !default;
 
 
 .ds_accordion {
-    @include ds_block-margins;
+    @include ds_responsive-margin (4, bottom, false, -1px);
+    @include ds_responsive-margin (4, top);
 
     position: relative;
 
@@ -53,7 +54,7 @@ h1,h2,h3 {
         color: $accordion__header-colour;
         font-weight: $bold;
         margin: 0;
-        padding: 15px 40px 15px 16px; /// [1]
+        padding: 16px 48px 15px 16px; /// [1]
         position: relative;
         text-align: left;
         width: 100%;
@@ -146,14 +147,27 @@ h1,h2,h3 {
 
 @include ds_media-query(medium) {
     .ds_accordion-item {
-        &__header,
-        &__header-button,
-        &__body {
-            padding-right: 100px;
-        }
-
         &__indicator {
             right: 26px;
         }
+    }
+}
+
+
+
+
+/* SMALL VARIANT */
+
+.ds_accordion--small {
+    .ds_accordion-item__button,
+    .ds_accordion-item__header-button,
+    .ds_accordion-item__body,
+    .ds_accordion__open-all {
+        font-size: $root-font-size;
+        line-height: 1.5rem;
+    }
+
+    .ds_accordion-item__body {
+        padding-right: 16px;
     }
 }
