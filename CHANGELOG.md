@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.309] - 2022-11-09
+### Added 
+- add tracking attributes to step navigation
+
 ## [0.0.308] - 2022-11-08
 ### Added 
 - add "small" accordion variant

@@ -6,8 +6,6 @@ import Tracking from './tracking';
 import Accordion from '../../../components/accordion/accordion';
 import Autocomplete from "../../../components/autocomplete/autocomplete";
 import SideNavigation from '../../../components/side-navigation/side-navigation';
-import Tabs from '../../../components/tabs/tabs';
-import TabsNavigation from '../../../components/tabs/tabs-navigation';
 
 describe('tracking', () => {
     beforeEach(() => {
@@ -1349,6 +1347,27 @@ describe('tracking', () => {
             Tracking.add.skipLinks();
 
             expect(link.getAttribute('data-navigation')).toEqual('skip-link-foo');
+        });
+    });
+
+    describe('step navigationd', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('step-navigation');
+        });
+
+        it('should set data attributes on each link in a "part of" top bar', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_step-navigation-top a'));
+            Tracking.add.stepNavigation();
+
+            expect(links[0].getAttribute('data-navigation')).toEqual('partof-header');
+            expect(links[1].getAttribute('data-navigation')).toEqual('partof-header');
+        });
+
+        it('should set a data attribute the sidebar "part of" link', () => {
+            const link = testObj.scope.querySelector('.ds_step-navigation__title-link');
+            Tracking.add.stepNavigation();
+
+            expect(link.getAttribute('data-navigation')).toEqual('partof-sidebar');
         });
     });
 

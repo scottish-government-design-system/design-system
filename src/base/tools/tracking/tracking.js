@@ -634,6 +634,22 @@ const tracking = {
             });
         },
 
+        stepNavigation: function (scope = document) {
+            const stepNavigations = tracking.gatherElements('ds_step-navigation', scope);
+            stepNavigations.forEach(stepNavigation => {
+                const partOfLink = stepNavigation.querySelector('.ds_step-navigation__title-link');
+                partOfLink.setAttribute('data-navigation', 'partof-sidebar');
+            });
+
+            const stepNavigationTopBars = tracking.gatherElements('ds_step-navigation-top', scope);
+            stepNavigationTopBars.forEach(stepNavigationTopBar => {
+                const partOfLinks = [].slice.call(stepNavigationTopBar.querySelectorAll('a'));
+                partOfLinks.forEach(partOfLink => {
+                    partOfLink.setAttribute('data-navigation', 'partof-header');
+                });
+            });
+        },
+
         tabs: function (scope = document) {
             const tabComponent = tracking.gatherElements('ds_tabs', scope);
             let tabSet = 1;

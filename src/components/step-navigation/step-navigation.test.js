@@ -8,7 +8,9 @@ describe('step navigation', () => {
     beforeEach(function () {
         loadFixtures('components/step-navigation/step-navigation.html');
         testObj.stepNavigationElement = document.querySelector('#stepNav');
+    });
 
+    it('should highlight the current link', () => {
         const _window = {
             location: {
                 origin: window.location.origin,
@@ -17,9 +19,6 @@ describe('step navigation', () => {
         };
 
         testObj.stepNavigationModule = new stepNav(testObj.stepNavigationElement, _window);
-    });
-
-    it('should highlight the current link', () => {
         testObj.stepNavigationModule.init();
 
         const targetLink = document.querySelector('#target-link');
@@ -27,5 +26,11 @@ describe('step navigation', () => {
 
         expect(targetLink.classList.contains('ds_step-navigation__current-link')).toBeTrue();
         expect(currentBodyLinks.length).toEqual(1);
+    });
+
+    it('should use the native window object by default', () => {
+        testObj.stepNavigationModule = new stepNav(testObj.stepNavigationElement);
+
+        expect(testObj.stepNavigationModule.window).toEqual(window);
     });
 });
