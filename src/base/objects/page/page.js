@@ -4,10 +4,12 @@ const Page = {
     init() {
         if (!CSS.supports('selector(html:has(body))')) {
             const pageMiddle = document.querySelector('.ds_page__middle');
-            const preFooterBlock = pageMiddle.querySelector('.ds_pre-footer-background');
+            if (pageMiddle) {
+                const preFooterBlock = pageMiddle.querySelector('.ds_pre-footer-background');
 
-            if (preFooterBlock) {
-                pageMiddle.classList.add('js-pre-footer-background');
+                if (preFooterBlock) {
+                    pageMiddle.classList.add('js-pre-footer-background');
+                }
             }
         }
     }

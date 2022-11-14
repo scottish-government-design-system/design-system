@@ -6,6 +6,7 @@ import BackToTop from './components/back-to-top/back-to-top';
 import CharacterCount from './forms/character-count/character-count';
 import Checkboxes from './forms/checkbox/checkboxes';
 import CookieNotification from './components/cookie-notification/cookie-notification';
+import Details from './components/details/details';
 import DSDatePicker from './components/date-picker/date-picker';
 import HidePage from './components/hide-this-page/hide-this-page';
 import MobileMenu from './components/site-navigation/site-navigation';
@@ -31,6 +32,7 @@ const components = {
     CharacterCount,
     Checkboxes,
     CookieNotification,
+    Details,
     DSDatePicker,
     HidePage,
     MobileMenu,
@@ -47,6 +49,7 @@ const components = {
 // defaults to document
 function initAll(scope = document) {
     page.init();
+    console.log('initall')
 
     const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
     accordions.forEach(accordion => new Accordion(accordion).init());
@@ -74,6 +77,9 @@ function initAll(scope = document) {
 
     const datePickers = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]'));
     datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
+
+    const detailsModules = [].slice.call(document.querySelectorAll('[data-module="ds-details"]'));
+    detailsModules.forEach(details => new Details(details).init());
 
     // this one is handled differently because it applies an event to the whole body and we only want that event once
     const hidePageButtons = [].slice.call(scope.querySelectorAll('.ds_hide-page'));
@@ -127,6 +133,7 @@ export {
     CharacterCount,
     Checkboxes,
     CookieNotification,
+    Details,
     DSDatePicker,
     HidePage,
     MobileMenu,

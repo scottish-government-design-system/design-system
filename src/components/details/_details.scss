@@ -1,0 +1,41 @@
+/*------------------------------------*\
+    DETAILS
+\*------------------------------------*/
+
+.ds_details {
+    @include ds_block-margins;
+}
+
+.ds_details__summary {
+  @include ds_link;
+  @include ds_responsive-padding(4, left);
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  &::before {
+    content: '';
+    border-bottom: 0.4em solid transparent;
+    border-left: 0.8em solid currentColor;
+    border-right: 0;
+    border-top: 0.4em solid transparent;
+    display: block;
+    height: 0;
+    left: 0;
+    position: absolute;
+    top: calc(50% - 0.4em);
+    transition: transform $transition-in-time;
+    width: 0;
+  }
+}
+
+.ds_details[open] .ds_details__summary::before {
+    transform: rotate(90deg);
+}
+
+.ds_details__text {
+    border-left: 8px solid #b3b3b3;
+    @include ds_responsive-margin(1, top);
+    @include ds_responsive-padding(1);
+    @include ds_responsive-padding(4, left, false, -8px);
+}
