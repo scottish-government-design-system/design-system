@@ -6,9 +6,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.311] - 2022-11-15
+### Added 
+- add draft "Summary list" component
+
 ## [0.0.310] - 2022-11-14
 ### Added 
 - add draft "Details" component
+### Fixed
+- script error in IE11 when expected elements for page footer are not present
 
 ## [0.0.309] - 2022-11-09
 ### Added 

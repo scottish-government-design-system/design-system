@@ -1,0 +1,74 @@
+/*------------------------------------*\
+    #SUMMARY LIST
+\*------------------------------------*/
+
+
+.ds_summary-list {
+    list-style-type: none;
+    margin-left: 0;
+
+    &__key {
+        font-weight: bold;
+    }
+
+    &__item {
+        border-bottom: 1px solid $ds_colour__border;
+        padding-bottom: 8px;
+    }
+
+    &__answer::before,
+    &__answer::after {
+        content: '';
+    }
+
+    &__value {
+        display: inline;
+        margin: 0 1em;
+    }
+
+    &__actions {
+        @include ds_small-size;
+        display: inline;
+
+        > button {
+            @include ds_small-size;
+        }
+    }
+}
+
+@include ds_media-query(medium) {
+    .ds_summary-list {
+        &__item {
+            display: grid;
+            grid-gap: 0 16px;
+            grid-template-areas: 'k k' 'v a';
+            grid-template-columns: 1fr auto;
+        }
+
+        &__key {
+            grid-area: k;
+        }
+
+        &__value {
+            grid-area: v;
+            margin-right: 0;
+        }
+
+        &__actions {
+            grid-area: a;
+        }
+    }
+}
+
+@include ds_media-query(large) {
+    .ds_summary-list {
+        &__item {
+            grid-template-columns: 4fr 3fr 1fr;
+            grid-template-areas: 'k v a';
+        }
+
+        &__actions {
+            text-align: right;
+        }
+    }
+}
