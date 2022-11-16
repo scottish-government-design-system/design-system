@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.312] - 2022-11-16
+### Changed 
+- style updates for details and summary list components
+
 ## [0.0.311] - 2022-11-15
 ### Added 
 - add draft "Summary list" component

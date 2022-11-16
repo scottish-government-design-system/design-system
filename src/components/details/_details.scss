@@ -2,6 +2,9 @@
     DETAILS
 \*------------------------------------*/
 
+$details-border-width: 4px;
+$details-icon-size: #{1em * 8px / $root-font-size--medium};
+
 .ds_details {
     @include ds_block-margins;
 }
@@ -15,15 +18,15 @@
 
   &::before {
     content: '';
-    border-bottom: 0.4em solid transparent;
-    border-left: 0.8em solid currentColor;
+    border-bottom: $details-icon-size solid transparent;
+    border-left: $details-icon-size solid currentColor;
     border-right: 0;
-    border-top: 0.4em solid transparent;
+    border-top: $details-icon-size solid transparent;
     display: block;
     height: 0;
-    left: 0;
+    left: 0.25em;
     position: absolute;
-    top: calc(50% - 0.4em);
+    top: calc(50% - #{$details-icon-size} + 1px); // 1px magic number for optical alignment in preference to mathematic alignment
     transition: transform $transition-in-time;
     width: 0;
   }
@@ -34,8 +37,8 @@
 }
 
 .ds_details__text {
-    border-left: 8px solid #b3b3b3;
-    @include ds_responsive-margin(1, top);
+    border-left: $details-border-width solid #b3b3b3;
+    @include ds_responsive-margin(2, top);
     @include ds_responsive-padding(1);
-    @include ds_responsive-padding(4, left, false, -8px);
+    @include ds_responsive-padding(4, left, false, #{$details-border-width} * -1);
 }
