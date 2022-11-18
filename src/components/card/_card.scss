@@ -82,6 +82,10 @@
         margin-top: 0 !important;
     }
 
+    &__link--cover {
+        @include ds_high-contrast-focus;
+    }
+
     &__link--cover:after {
         content: "";
         height: 100%;

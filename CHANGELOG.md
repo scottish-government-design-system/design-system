@@ -6,6 +6,16 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.313] - 2022-11-18
+### Changed 
+- windows high contrast compatibility review:
+  - tag component has outline
+  - notification panels have outline
+  - highlighted text is visible on autocomplete suggestions
+  - highlight marker is visible on autocomplete suggestions
+  - card links have an outline
+  - details component "arrow" indicator renders correctly
+
 ## [0.0.312] - 2022-11-16
 ### Changed 
 - style updates for details and summary list components

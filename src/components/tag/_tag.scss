@@ -17,6 +17,8 @@ $tag__background-colour: $ds_colour__brand !default;
     font-weight: $bold;
     padding: 0 10px;
     text-transform: uppercase;
+
+    @include ds_high-contrast-outline;
 }
 
 .ds_reversed .ds_tag {

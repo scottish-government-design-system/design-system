@@ -10,26 +10,24 @@ $details-icon-size: #{1em * 8px / $root-font-size--medium};
 }
 
 .ds_details__summary {
-  @include ds_link;
-  @include ds_responsive-padding(4, left);
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
+    @include ds_link;
+    @include ds_responsive-padding(4, left);
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
 
-  &::before {
-    content: '';
-    border-bottom: $details-icon-size solid transparent;
-    border-left: $details-icon-size solid currentColor;
-    border-right: 0;
-    border-top: $details-icon-size solid transparent;
-    display: block;
-    height: 0;
-    left: 0.25em;
-    position: absolute;
-    top: calc(50% - #{$details-icon-size} + 1px); // 1px magic number for optical alignment in preference to mathematic alignment
-    transition: transform $transition-in-time;
-    width: 0;
-  }
+    &::before {
+        background-color: currentColor;
+        clip-path: polygon(0 0, 100% 50%, 0 100%);
+        content: '';
+        display: block;
+        height: calc(#{$details-icon-size} * 2);
+        left: 0.25em;
+        position: absolute;
+        top: calc(50% - #{$details-icon-size} + 1px); // 1px magic number for optical alignment in preference to mathematic alignment
+        transition: transform $transition-in-time;
+        width: $details-icon-size;
+    }
 }
 
 .ds_details[open] .ds_details__summary::before {

@@ -11,6 +11,8 @@
     background: $ds_colour__grey--lighter;
     text-align: center;
 
+    @include ds_high-contrast-outline(4px);
+
     // Add top margin if placed below another item
     &:not(:first-child) {
         @include ds_responsive-margin(6, top);

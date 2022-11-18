@@ -18,6 +18,7 @@ a,
     min-height: 0;
     min-width: 0;
     padding: 0;
+    text-align: left; // .ds_link applied to a button would otherwise have centered text
 }
 
 .ds_reversed {

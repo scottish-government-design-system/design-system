@@ -49,7 +49,6 @@ const components = {
 // defaults to document
 function initAll(scope = document) {
     page.init();
-    console.log('initall')
 
     const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
     accordions.forEach(accordion => new Accordion(accordion).init());

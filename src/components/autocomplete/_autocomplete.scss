@@ -19,8 +19,9 @@
     }
 
     /*
-     [1] 18px = 20px (associated site search input) minus 2px (suggestions border)
-     */
+      [1] 18px = 20px (associated site search input) minus 2px (suggestions border)
+      [2] 14px = the 18px from [1] minus the 4px border
+    */
     &__suggestion {
         background-color: $ds_colour__white;
         color: $ds_colour__text--secondary;
@@ -36,7 +37,8 @@
 
         &.active {
             background-color: $ds_colour__link--focus__background;
-            box-shadow: inset 4px 0 0 $ds_colour__link--focus;
+            border-left: 4px solid $ds_colour__link--focus;
+            padding-left: 14px; /* [2] */
         }
 
         &:not(:last-child) {
@@ -55,8 +57,11 @@
 
     &__highlight {
         background-color: transparent;
-        color: $ds_colour__text;
         font-weight: $bold;
+
+        @media screen and (forced-colors: active) and (prefers-contrast: more) {
+            color: highlight;
+        }
     }
 }
 
