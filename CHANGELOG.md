@@ -6,6 +6,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.313] - 2022-11-19
+### Fixed
+- windows high contrast mode fixes:
+  - outline colour on tag and notification panel changed to match text colour
+  - highlighted autocomplete suggestion text colour and border colour changed to the "highlight" keyword colour
+  - card links have an outline on focus only
+
 ## [0.0.313] - 2022-11-18
 ### Changed 
 - windows high contrast compatibility review:

@@ -39,6 +39,11 @@
             background-color: $ds_colour__link--focus__background;
             border-left: 4px solid $ds_colour__link--focus;
             padding-left: 14px; /* [2] */
+
+            @media screen and (forced-colors: active) and (prefers-contrast: more) {
+                border-left-color: highlight;
+                color: highlight;
+            }
         }
 
         &:not(:last-child) {

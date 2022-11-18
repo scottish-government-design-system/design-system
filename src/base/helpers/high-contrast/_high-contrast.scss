@@ -14,7 +14,7 @@
 
 @mixin ds_high-contrast-outline($width: 2px) {
     @media screen and (forced-colors: active) and (prefers-contrast: more) {
-        outline: $width solid highlight !important;
+        outline: $width solid currentColor !important;
         outline-offset: #{$width * -1} !important;
     }
 }

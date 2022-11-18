@@ -82,7 +82,7 @@
         margin-top: 0 !important;
     }
 
-    &__link--cover {
+    &__link--cover:focus {
         @include ds_high-contrast-focus;
     }
 
