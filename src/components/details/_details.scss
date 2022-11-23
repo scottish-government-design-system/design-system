@@ -36,6 +36,7 @@ $details-icon-size: #{1em * 8px / $root-font-size--medium};
 
 .ds_details__text {
     border-left: $details-border-width solid #b3b3b3;
+    box-sizing: border-box;
     @include ds_responsive-margin(2, top);
     @include ds_responsive-padding(1);
     @include ds_responsive-padding(4, left, false, #{$details-border-width} * -1);

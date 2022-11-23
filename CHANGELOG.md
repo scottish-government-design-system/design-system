@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.314] - 2022-11-23
+### Fixed
+- box sizing for "Details" component
+
 ## [0.0.313] - 2022-11-19
 ### Fixed
 - windows high contrast mode fixes:
