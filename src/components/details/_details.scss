@@ -39,5 +39,5 @@ $details-icon-size: #{1em * 8px / $root-font-size--medium};
     box-sizing: border-box;
     @include ds_responsive-margin(2, top);
     @include ds_responsive-padding(1);
-    @include ds_responsive-padding(4, left, false, #{$details-border-width} * -1);
+    @include ds_responsive-padding(4, left, false, calc(#{$details-border-width} * -1));
 }

@@ -6,11 +6,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
-## [0.0.314] - 2022-11-23
+## [0.0.316] - 2022-11-24
+### Fixed
+- Sass compilation error for "Details" component
+
+## [0.0.315] - 2022-11-23
 ### Fixed
 - box sizing for "Details" component
 
-## [0.0.313] - 2022-11-19
+## [0.0.314] - 2022-11-19
 ### Fixed
 - windows high contrast mode fixes:
   - outline colour on tag and notification panel changed to match text colour

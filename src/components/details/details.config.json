@@ -1,0 +1,34 @@
+{
+    "label": "Details",
+    "status": "ready",
+    "context": {
+        "params": {
+            "summary": "System requirements",
+            "details": "Requires a computer running an operating system. The computer must have some memory and ideally some kind of long-term storage. An input device as well as some form of output device is recommended."
+        }
+    },
+    "variants": [
+        {
+            "name": "Form elements",
+            "label": "Form elements",
+            "status": "prototype",
+            "context": {
+                "params":{
+                    "summary": "Some form elements",
+                    "details": false,
+                    "form": true
+                }
+            }
+        },
+        {
+            "name": "Multiple paragraphs",
+            "label": "Multiple paragraphs",
+            "status": "prototype",
+            "context": {
+                "params":{
+                    "details": "<p>Requires a computer running an operating system.</p><p>The computer must have some memory and ideally some kind of long-term storage. An input device as well as some form of output device is recommended.</p>"
+                }
+            }
+        }
+    ]
+}
