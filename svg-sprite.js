@@ -6,16 +6,9 @@ const mkdirp = require('mkdirp');
 const fs = require('fs');
 const File = require('vinyl');
 const glob = require('glob');
-const argv = require('minimist')(process.argv.slice(2));
 
 const filename = "icons.stack.svg";
-let destpath;
-
-if (argv.d) {
-    destpath = 'dev/assets/images/icons/';
-} else {
-    destpath = 'dist/images/icons/';
-}
+const destpath = 'dist/images/icons/';
 
 const config = {
     "log": "",

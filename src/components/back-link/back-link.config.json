@@ -1,9 +1,0 @@
-{
-    "label": "Back link",
-    "status": "prototype",
-    "context": {
-        "params": {
-            "label": "Back"
-        }
-    }
-}

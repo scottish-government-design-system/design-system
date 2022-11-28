@@ -1,8 +1,0 @@
-<dl class="ds_metadata {%- if params.modifiers %} {{ params.modifiers }}{%- endif -%}">
-{% for item in params.items -%}
-    <div class="ds_metadata__item">
-        <dt class="ds_metadata__key {%- if item.hideKey %} visually-hidden{%- endif -%}">{{ item.key }}</dt>
-        <dd class="ds_metadata__value">{{ item.value }}</dd>
-    </div>
-{%- endfor %}
-</dl>

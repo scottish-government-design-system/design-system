@@ -1,9 +1,0 @@
-{%- if params.dateRangeStart and params.dateRangeEnd -%}
-{%- set moduleDateRange = ["data-maxdate=\"", params.dateRangeEnd, "\" data-mindate=\"", params.dateRangeStart, "\""] | join %}
-{%- endif -%}
-<div data-module="ds-datepicker" class="ds_datepicker">
-  <label class="ds_label" for="start-date">{{ params.label }}</label>
-  <div class="ds_input__wrapper">
-    <input {%- if params.dateFormat %} data-dateformat="{{params.dateFormat}}"{%- endif %} id="start-date" {{ moduleDateRange | safe}} placeholder="{{ params.placeholder }}" type="text" class="ds_input ds_input--fixed-10" />
-  </div>
-</div>

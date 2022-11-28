@@ -1,6 +1,0 @@
-{{- params.intro | safe }}
-<{{ params.listType }}{%- if params.modifiers %} class="{{ params.modifiers }}"{%- endif %}> 
-{% for item in params.list -%}
-    <li>{{ item.content }}</li> 
-{%- endfor %}
-</{{ params.listType }}>

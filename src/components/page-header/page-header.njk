@@ -1,9 +1,0 @@
-<header class="ds_page-header">
-    {%- if params.label %}
-    <span class="ds_page-header__label ds_content-label">{{ params.label }}</span>
-    {%- endif %}
-    <h1 class="ds_page-header__title">{{ params.heading }}</h1>
-    {%- if params.metadata %}
-    {% render '@metadata', params.metadata -%}
-    {%- endif %}
-</header>

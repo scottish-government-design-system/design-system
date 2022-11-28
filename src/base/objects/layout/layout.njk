@@ -1,9 +1,0 @@
-<div class="ds_wrapper">
-    <main class="ds_layout {%- if params.modifiers %} {{ params.modifiers }}{%- endif %}">
-        {%- for area in params.areas %}
-        <div class="{{ area.name }}" style="{{ area.styles | safe }}">
-            {{ area.content | safe }}
-        </div>
-        {%- endfor %}
-    </main>
-</div>

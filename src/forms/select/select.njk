@@ -1,8 +1,0 @@
-<div class="ds_select-wrapper {%- if params.size %} {{ params.size }} {%- endif %}">
-    <select class="ds_select {%- if params.error %} ds_select--error{%- endif %}">
-        {%- for option in params.list %}
-        <option value="{{ option.value }}" {%- if option.selected %} selected{%- endif %}>{{ option.label }}</option>
-        {%- endfor %}
-    </select>
-    <span class="ds_select-arrow" aria-hidden="true"></span>
-</div>

@@ -1,7 +1,0 @@
-{%- for icon in params.icons -%}
-{{- icon.iconWrapperStart | safe }}
-<svg class="ds_icon {%- if icon.iconSize %} ds_icon--{{ icon.iconSize }}{%- endif -%}{%- if icon.iconFill %} ds_icon--fill{%- endif -%}" {%- if icon.iconStyle %} style="{{ icon.iconStyle | safe }}"{%- endif -%} aria-hidden="true" role="img">
-    <use href="{{ icon.iconSrc | path }}"></use>
-</svg>
-{{ icon.iconWrapperEnd | safe -}}
-{% endfor %}

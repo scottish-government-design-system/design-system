@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.317] - 2022-11-29
+### Removed
+- Fractal removed from the Pattern Library. It is now available in a separate repository.
+
 ## [0.0.316] - 2022-11-24
 ### Fixed
 - Sass compilation error for "Details" component

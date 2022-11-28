@@ -1,8 +1,0 @@
-{
-    "label": "Hint text",
-    "context": {
-        "params": {
-            "hint": "This is hint text"
-        }
-    }
-}

@@ -1,7 +1,0 @@
-{%- if params.type == 'textarea' %}
-<textarea class="ds_input {%- if params.error %}  ds_input--error{%- endif %} {%- if params.size %}  {{ params.size }}{%- endif %}" {%- if params.rows %} rows="{{ params.rows }}"{%- endif %} id="{{ params.id }}" {%- if params.required %} required{%- endif %} {%- if params.errorId %} aria-describedby="{{params.errorId}}"{%- endif %}>{{ params.value }}</textarea>
-{%- elseif params.type == 'numeric' %}
-<input class="ds_input {%- if params.error %}  ds_input--error{%- endif %} {%- if params.size %}  {{ params.size }}{%- endif %}" type="text" id="{{ params.id }}" inputmode="numeric" pattern="[0-9]*" {%- if params.value %} value="{{ params.value }}"{%- endif %} {%- if params.required %} required{%- endif %} {%- if params.errorId %} aria-describedby="{{params.errorId}}"{%- endif %}/>
-{%- else %}
-<input class="ds_input {%- if params.error %}  ds_input--error{%- endif %} {%- if params.size %}  {{ params.size }}{%- endif %}" type="{{ params.type }}" id="{{ params.id }}" {%- if params.value %} value="{{ params.value }}"{%- endif %} {%- if params.required %} required{%- endif %} {%- if params.errorId %} aria-describedby="{{params.errorId}}"{%- endif %}/>
-{%- endif %}
