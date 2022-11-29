@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.318] - 2022-11-29
+### Changed
+- Summary list refactored to allow action links ("change") to be omitted without creating misalignment issues in the list
+- Summary list has a new "no border" variant
+
 ## [0.0.317] - 2022-11-29
 ### Removed
 - Fractal removed from the Pattern Library. It is now available in a separate repository.
