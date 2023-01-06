@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.319] - 2023-01-06
+### Added
+- Tracking attribute for prototype "Card" component 
+
 ## [0.0.318] - 2022-11-29
 ### Changed
 - Summary list refactored to allow action links ("change") to be omitted without creating misalignment issues in the list

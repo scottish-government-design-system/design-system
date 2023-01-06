@@ -582,6 +582,25 @@ describe('tracking', () => {
         });
     });
 
+    describe('cards', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('card');
+        });
+
+        it('should add data attributes to card links, one-indexed', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_card__link--cover'));
+            Tracking.add.cards();
+
+            links.forEach((link, index) => {
+                if (link.getAttribute('data-unit') === 'with-attribute') {
+                    expect(link.getAttribute('data-navigation')).toEqual(`card-foo`);
+                } else {
+                    expect(link.getAttribute('data-navigation')).toEqual(`card-${index + 1}`);
+                }
+            });
+        });
+    });
+
     describe('category lists', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('category-list');

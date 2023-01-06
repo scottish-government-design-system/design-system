@@ -183,6 +183,15 @@ const tracking = {
             });
         },
 
+        cards: function (scope = document) {
+            const linkedCards = tracking.gatherElements('ds_card__link--cover', scope);
+            linkedCards.forEach((link, index) => {
+                if (!link.getAttribute('data-navigation')) {
+                    link.setAttribute('data-navigation', `card-${index + 1}`);
+                }
+            });
+        },
+
         categoryLists: function (scope = document) {
             const categoryLists = tracking.gatherElements('ds_category-list', scope);
             categoryLists.forEach(categoryList => {
