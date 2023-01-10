@@ -130,7 +130,7 @@ class Autocomplete {
     }
 
     fetchSuggestions(searchTerm) {
-        return this.PromiseRequest(this.endpointUrl + searchTerm)
+        return this.PromiseRequest(this.endpointUrl + encodeURIComponent(searchTerm))
             .then(result => this.suggestionMappingFunction(result))
             .catch(result => console.log('fetch failed', result));
     }
