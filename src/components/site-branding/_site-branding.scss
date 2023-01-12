@@ -39,7 +39,7 @@ $site-branding-title-spacing--medium: 48px;
 
     &__title {
         font-weight: $light;
-        line-height: $site-logo__height;
+        line-height: px-to-rem(24px);
 
         &::before {
             background: $ds_colour__brand;
@@ -92,10 +92,6 @@ $site-branding-title-spacing--medium: 48px;
         display: flex;
         flex-flow: wrap;
         gap: px-to-rem(16px) 0;
-
-        &__title {
-            line-height: 1em;
-        }
 
         &__logo,
         &__title {

@@ -37,7 +37,8 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
     .ds_site-header__controls {
         float: right;
-        height: 100%;
+        height: calc(100% + 1px);
+        margin-bottom: -1px;
     }
 
     .ds_site-navigation {
