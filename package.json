@@ -10,10 +10,10 @@
   "license": "MIT",
   "scripts": {
     "prepublish": "del-cli --force ./dist; npm run webpack; npm run sass; npm run svgsprite; npm run test",
-    "sass": "sass --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
+    "sass": "./node_modules/sass/sass.js --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
     "svgsprite": "node svg-sprite",
     "test": "karma start ./karma.conf.js",
-    "webpack": "webpack"
+    "webpack": "./node_modules/webpack/bin/webpack.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",

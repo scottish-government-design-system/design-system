@@ -33,11 +33,11 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
     .ds_site-branding {
         float: left;
-        margin-right: 16px;
     }
 
     .ds_site-header__controls {
         float: right;
+        height: 100%;
     }
 
     .ds_site-navigation {
@@ -103,7 +103,7 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
         &__content {
             align-items: center;
             display: grid;
-            grid-template-columns: auto max-content;
+            grid-template-columns: 1fr auto;
             grid-template-areas: 'branding controls' 'nav nav' 'search search';
             overflow: initial;
         }
