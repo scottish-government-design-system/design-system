@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "prepublish": "del-cli --force ./dist; npm run webpack; npm run sass; npm run svgsprite; npm run test",
+    "prepublish": "npm run webpack && npm run sass && npm run svgsprite && npm run test",
     "sass": "./node_modules/sass/sass.js --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
     "svgsprite": "node svg-sprite",
     "test": "karma start ./karma.conf.js",
@@ -24,7 +24,6 @@
     "@babel/runtime": "^7.17.7",
     "babel-loader": "^8.2.3",
     "copy-webpack-plugin": "^10.2.4",
-    "del-cli": "^4.0.1",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jasmine-core": "^4.0.1",
     "jasmine-jquery": "^2.1.1",
