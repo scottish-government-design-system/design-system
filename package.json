@@ -9,11 +9,11 @@
   },
   "license": "MIT",
   "scripts": {
-    "prepublish": "npm run webpack && npm run sass && npm run svgsprite && npm run test",
-    "sass": "./node_modules/sass/sass.js --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
-    "svgsprite": "node svg-sprite",
+    "prepublish": "rimraf ./dist; npm run webpack && npm run sass && npm run svgsprite && npm run test",
+    "sass": "node ./node_modules/sass/sass --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
+    "svgsprite": "node ./svg-sprite",
     "test": "karma start ./karma.conf.js",
-    "webpack": "./node_modules/webpack/bin/webpack.js"
+    "webpack": "node ./node_modules/webpack/bin/webpack"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
@@ -38,6 +38,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-viewport": "^1.0.9",
     "karma-webpack": "^5.0.0",
+    "rimraf": "^3.0.2",
     "sass": "^1.49.9",
     "sealant": "^0.1.1",
     "svg-sprite": "^1.5.4",
