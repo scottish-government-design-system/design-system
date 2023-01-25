@@ -314,6 +314,16 @@ const tracking = {
             });
         },
 
+        externalLinks: function (scope = document, _window = window) {
+            const links = [].slice.call(scope.querySelectorAll('a'));
+            links.filter(link => {
+                const regex = new RegExp('/' + _window.location.hostname + '/|^tel:|^mailto:|^/');
+                return !regex.test(link.getAttribute('href'));
+            }).forEach(link => {
+                link.setAttribute('data-navigation', 'link-external');
+            });
+        },
+
         hideThisPage: function (scope = document) {
             const hideThisPageElements = tracking.gatherElements('ds_hide-page', scope);
             hideThisPageElements.forEach(hideThisPageElement => {

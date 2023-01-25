@@ -754,6 +754,54 @@ describe('tracking', () => {
         });
     });
 
+    describe('external links', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('external-links');
+            testObj._window = {
+                location: {
+                    hostname: 'www.mygov.scot'
+                }
+            };
+        });
+
+        it('should not add a data attribute to relative internal links', () => {
+            const link = testObj.scope.querySelector('#internal-relative');
+            Tracking.add.externalLinks(testObj.scope , testObj._window);
+            expect(link.getAttribute('data-navigation')).not.toEqual('link-external');
+        });
+
+        it('should not add a data attribute to absolute internal links', () => {
+            const link = testObj.scope.querySelector('#internal-absolute');
+            Tracking.add.externalLinks(testObj.scope , testObj._window);
+            expect(link.getAttribute('data-navigation')).not.toEqual('link-external');
+        });
+
+        it('should not add a data attribute to "tel:" links', () => {
+            const link = testObj.scope.querySelector('#tel');
+            Tracking.add.externalLinks(testObj.scope , testObj._window);
+            expect(link.getAttribute('data-navigation')).not.toEqual('link-external');
+        });
+
+        it('should not add a data attribute to "mailto:" links', () => {
+            const link = testObj.scope.querySelector('#mailto');
+            Tracking.add.externalLinks(testObj.scope , testObj._window);
+            expect(link.getAttribute('data-navigation')).not.toEqual('link-external');
+        });
+
+        it('should add a data attribute to links on other domains', () => {
+            const link = testObj.scope.querySelector('#external');
+            Tracking.add.externalLinks(testObj.scope , testObj._window);
+            expect(link.getAttribute('data-navigation')).toEqual('link-external');
+        });
+
+        it('should add a data attribute to links on other subdomains', () => {
+            const link = testObj.scope.querySelector('#external-subdomain');
+            Tracking.add.externalLinks(testObj.scope , testObj._window);
+            expect(link.getAttribute('data-navigation')).toEqual('link-external');
+        });
+
+    });
+
     describe('hide this page', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('hide-this-page');

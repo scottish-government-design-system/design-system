@@ -6,6 +6,37 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.326] - 2023-01-25
+### Added
+- add tracking attribute for external links
+
+## [0.0.325] - 2023-01-12
+### Fixed
+- corrections to scripts in package.json
+
+## [0.0.324] - 2023-01-12
+### Removed
+- no longer use del-cli in npm prepublish
+### Changed
+- use double ampersands for chained npm scripts for better cross-platform support
+
+## [0.0.323] - 2023-01-12
+### Changed
+- spacing adjustments to site header and branding
+
+## [0.0.322] - 2023-01-12
+### Changed
+- site header restyled for better display on small viewports
+- make sass and webpack npm tasks use scripts from node_modules
+
+## [0.0.321] - 2023-01-10
+### Fixed
+- regenerate package-lock.json with no nexus URLs
+
+## [0.0.320] - 2023-01-10
+### Fixed
+- use encodeURIComponent on term sent to autocomplete
+
 ## [0.0.319] - 2023-01-06
 ### Added
 - Tracking attribute for prototype "Card" component 
