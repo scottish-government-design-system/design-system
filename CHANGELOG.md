@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.327] - 2023-01-26
+### Fixed
+- reduce complexity of some CSS selectors
+- fix placement of accordion chevron icon
+
 ## [0.0.326] - 2023-01-25
 ### Added
 - add tracking attribute for external links

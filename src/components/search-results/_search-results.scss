@@ -2,24 +2,6 @@
     SEARCH RESULTS
 \*------------------------------------*/
 
-// Old layout for suggestions
-.ds_search-suggestions {
-    ul {
-        display: inline-block;
-        list-style-type: none;
-        margin: 0;
-
-        li {
-            display: inline-block;
-
-            &:not(:last-child)::after {
-                content: ',';
-                margin-left: -2px;
-            }
-        }
-    }
-}
-
 .ds_search-results {
 
     &__title {
@@ -35,7 +17,7 @@
 
     &__suggestions + &__title {
         @include ds_responsive-margin(2, top, $important: true);
-    }    
+    }
 
     &__list {
         border-bottom: 1px $ds_colour__border solid;

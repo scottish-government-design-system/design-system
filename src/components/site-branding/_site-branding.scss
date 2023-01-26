@@ -73,9 +73,6 @@ $site-branding-title-spacing--medium: 48px;
             height: $site-logo__height--medium;
         }
 
-        /*
-         * [1] magic number: maximum we can accommodate in the branding content area for two-line titles
-         */
         &__title {
             line-height: $site-logo__height--medium;
 
@@ -103,16 +100,17 @@ $site-branding-title-spacing--medium: 48px;
 
 
 
-
 // when branding is a child of a reversed-variant site header
-.ds_reversed .ds_site-branding {
-    color: $ds_colour__white;
-
-    .ds_site-branding__logo {
+.ds_reversed {
+    .ds_site-branding {
         color: $ds_colour__white;
 
-        &:not(:last-child)::before {
-            background-color: $ds_colour__white;
+        &__logo {
+            color: $ds_colour__white;
+
+            &:not(:last-child)::before {
+                background-color: $ds_colour__white;
+            }
         }
     }
 }

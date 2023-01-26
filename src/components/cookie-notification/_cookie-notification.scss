@@ -10,7 +10,7 @@ $cookie-notification__background-colour--success: $ds_colour__state--positive !d
 
 
 
-.ds_notification.ds_notification--cookie {
+.ds_notification--cookie {
     background: $cookie-notification__background-colour;
     color: $ds_colour__text;
 
@@ -20,6 +20,6 @@ $cookie-notification__background-colour--success: $ds_colour__state--positive !d
     }
 }
 
-.ds_notification.ds_notification--cookie-success {
+.ds_notification--cookie-success {
     background: $cookie-notification__background-colour--success;
 }

@@ -42,6 +42,7 @@ class CharacterCount {
         if (this.inputElement.getAttribute('maxlength')) {
             this.maxLength = parseInt(this.inputElement.getAttribute('maxlength'), 10);
             this.inputElement.removeAttribute('maxlength');
+            this.field.dataset.maxlength = this.maxLength;
         } else {
             this.maxLength = this.field.dataset.maxlength;
         }

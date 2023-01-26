@@ -23,15 +23,7 @@
         padding-bottom: 8px;
         position: relative;
         @include ds_responsive-margin(2, bottom, false, -1px);
-    }
-
-    &__answer::before,
-    &__answer::after {
-        content: '';
-    }
-
-    &:not(.ds_summary-list--no-border) {
-        .ds_summary-list__item::after {
+        &::after {
             background: $ds_colour__border;
             bottom: -1px;
             content: '';
@@ -40,6 +32,15 @@
             position: absolute;
             right: 0;
         }
+    }
+
+    &__answer::before,
+    &__answer::after {
+        content: '';
+    }
+
+    &--no-border &__item::after {
+        content: none;
     }
 }
 

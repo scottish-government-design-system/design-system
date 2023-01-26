@@ -148,6 +148,7 @@ h1,h2,h3 {
 @include ds_media-query(medium) {
     .ds_accordion-item {
         &__indicator {
+            margin-top: 3px; // nudges indicator to remain inline with first line of title
             right: 26px;
         }
     }
