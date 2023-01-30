@@ -6,6 +6,12 @@ import _storage from '../../base/tools/storage/storage';
 import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
 
 class CookieNotification {
+    private storage;
+    private cookieNoticeElement
+    private cookieNoticeSuccessElement;
+    private cookieAcceptAllButton;
+    private cookieAcceptEssentialButton;
+
     constructor(el, storage = _storage) {
         this.storage = storage;
 

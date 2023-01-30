@@ -3,6 +3,9 @@
 'use strict';
 
 class SideNavigation {
+    private sideNavigation: HTMLElement;
+    private navList: HTMLUListElement;
+
     constructor (sideNavigation) {
         this.sideNavigation = sideNavigation;
     }
@@ -15,9 +18,9 @@ class SideNavigation {
 
     setupSideNavigation() {
         // transform markup to button-driven version
-        const navControl = this.sideNavigation.querySelector('.js-toggle-side-navigation');
+        const navControl = <HTMLInputElement>this.sideNavigation.querySelector('.js-toggle-side-navigation');
         const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand');
-        const idString = parseInt(Math.random() * 1000000, 10);
+        const idString = Math.floor(Math.random() * 1000000);
         this.navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
         this.navList.id = this.navList.id || `side-navigation-${idString}`;
 
@@ -27,9 +30,9 @@ class SideNavigation {
         navButton.classList.add('ds_side-navigation__expand');
         navButton.classList.add('ds_link');
         navButton.classList.add('js-side-navigation-button');
-        navButton.setAttribute('aria-expanded', false);
+        navButton.setAttribute('aria-expanded', String(false));
         navButton.innerHTML = navLabel.innerHTML;
-        navButton.setAttribute('aria-expanded', false);
+        navButton.setAttribute('aria-expanded', String(false));
         navButton.setAttribute('aria-controls', this.navList.id);
 
         navLabel.parentNode.removeChild(navLabel);
@@ -47,7 +50,7 @@ class SideNavigation {
                 this.closeSideNav();
             }
 
-            navButton.setAttribute('aria-expanded', !isOpen);
+            navButton.setAttribute('aria-expanded', String(!isOpen));
             navControl.checked = !isOpen;
         });
 
@@ -70,7 +73,7 @@ class SideNavigation {
     }
 
     closeSideNav() {
-        this.navList.style.maxHeight = 0;
+        this.navList.style.maxHeight = String(0);
         window.setTimeout(() => {
             this.navList.style.display = 'none';
         }, 200);

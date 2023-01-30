@@ -54,7 +54,7 @@ describe('character count', () => {
             });
 
             it ('should set a max length correctly', () => {
-                const expectedMaxLength = testObj.characterCountElement.dataset.maxlength;
+                const expectedMaxLength = Number(testObj.characterCountElement.dataset.maxlength);
 
                 testObj.characterCountModule.init();
                 expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
@@ -213,7 +213,7 @@ describe('character count', () => {
             const inputElement = testObj.characterCountModule.inputElement;
             testObj.characterCountModule.init();
             spyOn(testObj.characterCountModule, 'updateCountMessage');
-            inputElement.oldValue = '123456';
+            inputElement.dataset.oldValue = '123456';
             inputElement.value = '123456';
             const event = new Event('keyup');
             inputElement.dispatchEvent(event);

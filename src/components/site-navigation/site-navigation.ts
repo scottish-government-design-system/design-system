@@ -3,7 +3,9 @@
 'use strict';
 
 class MobileMenu {
-    constructor (mobileMenu) {
+    private mobileMenu: HTMLElement;
+
+    constructor (mobileMenu:HTMLElement) {
         this.mobileMenu = mobileMenu;
     }
 
@@ -21,7 +23,7 @@ class MobileMenu {
         newMenuButton.setAttribute('class', oldMenuButton.getAttribute('class'));
         newMenuButton.classList.add('ds_link');
         newMenuButton.setAttribute('aria-controls', oldMenuButton.getAttribute('aria-controls'));
-        newMenuButton.setAttribute('aria-expanded', false);
+        newMenuButton.setAttribute('aria-expanded', String(false));
         oldMenuButton.parentNode.appendChild(newMenuButton);
         oldMenuButton.parentNode.removeChild(oldMenuButton);
 
@@ -36,12 +38,12 @@ class MobileMenu {
             if (this.mobileMenu.classList.contains('ds_site-navigation--open')) {
                 this.mobileMenu.classList.remove('ds_site-navigation--open');
                 newMenuButton.classList.remove('ds_site-header__control--active');
-                newMenuButton.setAttribute('aria-expanded', false);
+                newMenuButton.setAttribute('aria-expanded', String(false));
             } else {
-                this.mobileMenu.style.maxHeight = this.mobileMenu.scrollHeight;
+                this.mobileMenu.style.maxHeight = String(this.mobileMenu.scrollHeight);
                 this.mobileMenu.classList.add('ds_site-navigation--open');
                 newMenuButton.classList.add('ds_site-header__control--active');
-                newMenuButton.setAttribute('aria-expanded', true);
+                newMenuButton.setAttribute('aria-expanded', String(true));
             }
         });
     }

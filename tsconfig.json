@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist/scripts",
+        "allowJs": false,
+        "target": "es6",
+        "types": []
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules/**/*"]
+}

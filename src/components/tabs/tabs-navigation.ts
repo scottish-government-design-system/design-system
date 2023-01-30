@@ -5,19 +5,25 @@
 import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
 
 class TabsNavigation {
+    private resizeTimer;
+    private eventsEnabled;
+    private tabContainer;
+    private tabNavigation;
+    private tabTitle;
+    private tabList;
+    private boundOnResize;
+
     constructor(tabContainer) {
         this.resizeTimer = null;
         this.eventsEnabled = false;
 
         this.tabContainer = tabContainer;
         // The list containing the tabs
-        this.tabList = tabContainer.querySelector('.ds_tabs__list'); 
-        // The tab items
-        this.tabHeaders = [].slice.call(tabContainer.querySelectorAll('.ds_tabs__tab'));
-        // The tab navigation 
-        this.tabNavigation = tabContainer.querySelector('.ds_tabs__navigation'); 
+        this.tabList = tabContainer.querySelector('.ds_tabs__list');
+        // The tab navigation
+        this.tabNavigation = tabContainer.querySelector('.ds_tabs__navigation');
         // The tab navigation title
-        this.tabTitle = tabContainer.querySelector('.ds_tabs__title'); 
+        this.tabTitle = tabContainer.querySelector('.ds_tabs__title');
 
         // Handle resize events
         this.boundOnResize = this.onResize.bind(this)
@@ -32,7 +38,7 @@ class TabsNavigation {
             const navButton = document.createElement('button');
             const tabListId = this.tabList.getAttribute('id');
             navButton.classList.add('ds_tabs__toggle');
-            navButton.setAttribute('aria-expanded', false);
+            navButton.setAttribute('aria-expanded', String(false));
             navButton.innerHTML = this.tabTitle.innerHTML;
             navButton.setAttribute('aria-controls', tabListId);
             this.tabNavigation.insertBefore(navButton, this.tabList);
@@ -40,14 +46,14 @@ class TabsNavigation {
             // Event listener for button toggle
             navButton.addEventListener('click', () => {
                 if (navButton.getAttribute('aria-expanded') === 'true') {
-                    navButton.setAttribute('aria-expanded', false);
+                    navButton.setAttribute('aria-expanded', String(false));
                 } else {
-                    navButton.setAttribute('aria-expanded', true);
+                    navButton.setAttribute('aria-expanded', String(true));
                 }
             });
 
             // If current page label is shown use it as aria label for navigation
-            const currentPage = this.tabContainer.querySelector('.ds_tabs__current'); 
+            const currentPage = this.tabContainer.querySelector('.ds_tabs__current');
             if(currentPage) {
                 this.tabNavigation.setAttribute('aria-labelledby','ds_tabs__current');
             }
@@ -67,13 +73,13 @@ class TabsNavigation {
         }
     }
 
-    // Reset tabs to original 
+    // Reset tabs to original
     reset() {
         if (this.tabNavigation.classList.contains('js-initialised')) {
-            this.tabNavigation.classList.remove('js-initialised');   
+            this.tabNavigation.classList.remove('js-initialised');
 
             // Remove button
-            const navButton = this.tabContainer.querySelector('.ds_tabs__toggle'); 
+            const navButton = this.tabContainer.querySelector('.ds_tabs__toggle');
             navButton.parentNode.removeChild(navButton);
 
             // Set aria-labelledby back to using the tab list heading
@@ -84,7 +90,7 @@ class TabsNavigation {
     // Runs when the browser is resized - includes debounce to prevent multiple calls in quick succession
     onResize() {
         clearTimeout(this.resizeTimer);
-        this.resizeTimer = setTimeout(() => { 
+        this.resizeTimer = setTimeout(() => {
             if (breakpointCheck('medium')) {
                 this.reset();
             } else {

@@ -108,7 +108,8 @@ const storage = {
 
             const cookieData = {
                 name: name,
-                value: value
+                value: value,
+                expires: undefined
             };
 
             if (expires) {
@@ -192,6 +193,10 @@ const storage = {
         return true;
     }
 };
+
+declare global {
+    interface Window { storage: any; }
+}
 
 window.storage = storage;
 

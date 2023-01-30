@@ -1,13 +1,16 @@
 'use strict';
 
 class StepNavigation {
+    private container: HTMLElement;
+    private window: Window;
+
     constructor(container, _window = window) {
         this.container = container;
         this.window = _window;
     }
 
     init() {
-        const links = this.container.querySelectorAll('.ds_accordion-item__body a');
+        const links = [].slice.call(this.container.querySelectorAll('.ds_accordion-item__body a'));
 
         links.forEach(link => {
             if (link.href === this.window.location.origin + this.window.location.pathname) {

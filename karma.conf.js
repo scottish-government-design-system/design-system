@@ -1,24 +1,10 @@
 'use strict';
 
-const path = require('path');
 const webpackConfig = require('./webpack.config');
 const coverageDir = 'test/coverage';
 
-const instrumentationConfig = {
-    test: /\.js/,
-    exclude: /node_modules|\.test\.js$/,
-    enforce: 'post',
-    use: {
-        loader: 'istanbul-instrumenter-loader',
-        options: {
-            esModules: true
-        }
-    }
-};
-
 const testWebpackConfig = webpackConfig()[0];
 testWebpackConfig.mode = 'production';
-testWebpackConfig.module.rules.push(instrumentationConfig);
 delete testWebpackConfig.entry;
 delete testWebpackConfig.output;
 
@@ -32,19 +18,18 @@ module.exports = function (config) {
             'webpack'
         ],
         reporters: [
-            'mocha',
+            'dots',
             'coverage-istanbul'
         ],
         port: 9876,
         colors: true,
         logLevel: config.LOG_ERROR,
-        autoWatch: true,
+        autoWatch: false,
         browsers: ['ChromeHeadless'],
         singleRun: true,
 
         files: [
             'src/**/!(.test).js',
-            // 'src/components/**/*.test.js',
             'src/**/*.html',
         ],
 
@@ -53,7 +38,7 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            'src/**/!(.test).js': ['babel', 'webpack'],
+            'src/**/!(.test).js': ['webpack'],
             'src/**/**.test.js': ['webpack']
         },
 
@@ -63,6 +48,14 @@ module.exports = function (config) {
             fixWebpackSourcePaths: true,
             'report-config': {
                 html: { outdir: 'html' },
+            },
+            thresholds: {
+                global: {
+                    statements: 80,
+                    lines: 80,
+                    branches: 90,
+                    functions: 80
+                },
             }
         },
 

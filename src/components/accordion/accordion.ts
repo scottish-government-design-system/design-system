@@ -3,7 +3,11 @@
 'use strict';
 
 class Accordion {
-    constructor(accordion) {
+    private accordion: HTMLElement;
+    private items: Array<HTMLElement>;
+    private openAllButton: HTMLElement;
+
+    constructor(accordion: HTMLElement) {
         this.accordion = accordion;
         this.items = [].slice.call(accordion.querySelectorAll('.ds_accordion-item'));
         this.openAllButton = accordion.querySelector('.js-open-all');
@@ -11,7 +15,7 @@ class Accordion {
 
     init() {
         if (!this.accordion.classList.contains('js-initialised')) {
-            this.items.forEach((item, index) => this.initAccordionItem(item, index));
+            this.items.forEach((item) => this.initAccordionItem(item));
             if (this.openAllButton) {
                 this.initOpenAll();
             }
@@ -19,13 +23,13 @@ class Accordion {
         }
     }
 
-    initAccordionItem(item, index) {
+    initAccordionItem(item: HTMLElement) {
         // transform markup to button-driven version
-        const itemControl = item.querySelector('.ds_accordion-item__control');
+        const itemControl:HTMLInputElement = item.querySelector('.ds_accordion-item__control');
         const itemHeader = item.querySelector('.ds_accordion-item__header');
         const itemTitle = itemHeader.querySelector('.ds_accordion-item__title');
-        const itemBody = item.querySelector('.ds_accordion-item__body');
-        const idString = parseInt(Math.random() * 1000000, 10);
+        const itemBody:HTMLBodyElement = item.querySelector('.ds_accordion-item__body');
+        const idString = String(Math.floor(Math.random() * 1000000));
 
         const startsOpen = itemControl.checked;
 
@@ -60,7 +64,7 @@ class Accordion {
             }
         }
 
-        itemButton.setAttribute('aria-expanded', startsOpen);
+        itemButton.setAttribute('aria-expanded', String(startsOpen));
         itemButton.setAttribute('aria-controls', itemBody.id);
 
         // events
@@ -93,11 +97,11 @@ class Accordion {
         });
     }
 
-    toggleAccordionItem(item) {
+    toggleAccordionItem(item: HTMLElement) {
         const itemButton = item.querySelector('.js-accordion-button');
-        const itemControl = item.querySelector('.ds_accordion-item__control');
-        const body = item.querySelector('.ds_accordion-item__body');
-        const isOpen = item.classList.contains('ds_accordion-item--open');
+        const itemControl:HTMLInputElement = item.querySelector('.ds_accordion-item__control');
+        const body:HTMLBodyElement = item.querySelector('.ds_accordion-item__body');
+        const isOpen:boolean = item.classList.contains('ds_accordion-item--open');
 
         if (!isOpen) {
             item.classList.add('ds_accordion-item--open');
@@ -109,7 +113,7 @@ class Accordion {
                 body.style.removeProperty('max-height');
             }, 200);
         } else {
-            body.style.maxHeight = 0;
+            body.style.maxHeight = String(0);
             item.classList.remove('ds_accordion-item--open');
 
             window.setTimeout(function () {
@@ -117,7 +121,7 @@ class Accordion {
             }, 200);
         }
 
-        itemButton.setAttribute('aria-expanded', !isOpen);
+        itemButton.setAttribute('aria-expanded', String(!isOpen));
         itemControl.checked = !isOpen;
 
         if (this.openAllButton) {
@@ -125,7 +129,7 @@ class Accordion {
         }
     }
 
-    setOpenAllButton(open) {
+    setOpenAllButton(open: boolean) {
         if (open) {
             this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
         } else {
@@ -133,7 +137,7 @@ class Accordion {
         }
     }
 
-    checkAllOpen() {
+    checkAllOpen(): boolean {
         const openItemsCount = this.accordion.querySelectorAll('.ds_accordion-item--open').length;
 
         return (this.items.length === openItemsCount);

@@ -1,4 +1,4 @@
-function highlight(element, pattern, options) {
+function highlight(element, pattern, options:any = {}) {
     const defaults = {
         tagName: 'MARK',
         className: 'ds_autocomplete__highlight'
@@ -36,11 +36,11 @@ function highlight(element, pattern, options) {
             childNode = element.childNodes[i];
 
             if (childNode.nodeType === TEXT_NODE_TYPE) {
-                i += highlightTextNode(childNode, pattern) ? 1 : 0;
+                i += highlightTextNode(childNode) ? 1 : 0;
             }
 
             else {
-                traverse(childNode, highlightTextNode);
+                traverse(childNode);
             }
         }
     }

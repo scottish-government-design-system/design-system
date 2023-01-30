@@ -33,7 +33,7 @@ const components = {
     Checkboxes,
     CookieNotification,
     Details,
-    DSDatePicker,
+    // DSDatePicker,
     HidePage,
     MobileMenu,
     MobileTables,
@@ -115,6 +115,10 @@ function initAll(scope = document) {
     tabNavigationSets.forEach(tabNavigationSet => new TabsNavigation(tabNavigationSet).init());
 
     tracking.init();
+}
+
+declare global {
+    interface Window { DS: any; }
 }
 
 window.DS = window.DS || {};

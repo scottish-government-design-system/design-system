@@ -3,13 +3,17 @@
 'use strict';
 
 class MobileTables {
+    private boxesTables: HTMLTableElement[];
+    private scrollingTables: HTMLTableElement[];
+    private window: Window;
+
     constructor(_window = window) {
         this.window = _window;
     }
 
     init() {
-        this.scrollingTables = document.querySelectorAll('table[data-smallscreen="scrolling"]');
-        this.boxesTables = document.querySelectorAll('table[data-smallscreen="boxes"]');
+        this.scrollingTables = [].slice.call(document.querySelectorAll('table[data-smallscreen="scrolling"]'));
+        this.boxesTables = [].slice.call(document.querySelectorAll('table[data-smallscreen="boxes"]'));
 
         this.checkScrollingTables();
         this.window.addEventListener('resize', () => { this.checkScrollingTables(); });
@@ -19,7 +23,7 @@ class MobileTables {
 
     checkScrollingTables() {
         this.scrollingTables.forEach(table => {
-            if (table.querySelector('tbody').offsetWidth > table.parentNode.offsetWidth) {
+            if (table.querySelector('tbody').offsetWidth > (<HTMLElement>table.parentNode).offsetWidth) {
                 table.classList.add('js-is-scrolling');
             } else {
                 table.classList.remove('js-is-scrolling');

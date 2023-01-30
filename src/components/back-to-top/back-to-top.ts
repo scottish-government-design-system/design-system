@@ -3,7 +3,11 @@
 'use strict';
 
 class BackToTop {
-    constructor(el, _window = window, options = {}) {
+    private backToTopElement: HTMLElement;
+    private footerEl: HTMLElement;
+    private window: Window;
+
+    constructor(el, _window = window, options:any = {}) {
         if (options.footerElSelector) {
             this.footerEl = document.querySelector(options.footerElSelector);
         } else {

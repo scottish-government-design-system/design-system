@@ -3,10 +3,17 @@
 'use strict';
 
 class CharacterCount {
+    private emptyMessage: string;
+    private field: HTMLElement;
+    private inputElement: HTMLInputElement;
+    private maxLength: number;
+    private messageElement: HTMLElement;
+    private threshold: number;
+
     constructor(field) {
         this.field = field;
         this.inputElement = this.field.querySelector('input, textarea');
-        this.threshold = this.field.dataset.threshold ? this.field.dataset.threshold * 0.01 : 0;
+        this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0;
     }
 
     init() {
@@ -42,9 +49,9 @@ class CharacterCount {
         if (this.inputElement.getAttribute('maxlength')) {
             this.maxLength = parseInt(this.inputElement.getAttribute('maxlength'), 10);
             this.inputElement.removeAttribute('maxlength');
-            this.field.dataset.maxlength = this.maxLength;
+            this.field.dataset.maxlength = String(this.maxLength);
         } else {
-            this.maxLength = this.field.dataset.maxlength;
+            this.maxLength = Number(this.field.dataset.maxlength);
         }
     }
 
@@ -55,12 +62,12 @@ class CharacterCount {
      * in JavaScript, so we need to poll to handle when and if they occur."
      */
     checkIfChanged() {
-        if (!this.inputElement.oldValue) {
-            this.inputElement.oldValue = '';
+        if (!this.inputElement.dataset.oldValue) {
+            this.inputElement.dataset.oldValue = '';
         }
 
-        if (this.inputElement.value !== this.inputElement.oldValue) {
-            this.inputElement.oldValue = this.inputElement.value;
+        if (this.inputElement.value !== this.inputElement.dataset.oldValue) {
+            this.inputElement.dataset.oldValue = this.inputElement.value;
             this.updateCountMessage.bind(this)();
         }
     }
@@ -74,13 +81,13 @@ class CharacterCount {
         this.messageElement.innerText = `You have ${count} ${noun} remaining`;
         if (count < 0) {
             this.inputElement.classList.add('ds_input--error');
-            this.inputElement.setAttribute('aria-invalid', true);
+            this.inputElement.setAttribute('aria-invalid', String(true));
             this.messageElement.innerText = `You have ${Math.abs(count)} ${noun} too many`;
             this.messageElement.classList.add('ds_input__message--error');
         }
         else {
             this.inputElement.classList.remove('ds_input--error');
-            this.inputElement.setAttribute('aria-invalid', false);
+            this.inputElement.setAttribute('aria-invalid', String(false));
 
             if (this.inputElement.value.length === 0) {
                 this.messageElement.innerText = this.emptyMessage;

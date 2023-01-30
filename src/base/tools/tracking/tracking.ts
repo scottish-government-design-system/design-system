@@ -18,11 +18,7 @@ function slugify(string) {
 }
 
 const tracking = {
-    init: function (scope) {
-        if (!scope) {
-            scope = document;
-        }
-
+    init: function (scope = document) {
         for (var key in tracking.add) {
             tracking.add[key](scope);
         }
@@ -60,9 +56,9 @@ const tracking = {
                     return (items.length === openItemsCount);
                 }
 
-                function setOpenAll(openAll) {
+                function setOpenAll(openAll:HTMLButtonElement) {
                     if (openAll) {
-                        const open = checkOpenAll(openAll);
+                        const open = checkOpenAll();
 
                         if (open) {
                             openAll.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}close-all`);
@@ -725,5 +721,9 @@ const tracking = {
         }
     }
 };
+
+declare global {
+    interface Window { dataLayer: any; }
+}
 
 export default tracking;

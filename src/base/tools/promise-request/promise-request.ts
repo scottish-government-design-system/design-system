@@ -1,4 +1,4 @@
-const PromiseRequest = function (url, method = 'GET') {
+const PromiseRequest = function (url:string, method = 'GET') {
     const request = new XMLHttpRequest();
 
     return new Promise((resolve, reject) => {

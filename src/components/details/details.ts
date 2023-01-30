@@ -3,19 +3,23 @@
 'use strict';
 
 class Details {
+    private content:HTMLElement;
+    private details:HTMLDetailsElement;
+    private summary:HTMLElement;
+
+    private static keycodes = {
+        'enter': 13,
+        'space': 32
+    }
+
     constructor(element) {
         this.details = element;
         this.summary = element.querySelector('.ds_details__summary');
         this.content = element.querySelector('.ds_details__text');
-
-        this.keycodes = {
-            'enter': 13,
-            'space': 32
-        };
     }
 
     init() {
-        if (typeof (this.details.open === 'boolean')) {
+        if (typeof this.details.open === 'boolean') {
            return;
         } else {
             this.polyfillAttributes();
@@ -36,7 +40,7 @@ class Details {
     }
 
     polyfillAttributes() {
-        this.content.id = this.content.id || `details-${parseInt(Math.random() * 1000000, 10)}`;
+        this.content.id = this.content.id || `details-${Math.floor(Math.random() * 1000000)}`;
         this.details.setAttribute('role', 'group');
         this.summary.setAttribute('role', 'button');
         this.summary.setAttribute('aria-controls', this.content.id);
@@ -53,14 +57,14 @@ class Details {
     polyfillEvents() {
         this.summary.addEventListener('click', () => { this.setState(); });
         this.summary.addEventListener('keypress', event => {
-            if (event.keyCode === this.keycodes.enter || event.keyCode === this.keycodes.space) {
+            if (event.keyCode === Details.keycodes.enter || event.keyCode === Details.keycodes.space) {
                 event.preventDefault();
                 this.setState();
             }
         });
 
-        this.summary.addEventListener('kayup', event => {
-            if (event.keyCode === this.keycodes.space) {
+        this.summary.addEventListener('keyup', event => {
+            if (event.keyCode === Details.keycodes.space) {
                 event.preventDefault();
             }
         });

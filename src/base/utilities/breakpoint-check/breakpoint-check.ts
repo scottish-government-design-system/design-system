@@ -1,4 +1,4 @@
-export default function (size) {
+export default function (size:number|string) {
     const breakElement = document.createElement('div');
     breakElement.classList.add('ds_breakpoint-check');
     breakElement.classList.add('ds_breakpoint-check--' + size);

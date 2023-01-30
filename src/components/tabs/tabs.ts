@@ -5,6 +5,23 @@
 import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
 
 class Tabs {
+    private static keycodes = {
+        'left': 37,
+        'up': 38,
+        'right': 39,
+        'down': 40
+    }
+
+    private resizeTimer;
+    private eventsEnabled;
+    private tabContainer;
+    private tabList;
+    private tabHeaders;
+    private tabContents;
+    private boundOnHashChange;
+    private boundOnResize;
+    private changingHash;
+
     constructor(tabContainer) {
         this.resizeTimer = null;
         this.eventsEnabled = false;
@@ -16,13 +33,6 @@ class Tabs {
         this.tabHeaders = [].slice.call(tabContainer.querySelectorAll('.ds_tabs__tab'));
         // The tabs contents
         this.tabContents = [].slice.call(tabContainer.querySelectorAll('.ds_tabs__content'));
-
-        this.keycodes = {
-            'left': 37,
-            'up': 38,
-            'right': 39,
-            'down': 40
-        };
 
         // Handle hashchange events
         this.boundOnHashChange = this.onHashChange.bind(this)
@@ -156,14 +166,14 @@ class Tabs {
                 let tabNavKey = true;
 
                 if (breakpointCheck('medium')) {
-                    if (event.keyCode === this.keycodes.right) {
-                        this.activateNextTab(event);
-                    } else if (event.keyCode === this.keycodes.left) {
-                        this.activatePreviousTab(event);
-                    } else if (event.keyCode === this.keycodes.up) {
-                        this.activatePreviousTab(event);
-                    } else if (event.keyCode === this.keycodes.down) {
-                        this.activateNextTab(event);
+                    if (event.keyCode === Tabs.keycodes.right) {
+                        this.activateNextTab();
+                    } else if (event.keyCode === Tabs.keycodes.left) {
+                        this.activatePreviousTab();
+                    } else if (event.keyCode === Tabs.keycodes.up) {
+                        this.activatePreviousTab();
+                    } else if (event.keyCode === Tabs.keycodes.down) {
+                        this.activateNextTab();
                     } else {
                         tabNavKey = false;
                     }

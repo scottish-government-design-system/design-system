@@ -3,6 +3,10 @@
 'use strict';
 
 class HidePage {
+    private button:HTMLLinkElement;
+    private window:Window;
+    private altlink:string;
+
     constructor(_window = window) {
         this.button = document.querySelector('.js-hide-page');
         this.window = _window;
