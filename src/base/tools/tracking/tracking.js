@@ -303,6 +303,7 @@ const tracking = {
         },
 
         errorSummaries: function (scope = document) {
+
             const errorSummaries = tracking.gatherElements('ds_error-summary', scope);
             errorSummaries.forEach(errorSummary => {
                 const errorSummaryLinks = [].slice.call(errorSummary.querySelectorAll('.ds_error-summary__list a'));
@@ -314,11 +315,15 @@ const tracking = {
             });
         },
 
-        externalLinks: function (scope = document, _window = window) {
+        externalLinks: function (scope = document) {
             const links = [].slice.call(scope.querySelectorAll('a'));
             links.filter(link => {
-                const regex = new RegExp('/' + _window.location.hostname + '/|^tel:|^mailto:|^/');
-                return !regex.test(link.getAttribute('href'));
+                let hostAndPort = window.location.hostname;
+                if (window.location.port) {
+                    hostAndPort += ':' + window.location.port;
+                }
+                const regex = new RegExp('/' + hostAndPort + '/?|^tel:|^mailto:|^/');
+                return !regex.test(link.href);
             }).forEach(link => {
                 link.setAttribute('data-navigation', 'link-external');
             });

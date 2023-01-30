@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.328] - 2023-01-30
+### Fixed
+- external link tracking no longer added to internal anchor/hash links
+
 ## [0.0.327] - 2023-01-26
 ### Fixed
 - reduce complexity of some CSS selectors

@@ -757,11 +757,6 @@ describe('tracking', () => {
     describe('external links', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('external-links');
-            testObj._window = {
-                location: {
-                    hostname: 'www.mygov.scot'
-                }
-            };
         });
 
         it('should not add a data attribute to relative internal links', () => {
@@ -772,6 +767,18 @@ describe('tracking', () => {
 
         it('should not add a data attribute to absolute internal links', () => {
             const link = testObj.scope.querySelector('#internal-absolute');
+            Tracking.add.externalLinks(testObj.scope , testObj._window);
+            expect(link.getAttribute('data-navigation')).not.toEqual('link-external');
+        });
+
+        it('should not add a data attribute to hash internal links (same page)', () => {
+            const link = testObj.scope.querySelector('#internal-hash-same-page');
+            Tracking.add.externalLinks(testObj.scope , testObj._window);
+            expect(link.getAttribute('data-navigation')).not.toEqual('link-external');
+        });
+
+        it('should not add a data attribute to hash internal links (different page)', () => {
+            const link = testObj.scope.querySelector('#internal-hash-new-page');
             Tracking.add.externalLinks(testObj.scope , testObj._window);
             expect(link.getAttribute('data-navigation')).not.toEqual('link-external');
         });
