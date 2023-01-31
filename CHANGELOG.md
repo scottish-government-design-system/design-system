@@ -6,6 +6,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.330] - 2023-01-31
+### Fixed
+- clicks on "Cancel" and "OK" buttons on date pickers no longer trigger form submission
+
+## [0.0.329] - 2023-01-30
+### Fixed
+- revert regression to cookie notification colour scheme introduced in 0.0.237
+
 ## [0.0.328] - 2023-01-30
 ### Fixed
 - external link tracking no longer added to internal anchor/hash links
