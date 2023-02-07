@@ -17,18 +17,9 @@ $site-search__background-colour: $ds_colour__grey--light !default;
 
     &__input {
         background: $site-search__background-colour;
-        border-width: 0;
         margin-bottom: 0;
         min-height: $site-search__height;
         padding-left: 20px;
-
-        &:focus {
-            box-shadow: inset 0 0 0 4px;
-        }
-
-        &:not(:focus) {
-            outline: 2px solid transparent;
-        }
     }
 
     &--large {

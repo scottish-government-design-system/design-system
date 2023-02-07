@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.331] - 2023-02-07
+### Changed
+- "site search" text fields now have a dark border, to help meet colour contrast requirements
+### Added
+- added tracking attributes for the "details" component
+
 ## [0.0.330] - 2023-01-31
 ### Fixed
 - clicks on "Cancel" and "OK" buttons on date pickers no longer trigger form submission

@@ -265,6 +265,19 @@ const tracking = {
             });
         },
 
+        details: function (scope = document) {
+            const detailsElements = tracking.gatherElements('ds_details', scope);
+            detailsElements.forEach(detailsElement => {
+                const summary = detailsElement.querySelector('summary');
+
+                detailsElement.setAttribute('data-accordion', `detail-${detailsElement.open ? 'close' : 'open'}`);
+
+                summary.addEventListener('click', () => {
+                    detailsElement.setAttribute('data-accordion', `detail-${detailsElement.open ? 'open' : 'close'}`);
+                });
+            });
+        },
+
         errorMessages: function (scope = document) {
             const errorMessages = tracking.gatherElements('ds_question__error-message', scope);
             errorMessages.forEach((errorMessage, index) => {

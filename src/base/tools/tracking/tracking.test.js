@@ -675,6 +675,50 @@ describe('tracking', () => {
         });
     });
 
+    describe('details', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('details');
+        });
+
+        it('should set a data-accordion of "detail-open" if a details element starts closed', () => {
+            const details = testObj.scope.querySelector('details');
+            Tracking.add.details();
+
+            expect(details.getAttribute('data-accordion')).toEqual('detail-open');
+        });
+
+        it('should set a data-accordion of "detail-close" if a details element starts open', () => {
+            const details = testObj.scope.querySelector('details');
+            details.setAttribute('open', 'open');
+            Tracking.add.details();
+
+            expect(details.getAttribute('data-accordion')).toEqual('detail-close');
+        });
+
+        it('should set a toggle the data-accordion attribute between "open" and "close" when the details component is opened or closed', () => {
+            const details = testObj.scope.querySelector('details');
+            const summary = details.querySelector('summary');
+            Tracking.add.details();
+
+            let event = new Event('click');
+
+            summary.dispatchEvent(event);
+            expect(details.getAttribute('data-accordion')).toEqual('detail-close');
+        });
+
+        it('should set a toggle the data-accordion attribute between "open" and "close" when the details component is opened or closed', () => {
+            const details = testObj.scope.querySelector('details');
+            const summary = details.querySelector('summary');
+            details.setAttribute('open', 'open');
+            Tracking.add.details();
+
+            let event = new Event('click');
+
+            summary.dispatchEvent(event);
+            expect(details.getAttribute('data-accordion')).toEqual('detail-open');
+        });
+    });
+
     describe('error messages', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('error-messages');
