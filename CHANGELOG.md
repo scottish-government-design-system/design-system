@@ -6,9 +6,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.332] - 2023-02-08
+### Changed
+- remove dark border from "site search" text fields
+### Notes
+- site search text inputs do not meet colour contrast requirements
+
 ## [0.0.331] - 2023-02-07
 ### Changed
-- "site search" text fields now have a dark border, to help meet colour contrast requirements
 ### Added
 - added tracking attributes for the "details" component
 
