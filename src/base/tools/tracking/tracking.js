@@ -140,7 +140,7 @@ const tracking = {
 
                 let storedValue = inputElement.value;
 
-                inputElement.addEventListener('keydown', (event) => {
+                inputElement.addEventListener('keyup', (event) => {
                     if (event.key === 'Enter' && inputElement.dataset.autocompletetext) {
                         autocompleteDataLayerPush(storedValue, inputElement);
                     }

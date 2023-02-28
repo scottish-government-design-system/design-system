@@ -6,6 +6,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.333] - 2023-02-08
+### Changed
+- reworked "file download" component with titles linking to the document and "download" button removed
+- new file type icons for common file types
+- site header text inputs restyled to have a grey border and lighter background
+### Fixed
+- autocomplete tracking no longer misreporting search term
+
 ## [0.0.332] - 2023-02-08
 ### Changed
 - remove dark border from "site search" text fields
@@ -14,6 +22,7 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ## [0.0.331] - 2023-02-07
 ### Changed
+- "site search" text fields now have a dark border, to help meet colour contrast requirements
 ### Added
 - added tracking attributes for the "details" component
 

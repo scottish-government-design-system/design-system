@@ -5,7 +5,8 @@
 // modifiable vars
 $site-search__height: 48px !default;
 $site-search__height--medium: 48px !default;
-$site-search__background-colour: $ds_colour__grey--light !default;
+$site-search__background-colour: $ds_colour__grey--lighter !default;
+$site-search__border-colour: $ds_colour__grey !default;
 
 
 
@@ -18,19 +19,15 @@ $site-search__background-colour: $ds_colour__grey--light !default;
     &__input[type=text],
     &__input[type=search] {
         background: $site-search__background-colour;
-        border-width: 0;
+        border-color: $site-search__border-colour;
         margin-bottom: 0;
         min-height: $site-search__height;
         padding-left: 20px;
 
         &:focus {
-            box-shadow: inset 0 0 0 4px;
+            border-color: currentColor;
         }
-
-        &:not(:focus) {
-            outline: 2px solid transparent;
-        }
-    }
+   }
 
     &--large {
         margin-bottom: $site-search__height;
