@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.334] - 2023-03-01
+### Changed
+- add border to non-generic thumbnail images in "file download" to ensure suitable contrast with the component background
+
 ## [0.0.333] - 2023-02-08
 ### Changed
 - reworked "file download" component with titles linking to the document and "download" button removed

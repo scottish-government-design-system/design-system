@@ -18,6 +18,12 @@
     &__thumbnail-image {
         display: block;
         max-width: 100%;
+        outline: 1px solid $ds_colour__border;
+        outline-offset: -1px;
+    }
+
+    &__thumbnail-image[src*=".svg"] {
+        outline: none;
     }
 
     &__thumbnail-link {
