@@ -2,7 +2,8 @@
     HIDE THIS PAGE
 \*------------------------------------*/
 
-.ds_has-hide-page .ds_page{
+.ds_has-hide-page .ds_page,
+.ds_page:has(.ds_hide-page) {
     margin-top: 56px;
 }
 
