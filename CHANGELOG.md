@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.336] - 2023-03-21
+### Security
+- address vulnerabilities in npm packages
+
 ## [0.0.335] - 2023-03-21
 ### Changed
 - reduce need for an additional class on the body element for correct display of "hide this page" (uses :has(), which is not fully supported in all target browsers. Recommend still using the body class where possible)
