@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.337] - 2023-04-05
+### Added
+- new "break word" utility class
+
 ## [0.0.336] - 2023-03-21
 ### Security
 - address vulnerabilities in npm packages
