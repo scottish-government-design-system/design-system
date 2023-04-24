@@ -9,8 +9,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "prepublish": "rimraf ./dist; npm run webpack && npm run sass && npm run svgsprite && npm run test",
-    "sass": "node ./node_modules/sass/sass --style=compressed src/pattern-library.scss dist/css/pattern-library.css",
+    "prepublish": "rimraf ./dist; npm run webpack && npm run sass && npm run sass-min && npm run svgsprite && npm run test",
+    "sass": "node ./node_modules/sass/sass --style=expanded src/pattern-library.scss dist/css/pattern-library.css",
+    "sass-min": "node ./node_modules/sass/sass --style=compressed src/pattern-library.scss dist/css/pattern-library.min.css",
     "svgsprite": "node ./svg-sprite",
     "test": "karma start ./karma.conf.js",
     "webpack": "node ./node_modules/webpack/bin/webpack"
