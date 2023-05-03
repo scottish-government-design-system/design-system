@@ -425,10 +425,11 @@ class DSDatePicker {
         changeEvent.initEvent('change', true, true);
         this.inputElement.dispatchEvent(changeEvent);
 
-        this.closeDialog();
         if (this.dateSelectCallback) {
-            this.dateSelectCallback(this.inputElement.value);
+            this.dateSelectCallback(date);
         }
+
+        this.closeDialog();
     }
 
     setDate(date) {
