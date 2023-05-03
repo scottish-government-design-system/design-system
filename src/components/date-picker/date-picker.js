@@ -123,9 +123,12 @@ class DSDatePicker {
         this.nextMonthButton.addEventListener('click', (event) => this.focusNextMonth(event, false));
         this.nextYearButton.addEventListener('click', (event) => this.focusNextYear(event, false));
 
-        this.dateInput.addEventListener('blur', () => {this.calendarButtonElement.querySelector('span').innerText = 'Choose date'});
-        this.monthInput.addEventListener('blur', () => {this.calendarButtonElement.querySelector('span').innerText = 'Choose date'});
-        this.yearInput.addEventListener('blur', () => {this.calendarButtonElement.querySelector('span').innerText = 'Choose date'});
+        const dateInputFields = [this.inputElement, this.dateInput, this.monthInput, this.yearInput];
+        dateInputFields.forEach(input => {
+            if (input) {
+                input.addEventListener('blur', () => { this.calendarButtonElement.querySelector('span').innerText = 'Choose date'; });
+            }
+        });
 
         this.cancelButton = this.dialogElement.querySelector('.js-datepicker-cancel');
         this.okButton = this.dialogElement.querySelector('.js-datepicker-ok');

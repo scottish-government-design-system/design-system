@@ -987,6 +987,6 @@ describe('date picker', () => {
         testObj.datePickerModule.init();
         testObj.datePickerModule.selectDate(new Date('1/8/2020'));
 
-        expect(testObj.datePickerModule.dateSelectCallback).toHaveBeenCalledWith('08/01/2020');
+        expect(testObj.datePickerModule.dateSelectCallback).toHaveBeenCalledWith(new Date('1/8/2020'));
     });
 });

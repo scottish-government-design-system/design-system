@@ -6,7 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
----
+## [0.0.341] - 2023-05-03
+### Fixed
+- script error on date picker
+
 ## [0.0.340] - 2023-05-03
 ### Fixed
 - date picker date selection callback function uses a JS date object as its first argument
