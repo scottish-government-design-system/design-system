@@ -188,7 +188,10 @@ $side-nav__outline-width: 2px;
         margin: 0 16px;
         max-height: 0;
         overflow: hidden;
-        transition: max-height $transition-in-time, padding $transition-in-time;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: max-height $transition-in-time, padding $transition-in-time;
+        }
     }
 
     .js-initialised.ds_side-navigation #show-side-navigation:checked ~ .ds_side-navigation__list {

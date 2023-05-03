@@ -50,11 +50,18 @@ describe('date picker', () => {
             // no syntax errors = test success
         });
 
-        it('should add a calendar button to the input element', () => {
+        it('should add a calendar button to the input wrapper (single input)', () => {
             testObj.datePickerElement = document.querySelector('#basic');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
             testObj.datePickerModule.init();
-            expect(testObj.datePickerElement.parentNode.querySelector('.ds_button')).toBeTruthy();
+            expect(testObj.datePickerElement.parentNode.querySelector('.js-calendar-button')).toBeTruthy();
+        });
+
+        it('should add a calendar button to the input wrapper (multiple input)', () => {
+            testObj.datePickerElement = document.querySelector('#multiple');
+            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
+            testObj.datePickerModule.init();
+            expect(testObj.datePickerElement.parentNode.querySelector('.js-calendar-button')).toBeTruthy();
         });
 
         it('should add a calendar dialog', () => {
@@ -223,7 +230,7 @@ describe('date picker', () => {
             expect(document.activeElement.innerText).toEqual(today.getDate().toString());
         });
 
-        it('should focus on date in the input element (if complete and valid) when opening the dialog', () => {
+        it('should focus on date in the input element (if complete and valid) when opening the dialog (single input)', () => {
             testObj.datePickerModule.inputElement.value = '06/01/2020';
 
             testObj.datePickerModule.openDialog();
@@ -233,6 +240,27 @@ describe('date picker', () => {
 
             // current date is today
             expect(testObj.datePickerModule.currentDate).toEqual(targetDate);
+
+            // focused element is today
+            expect(document.activeElement.innerText).toEqual(targetDate.getDate().toString());
+        });
+
+        it('should focus on date in the input element (if complete and valid) when opening the dialog (multiple input)', () => {
+            let datePickerElement = document.querySelector('#multiple');
+            let datePickerModule = new DSDatePicker(datePickerElement);
+            datePickerModule.init();
+
+            datePickerModule.dateInput.value = '06';
+            datePickerModule.monthInput.value = '01';
+            datePickerModule.yearInput.value = '2020';
+
+            datePickerModule.openDialog();
+
+            expect(datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeTruthy();
+            const targetDate = new Date('01/06/2020');
+
+            // current date is today
+            expect(datePickerModule.currentDate).toEqual(targetDate);
 
             // focused element is today
             expect(document.activeElement.innerText).toEqual(targetDate.getDate().toString());
@@ -265,42 +293,42 @@ describe('date picker', () => {
         it('next day', () => {
             const ppp = new Date(testObj.datePickerModule.currentDate);
             ppp.setDate(ppp.getDate() + 1);
-            testObj.datePickerModule.focusNextDay({ preventDefault: function () { } });
+            testObj.datePickerModule.focusNextDay();
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
 
         it('previous day', () => {
             const ppp = new Date(testObj.datePickerModule.currentDate);
             ppp.setDate(ppp.getDate() - 1);
-            testObj.datePickerModule.focusPreviousDay({ preventDefault: function () { } });
+            testObj.datePickerModule.focusPreviousDay();
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
 
         it('next week', () => {
             const ppp = new Date(testObj.datePickerModule.currentDate);
             ppp.setDate(ppp.getDate() + 7);
-            testObj.datePickerModule.focusNextWeek({ preventDefault: function () { } });
+            testObj.datePickerModule.focusNextWeek();
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
 
         it('previous week', () => {
             const ppp = new Date(testObj.datePickerModule.currentDate);
             ppp.setDate(ppp.getDate() - 7);
-            testObj.datePickerModule.focusPreviousWeek({ preventDefault: function () { } });
+            testObj.datePickerModule.focusPreviousWeek();
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
 
         it('first day of week', () => {
             const ppp = new Date(testObj.datePickerModule.currentDate);
             ppp.setDate(ppp.getDate() - ppp.getDay());
-            testObj.datePickerModule.focusFirstDayOfWeek({ preventDefault: function () { } });
+            testObj.datePickerModule.focusFirstDayOfWeek();
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
 
         it('last day of week', () => {
             const ppp = new Date(testObj.datePickerModule.currentDate);
             ppp.setDate(ppp.getDate() - ppp.getDay() + 6);
-            testObj.datePickerModule.focusLastDayOfWeek({ preventDefault: function () { } });
+            testObj.datePickerModule.focusLastDayOfWeek();
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
 
@@ -461,6 +489,17 @@ describe('date picker', () => {
             testObj.datePickerModule.init();
             testObj.datePickerModule.selectDate(new Date('1/8/2020'));
             expect(testObj.datePickerModule.inputElement.value).toEqual('2020/01/08');
+        });
+
+        it('should update the text inputs when a date is selected (multiple inputs)', () => {
+            let datePickerElement = document.querySelector('#multiple');
+            let datePickerModule = new DSDatePicker(datePickerElement);
+
+            datePickerModule.init();
+            datePickerModule.selectDate(new Date('1/8/2020'));
+            expect(datePickerModule.dateInput.value).toEqual('8');
+            expect(datePickerModule.monthInput.value).toEqual('1');
+            expect(datePickerModule.yearInput.value).toEqual('2020');
         });
     });
 
@@ -629,10 +668,10 @@ describe('date picker', () => {
             event.initEvent('mouseup');
 
             testObj.datePickerModule.openDialog();
-            expect(testObj.datePickerModule.dialogElement.style.display).toEqual('block');
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeTrue();
 
             document.body.dispatchEvent(event);
-            expect(testObj.datePickerModule.dialogElement.style.display).toEqual('none');
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeFalse();
         });
     });
 
@@ -689,7 +728,7 @@ describe('date picker', () => {
         });
 
         it('home goes to first day of week', () => {
-            spyOn(testObj.datePickerModule, 'focusFirstDayOfWeek');
+            spyOn(testObj.datePickerModule, 'focusFirstDayOfWeek').and.callThrough();
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.home;
@@ -700,7 +739,7 @@ describe('date picker', () => {
         });
 
         it('end goes to first day of week', () => {
-            spyOn(testObj.datePickerModule, 'focusLastDayOfWeek');
+            spyOn(testObj.datePickerModule, 'focusLastDayOfWeek').and.callThrough();
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.end;
@@ -711,7 +750,7 @@ describe('date picker', () => {
         });
 
         it('pageup goes to previous month', () => {
-            spyOn(testObj.datePickerModule, 'focusPreviousMonth');
+            spyOn(testObj.datePickerModule, 'focusPreviousMonth').and.callThrough();
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.pageup;
@@ -734,7 +773,7 @@ describe('date picker', () => {
         });
 
         it('pagedown goes to next month', () => {
-            spyOn(testObj.datePickerModule, 'focusNextMonth');
+            spyOn(testObj.datePickerModule, 'focusNextMonth').and.callThrough();
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.pagedown;
@@ -765,7 +804,7 @@ describe('date picker', () => {
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
-            expect(testObj.datePickerModule.dialogElement.style.display).toEqual('none');
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeFalse();
         });
 
         it('any other key behaves normally', () => {
@@ -790,5 +829,164 @@ describe('date picker', () => {
             const expectedDateText = `${leadingZeroes(expectedDate.getDate())}/${leadingZeroes(expectedDate.getMonth() + 1)}/${expectedDate.getFullYear()}`;
             expect(testObj.datePickerModule.inputElement.value).toEqual(expectedDateText);
         });
+    });
+
+    describe('calendar with disabled dates, keyboard interactions:', () => {
+        beforeEach(() => {
+            testObj.datePickerElement = document.querySelector('#basic');
+            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, {
+                disabledDates: [
+                    new Date(2023, 3, 9),
+                    new Date(2023, 3, 10),
+                    new Date(2023, 3, 11),
+                    new Date(2023, 3, 15)
+                ]
+            });
+            testObj.datePickerModule.init();
+        });
+
+        it('moving to next day should skip disabled days', () => {
+            testObj.datePickerModule.currentDate = new Date(2023, 3, 14);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.right;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            // 15th is disabled, expect 16th
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 16));
+        });
+
+        it('moving to previous day should skip disabled days', () => {
+            testObj.datePickerModule.currentDate = new Date(2023, 3, 12);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.left;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            // 9th-11th disabled, expect 8th
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 8));
+        });
+
+        it('moving to next week should skip disabled days', () => {
+            testObj.datePickerModule.currentDate = new Date(2023, 3, 8);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.down;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            // 15th is disabled, expect the following week (22nd)
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 22));
+        });
+
+        it('moving to previous week should skip disabled days', () => {
+            testObj.datePickerModule.currentDate = new Date(2023, 3, 22);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.up;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            // 15th is disabled, expect the previous week (8th)
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 8));
+        });
+
+        it('moving to first day of week should focus the first non-disabled day', () => {
+            testObj.datePickerModule.currentDate = new Date(2023, 3, 13);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.home;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            // 9th-11th is disabled, expect the next available day (12th)
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 12));
+        });
+
+        it('moving to last day of week should focus the last non-disabled day', () => {
+            testObj.datePickerModule.currentDate = new Date(2023, 3, 13);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.end;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            // 15th is disabled, expect the first available day (14th)
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 14));
+        });
+
+        it('moving to next month should skip to first non-disabled day', () => {
+            testObj.datePickerModule.currentDate = new Date(2023, 2, 10);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.pagedown;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 12));
+        });
+
+        it('moving to previous month should skip to first non-disabled day', () => {
+            testObj.datePickerModule.currentDate = new Date(2023, 4, 10);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.pageup;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 8));
+        });
+
+        it('moving to next year should skip to first non-disabled day', () => {
+            testObj.datePickerModule.currentDate = new Date(2022, 3, 10);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.pagedown;
+            event.shiftKey = true;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 12));
+        });
+
+        it('moving to previous year should skip to first non-disabled day', () => {
+            testObj.datePickerModule.currentDate = new Date(2024, 3, 10);
+            testObj.datePickerModule.openDialog();
+
+            event = document.createEvent('Event');
+            event.keyCode = keycodes.pageup;
+            event.shiftKey = true;
+            event.initEvent('keydown');
+            document.activeElement.dispatchEvent(event);
+
+            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 8));
+        });
+    });
+
+    it('should fire a callback function on dialog close, if specified', () => {
+        testObj.datePickerElement = document.querySelector('#basic');
+        testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, {
+            dateSelectCallback: function (value) {
+                console.log('my value is', value);
+            }
+        });
+
+        spyOn(testObj.datePickerModule, 'dateSelectCallback');
+
+        testObj.datePickerModule.init();
+        testObj.datePickerModule.selectDate(new Date('1/8/2020'));
+
+        expect(testObj.datePickerModule.dateSelectCallback).toHaveBeenCalledWith('08/01/2020');
     });
 });

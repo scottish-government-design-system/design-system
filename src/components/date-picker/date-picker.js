@@ -10,6 +10,10 @@ class DSDatePicker {
 
         this.datePickerParent = el;
         this.inputElement = this.datePickerParent.querySelector('input');
+        this.isMultipleInput = el.classList.contains('ds_datepicker--multiple');
+        this.dateInput = el.querySelector('.js-datepicker-date');
+        this.monthInput = el.querySelector('.js-datepicker-month');
+        this.yearInput = el.querySelector('.js-datepicker-year');
 
         this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -39,6 +43,16 @@ class DSDatePicker {
         if (options.maxDate) {
             this.setMaxDate(options.maxDate);
         }
+
+        if (options.dateSelectCallback) {
+            this.dateSelectCallback = options.dateSelectCallback;
+        }
+
+        if (options.disabledDates) {
+            this.disabledDates = options.disabledDates;
+        } else {
+            this.disabledDates = [];
+        }
     }
 
     init() {
@@ -52,8 +66,12 @@ class DSDatePicker {
         this.calendarButtonElement = calendarButtonTempContainer.firstChild;
         this.calendarButtonElement.setAttribute('data-button', `datepicker-${this.inputElement.id}-toggle`);
 
-        this.inputElement.parentNode.appendChild(this.calendarButtonElement);
-        this.inputElement.parentNode.classList.add('ds_input__wrapper--has-icon');
+        if (this.isMultipleInput) {
+            this.inputElement.parentNode.parentNode.appendChild(this.calendarButtonElement);
+        } else {
+            this.inputElement.parentNode.appendChild(this.calendarButtonElement);
+            this.inputElement.parentNode.classList.add('ds_input__wrapper--has-icon');
+        }
 
         // insert dialog template
         const dialog = document.createElement('div');
@@ -105,6 +123,10 @@ class DSDatePicker {
         this.nextMonthButton.addEventListener('click', (event) => this.focusNextMonth(event, false));
         this.nextYearButton.addEventListener('click', (event) => this.focusNextYear(event, false));
 
+        this.dateInput.addEventListener('blur', () => {this.calendarButtonElement.querySelector('span').innerText = 'Choose date'});
+        this.monthInput.addEventListener('blur', () => {this.calendarButtonElement.querySelector('span').innerText = 'Choose date'});
+        this.yearInput.addEventListener('blur', () => {this.calendarButtonElement.querySelector('span').innerText = 'Choose date'});
+
         this.cancelButton = this.dialogElement.querySelector('.js-datepicker-cancel');
         this.okButton = this.dialogElement.querySelector('.js-datepicker-ok');
         this.cancelButton.addEventListener('click', (event) => { event.preventDefault(); this.closeDialog(event); });
@@ -127,7 +149,7 @@ class DSDatePicker {
     }
 
     buttonTemplate() {
-        return `<button class="ds_button  ds_button--icon-only  js-calendar-button">
+        return `<button class="ds_button  ds_button--icon-only  ds_datepicker__button  ds_no-margin  js-calendar-button">
             <span class="visually-hidden">Choose date</span>
             <svg class="ds_icon" aria-hidden="true" role="img"><use href="${this.imagePath}icons.stack.svg#calendar_today"></use></svg>
         </button>
@@ -148,7 +170,7 @@ class DSDatePicker {
             </button>
         </div>
 
-        <h2 id="${titleId}" class="ds_datepicker__dialog__title  js-datepicker-month-year" aria-live="polite">June 2020</h2>
+        <h2 id="${titleId}" class="ds_datepicker__dialog__title  js-datepicker-month-year">June 2020</h2>
 
         <div class="ds_datepicker__dialog__navbuttons">
             <button class="ds_button  ds_button--icon-only  js-datepicker-next-month" aria-label="next month" data-button="button-datepicker-nextmonth">
@@ -167,13 +189,34 @@ class DSDatePicker {
       <caption class="ds_datepicker__dialog__table-caption">You can use the cursor keys to select a date</caption>
       <thead>
           <tr>
-          <th scope="col" abbr="Sunday">Su</th>
-          <th scope="col" abbr="Monday">Mo</th>
-          <th scope="col" abbr="Tuesday">Tu</th>
-          <th scope="col" abbr="Wednesday">We</th>
-          <th scope="col" abbr="Thursday">Th</th>
-          <th scope="col" abbr="Friday">Fr</th>
-          <th scope="col" abbr="Saturday">Sa</th>
+          <th scope="col">
+            <span aria-hidden="true">Su</span>
+            <span class="visually-hidden">Sunday</span>
+          </th>
+          <th scope="col">
+            <span aria-hidden="true">Mo</span>
+            <span class="visually-hidden">Monday</span>
+          </th>
+          <th scope="col">
+            <span aria-hidden="true">Tu</span>
+            <span class="visually-hidden">Tuesday</span>
+          </th>
+          <th scope="col">
+            <span aria-hidden="true">We</span>
+            <span class="visually-hidden">Wednesday</span>
+          </th>
+          <th scope="col">
+            <span aria-hidden="true">Th</span>
+            <span class="visually-hidden">Thursday</span>
+          </th>
+          <th scope="col">
+            <span aria-hidden="true">Fr</span>
+            <span class="visually-hidden">Friday</span>
+          </th>
+          <th scope="col">
+            <span aria-hidden="true">Sa</span>
+            <span class="visually-hidden">Saturday</span>
+          </th>
           </tr>
       </thead>
 
@@ -320,6 +363,10 @@ class DSDatePicker {
                 disabled = true;
             }
 
+            if (this.isDisabledDate(thisDay)) {
+                disabled = true;
+            }
+
             this.calendarDays[i].update(thisDay, hidden, disabled);
 
             thisDay.setDate(thisDay.getDate() + 1);
@@ -329,7 +376,9 @@ class DSDatePicker {
     setCurrentDate(focus = true) {
         const currentDate = this.currentDate;
 
-        this.calendarDays.forEach((calendarDay) => {
+        const filteredDays = this.calendarDays.filter(calendarDay => calendarDay.button.classList.contains('fully-hidden') === false);
+
+        filteredDays.forEach((calendarDay) => {
             calendarDay.button.setAttribute('tabindex', -1);
             calendarDay.button.classList.remove('ds_selected');
             const calendarDayDate = calendarDay.date;
@@ -363,38 +412,46 @@ class DSDatePicker {
 
         // if no date is tab-able, make the first non-disabled date tab-able
         if (!focus) {
-            const enabledDays = this.calendarDays.filter(calendarDay => {
-                return window.getComputedStyle(calendarDay.button).display === 'block' && !calendarDay.button.disabled;
-            });
-
-            enabledDays[0].button.setAttribute('tabindex', 0);
-
-            this.currentDate = enabledDays[0].date;
+            filteredDays[0].button.setAttribute('tabindex', 0);
+            this.currentDate = filteredDays[0].date;
         }
     }
 
     selectDate(date) {
         this.calendarButtonElement.querySelector('span').innerText = `Choose date. Selected date is ${this.formattedDateHuman(date)}`;
-        this.inputElement.value = `${this.leadingZeroes(date.getDate())}/${this.leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
-
-        switch (this.inputElement.dataset.dateformat) {
-        case 'YMD':
-            this.inputElement.value = `${date.getFullYear()}/${this.leadingZeroes(date.getMonth() + 1)}/${this.leadingZeroes(date.getDate())}`;
-            break;
-        case 'MDY':
-            this.inputElement.value = `${this.leadingZeroes(date.getMonth() + 1)}/${this.leadingZeroes(date.getDate())}/${date.getFullYear()}`;
-            break;
-        case 'DMY':
-        default:
-            this.inputElement.value = `${this.leadingZeroes(date.getDate())}/${this.leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
-            break;
-        }
+        this.setDate(date);
 
         const changeEvent = document.createEvent('Event');
         changeEvent.initEvent('change', true, true);
         this.inputElement.dispatchEvent(changeEvent);
 
         this.closeDialog();
+        if (this.dateSelectCallback) {
+            this.dateSelectCallback(this.inputElement.value);
+        }
+    }
+
+    setDate(date) {
+        if (this.isMultipleInput) {
+            this.dateInput.value = date.getDate();
+            this.monthInput.value = date.getMonth() + 1;
+            this.yearInput.value = date.getFullYear();
+        } else {
+            this.inputElement.value = `${this.leadingZeroes(date.getDate())}/${this.leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
+
+            switch (this.inputElement.dataset.dateformat) {
+            case 'YMD':
+                this.inputElement.value = `${date.getFullYear()}/${this.leadingZeroes(date.getMonth() + 1)}/${this.leadingZeroes(date.getDate())}`;
+                break;
+            case 'MDY':
+                this.inputElement.value = `${this.leadingZeroes(date.getMonth() + 1)}/${this.leadingZeroes(date.getDate())}/${date.getFullYear()}`;
+                break;
+            case 'DMY':
+            default:
+                this.inputElement.value = `${this.leadingZeroes(date.getDate())}/${this.leadingZeroes(date.getMonth() + 1)}/${date.getFullYear()}`;
+                break;
+            }
+        }
     }
 
     isOpen() {
@@ -413,15 +470,26 @@ class DSDatePicker {
 
     openDialog() {
         // display the dialog
-        this.dialogElement.style.display = 'block';
         this.dialogElement.classList.add('ds_datepicker__dialog--open');
 
         // position the dialog
-        this.dialogElement.style.left = `${this.inputElement.offsetWidth + 16}px`;
+        let leftOffset;
 
-        // get the date from the input element
-        if (this.inputElement.value.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
-            this.inputDate = this.formattedDateFromString(this.inputElement.value);
+        // get the date from the input element(s)
+        let dateAsString;
+
+        if (this.isMultipleInput) {
+            leftOffset = `${this.calendarButtonElement.offsetLeft + this.calendarButtonElement.offsetWidth + 16}px`;
+            dateAsString = `${this.dateInput.value}/${this.monthInput.value}/${this.yearInput.value}`;
+        } else {
+            leftOffset = `${this.inputElement.offsetWidth + 16}px`;
+            dateAsString = this.inputElement.value;
+        }
+
+        this.dialogElement.style.left = leftOffset;
+
+        if (dateAsString.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
+            this.inputDate = this.formattedDateFromString(dateAsString);
             this.currentDate = this.inputDate;
         }
 
@@ -430,7 +498,6 @@ class DSDatePicker {
     }
 
     closeDialog() {
-        this.dialogElement.style.display = 'none';
         this.dialogElement.classList.remove('ds_datepicker__dialog--open');
         this.calendarButtonElement.focus();
     }
@@ -456,40 +523,60 @@ class DSDatePicker {
     }
 
     // day navigation
-    focusNextDay () {
-        const date = new Date(this.currentDate);
+    focusNextDay(date = new Date(this.currentDate)) {
         date.setDate(date.getDate() + 1);
+        if (this.isDisabledDate(date)) {
+            this.focusNextDay(date);
+            return;
+        }
         this.goToDate(date);
     }
 
-    focusPreviousDay () {
-        const date = new Date(this.currentDate);
+    focusPreviousDay(date = new Date(this.currentDate)) {
         date.setDate(date.getDate() - 1);
+        if (this.isDisabledDate(date)) {
+            this.focusPreviousDay(date);
+            return;
+        }
         this.goToDate(date);
     }
 
     // week navigation
-    focusNextWeek () {
-        const date = new Date(this.currentDate);
+    focusNextWeek (date = new Date(this.currentDate)) {
         date.setDate(date.getDate() + 7);
+        if (this.isDisabledDate(date)) {
+            this.focusNextWeek(date);
+            return;
+        }
         this.goToDate(date);
     }
 
-    focusPreviousWeek () {
-        const date = new Date(this.currentDate);
+    focusPreviousWeek (date = new Date(this.currentDate)) {
         date.setDate(date.getDate() - 7);
+        if (this.isDisabledDate(date)) {
+            this.focusPreviousWeek(date);
+            return;
+        }
         this.goToDate(date);
     }
 
-    focusFirstDayOfWeek () {
+    focusFirstDayOfWeek() {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() - date.getDay());
+        if (this.isDisabledDate(date)) {
+            this.focusNextDay(date);
+            return;
+        }
         this.goToDate(date);
     }
 
-    focusLastDayOfWeek () {
+    focusLastDayOfWeek() {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() - date.getDay() + 6);
+        if (this.isDisabledDate(date)) {
+            this.focusPreviousDay(date);
+            return;
+        }
         this.goToDate(date);
     }
 
@@ -498,6 +585,10 @@ class DSDatePicker {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setMonth(date.getMonth() + 1);
+        if (this.isDisabledDate(date)) {
+            this.focusNextDay(date);
+            return;
+        }
         this.goToDate(date, focus);
     }
 
@@ -505,6 +596,10 @@ class DSDatePicker {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setMonth(date.getMonth() - 1);
+        if (this.isDisabledDate(date)) {
+            this.focusPreviousDay(date);
+            return;
+        }
         this.goToDate(date, focus);
     }
 
@@ -513,6 +608,10 @@ class DSDatePicker {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setFullYear(date.getFullYear() + 1);
+        if (this.isDisabledDate(date)) {
+            this.focusNextDay(date);
+            return;
+        }
         this.goToDate(date, focus);
     }
 
@@ -520,7 +619,21 @@ class DSDatePicker {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setFullYear(date.getFullYear() - 1);
+        if (this.isDisabledDate(date)) {
+            this.focusPreviousDay(date);
+            return;
+        }
         this.goToDate(date, focus);
+    }
+
+    isDisabledDate(date) {
+        let disabled = false;
+        for (const disabledDate of this.disabledDates) {
+            if (date.toDateString() === disabledDate.toDateString()) {
+                disabled = true;
+            }
+        }
+        return disabled;
     }
 }
 
@@ -541,8 +654,9 @@ class DSCalendarDay {
     }
 
     update(day, hidden, disabled) {
-        this.button.innerHTML = day.getDate();
         this.date = new Date(day);
+        this.button.innerHTML = day.getDate();
+        this.button.setAttribute('aria-label', this.picker.formattedDateHuman(this.date));
 
         if (disabled) {
             this.button.setAttribute('disabled', true);
@@ -551,9 +665,9 @@ class DSCalendarDay {
         }
 
         if (hidden) {
-            this.button.style.display = 'none';
+            this.button.classList.add('fully-hidden');
         } else {
-            this.button.style.display = 'block';
+            this.button.classList.remove('fully-hidden');
         }
     }
 

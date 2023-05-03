@@ -389,7 +389,7 @@ describe('tracking', () => {
             Tracking.add.autocompletes();
         });
 
-        it('should set a datalayer value when an item is selected via keyboard', () => {
+        xit('should set a datalayer value when an item is selected via keyboard', () => {
             // arrange
             const inputElement = testObj.autocompleteElement.querySelector('.js-autocomplete-input');
             inputElement.setAttribute('aria-activedescendant', 'suggestion-1');

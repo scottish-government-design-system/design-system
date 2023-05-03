@@ -5,6 +5,17 @@
 
 .ds_datepicker {
     position: relative;
+    margin-bottom: 24px;
+
+    .ds_input {
+        margin-bottom: 0;
+    }
+
+    &__input-wrapper {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
 
     &__dialog {
         @include ds_box-shadow;
@@ -20,6 +31,10 @@
         transition: background-color 0.2s, outline-color 0.2s;
         width: 296px;
         z-index: 2;
+
+        &--open {
+            display: block;
+        }
 
         &__header {
             position: relative;
@@ -161,6 +176,13 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+    }
+
+    &__button {
+        @include ds_small-size;
+        @include ds_button-sizing--small;
+
+        align-self: end;
     }
 }
 

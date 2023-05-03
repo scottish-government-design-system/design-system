@@ -136,7 +136,9 @@ h1,h2,h3 {
             padding-right: 100px;
         }
 
-        transition: max-height $transition-in-time, padding $transition-in-time;
+        @media (prefers-reduced-motion: no-preference) {
+            transition: max-height $transition-in-time, padding $transition-in-time;
+        }
     }
 
     &__control:checked ~ .ds_accordion-item__body {
@@ -160,6 +162,7 @@ h1,h2,h3 {
 /* SMALL VARIANT */
 
 .ds_accordion--small {
+    .ds_accordion-item__title
     .ds_accordion-item__button,
     .ds_accordion-item__header-button,
     .ds_accordion-item__body,

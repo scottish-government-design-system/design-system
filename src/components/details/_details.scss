@@ -25,8 +25,11 @@ $details-icon-size: #{1em * 8px / $root-font-size--medium};
         left: 0.25em;
         position: absolute;
         top: calc(50% - #{$details-icon-size} + 1px); // 1px magic number for optical alignment in preference to mathematic alignment
-        transition: transform $transition-in-time;
         width: $details-icon-size;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: transform $transition-in-time;
+        }
     }
 }
 

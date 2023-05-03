@@ -59,7 +59,10 @@ $site-navigation__link-padding: 16px;
             display: block;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.2s;
+
+            @media (prefers-reduced-motion: no-preference) {
+                transition: max-height 0.2s;
+            }
         }
 
         &__list {

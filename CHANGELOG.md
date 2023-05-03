@@ -6,6 +6,21 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.339] - 2023-05-03
+### Added
+- date picker now has support for disabled dates
+- date picker fires an optional callback function when a date is selected
+- date picker supports multiple date inputs for day/month/year
+- date picker calendar dates now have aria labels with their full date
+### Changed
+- only animate transitions on accordion, details, side navigation and site navigation if 'prefers-reduced-motion: reduce' not set
+### Fixed
+- date picker calendar button screen reader content reverts to "choose date" when text inputs are modified
+
+## [0.0.338] - 2023-04-24
+### Added
+- pattern-library npm package now includes both minified and unminified compiled CSS
+
 ## [0.0.337] - 2023-04-05
 ### Added
 - new "break word" utility class
