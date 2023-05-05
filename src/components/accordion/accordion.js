@@ -27,6 +27,13 @@ class Accordion {
         const itemBody = item.querySelector('.ds_accordion-item__body');
         const idString = parseInt(Math.random() * 1000000, 10);
 
+        // check for hash to open an accordion with
+        let accordionHasLocationHashInIt = false;
+        if (window.location.hash && item.querySelector(window.location.hash)) {
+            accordionHasLocationHashInIt = true;
+            itemControl.checked = true;
+        }
+
         const startsOpen = itemControl.checked;
 
         const itemButton = document.createElement('button');
@@ -57,6 +64,9 @@ class Accordion {
             itemBody.style.maxHeight = itemBody.scrollHeight + 21 + 28 + 'px';
             if (this.openAllButton) {
                 this.setOpenAllButton(this.checkAllOpen());
+            }
+            if (accordionHasLocationHashInIt) {
+                item.scrollIntoView();
             }
         }
 

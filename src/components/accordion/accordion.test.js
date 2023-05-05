@@ -12,6 +12,8 @@ describe('accordion', () => {
         testObj.accordionModule = new Accordion(testObj.accordionElement);
     });
 
+
+
     it('should set a class of "js-initialised" on init', () => {
         // grab the first accordion
         expect(testObj.accordionElement.classList.contains('js-initialised')).toBe(false);
@@ -33,6 +35,15 @@ describe('accordion', () => {
 
             testObj.accordionModule.init();
             expect(firstAccordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
+        });
+
+        it('should be opened if window.location.hash matches an element inside the accordion', () => {
+            const hashAccordionItem = testObj.accordionElement.querySelector('#hashAccordionItem');
+
+            window.location.hash = 'foo';
+            testObj.accordionModule.init();
+            expect(hashAccordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
+            window.location.hash = '';
         });
 
         it ('should set aria-expanded appropriately on each content item depending on open/closed state', () => {
