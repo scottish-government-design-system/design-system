@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 ul, ol, dd {
-    margin-left: 24px;
+    margin: 0.5rem 0 0.5rem 1.25rem;
     @include ds_last-child-no-margin;
 }
 
@@ -13,4 +13,17 @@ li {
 
 dt {
     font-weight: $bold;
+}
+
+ol {
+    list-style-type: numeric;
+    margin-left: 1.5rem;
+}
+
+ol ol {
+    list-style-type: lower-alpha;
+}
+
+ol ol ol {
+    list-style-type: lower-roman;
 }

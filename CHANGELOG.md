@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.342] - 2023-05-05
+### Changed
+- nested list spacing improvements
+- different levels of ordered list use different numbering types
+
 ## [0.0.341] - 2023-05-03
 ### Fixed
 - script error on date picker
