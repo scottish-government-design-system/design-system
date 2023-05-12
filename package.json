@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "publish": "rm -rf ./dist; npm run test && npm run webpack && npm run sass && npm run sass-min && npm run svgsprite",
+    "prepare": "rm -rf ./dist; npm run test && npm run webpack && npm run sass && npm run sass-min && npm run svgsprite",
     "sass": "node ./node_modules/sass/sass --style=expanded src/pattern-library.scss dist/css/pattern-library.css",
     "sass-min": "node ./node_modules/sass/sass --style=compressed src/pattern-library.scss dist/css/pattern-library.min.css",
     "svgsprite": "node ./svg-sprite",

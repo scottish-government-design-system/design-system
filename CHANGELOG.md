@@ -6,6 +6,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.345] - 2023-05-12
+### Fixed
+- resolve regression introduced in 0.0.344 where the dist folder was not being created
+
+## [0.0.344] - 2023-05-12
+### Fixed
+- resolve istanbul-instrumenter-loader peer dependency issue by replacing it with coverage-istanbul-loader
+
 ## [0.0.343] - 2023-05-05
 ### Changed
 - accordion items will start opened if they contain an element matching window.location.hash
