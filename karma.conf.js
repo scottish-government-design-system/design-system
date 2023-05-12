@@ -1,6 +1,5 @@
 'use strict';
 
-const path = require('path');
 const webpackConfig = require('./webpack.config');
 const coverageDir = 'test/coverage';
 
@@ -9,7 +8,7 @@ const instrumentationConfig = {
     exclude: /node_modules|\.test\.js$/,
     enforce: 'post',
     use: {
-        loader: 'istanbul-instrumenter-loader',
+        loader: '@jsdevtools/coverage-istanbul-loader',
         options: {
             esModules: true
         }
@@ -44,7 +43,6 @@ module.exports = function (config) {
 
         files: [
             'src/**/!(.test).js',
-            // 'src/components/**/*.test.js',
             'src/**/*.html',
         ],
 
