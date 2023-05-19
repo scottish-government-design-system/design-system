@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.346] - 2023-05-19
+### Fixed
+- minor code organisation / cleanup for date picker
+### Changed
+- remove date picker keyboard action for 'esc' key (close dialog) because it conflicts with screen reader keyboard shortcuts
+
 ## [0.0.345] - 2023-05-12
 ### Fixed
 - resolve regression introduced in 0.0.344 where the dist folder was not being created

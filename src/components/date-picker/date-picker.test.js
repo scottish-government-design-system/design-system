@@ -17,7 +17,6 @@ function leadingZeroes(value, length = 2) {
 describe('date picker', () => {
     const keycodes = {
         'tab': 9,
-        'esc': 27,
         'pageup': 33,
         'pagedown': 34,
         'end': 35,
@@ -93,7 +92,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.inputElement.dataset.mindate).toEqual('2020/07/01');
+                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
             });
 
             it('should set a min date if one is specified as a data attribute, MDY format', () => {
@@ -108,7 +107,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.inputElement.dataset.mindate).toEqual('07/01/2020');
+                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
             });
 
             it('should set a min date if one is specified as a data attribute, DMY format', () => {
@@ -123,7 +122,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.inputElement.dataset.mindate).toEqual('01/07/2020');
+                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
             });
         });
 
@@ -795,18 +794,6 @@ describe('date picker', () => {
             expect(testObj.datePickerModule.focusNextYear).toHaveBeenCalled();
         });
 
-        it('esc closes dialog', () => {
-            spyOn(testObj.datePickerModule, 'closeDialog').and.callThrough();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.esc;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
-            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeFalse();
-        });
-
         it('any other key behaves normally', () => {
             spyOn(testObj.datePickerModule, 'closeDialog');
 
@@ -982,9 +969,10 @@ describe('date picker', () => {
             }
         });
 
+        testObj.datePickerModule.init();
+
         spyOn(testObj.datePickerModule, 'dateSelectCallback');
 
-        testObj.datePickerModule.init();
         testObj.datePickerModule.selectDate(new Date('1/8/2020'));
 
         expect(testObj.datePickerModule.dateSelectCallback).toHaveBeenCalledWith(new Date('1/8/2020'));
