@@ -9,12 +9,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "prepare": "rm -rf ./dist; npm run test && npm run webpack && npm run sass && npm run sass-min && npm run svgsprite",
-    "sass": "node ./node_modules/sass/sass --style=expanded src/pattern-library.scss dist/css/pattern-library.css",
-    "sass-min": "node ./node_modules/sass/sass --style=compressed src/pattern-library.scss dist/css/pattern-library.min.css",
+    "prepack": "rm -rf ./dist; npm run test && npm run webpack && npm run sass && npm run sass-min && npm run svgsprite",
+    "sass": "sass --style=expanded src/pattern-library.scss dist/css/pattern-library.css",
+    "sass-min": "sass --style=compressed src/pattern-library.scss dist/css/pattern-library.min.css",
     "svgsprite": "node ./svg-sprite",
     "test": "karma start ./karma.conf.js",
-    "webpack": "node ./node_modules/webpack/bin/webpack"
+    "webpack": "webpack"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
