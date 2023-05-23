@@ -32,7 +32,8 @@ class SideNavigation {
         navButton.setAttribute('aria-expanded', false);
         navButton.setAttribute('aria-controls', this.navList.id);
 
-        navLabel.parentNode.removeChild(navLabel);
+        navLabel.classList.add('fully-hidden');
+
         this.sideNavigation.insertBefore(navButton, this.navList);
 
         navButton.setAttribute('aria-controls', this.navList.id);

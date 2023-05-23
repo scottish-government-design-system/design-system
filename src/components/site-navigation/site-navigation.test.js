@@ -33,7 +33,7 @@ describe('site navigation', () => {
                 testObj.siteNavigationModule.init();
                 expectedAttribs.classList.add('ds_link');
 
-                const button = document.querySelector('.js-toggle-menu');
+                const button = document.querySelector('button.js-toggle-menu');
                 expect(document.querySelectorAll('.js-toggle-menu').length).toEqual(1);
                 expect(button.classList).toEqual(expectedAttribs.classList);
                 expect(button.getAttribute('aria-controls')).toEqual(expectedAttribs.controls);
@@ -45,7 +45,7 @@ describe('site navigation', () => {
             it('should show/hide the menu on click of the menu button', () => {
                 testObj.siteNavigationModule.init();
 
-                const button = document.querySelector('.js-toggle-menu');
+                const button = document.querySelector('button.js-toggle-menu');
                 const menu = document.querySelector('.ds_site-navigation--mobile');
 
                 // OPEN

@@ -32,7 +32,7 @@ describe('side navigation', () => {
         it ('should update the control\'s aria-expanded attribute when interacted with', () => {
             testObj.sideNavigationModule.init();
             const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button');
-            const label = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
+            const label = testObj.sideNavigationElement.querySelector('button.ds_side-navigation__expand');
 
             // opening nav
             const event = new Event('click');
@@ -46,7 +46,7 @@ describe('side navigation', () => {
 
             testObj.sideNavigationModule.init();
 
-            const label = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
+            const label = testObj.sideNavigationElement.querySelector('button.ds_side-navigation__expand');
             const list = testObj.sideNavigationElement.querySelector('.ds_side-navigation__list');
 
             // opening nav
@@ -66,7 +66,7 @@ describe('side navigation', () => {
 
         it('should toggle a shadow on the navigation if the navigation button is sticky', function () {
             testObj.sideNavigationModule.init();
-            const sideNavigationExpand = testObj.sideNavigationElement.querySelector('.ds_side-navigation__expand');
+            const sideNavigationExpand = testObj.sideNavigationElement.querySelector('button.ds_side-navigation__expand');
 
             expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(false);
 

@@ -1191,7 +1191,7 @@ describe('tracking', () => {
             testObj.sideNavModule = new SideNavigation(testObj.scope.querySelector('.ds_side-navigation'));
             testObj.sideNavModule.init();
 
-            const expand = testObj.scope.querySelector('.ds_side-navigation__expand');
+            const expand = testObj.scope.querySelector('button.ds_side-navigation__expand');
 
             Tracking.add.sideNavs();
 
@@ -1202,7 +1202,7 @@ describe('tracking', () => {
             testObj.sideNavModule = new SideNavigation(testObj.scope.querySelector('.ds_side-navigation'));
             testObj.sideNavModule.init();
 
-            const expand = testObj.scope.querySelector('.ds_side-navigation__expand');
+            const expand = testObj.scope.querySelector('button.ds_side-navigation__expand');
             expand.parentNode.removeChild(expand);
 
             Tracking.add.sideNavs();

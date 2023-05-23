@@ -23,7 +23,7 @@ class MobileMenu {
         newMenuButton.setAttribute('aria-controls', oldMenuButton.getAttribute('aria-controls'));
         newMenuButton.setAttribute('aria-expanded', false);
         oldMenuButton.parentNode.appendChild(newMenuButton);
-        oldMenuButton.parentNode.removeChild(oldMenuButton);
+        oldMenuButton.classList.add('fully-hidden');
 
         // events
         newMenuButton.addEventListener('click', (event) => {

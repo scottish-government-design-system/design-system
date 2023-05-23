@@ -6,6 +6,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.348] - 2023-05-23
+### Fixed
+- labels missing from side nav and site nav open/close toggles after JS initialisation
+
+## [0.0.347] - 2023-05-22
+### Fixed
+- use npm prepack instead of npm prepare
+
 ## [0.0.346] - 2023-05-19
 ### Fixed
 - minor code organisation / cleanup for date picker
