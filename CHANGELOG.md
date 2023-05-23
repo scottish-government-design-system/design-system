@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.349] - 2023-05-23
+### Fixed
+- fix failing test specs
+
 ## [0.0.348] - 2023-05-23
 ### Fixed
 - labels missing from side nav and site nav open/close toggles after JS initialisation
