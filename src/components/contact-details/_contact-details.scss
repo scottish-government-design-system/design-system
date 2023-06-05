@@ -28,25 +28,30 @@ $contact-details__border-colour: $ds_colour__border--highlight;
         }
     }
 
-    &__list dd {
-        margin-left: 0;
-    }
-
-    &__list dt {
-        font-weight: $bold;
-    }
-
     &__item {
         @include ds_responsive-margin(2, top);
+
+        dd {
+            margin-top: 0;
+            margin-left: 0;
+        }
+
+        dt:not(.visually-hidden) + .ds_contact-details__social-item {
+            @include ds_responsive-margin(1, top);
+        }
     }
 
     &__social-item {
         @include ds_responsive-margin(1, bottom);
         position: relative;
+
+        &:has(.ds_contact-details__social-icon):not(:first-of-type) {
+            @include ds_responsive-margin(2, top);
+        }
     }
 
     &__social-link {
-        padding-left: #{$social-icon-size + px-to-rem(8px)};
+        margin-left: #{$social-icon-size + px-to-rem(8px)};
     }
 
     &__social-icon {
@@ -56,12 +61,53 @@ $contact-details__border-colour: $ds_colour__border--highlight;
         left: 0;
         width: $social-icon-size !important;
     }
+
 }
 
 @include ds_media-query(medium) {
     .ds_contact-details {
         &__social-icon {
             top: px-to-rem(4px);
+        }
+
+        // 2 Column layout
+        &-grid {
+            @include ds_layout();
+
+            .ds_contact-details__list {
+                float: left;
+                @include ds_colwidth(6);
+            }
+
+            @supports(display: grid) {
+                grid-template-columns: repeat(2, 1fr);
+
+                .ds_contact-details__list {
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+@include ds_media-query(large) {
+    .ds_contact-details {
+        // 3 Column layout
+        &-grid {
+            @include ds_layout();
+
+            .ds_contact-details__list {
+                float: left;
+                @include ds_colwidth(4);
+            }
+
+            @supports(display: grid) {
+                grid-template-columns: repeat(3, 1fr);
+
+                .ds_contact-details__list {
+                    width: auto;
+                }
+            }
         }
     }
 }
