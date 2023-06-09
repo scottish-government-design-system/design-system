@@ -70,19 +70,12 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
         background-color: $ds_colour__grey--lighter;
     }
 
-
-
-
     caption {
-        font-size: 1rem;
+        @include ds_responsive-margin(2, bottom);
+        font-size: px-to-rem($root-font-size); // 1rem
         font-weight: $bold;
-        line-height: 24px;
-        margin-bottom: 16px;
+        line-height: line-height-on-grid($root-font-size);
         text-align: left;
-
-        @include ds_media-query(medium) {
-            line-height: 32px;
-        }
     }
 }
 

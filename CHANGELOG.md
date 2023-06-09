@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.351] - 2023-06-08
+### Changed
+- "Article aside" component spacing and sizing simplified to inherit more styling and use respaonsive scale.
+### Fixed
+- Top level list elements have standard block element bottom margin as default.
+
 ## [0.0.350] - 2023-06-06
 ### Changed
 - "Contact details" component has some spacing changes, multiple column support and option of grouping social links by platform type.

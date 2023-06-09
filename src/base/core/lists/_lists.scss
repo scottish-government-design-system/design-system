@@ -2,13 +2,24 @@
     LISTS
 \*------------------------------------*/
 
-ul, ol, dd {
-    margin: 0.5rem 0 0.5rem 1.25rem;
+ul, 
+ol, 
+dd {
     @include ds_last-child-no-margin;
+    margin-left: px-to-rem(20px);
+}
+
+dd,
+ul ul,
+ol ol,
+ol ul,
+ul ol {
+    @include ds_responsive-margin(1, top);
+    @include ds_responsive-margin(1, bottom);
 }
 
 li {
-    margin-bottom: 8px;
+    @include ds_responsive-margin(1, bottom);
 }
 
 dt {
@@ -17,7 +28,7 @@ dt {
 
 ol {
     list-style-type: numeric;
-    margin-left: 1.5rem;
+    margin-left: px-to-rem(24px);
 }
 
 ol ol {

@@ -8,4 +8,5 @@ blockquote, p, address,
 table,
 fieldset, figure,
 pre {
-  margin: 0 0 16px; }
+  @include ds_responsive-margin(2, bottom);
+}
