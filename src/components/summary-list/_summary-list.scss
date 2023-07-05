@@ -4,9 +4,9 @@
 
 
 .ds_summary-list {
+    @include ds_block-margins--bottom;
     list-style-type: none;
     margin-left: 0;
-    @include ds_responsive-margin(6, top);
 
     &__key {
         font-weight: $bold;
@@ -15,23 +15,17 @@
     &__key,
     &__value,
     &__actions {
+        @include ds_responsive-margin(1, bottom);
         display: block;
-        margin-bottom: 8px;
+        overflow-wrap: break-word;
     }
 
     &__item {
-        padding-bottom: 8px;
+        @include ds_responsive-padding(2, top);
+        @include ds_responsive-padding(1, bottom, false, -1px);
+        border-bottom: 1px solid $ds_colour__border;
+        margin: 0;
         position: relative;
-        @include ds_responsive-margin(2, bottom, false, -1px);
-        &::after {
-            background: $ds_colour__border;
-            bottom: -1px;
-            content: '';
-            height: 1px;
-            left: 0;
-            position: absolute;
-            right: 0;
-        }
     }
 
     &__answer::before,
@@ -39,8 +33,37 @@
         content: '';
     }
 
-    &--no-border &__item::after {
-        content: none;
+    &__actions-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        &-item {
+            margin: 0;
+            padding: 0;
+
+            &:not(:first-child) {
+                @include ds_responsive-margin(1, left);
+                @include ds_responsive-padding(1, left, false, 1px);
+                position: relative;
+        
+                &::before {
+                    background: $ds_colour__text--secondary;
+                    content: '';
+                    height: calc(1em - 2px);
+                    left: 0;
+                    position: absolute;
+                    top: calc(50% - (1em - 2px) / 2);
+                    width: 1px;
+                }
+            }
+        }
+    }
+
+    &--no-border &__item {
+        @include ds_responsive-padding(1, bottom);
+        border-bottom: none;
     }
 }
 
@@ -52,13 +75,14 @@
 
         &__item {
             display: table-row;
+            padding: 0;
         }
 
         &__key,
         &__value,
         &__actions {
             display: table-cell;
-            padding: 16px;
+            padding: px-to-rem(16px) px-to-rem(16px) px-to-rem(15px) px-to-rem(16px);
         }
 
         &__key {
@@ -70,9 +94,109 @@
             width: 50%;
         }
 
+        &__actions-list {
+            justify-content: flex-end;
+        }
+
         &__actions {
             padding-right: 0;
             text-align: right;
+        }
+    }
+}
+
+@include ds_media-query(large) {
+    .ds_summary-list {
+        // Shorter keys modifier
+        &--short-keys &__key {
+            width: 30%;
+        }
+        &--short-keys &__value {
+            width: 70%;
+        }
+    }
+}
+
+// Summary card
+
+.ds_summary-card {
+    @include ds_block-margins;
+    border: 1px solid $ds_colour__border;
+
+    &__header {
+        @include ds_responsive-padding(3, top, false, -1px);
+        @include ds_responsive-padding(3, right);
+        @include ds_responsive-padding(3, bottom);
+        @include ds_responsive-padding(3, left);
+        align-items: flex-start;
+        background: $ds_colour__grey--lighter;
+        display: flex;
+        justify-content: space-between;
+
+        // Stack on mobile
+        @include ds_media-query(medium-down) {
+            flex-direction: column;
+        }
+
+        &-title {
+            @include ds_h3-size;
+            font-weight: $bold;
+            margin: 0;
+        }
+
+        .ds_link {
+            font-weight: $bold;
+        }
+    }
+
+    &__actions-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        padding-left: px-to-rem(32px);
+
+        @include ds_media-query(medium-down) {
+            padding-left: 0;
+            padding-top: px-to-rem(8px);
+        }
+
+        &-item {
+            margin: 0;
+            padding: 0;
+
+            &:not(:first-child) {
+                @include ds_responsive-margin(1, left);
+                @include ds_responsive-padding(1, left, false, 1px);
+                position: relative;
+        
+                &::before {
+                    background: $ds_colour__text--secondary;
+                    content: '';
+                    height: calc(1em - 2px);
+                    left: 0;
+                    position: absolute;
+                    top: calc(50% - (1em - 2px) / 2);
+                    width: 1px;
+                }
+            }
+        }
+    }
+
+    &__content {
+        @include ds_responsive-padding(1, top);
+        @include ds_responsive-padding(3, right);
+        @include ds_responsive-padding(1, bottom, false, -1px);
+        @include ds_responsive-padding(3, left);
+    }
+
+    // Remove bottom margin and border
+    .ds_summary-list {
+        margin-bottom: 0;
+
+        &__item:last-child {
+            @include ds_responsive-padding(1, bottom);
+            border-bottom: none;
         }
     }
 }

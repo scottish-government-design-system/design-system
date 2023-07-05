@@ -6,9 +6,17 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.352] - 2023-07-07
+### Added
+- "Summary card" variant to "Summary list" component.
+### Changed
+- "Summary list" component support for multiple action buttons.
+### Fixed
+- Improved browser support for borders on "Summary list" component.
+
 ## [0.0.351] - 2023-06-08
 ### Changed
-- "Article aside" component spacing and sizing simplified to inherit more styling and use respaonsive scale.
+- "Article aside" component spacing and sizing simplified to inherit more styling and use responsive scale.
 ### Fixed
 - Top level list elements have standard block element bottom margin as default.
 
