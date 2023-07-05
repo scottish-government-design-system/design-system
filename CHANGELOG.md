@@ -8,7 +8,7 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 ---
 ## [0.0.351] - 2023-06-08
 ### Changed
-- "Article aside" component spacing and sizing simplified to inherit more styling and use respaonsive scale.
+- "Article aside" component spacing and sizing simplified to inherit more styling and use responsive scale.
 ### Fixed
 - Top level list elements have standard block element bottom margin as default.
 
