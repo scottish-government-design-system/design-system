@@ -22,19 +22,10 @@
 
     &__item {
         @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(1, bottom);
+        @include ds_responsive-padding(1, bottom, false, -1px);
+        border-bottom: 1px solid $ds_colour__border;
         margin: 0;
         position: relative;
-
-        &::after {
-            background: $ds_colour__border;
-            content: '';
-            height: 1px;
-            position: absolute;
-                bottom: 0;
-                left: 0;
-                right: 0;
-        }
     }
 
     &__answer::before,
@@ -44,7 +35,6 @@
 
     &__actions-list {
         display: flex;
-        justify-content: flex-end;
         list-style: none;
         margin: 0;
         padding: 0;
@@ -71,8 +61,9 @@
         }
     }
 
-    &--no-border &__item::after {
-        content: none;
+    &--no-border &__item {
+        @include ds_responsive-padding(1, bottom);
+        border-bottom: none;
     }
 }
 
@@ -91,7 +82,7 @@
         &__value,
         &__actions {
             display: table-cell;
-            padding: px-to-rem(16px);
+            padding: px-to-rem(16px) px-to-rem(16px) px-to-rem(15px) px-to-rem(16px);
         }
 
         &__key {
@@ -101,6 +92,10 @@
 
         &__value {
             width: 50%;
+        }
+
+        &__actions-list {
+            justify-content: flex-end;
         }
 
         &__actions {
@@ -136,13 +131,11 @@
         align-items: flex-start;
         background: $ds_colour__grey--lighter;
         display: flex;
-        gap: px-to-rem(32px);
         justify-content: space-between;
 
         // Stack on mobile
         @include ds_media-query(medium-down) {
             flex-direction: column;
-            gap: px-to-rem(8px);
         }
 
         &-title {
@@ -161,6 +154,12 @@
         list-style: none;
         margin: 0;
         padding: 0;
+        padding-left: px-to-rem(32px);
+
+        @include ds_media-query(medium-down) {
+            padding-left: 0;
+            padding-top: px-to-rem(8px);
+        }
 
         &-item {
             margin: 0;
@@ -195,8 +194,9 @@
     .ds_summary-list {
         margin-bottom: 0;
 
-        &__item:last-child::after {
-            content: none;
+        &__item:last-child {
+            @include ds_responsive-padding(1, bottom);
+            border-bottom: none;
         }
     }
 }
