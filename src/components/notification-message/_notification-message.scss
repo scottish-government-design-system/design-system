@@ -1,0 +1,23 @@
+.ds_notification-message {
+	@include ds_block-margins;
+	@include ds_responsive-padding(2, top);
+    @include ds_responsive-padding(2, bottom);
+    @include ds_responsive-padding(4, left, false, px-to-rem(-4px));
+    @include ds_responsive-padding(4, right);
+
+    background-color: $ds_colour__grey--lighter;
+    border-left: px-to-rem(4px) solid $ds_colour__brand;
+
+    &__title {
+        @include ds_h3-style;
+        margin-bottom: px-to-rem(8px);
+    }
+
+    &__body {
+        @include ds_last-child-no-margin;
+    }
+
+    &--success {
+        border-left-color: $ds_colour__state--positive;
+    }
+}
