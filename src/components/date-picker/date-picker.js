@@ -591,17 +591,14 @@ class DSDatePicker {
     transformLegacyDataAttributes() {
         if (this.inputElement.dataset.mindate) {
             this.datePickerParent.dataset.mindate = this.inputElement.dataset.mindate;
-            this.inputElement.removeAttribute('data-mindate');
         }
 
         if (this.inputElement.dataset.maxdate) {
             this.datePickerParent.dataset.maxdate = this.inputElement.dataset.maxdate;
-            this.inputElement.removeAttribute('data-maxdate');
         }
 
         if (this.inputElement.dataset.dateformat) {
             this.datePickerParent.dataset.dateformat = this.inputElement.dataset.dateformat;
-            this.inputElement.removeAttribute('data-dateformat');
         }
     }
 

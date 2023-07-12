@@ -6,6 +6,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.354] - 2023-07-12
+### Fixed
+- check for validity of using window.location.hash as css selector
+- be less aggressive in transformation of legacy date picker code
+
+## [0.0.353] - 2023-07-10
+### Added
+- new "notification message" component
+
 ## [0.0.352] - 2023-07-07
 ### Added
 - "Summary card" variant to "Summary list" component.
