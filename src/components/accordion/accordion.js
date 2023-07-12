@@ -29,7 +29,7 @@ class Accordion {
 
         // check for hash to open an accordion with
         let accordionHasLocationHashInIt = false;
-        if (window.location.hash && item.querySelector(window.location.hash)) {
+        if (window.location.hash) {
             try {
                 item.querySelector(window.location.hash);
                 accordionHasLocationHashInIt = true;

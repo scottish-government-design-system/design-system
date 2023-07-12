@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.355] - 2023-07-12
+### Fixed
+- minor correction to accordion change in 0.0.354
+
 ## [0.0.354] - 2023-07-12
 ### Fixed
 - check for validity of using window.location.hash as css selector
