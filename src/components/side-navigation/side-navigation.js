@@ -1,4 +1,5 @@
 /* global document, window */
+import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
 'use strict';
 
@@ -17,9 +18,8 @@ class SideNavigation {
         // transform markup to button-driven version
         const navControl = this.sideNavigation.querySelector('.js-toggle-side-navigation');
         const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand');
-        const idString = parseInt(Math.random() * 1000000, 10);
         this.navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
-        this.navList.id = this.navList.id || `side-navigation-${idString}`;
+        this.navList.id = this.navList.id || `side-navigation-${elementIdModifier()}`;
 
         navControl.checked = false;
 

@@ -1,4 +1,5 @@
 /* global document, window */
+import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
 'use strict';
 
@@ -36,7 +37,7 @@ class Details {
     }
 
     polyfillAttributes() {
-        this.content.id = this.content.id || `details-${parseInt(Math.random() * 1000000, 10)}`;
+        this.content.id = this.content.id || `details-${elementIdModifier()}`;
         this.details.setAttribute('role', 'group');
         this.summary.setAttribute('role', 'button');
         this.summary.setAttribute('aria-controls', this.content.id);

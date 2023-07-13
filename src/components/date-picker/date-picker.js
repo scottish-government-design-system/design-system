@@ -1,4 +1,5 @@
 /* global document, window */
+import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
 'use strict';
 
@@ -60,7 +61,7 @@ class DSDatePicker {
 
         // insert dialog template
         const dialog = document.createElement('div');
-        dialog.id = 'datepicker-' + parseInt(Math.random() * 1000000, 10);
+        dialog.id = 'datepicker-' + elementIdModifier();
         dialog.setAttribute('class', 'ds_datepicker__dialog  datepickerDialog');
         dialog.setAttribute('role', 'dialog');
         dialog.setAttribute('aria-modal', 'true');

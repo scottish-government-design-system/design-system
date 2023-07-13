@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.356] - 2023-07-13
+### Changed
+- remove use of pseudorandom number generators to create unique IDs on accordion, details, side navigation and site navigation
+
 ## [0.0.355] - 2023-07-12
 ### Fixed
 - minor correction to accordion change in 0.0.354
