@@ -28,6 +28,22 @@
         position: relative;
     }
 
+    &--no-border &__item {
+        @include ds_responsive-padding(1, bottom);
+        border-bottom: 0;
+    }
+
+    &__value {
+        // Remove top margin of first element and bottom margin of last element to avoid additional spacing
+        @include ds_first-child-no-margin;
+        @include ds_last-child-no-margin;
+
+        // If first element is visually hidden supporting text then remove top margin of next sibling
+        .visually-hidden:first-child + * {
+            margin-top: 0;
+        }
+    }
+
     &__answer::before,
     &__answer::after {
         content: '';
@@ -61,10 +77,6 @@
         }
     }
 
-    &--no-border &__item {
-        @include ds_responsive-padding(1, bottom);
-        border-bottom: none;
-    }
 }
 
 @include ds_media-query(medium) {
@@ -83,6 +95,14 @@
         &__actions {
             display: table-cell;
             padding: px-to-rem(16px) px-to-rem(16px) px-to-rem(15px) px-to-rem(16px);
+        }
+
+        &--no-border &__item {
+            .ds_summary-list__key,
+            .ds_summary-list__value,
+            .ds_summary-list__action {
+                padding-bottom: px-to-rem(16px);
+            }
         }
 
         &__key {
@@ -118,17 +138,18 @@
 }
 
 // Summary card
-
+// [1] - Add visual separation of header in high contrast mode
 .ds_summary-card {
     @include ds_block-margins;
     border: 1px solid $ds_colour__border;
 
     &__header {
-        @include ds_responsive-padding(3, top, false, -1px);
-        @include ds_responsive-padding(3, right);
-        @include ds_responsive-padding(3, bottom);
-        @include ds_responsive-padding(3, left);
+        @include ds_responsive-padding(3, top, $tuning: -1px);
+        @include ds_responsive-padding(3, right, $tuning: -1px);
+        @include ds_responsive-padding(3, bottom, $tuning: -1px);
+        @include ds_responsive-padding(3, left, $tuning: -1px);
         align-items: flex-start;
+        border-bottom: 1px solid $ds_colour__grey--lighter; //[1]
         background: $ds_colour__grey--lighter;
         display: flex;
         justify-content: space-between;
@@ -185,9 +206,9 @@
 
     &__content {
         @include ds_responsive-padding(1, top);
-        @include ds_responsive-padding(3, right);
-        @include ds_responsive-padding(1, bottom, false, -1px);
-        @include ds_responsive-padding(3, left);
+        @include ds_responsive-padding(3, right, $tuning: -1px);
+        @include ds_responsive-padding(1, bottom, $tuning: -1px);
+        @include ds_responsive-padding(3, left, $tuning: -1px);
     }
 
     // Remove bottom margin and border
@@ -195,8 +216,7 @@
         margin-bottom: 0;
 
         &__item:last-child {
-            @include ds_responsive-padding(1, bottom);
-            border-bottom: none;
+            border-color: transparent;
         }
     }
 }

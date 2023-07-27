@@ -4,13 +4,13 @@
 \*------------------------------------*/
 
 .ds_input {
+    @include ds_responsive-margin (3, bottom);
     border: $field-border-width solid currentColor;
     border-radius: 0;
     display: block;
     line-height: 2rem;
-    margin-bottom: 24px;
-    min-height: 48px;
-    padding: #{8px - $field-border-width} 8px;
+    min-height: px-to-rem(48px);
+    padding: px-to-rem(calc(8px - $field-border-width)) px-to-rem(calc(12px - $field-border-width));
     width: 100%;
 
     &:focus {
@@ -21,7 +21,7 @@
     &--error {
         border-color: $ds_colour__state--negative;
         border-width: $field-border-width--error;
-        padding: 4px;
+        padding: px-to-rem(calc(8px - $field-border-width--error)) px-to-rem(calc(12px - $field-border-width--error));
 
         &:focus {
             border-color: currentColor;
@@ -30,7 +30,7 @@
     }
 
     & + &__message {
-        margin-top: -16px;
+        margin-top: -1rem;
     }
 
     &__message--error {

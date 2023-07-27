@@ -13,11 +13,35 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
 .ds_table {
     // table-layout: fixed;
     width: 100%;
+    @include ds_responsive-margin(2, bottom);
+
+
+    caption {
+        @include ds_responsive-margin(2, bottom);
+        font-size: px-to-rem($root-font-size); // 1rem
+        font-weight: $bold;
+        line-height: line-height-on-grid($root-font-size);
+        text-align: left;
+    }
 
     tbody,
     thead,
     tfoot {
         border: 1px solid $table-border-colour;
+    }
+
+    tr {
+        border-bottom: 1px solid $table-border-colour--light;
+    }
+
+    tr > * {
+        /// [1] compensate for table row 1px border
+        padding: px-to-rem(8px) px-to-rem(16px) px-to-rem(7px) px-to-rem(8px); /// [1]
+    }
+
+    tr:last-child {
+        //border-bottom-color: $table-border-colour;
+        border-bottom: 0;
     }
 
     th {
@@ -45,22 +69,8 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
         top: 8px;
     }
 
-    tr > * {
-        /// [1] componsate for table row 1px border
-        padding: 8px 16px 7px 8px; /// [1]
-    }
-
-
-    tr {
-        border-bottom: 1px solid $table-border-colour--light;
-    }
-
-    tr:last-child {
-        border-bottom-color: $table-border-colour;
-    }
-
     thead > tr:last-child {
-        border-bottom-width: 0;
+        border-bottom: 0;
     }
 
     tbody > tr > td {
@@ -69,14 +79,6 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
 
     tbody > tr:nth-child(even) > td {
         background-color: $ds_colour__grey--lighter;
-    }
-
-    caption {
-        @include ds_responsive-margin(2, bottom);
-        font-size: px-to-rem($root-font-size); // 1rem
-        font-weight: $bold;
-        line-height: line-height-on-grid($root-font-size);
-        text-align: left;
     }
 }
 
@@ -131,17 +133,13 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
 
     .js-enabled {
         .ds_table {
-            &[data-smallscreen="boxes"] thead {
-                clip: rect(1px 1px 1px 1px);
-                clip: rect(1px, 1px, 1px, 1px);
-                height: 1px;
-                width: 1px;
-                overflow: hidden;
-                position: absolute !important;
-            }
-
             &[data-smallscreen="boxes"] {
                 border: 0;
+                margin-bottom: 0;
+            }
+
+            &[data-smallscreen="boxes"] thead {
+                @include ds_visually-hidden;
             }
 
             &[data-smallscreen="boxes"] tbody {
@@ -155,14 +153,11 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
             }
 
             &[data-smallscreen="boxes"] tr > * {
+                border: 1px solid $table-border-colour;
                 display: block;
                 overflow: auto;
                 padding-left: calc(50% - 8px);
                 position: relative;
-            }
-
-            &[data-smallscreen="boxes"] tr > * {
-                border: 1px solid $table-border-colour;
             }
 
             &[data-smallscreen="boxes"] tr > td:not(:last-child) {

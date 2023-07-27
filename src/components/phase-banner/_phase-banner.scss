@@ -4,10 +4,10 @@
 
 .ds_phase-banner {
     @include ds_small-size;
+    @include ds_responsive-padding(2, top);
+    @include ds_responsive-padding(2, bottom);
     background: $ds_colour__grey--light;
     clear: both;
-    line-height: 24px;
-    padding: 16px 0;
 
     &.no-bottom-margin {
         margin-bottom: 0;
@@ -19,7 +19,7 @@
     }
 
     &__tag {
-        margin-right: 1em;
+        @include ds_responsive-margin(2, right);
     }
 
     &__text {
@@ -38,7 +38,7 @@
                 flex-direction: column;
 
                 > *:not(:last-child) {
-                    margin-bottom: 8px;
+                    @include ds_responsive-margin(1, bottom);
                 }
             }
         }

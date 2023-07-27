@@ -11,6 +11,7 @@ $link__border-width: 3px;
 /// look like links (e.g. buttons we want to have display with a link-like style)
 
 @mixin ds_link {
+    @include ds_high-contrast-link-style;
     color: $ds_colour__link;
     text-decoration: underline;
     outline: 0px solid transparent;

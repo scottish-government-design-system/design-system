@@ -12,10 +12,10 @@
     border-radius: 0;
     border: 0;
     box-shadow: inset 0 0 0 2px currentColor;
-    min-height: 48px;
+    min-height: px-to-rem(48px);
     outline: 2px solid transparent; /// [1]
     outline-offset: -2px; /// [1]
-    padding: 8px;
+    padding: px-to-rem(8px) px-to-rem(12px);
     width: 100%;
 
     &:focus {
@@ -62,10 +62,10 @@
 }
 
 .ds_select-wrapper {
+    @include ds_responsive-margin(3, bottom);
     border-radius: 0;
     display: block;
-    margin-bottom: 24px;
-    min-height: 48px;
+    min-height: px-to-rem(48px);
     padding: 0;
     position: relative;
     width: 100%;

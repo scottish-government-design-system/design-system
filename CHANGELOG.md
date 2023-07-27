@@ -6,7 +6,19 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
-## [0.0.366] - 2023-08-29
+## [0.0.368] - 2023-08-30
+### Added
+- helper mixin for removing top margin on first child of an element 
+- helper mixin for applying link style in Windows high contrast mode
+### Changed
+- buttons that are styled to look like links use link style in Windows high contrast mode
+- various amends to use responsive spacing mixins in place of fixed values
+### Deprecated
+- callout component
+### Fixed
+- various component (summary list, task list, search result, link item, tag, text input, select, tabs, site search) spacing changes to align to 8px grid
+
+## [0.0.367] - 2023-08-29
 ### Fixed
 - buttons in the date picker now have type="button" which avoids some incorrect triggering
 

@@ -5,7 +5,7 @@
 
 .ds_link-item {
 
-    @include ds_responsive-padding (3, bottom);
+    @include ds_responsive-padding (3, bottom, $tuning: -2px);
     border-bottom: 2px $ds_colour__border--light solid;
     margin: 0;
 

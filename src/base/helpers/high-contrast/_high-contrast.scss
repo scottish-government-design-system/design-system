@@ -18,3 +18,15 @@
         outline-offset: #{$width * -1} !important;
     }
 }
+
+// Style to look like links 
+@mixin ds_high-contrast-link-style {
+    @media screen and (forced-colors: active) and (prefers-contrast: more) {
+        color: LinkText;
+
+        &:hover,
+        &:focus {
+            color: LinkText;
+        }
+    }
+}

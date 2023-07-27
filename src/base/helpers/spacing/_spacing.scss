@@ -7,7 +7,7 @@
 /// Allows fine tuning by pixel amounts.
 ///
 /// This low-level mixin sholuld rarely be used directly.
-/// Use ds_reponsive-margin and ds_responsive-padding instead.
+/// Use ds_responsive-margin and ds_responsive-padding instead.
 ///
 /// @param {number} $spacing-unit - entry in the spacing scale to get values from
 /// @param {string} $property - property to assign a value to

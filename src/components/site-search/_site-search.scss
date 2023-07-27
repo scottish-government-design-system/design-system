@@ -22,7 +22,6 @@ $site-search__border-colour: $ds_colour__grey !default;
         border-color: $site-search__border-colour;
         margin-bottom: 0;
         min-height: $site-search__height;
-        padding-left: 20px;
 
         &:focus {
             border-color: currentColor;

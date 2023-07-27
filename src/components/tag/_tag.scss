@@ -10,12 +10,13 @@ $tag__background-colour: $ds_colour__brand !default;
 
 .ds_tag {
     @include ds_small-size;
+    @include ds_responsive-padding(1, left);
+    @include ds_responsive-padding(1, right);
     background: $tag__background-colour;
     border-radius: 2px;
     color: $ds_colour__white;
     display: inline-block;
     font-weight: $bold;
-    padding: 0 10px;
     text-transform: uppercase;
 
     @include ds_high-contrast-outline;

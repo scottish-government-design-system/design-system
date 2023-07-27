@@ -6,19 +6,23 @@
     margin: 0;
     padding: 0;
     @include ds_responsive-padding(2, top);
-    @include ds_responsive-padding(3, bottom);
+    @include ds_responsive-padding(3, bottom, $tuning: -1px);
 
     & + &:not(&--promoted) {
         border-top: 1px $ds_colour__border solid;
     }
 
-    &--promoted {
+    &--promoted + &:not(&--promoted) {
+        margin-top: -1px;
+    }
 
+    &--promoted {
+        @include ds_responsive-padding(3, bottom);
         padding-top: 0;
 
         &-content {
             background: $ds_colour__grey--lighter;
-            border-left: 3px solid $ds_colour__brand;
+            border-left: 4px solid $ds_colour__brand;
             @include ds_responsive-padding(1, top);
             @include ds_responsive-padding(2, left);
             @include ds_responsive-padding(2, right);
@@ -62,7 +66,7 @@
 
     &__metadata {
         @include ds_responsive-margin(1, top);
-        @include ds_tiny-size(4px);
+        @include ds_tiny-size;
         margin-bottom: 0;
     }
 
@@ -71,7 +75,6 @@
     }
 
     &__media-wrapper {
-        padding-top: 2px;
         @include ds_responsive-padding(2, right);
     }
 
@@ -87,21 +90,21 @@
         margin: 0;
         padding: 0;
         @include ds_responsive-margin(2, top);
-        @include ds_responsive-padding(2, left, $tuning: 3px);
+        @include ds_responsive-padding(2, left);
         @include ds_small-size(4px); // Use 4px type grid
         position: relative;
 
         &:before {
             background: $ds_colour__blue;
             content: '';
-            height: nearest-grid-size(($small-size * 1.5), $grid: 4px); // Match height to line-height
+            height: nearest-grid-size(($small-size * 1.5)); // Match height to line-height
             @include ds_media-query(medium) {
-                height: nearest-grid-size(($small-size--medium * 1.5), $grid: 4px); // Match height to line-height
+                height: nearest-grid-size(($small-size--medium * 1.5)); // Match height to line-height
             }
             position: absolute;
                 top: 0;
                 left: 0;
-            width: 3px;
+            width: 4px;
         }
 
         &-key {

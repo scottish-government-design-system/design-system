@@ -4,7 +4,7 @@
 
 .ds_task-list {
     list-style-type: none;
-    margin: 0;
+    margin: -2px 0 0 0; // Negative top margin to offset top border of first task
     padding: 0;
 
     &__task {
@@ -14,7 +14,7 @@
         justify-content: space-between;
         margin: 0;
         @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(2, bottom);
+        @include ds_responsive-padding(2, bottom, $tuning: -2px);
 
         &:last-child {
             border-bottom: 2px $ds_colour__grey--light solid;
@@ -22,7 +22,7 @@
 
         // Stack at small size
         @include ds_media-query(small-down) {
-            @include ds_responsive-padding(3, bottom);
+            @include ds_responsive-padding(3, bottom, $tuning: -2px);
             align-items: flex-start;
             flex-direction: column;
         }
@@ -71,17 +71,20 @@
 
     &-heading {
         @include ds_h3-style;
-        display: inline;
+        display: inline-block;
     }
 
     &-intro {
-        @include ds_responsive-margin(1, bottom);
+        @include ds_responsive-margin(2, bottom);
     }
 
     // Add top margin if following inline heading
-    &-heading + &,
     &-heading + &-intro {
-        @include ds_responsive-margin(1, top);
+        //@include ds_responsive-margin(1, top);
+    }
+    // Include tuning for top border of tasks
+    &-heading + & {
+        @include ds_responsive-margin(1, top, $tuning: -2px);
     }
 }
 
