@@ -46,7 +46,8 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
     }
 
     tr > * {
-        padding: 8px 16px 8px 8px;
+        /// [1] componsate for table row 1px border
+        padding: 8px 16px 7px 8px; /// [1]
     }
 
 

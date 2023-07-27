@@ -7,9 +7,10 @@
     border: $field-border-width solid currentColor;
     border-radius: 0;
     display: block;
+    line-height: 2rem;
     margin-bottom: 24px;
     min-height: 48px;
-    padding: 8px;
+    padding: #{8px - $field-border-width} 8px;
     width: 100%;
 
     &:focus {

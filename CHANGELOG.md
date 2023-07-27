@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.357] - 2023-07-27
+### Fixed
+- ensure components fit the 8px grid and that borders are not distorting their sizes (components affected: textarea/text input, tabs, table)
+- add an underscore to the break-word.scss filename
+- notification banner had its ds_last-child-no-margin helper in the wrong location
+
 ## [0.0.356] - 2023-07-13
 ### Changed
 - remove use of pseudorandom number generators to create unique IDs on accordion, details, side navigation and site navigation
