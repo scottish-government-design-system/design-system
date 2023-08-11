@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.358] - 2023-08-11
+### Security
+- address vulnerabilities in package dependencies
+
 ## [0.0.357] - 2023-07-27
 ### Fixed
 - ensure components fit the 8px grid and that borders are not distorting their sizes (components affected: textarea/text input, tabs, table)
