@@ -23,4 +23,14 @@
             z-index: 1;
         }
     }
+
+    @each $color in $cb_colors {
+        $name: nth($color, 1);
+        $hex: nth($color, 2);
+        $texttheme: nth($color, 3);
+
+        &.ds_cb--fg-#{$name} hr::after {
+            background-color: $hex;
+        }
+    }
 }

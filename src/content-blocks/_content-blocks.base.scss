@@ -4,7 +4,7 @@
 
 // colors
 
-$colors: (
+$cb_colors: (
     'white'     $ds_colour__white       'normal',
     'grey'      $ds_colour__grey--light 'normal',
     'blue'      $ds_colour__blue        'reversed',
@@ -102,7 +102,7 @@ $colors: (
         }
     }
 
-    @each $color in $colors {
+    @each $color in $cb_colors {
         $name: nth($color, 1);
         $hex: nth($color, 2);
         $texttheme: nth($color, 3);
@@ -129,11 +129,11 @@ $colors: (
         // foreground theming
         &--fg-#{$name}:not([class*="ds_cb--bg-"]),
         &--fg-#{$name}.ds_cb--bg-white {
-            h1, 
-            h2, 
-            h3, 
-            h4, 
-            h5, 
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
             h6 {
                 color: #{$hex};
             }
@@ -151,7 +151,7 @@ $colors: (
         &--neutral-links.ds_cb--bg-grey {
             a:not(:hover):not(:focus):not(.ds_button) {
                 color: $ds_colour__text;
-            }    
+            }
         }
     }
 }

@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.359] - 2023-08-11
+### Fixed
+- 'divider' content block colour theme works as expected
+
 ## [0.0.358] - 2023-08-11
 ### Security
 - address vulnerabilities in package dependencies
