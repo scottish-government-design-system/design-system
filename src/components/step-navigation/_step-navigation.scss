@@ -20,12 +20,9 @@ $step-content-line-height--medium: 32px;
 
     &__title-link {
         display: block;
-        border-top: 1px solid $ds_colour__border--light;
-        border-bottom: 1px solid $ds_colour__border--light;
-        @include ds_responsive-margin(2, bottom);
+        @include ds_responsive-margin(3, bottom);
         @include ds_responsive-margin(1, top);
-        @include ds_responsive-padding(3, bottom);
-        @include ds_responsive-padding(3, top);
+        text-decoration: underline;
     }
 
     &__current-link::before {

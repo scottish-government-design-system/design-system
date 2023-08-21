@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.360] - 2023-08-21
+### Fixed
+- amend styling of "step navigation" title to follow updated designs
+
 ## [0.0.359] - 2023-08-11
 ### Fixed
 - 'divider' content block colour theme works as expected
