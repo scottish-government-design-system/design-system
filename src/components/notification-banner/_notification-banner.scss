@@ -40,7 +40,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 
     &__actions {
-        margin-bottom: -16px;
         margin-top: 32px;
         text-align: center;
 
@@ -50,6 +49,11 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             white-space: nowrap;
             width: 100%;
         }
+    }
+
+    // specificity hack
+    .ds_notification__actions {
+        margin-bottom: -16px;
     }
 
     &__icon {

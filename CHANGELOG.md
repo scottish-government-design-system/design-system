@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.361] - 2023-08-21
+### Fixed
+- increase sepcificity of notification banner "actions" selector so it isn't overridden by ds_last-child-no-margin
+
 ## [0.0.360] - 2023-08-21
 ### Fixed
 - amend styling of "step navigation" title to follow updated designs
