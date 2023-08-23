@@ -2,7 +2,7 @@
 
 const Page = {
     init() {
-        if (!CSS.supports('selector(html:has(body))')) {
+        if (typeof CSS === 'undefined' || !CSS.supports('selector(html:has(body))')) {
             const pageMiddle = document.querySelector('.ds_page__middle');
             if (pageMiddle) {
                 const preFooterBlock = pageMiddle.querySelector('.ds_pre-footer-background');
