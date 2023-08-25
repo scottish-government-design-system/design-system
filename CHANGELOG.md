@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.363] - 2023-08-25
+### Fixed
+- incorrect top margin on "hide this page" at viewports over 768px
+
 ## [0.0.362] - 2023-08-23
 ### Fixed
 - 'CSS' interface not understood by IE11 and its use in page.js is causing errors in that browser
