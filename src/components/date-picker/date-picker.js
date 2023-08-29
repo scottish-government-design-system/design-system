@@ -87,6 +87,7 @@ class DSDatePicker {
                 // create cell (day)
                 const cell = document.createElement('td');
                 const dateButton = document.createElement('button');
+                dateButton.type = 'button';
                 dateButton.dataset.form = 'date-select';
 
                 cell.appendChild(dateButton);
