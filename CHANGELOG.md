@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.365] - 2023-08-29
+### Fixed
+- placeholder text colour was defined but never used. it is now assigned to ::placeholder
+- site navigation links in a closed mobile menu can no longer receive focus via keyboard
+
 ## [0.0.363] - 2023-08-25
 ### Fixed
 - incorrect top margin on "hide this page" at viewports over 768px

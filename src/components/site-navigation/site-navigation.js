@@ -25,6 +25,8 @@ class MobileMenu {
         oldMenuButton.parentNode.appendChild(newMenuButton);
         oldMenuButton.classList.add('fully-hidden');
 
+        this.disableMenuLinks();
+
         // events
         newMenuButton.addEventListener('click', (event) => {
             event.preventDefault();
@@ -34,16 +36,40 @@ class MobileMenu {
             document.documentElement.style.setProperty('--mobile-menu-height', this.mobileMenu.scrollHeight + 'px');
 
             if (this.mobileMenu.classList.contains('ds_site-navigation--open')) {
-                this.mobileMenu.classList.remove('ds_site-navigation--open');
-                newMenuButton.classList.remove('ds_site-header__control--active');
-                newMenuButton.setAttribute('aria-expanded', false);
+                this.closeMenu();
             } else {
-                this.mobileMenu.style.maxHeight = this.mobileMenu.scrollHeight;
-                this.mobileMenu.classList.add('ds_site-navigation--open');
-                newMenuButton.classList.add('ds_site-header__control--active');
-                newMenuButton.setAttribute('aria-expanded', true);
+                this.openMenu();
             }
         });
+
+        this.newMenuButton = newMenuButton;
+    }
+
+    openMenu() {
+        this.mobileMenu.style.maxHeight = this.mobileMenu.scrollHeight;
+        this.mobileMenu.classList.add('ds_site-navigation--open');
+        this.newMenuButton.classList.add('ds_site-header__control--active');
+        this.newMenuButton.setAttribute('aria-expanded', true);
+
+        this.enableMenuLinks();
+    }
+
+    closeMenu() {
+        this.mobileMenu.classList.remove('ds_site-navigation--open');
+        this.newMenuButton.classList.remove('ds_site-header__control--active');
+        this.newMenuButton.setAttribute('aria-expanded', false);
+
+        this.disableMenuLinks();
+    }
+
+    disableMenuLinks() {
+        const menuLinks = [].slice.call(this.mobileMenu.querySelectorAll('.ds_site-navigation__link'));
+        menuLinks.forEach(link => { link.setAttribute('tabindex', -1) });
+    }
+
+    enableMenuLinks() {
+        const menuLinks = [].slice.call(this.mobileMenu.querySelectorAll('.ds_site-navigation__link'));
+        menuLinks.forEach(link => { link.removeAttribute('tabindex') });
     }
 }
 
