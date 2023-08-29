@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.366] - 2023-08-29
+### Fixed
+- buttons in the date picker now have type="button" which avoids some incorrect triggering
+
 ## [0.0.365] - 2023-08-29
 ### Fixed
 - placeholder text colour was defined but never used. it is now assigned to ::placeholder
