@@ -2,6 +2,8 @@
 
 'use strict';
 
+import storage from '../storage/storage';
+
 function slugify(string) {
 
     string = String(string);
@@ -17,13 +19,47 @@ function slugify(string) {
         .replace(/^-+|-+$/g, '');
 }
 
+function prevUntil (node) {
+    const prevNodes = [];
+
+    if (node.parentNode) {
+        const nodeArray = Array.from(node.parentNode.children);
+
+        for (let i = 0, il = nodeArray.length; i < il; i++) {
+            if (nodeArray[i] === node) {
+                break;
+            }
+
+            prevNodes.push(nodeArray[i]);
+        }
+    }
+    return prevNodes;
+}
+
+function findElementInNodeArray(nodeArray, selector, specialCases) {
+    nodeArray.reverse();
+
+    for (let i = 0, il = nodeArray.length; i < il; i++) {
+        if (nodeArray[i].matches(selector)) {
+            return nodeArray[i];
+        }
+
+        // this is to match cases such as finding a heading in a ds_page-header block
+        if (specialCases && nodeArray[i].matches(specialCases)) {
+            if (nodeArray[i].querySelector(selector)) {
+                return nodeArray[i].querySelector(selector);
+            }
+        }
+    }
+}
+
 const tracking = {
     init: function (scope) {
         if (!scope) {
             scope = document;
         }
 
-        for (var key in tracking.add) {
+        for (let key in tracking.add) {
             tracking.add[key](scope);
         }
     },
@@ -38,7 +74,82 @@ const tracking = {
         return elements;
     },
 
+    getClickType: function (event) {
+        switch (event.type) {
+            case 'click':
+                if (event.ctrlKey) {
+                    return 'ctrl click'
+                } else if (event.metaKey) {
+                    return 'command/win click'
+                } else if (event.shiftKey) {
+                    return 'shift click'
+                } else {
+                    return 'primary click'
+                }
+            case 'auxclick':
+                return 'middle click'
+            case 'contextmenu':
+                return 'secondary click'
+        }
+    },
+
+    getNearestSectionHeader: function (element) {
+        const linkSectionExceptions = 'nav,.ds_metadata';
+        const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_accordion__header-button';
+        const linkSectionSpecialCases = '.ds_page-header,.ds_layout__header';
+
+        if (element.closest && element.closest(linkSectionExceptions)) {
+            return false;
+        }
+
+        const possibleHeader = findElementInNodeArray(prevUntil(element), linkSectionIdentifiers, linkSectionSpecialCases);
+
+        if (possibleHeader) {
+            return possibleHeader;
+        } else if (element.parentNode) {
+            return tracking.getNearestSectionHeader(element.parentNode);
+        } else {
+            return false;
+        }
+    },
+
+    pushToDataLayer: function(data) {
+        if (storage.hasPermission(storage.categories.statistics)) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(data);
+        }
+    },
+
     add: {
+        clicks: function (scope = document) {
+            if (!tracking.hasAddedClickTracking) {
+                scope.addEventListener('click', event => {
+                    // push to datalayer
+                    tracking.pushToDataLayer({
+                        'method': tracking.getClickType(event)
+                    });
+                });
+
+                scope.addEventListener('auxclick', event => {
+                    if (event.button === 1 || event.buttons === 4) {
+                        // push to datalayer
+                        tracking.pushToDataLayer({
+                            'method': tracking.getClickType(event)
+                        });
+                    }
+                });
+
+                scope.addEventListener('contextmenu', event => {
+                    // push to datalayer
+                    tracking.pushToDataLayer({
+                        'method': tracking.getClickType(event)
+                    });
+                });
+
+                tracking.hasAddedClickTracking = true;
+            }
+        },
+
         accordions: function (scope = document) {
             const accordions = tracking.gatherElements('ds_accordion', scope);
 
@@ -62,12 +173,12 @@ const tracking = {
 
                 function setOpenAll(openAll) {
                     if (openAll) {
-                        const open = checkOpenAll(openAll);
+                        const open = checkOpenAll();
 
                         if (open) {
-                            openAll.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}close-all`);
+                            openAll.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}close-all`);
                         } else {
-                            openAll.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}open-all`);
+                            openAll.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}open-all`);
                         }
                     }
                 }
@@ -75,7 +186,7 @@ const tracking = {
                 function setAccordionItem(item, index) {
                     const itemButton = item.querySelector('.ds_accordion-item__header-button');
                     const itemControl = item.querySelector('.ds_accordion-item__control');
-                    itemButton.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
+                    itemButton.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
                 }
 
                 setOpenAll(openAll);
@@ -98,7 +209,7 @@ const tracking = {
                     const itemButton = item.querySelector('.ds_accordion-item__header-button');
                     const itemControl = item.querySelector('.ds_accordion-item__control');
                     itemButton.addEventListener('click', () => {
-                        itemButton.setAttribute('data-accordion', `accordion-${name.length?name+'-':name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
+                        itemButton.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
                         setOpenAll(openAll);
                     });
                 });
@@ -369,6 +480,17 @@ const tracking = {
                 links.forEach(link => {
                     link.setAttribute('data-navigation', 'inset-link');
                 });
+            });
+        },
+
+        links: function () {
+            const links = [].slice.call(document.querySelectorAll('a'));
+
+            links.forEach(link => {
+                const nearestHeader = tracking.getNearestSectionHeader(link);
+                if (nearestHeader) {
+                    link.setAttribute('data-section', nearestHeader.innerText);
+                }
             });
         },
 

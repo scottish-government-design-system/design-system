@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.371]
+## Added
+- mouse click behaviour added to window.dataLayer (which button was pressed, whether modifier keys were included)
+- "data-section" attribute added to link elements in the tracking script
+
 ## [0.0.370] - 2023-09-07
 ## Fixed
 - back to top component placement is correct when the viewport height is similar to the total page height

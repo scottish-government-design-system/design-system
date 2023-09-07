@@ -12,6 +12,107 @@ describe('tracking', () => {
         loadFixtures('base/tools/tracking/tracking.html');
     });
 
+    describe('clicks', () => {
+        beforeEach(() => {
+            Tracking.init();
+            spyOn(Tracking, 'pushToDataLayer');
+        });
+
+        it('left mouse click should be recorded in the dataLayer', () => {
+            const element = document.documentElement;
+
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
+            element.dispatchEvent(event);
+
+            expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({ method: 'primary click' });
+        });
+
+        it('left mouse click with CTRL should be recorded in the datalayer', () => {
+            const element = document.documentElement;
+
+            const event = new MouseEvent( 'click', {
+                bubbles: true,
+                ctrlKey: true
+            });
+            element.dispatchEvent(event);
+
+            expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({ method: 'ctrl click' });
+        });
+
+        it('left mouse click with COMMAND/WIN should be recorded in the datalayer', () => {
+            const element = document.documentElement;
+
+            const event = new MouseEvent( 'click', {
+                bubbles: true,
+                metaKey: true
+            });
+            element.dispatchEvent(event);
+
+            expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({ method: 'command/win click' });
+        });
+
+        it('left mouse click with SHIFT should be recorded in the datalayer', () => {
+            const element = document.documentElement;
+
+            const event = new MouseEvent( 'click', {
+                bubbles: true,
+                shiftKey: true
+            });
+            element.dispatchEvent(event);
+
+            expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({ method: 'shift click' });
+        });
+
+        it('middle mouse click should be recorded in the dataLayer', () => {
+            const element = document.documentElement;
+
+            const event = new MouseEvent('auxclick', {
+                bubbles: true,
+                button: 1
+            });
+            element.dispatchEvent(event);
+
+            expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({ method: 'middle click' });
+        });
+
+        it('middle mouse click should be recorded in the dataLayer (alternative method', () => {
+            const element = document.documentElement;
+
+            const event = new MouseEvent('auxclick', {
+                bubbles: true,
+                buttons: 4
+            });
+            element.dispatchEvent(event);
+
+            expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({ method: 'middle click' });
+        });
+
+        it('clicks on other mouse buttons should not be recorded', () => {
+            const element = document.documentElement;
+
+            const event = new MouseEvent('auxclick', {
+                bubbles: true,
+                buttons: 1
+            });
+            element.dispatchEvent(event);
+
+            expect(Tracking.pushToDataLayer).not.toHaveBeenCalled();
+        });
+
+        it('right mouse click sshould be recorded in the dataLayer', () => {
+            const element = document.documentElement;
+
+            const event = new MouseEvent( 'contextmenu' , {
+                bubbles: true
+            });
+            element.dispatchEvent(event);
+
+            expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({ method: 'secondary click' });
+        });
+    });
+
     describe('buttons', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('buttons');
@@ -94,7 +195,6 @@ describe('tracking', () => {
                 expect(testObj.label1.addEventListener.calls.count()).toEqual(1);
             });
         });
-
     });
 
     describe('radios', () => {
@@ -899,6 +999,48 @@ describe('tracking', () => {
         });
     });
 
+    describe('links', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('links');
+        });
+
+        it('should add a "data-section" attribute whose value is the text of the nearest preceding heading', () => {
+            Tracking.add.links();
+
+            const link4 = testObj.scope.querySelector('[data-unit="link-4"]');
+            const link5 = testObj.scope.querySelector('[data-unit="link-5"]');
+
+            expect(link4.dataset.section).toEqual('Section 3');
+
+            // link 4 is nested inside a list
+            expect(link5.dataset.section).toEqual('Section 3');
+        });
+
+        it('should not add a "data-section" attribute if no suitable section heading can be found', () => {
+            Tracking.add.links();
+
+            const link1 = testObj.scope.querySelector('[data-unit="link-1"]');
+
+            expect(link1.dataset.section).toBeUndefined();
+        });
+
+        it('should look inside header-wrapping elements for section headings and add a "data-section" attribute if one is found', () => {
+            Tracking.add.links();
+
+            const link2 = testObj.scope.querySelector('[data-unit="link-2"]');
+            expect(link2.dataset.section).toEqual('Section 1');
+        });
+
+        it('should look inside header-wrapping elements for section headings and NOT add a "data-section" attribute if one NOT is found', () => {
+            Tracking.add.links();
+
+            const link3 = testObj.scope.querySelector('[data-unit="link-3"]');
+
+            // this should continue up the DOM tree to the next heading, i.e. section 1 in the fixture
+            expect(link3.dataset.section).toEqual('Section 1');
+        });
+    });
+
     describe('notifications', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('notifications');
@@ -1619,4 +1761,37 @@ describe('tracking', () => {
             expect(elements.length).toEqual(2);
         });
     });
+
+    describe('push to data layer', () => {
+        beforeEach(() => {
+            testObj.tempHasPermission = window.storage.hasPermission;
+            delete window.dataLayer;
+        });
+
+        afterEach(() => {
+            window.storage.hasPermission = testObj.tempHasPermission;
+        });
+
+        it('should push items to the data layer if analytics/statistics cookies are enabled', () => {
+            // mock storage object
+            window.storage.hasPermission = function () {
+                return true;
+            }
+
+            const trackingObject = { foo: 'bar' };
+
+            Tracking.pushToDataLayer(trackingObject);
+
+            expect(window.dataLayer).toEqual([trackingObject]);
+        });
+
+        it('should NOT push items to the deta layer if analytics/statistics cookies are disabled', () => {
+            window.storage.hasPermission = function () {
+                return false;
+            }
+
+            Tracking.pushToDataLayer({ foo: 'bar' });
+            expect(window.dataLayer).toBeUndefined();
+        });
+    })
 });
