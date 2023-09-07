@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.370] - 2023-09-07
+## Fixed
+- back to top component placement is correct when the viewport height is similar to the total page height
+
 ## [0.0.368] - 2023-08-30
 ### Added
 - helper mixin for removing top margin on first child of an element 

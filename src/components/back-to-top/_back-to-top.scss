@@ -8,13 +8,18 @@
 
 @media only screen {
     .ds_back-to-top {
-        bottom: var(--back-to-top-offset);
+        bottom: 56px;
         display: block;
         pointer-events: none;
         position: absolute;
         right: 8px;
-        top: calc(100vh - var(--back-to-top-offset));
+        top: 100vh;
         z-index: 1;
+
+        @supports (bottom: var(--back-to-top-offset)) {
+            bottom: var(--back-to-top-offset);
+            top: calc(100vh - var(--back-to-top-offset));
+        }
 
         /// [1] fallback for older browsers
         /// [2] 56px is the button's height plus 8px spacing
