@@ -259,14 +259,14 @@ describe('tracking', () => {
                 const options = [].slice.call(select.querySelectorAll('option'));
                 window.dataLayer = window.dataLayer || [];
 
-                spyOn(window.dataLayer, 'push');
+                spyOn(Tracking, 'pushToDataLayer');
 
                 Tracking.add.selects();
                 options[2].selected = true;
 
                 let event = new Event('change');
                 select.dispatchEvent(event);
-                expect(window.dataLayer.push).toHaveBeenCalledWith({ "event": "select-mushroom-boletus" });
+                expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({ "event": "select-mushroom-boletus" });
             });
 
             it('shouldn\'t bind select tracking events multiple times', () => {
@@ -497,14 +497,14 @@ describe('tracking', () => {
             testObj.autocompleteModule.suggestions = [1,2,3];
             testObj.autocompleteModule.inputElement.dataset.autocompleteposition = 2;
 
-            spyOn(window.dataLayer, 'push');
+            spyOn(Tracking, 'pushToDataLayer');
 
             // act
             const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
             inputElement.dispatchEvent(enterEvent);
 
             // assert
-            expect(window.dataLayer.push).toHaveBeenCalledWith({
+            expect(Tracking.pushtoDataLayer).toHaveBeenCalledWith({
                 event: 'autocomplete',
                 searchText: '',
                 clickText: 'bar',
@@ -517,14 +517,14 @@ describe('tracking', () => {
             // arrange
             const inputElement = testObj.autocompleteElement.querySelector('.js-autocomplete-input');
 
-            spyOn(window.dataLayer, 'push');
+            spyOn(Tracking, 'pushToDataLayer');
 
             // act
             const event = new KeyboardEvent('keydown', { key: 'Enter' });
             inputElement.dispatchEvent(event);
 
             // assert
-            expect(window.dataLayer.push).not.toHaveBeenCalled();
+            expect(Tracking.pushToDataLayer).not.toHaveBeenCalled();
         });
 
         it('should set a datalayer value when an item is clicked', () => {
@@ -536,7 +536,7 @@ describe('tracking', () => {
             testObj.autocompleteModule.inputElement.dataset.autocompletetext = 'bar';
             testObj.autocompleteModule.inputElement.dataset.autocompletecount = 3;
 
-            spyOn(window.dataLayer, 'push');
+            spyOn(Tracking, 'pushToDataLayer');
 
             // prevent problematic calls not relevant to this spec
             spyOn(testObj.autocompleteModule, 'selectSuggestion');
@@ -547,7 +547,7 @@ describe('tracking', () => {
             suggestion1.dispatchEvent(event);
 
             // assert
-            expect(window.dataLayer.push).toHaveBeenCalledWith({
+            expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({
                 event: 'autocomplete',
                 searchText: '',
                 clickText: 'bar',
@@ -955,7 +955,12 @@ describe('tracking', () => {
 
     describe('hide this page', () => {
         beforeEach(() => {
+            testObj.tempHasPermission = window.storage.hasPermission;
             testObj.scope = document.getElementById('hide-this-page');
+        });
+
+        afterEach(() => {
+            window.storage.hasPermission = testObj.tempHasPermission;
         });
 
         it('should add a data attribute on hide this page links', () => {
@@ -966,6 +971,11 @@ describe('tracking', () => {
         });
 
         it('should push to the data layer when hide this page is triggered via keyboard ESC', () => {
+            // mock storage object
+            window.storage.hasPermission = function () {
+                return true;
+            }
+
             window.dataLayer = window.dataLayer || [];
 
             Tracking.add.hideThisPage();
@@ -1765,7 +1775,7 @@ describe('tracking', () => {
     describe('push to data layer', () => {
         beforeEach(() => {
             testObj.tempHasPermission = window.storage.hasPermission;
-            delete window.dataLayer;
+            window.dataLayer = [];
         });
 
         afterEach(() => {
@@ -1791,7 +1801,7 @@ describe('tracking', () => {
             }
 
             Tracking.pushToDataLayer({ foo: 'bar' });
-            expect(window.dataLayer).toBeUndefined();
+            expect(window.dataLayer).toEqual([]);
         });
     })
 });

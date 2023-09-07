@@ -231,7 +231,7 @@ const tracking = {
 
         autocompletes: function (scope = document) {
             function autocompleteDataLayerPush(storedValue, inputElement) {
-                window.dataLayer.push({
+                tracking.pushToDataLayer({
                     event: 'autocomplete',
                     searchText: storedValue,
                     clickText: inputElement.dataset.autocompletetext,
@@ -465,7 +465,7 @@ const tracking = {
                     // event
                     document.addEventListener('keyup', (event) => {
                         if (event.key === 'Escape' || event.keyCode === 27) {
-                            window.dataLayer.push({ 'event': 'hide-this-page-keyboard' });
+                            tracking.pushToDataLayer({ 'event': 'hide-this-page-keyboard' });
                         }
                     });
                 });
@@ -651,7 +651,7 @@ const tracking = {
                 // events
                 if (!select.classList.contains('js-has-tracking-event')) {
                     select.addEventListener('change', (e) => {
-                        window.dataLayer.push({ 'event': e.target.querySelector(':checked').dataset.form });
+                        tracking.pushToDataLayer({ 'event': e.target.querySelector(':checked').dataset.form });
                     });
 
                     select.classList.add('js-has-tracking-event');
