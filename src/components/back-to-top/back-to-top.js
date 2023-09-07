@@ -19,7 +19,7 @@ class BackToTop {
         }
         this.checkDisplay();
 
-        this.window.addEventListener('scroll', () => this.checkPosition());
+        this.window.addEventListener('resize', () => this.checkDisplay());
     }
 
     checkDisplay() {
@@ -28,10 +28,13 @@ class BackToTop {
         } else {
             this.backToTopElement.classList.add('visually-hidden');
         }
+
+        this.checkPosition();
     }
 
     checkPosition() {
-        this.backToTopElement.style.bottom = this.footerEl.offsetHeight + 8 + 'px';
+        const backToTopOffset = this.footerEl.offsetHeight + 8 + 'px';
+        document.documentElement.style.setProperty('--back-to-top-offset', backToTopOffset);
     }
 }
 

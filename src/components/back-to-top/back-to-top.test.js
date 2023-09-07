@@ -54,7 +54,7 @@ describe('back to top', () => {
         expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeFalse();
     });
 
-    it('should check positioning on scroll', () => {
+    it('should check positioning on resize', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
@@ -63,7 +63,7 @@ describe('back to top', () => {
         spyOn(testObj.backToTopModule, 'checkPosition');
 
         event = document.createEvent('Event');
-        event.initEvent('scroll');
+        event.initEvent('resize');
         window.dispatchEvent(event);
 
         expect(testObj.backToTopModule.checkPosition).toHaveBeenCalled();

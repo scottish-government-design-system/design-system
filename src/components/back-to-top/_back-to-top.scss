@@ -8,12 +8,12 @@
 
 @media only screen {
     .ds_back-to-top {
-        bottom: 56px;
+        bottom: var(--back-to-top-offset);
         display: block;
         pointer-events: none;
         position: absolute;
         right: 8px;
-        top: 100vh;
+        top: calc(100vh - var(--back-to-top-offset));
         z-index: 1;
 
         /// [1] fallback for older browsers
