@@ -4,7 +4,7 @@ jasmine.getFixtures().fixturesPath = 'base/src/';
 
 import Checkboxes from './checkboxes';
 
-describe('character count', () => {
+describe('checkboxes', () => {
     beforeEach(() => {
         loadFixtures('forms/checkbox/checkboxes.html');
         testObj.checkboxesElement = document.querySelector('[data-module="ds-checkboxes"]');

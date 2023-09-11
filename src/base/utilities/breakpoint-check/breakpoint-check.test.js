@@ -7,6 +7,9 @@ import breakpointCheck from './breakpoint-check';
 describe('breakpoint check', () => {
     beforeEach(function () {
         loadFixtures('base/utilities/breakpoint-check/breakpoint-check.html');
+    });
+
+    afterEach(function () {
         viewport.reset();
     });
 
