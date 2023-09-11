@@ -17,6 +17,7 @@ $side-nav__outline-width: 2px;
     border: 1px solid $ds_colour__border--light;
     position: relative;
 
+    /// [1] Allowance for 1px border on all sides of parent container
     &__expand {
         @include ds_blocklink;
 
@@ -25,7 +26,7 @@ $side-nav__outline-width: 2px;
         cursor: pointer;
         font-weight: $bold;
         margin: 0;
-        padding: 16px 40px 16px 16px;
+        padding: 15px 39px 15px 15px; /// [1]
         position: sticky;
         text-align: left;
         text-decoration: none;
@@ -86,7 +87,7 @@ $side-nav__outline-width: 2px;
     &__list {
         display: none;
         list-style-type: none;
-        margin: 8px 16px;
+        margin: 8px 16px; 
     }
 
     &__list &__list {
@@ -102,12 +103,12 @@ $side-nav__outline-width: 2px;
         }
     }
 
-    /// [1] vertical padding offsets the text slightly for visual balance
+    /// [2] vertical padding offsets the text slightly for visual balance
     &__link {
         @include ds_blocklink;
 
         margin-bottom: 2px;
-        padding: 12px 40px 10px 16px; /// [1]
+        padding: 12px 40px 10px 16px; /// [2]
         position: relative;
         text-decoration: none;
 
@@ -184,8 +185,9 @@ $side-nav__outline-width: 2px;
 }
 
 @include ds_media-query(medium-down) {
+    /// [3] Allowance for 1px border on left and right
     .js-initialised.ds_side-navigation > .ds_side-navigation__list {
-        margin: 0 16px;
+        margin: 0 15px; ///[3]
         max-height: 0;
         overflow: hidden;
 

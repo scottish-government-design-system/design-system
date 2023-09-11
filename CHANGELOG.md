@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.372]
+## Fixed
+- side navigation spacing changes to stay aligned to 8px grid when using collapsing menu on small viewport
+
 ## [0.0.371]
 ## Added
 - mouse click behaviour added to window.dataLayer (which button was pressed, whether modifier keys were included)
