@@ -202,9 +202,11 @@ const storage = {
             return null;
         },
 
+        // indiscriminately hit no domain, domain, and .domain
         remove: function (name) {
-            let cookieString = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
-            document.cookie = cookieString;
+            document.cookie = `${name}=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+            document.cookie = `${name}=;path=/;domain=${window.location.host};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+            document.cookie = `${name}=;path=/;domain=.${window.location.host};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
         }
     },
 

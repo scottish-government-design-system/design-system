@@ -203,9 +203,8 @@ describe('storage', () => {
 
         it ('remove actual cookie', () => {
             // set a cookie
-            document.cookie = 'foo=bar;path=/';
+            document.cookie = `foo=bar;path=/;`;
 
-            storage.cookie.set('foo', 'bar');
             // just checking...
             expect(storage.cookie.get('foo')).toEqual('bar');
 
