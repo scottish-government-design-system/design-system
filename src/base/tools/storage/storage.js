@@ -66,6 +66,26 @@ const storage = {
         return value;
     },
 
+    /**
+     * removes a storage item (local, session, or cookie)
+     *
+     * Usage example:
+     * storage.remove({type: 'cookie', name: 'somethinganalyticsy'}})
+     *
+     * @param {object} obj
+     *   - {string} type (accepted values: 'cookie', 'local', 'session')
+     *   - {string} name
+     */
+    remove: function (obj) {
+        if (obj.type === storage.types.cookie) {
+            storage.cookie.remove(obj.name);
+        } else if (obj.type === storage.types.localStorage) {
+            localStorage.removeItem(obj.name);
+        } else if (obj.type === storage.types.sessionStorage) {
+            sessionStorage.removeItem(obj.name);
+        }
+    },
+
     // more direct method than set({type: cookies, category: 'aaa', name: 'bbb', value: 'ccc', expires: ddd})
     setCookie: function (category, name, value, expires) {
         if (storage.hasPermission(category)) {
@@ -100,6 +120,21 @@ const storage = {
     // more direct method than get({type: sessionStorage, name: foo}
     getSessionStorage: function (name) {
         return sessionStorage.getItem(name);
+    },
+
+    // more direct method than remove({type: cookies, name: foo}
+    removeCookie: function (name) {
+        return storage.cookie.remove(name);
+    },
+
+    // more direct method than remove({type: localStorage, name: foo}
+    removeLocalStorage: function (name) {
+        return localStorage.removeItem(name);
+    },
+
+    // more direct method than remove({type: sessionStorage, name: foo}
+    removeSessionStorage: function (name) {
+        return sessionStorage.removeItem(name);
     },
 
     cookie: {
@@ -165,6 +200,11 @@ const storage = {
 
             // return null if no matching cookie found
             return null;
+        },
+
+        remove: function (name) {
+            let cookieString = name + '=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+            document.cookie = cookieString;
         }
     },
 

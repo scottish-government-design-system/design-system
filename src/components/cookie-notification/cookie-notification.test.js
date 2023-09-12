@@ -13,6 +13,7 @@ describe('cookie notification banners', () => {
     });
 
     it('should show the cookie notification if it has not already been dismissed', () => {
+        const tempStorageGet = storage.get;
         storage.get = function () {
             return false;
         };
@@ -21,9 +22,11 @@ describe('cookie notification banners', () => {
         testObj.cookieNotificationModule.init();
 
         expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBeFalse();
+        storage.get = tempStorageGet;
     });
 
     it('should not show the cookie notification if it has not already been dismissed', () => {
+        const tempStorageGet = storage.get;
         storage.get = function () {
             return 'yes';
         };
@@ -32,6 +35,8 @@ describe('cookie notification banners', () => {
         testObj.cookieNotificationModule.init();
 
         expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBeTrue();
+
+        storage.get = tempStorageGet;
     });
 
     it('should set all cookie options to "allowed" on click of the "accept all" button', () => {

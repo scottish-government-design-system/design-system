@@ -67,7 +67,7 @@ describe('storage', () => {
     });
 
     // todo: spec disabled because it causes intermittent failures. needs investigation.
-    xdescribe('get', () => {
+    describe('get', () => {
         it('should get from cookies if requested', () => {
             spyOn(storage.cookie, 'get');
             storage.get({ type: 'cookie', name: 'name' });
@@ -97,6 +97,53 @@ describe('storage', () => {
         });
     });
 
+    describe('remove', () => {
+        it('should remove from cookies', () => {
+            spyOn(storage.cookie, 'remove');
+            storage.remove({
+                type: 'cookie',
+                name: 'foo'
+            });
+
+            expect(storage.cookie.remove).toHaveBeenCalledWith('foo');
+        });
+
+        it ('should remove from localStorage', () => {
+            spyOn(localStorage, 'removeItem');
+            storage.remove({
+                type: 'local',
+                name: 'foo'
+            });
+
+            expect(localStorage.removeItem).toHaveBeenCalledWith('foo');
+        });
+
+        it ('should remove from sessionStorage', () => {
+            spyOn(sessionStorage, 'removeItem');
+            storage.remove({
+                type: 'session',
+                name: 'foo'
+            });
+
+            expect(sessionStorage.removeItem).toHaveBeenCalledWith('foo');
+        });
+
+        it('should do nothing if the storage type is not recognised', () => {
+            spyOn(storage.cookie, 'remove');
+            spyOn(localStorage, 'removeItem');
+            spyOn(sessionStorage, 'removeItem');
+
+            storage.remove({
+                type: 'bananas',
+                name: 'foo'
+            });
+
+            expect(storage.cookie.remove).not.toHaveBeenCalled();
+            expect(localStorage.removeItem).not.toHaveBeenCalled();
+            expect(sessionStorage.removeItem).not.toHaveBeenCalled();
+        });
+    });
+
     describe('cookie', () => {
         it('should set if allowed', () => {
             spyOn(storage.cookie, 'set');
@@ -114,6 +161,12 @@ describe('storage', () => {
             spyOn(storage.cookie, 'get');
             storage.getCookie('name');
             expect(storage.cookie.get).toHaveBeenCalledWith('name');
+        });
+
+        it('should remove', () => {
+            spyOn(storage.cookie, 'remove');
+            storage.removeCookie('name');
+            expect(storage.cookie.remove).toHaveBeenCalledWith('name');
         });
 
         it('get actual cookie', () => {
@@ -147,6 +200,20 @@ describe('storage', () => {
             expect(cookieData.value).toEqual(window.btoa('bar'));
             expect(cookieData.expires).toBeUndefined();
         });
+
+        it ('remove actual cookie', () => {
+            // set a cookie
+            document.cookie = 'foo=bar;path=/';
+
+            storage.cookie.set('foo', 'bar');
+            // just checking...
+            expect(storage.cookie.get('foo')).toEqual('bar');
+
+            storage.cookie.remove('foo');
+            expect(storage.cookie.get('foo')).toBeNull();
+        });
+
+
     });
 
     describe('localStorage', () => {
@@ -167,6 +234,12 @@ describe('storage', () => {
             storage.getLocalStorage('name');
             expect(localStorage.getItem).toHaveBeenCalledWith('name');
         });
+
+        it('should remove', () => {
+            spyOn(localStorage, 'removeItem');
+            storage.removeLocalStorage('name');
+            expect(localStorage.removeItem).toHaveBeenCalledWith('name');
+        });
     });
 
     describe('sessionStorage', () => {
@@ -186,6 +259,12 @@ describe('storage', () => {
             spyOn(sessionStorage, 'getItem');
             storage.getSessionStorage('name');
             expect(sessionStorage.getItem).toHaveBeenCalledWith('name');
+        });
+
+        it('should remove', () => {
+            spyOn(sessionStorage, 'removeItem');
+            storage.removeSessionStorage('name');
+            expect(sessionStorage.removeItem).toHaveBeenCalledWith('name');
         });
     });
 
