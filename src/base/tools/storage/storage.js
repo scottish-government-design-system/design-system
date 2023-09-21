@@ -204,9 +204,19 @@ const storage = {
 
         // indiscriminately hit no domain, domain, and .domain
         remove: function (name) {
+            const hostparts = window.location.host.split('.');
+            let domain;
+
             document.cookie = `${name}=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT`;
-            document.cookie = `${name}=;path=/;domain=${window.location.host};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
-            document.cookie = `${name}=;path=/;domain=.${window.location.host};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+
+            while (hostparts.length > 1) {
+                domain = hostparts.join('.');
+
+                document.cookie = `${name}=;path=/;domain=${domain};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+                document.cookie = `${name}=;path=/;domain=.${domain};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+
+                hostparts.shift();
+            }
         }
     },
 

@@ -6,17 +6,21 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.378]
+### Added
+- added methods to remove cookies to the storage script
+
 ## [0.0.372]
-## Fixed
+### Fixed
 - side navigation spacing changes to stay aligned to 8px grid when using collapsing menu on small viewport
 
 ## [0.0.371]
-## Added
+### Added
 - mouse click behaviour added to window.dataLayer (which button was pressed, whether modifier keys were included)
 - "data-section" attribute added to link elements in the tracking script
 
 ## [0.0.370] - 2023-09-07
-## Fixed
+### Fixed
 - back to top component placement is correct when the viewport height is similar to the total page height
 
 ## [0.0.368] - 2023-08-30
