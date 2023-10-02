@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [0.0.379]
+### Changed
+- H3 and H4 size in small accordions reduced
+
 ## [0.0.378]
 ### Added
 - added methods to remove cookies to the storage script
