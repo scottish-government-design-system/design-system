@@ -6,6 +6,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+
+## [0.0.381]
+### Changed
+- Top border on site navigation only applied at larger sizes when the site navigation is visible
+
 ## [0.0.379]
 ### Changed
 - H3 and H4 size in small accordions reduced

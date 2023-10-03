@@ -93,9 +93,11 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
         pointer-events: none;
     }
 
-    &__navigation {
-        border-top: 1px solid $ds_colour__border--light;
-        margin-top: -1px;
+    @include ds_media-query(medium) {
+        &__navigation {
+            border-top: 1px solid $ds_colour__border--light;
+            margin-top: -1px;
+        }
     }
 }
 
