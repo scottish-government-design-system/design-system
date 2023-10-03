@@ -10,7 +10,7 @@
     display: block;
     line-height: 2rem;
     min-height: px-to-rem(48px);
-    padding: px-to-rem(calc(8px - $field-border-width)) px-to-rem(calc(12px - $field-border-width));
+    padding: px-to-rem(8px - $field-border-width) px-to-rem(12px - $field-border-width);
     width: 100%;
 
     &:focus {
@@ -21,7 +21,7 @@
     &--error {
         border-color: $ds_colour__state--negative;
         border-width: $field-border-width--error;
-        padding: px-to-rem(calc(8px - $field-border-width--error)) px-to-rem(calc(12px - $field-border-width--error));
+        padding: px-to-rem(8px - $field-border-width--error) px-to-rem(12px - $field-border-width--error);
 
         &:focus {
             border-color: currentColor;
