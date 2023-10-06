@@ -1,0 +1,76 @@
+name: Publish package to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Release type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          # - prepatch
+          # - preminor
+          # - premajor
+          # - prerelease
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Set up node and add the registry url
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+          always-auth: true
+
+      # Install
+      - name: Install
+        run: npm ci
+
+      # Test
+      - name: Run tests
+        run: npm run test
+
+      # Configure Git
+      - name: Git configuration
+        run: |
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+
+      # Set package version
+      - name: Set package version
+        if: startsWith(github.event.inputs.release_type, 'pre') != true
+        run: |
+          echo "NEW_VERSION=$(npm --no-git-tag-version version $RELEASE_TYPE)" >> $GITHUB_ENV
+          echo "RELEASE_TAG=latest" >> $GITHUB_ENV
+        env:
+          RELEASE_TYPE: ${{github.event.inputs.release_type}}
+
+      # Commit updated package.json
+      - name: Commit package.json and create tag
+        run: |
+          git add "package.json"
+          git commit -m "chore: release ${{env.NEW_VERSION}}"
+          git tag ${{env.NEW_VERSION}}
+
+      # Publish to npm
+      - name: Publish npm package
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      # Push to git repo
+      - name: Push changes to git
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: |
+          git push origin && git push --tags

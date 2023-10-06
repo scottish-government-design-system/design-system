@@ -1,17 +1,17 @@
 {
-  "name": "@scottish-government/pattern-library",
+  "name": "@scottish-government/design-system",
   "description": "Design System for Scottish public sector websites",
   "version": "0.0.0",
   "author": {
-    "name": "mygov.scot Digital Engineering team",
-    "email": "mygov-tech-team@gov.scot",
-    "url": "https://github.com/scottishgovernment/pattern-library"
+    "name": "Scottish Government Digital Design system team",
+    "email": "designsystem@gov.scot",
+    "url": "https://github.com/scottish-government-design-system/design-system"
   },
   "license": "MIT",
   "scripts": {
     "prepack": "rm -rf ./dist; npm run test && npm run webpack && npm run sass && npm run sass-min && npm run svgsprite",
-    "sass": "sass --style=expanded src/pattern-library.scss dist/css/pattern-library.css",
-    "sass-min": "sass --style=compressed src/pattern-library.scss dist/css/pattern-library.min.css",
+    "sass": "sass --style=expanded src/design-system.scss dist/css/design-system.css",
+    "sass-min": "sass --style=compressed src/design-system.scss dist/css/design-system.min.css",
     "svgsprite": "node ./svg-sprite",
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"

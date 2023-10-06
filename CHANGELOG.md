@@ -1,6 +1,6 @@
 # Change log
 
-All notable changes to the Digital Scotland Design System Pattern Library will be documented in this file.
+All notable changes to the Digital Scotland Design System will be documented in this file.
 
 Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, 
 `Removed`, `Fixed`, and `Security`.

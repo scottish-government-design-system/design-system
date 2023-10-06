@@ -11,7 +11,7 @@ module.exports = () => {
   const baseConfig = {
     mode: 'production',
     entry: {
-      'pattern-library': path.resolve(__dirname, './src/all.js')
+      'design-system': path.resolve(__dirname, './src/all.js')
     },
     output: {
       path: path.resolve(__dirname, dest + '/scripts'),
