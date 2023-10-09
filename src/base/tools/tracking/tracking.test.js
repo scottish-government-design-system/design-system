@@ -353,7 +353,7 @@ describe('tracking', () => {
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
                 openAll.parentNode.removeChild(openAll);
 
-                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header-button'));
+                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__button'));
 
                 Tracking.add.accordions();
 
@@ -384,7 +384,7 @@ describe('tracking', () => {
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
                 openAll.parentNode.removeChild(openAll);
 
-                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header-button'));
+                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__button'));
 
                 Tracking.add.accordions();
 
@@ -413,7 +413,7 @@ describe('tracking', () => {
 
             it('should toggle the attribute value on accordion item buttons when they open or close', () => {
                 const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
-                const itemButton = items[0].querySelector('.ds_accordion-item__header-button');
+                const itemButton = items[0].querySelector('.ds_accordion-item__button');
                 const itemControl = items[0].querySelector('.ds_accordion-item__control');
 
                 Tracking.add.accordions();
@@ -427,9 +427,9 @@ describe('tracking', () => {
 
             it('should toggle the "open all" button to "close all" when all accordion items are open', () => {
                 const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
-                const itemButton1 = items[0].querySelector('.ds_accordion-item__header-button');
+                const itemButton1 = items[0].querySelector('.ds_accordion-item__button');
                 const itemControl1 = items[0].querySelector('.ds_accordion-item__control');
-                const itemButton3 = items[2].querySelector('.ds_accordion-item__header-button');
+                const itemButton3 = items[2].querySelector('.ds_accordion-item__button');
                 const itemControl3 = items[2].querySelector('.ds_accordion-item__control');
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
 
@@ -456,7 +456,7 @@ describe('tracking', () => {
 
             it('should modify all panels\' data-attributes on click of "open all"', () => {
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
-                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header-button'));
+                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__button'));
 
                 Tracking.add.accordions();
 
@@ -567,7 +567,7 @@ describe('tracking', () => {
 
         it('should toggle the attribute value on accordion item buttons when they open or close', () => {
             const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
-            const itemButton = items[0].querySelector('.ds_accordion-item__header-button');
+            const itemButton = items[0].querySelector('.ds_accordion-item__button');
             const itemControl = items[0].querySelector('.ds_accordion-item__control');
 
             Tracking.add.accordions();
@@ -581,9 +581,9 @@ describe('tracking', () => {
 
         it('should toggle the "open all" button to "close all" when all accordion items are open', () => {
             const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
-            const itemButton1 = items[0].querySelector('.ds_accordion-item__header-button');
+            const itemButton1 = items[0].querySelector('.ds_accordion-item__button');
             const itemControl1 = items[0].querySelector('.ds_accordion-item__control');
-            const itemButton3 = items[2].querySelector('.ds_accordion-item__header-button');
+            const itemButton3 = items[2].querySelector('.ds_accordion-item__button');
             const itemControl3 = items[2].querySelector('.ds_accordion-item__control');
             const openAll = testObj.accordionElement.querySelector('.js-open-all');
 
