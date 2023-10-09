@@ -19,6 +19,7 @@ import Tabs from './components/tabs/tabs';
 import TabsNavigation from './components/tabs/tabs-navigation';
 
 import tracking from './base/tools/tracking/tracking';
+import version from './version';
 
 const base = {
     page
@@ -120,8 +121,9 @@ function initAll(scope = document) {
 window.DS = window.DS || {};
 window.DS.base = base;
 window.DS.components = components;
-window.DS.tracking = tracking;
 window.DS.initAll = initAll;
+window.DS.tracking = tracking;
+window.DS.version = version;
 
 export {
     initAll,

@@ -7,6 +7,17 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.3.0]
+### Added
+- Current version number added to data layer
+### Changed
+- Content blocks spacing changes
+- Minor tidy up of Accordion component Sass for small variant
+### Fixed
+- Typo correction to Accordion component Sass
+### Security
+- Bump @babel/traverse from 7.23.0 to 7.23.2 
+
 ## [0.2.0]
 ### Changed
 - refactored accordion header to have buttons inside heading elements when JS initialises the component
