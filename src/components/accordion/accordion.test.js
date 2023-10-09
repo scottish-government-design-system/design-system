@@ -61,27 +61,18 @@ describe('accordion', () => {
         });
 
         it ('should open on click of its header if currently closed (and vice versa)', () => {
-            jasmine.clock().install();
-
             testObj.accordionModule.init();
 
             const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
-            const accordionItemBody = firstAccordionItem.querySelector('.ds_accordion-item__body');
             const accordionItemButton = firstAccordionItem.querySelector('.js-accordion-button');
 
             let event = new Event('click');
             accordionItemButton.dispatchEvent(event);
-            expect(accordionItemBody.style.display).toEqual('block');
+            expect(firstAccordionItem.classList.contains('ds_accordion-item--open')).toBe(true);
 
             event = new Event('click');
             accordionItemButton.dispatchEvent(event);
-            jasmine.clock().tick(199);
-            expect(parseInt(accordionItemBody.style.maxHeight, 10)).toEqual(0);
-            jasmine.clock().tick(1);
-            expect(accordionItemBody.style.maxHeight).toEqual('');
-            expect(accordionItemBody.style.display).toEqual('');
-
-            jasmine.clock().uninstall();
+            expect(firstAccordionItem.classList.contains('ds_accordion-item--open')).toBe(false);
         });
     });
 
@@ -116,7 +107,7 @@ describe('accordion', () => {
             const event = new Event('click');
             accordionItemButton.dispatchEvent(event);
 
-            // note: no assertion, test success can be inferred from there being no execution errors
+            // todo: no assertion, test success is inferred from there being no execution errors
         });
 
         it ('"close all" button should close all panels when clicked', () => {

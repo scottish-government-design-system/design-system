@@ -447,7 +447,12 @@ class DSDatePicker {
             dateAsString = this.inputElement.value;
         }
 
-        this.dialogElement.style.left = leftOffset;
+        // detect support for CSS custom properties
+        if (window.CSS && CSS.supports('color', 'var(--primary)')) {
+            document.documentElement.style.setProperty('--ds-date-picker-left-offset', leftOffset);
+        } else {
+            this.dialogElement.style.left = leftOffset;
+        }
 
         if (dateAsString.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
             this.inputDate = this.formattedDateFromString(dateAsString);

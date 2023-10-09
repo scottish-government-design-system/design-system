@@ -14,9 +14,10 @@ class BackToTop {
     }
 
     init() {
-        if (!this.backToTopElement) {
+        if (!this.backToTopElement || !this.footerEl) {
             return;
         }
+
         this.checkDisplay();
 
         this.window.addEventListener('resize', () => this.checkDisplay());
@@ -34,7 +35,7 @@ class BackToTop {
 
     checkPosition() {
         const backToTopOffset = this.footerEl.offsetHeight + 8 + 'px';
-        document.documentElement.style.setProperty('--back-to-top-offset', backToTopOffset);
+        document.documentElement.style.setProperty('--ds-back-to-top-offset', backToTopOffset);
     }
 }
 

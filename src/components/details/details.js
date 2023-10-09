@@ -25,13 +25,11 @@ class Details {
     closeDetails() {
         this.details.removeAttribute('open');
         this.summary.setAttribute('aria-expanded', 'false');
-        this.content.style.display = 'none';
     }
 
     openDetails() {
         this.details.setAttribute('open', 'open');
         this.summary.setAttribute('aria-expanded', 'true');
-        this.content.style.display = '';
     }
 
     polyfillAttributes() {
@@ -44,9 +42,6 @@ class Details {
         // initial state
         const isOpen = this.details.hasAttribute('open');
         this.summary.setAttribute('aria-expanded', isOpen.toString());
-        if (!isOpen) {
-            this.content.style.display = 'none';
-        }
     }
 
     polyfillEvents() {

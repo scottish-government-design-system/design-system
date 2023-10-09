@@ -9,8 +9,11 @@ class SideNavigation {
     }
 
     init() {
-        if (this.sideNavigation) {
-            this.setupSideNavigation();
+        // detect support for CSS custom properties
+        if (window.CSS && CSS.supports('color', 'var(--primary)')) {
+            if (this.sideNavigation) {
+                this.setupSideNavigation();
+            }
         }
     }
 
@@ -61,20 +64,15 @@ class SideNavigation {
         });
 
         this.sideNavigation.classList.add('js-initialised');
+        document.documentElement.style.setProperty('--ds-side-nav-max-height', 0);
     }
 
     openSideNav() {
-        this.navList.style.display = 'block';
-        window.setTimeout(() => {
-            this.navList.style.maxHeight = this.navList.scrollHeight + 16 + 'px';
-        }, 0);
+        document.documentElement.style.setProperty('--ds-side-nav-max-height', this.navList.scrollHeight + 16 + 'px');
     }
 
     closeSideNav() {
-        this.navList.style.maxHeight = 0;
-        window.setTimeout(() => {
-            this.navList.style.display = 'none';
-        }, 200);
+        document.documentElement.style.setProperty('--ds-side-nav-max-height', 0);
     }
 }
 

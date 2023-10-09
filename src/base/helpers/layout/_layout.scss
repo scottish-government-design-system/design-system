@@ -1,13 +1,15 @@
+@use "sass:math";
+
 @mixin ds_colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
-    width: calc(100% * #{$columns/$total} - #{$gutter});
+    width: calc(#{100% * math.div($columns, $total)} - #{$gutter});
 }
 
 @mixin ds_colpush($columns: 1, $total: 12) {
-    margin-left: calc(100% * #{$columns/$total});
+    margin-left: #{100% * math.div($columns, $total)};
 }
 
 @mixin ds_colpull($columns: 1, $total: 12) {
-    margin-left: calc(100% * #{$columns/$total} * -1);
+    margin-left: #{100% * math.div($columns, $total) * -1};
 }
 
 @mixin ds_layout($gutter: $grid-gap-x, $sub: false) {

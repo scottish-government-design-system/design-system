@@ -23,8 +23,8 @@ function slugify(string) {
 function prevUntil (node) {
     const prevNodes = [];
 
-    if (node.parentNode) {
-        const nodeArray = Array.from(node.parentNode.children);
+    if (node.parentElement) {
+        const nodeArray = [].slice.call(node.parentElement.children);
 
         for (let i = 0, il = nodeArray.length; i < il; i++) {
             if (nodeArray[i] === node) {
@@ -39,6 +39,11 @@ function prevUntil (node) {
 
 function findElementInNodeArray(nodeArray, selector, specialCases) {
     nodeArray.reverse();
+
+    // polyfill for IE
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+    }
 
     for (let i = 0, il = nodeArray.length; i < il; i++) {
         if (nodeArray[i].matches(selector)) {
@@ -99,7 +104,7 @@ const tracking = {
         const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_accordion__button';
         const linkSectionSpecialCases = '.ds_page-header,.ds_layout__header';
 
-        if (element.closest && element.closest(linkSectionExceptions)) {
+        if (typeof element.closest === 'function' && element.closest(linkSectionExceptions)) {
             return false;
         }
 
@@ -399,36 +404,36 @@ const tracking = {
         errorMessages: function (scope = document) {
             const errorMessages = tracking.gatherElements('ds_question__error-message', scope);
             errorMessages.forEach((errorMessage, index) => {
-                const question = errorMessage.closest('.ds_question');
+                if (typeof errorMessage.closest === 'function' && errorMessage.closest('.ds_question')) {
+                    const question = errorMessage.closest('.ds_question');
 
-                if (!question) {return;}
+                    const target = question.querySelector('.js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input');
+                    let targetName = index + 1;
 
-                const target = question.querySelector('.js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input');
-                let targetName = index + 1;
+                    if (target) {
+                        if (target.classList.contains('js-validation-group')) {
+                            const unique = function (value, index, self) {
+                                return self.indexOf(value) === index;
+                            };
 
-                if (target) {
-                    if (target.classList.contains('js-validation-group')) {
-                        const unique = function (value, index, self) {
-                            return self.indexOf(value) === index;
-                        };
-
-                        const inputs = [].slice.call(target.querySelectorAll('.ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input'));
-                        targetName = inputs.map(input => {
-                            if (input.type === 'radio') {
-                                return input.name;
-                            } else {
-                                return input.id;
-                            }
-                        }).filter(unique).join('-');
-                    } else if (target.type === 'radio') {
-                        targetName = target.name;
-                    } else {
-                        targetName = target.id;
+                            const inputs = [].slice.call(target.querySelectorAll('.ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input'));
+                            targetName = inputs.map(input => {
+                                if (input.type === 'radio') {
+                                    return input.name;
+                                } else {
+                                    return input.id;
+                                }
+                            }).filter(unique).join('-');
+                        } else if (target.type === 'radio') {
+                            targetName = target.name;
+                        } else {
+                            targetName = target.id;
+                        }
                     }
-                }
 
-                if (!errorMessage.getAttribute('data-form')) {
-                    errorMessage.setAttribute('data-form', `error-${targetName}`);
+                    if (!errorMessage.getAttribute('data-form')) {
+                        errorMessage.setAttribute('data-form', `error-${targetName}`);
+                    }
                 }
             });
         },
@@ -769,12 +774,11 @@ const tracking = {
                 const links = [].slice.call(siteNavigation.querySelectorAll('.ds_site-navigation__link'));
                 links.forEach((link, index) => {
                     if (!link.getAttribute('data-device')) {
-                        if (link.closest('.ds_site-navigation--mobile')) {
+                        if (typeof link.closest === 'function' && link.closest('.ds_site-navigation--mobile')) {
                             link.setAttribute('data-device', 'mobile');
                         } else {
                             link.setAttribute('data-device', 'desktop');
                         }
-
                     }
                     if (!link.getAttribute('data-header')) {
                         link.setAttribute('data-header', `header-link-${index + 1}`);

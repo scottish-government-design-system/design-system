@@ -16,9 +16,9 @@
         top: 100vh;
         z-index: 1;
 
-        @supports (bottom: var(--back-to-top-offset)) {
-            bottom: var(--back-to-top-offset);
-            top: calc(100vh - var(--back-to-top-offset));
+        @supports (bottom: var(--ds-back-to-top-offset)) {
+            bottom: var(--ds-back-to-top-offset);
+            top: calc(100vh - var(--ds-back-to-top-offset));
         }
 
         /// [1] fallback for older browsers
