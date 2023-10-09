@@ -1,9 +1,10 @@
 /*------------------------------------*\
     DETAILS
 \*------------------------------------*/
+@use "sass:math";
 
 $details-border-width: 4px;
-$details-icon-size: #{1em * 8px / $root-font-size--medium};
+$details-icon-size: math.div((1em * 8px), $root-font-size--medium);
 
 .ds_details {
     @include ds_block-margins;
@@ -33,14 +34,21 @@ $details-icon-size: #{1em * 8px / $root-font-size--medium};
     }
 }
 
-.ds_details[open] .ds_details__summary::before {
-    transform: rotate(90deg);
-}
-
 .ds_details__text {
     border-left: $details-border-width solid #b3b3b3;
     box-sizing: border-box;
+    display: none;
     @include ds_responsive-margin(2, top);
     @include ds_responsive-padding(1);
     @include ds_responsive-padding(4, left, false, calc(#{$details-border-width} * -1));
+}
+
+.ds_details[open] {
+    .ds_details__summary::before {
+        transform: rotate(90deg);
+    }
+
+    .ds_details__text {
+        display: block;
+    }
 }

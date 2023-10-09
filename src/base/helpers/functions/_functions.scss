@@ -1,9 +1,10 @@
 ///
 /// Miscellaneous functions, mostly used in the headings helpers
 ///
+@use "sass:math";
 
 @function strip-unit($num) {
-    @return $num / ($num * 0 + 1);
+    @return math.div($num, ($num * 0 + 1));
 }
 
 @function get-unit($value) {
@@ -11,11 +12,11 @@
 }
 
 @function px-to-em ($px, $base: $root-font-size) {
-    @return ($px/$base) * 1em;
+    @return math.div($px, $base) * 1em;
 }
 
 @function px-to-rem ($px, $base: $root-font-size) {
-    @return ($px/$base) * 1rem;
+    @return math.div($px, $base) * 1rem;
 }
 
 @function rem-to-px ($rem, $base: $root-font-size) {
@@ -23,9 +24,9 @@
 }
 
 @function nearest-grid-size ($value, $grid: 8px) {
-    @return round($value / $grid) * $grid;
+    @return round(math.div($value, $grid)) * $grid;
 }
 
 @function line-height-on-grid ($font-size, $line-height: 1.5, $grid: 8px) {
-    @return nearest-grid-size($font-size * $line-height, $grid) / $font-size;
+    @return math.div(nearest-grid-size($font-size * $line-height, $grid), $font-size);
 }

@@ -16,9 +16,7 @@ class Details {
     }
 
     init() {
-        if (typeof (this.details.open === 'boolean')) {
-           return;
-        } else {
+        if (typeof (this.details.open) !== 'boolean') {
             this.polyfillAttributes();
             this.polyfillEvents();
         }
@@ -27,13 +25,11 @@ class Details {
     closeDetails() {
         this.details.removeAttribute('open');
         this.summary.setAttribute('aria-expanded', 'false');
-        this.content.style.display = 'none';
     }
 
     openDetails() {
         this.details.setAttribute('open', 'open');
         this.summary.setAttribute('aria-expanded', 'true');
-        this.content.style.display = '';
     }
 
     polyfillAttributes() {
@@ -46,9 +42,6 @@ class Details {
         // initial state
         const isOpen = this.details.hasAttribute('open');
         this.summary.setAttribute('aria-expanded', isOpen.toString());
-        if (!isOpen) {
-            this.content.style.display = 'none';
-        }
     }
 
     polyfillEvents() {
@@ -60,7 +53,7 @@ class Details {
             }
         });
 
-        this.summary.addEventListener('kayup', event => {
+        this.summary.addEventListener('keyup', event => {
             if (event.keyCode === this.keycodes.space) {
                 event.preventDefault();
             }

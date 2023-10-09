@@ -87,7 +87,7 @@ $side-nav__outline-width: 2px;
     &__list {
         display: none;
         list-style-type: none;
-        margin: 8px 16px; 
+        margin: 8px 16px;
     }
 
     &__list &__list {
@@ -185,10 +185,17 @@ $side-nav__outline-width: 2px;
 }
 
 @include ds_media-query(medium-down) {
+
+    .js-initialised.ds_side-navigation .ds_side-navigation__list {
+        display: block;
+    }
+
     /// [3] Allowance for 1px border on left and right
+    ///
     .js-initialised.ds_side-navigation > .ds_side-navigation__list {
+
         margin: 0 15px; ///[3]
-        max-height: 0;
+        max-height: var(--ds-side-nav-max-height);
         overflow: hidden;
 
         @media (prefers-reduced-motion: no-preference) {

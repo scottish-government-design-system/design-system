@@ -148,10 +148,6 @@ h1,h2,h3 {
         @include ds_media-query(medium) {
             padding-right: 100px;
         }
-
-        @media (prefers-reduced-motion: no-preference) {
-            transition: max-height $transition-in-time, padding $transition-in-time;
-        }
     }
 
     &__control:checked ~ .ds_accordion-item__body {

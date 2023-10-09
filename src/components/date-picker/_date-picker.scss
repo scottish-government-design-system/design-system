@@ -34,6 +34,10 @@
 
         &--open {
             display: block;
+
+            @supports (left: var(--ds-date-picker-left-offset)) {
+                left: var(--ds-date-picker-left-offset);
+            }
         }
 
         &__header {
