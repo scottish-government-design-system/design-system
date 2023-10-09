@@ -20,12 +20,14 @@ class Accordion {
         }
     }
 
-    initAccordionItem(item, index) {
+    initAccordionItem(item,) {
         // transform markup to button-driven version
+        const itemBody = item.querySelector('.ds_accordion-item__body');
         const itemControl = item.querySelector('.ds_accordion-item__control');
         const itemHeader = item.querySelector('.ds_accordion-item__header');
+        const itemIndicator = item.querySelector('.ds_accordion-item__indicator');
+        const itemLabelContent = item.querySelector('.ds_accordion-item__label span');
         const itemTitle = itemHeader.querySelector('.ds_accordion-item__title');
-        const itemBody = item.querySelector('.ds_accordion-item__body');
 
         // check for hash to open an accordion with
         let accordionHasLocationHashInIt = false;
@@ -42,11 +44,10 @@ class Accordion {
         const startsOpen = itemControl.checked;
 
         const itemButton = document.createElement('button');
-        const itemIndicator = document.createElement('span');
 
-        itemButton.classList.add('ds_accordion-item__header-button');
+        itemTitle.classList.add('ds_accordion-item__title--button');
+        itemButton.classList.add('ds_accordion-item__button');
         itemButton.classList.add('js-accordion-button');
-        itemIndicator.classList.add('ds_accordion-item__indicator');
         itemButton.id = itemTitle.id;
         itemButton.type = 'button';
 
@@ -55,11 +56,12 @@ class Accordion {
         itemControl.classList.add('fully-hidden');
 
         itemButton.innerHTML = itemTitle.innerHTML;
-        itemButton.appendChild(itemIndicator);
 
-        itemHeader.parentNode.removeChild(itemHeader);
+        itemTitle.innerHTML = '';
+        itemTitle.prepend(itemButton);
+        itemButton.append(itemIndicator);
+        itemLabelContent.classList.add('fully-hidden');
 
-        item.insertBefore(itemButton, itemBody);
         itemBody.id = itemBody.id || `accordion-item-${elementIdModifier()}`;
         itemButton.setAttribute('aria-controls', itemBody.id);
 
@@ -86,21 +88,24 @@ class Accordion {
 
     initOpenAll() {
         this.openAllButton.addEventListener('click', () => {
+            function getAccordionItemForButton(button) {
+                return button.closest('.ds_accordion-item');
+            }
 
             // if we're opening, open all unopened panels
             // if we're closing, close all opened panels
             const opening = !this.checkAllOpen();
-            const allPanelButtons = [].slice.call(this.accordion.querySelectorAll('.ds_accordion-item__header-button'));
+            const allPanelButtons = [].slice.call(this.accordion.querySelectorAll('.js-accordion-button'));
 
             let panelsToToggle;
             if (opening) {
-                panelsToToggle = allPanelButtons.filter(button => !button.parentNode.classList.contains('ds_accordion-item--open'));
+                panelsToToggle = allPanelButtons.filter(button => !getAccordionItemForButton(button).classList.contains('ds_accordion-item--open'));
             } else {
-                panelsToToggle = allPanelButtons.filter(button => button.parentNode.classList.contains('ds_accordion-item--open'));
+                panelsToToggle = allPanelButtons.filter(button => getAccordionItemForButton(button).classList.contains('ds_accordion-item--open'));
             }
 
             panelsToToggle.forEach(button => {
-                this.toggleAccordionItem(button.parentNode);
+                this.toggleAccordionItem(getAccordionItemForButton(button));
             });
 
             this.setOpenAllButton(opening);
@@ -110,24 +115,24 @@ class Accordion {
     toggleAccordionItem(item) {
         const itemButton = item.querySelector('.js-accordion-button');
         const itemControl = item.querySelector('.ds_accordion-item__control');
-        const body = item.querySelector('.ds_accordion-item__body');
+        const itemBody = item.querySelector('.ds_accordion-item__body');
         const isOpen = item.classList.contains('ds_accordion-item--open');
 
         if (!isOpen) {
             item.classList.add('ds_accordion-item--open');
-            body.style.display = 'block';
+            itemBody.style.display = 'block';
             // 24px and 32px are the top and bottom padding of the body content
-            body.style.maxHeight = body.scrollHeight + 24 + 32 + 'px';
+            itemBody.style.maxHeight = itemBody.scrollHeight + 24 + 32 + 'px';
 
             window.setTimeout(function () {
-                body.style.removeProperty('max-height');
+                itemBody.style.removeProperty('max-height');
             }, 200);
         } else {
-            body.style.maxHeight = 0;
+            itemBody.style.maxHeight = 0;
             item.classList.remove('ds_accordion-item--open');
 
             window.setTimeout(function () {
-                body.style.removeProperty('display');
+                itemBody.style.removeProperty('display');
             }, 200);
         }
 

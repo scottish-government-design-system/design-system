@@ -43,9 +43,7 @@ h1,h2,h3 {
     border-bottom: 1px solid $ds_colour__border--light;
     border-top: 1px solid $ds_colour__border--light;
 
-    /// [1] subtracting the parent's border width
-    &__header,
-    &__header-button {
+    &__header {
         @include ds_blocklink;
         @include ds_h4-size;
 
@@ -54,7 +52,6 @@ h1,h2,h3 {
         color: $accordion__header-colour;
         font-weight: $bold;
         margin: 0;
-        padding: 16px 48px 15px 16px; /// [1]
         position: relative;
         text-align: left;
         width: 100%;
@@ -64,14 +61,27 @@ h1,h2,h3 {
         }
     }
 
-    &--open &__header-button:not(:focus):not(:hover) {
-        background-color: $ds_colour__link--current__background;
-        color: $ds_colour__link--current;
-    }
-
+    /// [1] subtracting the accordion item's border width
     &__title {
         @include ds_h4-size;
         margin-bottom: 0;
+        padding: 16px 48px 15px 16px; /// [1]
+
+        &--button {
+            padding: 0;
+        }
+    }
+
+    /// [1] subtracting the accordion item's border width
+    &__button {
+        appearance: unset;
+        background: transparent;
+        border: 0;
+        padding: 16px 48px 15px 16px; /// [1]
+        text-align: left;
+        width: 100%;
+
+        @include ds_blocklink;
     }
 
     &__label {
@@ -81,6 +91,10 @@ h1,h2,h3 {
         left: 0;
         right: 0;
         bottom: 0;
+    }
+
+    &__title--button &__label {
+        z-index: -1;
     }
 
     &__indicator {
@@ -108,8 +122,7 @@ h1,h2,h3 {
         color: $ds_colour__link--current;
     }
 
-    &__control:checked ~ &__header &__indicator,
-    &__control:checked ~ &__header-button &__indicator  {
+    &__control:checked ~ &__header &__indicator {
         top: 24px;
         transform: rotate(-225deg);
     }
@@ -162,9 +175,8 @@ h1,h2,h3 {
 /* SMALL VARIANT */
 
 .ds_accordion--small {
-    .ds_accordion-item__title
+    .ds_accordion-item__title,
     .ds_accordion-item__button,
-    .ds_accordion-item__header-button,
     .ds_accordion-item__body,
     .ds_accordion__open-all {
         font-size: $root-font-size;
