@@ -30,7 +30,7 @@ These are the optimised CSS, JavaScript files and static assets that should be i
 Run:
 
 ```
-npm run prepare
+npm run prepack
 ```
 
 This will compile the various files and conduct a series of automated tests and update the contents of the `/dist` directory with the newly generated files.
