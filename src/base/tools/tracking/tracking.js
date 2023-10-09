@@ -95,7 +95,7 @@ const tracking = {
 
     getNearestSectionHeader: function (element) {
         const linkSectionExceptions = 'nav,.ds_metadata';
-        const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_accordion__header-button';
+        const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_accordion__button';
         const linkSectionSpecialCases = '.ds_page-header,.ds_layout__header';
 
         if (element.closest && element.closest(linkSectionExceptions)) {
@@ -184,7 +184,7 @@ const tracking = {
                 }
 
                 function setAccordionItem(item, index) {
-                    const itemButton = item.querySelector('.ds_accordion-item__header-button');
+                    const itemButton = item.querySelector('.ds_accordion-item__button');
                     const itemControl = item.querySelector('.ds_accordion-item__control');
                     itemButton.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
                 }
@@ -206,7 +206,7 @@ const tracking = {
                 }
 
                 items.forEach((item, index) => {
-                    const itemButton = item.querySelector('.ds_accordion-item__header-button');
+                    const itemButton = item.querySelector('.ds_accordion-item__button');
                     const itemControl = item.querySelector('.ds_accordion-item__control');
                     itemButton.addEventListener('click', () => {
                         itemButton.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
