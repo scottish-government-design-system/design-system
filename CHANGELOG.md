@@ -7,6 +7,18 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [0.2.0]
+### Changed
+- refactored accordion header to have buttons inside heading elements when JS initialises the component
+
+## [0.1.1]
+### Fixed
+- correction to the npm build command described in the readme
+
+## [0.1.0]
+### Changed
+- npm package renamed from @scottish-government/pattern-library to @scottish-government/design-system
+
 ## [0.0.381]
 ### Changed
 - Top border on site navigation only applied at larger sizes when the site navigation is visible
