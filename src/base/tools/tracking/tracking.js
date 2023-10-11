@@ -3,6 +3,7 @@
 'use strict';
 
 import storage from '../storage/storage';
+import version from '../../../version';
 
 function slugify(string) {
 
@@ -148,6 +149,12 @@ const tracking = {
 
                 tracking.hasAddedClickTracking = true;
             }
+        },
+
+        version: function () {
+            tracking.pushToDataLayer({
+                version: version
+            });
         },
 
         accordions: function (scope = document) {

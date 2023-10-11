@@ -55,10 +55,17 @@ jobs:
         env:
           RELEASE_TYPE: ${{github.event.inputs.release_type}}
 
+      # Set version in DS code
+      - name: Set version in DS
+        run: |
+          echo "export default '${{env.NEW_VERSION}}';" > src/version.js
+
       # Commit updated package.json
       - name: Commit package.json and create tag
         run: |
           git add "package.json"
+          git add "package-lock.json"
+          git add "src/version.js"
           git commit -m "chore: release ${{env.NEW_VERSION}}"
           git tag ${{env.NEW_VERSION}}
 
