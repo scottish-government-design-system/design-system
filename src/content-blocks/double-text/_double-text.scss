@@ -4,16 +4,14 @@
 
 .ds_cb--double-text {
     .ds_cb__inner {
-        padding: 16px 0 24px;
+        @include ds_responsive-padding(4, top);
+        @include ds_responsive-padding(4, bottom);
 
         @include ds_media-query(medium-down) {
             > * + * {
-                margin-top: 40px;
+                margin-top: 1rem;
             }
         }
 
-        @include ds_media-query(medium) {
-            padding: 24px 0 32px;
-        }
     }
 }

@@ -263,15 +263,8 @@ $cb_colors: (
 
 // Placeholder for image and video blocks
 %ds_cb--image-video {
-    .ds_cb__inner {
-        padding: 16px 0 24px;
-    }
-
-    @include ds_media-query(medium) {
-        .ds_cb__inner {
-            padding: 24px 0 32px;
-        }
-    }
+    @include ds_responsive-padding(4, top);
+    @include ds_responsive-padding(4, bottom);
 
     // this is ugly but using flex for this means we can put the image under the text in IE11
     @include ds_media-query(medium-down) {
@@ -282,7 +275,7 @@ $cb_colors: (
 
         .ds_cb__poster:first-of-type {
             order: 2;
-            margin-top: 24px;
+            margin-top: px-to-rem(24px);
         }
 
         .ds_cb__text:last-child {

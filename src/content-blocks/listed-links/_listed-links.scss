@@ -5,7 +5,7 @@
 
 .ds_cb--link-list {
 
-    @include ds_responsive-padding(3, top);
+    @include ds_responsive-padding(4, top);
     @include ds_responsive-padding(4, bottom);
 
     .ds_cb__inner {
