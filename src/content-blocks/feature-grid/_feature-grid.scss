@@ -87,8 +87,7 @@
     }
 
     &__item {
-        @include ds_responsive-padding(3, top);
-        @include ds_responsive-padding(4, bottom);
+        @include ds_responsive-padding(4, top);
         margin: 0;
         
         &-media {
@@ -101,13 +100,20 @@
         
         &-title {
             margin: 0;
-            @include ds_responsive-margin(3, top, true);
+        }
+
+        &-media + &-title {
+            @include ds_responsive-margin(2, top, true);    
         }
 
         &-summary {
             margin: 0;
-            @include ds_responsive-margin(2, top);
             @include ds_last-child-no-margin;
+        }
+
+        &-media + &-summary,
+        &-title + &-summary {
+            @include ds_responsive-margin(1, top);  
         }
 
     }

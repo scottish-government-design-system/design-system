@@ -3,11 +3,6 @@
 \*------------------------------------*/
 
 .ds_cb--header {
-    .ds_cb__inner {
-        padding: 8px 0;
-
-        @include ds_media-query(medium) {
-            padding: 16px 0;
-        }
-    }
+    @include ds_responsive-padding(4, top);
+    @include ds_responsive-padding(4, bottom);
 }

@@ -1,5 +1,6 @@
 /*------------------------------------*\
     PAGE TITLE
+    Use of .ds_cb--page-title__aside is deprecated and will be removed in a future release
 \*------------------------------------*/
 
 .ds_cb--page-title {
@@ -139,6 +140,7 @@
         }
     }
 
+    // Deprecated - this will be removed in a future release
     &__aside {
         .ds_wrapper {
             @include ds_small-size;

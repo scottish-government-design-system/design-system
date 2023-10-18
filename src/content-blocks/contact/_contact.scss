@@ -4,41 +4,41 @@
 
 .ds_cb--contact {
 
-    @include ds_responsive-padding(3, top);
-    @include ds_responsive-padding(4, bottom);
+    .ds_cb__inner {
+        @include ds_responsive-padding(4, top);
+        @include ds_responsive-padding(4, bottom);
 
-    .ds_cb--contact__address {
-        grid-template-columns: 1fr; 
-
-        &--2-cols {
-            @include ds_media-query(medium) {
-                grid-template-columns: 1fr 1fr;
-            }
+        .ds_contact-details {
+            grid-column: span 12;
         }
-    }
 
-    @include ds_media-query(medium) {
-        &--2-cols {
-            .ds_cb__inner {
-                > .ds_contact-details__list {
-                    float: left;
-                    @include ds_colwidth(4);
-                }
-    
-                @supports(display: grid) {
-                    grid-template-columns: repeat(3, minmax(0, 1fr));
+        // Collapse bottom padding
+        &.ds_\!_padding-bottom--0 {
+            .ds_contact-details__list {
+                > dl:last-of-type,
+                > address:last-of-type,
+                > address:last-of-type dl {
+                    margin-bottom: 0;
+
+                    &:last-child dd:last-of-type {
+                        @include ds_last-child-no-margin;
+                        margin-bottom: 0;
+                    }
                 }
             }
         }
     }
 
-    .ds_contact-details__list {
-        margin-top: 0;
-    }
+    // Remove Contact Details specific heading style
+    .ds_contact-details__title {
+        display: block;
+        padding: 0;
+        position: relative;
 
-    .ds_contact-details__item {
-        &:first-child {
-            margin-top: 0;
+        &::after {
+            display: none;
         }
     }
+
+
 }

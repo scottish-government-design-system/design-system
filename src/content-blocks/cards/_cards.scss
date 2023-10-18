@@ -4,10 +4,13 @@
 
 .ds_cb--cards {
     .ds_cb__inner {
-        padding: 16px 0 32px;
+        @include ds_responsive-padding(4, bottom);
+
+        > * {
+            @include ds_responsive-margin(4, top);
+        }
 
         @include ds_media-query(medium) {
-            padding-top: 24px;
 
             > * {
                 float: left;
