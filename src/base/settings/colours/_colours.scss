@@ -2,20 +2,20 @@
 /// Using a BEM-like syntax for variable names.
 
 // Palette
-$ds_colour__white:          #ffffff !default;
-$ds_colour__black:          #000000 !default;
+$ds_colour__white:          #ffffff;
+$ds_colour__black:          #000000;
 
-$ds_colour__blue--lighter:  #e5f0f8 !default;
-$ds_colour__blue--light:    #d9effc !default;
-$ds_colour__blue:           #0065bd !default;
-$ds_colour__blue--dark:     #00437e !default;
-$ds_colour__blue--darker:   #002d54 !default;
+$ds_colour__blue--lighter:  #e5f0f8;
+$ds_colour__blue--light:    #d9effc;
+$ds_colour__blue:           #0065bd;
+$ds_colour__blue--dark:     #00437e;
+$ds_colour__blue--darker:   #002d54;
 
-$ds_colour__grey--lighter:  #f8f8f8 !default;
-$ds_colour__grey--light:    #ebebeb !default;
-$ds_colour__grey--medium:   #b3b3b3 !default;
-$ds_colour__grey:           #727272 !default;
-$ds_colour__grey--dark:     #333333 !default;
+$ds_colour__grey--lighter:  #f8f8f8;
+$ds_colour__grey--light:    #ebebeb;
+$ds_colour__grey--medium:   #b3b3b3;
+$ds_colour__grey:           #727272;
+$ds_colour__grey--dark:     #333333;
 
 
 
@@ -35,6 +35,15 @@ $ds_colour__brown:      #592c20;
 
 
 
+// general backgrounds
+$ds_colour__background--primary:        $ds_colour__white !default;
+$ds_colour__background--secondary:      $ds_colour__grey--lighter !default;
+$ds_colour__background--tertiary:       $ds_colour__grey--light !default;
+$ds_colour__background--primary--dim:   $ds_colour__background--secondary !default;
+
+
+
+
 // branding
 $ds_colour__brand:              $ds_colour__blue !default;
 $ds_colour__brand--secondary:   $ds_colour__blue--darker !default;
@@ -46,7 +55,15 @@ $ds_brand-gradient-direction:   right !default;
 // type
 $ds_colour__text:               $ds_colour__grey--dark !default;
 $ds_colour__text--secondary:    $ds_colour__grey !default;
+$ds_colour__text--reversed:     $ds_colour__white !default;
 $ds_colour__placeholder:        $ds_colour__text--secondary !default;
+
+
+
+
+// focus
+$ds_colour__focus:              $ds_colour__grey--dark !default;
+$ds_colour__focus--background:  $ds_colour__yellow !default;
 
 
 
@@ -55,14 +72,14 @@ $ds_colour__placeholder:        $ds_colour__text--secondary !default;
 $ds_colour__link:                       $ds_colour__blue !default;
 $ds_colour__link--hover:                $ds_colour__blue--dark !default;
 $ds_colour__link--hover__background:    $ds_colour__blue--light !default;
-$ds_colour__link--focus:                $ds_colour__text !default;
-$ds_colour__link--focus__outline:       $ds_colour__yellow !default;
-$ds_colour__link--focus__background:    $ds_colour__link--focus__outline !default;
-$ds_colour__link--focus__shadow:        $ds_colour__text !default;
+$ds_colour__link--focus:                $ds_colour__focus !default;
+$ds_colour__link--focus__outline:       $ds_colour__focus--background !default;
+$ds_colour__link--focus__background:    $ds_colour__focus--background !default;
+$ds_colour__link--focus__shadow:        $ds_colour__focus !default;
 $ds_colour__link--current:              $ds_colour__text !default;
-$ds_colour__link--current__background:  $ds_colour__grey--lighter !default;
+$ds_colour__link--current__background:  $ds_colour__background--primary--dim !default;
 $ds_colour__link--disabled:             $ds_colour__text !default;
-$ds_colour__link--disabled__background: $ds_colour__grey--light !default;
+$ds_colour__link--disabled__background: $ds_colour__background--tertiary !default;
 $ds_colour__link--reversed:             currentColor !default;
 $ds_colour__link--reversed--hover:      currentColor !default;
 $ds_colour__link--reversed--focus:      $ds_colour__link--focus !default;
@@ -93,6 +110,7 @@ $ds_colour__button--secondary--focus:               $ds_colour__link--focus !def
 $ds_colour__button--cancel:                         $ds_colour__text !default;
 $ds_colour__button--cancel__background:             $ds_colour__button--secondary__background !default;
 $ds_colour__button--cancel--hover__background:      $ds_colour__grey--light !default;
+$ds_colour__button--disabled__background:           $ds_colour__grey !default;
 
 
 
@@ -100,17 +118,21 @@ $ds_colour__button--cancel--hover__background:      $ds_colour__grey--light !def
 // input
 $ds_colour__input--hover__border:       $ds_colour__grey--medium !default;
 $ds_colour__input--focus__background:   $ds_colour__white !default;
-$ds_colour__input--focus__outline:      $ds_colour__link--focus__outline !default;
-$ds_colour__input--spot:                $ds_colour__text !default;
+$ds_colour__input--focus__outline:      $ds_colour__focus--background !default;
+$ds_colour__input--spot:                currentColor !default; // not currently used
 
 
 
 
 // borders
 $ds_colour__border:             $ds_colour__grey--medium !default;
-$ds_colour__border--dark:       $ds_colour__grey--dark !default;
-$ds_colour__border--light:      $ds_colour__grey--light !default;
+$ds_colour__border--strong:     $ds_colour__grey--dark !default;
+$ds_colour__border--faint:      $ds_colour__grey--light !default;
 $ds_colour__border--highlight:  $ds_colour__brand !default;
+
+// deprecated border colour names
+$ds_colour__border--dark:       $ds_colour__border--strong !default;
+$ds_colour__border--light:      $ds_colour__border--faint !default;
 
 
 

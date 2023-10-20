@@ -2,6 +2,7 @@
     #SUMMARY LIST
 \*------------------------------------*/
 
+$summary-card-header-background-colour: $ds_colour__background--primary--dim !default;
 
 .ds_summary-list {
     @include ds_block-margins--bottom;
@@ -63,7 +64,7 @@
                 @include ds_responsive-margin(1, left);
                 @include ds_responsive-padding(1, left, false, 1px);
                 position: relative;
-        
+
                 &::before {
                     background: $ds_colour__text--secondary;
                     content: '';
@@ -149,8 +150,8 @@
         @include ds_responsive-padding(3, bottom, $tuning: -1px);
         @include ds_responsive-padding(3, left, $tuning: -1px);
         align-items: flex-start;
-        border-bottom: 1px solid $ds_colour__grey--lighter; //[1]
-        background: $ds_colour__grey--lighter;
+        border-bottom: 1px solid $summary-card-header-background-colour; //[1]
+        background: $summary-card-header-background-colour;
         display: flex;
         justify-content: space-between;
 
@@ -190,7 +191,7 @@
                 @include ds_responsive-margin(1, left);
                 @include ds_responsive-padding(1, left, false, 1px);
                 position: relative;
-        
+
                 &::before {
                     background: $ds_colour__text--secondary;
                     content: '';

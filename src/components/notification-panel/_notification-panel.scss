@@ -8,7 +8,7 @@
     @include ds_responsive-padding(6, bottom);
     @include ds_responsive-padding(4, left);
     @include ds_responsive-padding(4, right);
-    background: $ds_colour__grey--lighter;
+    background: $ds_colour__background--secondary;
     text-align: center;
 
     @include ds_high-contrast-outline(4px);
@@ -20,7 +20,7 @@
 
     &--success {
         background: $ds_colour__state--positive;
-        color: $ds_colour__white;
+        color: $ds_colour__text--reversed;
     }
 
     &__title {

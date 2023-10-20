@@ -23,16 +23,11 @@
     }
 
     &__input:checked + &__label::after {
-        border-color: $ds_colour__white;
+        border-color: $ds_colour__text--reversed;
     }
 
     &__input:focus:checked + &__label::before {
         background-color: $ds_colour__link--focus__background;
-    }
-
-    &__input:focus:checked + &__label::after {
-        background-color: transparent;
-        border-color: currentColor;
     }
 
     &--small &__label::after {

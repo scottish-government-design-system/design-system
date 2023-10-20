@@ -44,10 +44,10 @@ $category-header__title-colour: $ds_colour__text !default;
 }
 
 .ds_reversed .ds_category-header {
-    color: $ds_colour__white;
+    color: $ds_colour__text--reversed;
 
     &__title {
-        color: $ds_colour__white;
+        color: $ds_colour__text--reversed;
     }
 }
 

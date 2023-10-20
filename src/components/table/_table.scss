@@ -2,10 +2,10 @@
     TABLES
 \*------------------------------------*/
 
-$table-border-colour: $ds_colour__grey--medium !default;
-$table-border-colour--light: $ds_colour__grey--light !default;
-$table-header-background-colour: $ds_colour__grey--light !default;
-$table-row-hover-colour: $ds_colour__grey--lighter !default;
+$table-border-colour: $ds_colour__border !default;
+$table-border-colour--light: $ds_colour__border--faint !default;
+$table-header-background-colour: $ds_colour__background--tertiary !default;
+$table-row-zebra-colour: $ds_colour__background--primary--dim !default;
 
 
 
@@ -74,11 +74,11 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
     }
 
     tbody > tr > td {
-        background-color: $ds_colour__white;
+        background-color: $ds_colour__background--primary;
     }
 
     tbody > tr:nth-child(even) > td {
-        background-color: $ds_colour__grey--lighter;
+        background-color: $table-row-zebra-colour;
     }
 }
 
@@ -191,11 +191,11 @@ $table-row-hover-colour: $ds_colour__grey--lighter !default;
             }
 
             &[data-smallscreen="boxes"] tr > td:nth-child(odd) {
-                background-color: $ds_colour__white;
+                background-color: $ds_colour__background--primary;
             }
 
             &[data-smallscreen="boxes"] tr > td:nth-child(even) {
-                background-color: $ds_colour__grey--lighter;
+                background-color: $table-row-zebra-colour;
             }
 
         }

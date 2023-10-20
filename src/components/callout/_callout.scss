@@ -11,7 +11,7 @@
     @include ds_responsive-padding(3, right);
     @include ds_last-child-no-margin;
 
-    background: $ds_colour__grey--lighter;
+    background: $ds_colour__background--secondary;
     border-left: 4px solid $ds_colour__brand;
 
     &--no-border {

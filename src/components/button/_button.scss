@@ -56,9 +56,9 @@ $link__border-width: 3px;
     }
 
     &[disabled] {
-        background-color: $ds_colour__grey;
+        background-color: $ds_colour__button--disabled__background;
         box-shadow: none;
-        color: $ds_colour__white;
+        color: $ds_colour__button;
         font-weight: $normal;
         outline: none;
         pointer-events: none;
@@ -66,7 +66,7 @@ $link__border-width: 3px;
 }
 
 .ds_reversed .ds_button {
-    background-color: $ds_colour__white;
+    background-color: $ds_colour__button;
     color: $ds_colour__button__background;
 
     &:focus,
@@ -81,11 +81,11 @@ $link__border-width: 3px;
     &--secondary {
         background-color: transparent;
         border-color: currentColor;
-        color: $ds_colour__white;
+        color: $ds_colour__button;
 
         &:hover:not(:focus) {
             background-color: rgba(0, 0, 0, 0.3);
-            color: $ds_colour__white;
+            color: $ds_colour__button;
             outline-color: currentColor;
         }
     }

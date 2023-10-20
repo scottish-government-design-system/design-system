@@ -6,7 +6,7 @@
     @include ds_small-size;
     @include ds_responsive-padding(2, top);
     @include ds_responsive-padding(2, bottom);
-    background: $ds_colour__grey--light;
+    background: $ds_colour__background--tertiary;
     clear: both;
 
     &.no-bottom-margin {

@@ -5,6 +5,7 @@
 
 .ds_input {
     @include ds_responsive-margin (3, bottom);
+    background-color: $ds_colour__background--primary;
     border: $field-border-width solid currentColor;
     border-radius: 0;
     display: block;

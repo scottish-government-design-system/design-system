@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$site-footer__background: $ds_colour__grey--light !default;
+$site-footer__background: $ds_colour__background--tertiary !default;
 
 
 
@@ -67,7 +67,7 @@ $site-footer__background: $ds_colour__grey--light !default;
 }
 
 .ds_reversed .ds_site-footer__content {
-    color: $ds_colour__white;
+    color: $ds_colour__text--reversed;
 }
 
 .ds_reversed .ds_footer__site-items {

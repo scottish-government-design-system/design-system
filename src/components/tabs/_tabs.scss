@@ -2,8 +2,8 @@
     TABS
 \*------------------------------------*/
 
-$tab__background-colour: $ds_colour__grey--lighter !default;
-$tab__background-colour--current: $ds_colour__white !default;
+$tab__background-colour: $ds_colour__background--primary--dim !default;
+$tab__background-colour--current: $ds_colour__background--primary !default;
 $tab__link-colour: $ds_colour__text !default;
 $tab__link-colour--current: $ds_colour__text !default;
 $tab__border-width: 2px !default;
@@ -74,8 +74,8 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                     &__toggle {
                         @include ds_blocklink;
 
-                        background-color: $ds_colour__white;
-                        border: 2px solid $ds_colour__border--light;
+                        background-color: $ds_colour__background--primary;
+                        border: 2px solid $ds_colour__border--faint;
                         color: $tab__toggle-colour;
                         font-weight: $bold;
                         margin: 0;
@@ -147,7 +147,7 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
 
                     &__list {
                         @include ds_root-size;
-                        border: 2px solid $ds_colour__border--light;
+                        border: 2px solid $ds_colour__border--faint;
                         border-top: 0;
                         margin: 0;
                         padding: 8px 6px 6px 6px;
@@ -266,6 +266,7 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
 
                             &:focus {
                                 border: 0;
+                                color: $ds_colour__focus;
                                 padding: $tab__padding--vertical $tab__padding--horizontal calc(#{$tab__padding--vertical} + #{$tab__border-width});
                             }
                         }

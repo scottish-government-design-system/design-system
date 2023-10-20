@@ -4,6 +4,7 @@
 
 // modifiable vars
 $tag__background-colour: $ds_colour__brand !default;
+$tag__foreground-colour: $ds_colour__text--reversed !default;
 
 
 
@@ -14,7 +15,7 @@ $tag__background-colour: $ds_colour__brand !default;
     @include ds_responsive-padding(1, right);
     background: $tag__background-colour;
     border-radius: 2px;
-    color: $ds_colour__white;
+    color: $tag__foreground-colour;
     display: inline-block;
     font-weight: $bold;
     text-transform: uppercase;
@@ -23,6 +24,6 @@ $tag__background-colour: $ds_colour__brand !default;
 }
 
 .ds_reversed .ds_tag {
-    background-color: $ds_colour__white;
+    background-color: $tag__foreground-colour;
     color: $tag__background-colour;
 }

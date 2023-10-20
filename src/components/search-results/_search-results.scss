@@ -2,6 +2,8 @@
     SEARCH RESULTS
 \*------------------------------------*/
 
+$search-results-related-background: $ds_colour__background--secondary;
+
 .ds_search-results {
 
     &__title {
@@ -31,7 +33,7 @@
         @include ds_block-margins;
         @include ds_last-child-no-margin;
         @include ds_responsive-padding(2);
-        background: $ds_colour__grey--lighter;
+        background: $search-results-related-background;
 
         &-title {
             @include ds_root-size;

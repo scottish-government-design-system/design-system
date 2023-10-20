@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 body {
-    background: $ds_colour__white;
+    background: $ds_colour__background--primary;
     color: $ds_colour__text;
     font-family: $base-font-family;
     font-size: px-to-rem($root-font-size); // 1rem

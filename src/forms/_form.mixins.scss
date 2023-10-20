@@ -2,6 +2,11 @@
     FORM MIXINS
 \*------------------------------------*/
 
+$small-focus-border-colour: $ds_colour__border !default;
+
+
+
+
 @mixin ds_radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
 
     margin-bottom: 24px;
@@ -24,7 +29,7 @@
     }
 
     &__label::before {
-        background-color: $ds_colour__white;
+        background-color: $ds_colour__background--primary;
         border: $field-border-width solid $ds_colour__text;
         content: '';
         height: $input-size;
@@ -58,17 +63,14 @@
 
     /// focus
     &__input:focus + &__label::before {
+        background-color: $ds_colour__link--focus__background;
+        border-color: $ds_colour__link--focus;
         border-width: $field-border-width--focus;
-        box-shadow: 0 0 0 $field-glow-width $ds_colour__yellow;
+        box-shadow: 0 0 0 $field-glow-width $ds_colour__input--focus__outline;
 
         @include ds_high-contrast-focus(4px) {
             outline-offset: -4px;
         };
-    }
-
-    /// checked
-    &__input:checked + &__label::before {
-        border-color: $ds_colour__input--spot;
     }
 
     &__input:checked + &__label::after {
@@ -94,12 +96,12 @@
 
     /// hover
     &--small &__input:hover + &__label::before {
-        box-shadow: 0 0 0 $small-shadow-size $ds_colour__grey--medium;
+        box-shadow: 0 0 0 $small-shadow-size $small-focus-border-colour;
     }
 
     /// hover-focus
     &--small &__input:hover:focus + &__label::before {
-        box-shadow: 0 0 0 $field-glow-width $ds_colour__yellow, 0 0 0 $small-shadow-size #b1b4b6;
+        box-shadow: 0 0 0 $field-glow-width $ds_colour__link--focus__outline, 0 0 0 $small-shadow-size $small-focus-border-colour;
     }
 
     > .ds_hint-text {

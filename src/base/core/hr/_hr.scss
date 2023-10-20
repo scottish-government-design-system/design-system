@@ -5,7 +5,7 @@
 /// [1] compensate for border
 hr {
     border: none;
-    border-top: 1px solid $ds_colour__grey--medium;
+    border-top: 1px solid $ds_colour__border;
 
     @include ds_responsive-margin(4, top);
     @include ds_responsive-margin(4, bottom, false, -1px); /// [1]

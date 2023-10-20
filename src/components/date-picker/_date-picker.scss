@@ -20,7 +20,7 @@
     &__dialog {
         @include ds_box-shadow;
 
-        background-color: $ds_colour__white;
+        background-color: $ds_colour__background--primary;
         clear: both;
         display: none;
         padding: 8px;
@@ -67,7 +67,7 @@
         &__navbuttons {
             button {
                 background-color: transparent;
-                color: $ds_colour__text !important;
+                color: $ds_colour__text;
                 font-weight: $normal;
                 min-height: 40px;
                 margin: 0;
@@ -125,12 +125,12 @@
 
                 &.ds_datepicker__current {
                     $dp-current-outline-width: 2px;
-                    outline: $dp-current-outline-width solid $ds_colour__border--dark !important;
+                    outline: $dp-current-outline-width solid $ds_colour__border--strong !important;
                     outline-offset: #{$dp-current-outline-width * -1};
                 }
 
                 &.ds_datepicker__current[tabindex="-1"] {
-                    background: $ds_colour__grey--lighter;
+                    background: $ds_colour__link--current__background;
                     color: currentColor;
                 }
 
@@ -152,7 +152,11 @@
 
                 &.ds_selected:not(:focus) {
                     background-color: $ds_colour__text;
-                    color: $ds_colour__white;
+                    color: $ds_colour__text--reversed;
+                }
+
+                &:focus {
+                    color: $ds_colour__focus;
                 }
             }
         }

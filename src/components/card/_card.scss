@@ -2,16 +2,18 @@
     CARD
 \*------------------------------------*/
 
+$card-grey-background-color: $ds_colour__background--primary--dim !default;
+
 .ds_card {
     @include ds_box-shadow;
     @include ds_small-size;
-    background-color: $ds_colour__white;
+    background-color: $ds_colour__background--primary;
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;
 
     &--grey {
-        background-color: $ds_colour__grey--lighter;
+        background-color: $card-grey-background-color;
         color: $ds_colour__text;
 
         &:focus-within {
