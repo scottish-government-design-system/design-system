@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 // modifiable vars
-$notification-banner__background-colour: $ds_colour__grey--dark !default;
+$notification-banner__background-colour: $ds_colour__text !default;
 $notification-banner__background-colour--success: $ds_colour__state--positive !default;
 $notification-banner__colour-icon-colour: $ds_colour__yellow !default;
 
@@ -13,11 +13,12 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 .ds_notification {
     background: $notification-banner__background-colour;
-    color: $ds_colour__white;
+    color: $ds_colour__text--reversed;
     margin-bottom: 1px;
 
     &--success {
-        background: $notification-banner__background-colour--success;
+        background-color: $notification-banner__background-colour--success;
+        color: $ds_colour__white;
     }
 
     /// [1] compensate for bottom margin on parent
@@ -79,7 +80,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         }
 
         &--inverse {
-            background-color: $ds_colour__white;
+            background-color: $ds_colour__text--reversed;
             border-radius: 100px;
             color: $notification-banner__background-colour;
         }

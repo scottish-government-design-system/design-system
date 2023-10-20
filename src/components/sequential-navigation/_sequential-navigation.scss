@@ -4,13 +4,14 @@
 \*------------------------------------*/
 
 // modifiable vars
-$page-nav__icon-colour: $ds_colour__brand !default;
-$page-nav__icon-hover: $ds_colour__link--hover !default;
-$page-nav__icon-focus: $ds_colour__link--focus !default;
-$page-nav__prefix-colour: $ds_colour__blue--darker !default;
+$page-nav__circle-colour: $ds_colour__brand !default;
+$page-nav__circle-hover: $ds_colour__link--hover !default;
+$page-nav__circle-focus: $ds_colour__link--focus !default;
+$page-nav__icon-colour: $ds_colour__button !default;
+$page-nav__prefix-colour: $ds_colour__brand--secondary !default;
 
 // fixed vars vars
-$page-nav__icon-size: 56px !default;
+$page-nav__circle-size: 56px !default;
 
 
 
@@ -54,12 +55,12 @@ $page-nav__icon-size: 56px !default;
     &--left::before,
     &--right::before {
         content: '';
-        height: $page-nav__icon-size;
-        width: $page-nav__icon-size;
-        background-color: $page-nav__icon-colour;
+        height: $page-nav__circle-size;
+        width: $page-nav__circle-size;
+        background-color: $page-nav__circle-colour;
         background-position: center;
-        border-radius: $page-nav__icon-size;
-        border: 2px solid $page-nav__icon-colour; /// [1]
+        border-radius: $page-nav__circle-size;
+        border: 2px solid $page-nav__circle-colour; /// [1]
         display: inline-block;
         position: absolute;
         top: 8px;
@@ -71,14 +72,14 @@ $page-nav__icon-size: 56px !default;
     &--left,
     &--right {
         &::after {
-            color: $ds_colour__white;
+            color: $page-nav__icon-colour;
             position: absolute;
             top: 25px;
         }
     }
 
     &--left {
-        padding-left: ($page-nav__icon-size + 5px + 12px);
+        padding-left: ($page-nav__circle-size + 5px + 12px);
         text-align: left;
 
         &::before {
@@ -94,7 +95,7 @@ $page-nav__icon-size: 56px !default;
     &--right {
         text-align: right;
         float: right;
-        padding-right: ($page-nav__icon-size + 5px + 12px);
+        padding-right: ($page-nav__circle-size + 5px + 12px);
         text-align: right;
 
         &::before {
@@ -110,15 +111,15 @@ $page-nav__icon-size: 56px !default;
 
 .ds_sequential-nav__button:hover {
     &::before {
-        background-color: $page-nav__icon-hover;
-        border-color: $page-nav__icon-hover;
+        background-color: $page-nav__circle-hover;
+        border-color: $page-nav__circle-hover;
     }
 }
 
 .ds_sequential-nav__button:focus {
     &::before {
-        background-color: $page-nav__icon-focus;
-        border-color: $page-nav__icon-focus;
+        background-color: $page-nav__circle-focus;
+        border-color: $page-nav__circle-focus;
     }
 }
 

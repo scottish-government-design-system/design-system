@@ -40,14 +40,14 @@ h1,h2,h3 {
 }
 
 .ds_accordion-item {
-    border-bottom: 1px solid $ds_colour__border--light;
-    border-top: 1px solid $ds_colour__border--light;
+    border-bottom: 1px solid $ds_colour__border--faint;
+    border-top: 1px solid $ds_colour__border--faint;
 
     &__header {
         @include ds_blocklink;
         @include ds_h4-size;
 
-        background-color: $ds_colour__white;
+        background-color: $ds_colour__background--primary;
         border-width: 0;
         color: $accordion__header-colour;
         font-weight: $bold;

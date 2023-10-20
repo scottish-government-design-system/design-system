@@ -13,7 +13,7 @@
     }
 
     &--background {
-        background-color: $ds_colour__grey--light;
+        background-color: $ds_colour__background--tertiary;
     }
 
     &__primary {
@@ -91,7 +91,7 @@
 
 .ds_reversed .ds_feature-header__primary,
 .ds_reversed .ds_feature-header__primary a {
-    color: $ds_colour__white;
+    color: $ds_colour__text--reversed;
 }
 
 

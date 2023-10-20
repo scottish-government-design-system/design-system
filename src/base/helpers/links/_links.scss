@@ -129,7 +129,7 @@ $link__border-width: 3px;
 @mixin ds_blocklink--solid($link-selector: null) {
     @include ds_blocklink($link-selector);
 
-    background-color: $ds_colour__white;
+    background-color: $ds_colour__background--primary;
 }
 
 

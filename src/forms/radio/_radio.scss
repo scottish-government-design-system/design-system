@@ -15,6 +15,10 @@
         background: currentColor;
     }
 
+    &__input:focus + &__label::after {
+        color: $ds_colour__focus;
+    }
+
     &--small &__label::after {
         border-width: 6px;
         left: 14px;

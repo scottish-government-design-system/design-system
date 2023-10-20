@@ -1,8 +1,14 @@
+/*------------------------------------*\
+    FILE DOWNLOAD
+\*------------------------------------*/
+
+$file-download-background-colour: $ds_colour__background--secondary !default;
+
 .ds_file-download {
     @include ds_responsive-margin(4, bottom);
     @include ds_responsive-margin(4, top);
     @include ds_responsive-padding(2);
-    background-color: $ds_colour__grey--lighter;
+    background-color: $file-download-background-colour;
     display: flex;
 
     &--highlighted {

@@ -14,14 +14,14 @@ $side-nav__outline-width: 2px;
     @include ds_block-margins;
     @include ds_small-size;
 
-    border: 1px solid $ds_colour__border--light;
+    border: 1px solid $ds_colour__border--faint;
     position: relative;
 
     /// [1] Allowance for 1px border on all sides of parent container
     &__expand {
         @include ds_blocklink;
 
-        background-color: $ds_colour__white;
+        background-color: $ds_colour__background--primary;
         color: $side-nav__expand-colour;
         cursor: pointer;
         font-weight: $bold;
@@ -159,7 +159,7 @@ $side-nav__outline-width: 2px;
         padding-left: 24px;
 
         &::before {
-            background: $ds_colour__grey--light;
+            background: $ds_colour__background--tertiary;
             bottom: 12px;
             content: '';
             left: 12px;

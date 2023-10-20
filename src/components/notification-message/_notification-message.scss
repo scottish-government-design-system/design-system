@@ -5,7 +5,7 @@
     @include ds_responsive-padding(4, left, false, px-to-rem(-4px));
     @include ds_responsive-padding(4, right);
 
-    background-color: $ds_colour__grey--lighter;
+    background-color: $ds_colour__background--secondary;
     border-left: px-to-rem(4px) solid $ds_colour__brand;
 
     &__title {

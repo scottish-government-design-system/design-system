@@ -32,12 +32,3 @@
         }
     }
 }
-
-.flashable {
-    transition: background-color 2s;
-
-    &--flash {
-        background-color: $ds_colour__yellow;
-        transition-duration: 0s;
-    }
-}

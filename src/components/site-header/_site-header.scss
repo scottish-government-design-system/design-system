@@ -6,12 +6,12 @@
 $site-header__border-colour--reversed: $ds_colour__brand--secondary !default;
 
 // fixed vars
-$site-header__border-colour: $ds_colour__border--light;
+$site-header__border-colour: $ds_colour__border--faint;
 $site-header__top-band-colour: $ds_colour__brand;
 $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
 .ds_site-header {
-    background-color: $ds_colour__white;
+    background-color: $ds_colour__background--primary;
     border-bottom: 1px solid $site-header__border-colour;
     margin-bottom: -1px;
     position: relative;
@@ -65,7 +65,7 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
         @include ds_blocklink;
 
         &--active {
-            background-color: $ds_colour__grey--lighter;
+            background-color: $ds_colour__link--current__background;
             box-shadow: -1px -1px 0px rgba(0, 0, 0, 0.08);
 
             .ds_site-header__control-icon {
@@ -95,7 +95,7 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
     @include ds_media-query(medium) {
         &__navigation {
-            border-top: 1px solid $ds_colour__border--light;
+            border-top: 1px solid $ds_colour__border--faint;
             margin-top: -1px;
         }
     }

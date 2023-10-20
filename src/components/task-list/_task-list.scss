@@ -8,7 +8,7 @@
     padding: 0;
 
     &__task {
-        border-top: 2px $ds_colour__grey--light solid;
+        border-top: 2px $ds_colour__border--faint solid;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -17,7 +17,7 @@
         @include ds_responsive-padding(2, bottom, $tuning: -2px);
 
         &:last-child {
-            border-bottom: 2px $ds_colour__grey--light solid;
+            border-bottom: 2px $ds_colour__border--faint solid;
         }
 
         // Stack at small size
@@ -50,7 +50,7 @@
         &-status {
             @include ds_small-size;
             @include ds_responsive-margin(5, left);
-            background-color: $ds_colour__grey--light;
+            background-color: $ds_colour__background--tertiary;
             font-weight: $bold;
             padding: px-to-rem(4px) px-to-rem(16px);
             white-space: nowrap;
@@ -61,7 +61,7 @@
             }
 
             &--complete {
-                background: $ds_colour__white;
+                background: $ds_colour__background--primary;
                 color: $ds_colour__state--positive;
                 border: 2px $ds_colour__state--positive solid;
                 padding: px-to-rem(2px) px-to-rem(16px);

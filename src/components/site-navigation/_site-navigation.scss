@@ -4,14 +4,8 @@
 */
 
 // modifiable vars
-$site-navigation__current-colour--reversed: $ds_colour__blue--light !default;
-$site-navigation__hover-bg--reversed: $ds_colour__link--hover !default;
-$site-navigation__mobile-menu-background: $ds_colour__grey--lighter !default;
-$site-navigation__mobile-menu-button-colour: $ds_colour__brand !default;
-
-// fixed vars
-$site-navigation__highlight-colour: $ds_colour__border--highlight;
-$site-navigation__mobile-menu-highlight-colour: $site-navigation__highlight-colour;
+$site-navigation__mobile-menu-background: $ds_colour__background--primary--dim !default;
+$site-navigation__highlight-colour: $ds_colour__border--highlight !default;
 
 // common to both mobile and desktop
 $site-navigation__link-padding: 16px;
@@ -88,7 +82,7 @@ $site-navigation__link-padding: 16px;
 
     .ds_site-navigation__toggle:checked ~ .ds_site-navigation,
     .ds_site-navigation--open {
-        border-top: 1px solid $ds_colour__grey--light;
+        border-top: 1px solid $ds_colour__border--faint;
         max-height: none;
 
         @supports (color: var(--ds-mobile-menu-height)) {
@@ -159,6 +153,6 @@ $site-navigation__link-padding: 16px;
 // when site navigation is a child of a reversed-variant site header
 .ds_reversed .ds_site-navigation {
     @include ds_media-query(medium) {
-        color: $ds_colour__white;
+        color: $ds_colour__text--reversed;
     }
 }

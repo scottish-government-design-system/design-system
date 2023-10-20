@@ -21,7 +21,7 @@
         padding-top: 0;
 
         &-content {
-            background: $ds_colour__grey--lighter;
+            background: $ds_colour__background--secondary;
             border-left: 4px solid $ds_colour__brand;
             @include ds_responsive-padding(1, top);
             @include ds_responsive-padding(2, left);
@@ -95,7 +95,7 @@
         position: relative;
 
         &:before {
-            background: $ds_colour__blue;
+            background: $ds_colour__brand;
             content: '';
             height: nearest-grid-size(($small-size * 1.5)); // Match height to line-height
             @include ds_media-query(medium) {

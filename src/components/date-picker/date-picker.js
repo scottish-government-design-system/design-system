@@ -560,8 +560,10 @@ class DSDatePicker {
 
         if (this.options.minDate) {
             this.minDate = this.options.minDate;
+            this.minDate.setHours(0, 0, 0, 0);
         } else if (this.datePickerParent.dataset.mindate) {
             this.minDate = this.formattedDateFromString(this.datePickerParent.dataset.mindate, null);
+            this.minDate.setHours(0, 0, 0, 0);
         }
 
         if (this.options.maxDate) {
@@ -622,6 +624,7 @@ class DSDatePicker {
         firstOfMonth.setDate(firstOfMonth.getDate() - dayOfWeek);
 
         const thisDay = new Date(firstOfMonth);
+        thisDay.setHours(0, 0, 0, 0);
 
         // loop through our days
         for (let i = 0; i < this.calendarDays.length; i++) {
