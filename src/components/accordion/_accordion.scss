@@ -179,16 +179,16 @@ h1,h2,h3 {
     .ds_accordion-item__button,
     .ds_accordion-item__body,
     .ds_accordion__open-all {
-        font-size: $root-font-size;
-        line-height: 1.5rem;
+        font-size: px-to-rem($root-font-size); // 1rem
+        line-height: line-height-on-grid($root-font-size); //1.5
     }
 
     .ds_accordion-item__body {
         padding-right: 16px;
 
         h3, h4 {
-            font-size: 1em;
-            line-height: 1.5rem;
+            font-size: 1em; // 1rem
+            line-height: line-height-on-grid($root-font-size); //1.5
         }
     }
 }
