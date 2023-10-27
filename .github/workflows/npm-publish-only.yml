@@ -1,0 +1,34 @@
+name: npm publish only
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Set up node and add the registry url
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org'
+          always-auth: true
+
+      # Install
+      - name: Install
+        run: npm ci
+
+      # Test
+      - name: Run tests
+        run: npm run test
+
+      # Publish to npm
+      - name: Publish npm package
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
