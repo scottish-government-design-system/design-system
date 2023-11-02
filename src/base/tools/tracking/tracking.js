@@ -388,10 +388,10 @@ const tracking = {
             detailsElements.forEach(detailsElement => {
                 const summary = detailsElement.querySelector('summary');
 
-                detailsElement.setAttribute('data-accordion', `detail-${detailsElement.open ? 'close' : 'open'}`);
+                summary.setAttribute('data-accordion', `detail-${detailsElement.open ? 'close' : 'open'}`);
 
                 summary.addEventListener('click', () => {
-                    detailsElement.setAttribute('data-accordion', `detail-${detailsElement.open ? 'open' : 'close'}`);
+                    summary.setAttribute('data-accordion', `detail-${detailsElement.open ? 'open' : 'close'}`);
                 });
             });
         },

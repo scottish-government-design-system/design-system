@@ -16,9 +16,7 @@ class Details {
     }
 
     init() {
-        if (typeof (this.details.open === 'boolean')) {
-           return;
-        } else {
+        if (typeof (this.details.open) !== 'boolean') {
             this.polyfillAttributes();
             this.polyfillEvents();
         }
@@ -60,7 +58,7 @@ class Details {
             }
         });
 
-        this.summary.addEventListener('kayup', event => {
+        this.summary.addEventListener('keyup', event => {
             if (event.keyCode === this.keycodes.space) {
                 event.preventDefault();
             }
