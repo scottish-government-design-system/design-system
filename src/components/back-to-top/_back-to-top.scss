@@ -7,22 +7,24 @@
 }
 
 @media only screen {
+    /// [1] -1px compensates for the height of a visually-hidden element. This prevents the back
+    ///     to top element causing the document to always be at least 1px taller than the viewport
+    ///     and adding a scroll bar
+    /// [2] fallback for older browsers
+    /// [3] 56px is the button's height plus 8px spacing
     .ds_back-to-top {
         bottom: 56px;
         display: block;
         pointer-events: none;
         position: absolute;
         right: 8px;
-        top: 100vh;
+        top: calc(100vh - 1px); /// [1]
         z-index: 1;
 
         @supports (bottom: var(--ds-back-to-top-offset)) {
-            bottom: var(--ds-back-to-top-offset);
-            top: calc(100vh - var(--ds-back-to-top-offset));
+            bottom: var(--ds-back-to-top-offset, 0);
         }
 
-        /// [1] fallback for older browsers
-        /// [2] 56px is the button's height plus 8px spacing
         &__button {
             @include ds_blocklink;
             @include ds_small-size;
@@ -33,10 +35,10 @@
             min-width: 120px;
             pointer-events: all;
             padding: 8px 32px 8px 16px;
-            position: fixed; /// [1]
+            position: fixed; /// [2]
             position: sticky;
             right: 8px;
-            top: calc(100vh - 56px); /// [2]
+            top: calc(100vh - 56px); /// [3]
         }
 
         &__icon {

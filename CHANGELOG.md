@@ -7,6 +7,14 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 
 ---
 
+## [1.0.0]
+### Changed
+- Breaking change - use sass:math for division
+- Breaking change - use CSS custom properties in preference to inline styles
+### Fixed
+- Back to top component positioning issues when a footer element is not present
+- Various script changes to better support IE11 
+
 ## [0.3.0]
 ### Added
 - Current version number added to data layer

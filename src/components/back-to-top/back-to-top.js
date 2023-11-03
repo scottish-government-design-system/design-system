@@ -24,10 +24,10 @@ class BackToTop {
     }
 
     checkDisplay() {
-        if (document.body.offsetHeight > this.window.innerHeight) {
-            this.backToTopElement.classList.remove('visually-hidden');
-        } else {
+        if (document.body.offsetHeight - this.footerEl.offsetHeight < this.window.innerHeight) {
             this.backToTopElement.classList.add('visually-hidden');
+        } else {
+            this.backToTopElement.classList.remove('visually-hidden');
         }
 
         this.checkPosition();
