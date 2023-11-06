@@ -31,7 +31,7 @@
         &.ds_current {
             background-color: $ds_colour__link--current__background;
             box-shadow: inset 0 -3px 0 0px currentColor;
-            pointer-events: none;
+            color: currentColor;
         }
 
         &--text:not(&--icon) {
