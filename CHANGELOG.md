@@ -12,8 +12,6 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 ### Changed
 - Various components Sass amended to reference semantic colour variables instead of direct colour names
 - Pagination component improved for screen readers
-### Fixed
-- Date picker JavaScript changes to prevent date computation issues
 
 ## [1.0.0]
 ### Changed
