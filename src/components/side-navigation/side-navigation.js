@@ -11,8 +11,9 @@ class SideNavigation {
     init() {
         // detect support for CSS custom properties
         if (window.CSS && CSS.supports('color', 'var(--primary)')) {
-            if (this.sideNavigation) {
+            if (this.sideNavigation && !this.sideNavigation.classList.contains('js-initialised')) {
                 this.setupSideNavigation();
+                this.sideNavigation.classList.add('js-initialised');
             }
         }
     }

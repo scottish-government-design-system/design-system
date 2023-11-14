@@ -23,6 +23,14 @@ describe('side navigation', () => {
             testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
         });
 
+        it('should abandon attemts to call init() after it has been init-ed', () => {
+            testObj.sideNavigationModule.init();
+
+            spyOn(testObj.sideNavigationModule.sideNavigation.classList, 'add');
+            testObj.sideNavigationModule.init();
+            expect(testObj.sideNavigationModule.sideNavigation.classList.add).not.toHaveBeenCalledWith('js-initialised');
+        });
+
         it ('should set an initial aria-expanded value on the control', () => {
             testObj.sideNavigationModule.init();
             const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button');
