@@ -2,6 +2,8 @@
     DATE PICKER
 \*------------------------------------*/
 
+$date-picker-focus-outline-width: 2px;
+$date-picker-focus-border-width: 3px;
 
 .ds_datepicker {
     position: relative;
@@ -77,6 +79,10 @@
                 @include ds_blocklink;
                 display: inline-block;
 
+                &:hover {
+                    color: currentColor;
+                }
+
                 .ds_icon {
                     height: 32px;
                     padding: 0;
@@ -89,7 +95,7 @@
         &__table {
 
             tbody:focus-within {
-                outline: 2px solid $ds_colour__link--focus__background;
+                outline: $date-picker-focus-outline-width solid $ds_colour__link--focus__background;
             }
 
             td {
@@ -118,9 +124,24 @@
                 @include ds_small-size;
                 @include ds_blocklink;
 
-                &[disabled="true"] {
+                &:focus {
+                    transition-duration: 0s;
+                }
+
+                &[disabled="true"],
+                &[aria-disabled="true"] {
                     background-color: $ds_colour__link--disabled__background;
                     color: $ds_colour__link--disabled;
+                    pointer-events: none;
+
+                    &:focus {
+                        box-shadow:
+                            inset 0 #{$date-picker-focus-border-width * -1} $ds_colour__focus, // bottom shadow
+                            inset 0 $date-picker-focus-outline-width $ds_colour__focus--background, // top
+                            inset #{$date-picker-focus-outline-width * -1} 0 $ds_colour__focus--background, // right
+                            inset 0 #{($date-picker-focus-outline-width + $date-picker-focus-border-width) * -1} $ds_colour__focus--background, // bottom
+                            inset $date-picker-focus-outline-width 0 $ds_colour__focus--background; // left
+                    }
                 }
 
                 &.ds_datepicker__current {
