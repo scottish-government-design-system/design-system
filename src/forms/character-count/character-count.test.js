@@ -10,6 +10,16 @@ describe('character count', () => {
     });
 
     describe('setup', () => {
+        it('should abandon attemts to call init() after it has been init-ed', () => {
+            testObj.characterCountElement = document.querySelector('#maxlength');
+            testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
+            testObj.characterCountModule.init();
+
+            spyOn(testObj.characterCountModule.field.classList, 'add');
+            testObj.characterCountModule.init();
+            expect(testObj.characterCountModule.field.classList.add).not.toHaveBeenCalledWith('js-initialised');
+        });
+
         describe('missing information', () => {
             it ('should exit if no maxlength set', () => {
                 testObj.characterCountElement = document.querySelector('#bad-no-maxlength');
