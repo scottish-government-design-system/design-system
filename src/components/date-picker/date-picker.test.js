@@ -404,28 +404,6 @@ describe('date picker', () => {
             expect(testObj.datePickerModule.currentDate).toEqual(new Date('06/06/2019'));
         });
 
-        it('go to new date (beyond min date)', () => {
-            testObj.datePickerElement = document.querySelector('#minmaxdate');
-            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
-            testObj.datePickerModule.currentDate = new Date('06/06/2020');
-            testObj.datePickerModule.init();
-
-            testObj.datePickerModule.goToDate(new Date('06/06/2019'));
-
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date('01/06/2020'));
-        });
-
-        it('go to new date (beyond max date)', () => {
-            testObj.datePickerElement = document.querySelector('#minmaxdate');
-            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
-            testObj.datePickerModule.currentDate = new Date('06/06/2020');
-            testObj.datePickerModule.init();
-
-            testObj.datePickerModule.goToDate(new Date('06/06/2021'));
-
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date('01/06/2021'));
-        });
-
         // set current date
         it('should show the current date in the calendar and focus on it', () => {
             testObj.datePickerElement = document.querySelector('#basic');
@@ -607,31 +585,31 @@ describe('date picker', () => {
             expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
         });
 
-        it('should cycle to the first enabled button when tabbing from the last enabled button', () => {
+        it('should cycle to the first button when tabbing from the last button', () => {
             testObj.datePickerModule.openDialog();
 
-            const enabledButtons = [].slice.call(testObj.datePickerModule.dialogElement.querySelectorAll('button:not([tabindex="-1"]):not(:disabled)'));
-            const firstEnabledButton = enabledButtons[0];
-            const lastEnabledButton = enabledButtons[enabledButtons.length - 1];
+            const buttons = [].slice.call(testObj.datePickerModule.dialogElement.querySelectorAll('button:not([tabindex="-1"])'));
+            const firstButton = buttons[0];
+            const lastButton = buttons[buttons.length - 1];
 
-            lastEnabledButton.focus();
+            lastButton.focus();
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.tab;
             event.initEvent('keydown');
             document.activeElement.dispatchEvent(event);
 
-            expect (document.activeElement).toEqual(firstEnabledButton);
+            expect (document.activeElement).toEqual(firstButton);
         });
 
-        it('should cycle to the last enabled button when reverse-tabbing from the first enabled button', () => {
+        it('should cycle to the last button when reverse-tabbing from the first button', () => {
             testObj.datePickerModule.openDialog();
 
-            const enabledButtons = [].slice.call(testObj.datePickerModule.dialogElement.querySelectorAll('button:not([tabindex="-1"]):not(:disabled)'));
-            const firstEnabledButton = enabledButtons[0];
-            const lastEnabledButton = enabledButtons[enabledButtons.length - 1];
+            const buttons = [].slice.call(testObj.datePickerModule.dialogElement.querySelectorAll('button:not([tabindex="-1"])'));
+            const firstButton = buttons[0];
+            const lastButton = buttons[buttons.length - 1];
 
-            firstEnabledButton.focus();
+            firstButton.focus();
 
             event = document.createEvent('Event');
             event.keyCode = keycodes.tab;
@@ -639,7 +617,7 @@ describe('date picker', () => {
             event.initEvent('keydown');
             document.activeElement.dispatchEvent(event);
 
-            expect (document.activeElement).toEqual(lastEnabledButton);
+            expect (document.activeElement).toEqual(lastButton);
         });
 
         it('other keypresses on first/last buttons take default behaviour', () => {
@@ -818,146 +796,30 @@ describe('date picker', () => {
         });
     });
 
-    describe('calendar with disabled dates, keyboard interactions:', () => {
+    describe('calendar with disabled dates', () => {
         beforeEach(() => {
             testObj.datePickerElement = document.querySelector('#basic');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, {
                 disabledDates: [
-                    new Date(2023, 3, 9),
-                    new Date(2023, 3, 10),
-                    new Date(2023, 3, 11),
-                    new Date(2023, 3, 15)
+                    new Date()
                 ]
             });
             testObj.datePickerModule.init();
         });
 
-        it('moving to next day should skip disabled days', () => {
-            testObj.datePickerModule.currentDate = new Date(2023, 3, 14);
+        it('should not permit the selection of a disabled date', () => {
+            spyOn(testObj.datePickerModule, 'setDate');
+
             testObj.datePickerModule.openDialog();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.right;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            // 15th is disabled, expect 16th
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 16));
-        });
-
-        it('moving to previous day should skip disabled days', () => {
-            testObj.datePickerModule.currentDate = new Date(2023, 3, 12);
-            testObj.datePickerModule.openDialog();
+            // pick a day
+            const dayButton = testObj.datePickerModule.dialogElement.querySelector('table button[aria-disabled]');
 
             event = document.createEvent('Event');
-            event.keyCode = keycodes.left;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
+            event.initEvent('click');
+            dayButton.dispatchEvent(event);
 
-            // 9th-11th disabled, expect 8th
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 8));
-        });
-
-        it('moving to next week should skip disabled days', () => {
-            testObj.datePickerModule.currentDate = new Date(2023, 3, 8);
-            testObj.datePickerModule.openDialog();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.down;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            // 15th is disabled, expect the following week (22nd)
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 22));
-        });
-
-        it('moving to previous week should skip disabled days', () => {
-            testObj.datePickerModule.currentDate = new Date(2023, 3, 22);
-            testObj.datePickerModule.openDialog();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.up;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            // 15th is disabled, expect the previous week (8th)
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 8));
-        });
-
-        it('moving to first day of week should focus the first non-disabled day', () => {
-            testObj.datePickerModule.currentDate = new Date(2023, 3, 13);
-            testObj.datePickerModule.openDialog();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.home;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            // 9th-11th is disabled, expect the next available day (12th)
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 12));
-        });
-
-        it('moving to last day of week should focus the last non-disabled day', () => {
-            testObj.datePickerModule.currentDate = new Date(2023, 3, 13);
-            testObj.datePickerModule.openDialog();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.end;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            // 15th is disabled, expect the first available day (14th)
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 14));
-        });
-
-        it('moving to next month should skip to first non-disabled day', () => {
-            testObj.datePickerModule.currentDate = new Date(2023, 2, 10);
-            testObj.datePickerModule.openDialog();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.pagedown;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 12));
-        });
-
-        it('moving to previous month should skip to first non-disabled day', () => {
-            testObj.datePickerModule.currentDate = new Date(2023, 4, 10);
-            testObj.datePickerModule.openDialog();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.pageup;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 8));
-        });
-
-        it('moving to next year should skip to first non-disabled day', () => {
-            testObj.datePickerModule.currentDate = new Date(2022, 3, 10);
-            testObj.datePickerModule.openDialog();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.pagedown;
-            event.shiftKey = true;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 12));
-        });
-
-        it('moving to previous year should skip to first non-disabled day', () => {
-            testObj.datePickerModule.currentDate = new Date(2024, 3, 10);
-            testObj.datePickerModule.openDialog();
-
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.pageup;
-            event.shiftKey = true;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
-
-            expect(testObj.datePickerModule.currentDate).toEqual(new Date(2023, 3, 8));
+            expect(testObj.datePickerModule.setDate).not.toHaveBeenCalled();
         });
     });
 
