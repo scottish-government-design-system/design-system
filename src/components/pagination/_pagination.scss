@@ -29,9 +29,12 @@
         text-decoration: none;
 
         &.ds_current {
-            background-color: $ds_colour__link--current__background;
             box-shadow: inset 0 -3px 0 0px currentColor;
             color: currentColor;
+        }
+
+        &.ds_current:not(:focus) {
+            background-color: $ds_colour__link--current__background;
         }
 
         &--text:not(&--icon) {
@@ -45,6 +48,11 @@
             pointer-events: none;
         }
 
+        .ds_icon {
+            height: 2em;
+            width: 2em;
+        }
+
         > * {
             pointer-events: none;
         }
@@ -53,7 +61,6 @@
 
 @include ds_media-query(medium) {
     .ds_pagination {
-
         &__load-more + &__list {
             display: block;
         }
@@ -63,9 +70,22 @@
         }
 
         &__link--icon {
-            padding-left: 24px;
-            padding-right: 24px;
+            padding-left: 0px;
+            padding-right: 0px;
             width: auto;
+
+            .ds_pagination__link-label {
+                padding-left: 16px;
+            }
+
+            .ds_icon + .ds_pagination__link-label {
+                padding-right: 16px;
+                padding-left: 0;
+            }
+        }
+
+        .ds_icon {
+            margin: 0 4px;
         }
     }
 }
@@ -89,7 +109,7 @@
         &__list {
             display: flex;
             flex-wrap: wrap;
-            gap: 2px;
+            gap: 4px;
             justify-content: center;
         }
 
