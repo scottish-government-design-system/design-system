@@ -17,14 +17,14 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
     position: relative;
 
     &::before {
-        background: $site-header__top-band-colour;
-        display: block;
+        border-top: 4px solid $site-header__top-band-colour;
         content: '';
-        height: 4px;
+        display: block;
     }
 
     &--gradient::before {
-        background: linear-gradient(to $ds_brand-gradient-direction, $site-header__top-band-colour--secondary, $site-header__top-band-colour);
+        border-image-slice: 1;
+        border-image-source: linear-gradient(to right, $ds_colour__brand, $ds_colour__brand--secondary);
     }
 
     &__content {

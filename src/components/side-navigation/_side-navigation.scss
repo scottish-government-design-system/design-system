@@ -14,7 +14,7 @@ $side-nav__outline-width: 2px;
     @include ds_block-margins;
     @include ds_small-size;
 
-    border: 1px solid $ds_colour__border--faint;
+    border: 1px solid $ds_colour__border;
     position: relative;
 
     /// [1] Allowance for 1px border on all sides of parent container
@@ -121,13 +121,12 @@ $side-nav__outline-width: 2px;
             position: relative;
 
             &::before {
-                background: $ds_colour__border--highlight;
+                border-left: $side-nav__outline-width solid $ds_colour__border--highlight;
                 bottom: 0;
                 content: '';
                 position: absolute;
                 left: 0;
                 top: 0;
-                width: $side-nav__outline-width;
             }
         }
 
@@ -159,26 +158,28 @@ $side-nav__outline-width: 2px;
         padding-left: 24px;
 
         &::before {
-            background: $ds_colour__background--tertiary;
+            border-left: 4px solid $ds_colour__border;
             bottom: 12px;
             content: '';
             left: 12px;
+            opacity: 0.26;
             position: absolute;
             right: 100%;
-            width: 4px;
             top: 12px;
         }
 
         &:hover,
         &.ds_current {
             &::before {
-                background: $ds_colour__border--highlight;
+                border-color: $ds_colour__border--highlight;
+                opacity: 1;
             }
         }
 
         &:focus {
             &::before {
-                background: $ds_colour__link--focus;
+                border-color: $ds_colour__link--focus;
+                opacity: 1;
             }
         }
     }

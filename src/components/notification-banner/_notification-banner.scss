@@ -13,8 +13,8 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 .ds_notification {
     background: $notification-banner__background-colour;
+    border-bottom: 1px solid $ds_colour__white;
     color: $ds_colour__text--reversed;
-    margin-bottom: 1px;
 
     &--success {
         background-color: $notification-banner__background-colour--success;

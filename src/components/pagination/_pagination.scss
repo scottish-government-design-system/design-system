@@ -29,12 +29,18 @@
         text-decoration: none;
 
         &.ds_current {
-            box-shadow: inset 0 -3px 0 0px currentColor;
-            color: currentColor;
-        }
-
-        &.ds_current:not(:focus) {
             background-color: $ds_colour__link--current__background;
+            color: currentColor;
+            position: relative;
+
+            &::before {
+                border-bottom: 3px solid currentColor;
+                bottom: 0;
+                content: '';
+                left: 0;
+                position: absolute;
+                right: 0;
+            }
         }
 
         &--text:not(&--icon) {

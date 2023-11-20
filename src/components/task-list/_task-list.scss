@@ -50,6 +50,7 @@
         &-status {
             @include ds_small-size;
             @include ds_responsive-margin(5, left);
+            @include ds_high-contrast-outline;
             background-color: $ds_colour__background--tertiary;
             font-weight: $bold;
             padding: px-to-rem(4px) px-to-rem(16px);
@@ -128,5 +129,15 @@
 
     &-heading {
         @include ds_h3-style;
+    }
+}
+
+@media screen and (forced-colors: active) and (prefers-contrast: more) {
+    /*
+     * [1] This is a little hacky but it does serve to differentiate the "complete" status.
+     *     And happens to be green by default.
+     */
+    .ds_task-list__task-status--complete {
+        color: GrayText; // 1
     }
 }
