@@ -13,9 +13,8 @@
     }
 
     &::before {
-        background-color: $ds_colour__brand;
+        border-top: 2px solid $ds_colour__brand;
         content: '';
-        height: 2px;
         left: 0;
         position: absolute;
         right: 0;

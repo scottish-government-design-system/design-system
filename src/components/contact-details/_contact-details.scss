@@ -18,7 +18,7 @@ $contact-details__border-colour: $ds_colour__border--highlight;
         position: relative;
 
         &::after {
-            background-color: $contact-details__border-colour;
+            border-top: 4px solid $contact-details__border-colour;
             content: '';
             height: 4px;
             left: 0;

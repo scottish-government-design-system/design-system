@@ -37,7 +37,7 @@ $border-width-size: 4px;
         color: $category-item__link-colour;
 
         &::before {
-            background-color: $ds_colour__border--highlight;
+            border-left: $border-width-size solid $ds_colour__border--highlight;
             bottom: 0;
             content: '';
             left: #{$border-width-size * -1};
@@ -52,7 +52,7 @@ $border-width-size: 4px;
         }
 
         &:hover::before {
-            background-color: $category-item__border-colour--hover;
+            border-color: $category-item__border-colour--hover;
             opacity: 1;
         }
 
@@ -88,20 +88,7 @@ $border-width-size: 4px;
     }
 
     .ds_category-item__link::before {
-        left: 0;
-        right: 0;
-        bottom: 0;
-        top: 100%;
-        transition: top 0.2s;
-        width: 100%;
-    }
-
-    .ds_category-item__link:hover::before {
-        top: calc(100% - 4px);
-    }
-
-    .ds_category-item__link::after {
-        left: 0;
+        border-width: 0;
     }
 }
 

@@ -11,12 +11,12 @@
         @include ds_h3-size;
         margin: 0;
         padding: 0;
-        @include ds_responsive-margin(1, bottom);  
+        @include ds_responsive-margin(1, bottom);
     }
 
     &__list {
         @include ds_small-size;
-        @include ds_responsive-margin(6, bottom);   
+        @include ds_responsive-margin(6, bottom);
         list-style: none;
         margin-left: 0;
         padding-left: 32px;
@@ -26,8 +26,8 @@
         position: relative;
 
         &::before {
-            background: currentColor;
-            content: "—";
+            border-top: 1px solid currentColor;
+            content: "";
             height: 1px;
             left: -32px;
             overflow: hidden;

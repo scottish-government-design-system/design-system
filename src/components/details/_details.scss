@@ -52,3 +52,9 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
         display: block;
     }
 }
+
+@media screen and (forced-colors: active) and (prefers-contrast: more) {
+    .ds_details__summary::before {
+        background-color: LinkText;
+    }
+}

@@ -155,8 +155,13 @@
                     color: $ds_colour__text--reversed;
                 }
 
+                /*
+                 * helps with focus in windows high contrast
+                 */
                 &:focus {
                     color: $ds_colour__focus;
+                    position: relative;
+                    z-index: 2; // [1]
                 }
             }
         }

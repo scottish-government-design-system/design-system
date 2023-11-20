@@ -7,6 +7,7 @@ $card-grey-background-color: $ds_colour__background--primary--dim !default;
 .ds_card {
     @include ds_box-shadow;
     @include ds_small-size;
+    @include ds_high-contrast-outline;
     background-color: $ds_colour__background--primary;
     display: grid;
     grid-template-rows: auto 1fr;

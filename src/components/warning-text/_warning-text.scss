@@ -23,6 +23,7 @@
 
 .ds_warning-text__icon {
     $warning-text-icon-size: 32px;
+    @include ds_high-contrast-outline;
 
     background: $ds_colour__text;
     border-radius: 50%;
