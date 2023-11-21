@@ -6,6 +6,7 @@
 $notification-banner__background-colour: $ds_colour__text !default;
 $notification-banner__background-colour--success: $ds_colour__state--positive !default;
 $notification-banner__colour-icon-colour: $ds_colour__yellow !default;
+$notification-banner__foreground-colour: $ds_colour__white !default;
 
 // fixed vars
 $notification-banner__close-padding: 4px;
@@ -13,12 +14,12 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 .ds_notification {
     background: $notification-banner__background-colour;
-    border-bottom: 1px solid $ds_colour__white;
+    border-bottom: 1px solid $notification-banner__foreground-colour;
     color: $ds_colour__text--reversed;
 
     &--success {
         background-color: $notification-banner__background-colour--success;
-        color: $ds_colour__white;
+        color: $notification-banner__foreground-colour;
     }
 
     /// [1] compensate for bottom margin on parent
