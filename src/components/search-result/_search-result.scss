@@ -35,10 +35,6 @@
             color: $ds_colour__text--secondary;
             font-weight: $bold;
         }
-
-        &__summary mark {
-            background-color: $ds_colour__background--secondary;
-        }
     }
 
     &__title {
@@ -62,9 +58,13 @@
         margin: 0;
 
         mark {
-            background-color: $ds_colour__background--primary;
+            background-color: inherit;
             color: inherit;
             font-weight: $bold;
+
+            @media screen and (forced-colors: active) and (prefers-contrast: more) {
+                background-color: Mark;
+            }
         }
     }
 
