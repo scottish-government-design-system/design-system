@@ -14,7 +14,7 @@ $side-nav__outline-width: 2px;
     @include ds_block-margins;
     @include ds_small-size;
 
-    border: 1px solid $ds_colour__border--faint;
+    border: 1px solid $ds_colour__border;
     position: relative;
 
     /// [1] Allowance for 1px border on all sides of parent container

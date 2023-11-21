@@ -1,10 +1,19 @@
+/*------------------------------------*\
+    AUTOCOMPLETE
+\*------------------------------------*/
+
+$site-search__border-colour: $ds_colour__grey !default;
+
+
+
+
 .ds_autocomplete {
     position: relative;
 
     &__suggestions {
         @include ds_box-shadow;
 
-        border: 2px solid $ds_colour__border;
+        border: 2px solid $site-search__border-colour;
         display: none;
         left: 0;
         position: absolute;
@@ -35,7 +44,7 @@
         }
 
         &:not(:last-child) {
-            border-bottom: 2px solid $ds_colour__border;
+            border-bottom: 2px solid $site-search__border-colour;
         }
 
         &__text {
