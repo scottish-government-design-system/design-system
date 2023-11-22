@@ -29,7 +29,6 @@
         text-decoration: none;
 
         &.ds_current {
-            background-color: $ds_colour__link--current__background;
             color: currentColor;
             position: relative;
 
@@ -41,6 +40,10 @@
                 position: absolute;
                 right: 0;
             }
+        }
+
+        &.ds_current:not(:focus) {
+            background-color: $ds_colour__link--current__background;
         }
 
         &--text:not(&--icon) {
