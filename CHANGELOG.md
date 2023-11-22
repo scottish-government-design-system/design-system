@@ -6,6 +6,21 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [1.2.0]
+### Changed
+- Renamed to Scottish Government Design System
+- Refactor the way disabled dates are handled in the Date picker:
+    - disabled dates are now focusable but not selectable
+    - disabled dates are announced to screen readers as aria-disabled ("dimmed")
+    - date picker can be navigated through beyond allowed date ranges
+- Pagination spacing values and icon size now match Figma design
+- Colour contrast improvements to some borders on Side navigation, Autocomplete and Site search
+### Fixed
+- Date picker issue where clicking "next month" when Jan 31 is selected would navigate to March (January 31 + 1 month = March 2 or 3 (depending on leap year))
+- Side navigation and character count components now check if they have been initialised already before trying to initialise
+- Pagination current page link now changes background colour when receiving focus
+- Variety of components changed to display better in Windows High Contrast
+
 ## [1.1.0]
 ### Added
 - Additional Sass semantic colour variables
