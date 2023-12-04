@@ -96,7 +96,7 @@ $link__border-width: 3px;
                     width: 100%;
                     z-index: 0;
 
-                    @media screen and (forced-colors: active) and (prefers-contrast: more) {
+                    @include ds_media-query-high-contrast {
                         content: none;
                     }
                 }

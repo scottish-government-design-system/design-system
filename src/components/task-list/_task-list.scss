@@ -132,7 +132,7 @@
     }
 }
 
-@media screen and (forced-colors: active) and (prefers-contrast: more) {
+@include ds_media-query-high-contrast {
     /*
      * [1] This is a little hacky but it does serve to differentiate the "complete" status.
      *     And happens to be green by default.

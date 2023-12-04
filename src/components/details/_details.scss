@@ -53,7 +53,7 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
     }
 }
 
-@media screen and (forced-colors: active) and (prefers-contrast: more) {
+@include ds_media-query-high-contrast {
     .ds_details__summary::before {
         background-color: LinkText;
     }

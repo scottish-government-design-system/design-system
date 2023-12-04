@@ -56,16 +56,6 @@
     &__summary {
         @include ds_root-size;
         margin: 0;
-
-        mark {
-            background-color: inherit;
-            color: inherit;
-            font-weight: $bold;
-
-            @media screen and (forced-colors: active) and (prefers-contrast: more) {
-                background-color: Mark;
-            }
-        }
     }
 
     &__metadata {
@@ -96,24 +86,21 @@
         @include ds_responsive-margin(2, top);
         @include ds_responsive-padding(2, left);
         @include ds_small-size(4px); // Use 4px type grid
-        position: relative;
-
-        &:before {
-            border-left: 4px solid $ds_colour__brand;
-            content: '';
-            height: nearest-grid-size(($small-size * 1.5)); // Match height to line-height
-            @include ds_media-query(medium) {
-                height: nearest-grid-size(($small-size--medium * 1.5)); // Match height to line-height
-            }
-            position: absolute;
-                top: 0;
-                left: 0;
-        }
 
         &-key {
             color: $ds_colour__text--secondary;
             margin: 0;
             padding: 0;
+            position: relative;
+
+            &:before {
+                border-left: 4px solid $ds_colour__brand;
+                bottom: 0;
+                content: '';
+                left: -1rem;
+                position: absolute;
+                top: 0;
+            }
         }
 
         &-value {
@@ -121,7 +108,6 @@
             padding: 0;
             @include ds_responsive-margin(1, top);
         }
-
     }
 
     &__sublinks {
@@ -132,5 +118,4 @@
             @include ds_visually-hidden;
         }
     }
-
 }
