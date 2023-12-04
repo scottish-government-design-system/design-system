@@ -1,0 +1,13 @@
+/*------------------------------------*\
+    MARKED TEXT
+\*------------------------------------*/
+
+mark {
+    background-color: inherit;
+    color: inherit;
+    font-weight: $bold;
+
+    @include ds_media-query-high-contrast {
+        background-color: Mark;
+    }
+}

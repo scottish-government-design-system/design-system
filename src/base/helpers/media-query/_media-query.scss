@@ -25,6 +25,23 @@
     }
 }
 
+/// Media query: high contrast
+///
+/// Shorthand @media alias for "forced colors" and "prefers contrast"
+///
+/// @example scss
+///   @include ds_media-query-high-contrast {
+///     .my-element {
+///        color: LinkText;
+///     }
+///   }
+
+@mixin ds_media-query-high-contrast {
+    @media screen and (forced-colors: active) and (prefers-contrast: more) {
+        @content;
+    }
+}
+
 
 
 

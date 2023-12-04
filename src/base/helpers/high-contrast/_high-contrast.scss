@@ -3,7 +3,7 @@
 ///
 
 @mixin ds_high-contrast-focus($width: 2px) {
-    @media screen and (forced-colors: active) and (prefers-contrast: more) {
+    @include ds_media-query-high-contrast {
         outline-color: highlight !important;
         outline-style: solid !important;
         outline-width: $width !important;
@@ -13,15 +13,15 @@
 }
 
 @mixin ds_high-contrast-outline($width: 2px) {
-    @media screen and (forced-colors: active) and (prefers-contrast: more) {
+    @include ds_media-query-high-contrast {
         outline: $width solid currentColor !important;
         outline-offset: #{$width * -1} !important;
     }
 }
 
-// Style to look like links 
+// Style to look like links
 @mixin ds_high-contrast-link-style {
-    @media screen and (forced-colors: active) and (prefers-contrast: more) {
+    @include ds_media-query-high-contrast {
         color: LinkText;
 
         &:hover,

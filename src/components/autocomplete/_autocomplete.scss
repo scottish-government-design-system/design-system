@@ -59,23 +59,13 @@ $site-search__border-colour: $ds_colour__grey !default;
         &.active {
             @include ds_high-contrast-focus(2px){
                 outline-offset: -2px;
-            };
+            }
             background-color: $ds_colour__link--focus__background;
             box-shadow: inset 0 -3px $ds_colour__link--focus__shadow;
         }
 
         &.active &__text {
             color: $ds_colour__focus;
-        }
-    }
-
-    &__highlight {
-        background-color: transparent;
-        color: currentColor;
-        font-weight: $bold;
-
-        @media screen and (forced-colors: active) and (prefers-contrast: more) {
-            color: highlight;
         }
     }
 }
