@@ -56,6 +56,7 @@ $site-branding-title-spacing--medium: 48px;
     &__title {
         float: left;
     }
+
 }
 
 @include ds_media-query (medium) {
@@ -74,7 +75,6 @@ $site-branding-title-spacing--medium: 48px;
         }
 
         &__title {
-            line-height: $site-logo__height--medium;
 
             &::before {
                 margin-left: px-to-rem($site-branding-title-spacing--medium * -0.5);
