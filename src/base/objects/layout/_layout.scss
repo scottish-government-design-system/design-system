@@ -18,108 +18,99 @@
 @include ds_media-query(medium) {
     .ds_layout {
 
+        // Defaults
+        &__header {
+            clear: left;
+            float: left;
+            @include ds_colwidth(8);
+        }
+
+        &__partner {
+            float: left;
+            @include ds_colwidth(4);
+        }
+
+        &__navigation {
+            clear: left;
+            @include ds_colwidth(8);
+        }
+
+        &__sidebar {
+            float: left;
+            @include ds_colwidth(4);
+        }
+
+        &__content {
+            clear: left;
+            float: left;
+            @include ds_colwidth(8);
+        }
+
+        &__list {
+            clear: left;
+            float: left;
+            @include ds_colwidth(8);
+        }
+
         &__feedback {
             clear: left;
             @include ds_colwidth(8);
         }
 
-        &--article {
-            .ds_layout {
-                &__header {
-                    clear: left;
-                    float: left;
-                    @include ds_colwidth(8);
-                }
-
-                &__partner {
-                    float: left;
-                    @include ds_colwidth(4);
-                }
-
-                &__sidebar {
-                    float: left;
-                    @include ds_colwidth(4);
-                }
-
-                &__content {
-                    clear: left;
-                    float: left;
-                    @include ds_colwidth(8);
-                }
-            }
-        }
-
-        &--guide {
-            .ds_layout {
-                &__header {
-                    clear: left;
-                    float: left;
-                    @include ds_colwidth(8);
-                }
-
-                &__partner {
-                    float: left;
-                    @include ds_colwidth(4);
-                }
-
-                &__navigation {
-                    clear: left;
-                    @include ds_colwidth(8);
-                }
-
-                &__content {
-                    clear: left;
-                    float: left;
-                    @include ds_colwidth(8);
-                }
-
-                &__sidebar {
-                    float: left;
-                    @include ds_colwidth(3);
-                    @include ds_colpush(1);
-                }
-
-                &__feedback {
-                    @include ds_colwidth(8);
-                }
-            }
-        }
-
+        // Layout overrides
         &--category-list {
             .ds_layout {
-                &__list {
-                    @include ds_colwidth(8);
-                }
 
                 &__grid {
+                    clear: left;
+                    float: left;
                     @include ds_colwidth(12);
                 }
             }
         }
 
-        &--search-results {
+        &--search-results--filters {
             .ds_layout {
-                &__header {
+
+                &__sidebar {
+                    clear: left;
+                    float: left;
+                    @include ds_colwidth(4);
+                }
+
+                &__list {
+                    clear: none;
+                    float: left;
                     @include ds_colwidth(8);
                 }
-                &__content {
+
+                &__feedback {
+                    clear: left;
+                    @include ds_colpush(4);
                     @include ds_colwidth(8);
                 }
             }
         }
 
+        // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release 
         &--search-results-with-sidebar {
             .ds_layout {
-                &__header {
-                    @include ds_colwidth(8);
-                }
 
                 &__sidebar {
+                    clear: left;
                     float: left;
                     @include ds_colwidth(4);
                 }
+
                 &__content {
+                    clear: none;
                     float: left;
+                    @include ds_colwidth(8);
+                }
+
+                &__feedback {
+                    clear: left;
+                    @include ds_colpush(4);
                     @include ds_colwidth(8);
                 }
             }
@@ -132,10 +123,11 @@
     .ds_layout {
         &--article {
             .ds_layout {
-                &__content {
-                    clear: left;
+
+                &__partner {
                     float: left;
-                    @include ds_colwidth(8);
+                    @include ds_colpush(1);
+                    @include ds_colwidth(3);
                 }
 
                 &__sidebar {
@@ -148,8 +140,11 @@
 
         &--guide {
             .ds_layout {
-                &__content {
-                    @include ds_colwidth(8);
+
+                &__partner {
+                    float: left;
+                    @include ds_colpush(1);
+                    @include ds_colwidth(3);
                 }
 
                 &__sidebar {
@@ -158,39 +153,9 @@
                     @include ds_colwidth(3);
                 }
 
-                &__feedback {
-                    @include ds_colwidth(8);
-                }
             }
         }
 
-        &--search-results {
-            .ds_layout {
-                &__header {
-                    @include ds_colwidth(8);
-                }
-                &__content {
-                    @include ds_colwidth(8);
-                }
-            }
-        }
-
-        &--search-results-with-sidebar {
-            .ds_layout {
-                &__header {
-                    @include ds_colwidth(8);
-                }
-
-                &__sidebar {
-                    float: left;
-                    @include ds_colwidth(4);
-                }
-                &__content {
-                    float: left;
-                    @include ds_colwidth(8);
-                }
-            }
-        }
     }
 }
 
@@ -228,11 +193,12 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto 1fr;
 
-        // default template areas definition based on article,
+        // default template areas definition based on guide,
         // which is a relatively safe fallback
         grid-template-areas:
             'h h'
             'p p'
+            'n n'
             'c c'
             's s'
             'f f';
@@ -289,22 +255,36 @@
                 'n n'
                 'c c'
                 's s'
-                'f f'
+                'f f';
         }
 
+        // navigation grid area 'n' for search results is deprecated - this will be removed in a future release
         &--search-results {
             grid-template-areas:
                 'h h'
                 'n n'
                 'c c'
+                'l l'
+                'f f';
         }
 
+        &--search-results--filters {
+            grid-template-areas:
+                'h h'
+                'c c'
+                's s'
+                'l l'
+                'f f';
+        }
+
+        // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release 
         &--search-results-with-sidebar {
             grid-template-areas:
                 'h h'
                 'n n'
                 's s'
                 'c c'
+                'f f';
         }
     }
 
@@ -315,6 +295,7 @@
             grid-template-areas:
                 'h h h h h h'
                 'p p p p p p'
+                'n n n n n n'
                 'c c c c c c'
                 's s s s s s'
                 'f f f f f f';
@@ -335,28 +316,48 @@
                     'n n n n n n'
                     'c c c c c c'
                     's s s s s s'
-                    'f f f f f f'
+                    'f f f f f f';
             }
 
+            // navigation grid area 'n' for search results is deprecated - this will be removed in a future release
             &--search-results {
                 grid-template-areas:
                     'h h h h h h'
                     'n n n n n n'
                     'c c c c c c'
+                    'l l l l l l'
+                    'f f f f f f';
             }
-    
+
+            &--search-results--filters {
+                grid-template-areas:
+                    'h h h h h h'
+                    'c c c c c c'
+                    's s s s s s'
+                    'l l l l l l'
+                    'f f f f f f';
+            }
+
+            // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release 
             &--search-results-with-sidebar {
                 grid-template-areas:
                     'h h h h h h'
                     'n n n n n n'
                     's s s s s s'
                     'c c c c c c'
+                    'f f f f f f';
             }
         }
     }
 
     @include ds_media-query(medium) {
         .ds_layout {
+            grid-template-areas:
+                'h h h h h h h h p p p p'
+                'n n n n n n n n . . . .'
+                'c c c c c c c c s s s s'
+                'f f f f f f f f . . . .';
+
             grid-template-columns: repeat(12, 1fr);
 
             &--article {
@@ -371,7 +372,7 @@
                     'h h h h h h h h p p p p'
                     'n n n n n n n n . . . .'
                     'c c c c c c c c s s s s'
-                    'f f f f f f f f . . . .'
+                    'f f f f f f f f . . . .';
             }
 
             &--category-list {
@@ -383,18 +384,31 @@
                     'f f f f f f f f . . . .';
             }
 
+            // navigation grid area 'n' for search results is deprecated - this will be removed in a future release
             &--search-results {
                 grid-template-areas:
                     'h h h h h h h h . . . .'
-                    'n n n n n n n n n n n n'
-                    'c c c c c c c c . . . .';
+                    'n n n n n n n n . . . .'
+                    'c c c c c c c c . . . .'
+                    'l l l l l l l l . . . .'
+                    'f f f f f f f f . . . .';
             }
 
+            &--search-results--filters {
+                grid-template-areas:
+                    'h h h h h h h h . . . .'
+                    'c c c c c c c c . . . .'
+                    's s s s l l l l l l l l'
+                    '. . . . f f f f f f f f';
+            }
+
+            // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release 
             &--search-results-with-sidebar {
                 grid-template-areas:
                     'h h h h h h h h . . . .'
-                    'n n n n n n n n n n n n'
-                    's s s s c c c c c c c c';
+                    'n n n n n n n n . . . .'
+                    's s s s c c c c c c c c'
+                    '. . . . f f f f f f f f';
             }
         }
     }
@@ -413,7 +427,7 @@
                     'h h h h h h h h . p p p'
                     'n n n n n n n n . . . .'
                     'c c c c c c c c . s s s'
-                    'f f f f f f f f . . . .'
+                    'f f f f f f f f . . . .';
             }
         }
     }
