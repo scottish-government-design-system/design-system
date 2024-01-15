@@ -17,9 +17,14 @@ $accordion__header-colour: $ds_colour__link !default;
     &__open-all {
         display: none;
         float: right;
+        line-height: line-height-on-grid($root-font-size);
         margin-bottom: 8px;
         position: relative;
         text-decoration: none;
+
+        @include ds_media-query(medium) {
+            line-height: line-height-on-grid($root-font-size--medium);
+        }
 
         + * {
             clear: both;
@@ -33,6 +38,7 @@ h1,h2,h3 {
     }
 }
 
+// Open all button is shown after JavaScript is initialised
 .ds_accordion.js-initialised {
     .ds_accordion__open-all {
         display: block;
@@ -101,9 +107,14 @@ h1,h2,h3 {
         @include ds_chevron(down, 0.75em);
         position: absolute;
         right: 24px;
-        top: 18px;
+        top: 16px;
         transition: transform 0.2s, top 0.2s;
         pointer-events: none;
+
+        @include ds_media-query(medium) {
+            top: 21px; // nudges indicator to remain inline with first line of title
+            right: 26px;
+        }
     }
 
     &__body {
@@ -123,8 +134,13 @@ h1,h2,h3 {
     }
 
     &__control:checked ~ &__header &__indicator {
-        top: 24px;
+        top: 22px;
         transform: rotate(-225deg);
+
+        @include ds_media-query(medium) {
+            top: 27px; // nudges indicator to remain inline with first line of title
+            right: 26px;
+        }
     }
 
     &__control:focus ~ &__header,
@@ -156,21 +172,13 @@ h1,h2,h3 {
     }
 }
 
-@include ds_media-query(medium) {
-    .ds_accordion-item {
-        &__indicator {
-            margin-top: 3px; // nudges indicator to remain inline with first line of title
-            right: 26px;
-        }
-    }
-}
-
 
 
 
 /* SMALL VARIANT */
 
 .ds_accordion--small {
+    .ds_accordion-item__header,
     .ds_accordion-item__title,
     .ds_accordion-item__button,
     .ds_accordion-item__body,
@@ -186,5 +194,16 @@ h1,h2,h3 {
             font-size: 1em; // 1rem
             line-height: line-height-on-grid($root-font-size); //1.5
         }
+    }
+
+    .ds_accordion-item__indicator {
+        margin-top: 0;
+        right: 24px;
+        top: 16px;
+    }
+
+    .ds_accordion-item__control:checked~.ds_accordion-item__header .ds_accordion-item__indicator {
+        right: 24px;
+        top: 22px;
     }
 }
