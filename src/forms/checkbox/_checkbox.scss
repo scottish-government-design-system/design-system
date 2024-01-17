@@ -22,7 +22,7 @@
         background-color: currentColor;
     }
 
-    &__input:checked + &__label::after {
+    &__input:not(:focus):checked + &__label::after {
         border-color: $ds_colour__text--reversed;
     }
 
