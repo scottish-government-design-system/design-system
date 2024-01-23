@@ -843,6 +843,13 @@ const tracking = {
                     link.setAttribute('data-navigation', `tasklist`);
                 }
             });
+
+            const taskListSkipLinks = tracking.gatherElements('js-task-list-skip-link', scope);
+            taskListSkipLinks.forEach(link => {
+                if (!link.getAttribute('data-navigation')) {
+                    link.setAttribute('data-navigation', `tasklist-skip`);
+                }
+            });
         },
 
         textInputs: function (scope = document) {

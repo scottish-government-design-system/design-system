@@ -1708,11 +1708,27 @@ describe('tracking', () => {
             expect(link.getAttribute('data-navigation')).toEqual('tasklist');
         });
 
-        it('should NOT add a generated data attribute on task links links with attributes already set', () => {
+        it('should NOT add a generated data attribute on task links with attributes already set', () => {
             const link = testObj.scope.querySelector('.ds_task-list__task-link[data-unit="with-attribute"]');
             Tracking.add.taskList();
 
             expect(link.getAttribute('data-navigation')).toEqual('task-link-foo');
+        });
+
+        it('should add a generated data attribute on task list "skip" links without attributes already set', () => {
+            const link = testObj.scope.querySelector('.js-task-list-skip-link');
+            link.removeAttribute('data-navigation');
+
+            Tracking.add.taskList();
+
+            expect(link.getAttribute('data-navigation')).toEqual('tasklist-skip');
+        });
+
+        it('should NOT add a generated data attribute on task list "skip" links with attributes already set', () => {
+            const link = testObj.scope.querySelector('.js-task-list-skip-link');
+            Tracking.add.taskList();
+
+            expect(link.getAttribute('data-navigation')).toEqual('task-skip-link-foo');
         });
     });
 
