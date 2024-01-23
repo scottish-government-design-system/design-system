@@ -1160,26 +1160,37 @@
     </div>
 </div>
 
-<ol class="ds_task-list-group  ds_task-list-group--ordered" id="tasklist">
-    <li class="ds_task-list-group__section">
-        <h2 class="ds_task-list-heading">Heading for tasks</h2>
-        <ul class="ds_task-list">
-            <li class="ds_task-list__task">
-                <div class="ds_task-list__task-details">
-                    <a class="ds_task-list__task-link" href="#" data-unit="without-attribute">This is a task <span class="visually-hidden">(Completed)</span></a>
-                </div>
-                <div class="ds_task-list__task-status  ds_task-list__task-status--complete" aria-hidden="true">Completed</div>
-            </li>
-            <li class="ds_task-list__task">
-                <div class="ds_task-list__task-details">
-                    <a class="ds_task-list__task-link" href="#" data-unit="with-attribute" data-navigation="task-link-foo">This is another task <span class="visually-hidden">(Completed)</span></a>
-                    <p class="ds_task-list__task-summary">This is some additional content around this specific task.</p>
-                </div>
-                <div class="ds_task-list__task-status  ds_task-list__task-status--complete" aria-hidden="true">Completed</div>
-            </li>
-        </ul>
-    </li>
-</ol>
+<div id="tasklist">
+    <h2 id="task-list-status" class="ds_task-list-status-heading">Application incomplete</h2>
+    <nav aria-labelledby="task-list-status" class="ds_task-list-status">
+        <p>You have completed 1 of 4 sections.</p>
+        <p><a href="#task2" class="js-task-list-skip-link" data-navigation="task-skip-link-foo">Skip to first incomplete section</a></p>
+    </nav>
+    <ol class="ds_task-list-group  ds_task-list-group--ordered">
+        <li class="ds_task-list-group__section">
+            <h2 class="ds_task-list-heading">Heading for tasks</h2>
+            <ul class="ds_task-list">
+                <li class="ds_task-list__task" id="task1">
+                    <div class="ds_task-list__task-details">
+                        <h3 class="ds_task-list__task-heading">
+                            <a class="ds_task-list__task-link" href="#" data-unit="without-attribute">This is a task <span class="visually-hidden">(Completed)</span></a>
+                        </h3>
+                    </div>
+                    <div class="ds_task-list__task-status  ds_task-list__task-status--complete" aria-hidden="true">Completed</div>
+                </li>
+                <li class="ds_task-list__task" id="task2">
+                    <div class="ds_task-list__task-details">
+                        <h3 class="ds_task-list__task-heading">
+                            <a class="ds_task-list__task-link" href="#" data-unit="with-attribute" data-navigation="task-link-foo">This is another task <span class="visually-hidden">(Completed)</span></a>
+                        </h3>
+                        <p class="ds_hint-text  ds_task-list__task-summary">This is some additional content around this specific task.</p>
+                    </div>
+                    <div class="ds_task-list__task-status  ds_task-list__task-status--complete" aria-hidden="true">Completed</div>
+                </li>
+            </ul>
+        </li>
+    </ol>
+</div>
 
 <div id="warning-text">
     <div class="ds_warning-text">
