@@ -314,7 +314,7 @@ describe('"autocomplete" component', () => {
             testObj.autocompleteModule.inputElement.dispatchEvent(event2);
 
             window.setTimeout(() => {
-                const firstResultHighlight = testObj.autocompleteModule.listBoxElement.querySelector('.ds_autocomplete__suggestion .ds_autocomplete__highlight');
+                const firstResultHighlight = testObj.autocompleteModule.listBoxElement.querySelector('.ds_autocomplete__suggestion mark');
                 expect(firstResultHighlight.innerText).toEqual(testObj.autocompleteModule.inputElement.value);
 
                 done();
