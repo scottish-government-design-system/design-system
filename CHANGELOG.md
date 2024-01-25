@@ -6,6 +6,27 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [1.3.0]
+### Added
+- Tracking attribute  added to "skip link" in task list
+- New layout for search results with filters
+### Changed
+- Support for Mark tag moved from search result component to base so it can be used elsewhere
+- Windows high contrast media query moved to mixin
+- Size and placement of chevron and "open all" button on accordion component
+- Search results layout now uses "list" named grid area for list of results
+### Deprecated
+- Layout .ds_layout--search-results-with-sidebar deprecated and replaced with .ds_layout--search-results--filters
+### Fixed
+- Buttons styled to look like text links have line-height corrected to match
+- Height of "flagpole" on search result "parent link" now always relative to the line-height of the text that appears alongside
+- Site branding title text in site header has line-height corrected
+- Autocomplete unit test spec changed
+- Checkbox checkmark colour corrected when checkbox in focus state
+- Improve support for layouts when grid not supported
+### Security
+- Bump follow-redirects from 1.15.3 to 1.15.4
+
 ## [1.2.0]
 ### Changed
 - Renamed to Scottish Government Design System
