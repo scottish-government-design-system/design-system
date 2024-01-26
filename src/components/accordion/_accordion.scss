@@ -107,7 +107,7 @@ h1,h2,h3 {
         @include ds_chevron(down, 0.75em);
         position: absolute;
         right: 24px;
-        top: 16px;
+        top: 18px;
         transition: transform 0.2s, top 0.2s;
         pointer-events: none;
 
@@ -134,7 +134,7 @@ h1,h2,h3 {
     }
 
     &__control:checked ~ &__header &__indicator {
-        top: 22px;
+        top: 24px;
         transform: rotate(-225deg);
 
         @include ds_media-query(medium) {
@@ -199,11 +199,11 @@ h1,h2,h3 {
     .ds_accordion-item__indicator {
         margin-top: 0;
         right: 24px;
-        top: 16px;
+        top: 18px;
     }
 
     .ds_accordion-item__control:checked~.ds_accordion-item__header .ds_accordion-item__indicator {
         right: 24px;
-        top: 22px;
+        top: 24px;
     }
 }

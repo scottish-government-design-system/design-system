@@ -25,8 +25,9 @@ $side-nav__outline-width: 2px;
         color: $side-nav__expand-colour;
         cursor: pointer;
         font-weight: $bold;
+        line-height: inherit;
         margin: 0;
-        padding: 15px 39px 15px 15px; /// [1]
+        padding: 15px 47px 15px 15px; /// [1]
         position: sticky;
         text-align: left;
         text-decoration: none;
@@ -53,11 +54,11 @@ $side-nav__outline-width: 2px;
     }
 
     &__expand-indicator {
-        @include ds_chevron(down, 0.75em);
+        @include ds_chevron(down, 0.75rem);
         border-width: 0px 0px 3px 3px;
         position: absolute;
-        right: 24px;
-        top: 20px;
+        right: 23px;
+        top: 17px;
         transition: transform 0.2s, top 0.2s;
         pointer-events: none;
     }
@@ -70,7 +71,7 @@ $side-nav__outline-width: 2px;
     }
 
     #show-side-navigation:checked ~ .ds_side-navigation__expand .ds_side-navigation__expand-indicator {
-        top: 24px;
+        top: 23px;
         transform: rotate(-225deg);
     }
 
