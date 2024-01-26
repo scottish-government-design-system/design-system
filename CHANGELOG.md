@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [1.3.1]
+### Fixed
+- Fix line height of side navigation expand toggle button
+- Adjust chevron size and placement on side navigation to match small accordion component
+- Adjust vertical position of chevron on small accordion
+
 ## [1.3.0]
 ### Added
 - Tracking attribute  added to "skip link" in task list
