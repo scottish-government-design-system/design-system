@@ -94,16 +94,6 @@ $small-focus-border-colour: $ds_colour__border !default;
         }
     }
 
-    /// hover
-    &--small &__input:hover + &__label::before {
-        box-shadow: 0 0 0 $small-shadow-size $small-focus-border-colour;
-    }
-
-    /// hover-focus
-    &--small &__input:hover:focus + &__label::before {
-        box-shadow: 0 0 0 $field-glow-width $ds_colour__link--focus__outline, 0 0 0 $small-shadow-size $small-focus-border-colour;
-    }
-
     > .ds_hint-text {
         padding-left: 16px;
     }
