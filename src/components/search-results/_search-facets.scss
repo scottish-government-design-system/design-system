@@ -1,0 +1,126 @@
+/*------------------------------------*\
+    SEARCH FACETS
+\*------------------------------------*/
+
+.ds_facets {
+    @include ds_small-size;
+
+    &__list {
+        margin-bottom: 1.5rem;
+    }
+
+    &__clear-button {
+        margin: 0 0 1.5rem;
+        min-height: 2.5rem;
+        padding: 0.5rem 2.75rem 0.5rem 0.75rem;
+        position: relative;
+
+        .ds_facet__button-icon {
+            color: currentColor;
+            position: absolute;
+        }
+    }
+}
+
+.ds_facet-group {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 0.5rem;
+    padding: 1rem;
+
+    &:nth-child(odd) {
+        background: rgba(0,0,0,0.028);
+    }
+
+    &:nth-child(even):last-child {
+        padding-bottom: 0;
+    }
+}
+
+.ds_facet-wrapper {
+    align-items: baseline;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 0.5rem;
+    margin: 0;
+}
+
+/// [1] IE 11 and pre-Chromium Edge
+/// [2] unsetting margin set in [1]
+.ds_facet {
+    line-height: 1.5rem;
+    min-height: 2.5rem;
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+    padding: 0.5rem 2.75rem 0.5rem 0.75rem;
+    position: relative;
+    text-align: center;
+    transition: background-color 0.2s;
+
+    margin: 0 0.5rem; /// [1]
+
+    @supports (gap: 0) { /// [2]
+        margin: 0;
+    }
+
+    &:hover {
+        background: $ds_colour__button--cancel--hover__background;
+    }
+
+    &:focus-within {
+        @include ds_high-contrast-focus;
+
+        background-color: $ds_colour__focus--background;
+        box-shadow: 0 3px $ds_colour__link--focus__shadow;
+        color: $ds_colour__focus;
+        outline: 0;
+        transition-duration: 0s;
+    }
+
+    &:focus-within &__button-icon {
+        color: currentColor;
+    }
+
+    &__button {
+        background-color: transparent;
+        border: none;
+        bottom: 0;
+        left: 0;
+        outline: none;
+        padding: 0.4375rem 0.75rem 0.4375rem 0;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+
+        &:focus {
+            background-color: $ds_colour__link--focus__background;
+            z-index: -1;
+        }
+
+        &:hover:not(:focus) {
+            background-color: transparent;
+            color: inherit;
+            outline: 0;
+        }
+    }
+
+    &__button-icon {
+        color: $ds_colour__text--secondary;
+        fill: currentColor;
+        height: 1.5rem;
+        margin-left: 0.5rem;
+        min-width: 1.5rem;
+        pointer-events: none;
+        vertical-align: middle;
+        width: 1.5rem;
+    }
+}
+
+@supports selector(:focus-within) {
+    .ds_facet__button:focus {
+        background-color: transparent;
+        z-index: auto;
+    }
+}

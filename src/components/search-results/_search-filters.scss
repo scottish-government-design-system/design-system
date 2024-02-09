@@ -1,0 +1,123 @@
+/*------------------------------------*\
+    SEARCH FILTERS
+\*------------------------------------*/
+
+.ds_search-filters {
+    margin-bottom: 0.5rem;
+
+    &__title {
+        @include ds_responsive-padding(2, bottom, false, -1px);
+        @include ds_responsive-padding(1, top);
+        @include ds_responsive-margin(2, bottom);
+        border-bottom: 1px solid $ds_colour__border;
+        margin-top: 0;
+
+        &:not(:first-child) {
+            margin-top: 0;
+        }
+    }
+
+    /**
+    [1] provides room for yellow focus outline on checkboxes
+    */
+    &__scrollable {
+        margin-left: -0.25rem; /* [1] */
+        max-height: 33.333333vh;
+        min-height: 13rem;
+        padding-left: 0.25rem; /* [1] */
+        padding-right: 0.5rem;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 0.25rem;
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 0.25rem;
+            background-color: rgba(0,0,0,0.5);
+        }
+    }
+
+    &__filter-count {
+        color: $ds_colour__text;
+        font-weight: normal;
+    }
+
+    &__checkboxes {
+        @include ds_small-size;
+
+        .ds_checkbox__input {
+            top: 0.25rem;
+        }
+
+        .ds_checkbox__label {
+            padding-right: 0;
+        }
+
+        .ds_checkbox--small {
+            margin-bottom: 0;
+        }
+    }
+
+    .ds_accordion-item:first-child {
+        border-top-color: transparent;
+    }
+
+    .ds_accordion.js-initialised .ds_accordion-item__body {
+        @include ds_responsive-padding(2, right);
+        @include ds_responsive-padding(5, bottom);
+    }
+
+    .ds_accordion-item__body .ds_question:last-child {
+        .ds_datepicker,
+        .ds_input__wrapper {
+            margin-bottom: 0;
+        }
+    }
+
+    &.js-initialised .js-apply-filter {
+        @include ds_media-query(medium) {
+            display: none;
+        }
+    }
+}
+
+@include ds_media-query(medium-down) {
+    .ds_search-filters__title {
+        @include ds_visually-hidden;
+    }
+}
+
+@include ds_media-query(medium) {
+    .ds_search-filters {
+        &__title {
+            display: block;
+        }
+
+        .ds_details__summary,
+        #filters-toggle {
+            display: none;
+        }
+
+        .ds_details__text {
+            display: block;
+
+            border-left: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ds_checkbox--small .ds_checkbox__label {
+            &::before {
+                top: 0.25rem;
+            }
+
+            &::after {
+                top: 0.6875rem;
+            }
+        }
+    }
+}

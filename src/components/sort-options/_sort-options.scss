@@ -1,0 +1,62 @@
+/*------------------------------------*\
+    SORT OPTIONS
+\*------------------------------------*/
+
+/// [1] IE 11 and pre-Chromium Edge
+/// [2] unsetting items set in [1]
+.ds_sort-options {
+    @include ds_small-size;
+    @include ds_responsive-margin(4, bottom);
+
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+
+    .ds_button,
+    .ds_label,
+    .ds_select-wrapper {
+        margin: 0 0.5rem; /// [1]
+    }
+
+    @supports (gap: 0) { /// [2]
+        .ds_button,
+        .ds_label,
+        .ds_select-wrapper {
+            margin: 0;
+        }
+
+        .ds_label {
+            margin-right: -1rem;
+        }
+    }
+
+    .ds_button {
+        min-height: 2.5rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .ds_label {
+        font-weight: normal;
+    }
+
+    .ds_select {
+        min-height: 2.5rem;
+    }
+
+    .ds_select-arrow {
+        width: 2.5rem;
+    }
+
+    .ds_select-wrapper {
+        display: inline-grid;
+    }
+}
+
+@include ds_media-query(medium) {
+    .ds_sort-options .ds_select {
+        min-height: 2.5rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+}

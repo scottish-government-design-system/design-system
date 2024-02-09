@@ -26,7 +26,7 @@ $link__border-width: 3px;
     }
 
     &:focus {
-        @include focus-outline;
+        @include ds_focus-outline;
 
         background-color: $ds_colour__link--focus__background;
         box-shadow: #{$link__outline-width * -1} #{$link__outline-width + $link__border-width} $ds_colour__link--focus__shadow, $link__outline-width #{$link__outline-width + $link__border-width} $ds_colour__link--focus__shadow;

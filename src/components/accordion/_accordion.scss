@@ -18,7 +18,7 @@ $accordion__header-colour: $ds_colour__link !default;
         display: none;
         float: right;
         line-height: line-height-on-grid($root-font-size);
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
         position: relative;
         text-decoration: none;
 
@@ -71,7 +71,7 @@ h1,h2,h3 {
     &__title {
         @include ds_h4-size;
         margin-bottom: 0;
-        padding: 16px 48px 15px 16px; /// [1]
+        padding: 1rem 3rem calc(1rem - 1px) 1rem; /// [1]
 
         &--button {
             padding: 0;
@@ -83,7 +83,7 @@ h1,h2,h3 {
         appearance: unset;
         background: transparent;
         border: 0;
-        padding: 16px 48px 15px 16px; /// [1]
+        padding: 1rem 3rem calc(1rem - 1px) 1rem; /// [1]
         text-align: left;
         width: 100%;
 
@@ -106,22 +106,26 @@ h1,h2,h3 {
     &__indicator {
         @include ds_chevron(down, 0.75em);
         position: absolute;
-        right: 24px;
-        top: 18px;
+        right: 1.5rem;
+        top: 1.125rem;
         transition: transform 0.2s, top 0.2s;
         pointer-events: none;
 
         @include ds_media-query(medium) {
-            top: 21px; // nudges indicator to remain inline with first line of title
-            right: 26px;
+            top: px-to-rem(21px); // nudges indicator to remain inline with first line of title
+            right: px-to-rem(26px);
         }
     }
 
     &__body {
         display: none;
-        padding: 24px 40px 40px 16px;
+        padding: 1.5rem 2.5rem 2rem 1rem;
 
         @include ds_last-child-no-margin;
+
+        @include ds_media-query(medium) {
+            padding-right: 6.25rem;
+        }
     }
 
     &__control:checked ~ &__body {
@@ -134,12 +138,12 @@ h1,h2,h3 {
     }
 
     &__control:checked ~ &__header &__indicator {
-        top: 24px;
+        top: 1.375rem;
         transform: rotate(-225deg);
 
         @include ds_media-query(medium) {
-            top: 27px; // nudges indicator to remain inline with first line of title
-            right: 26px;
+            top: px-to-rem(27px); // nudges indicator to remain inline with first line of title
+            right: px-to-rem(26px);
         }
     }
 
@@ -153,22 +157,6 @@ h1,h2,h3 {
 
     + .ds_accordion-item {
         margin-top: -1px;
-    }
-}
-
-.ds_accordion.js-initialised .ds_accordion-item {
-    &__body {
-        overflow: hidden;
-        padding: 0 40px 0 16px;
-
-        @include ds_media-query(medium) {
-            padding-right: 100px;
-        }
-    }
-
-    &__control:checked ~ .ds_accordion-item__body {
-        padding-bottom: 32px;
-        padding-top: 24px;
     }
 }
 
@@ -188,7 +176,7 @@ h1,h2,h3 {
     }
 
     .ds_accordion-item__body {
-        padding-right: 16px;
+        padding-right: 1rem;
 
         h3, h4 {
             font-size: 1em; // 1rem
@@ -198,12 +186,20 @@ h1,h2,h3 {
 
     .ds_accordion-item__indicator {
         margin-top: 0;
-        right: 24px;
-        top: 18px;
+        right: 1.5rem;
+        top: 1.125rem;
     }
 
     .ds_accordion-item__control:checked~.ds_accordion-item__header .ds_accordion-item__indicator {
-        right: 24px;
-        top: 24px;
+        right: 1.5rem;
+        top: 1.5rem;
+    }
+}
+
+@include media-query(medium) {
+    .ds_accordion--small {
+        .ds_accordion-item__indicator {
+            top: 1.125rem;
+        }
     }
 }

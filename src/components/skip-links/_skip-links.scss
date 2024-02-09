@@ -2,8 +2,16 @@
     #SKIP LINKS
 \*------------------------------------*/
 
+/// [1] fallback for IE 11
+/// [2] unset [1]
 .ds_skip-links {
+    height: 0; /// [1]
     position: relative;
+    z-index: 1;
+
+    @supports selector(:focus-within) { /// [2]
+        height: auto;
+    }
 }
 
 .ds_skip-links__list {
@@ -17,11 +25,11 @@
 
 .ds_skip-links__link {
     clip: rect(1px 1px 1px 1px);
-    display: block;
+    display: inline-block;
     height: 1px;
     left: 10px;
+    margin-bottom: 1rem;
     overflow: hidden;
-    padding: 7px;
     position: absolute;
     top: 10px;
     width: 1px;
@@ -29,7 +37,21 @@
     &:focus {
         clip: auto;
         height: auto;
+        overflow: visible;
+        padding: 0.5rem 0.375rem;
         width: auto;
         z-index: 10000;
+
+        @include ds_media-query(medium) {
+            padding: 0.5rem 1rem;
+        }
     }
+}
+
+.ds_skip-links--static .ds_skip-links__link {
+    position: static;
+}
+
+.ds_skip-links:not(:focus-within) {
+    position: absolute;
 }
