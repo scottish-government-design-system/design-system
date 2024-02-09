@@ -402,7 +402,7 @@ const tracking = {
         details: function (scope = document) {
             const detailsElements = tracking.gatherElements('ds_details', scope);
             detailsElements.forEach(detailsElement => {
-                const summary = detailsElement.querySelector('summary');
+                const summary = detailsElement.querySelector('.ds_details__summary');
 
                 summary.setAttribute('data-accordion', `detail-${detailsElement.open ? 'close' : 'open'}`);
 

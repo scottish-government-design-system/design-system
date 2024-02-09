@@ -13,14 +13,13 @@ $small-focus-border-colour: $ds_colour__border !default;
     padding-left: 40px;
     position: relative;
 
-    /// [1] minimum size of radio/checkbox for WCAG AAA
     &__input {
-        height: $max-input-size; /// [1]
-        left: -2px;
+        height: 2.5rem;
+        left: 0;
         opacity: 0;
         position: absolute;
-        top: -2px;
-        width: $max-input-size;
+        top: 0;
+        width: 2.5rem;
     }
 
     &__label {
@@ -83,6 +82,13 @@ $small-focus-border-colour: $ds_colour__border !default;
         margin-left: -8px; /// [1]
     }
 
+    &--small &__input {
+        height: 1.5rem;
+        left: 0.5rem;
+        top: 0.5rem;
+        width: 1.5rem;
+    }
+
     &--small &__label::before {
         height: px-to-rem(24px);
         left: 8px;
@@ -92,16 +98,6 @@ $small-focus-border-colour: $ds_colour__border !default;
         @include ds_media-query(medium) {
             top: 8px;
         }
-    }
-
-    /// hover
-    &--small &__input:hover + &__label::before {
-        box-shadow: 0 0 0 $small-shadow-size $small-focus-border-colour;
-    }
-
-    /// hover-focus
-    &--small &__input:hover:focus + &__label::before {
-        box-shadow: 0 0 0 $field-glow-width $ds_colour__link--focus__outline, 0 0 0 $small-shadow-size $small-focus-border-colour;
     }
 
     > .ds_hint-text {

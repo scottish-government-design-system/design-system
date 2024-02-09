@@ -8,19 +8,27 @@
 .ds_select {
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
     background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M480-360 280-560h400L480-360Z'/%3E%3C/svg%3E");
+    background-position: center right 10px;
+    background-repeat: no-repeat;
     border-radius: 0;
     border: 0;
     box-shadow: inset 0 0 0 2px currentColor;
-    min-height: px-to-rem(48px);
+    min-height: 3rem;
+    min-width: max-content;
     outline: 2px solid transparent; /// [1]
     outline-offset: -2px; /// [1]
-    padding: px-to-rem(8px) px-to-rem(12px);
-    width: 100%;
+    padding: 0.5rem 3.75rem 0.5rem 0.75rem;
 
     &:focus {
-        @include focus-outline;
+        @include ds_focus-outline;
         box-shadow: inset 0 0 0 4px currentColor;
+    }
+
+    &::-ms-expand {
+        display: none;
     }
 }
 
@@ -29,27 +37,29 @@
 ///
 .ds_select-arrow {
     background: $ds_colour__button__background;
-    bottom: 0;
-    content: '';
+    display: none;
+    width: 3rem;
     outline: 2px solid transparent; /// [1]
     outline-offset: -2px; /// [1]
     pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 48px;
+    position: relative;
+
+    @supports (appearance: none) or (-webkit-appearance: none) {
+        display: block;
+    }
 
     &::before {
         bottom: 0;
         color: $ds_colour__button;
+        font-size: 1rem;
         position: absolute;
         right: 0;
         top: 0;
         z-index: 1;
 
-        @include ds_chevron(down, 12px);
-        right: 18px;
-        top: 15px;
+        @include ds_chevron(down, 0.75em);
+        right: calc(50% - 0.375em);
+        top: calc(50% - 0.5625em);
     }
 }
 
@@ -63,12 +73,7 @@
 
 .ds_select-wrapper {
     @include ds_responsive-margin(3, bottom);
-    border-radius: 0;
-    display: block;
-    min-height: px-to-rem(48px);
-    padding: 0;
-    position: relative;
-    width: 100%;
+    max-width: min-content;
 }
 
 /// Error state
@@ -88,4 +93,20 @@
 /// [1] legacy, former class name
 .ds_select-wrapper.ds_input--error { /// [1]
     padding: 0;
+}
+
+@supports (display: grid) {
+    .ds_select-wrapper {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
+
+    .ds_select {
+        background-image: none;
+        grid-area: 1/1/1/3;
+    }
+
+    .ds_select-arrow {
+        grid-area: 1/2/1/2;
+    }
 }

@@ -5,12 +5,13 @@
 $search-results-related-background: $ds_colour__background--secondary;
 
 .ds_search-results {
+    margin-top: 0.5rem;
 
     &__title {
         @include ds_root-size;
-        margin-top: 0 !important;
-        @include ds_responsive-margin(1, bottom, $important: true);
+        @include ds-responsive-margin(2, bottom);
         font-weight: $normal;
+        margin-top: 0 !important;
 
         &-query {
             font-weight: $bold;
@@ -41,4 +42,13 @@ $search-results-related-background: $ds_colour__background--secondary;
             @include ds_responsive-margin(1, bottom);
         }
     }
+
+    &__divider {
+        margin-top: -1px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.ds_search-results.js-initialised .js-apply-sort {
+    display: none;
 }
