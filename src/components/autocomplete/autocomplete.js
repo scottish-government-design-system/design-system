@@ -126,7 +126,7 @@ class Autocomplete {
         delete this.selectedSuggestion;
         this.listBoxElement.innerHTML = '';
         this.inputElement.removeAttribute('aria-activedescendant');
-        this.inputElement.setAttribute('aria-expanded', false);
+        this.inputElement.classList.remove('js-has-suggestions');
     }
 
     fetchSuggestions(searchTerm) {
@@ -175,7 +175,7 @@ class Autocomplete {
                 highlight(suggestionElement.querySelector('.js-suggestion-text'), this.inputElement.value);
                 this.listBoxElement.appendChild(suggestionElement);
             }
-            this.inputElement.setAttribute('aria-expanded', true);
+            this.inputElement.classList.add('js-has-suggestions');
 
             // remove items that make the box too high for the viewport
             while (window.visualViewport.height < this.listBoxElement.parentNode.offsetHeight + this.inputElement.offsetHeight + 16) {

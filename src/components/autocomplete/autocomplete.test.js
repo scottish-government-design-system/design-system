@@ -331,7 +331,8 @@ describe('"autocomplete" component', () => {
                 expect(testObj.autocompleteModule.activeSuggestion).toBeUndefined();
                 expect(testObj.autocompleteModule.listBoxElement.innerHTML).toEqual('');
                 expect(testObj.autocompleteModule.inputElement.getAttribute('aria-activedescendant')).toBeNull();
-                expect(testObj.autocompleteModule.inputElement.getAttribute('aria-expanded')).toEqual('false');
+                expect(testObj.autocompleteModule.inputElement.classList.contains('js-has-suggestions')).toEqual(false);
+
 
                 done();
             }, 100);
@@ -377,7 +378,7 @@ describe('"autocomplete" component', () => {
             expect(testObj.autocompleteModule.activeSuggestion).toBeUndefined();
             expect(testObj.autocompleteModule.listBoxElement.innerHTML).toEqual('');
             expect(testObj.autocompleteModule.inputElement.getAttribute('aria-activedescendant')).toBeNull();
-            expect(testObj.autocompleteModule.inputElement.getAttribute('aria-expanded')).toEqual('false');
+            expect(testObj.autocompleteModule.inputElement.classList.contains('js-has-suggestions')).toEqual(false);
         });
     });
 
@@ -428,18 +429,18 @@ describe('"autocomplete" component', () => {
             expect(testObj.autocompleteModule.inputElement.getAttribute('aria-activedescendant')).toBeNull();
         });
 
-        it('should set aria-expanded on the input element to match whether suggestions are shown or not', () => {
+        it('should set a class on the input element to flag whether suggestions are shown or not', () => {
             testObj.autocompleteModule.suggestions = testData;
             testObj.autocompleteModule.inputElement.value = 'foo';
             testObj.autocompleteModule.selectedSuggestion = -1;
             testObj.autocompleteModule.init();
 
-            expect(testObj.autocompleteModule.inputElement.getAttribute('aria-expanded')).toEqual('false');
+            expect(testObj.autocompleteModule.inputElement.classList.contains('js-has-suggestions')).toEqual(false);
 
             let focusEvent = new Event('focus');
             testObj.autocompleteModule.inputElement.dispatchEvent(focusEvent);
 
-            expect(testObj.autocompleteModule.inputElement.getAttribute('aria-expanded')).toEqual('true');
+            expect(testObj.autocompleteModule.inputElement.classList.contains('js-has-suggestions')).toEqual(true);
 
             let event = new KeyboardEvent('keydown', { key: 'ArrowDown'});
             testObj.autocompleteModule.inputElement.dispatchEvent(event);
@@ -447,7 +448,7 @@ describe('"autocomplete" component', () => {
             event = new KeyboardEvent('keydown', { key: 'Enter' });
             testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
-            expect(testObj.autocompleteModule.inputElement.getAttribute('aria-expanded')).toEqual('false');
+            expect(testObj.autocompleteModule.inputElement.classList.contains('js-has-suggestions')).toEqual(false);
         });
     });
 

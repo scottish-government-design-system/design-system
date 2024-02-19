@@ -70,7 +70,7 @@ $site-search__border-colour: $ds_colour__grey !default;
     }
 }
 
-.js-autocomplete-input[aria-expanded="true"] ~ .ds_autocomplete__suggestions {
+.js-autocomplete-input.js-has-suggestions ~ .ds_autocomplete__suggestions {
     display: block;
 }
 
