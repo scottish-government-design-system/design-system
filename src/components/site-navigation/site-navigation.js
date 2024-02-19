@@ -28,8 +28,6 @@ class MobileMenu {
         oldMenuButton.parentNode.appendChild(newMenuButton);
         oldMenuButton.classList.add('fully-hidden');
 
-        this.disableMenuLinks();
-
         // events
         newMenuButton.addEventListener('click', (event) => {
             event.preventDefault();
@@ -52,26 +50,12 @@ class MobileMenu {
         this.mobileMenu.classList.add('ds_site-navigation--open');
         this.newMenuButton.classList.add('ds_site-header__control--active');
         this.newMenuButton.setAttribute('aria-expanded', true);
-
-        this.enableMenuLinks();
     }
 
     closeMenu() {
         this.mobileMenu.classList.remove('ds_site-navigation--open');
         this.newMenuButton.classList.remove('ds_site-header__control--active');
         this.newMenuButton.setAttribute('aria-expanded', false);
-
-        this.disableMenuLinks();
-    }
-
-    disableMenuLinks() {
-        const menuLinks = [].slice.call(this.mobileMenu.querySelectorAll('.ds_site-navigation__link'));
-        menuLinks.forEach(link => { link.setAttribute('tabindex', -1) });
-    }
-
-    enableMenuLinks() {
-        const menuLinks = [].slice.call(this.mobileMenu.querySelectorAll('.ds_site-navigation__link'));
-        menuLinks.forEach(link => { link.removeAttribute('tabindex') });
     }
 }
 

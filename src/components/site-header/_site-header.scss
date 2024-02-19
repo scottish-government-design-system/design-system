@@ -55,6 +55,8 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
     }
 
     &__control {
+        @include ds_blocklink;
+
         color: inherit;
         cursor: pointer;
         font-size: 1rem;
@@ -62,7 +64,7 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
         min-height: 48px;
         margin: 0 -16px -1px 0;
         padding: 16px;
-        @include ds_blocklink;
+        text-decoration: none;
 
         &--active {
             background-color: $ds_colour__link--current__background;
