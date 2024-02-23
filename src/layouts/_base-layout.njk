@@ -1,0 +1,249 @@
+{% set assetPath = "/plugin-assets/%40scottish-government%2Fdesign-system/dist" %}
+
+<!doctype html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>Title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block stylesheets %}
+			<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,400italic&amp;display=swap" rel="stylesheet" type="text/css">
+			<link href="/public/stylesheets/application.css" rel="stylesheet" type="text/css" />
+
+			{% for stylesheetUrl in pluginConfig.stylesheets %}
+				<link href="{{ stylesheetUrl }}" rel="stylesheet" type="text/css" />
+			{% endfor %}
+		{% endblock %}
+        <link rel="shortcut icon" href='/favicon.ico' type="image/x-icon"/>
+        <link rel="apple-touch-icon" sizes="180x180" href='/apple-touch-icon.png'>
+        <link rel="icon" type="image/png" sizes="32x32" href='/favicon-32x32.png'>
+        <link rel="icon" type="image/png" sizes="16x16" href='/favicon-16x16.png'>
+        <link rel="mask-icon" href='/safari-pinned-tab.svg' color="#0065bd">
+        <meta name="msapplication-TileColor" content="#0065bd">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+    <body>
+        <div class="ds_skip-links">
+            <ul class="ds_skip-links__list">
+                <li class="ds_skip-links__item">
+                    <a class="ds_skip-links__link" href="#main-content">Skip to main content</a>
+                </li>
+            </ul>
+        </div>
+        <span id="page-top"></span>
+        <div class="ds_page">
+            <div class="ds_page__top">
+                <header class="ds_site-header" role="banner">
+                    <div class="ds_wrapper">
+                        <div class="ds_site-header__content">
+                            <div class="ds_site-branding">
+                                <a class="ds_site-branding__logo  ds_site-branding__link" href="/">
+                                    <img
+                                        width="300"
+                                        height="58"
+                                        class="ds_site-branding__logo-image"
+                                        src="/webfiles/1700046358295/assets/images/logos/scottish-government.svg"
+                                        alt="The Scottish Government">
+                                </a>
+                                <div class="ds_site-branding__title">
+                                    Design System
+                                </div>
+                            </div>
+                            <div class="ds_site-header__controls">
+                                <label aria-controls="mobile-navigation" class="ds_site-header__control  js-toggle-menu" for="menu">
+                                    <span class="ds_site-header__control-text">Menu</span>
+                                    <svg class="ds_icon  ds_site-header__control-icon" aria-hidden="true" role="img">
+                                        <use href="{{ assetPath }}/images/icons/icons.stack.svg#menu"></use>
+                                    </svg>
+                                    <svg
+                                        class="ds_icon  ds_site-header__control-icon  ds_site-header__control-icon--active-icon"
+                                        aria-hidden="true"
+                                        role="img">
+                                        <use href="{{ assetPath }}/images/icons/icons.stack.svg#close"></use>
+                                    </svg>
+                                </label>
+                            </div>
+                            <input class="ds_site-navigation__toggle" id="menu" type="checkbox"/>
+                            <nav
+                                id="mobile-navigation"
+                                class="ds_site-navigation  ds_site-navigation--mobile"
+                                data-module="ds-mobile-navigation-menu">
+                                <ul class="ds_site-navigation__list">
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/about" class="ds_site-navigation__link  ds_current">
+                                            <span class="label-nav">About</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/get-started" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Get started</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/styles" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Styles</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/components" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Components</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/patterns" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Patterns</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/guidance" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Guidance</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="ds_site-header__navigation">
+                        <div class="ds_wrapper">
+                            <nav class="ds_site-navigation">
+                                <ul class="ds_site-navigation__list">
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/about" class="ds_site-navigation__link  ds_current">
+                                            <span class="label-nav">About</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/get-started" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Get started</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/styles" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Styles</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/components" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Components</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/patterns" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Patterns</span>
+                                        </a>
+                                    </li>
+                                    <li class="ds_site-navigation__item">
+                                        <a href="/guidance" class="ds_site-navigation__link  ">
+                                            <span class="label-nav">Guidance</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div class="ds_page__middle">
+                <div class="cms-editable">
+                    <div class="ds_wrapper">
+                        <nav aria-label="Breadcrumb">
+                            <ol class="ds_breadcrumbs">
+                                <li class="ds_breadcrumbs__item">
+                                    <a class="ds_breadcrumbs__link" href="/">
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="ds_breadcrumbs__item" aria-current="page">
+                                    About the Scottish Government Design System
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="ds_wrapper">
+                        <main id="main-content" class="ds_layout">
+                            {% block layoutHeader %}
+                            <div class="ds_layout__header">
+                                <header class="ds_page-header">
+                                    <h1 class="ds_page-header__title">Page title</h1>
+                                </header>
+                            </div>
+                            {% endblock %}
+                            {% block layoutContent %}
+                            <div class="ds_layout__content">
+                                <div class="ds_leader">
+                                    Leader
+                                </div>
+                                <p>Content</p>
+                            </div>
+                            {% endblock %}
+                        </main>
+                    </div>
+                </div>
+            </div>
+            <div class="ds_back-to-top" data-module="ds-back-to-top">
+                <a href="#page-top" class="ds_back-to-top__button">Back to top
+                    <svg class="ds_icon  ds_back-to-top__icon" aria-hidden="true" role="img">
+                        <use href="/webfiles/1700046358295/assets/images/icons/icons.stack.svg#arrow_upward"></use>
+                    </svg>
+                </a>
+            </div>
+            {% block footer %}
+                <div class="ds_page__bottom">
+                    <footer class="ds_site-footer">
+                        <div class="ds_wrapper">
+                            <div class="ds_site-footer__content">
+                                <ul class="ds_site-footer__site-items">
+                                    <li class="ds_site-items__item">
+                                        <a href="/privacy">Privacy</a>
+                                    </li>
+                                    <li class="ds_site-items__item">
+                                        <a href="/accessibility">Accessibility</a>
+                                    </li>
+                                    <li class="ds_site-items__item">
+                                        <a href="/cookies">Cookies</a>
+                                    </li>
+                                </ul>
+                                <div class="ds_site-footer__copyright">
+                                    <a
+                                        class="ds_site-footer__copyright-logo"
+                                        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">
+                                        <img
+                                            loading="lazy"
+                                            width="300"
+                                            height="121"
+                                            src="/webfiles/1700046358295/assets/images/logos/ogl.svg"
+                                            alt="Open Government License"/>
+                                    </a>
+                                    <p>All content is available under the
+                                        <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>, except for graphic assets and where otherwise stated</p>
+                                    <p>&copy; Crown Copyright</p>
+                                </div>
+                                <div class="ds_site-footer__org">
+                                    <a class="ds_site-footer__org-link" title="The Scottish Government" href="https://www.gov.scot/">
+                                        <img
+                                            loading="lazy"
+                                            width="300"
+                                            height="57"
+                                            class="ds_site-footer__org-logo"
+                                            src="/webfiles/1700046358295/assets/images/logos/scottish-government--min.svg"
+                                            alt="gov.scot"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            {% endblock %}
+        </div>
+        {% block bodyEnd %}
+            {% include "govuk-prototype-kit/includes/scripts.njk" %}
+            <script>
+                if (window.DS && window.DS.initAll) {
+                    document.addEventListener("DOMContentLoaded", function () {
+                        window.DS.initAll();
+                    });
+                }
+            </script>
+        {% endblock %}
+    </body>
+</html>
