@@ -1,6 +1,7 @@
 /*------------------------------------*\
     ICON
 \*------------------------------------*/
+@use "sass:math";
 
 .ds_icon {
     fill: currentColor;
@@ -9,10 +10,20 @@
     width: 1.5em;
 }
 
-@for $size from 3 through 20 {
-    .ds_icon--#{$size*4} {
-        width: #{$size*4}px;
-        height: #{$size*4}px;
+$icon-sizes: 16, 20, 24, 28, 32, 36, 40, 44, 48;
+@each $icon-size in $icon-sizes {
+    .ds_icon--#{$icon-size} {
+        width: math.div($icon-size, 16) * 1rem;
+        height: math.div($icon-size, 16) * 1rem;
+    }
+}
+
+// icon sizes 12px and 52px to 80px are deprecated -- these will be removed in a future release
+$deprecated-icon-sizes: 12, 52, 56, 60, 64, 68, 72, 76, 80;
+@each $icon-size in $deprecated-icon-sizes {
+    .ds_icon--#{$icon-size} {
+        width: math.div($icon-size, 16) * 1rem;
+        height: math.div($icon-size, 16) * 1rem;
     }
 }
 
