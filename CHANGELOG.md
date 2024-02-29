@@ -6,6 +6,18 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [1.4.0]
+### Added
+- Improved documentation for JavaScript helper functions
+### Fixed
+- Site navigation items no longer accessible by screen readers when menu is closed on mobile sizes
+- Remove underline from site navigation menu toggle that appeared in Safari
+- Remove aria-expanded attribute from autocomplete as not valid on search input type
+### Security
+- Update a number of dependency versions
+### Deprecated
+- Icon size 12 and sizes 52 and upwards
+
 ## [1.3.1]
 ### Fixed
 - Fix line height of side navigation expand toggle button
