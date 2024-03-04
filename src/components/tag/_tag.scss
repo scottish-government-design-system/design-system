@@ -22,8 +22,3 @@ $tag__foreground-colour: $ds_colour__text--reversed !default;
 
     @include ds_high-contrast-outline;
 }
-
-.ds_reversed .ds_tag {
-    background-color: $tag__foreground-colour;
-    color: $tag__background-colour;
-}

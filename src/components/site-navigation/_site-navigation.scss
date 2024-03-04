@@ -139,11 +139,3 @@ $site-navigation__link-padding: 16px;
         }
     }
 }
-
-
-// when site navigation is a child of a reversed-variant site header
-.ds_reversed .ds_site-navigation {
-    @include ds_media-query(medium) {
-        color: $ds_colour__text--reversed;
-    }
-}

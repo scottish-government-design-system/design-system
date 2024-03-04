@@ -66,14 +66,6 @@ $site-footer__background: $ds_colour__background--tertiary !default;
     }
 }
 
-.ds_reversed .ds_site-footer__content {
-    color: $ds_colour__text--reversed;
-}
-
-.ds_reversed .ds_footer__site-items {
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
 .ds_site-items {
     &__item {
         display: inline-block;
