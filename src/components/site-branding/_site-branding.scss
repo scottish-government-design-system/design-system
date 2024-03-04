@@ -96,21 +96,3 @@ $site-branding-title-spacing--medium: 48px;
         }
     }
 }
-
-
-
-
-// when branding is a child of a reversed-variant site header
-.ds_reversed {
-    .ds_site-branding {
-        color: $ds_colour__text--reversed;
-
-        &__logo {
-            color: $ds_colour__text--reversed;
-
-            &:not(:last-child)::before {
-                background-color: $ds_colour__text--reversed;
-            }
-        }
-    }
-}
