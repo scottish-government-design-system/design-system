@@ -20,7 +20,7 @@ class Accordion {
         }
     }
 
-    initAccordionItem(item,) {
+    initAccordionItem(item) {
         // transform markup to button-driven version
         const itemBody = item.querySelector('.ds_accordion-item__body');
         const itemControl = item.querySelector('.ds_accordion-item__control');
@@ -48,7 +48,7 @@ class Accordion {
         itemTitle.classList.add('ds_accordion-item__title--button');
         itemButton.classList.add('ds_accordion-item__button');
         itemButton.classList.add('js-accordion-button');
-        itemButton.id = itemTitle.id;
+        itemButton.id = itemTitle.id + '-button';
         itemButton.type = 'button';
 
         // we keep the control present but make it unavailable in the tab order or to screen readers
