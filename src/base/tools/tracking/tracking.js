@@ -356,6 +356,17 @@ const tracking = {
             });
         },
 
+        confirmationMessages: function (scope = document) {
+            const confirmationMessages = tracking.gatherElements('ds_confirmation-message', scope);
+            confirmationMessages.forEach(confirmationMessage => {
+
+                const links = [].slice.call(confirmationMessage.querySelectorAll('a:not(.ds_button)'));
+                links.forEach(link => {
+                    link.setAttribute('data-navigation', 'confirmation-link');
+                });
+            });
+        },
+
         contactDetails: function (scope = document) {
             const contactDetailsBlocks = tracking.gatherElements('ds_contact-details', scope);
             contactDetailsBlocks.forEach(contactDetails => {
