@@ -720,6 +720,20 @@ describe('tracking', () => {
         });
     });
 
+    describe('confirmation messages', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('confirmation-message');
+        });
+
+        // links and buttons with and without attributes
+        it('should add a data attribute on links in confirmation messages', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('a'));
+            Tracking.add.confirmationMessages();
+
+            expect(links[0].getAttribute('data-navigation')).toEqual('confirmation-link');
+        });
+    });
+
     describe('contact details', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('contact-details');

@@ -1,0 +1,55 @@
+/*------------------------------------*\
+    CONFIRMATION MESSAGE
+\*------------------------------------*/
+
+.ds_confirmation-message {
+
+	@include ds_block-margins;
+	@include ds_responsive-padding(2, top);
+    @include ds_responsive-padding(2, bottom);
+    @include ds_responsive-padding(2, right);
+
+    background-color: $ds_colour__background--secondary;
+    border-left: 0.25rem solid $ds_colour__state--positive;
+    padding-left: 2.75rem;
+    position: relative;
+
+    /// [1] ratio of icon height (24px) to .ds_confirmation-message__title line height
+    &__icon {
+        color: $ds_colour__state--positive;
+        left: 0.75rem;
+        position: absolute;
+        top: 1.25rem; /// [1]
+
+        @include ds_media-query(medium) {
+            top: 1.5rem; /// [1]
+        }
+    }
+
+    &__title {
+        @include ds_h2-size;
+        margin-bottom: 0;
+    }
+
+    &__title:not(:first-child) {
+        margin-top: 0;
+    }
+
+    &__body {
+        @include ds_last-child-no-margin;
+        margin-top: 0.5rem;
+    }
+
+    /// [1] ratio of icon height (24px) to .ds_confirmation-message__body line height
+    &:not(:has(&__title)) &__icon {
+        top: 1rem; /// [2]
+
+        @include ds_media-query(medium) {
+            top: 1.25rem; /// [2]
+        }
+    }
+
+    &:not(:has(&__title)) &__body {
+        margin-top: 0;
+    }
+}
