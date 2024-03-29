@@ -3,6 +3,4 @@ CODE_OF_CONDUCT.md
 dev
 node_modules
 src/**/*.html
-src/content-blocks/
-src/dev.scss
 test
