@@ -23,16 +23,24 @@ class CharacterCount {
 
             this.emptyMessage = `You can enter up to ${this.maxLength} characters`;
 
-            // dynamically create the message element
+            // dynamically create the visible message element
+            // we update this "live"
             this.messageElement = document.createElement('div');
-            this.messageElement.setAttribute('aria-live', 'polite');
             this.messageElement.classList.add('ds_input__message');
             this.messageElement.classList.add('ds_hint-text');
+
+            // dynamically create the screen reader message element
+            // we update this with a delay so screen readers will announce the input value, then the character count
+            this.screenReaderMessageElement = document.createElement('div');
+            this.screenReaderMessageElement.setAttribute('aria-live', 'polite');
+            this.screenReaderMessageElement.classList.add('visually-hidden');
+
             // this.messageElement.innerText = this.inputElement.length ? : this.emptyMessage;
             if (this.inputElement.value.length < this.maxLength * this.threshold) {
                 this.messageElement.classList.add('fully-hidden');
             }
             this.field.appendChild(this.messageElement);
+            this.field.appendChild(this.screenReaderMessageElement);
 
             this.updateCountMessage();
 
@@ -100,6 +108,15 @@ class CharacterCount {
         } else {
             this.messageElement.classList.remove('fully-hidden');
         }
+
+        clearTimeout(this.messageTimeout);
+        this.messageTimeout = setTimeout(() => {
+            this.updateScreenReaderMessage();
+        }, 1000);
+    }
+
+    updateScreenReaderMessage() {
+        this.screenReaderMessageElement.innerText = this.messageElement.innerText;
     }
 }
 
