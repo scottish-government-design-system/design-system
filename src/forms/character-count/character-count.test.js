@@ -108,6 +108,14 @@ describe('character count', () => {
 
                 expect(testObj.characterCountElement.querySelectorAll('.ds_input__message').length).toEqual(1);
             });
+
+            it('should have an element containing the unmodified count in aria-describedby for the input element', () => {
+                testObj.characterCountModule.init();
+
+                const initialCountElement = testObj.characterCountElement.querySelector('.ds_character-count__initial');
+                expect(initialCountElement.innerText).toEqual('You can enter up to 20 characters');
+                expect(testObj.characterCountModule.inputElement.getAttribute('aria-describedby')).toEqual(initialCountElement.id);
+            });
         });
     });
 
@@ -229,6 +237,86 @@ describe('character count', () => {
             inputElement.dispatchEvent(event);
 
             expect(testObj.characterCountModule.updateCountMessage).not.toHaveBeenCalled();
+        });
+
+        it('should update an aria-live region after a short delay', () => {
+            jasmine.clock().install();
+
+            testObj.characterCountModule.init();
+
+            const inputElement = testObj.characterCountElement.querySelector('input');
+            const ariaCountElement = testObj.characterCountElement.querySelector('.ds_input__message');
+
+            // 6 characters. our max is 20.
+            inputElement.value = '123456';
+            const event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            jasmine.clock().tick(1000);
+
+            expect(ariaCountElement.innerText.indexOf('14 characters')).toBeGreaterThan(-1);
+
+            jasmine.clock().uninstall();
+        });
+
+        it('should reset the aria-live update delay after a keypress', () => {
+            jasmine.clock().install();
+
+            testObj.characterCountModule.init();
+
+            const inputElement = testObj.characterCountElement.querySelector('input');
+
+            spyOn(testObj.characterCountModule, 'updateScreenReaderMessage');
+
+            // 6 characters. our max is 20.
+            inputElement.value = '123456';
+            let event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            jasmine.clock().tick(500);
+
+            // modify the value within the 1000ms window
+            inputElement.value = '1234567';
+            event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            jasmine.clock().tick(1000);
+
+            expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(1);
+
+            jasmine.clock().uninstall();
+        });
+
+        it('should update an aria-live region if a threshold is set and the threshold is exceeded', () => {
+            jasmine.clock().install();
+
+            testObj.characterCountElement = document.querySelector('#data-threshold');
+            testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
+            testObj.characterCountModule.init();
+
+            const inputElement = testObj.characterCountElement.querySelector('input');
+
+            spyOn(testObj.characterCountModule, 'updateScreenReaderMessage');
+
+            // 9/20 characters -- under threshold (50%)
+            inputElement.value = '123456789';
+            let event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            jasmine.clock().tick(1000);
+
+            expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(0);
+
+            // 11/20 characters -- over threshold
+            inputElement.value = '12345678901';
+            event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            jasmine.clock().tick(1000);
+
+            expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(1);
+
+            jasmine.clock().uninstall();
         });
     });
 });
