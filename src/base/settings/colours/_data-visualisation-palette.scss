@@ -1,6 +1,8 @@
 /// Data visualisation colour palette
 
 $ds_datavis__dark-blue:     #002d54;
+$ds_datavis__blue:          #0065bd;
+$ds_datavis__light-blue:    #55a8f2;
 $ds_datavis__teal:          #2b9c93;
 $ds_datavis__purple:        #6a2063;
 $ds_datavis__orange:        #e5682a;
@@ -8,3 +10,20 @@ $ds_datavis__dark-green:    #0b4c0b;
 $ds_datavis__green:         #5d9f3c;
 $ds_datavis__brown:         #592c20;
 $ds_datavis__pink:          #ca72a2;
+$ds_datavis__medium-grey:   #949494;
+
+$ds_datavis__categorical-1: $ds_datavis__dark-blue;
+$ds_datavis__categorical-2: $ds_datavis__teal;
+$ds_datavis__categorical-3: $ds_datavis__purple;
+$ds_datavis__categorical-4: $ds_datavis__orange;
+$ds_datavis__categorical-5: $ds_datavis__dark-green;
+$ds_datavis__categorical-6: $ds_datavis__green;
+$ds_datavis__categorical-7: $ds_datavis__brown;
+$ds_datavis__categorical-8: $ds_datavis__pink;
+
+$ds_datavis__sequential-1:  $ds_datavis__dark-blue;
+$ds_datavis__sequential-2:  $ds_datavis__blue;
+$ds_datavis__sequential-3:  $ds_datavis__light-blue;
+
+$ds_datavis__focus:         $ds_datavis__dark-blue;
+$ds_datavis__focus--dimmed: $ds_datavis__medium-grey;
