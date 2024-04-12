@@ -92,29 +92,6 @@
             }
         }
 
-        // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release 
-        &--search-results-with-sidebar {
-            .ds_layout {
-
-                &__sidebar {
-                    clear: left;
-                    float: left;
-                    @include ds_colwidth(4);
-                }
-
-                &__content {
-                    clear: none;
-                    float: left;
-                    @include ds_colwidth(8);
-                }
-
-                &__feedback {
-                    clear: left;
-                    @include ds_colpush(4);
-                    @include ds_colwidth(8);
-                }
-            }
-        }
     }
 }
 
