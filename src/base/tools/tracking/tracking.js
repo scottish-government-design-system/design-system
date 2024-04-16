@@ -506,6 +506,29 @@ const tracking = {
             });
         },
 
+        metadataItems: function (scope = document) {
+            const metadataItems = tracking.gatherElements('ds_metadata__item', scope);
+
+            metadataItems.forEach((metadataItem, index) => {
+                const keyElement = metadataItem.querySelector('.ds_metadata__key');
+                let key;
+
+                if (keyElement) {
+                    key = keyElement.innerText;
+                } else {
+                    key = `metadata-${index}`;
+                }
+
+                const links = [].slice.call(metadataItem.querySelectorAll('.ds_metadata__value a'));
+
+                links.forEach((link, index) => {
+                    if (!link.getAttribute('data-navigation')) {
+                        link.setAttribute('data-navigation', `${slugify(key)}-${index + 1}`);
+                    }
+                });
+            });
+        },
+
         notifications: function (scope = document) {
             const notificationBanners = tracking.gatherElements('ds_notification', scope);
             notificationBanners.forEach((banner, index) => {
