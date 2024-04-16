@@ -1053,6 +1053,45 @@ describe('tracking', () => {
         });
     });
 
+    describe('metadata items', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('metadata');
+        });
+
+        it('should add a generated data attribute to links in metadata values', () => {
+            const metadataItem = testObj.scope.querySelector('[data-unit="basic"]');
+            Tracking.add.metadataItems(testObj.scope);
+
+            const link1 = metadataItem.querySelector('[data-unit="link-1"]');
+            const link2 = metadataItem.querySelector('[data-unit="link-2"]');
+
+            expect(link1.getAttribute('data-navigation')).toEqual('foo-1');
+            expect(link2.getAttribute('data-navigation')).toEqual('foo-2');
+        });
+
+        it('should fall back to a generated key for the data attribute if no key is present', () => {
+            const metadataItem = testObj.scope.querySelector('[data-unit="no-key"]');
+            Tracking.add.metadataItems(testObj.scope);
+
+            const link1 = metadataItem.querySelector('[data-unit="link-1"]');
+            const link2 = metadataItem.querySelector('[data-unit="link-2"]');
+
+            expect(link1.getAttribute('data-navigation')).toEqual('metadata-1-1');
+            expect(link2.getAttribute('data-navigation')).toEqual('metadata-1-2');
+        });
+
+        it('should NOT add a generated data attribute on metadata links with attributes already set', () => {
+            const metadataItem = testObj.scope.querySelector('[data-unit="with-attribute"]');
+            Tracking.add.metadataItems(testObj.scope);
+
+            const link1 = metadataItem.querySelector('[data-unit="link-1"]');
+            const link2 = metadataItem.querySelector('[data-unit="link-2"]');
+
+            expect(link1.getAttribute('data-navigation')).toEqual('custom-attribute-1');
+            expect(link2.getAttribute('data-navigation')).toEqual('custom-attribute-2');
+        });
+    });
+
     describe('notifications', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('notifications');
