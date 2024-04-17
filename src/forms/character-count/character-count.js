@@ -111,7 +111,11 @@ class CharacterCount {
 
         clearTimeout(this.messageTimeout);
         this.messageTimeout = setTimeout(() => {
-            this.updateScreenReaderMessage();
+            if (this.inputElement.value.length >= this.maxLength * this.threshold) {
+                this.updateScreenReaderMessage();
+            } else {
+                this.screenReaderMessageElement.innerHTML = '&nbsp;';
+            }
         }, 1000);
     }
 

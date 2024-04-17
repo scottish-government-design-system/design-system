@@ -272,7 +272,39 @@ describe('character count', () => {
             event = new Event('keyup');
             inputElement.dispatchEvent(event);
 
-            jasmine.clock().tick(1000)
+            jasmine.clock().tick(1000);
+
+            expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(1);
+
+            jasmine.clock().uninstall();
+        });
+
+        it('should update an aria-live region if a threshold is set and the threshold is exceeded', () => {
+            jasmine.clock().install();
+
+            testObj.characterCountElement = document.querySelector('#data-threshold');
+            testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
+            testObj.characterCountModule.init();
+
+            const inputElement = testObj.characterCountElement.querySelector('input');
+
+            spyOn(testObj.characterCountModule, 'updateScreenReaderMessage');
+
+            // 9/20 characters -- under threshold (50%)
+            inputElement.value = '123456789';
+            let event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            jasmine.clock().tick(1000);
+
+            expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(0);
+
+            // 11/20 characters -- over threshold
+            inputElement.value = '12345678901';
+            event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            jasmine.clock().tick(1000);
 
             expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(1);
 
