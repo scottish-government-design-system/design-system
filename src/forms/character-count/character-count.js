@@ -1,6 +1,7 @@
 /* global document */
-
 'use strict';
+
+import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
 class CharacterCount {
     constructor(field) {
@@ -15,6 +16,7 @@ class CharacterCount {
         }
 
         if (!this.field.classList.contains('js-initialised')) {
+            const idString = `character-count-${elementIdModifier()}`;
             this.setMaxLength();
 
             if (!this.maxLength) {
@@ -28,14 +30,16 @@ class CharacterCount {
             this.messageElement = document.createElement('div');
             this.messageElement.classList.add('ds_input__message');
             this.messageElement.classList.add('ds_hint-text');
+            this.messageElement.setAttribute('aria-hidden', 'true');
 
             // dynamically create the screen reader message element
             // we update this with a delay so screen readers will announce the input value, then the character count
             this.screenReaderMessageElement = document.createElement('div');
-            this.screenReaderMessageElement.setAttribute('aria-live', 'polite');
             this.screenReaderMessageElement.classList.add('visually-hidden');
+            this.screenReaderMessageElement.id = idString;
 
-            // this.messageElement.innerText = this.inputElement.length ? : this.emptyMessage;
+            this.inputElement.setAttribute('aria-describedby', idString);
+
             if (this.inputElement.value.length < this.maxLength * this.threshold) {
                 this.messageElement.classList.add('fully-hidden');
             }
