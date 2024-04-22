@@ -56,6 +56,10 @@
         }
     }
 
+    .ds_metadata__key {
+        @include ds_visually-hidden;
+    }
+
     .ds_metadata__value {
         font-weight: $normal;
     }
