@@ -6,6 +6,25 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [2.0.0]
+### Added
+- Basic plugin support for the GOV.UK Prototype Kit
+- Data visualisation colour palettes added as Sass variables
+- Tracking attribute for links within metadata component
+- Confirmation message component
+### Changed
+- Inline version of the metadata component automatically has the keys visually hidden
+- Character count now includes a delay for screen readers to read the count text, so it doesn't interfere with the input value being read out
+- Character count now includes aria-describedby for the initial count hint text
+### Removed
+- Breaking change - support dropped for 'ds_reversed' inverted colour scheme on the following components: site branding, site navigation, footer, tag
+- Breaking change - content blocks Sass moved to its own GitHub repo
+### Fixed
+- Accordion heading buttons now have unique IDs, where they previously had the same ID as the heading element
+- Various spacing fixes to site footer
+### Security
+- Bump follow-redirects from 1.15.4 to 1.15.6
+
 ## [1.4.0]
 ### Added
 - Improved documentation for JavaScript helper functions
