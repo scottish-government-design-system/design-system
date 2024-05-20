@@ -606,6 +606,13 @@ const tracking = {
             });
         },
 
+        searchFacets: function (scope = document) {
+            const facetButtons = tracking.gatherElements('ds_facet__button', scope);
+            facetButtons.forEach(facetButton => {
+                facetButton.setAttribute('data-button', `button-filter-${facetButton.dataset.slug}-remove`);
+            });
+        },
+
         searchResults: function (scope = document) {
             const searchResultsSets = tracking.gatherElements('ds_search-results', scope);
             searchResultsSets.forEach(searchResults => {
