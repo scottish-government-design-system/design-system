@@ -1243,6 +1243,19 @@ describe('tracking', () => {
         });
     });
 
+    describe('search facets', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('search-facets');
+        });
+
+        it('should set a data attribute on facet links/buttons', () => {
+            const link = testObj.scope.querySelector('a[data-unit="facet"]');
+            Tracking.add.searchFacets();
+
+            expect(link.getAttribute('data-button')).toEqual('button-filter-arts-culture-and-sport-remove');
+        });
+    });
+
     describe('search results', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('search-results');
