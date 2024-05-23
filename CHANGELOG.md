@@ -6,6 +6,25 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [2.1.0]
+### Added
+- New search facets component, used for search results selected filters
+- New sort options component, used for search results sort
+- New search filters component
+- Plain fallback for select in IE11 with simple downward arrow and no background
+- Static positional option for skip links component
+### Changed
+- Details component behaviour can now be applied to non-details elements
+- Select default width is the width of the longest option rather than 100%
+- Minor changes to search results to accommodate the new search components
+- Accordion spacing changed from px to rem
+- Focus helper mixin changed from 'focus-outline' to 'ds_focus-outline'
+### Deprecated
+- Focus helper mixin 'focus-outline' has been renamed to 'ds_focus-outline' and should no longer be used
+### Removed
+- Wide grey :hover border removed from checkbox and radio
+- Accordion padding rules that are no longer required for animated open/close
+
 ## [2.0.0]
 ### Added
 - Basic plugin support for the GOV.UK Prototype Kit
