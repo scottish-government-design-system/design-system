@@ -18,6 +18,9 @@ $cookie-notification__background-colour--success: $ds_colour__state--positive !d
         padding-top: 24px;
         padding-bottom: 32px;
     }
+
+    @include checkAndFixDescendantLinkColour($ds_colour__link, $cookie-notification__background-colour, 'cookie banner');
+    @include checkAndFixDescendantSecondaryButtonColour($ds_colour__button--secondary, $cookie-notification__background-colour, 'cookie banner');
 }
 
 .ds_notification.ds_notification--cookie-success {

@@ -20,6 +20,8 @@ $card-grey-background-color: $ds_colour__background--primary--dim !default;
         &:focus-within {
             color: $ds_colour__link--focus;
         }
+
+        @include checkAndFixDescendantLinkColour($ds_colour__link, $card-grey-background-color, 'grey card');
     }
 
     &--hover,

@@ -169,6 +169,8 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
         .ds_link {
             font-weight: $bold;
         }
+
+        @include checkAndFixDescendantLinkColour($ds_colour__link, $summary-card-header-background-colour, 'summary card header');
     }
 
     &__actions-list {

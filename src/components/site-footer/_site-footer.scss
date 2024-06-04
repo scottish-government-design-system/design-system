@@ -41,7 +41,7 @@ $site-footer__background: $ds_colour__background--tertiary !default;
                 width: 100%;
             }
         }
-        
+
         @include ds_media-query(medium) {
             @include ds_last-child-no-margin;
         }
@@ -68,6 +68,8 @@ $site-footer__background: $ds_colour__background--tertiary !default;
     .ds_site-footer__copyright-logo {
         color: currentColor !important;
     }
+
+    @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'site footer');
 }
 
 .ds_site-items {

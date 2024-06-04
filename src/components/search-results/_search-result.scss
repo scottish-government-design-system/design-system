@@ -39,6 +39,8 @@
             color: $ds_colour__text--secondary;
             font-weight: $bold;
         }
+
+        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'promoted search result');
     }
 
     &__title {

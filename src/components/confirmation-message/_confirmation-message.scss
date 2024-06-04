@@ -52,4 +52,6 @@
     &:not(:has(&__title)) &__body {
         margin-top: 0;
     }
+
+    @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'confirmation message');
 }
