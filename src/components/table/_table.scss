@@ -49,6 +49,8 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
         font-weight: $bold;
         position: relative;
         text-align: left;
+
+        @include checkAndFixDescendantLinkColour($ds_colour__link, $table-header-background-colour, 'table header');
     }
 
     th,
@@ -79,6 +81,8 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
 
     tbody > tr:nth-child(even) > td {
         background-color: $table-row-zebra-colour;
+
+        @include checkAndFixDescendantLinkColour($ds_colour__link, $table-row-zebra-colour, 'table zebra');
     }
 }
 

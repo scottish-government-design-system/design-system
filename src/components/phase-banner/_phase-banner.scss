@@ -26,6 +26,8 @@
     &__text {
         display: table-cell;
     }
+
+    @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'phase banner');
 }
 
 @supports (display: flex) {

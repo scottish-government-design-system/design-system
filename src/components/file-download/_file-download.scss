@@ -11,6 +11,8 @@ $file-download-background-colour: $ds_colour__background--secondary !default;
     background-color: $file-download-background-colour;
     display: flex;
 
+    @include checkAndFixDescendantLinkColour($ds_colour__link, $file-download-background-colour, 'file download');
+
     &--highlighted {
         @include ds_responsive-padding(2, left, $tuning: -4px);
         border-left: 4px solid $ds_colour__brand;

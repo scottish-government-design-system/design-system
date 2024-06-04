@@ -41,6 +41,8 @@ $search-results-related-background: $ds_colour__background--secondary;
             margin: 0;
             @include ds_responsive-margin(1, bottom);
         }
+
+        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'related search results');
     }
 
     &__divider {

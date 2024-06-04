@@ -1,13 +1,133 @@
+@use 'sass:color';
+@use 'sass:math';
+
 ///
 /// Colour helpers
 ///
 
-// Tint
-@function ds_tint($color, $percentage) {
-    @return mix(white, $color, $percentage);
+/// Get the luminance of a RGB component
+/// Formula taken from https://www.w3.org/WAI/GL/wiki/Relative_luminance
+/// @param {number} $component - component value from 0-255
+/// @return {number} luminance
+@function getComponentLuminance($component) {
+    $componentSRGB: math.div($component, 255);
+
+    @if $componentSRGB > 0.03928 {
+        @return math.pow(math.div($componentSRGB + 0.055, 1.055), 2.4);
+    } @else {
+        @return math.div($componentSRGB, 12.92);
+    }
 }
 
-// Shade
-@function ds_shade($color, $percentage) {
-    @return mix(black, $color, $percentage);
+/// Get the luminance of a colour
+/// Formula taken from https://www.w3.org/WAI/GL/wiki/Relative_luminance
+/// @param {color} $color - hex code of the colour
+/// @return {number} relative luminance
+@function getLuminance($color) {
+    @return getComponentLuminance(red($color)) * 0.2126 +
+        getComponentLuminance(green($color)) * 0.7152 +
+        getComponentLuminance(blue($color)) * 0.0722;
+}
+
+/// Get the contrast ratio between two colours
+/// Formula taken from https://www.w3.org/WAI/GL/wiki/Contrast_ratio
+/// @param {color} $color1 - first colour for comparison
+/// @param {color} $color2 - second colour for comparison
+/// @return {number} contrast ratio, from 0 to 21
+@function getContrastRatio($color1, $color2) {
+    $color1lum: getLuminance($color1);
+    $color2lum: getLuminance($color2);
+
+    // use light colour first
+    @if $color1lum > $color2lum {
+        @return math.div($color1lum + 0.05, $color2lum + 0.05);
+    }  @else {
+        @return math.div($color2lum + 0.05, $color1lum + 0.05);
+    }
+}
+
+/// Adjust the lightness of a colour to meet a given contrast ratio against a comparison colour
+/// @param {color} $color - the colour to adjust
+/// @param {color} $comparisonColor - the colour the colour needs to meet a contrast ratio against
+/// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
+/// @param {boolean} $debug - set to true to output a debug message
+/// @return {color} the adjusted colour
+@function adjustForContrast($color, $comparisonColor, $ratio, $debug: false) {
+    $tempColor: $color;
+
+    /// lighten or darken the colour until it passes a contrast ratio check
+    @while getContrastRatio($comparisonColor, $tempColor) < $ratio {
+        @if (getLuminance($comparisonColor) > getLuminance($tempColor)) {
+            $tempColor: color.scale($tempColor, $lightness: -0.5%);
+        } @else {
+            $tempColor: color.scale($tempColor, $lightness: 0.5%);
+        }
+
+        @if ($tempColor == white or $tempColor == black) and getContrastRatio($comparisonColor, $tempColor) < $ratio {
+            @warn 'Unable to adjust #{$color} against #{$comparisonColor} to meet contrast ratio of #{$ratio}. Best ratio is #{contrastRatio($comparisonColor, $tempColor)}.';
+            @return $tempColor;
+        }
+    }
+
+    @if $tempColor != $color and $debug {
+        @debug 'Adjusting #{$color} to #{$tempColor} to meet contrast ratio of #{$ratio}:1 against #{$comparisonColor}';
+    }
+
+    @return $tempColor;
+}
+
+/// Adjust the lightness of a colour until it meets a target luminance
+/// @param {color} $color - the colour to adjust
+/// @param {number%} $targetLuminance - the luminance to lighten the colour to
+/// @return {color} the lightened colour
+@function adjustLuminance($color, $targetLuminance) {
+    $colorLuminance: getLuminance($color);
+
+    @if $colorLuminance < $targetLuminance {
+        /// lighten the colour until it beats the target luminance
+        @while getLuminance($color) < $targetLuminance {
+            $color: color.scale($color, $lightness: 0.1%);
+        }
+    } @else {
+        /// darken the colour until it beats the target luminance
+        @while getLuminance($color) > $targetLuminance {
+            $color: color.scale($color, $lightness: -0.1%);
+        }
+    }
+
+    @return $color;
+}
+
+/// Adjust a link colour to meet a required contrast ratio against a provided background colour
+/// @param {color} $foreground - the foreground colour
+/// @param {color} $background - the background colour
+/// @param {text} $description - text description of the element, used in the debug message
+/// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
+/// @output A child selector for links
+@mixin checkAndFixDescendantLinkColour($foreground, $background, $description: '', $ratio: 4.5) {
+    @if getContrastRatio($foreground, $background) < $ratio {
+        $adjustedForeground: adjustForContrast($foreground, $background, $ratio);
+        @debug 'Adjusting link colour #{$foreground} to #{$adjustedForeground} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
+        a, .ds_link {
+            &:not(:focus):not(:hover) {
+                color: $adjustedForeground;
+            }
+        }
+    }
+}
+
+/// Adjust a secondary button colour to meet a required contrast ratio against a provided background colour
+/// @param {color} $foreground - the foreground colour
+/// @param {color} $background - the background colour
+/// @param {text} $description - text description of the element, used in the debug message
+/// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
+/// @output A child selector for secondary buttons
+@mixin checkAndFixDescendantSecondaryButtonColour($foreground, $background, $description: '', $ratio: 4.5) {
+    @if getContrastRatio($foreground, $background) < 4.5 {
+        $adjustedForeground: adjustForContrast($foreground, $background, $ratio);
+        @debug 'Adjusting secondary button colour #{$foreground} to #{$adjustedForeground} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
+        .ds_button--secondary:not(:focus):not(:hover) {
+            color: $adjustedForeground;
+        }
+    }
 }
