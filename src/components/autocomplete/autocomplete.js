@@ -13,6 +13,7 @@ class Autocomplete {
         this.suggestionMappingFunction = options.suggestionMappingFunction || (suggestions => suggestions);
         this.throttleDelay = options.throttleDelay || 100;
         this.minLength = options.minLength || 3;
+        this.tempToggleCharacter = '';
 
         this.PromiseRequest = PromiseRequest;
 
@@ -76,6 +77,8 @@ class Autocomplete {
             if (this.inputElement.value) {
                 if (this.suggestions) {
                     this.showSuggestions(this.suggestions);
+
+                    this.updateStatus(`There ${this.suggestions.length === 1 ? 'is' : 'are'} ${this.suggestions.length} ${this.suggestions.length === 1 ? 'option' : 'options'}`, 1500);
                 } else {
                     this.fetchSuggestions(this.inputElement.value.trim());
                 }
@@ -121,12 +124,17 @@ class Autocomplete {
     }
 
     clearSuggestions () {
-        // this.suggestions = [];
         delete this.activeSuggestion;
         delete this.selectedSuggestion;
         this.listBoxElement.innerHTML = '';
         this.inputElement.removeAttribute('aria-activedescendant');
         this.inputElement.classList.remove('js-has-suggestions');
+        this.statusTextCache = this.statusElement.innerHTML;
+        this.statusElement.innerHTML = '';
+
+        if (this.suggestions) {
+            this.suggestions.filter(item => item.active).forEach(item => {item.active = false})
+        }
     }
 
     fetchSuggestions(searchTerm) {
@@ -143,8 +151,6 @@ class Autocomplete {
                 suggestion.active = true;
                 this.activeSuggestion = suggestion;
                 this.inputElement.setAttribute('aria-activedescendant', 'suggestion-' + index);
-
-                this.updateStatus(`${suggestion.displayText} (${index + 1} of ${this.suggestions.length}) is selected`);
             } else {
                 delete suggestion.active;
             }
@@ -191,12 +197,19 @@ class Autocomplete {
 
     updateStatus(text, delay = 100) {
         if (this.statusElement) {
+            // This full stop triggers browsers to think the string has changed, and read it. This is a hack, albeit a harmless one.
+            if (this.tempToggleCharacter.length) {
+                this.tempToggleCharacter = '';
+            } else {
+                this.tempToggleCharacter = '.';
+            }
+
             if (this.statusTimeout) {
                 window.clearTimeout(this.statusTimeout);
             }
 
             this.statusTimeout = window.setTimeout(() => {
-                this.statusElement.innerText = text;
+                this.statusElement.innerText = text + this.tempToggleCharacter;
             }, delay);
         } else {
             console.log('autocomplete status element not present');
