@@ -18,6 +18,10 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
     display: inline-block;
     position: relative;
 
+    &::-webkit-details-marker {
+        display: none;
+    }
+
     &::before {
         background-color: currentColor;
         clip-path: polygon(0 0, 100% 50%, 0 100%);
