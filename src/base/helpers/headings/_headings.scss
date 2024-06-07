@@ -105,36 +105,32 @@
 ///
 @mixin ds_h1-style {
     @include ds_h1-size;
+    @include ds_responsive-margin(4, bottom);
     font-weight: $bold;
-    margin-bottom: 32px;
 }
 
 @mixin ds_h2-style {
     @include ds_h2-size;
+    @include ds_responsive-margin(2, bottom);
     font-weight: $bold;
-    margin-bottom: 8px;
-
-    @include ds_media-query(medium) {
-        margin-bottom: 16px;
-    }
 }
 
 @mixin ds_h3-style {
     @include ds_h3-size;
+    @include ds_responsive-margin(2, bottom);
     font-weight: $bold;
-    margin-bottom: 8px;
 }
 
 @mixin ds_h4-style {
     @include ds_h4-size;
+    @include ds_responsive-margin(2, bottom);
     font-weight: $bold;
-    margin-bottom: 16px;
 }
 
 @mixin ds_h5-style {
     @include ds_h5-size;
+    @include ds_responsive-margin(1, bottom);
     font-weight: $bold;
-    margin-bottom: 16px;
 }
 
 
