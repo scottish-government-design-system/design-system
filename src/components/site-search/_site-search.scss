@@ -43,9 +43,3 @@ $site-search__border-colour: $ds_colour__grey !default;
         }
     }
 }
-
-.ds_reversed .ds_site-search {
-    .ds_site-search__button {
-        background-color: $ds_colour__brand--secondary;
-    }
-}
