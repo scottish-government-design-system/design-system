@@ -110,7 +110,8 @@ class Autocomplete {
     }
 
     buildSuggestionHtml(suggestionHtml) {
-        let html = '<span class="ds_autocomplete__suggestion__text  js-suggestion-text">' + suggestionHtml + '</span>';
+        let html = `<span aria-hidden="true" class="ds_autocomplete__suggestion__text  js-suggestion-text">${suggestionHtml}</span>
+                <span class="visually-hidden">${suggestionHtml}</span>`;
 
         return html;
     }
