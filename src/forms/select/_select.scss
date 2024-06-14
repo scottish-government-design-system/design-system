@@ -17,10 +17,9 @@
     border: 0;
     box-shadow: inset 0 0 0 2px currentColor;
     min-height: 3rem;
-    min-width: max-content;
     outline: 2px solid transparent; /// [1]
     outline-offset: -2px; /// [1]
-    padding: 0.5rem 3.75rem 0.5rem 0.75rem;
+    padding: 0.5rem 3rem 0.5rem 0.75rem;
 
     &:focus {
         @include ds_focus-outline;
@@ -73,7 +72,8 @@
 
 .ds_select-wrapper {
     @include ds_responsive-margin(3, bottom);
-    max-width: min-content;
+    max-width: max-content;
+    min-width: 10em
 }
 
 /// Error state
