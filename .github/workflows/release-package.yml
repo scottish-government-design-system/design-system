@@ -69,6 +69,16 @@ jobs:
         run: |
           echo "export default '${{env.NEW_VERSION}}';" > src/version.js
 
+      # Build release assets
+      - name: Build release assets
+        run: |
+          npm run build
+
+      ## Add release assets
+      - name: Add release assets to commit
+        run: |
+          git add -f "dist/**/*"
+
       # Commit updated package.json
       - name: Commit package.json and create tag
         run: |
