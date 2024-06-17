@@ -9,7 +9,8 @@
   },
   "license": "MIT",
   "scripts": {
-    "prepack": "rm -rf ./dist; npm run test && npm run webpack && npm run sass && npm run sass-min && npm run svgsprite",
+    "build": "rm -rf ./dist; npm run webpack && npm run sass && npm run sass-min && npm run svgsprite",
+    "prepack": "npm run test && npm run build",
     "sass": "sass --style=expanded src/design-system.scss dist/css/design-system.css",
     "sass-min": "sass --style=compressed src/design-system.scss dist/css/design-system.min.css",
     "svgsprite": "node ./svg-sprite",
