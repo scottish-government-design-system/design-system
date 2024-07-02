@@ -179,7 +179,7 @@ describe('"autocomplete" component', () => {
                 for (let i = 0, il = testObj.autocompleteModule.suggestions.length; i < il; i++) {
                     testObj.autocompleteModule.inputElement.dispatchEvent(event);
                     expect(testObj.autocompleteModule.suggestions[i].active).toBeTruthy();
-                    expect(document.querySelector('.active').innerText).toEqual(testData[i].displayText);
+                    expect(document.querySelector('.active .js-suggestion-text').innerText).toEqual(testData[i].displayText);
                 }
             });
 
@@ -195,7 +195,7 @@ describe('"autocomplete" component', () => {
                 for (let i = testObj.autocompleteModule.suggestions.length - 1; i > -1; i--) {
                     testObj.autocompleteModule.inputElement.dispatchEvent(event);
                     expect(testObj.autocompleteModule.suggestions[i].active).toBeTruthy();
-                    expect(document.querySelector('.active').innerText).toEqual(testData[i].displayText);
+                    expect(document.querySelector('.active .js-suggestion-text').innerText).toEqual(testData[i].displayText);
                 }
             });
 
@@ -211,7 +211,7 @@ describe('"autocomplete" component', () => {
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
                 expect(testObj.autocompleteModule.suggestions[0].active).toBeTruthy();
-                expect(document.querySelector('.active').innerText).toEqual(testData[0].displayText);
+                expect(document.querySelector('.active .js-suggestion-text').innerText).toEqual(testData[0].displayText);
             });
 
             it('should loop to the beginning of the list when the UP key is pressed while on the first item in the list', () => {
@@ -226,7 +226,7 @@ describe('"autocomplete" component', () => {
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
                 expect(testObj.autocompleteModule.suggestions[testData.length - 1].active).toBeTruthy();
-                expect(document.querySelector('.active').innerText).toEqual(testData[testData.length - 1].displayText);
+                expect(document.querySelector('.active .js-suggestion-text').innerText).toEqual(testData[testData.length - 1].displayText);
             });
 
             it('should update the input element and close the suggestion list when the ENTER key is pressed', () => {
@@ -240,7 +240,7 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowDown'});
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
-                const selectedItemText = document.querySelector('.active').innerText;
+                const selectedItemText = document.querySelector('.active .js-suggestion-text').innerText;
 
                 event = new KeyboardEvent('keydown', { key: 'Enter' });
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
@@ -359,7 +359,7 @@ describe('"autocomplete" component', () => {
 
             const elementToClick = testObj.autocompleteModule.listBoxElement.querySelector('.ds_autocomplete__suggestion:last-of-type');
 
-            const selectedItemText = elementToClick.innerText;
+            const selectedItemText = elementToClick.querySelector('.js-suggestion-text').innerText;
             elementToClick.dispatchEvent(event);
 
             expect(testObj.autocompleteModule.inputElement.value).toEqual(selectedItemText);
