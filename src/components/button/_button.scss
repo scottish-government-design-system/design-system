@@ -145,16 +145,6 @@ $link__border-width: 3px;
     }
 }
 
-// STACKED BUTTONS
-.ds_button-group {
-    @include ds_block-margins;
-
-    >.ds_button {
-        margin: 0 0 24px;
-        @include ds_last-child-no-margin;
-    }
-}
-
 // BUTTONS WITH ICONS
 // n.b. icon sizing is included in the ds_button-sizing mixins
 .ds_button {
