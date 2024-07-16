@@ -52,6 +52,11 @@
             @include ds_colwidth(8);
         }
 
+        &__footer {
+            clear: left;
+            @include ds_colwidth(8);
+        }
+
         &__feedback {
             clear: left;
             @include ds_colwidth(8);
@@ -175,6 +180,7 @@
     // short abbreviations of grid area names so things are easy to read later on
     $grid-area-content:     c;
     $grid-area-feedback:    f;
+    $grid-area-footer:      z;
     $grid-area-header:      h;
     $grid-area-list:        l;
     $grid-area-grid:        g;
@@ -207,6 +213,10 @@
 
         &__content {
             grid-area: $grid-area-content;
+        }
+
+        &__footer {
+            grid-area: $grid-area-footer;
         }
 
         &__feedback {
@@ -286,6 +296,17 @@
                 'c c'
                 'f f';
         }
+
+        &--question-page {
+            grid-template-areas:
+                'h h'
+                'p p'
+                'n n'
+                'c c'
+                'z z'
+                's s'
+                'f f';
+        }
     }
 
     @include ds_media-query(small) {
@@ -345,6 +366,17 @@
                     'n n n n n n'
                     's s s s s s'
                     'c c c c c c'
+                    'f f f f f f';
+            }
+
+            &--question-page {
+                grid-template-areas:
+                    'h h h h h h'
+                    'p p p p p p'
+                    'n n n n n n'
+                    'c c c c c c'
+                    'z z z z z z'
+                    's s s s s s'
                     'f f f f f f';
             }
         }
@@ -410,6 +442,15 @@
                     's s s s c c c c c c c c'
                     '. . . . f f f f f f f f';
             }
+
+            &--question-page {
+                grid-template-areas:
+                    'h h h h h h h h p p p p'
+                    'n n n n n n n n . . . .'
+                    'c c c c c c c c s s s s'
+                    'z z z z z z z z s s s s'
+                    'f f f f f f f f . . . .';
+            }
         }
     }
 
@@ -427,6 +468,15 @@
                     'h h h h h h h h . p p p'
                     'n n n n n n n n . . . .'
                     'c c c c c c c c . s s s'
+                    'f f f f f f f f . . . .';
+            }
+
+            &--question-page {
+                grid-template-areas:
+                    'h h h h h h h h . p p p'
+                    'n n n n n n n n . . . .'
+                    'c c c c c c c c . s s s'
+                    'z z z z z z z z . s s s'
                     'f f f f f f f f . . . .';
             }
         }

@@ -3,15 +3,28 @@
 \*------------------------------------*/
 
 .ds_field-group {
-    margin-top: 16px;
-    // margin-bottom: -24px;
+
+    // Remove bottom margin of last field
+    > div:last-child {
+        margin-bottom: 0;
+
+        .ds_input {
+            margin-bottom: 0;
+        }
+    }
 
     &--inline {
         display: flex;
         flex-direction: row;
-    }
+        gap: 1rem;
 
-    &--inline > div:not(:last-child) {
-        margin-right: 16px;
+        // Remove bottom margin of all fields
+        > div {
+            margin-bottom: 0;
+
+            .ds_input {
+                margin-bottom: 0;
+            }
+        }
     }
 }

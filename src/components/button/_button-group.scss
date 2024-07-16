@@ -3,10 +3,10 @@
 \*------------------------------------*/
 
 .ds_button-group {
-    @include ds_block-margins;
+    @include ds_responsive-margin(7, top);
+    @include ds_responsive-margin(4, bottom);
     @include ds_responsive-spacing(2, 'gap');
-    
-    //align-items: center;
+
     display: flex;
     flex-wrap: wrap;
 
@@ -15,7 +15,7 @@
         margin: 0;
     }
 
-    // Links amd text buttons are vertically centred but not stretched to match the height of all buttons
+    // Links and text buttons are vertically centred but not stretched to match the height of all buttons
     a:not(.ds_button),
     .ds_link {
         align-self: center;
@@ -29,7 +29,6 @@
         .ds_button {
             width: 100%;
         }
-        
         // Modifier to keep buttons in a row
         &--inline {
             flex-direction: row;
@@ -40,12 +39,11 @@
                 width: auto;
             }
 
-            // Links amd text buttons take up minimal space
+            // Links and text buttons take up minimal space
             .ds_link {
                 min-width: fit-content;
             }
         }
-    
         // Centre align icon button label text when stacked
         &:not(.ds_button-group--inline){
             .ds_button--has-icon {
@@ -53,6 +51,10 @@
                 padding-left: $button__height;
             }
         }
-
     }
+}
+
+// When there is no margin collapse reduce size of top margin
+fieldset + .ds_button-group {
+    @include ds_responsive-margin(7, top, $tuning: -1.5rem);
 }
