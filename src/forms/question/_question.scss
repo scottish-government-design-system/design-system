@@ -3,9 +3,12 @@
 \*------------------------------------*/
 
 .ds_question {
+
+    @include ds_responsive-margin(3, bottom);
+
     &--error {
-        border-left: 4px solid $ds_colour__state--negative;
-        padding-left: 20px;
+        border-left: 0.25rem solid $ds_colour__state--negative;
+        padding-left: 1.25rem;
     }
 
     &__message,

@@ -54,6 +54,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     }
 
     // specificity hack
+    // deprecated - ds_notification__actions - use ds_button-group instead
     .ds_notification__actions {
         margin-bottom: -16px;
     }
@@ -128,6 +129,12 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
             pointer-events: none;
         }
     }
+
+    //ds_button-group to be used in place of ds_notification__actions
+    .ds_button-group {
+        //override margins
+        @include ds_responsive-margin(4, top);
+    }
 }
 
 @include ds_media-query(medium) {
@@ -139,6 +146,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         margin-top: 0;
     }
 
+    // deprecated - ds_notification__actions - use ds_button-group instead
     .ds_notification__actions {
         text-align: left;
 
@@ -154,6 +162,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
 @supports(display: flex) {
     @include ds_media-query(medium) {
+        // deprecated - ds_notification__actions - use ds_button-group instead
         .ds_notification__actions {
             align-items: center;
             display: inline-flex;
