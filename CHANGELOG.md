@@ -6,6 +6,30 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [2.2.0]
+### Added
+- Colour function to check and adjust colours against a given contrast ratio
+- Checks added to link colours for components that have links on non-white backgrounds
+- Compiled CSS, JavaScript and image assets are included in the repo when a release is published
+- Layout added for 'Question page'
+### Changed
+- Link and button hover states use automatically-generated colours for foreground and background
+- Colour change for sequential navigation 'previous' and 'next' text to use main text colour
+- Various improvements made to how autocomplete component gets announced with screen readers
+- Bottom margins standardised for different heading levels
+- Improved spacing, responsive behaviours and support for inline buttons within button groups
+- Increased top margin on button groups and standalone buttons
+- Various spacing changes to form elements
+### Deprecated
+- Button group now used for grouping buttons within a notification banner rather than component specific 'ds_notification__actions' class
+### Removed
+- Unused ds_reversed styles from site search component
+### Fixed
+- Duplicate arrow on details component in Safari now removed
+### Security
+- Bump braces from 3.0.2 to 3.0.3
+- Bump ws, engine.io and socket.io-adapter
+
 ## [2.1.0]
 ### Added
 - New search facets component, used for search results selected filters
