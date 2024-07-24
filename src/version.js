@@ -1,1 +1,1 @@
-export default 'v2.1.0';
+export default 'v2.2.0';
