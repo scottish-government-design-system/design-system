@@ -169,7 +169,7 @@ class DSDatePicker {
             </button>
         </div>
 
-        <h2 class="ds_datepicker__dialog__title  js-datepicker-month-year">June 2020</h2>
+        <h2 class="ds_datepicker__dialog__title  js-datepicker-month-year" aria-live="polite">June 2020</h2>
 
         <div class="ds_datepicker__dialog__navbuttons">
             <button type="button" class="ds_button  ds_button--icon-only  js-datepicker-next-month" aria-label="next month" data-button="button-datepicker-nextmonth">
@@ -479,16 +479,18 @@ class DSDatePicker {
                 && calendarDayDate.getTime() === this.inputDate.getTime()
             ) {
                 calendarDay.button.classList.add('ds_datepicker__current');
-                calendarDay.button.setAttribute('aria-selected', true);
+                calendarDay.button.setAttribute('aria-description', 'selected date');
             } else {
                 calendarDay.button.classList.remove('ds_datepicker__current');
-                calendarDay.button.removeAttribute('aria-selected');
+                calendarDay.button.removeAttribute('aria-description');
             }
 
             if (calendarDayDate.getTime() === today.getTime()) {
                 calendarDay.button.classList.add('ds_datepicker__today');
+                calendarDay.button.setAttribute('aria-current', 'date');
             } else {
                 calendarDay.button.classList.remove('ds_datepicker__today');
+                calendarDay.button.removeAttribute('aria-current');
             }
         });
 
