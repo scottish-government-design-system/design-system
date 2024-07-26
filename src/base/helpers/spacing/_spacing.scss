@@ -14,6 +14,7 @@
 /// @param {string} $direction - direction to apply the value to (leave empty for all directions)
 /// @param {boolean} $important - whether to include the !important flag
 /// @param {string} $tuning - value to add to the output for fine tuning
+/// @param {number} $collapse-spacing-unit - entry in the spacing scale to remove from output
 ///
 /// @returns {string} CSS rule for spacing, e.g. padding-top: 8px
 ///
@@ -22,7 +23,7 @@
 ///     @include ds_responsive-spacing(2, 'padding', top);
 ///   }
 
-@mixin ds_responsive-spacing($spacing-unit, $property, $direction: false, $important: false, $tuning: false) {
+@mixin ds_responsive-spacing($spacing-unit, $property, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
     // validate params
     $spacing-unit-type: type-of($spacing-unit);
     @if $spacing-unit-type != 'number' {
@@ -43,11 +44,22 @@
         }
     }
 
+    $collapse-values: false;
+    @if $collapse-spacing-unit {
+        @if not map-has-key($ds_spacing-scale, $collapse-spacing-unit) {
+            @error 'Spacing unit "#{$collapse-spacing-unit}" not found in the spacing scale.';
+        }
+        $collapse-values: map-get($ds_spacing-scale, $collapse-spacing-unit);
+    }
+
     $scale-values: map-get($ds_spacing-scale, $spacing-unit);
 
     @each $breakpoint, $value in $scale-values {
         @if ($tuning) {
             $value: calc(#{$value} + #{$tuning});
+        }
+        @if ($collapse-values) {
+            $value: calc(#{$value} - #{map-get($ds_spacing-scale, $collapse-spacing-unit, $breakpoint)});
         }
 
         @if $breakpoint == null {
@@ -88,8 +100,8 @@
 ///     @include ds_responsive-margin(2, top);
 ///   }
 
-@mixin ds_responsive-margin($spacing-unit, $direction: false, $important: false, $tuning: false) {
-    @include ds_responsive-spacing($spacing-unit, 'margin', $direction, $important, $tuning);
+@mixin ds_responsive-margin($spacing-unit, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
+    @include ds_responsive-spacing($spacing-unit, 'margin', $direction, $important, $tuning, $collapse-spacing-unit);
 }
 
 /// Responsive padding
@@ -112,6 +124,6 @@
 ///     @include ds_responsive-padding(2, top);
 ///   }
 
-@mixin ds_responsive-padding($spacing-unit, $direction: false, $important: false, $tuning: false) {
-    @include ds_responsive-spacing($spacing-unit, 'padding', $direction, $important, $tuning);
+@mixin ds_responsive-padding($spacing-unit, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
+    @include ds_responsive-spacing($spacing-unit, 'padding', $direction, $important, $tuning, $collapse-spacing-unit);
 }

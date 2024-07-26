@@ -31,8 +31,12 @@ $link__border-width: 3px;
     text-decoration: none;
     transition: background-color $transition-out-time;
 
-    @include ds_responsive-margin(7, top);
     @include ds_responsive-margin(4, bottom);
+
+    // Margins wont collapse so removing a portion from responsive step 4 to allow for preceding bottom margin. This differs depending on what element/component comes before.
+    // Default is to assume block margins (step 4) so no top margin is needed on ds_button
+    margin-top: 0;
+    
 
     &:hover {
         background-color: $ds_colour__button--hover__background;
@@ -122,9 +126,35 @@ $link__border-width: 3px;
     }
 }
 
-// When there is no margin collapse reduce size of top margin
-fieldset + .ds_button {
-    @include ds_responsive-margin(7, top, $tuning: -1.5rem);
+// Change top margins depending on preceding elements
+// (step 3) - .ds_question, .ds_notification-panel
+.ds_question + .ds_button,
+.ds_notification-panel + .ds_button {
+    @include ds_responsive-margin(4, top, $collapse-spacing-unit: 3);
+}
+// (step 2) - h1, h2, h3, h4
+// ul, ol, dl,
+// blockquote, p, address,
+// table, figure,
+// pre 
+h1 + .ds_button,
+h2 + .ds_button,
+h3 + .ds_button,
+h4 + .ds_button,
+ul + .ds_button,
+ol + .ds_button,
+dl + .ds_button,
+blockquote + .ds_button,
+p + .ds_button,
+address + .ds_button,
+table + .ds_button,
+figure + .ds_button,
+pre + .ds_button {
+    @include ds_responsive-margin(4, top, $collapse-spacing-unit: 2);
+}
+// (step 1) - h5
+h5 + .ds_button {
+    @include ds_responsive-margin(4, top, $collapse-spacing-unit: 1);
 }
 
 // SIZE VARIANTS

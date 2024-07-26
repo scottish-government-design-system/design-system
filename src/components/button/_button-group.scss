@@ -3,8 +3,7 @@
 \*------------------------------------*/
 
 .ds_button-group {
-    @include ds_responsive-margin(7, top);
-    @include ds_responsive-margin(4, bottom);
+    @include ds_block-margins;
     @include ds_responsive-spacing(2, 'gap');
 
     display: flex;
@@ -57,5 +56,5 @@
 
 // When there is no margin collapse reduce size of top margin
 fieldset + .ds_button-group {
-    @include ds_responsive-margin(7, top, $tuning: -1.5rem);
+    @include ds_responsive-margin(4, top, $collapse-spacing-unit: 3);
 }
