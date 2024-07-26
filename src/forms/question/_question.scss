@@ -20,4 +20,9 @@
         color: $ds_colour__state--negative;
         font-weight: $bold;
     }
+
+    // Remove bottom margin from last element if within a fieldset to prevent double margin
+    & > fieldset {
+        @include ds_last-child-no-margin;
+    }
 }

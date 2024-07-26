@@ -22,9 +22,7 @@
         > div {
             margin-bottom: 0;
 
-            .ds_input {
-                margin-bottom: 0;
-            }
+            @include ds_last-child-no-margin;
         }
     }
 }
