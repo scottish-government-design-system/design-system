@@ -19,8 +19,9 @@
         margin-bottom: 0;
     }
 
-    &__tag {
+    &__tag.ds_tag {
         @include ds_responsive-margin(2, right);
+        @include ds_small-size;
     }
 
     &__text {

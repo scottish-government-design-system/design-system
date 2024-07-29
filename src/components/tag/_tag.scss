@@ -3,22 +3,46 @@
 \*------------------------------------*/
 
 // modifiable vars
-$tag__background-colour: $ds_colour__brand !default;
-$tag__foreground-colour: $ds_colour__text--reversed !default;
+$tag__base-colour: $ds_colour__brand !default;
 
-
-
+$tag_colours: (
+    'grey'      $ds_colour__grey,
+    'green'     $ds_colour__dark-green,
+    'teal'      $ds_colour__teal,
+    'darkblue'  $ds_colour__blue--darker,
+    'blue'      $ds_colour__blue,
+    'purple'    $ds_colour__purple,
+    'pink'      $ds_colour__pink,
+    'red'       $ds_colour__red,
+    'orange'    $ds_colour__orange,
+    'yellow'    $ds_colour__yellow
+);
 
 .ds_tag {
-    @include ds_small-size;
+    @include ds_root-size;
     @include ds_responsive-padding(1, left);
     @include ds_responsive-padding(1, right);
-    background: $tag__background-colour;
-    border-radius: 2px;
-    color: $tag__foreground-colour;
-    display: inline-block;
-    font-weight: $bold;
-    text-transform: uppercase;
 
-    @include ds_high-contrast-outline;
+    $background: adjustLuminance($tag__base-colour, 0.83);
+    $foreground: adjustForContrast(darken($tag__base-colour, 12.5%), $background, 4.5);
+
+    background: $background;
+    color: $foreground;
+    display: inline-block;
+    font-weight: $normal;
+    outline: 1px solid currentColor;
+    outline-offset: -1px;
+    white-space: nowrap;
+
+    @each $color in $tag_colours {
+        $name: nth($color, 1);
+        $hex: nth($color, 2);
+        $background: adjustLuminance($hex, 0.83);
+        $foreground: adjustForContrast(darken($hex, 12.5%), $background, 4.5) ;
+
+        &--#{$name} {
+            background-color: $background;
+            color: $foreground;
+        }
+    }
 }
