@@ -31,14 +31,9 @@ class Accordion {
 
         // check for hash to open an accordion with
         let accordionHasLocationHashInIt = false;
-        if (window.location.hash) {
-            try {
-                item.querySelector(window.location.hash);
-                accordionHasLocationHashInIt = true;
-                itemControl.checked = true;
-            } catch {
-                // hash is not a valid selector
-            }
+        if (window.location.hash && !!item.querySelector(window.location.hash)) {
+            accordionHasLocationHashInIt = true;
+            itemControl.checked = true;
         }
 
         const startsOpen = itemControl.checked;
