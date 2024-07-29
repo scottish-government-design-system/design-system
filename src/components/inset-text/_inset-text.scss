@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 .ds_inset-text {
-    border-left: 8px solid $ds_colour__border;
-    padding: 16px;
+    border-left: 0.5rem solid $ds_colour__border;
+    padding: 1rem;
 
     @include ds_block-margins;
     @include ds_last-child-no-margin;
@@ -14,9 +14,13 @@
     @include ds_last-child-no-margin;
 }
 
+.ds_inset-text .ds_tag {
+    margin-bottom: 0.5rem;
+}
+
 @include ds_media-query(medium) {
     .ds_inset-text {
-        padding-left: 32px;
-        padding-right: 64px;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
     }
 }
