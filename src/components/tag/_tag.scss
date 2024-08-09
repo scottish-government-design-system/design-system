@@ -32,6 +32,7 @@ $tag_colours: (
     display: inline-block;
     font-weight: $normal;
     text-transform: capitalize;
+    white-space: nowrap;
 
     @each $color in $tag_colours {
         $name: nth($color, 1);
