@@ -18,14 +18,15 @@
 
     &__item {
         display: inline-block;
-        margin-bottom: 4px; // override default margin on li
+        margin-bottom: 0.25rem; // override default margin on li
     }
 
     &__link {
         @include ds_blocklink;
-        line-height: 40px;
-        min-height: 40px;
-        min-width: 40px;
+        line-height: 2.5rem;
+        min-height: 2.5rem;
+        min-width: 2.5rem;
+        padding: 0 0.5rem;
         text-decoration: none;
 
         &.ds_current {
@@ -47,14 +48,19 @@
         }
 
         &--text:not(&--icon) {
-            padding-left: 24px;
-            padding-right: 24px;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
             width: auto;
         }
 
         &--ellipsis {
             min-width: 0;
             pointer-events: none;
+        }
+
+        &--ellipsis,
+        &--icon {
+            padding: 0;
         }
 
         .ds_icon {
@@ -84,17 +90,17 @@
             width: auto;
 
             .ds_pagination__link-label {
-                padding-left: 16px;
+                padding-left: 1rem;
             }
 
             .ds_icon + .ds_pagination__link-label {
-                padding-right: 16px;
+                padding-right: 1rem;
                 padding-left: 0;
             }
         }
 
         .ds_icon {
-            margin: 0 4px;
+            margin: 0 0.25rem;
         }
     }
 }
@@ -118,7 +124,7 @@
         &__list {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 0.25rem;
             justify-content: center;
         }
 
