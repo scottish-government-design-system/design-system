@@ -8,9 +8,10 @@
     padding: 0;
 
     &__task {
+        align-items: center;
         border-top: 2px $ds_colour__border--faint solid;
         display: flex;
-        align-items: center;
+        gap: 0.5rem 2rem;
         justify-content: space-between;
         margin: 0;
         @include ds_responsive-padding(2, top);
@@ -49,17 +50,11 @@
 
         &-status {
             @include ds_small-size;
-            @include ds_responsive-margin(5, left);
             @include ds_high-contrast-outline;
             background-color: $ds_colour__background--tertiary;
             font-weight: $bold;
             padding: px-to-rem(4px) px-to-rem(16px);
             white-space: nowrap;
-
-            @include ds_media-query(small-down) {
-                margin-left: 0;
-                @include ds_responsive-margin(1, top);
-            }
 
             &--complete {
                 background: $ds_colour__background--primary;

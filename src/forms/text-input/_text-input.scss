@@ -10,7 +10,7 @@
     border-radius: 0;
     display: block;
     line-height: 2rem;
-    min-height: px-to-rem(48px);
+    min-height: 3rem;
     padding: px-to-rem(8px - $field-border-width) px-to-rem(12px - $field-border-width);
     width: 100%;
 
@@ -38,8 +38,6 @@
         color: $ds_colour__state--negative;
         font-weight: $bold;
     }
-
-
 }
 
 // width variants: fixed
@@ -77,20 +75,20 @@ $text-input-fluid-widths: (
 
 .ds_input__wrapper {
     display: block;
-    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
     overflow: auto;
 
     .ds_input {
         float: left;
         margin-bottom: 0;
-        margin-right: -48px;
-        padding-right: 56px;
+        margin-right: -3rem;
+        padding-right: -3.5rem;
     }
 
     .ds_icon {
-        height: 32px;
-        padding: 8px;
-        width: 32px;
+        height: 2rem;
+        padding: 0.5rem;
+        width: 2rem;
     }
 
     > .ds_button {
