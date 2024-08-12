@@ -12,6 +12,8 @@ class Notification {
                 this.notification.parentNode.removeChild(this.notification);
             });
         }
+
+        this.notification.classList.add('js-initialised');
     }
 }
 

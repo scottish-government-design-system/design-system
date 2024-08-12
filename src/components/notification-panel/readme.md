@@ -2,6 +2,6 @@
 
 ### Colour
 
-The default background of light grey can be changed to indicate a different status or match a different theme using the following classes:
+The default background colour green is used to indicate success or completion of a task. This can be changed to indicate a different status or match a different theme using the following classes:
 
-- ```ds_notification-panel--success``` for a green background
+- ```ds_notification-panel--neutral``` for a grey background
