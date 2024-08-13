@@ -7,8 +7,11 @@ class TokenList {
         }
     }
 
-    add(string) {
-        const itemsToAdd = string.replace(/\s+/g, ' ').split(' ');
+    add(itemsToAdd) {
+        // if supplied as space-separated list, convert to array
+        if (typeof itemsToAdd === 'string') {
+            itemsToAdd = string.replace(/\s+/g, ' ').split(' ');
+        }
 
         itemsToAdd.forEach(item => {
             if (!this.tokens.includes(item)) {
