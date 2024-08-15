@@ -10,14 +10,15 @@
     /// [1] -1px compensates for the height of a visually-hidden element. This prevents the back
     ///     to top element causing the document to always be at least 1px taller than the viewport
     ///     and adding a scroll bar
-    /// [2] fallback for older browsers
-    /// [3] 56px is the button's height plus 8px spacing
+    /// [2] 0.125rem (2px) is additional padding between the solid background area and the link text
+    /// [3] fallback for older browsers
+    /// [4] this is the button's height plus 0.5rem spacing
     .ds_back-to-top {
-        bottom: 56px;
+        bottom: 3.5rem;
         display: block;
         pointer-events: none;
         position: absolute;
-        right: 8px;
+        right: 0.5rem;
         top: calc(100vh - 1px); /// [1]
         z-index: 1;
 
@@ -29,22 +30,51 @@
             @include ds_blocklink;
             @include ds_small-size;
 
-            background-color: rgba(red($ds_colour__background--primary),green($ds_colour__background--primary),blue($ds_colour__background--primary),0.9);
+            background-color: rgba(red($ds_colour__background--primary),green($ds_colour__background--primary),blue($ds_colour__background--primary),0.4);
             font-weight: $bold;
             margin: 0;
-            min-width: 120px;
+            min-width: 7.5rem;
             pointer-events: all;
-            padding: 8px 32px 8px 16px;
-            position: fixed; /// [2]
+            padding: 0.5rem calc(2rem + 0.125rem) 0.5rem calc(1rem + 0.125rem); /// [2]
+            position: fixed; /// [3]
             position: sticky;
-            right: 8px;
-            top: calc(100vh - 56px); /// [3]
+            right: 0.5rem;
+            top: calc(100vh - 3.5rem); /// [4]
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 1rem;
+                right: 2rem;
+                top: 0.5rem;
+                bottom: 0.5rem;
+                z-index: -1;
+            }
         }
 
         &__icon {
+            height: 1.5rem;
+            min-height: 1.5rem;
             position: absolute;
-            right: 8px;
-            top: 8px;
+            right: 0.5rem;
+            top: 0.5rem;
+        }
+
+        &__button::before,
+        &__icon {
+            background-color: $ds_colour__background--primary;
+            transition: background-color 0.2s;
+
+            @include ds_media-query-high-contrast {
+                background-color: transparent;
+            }
+        }
+
+        &__button:hover::before,
+        &__button:hover &__icon,
+        &__button:focus::before,
+        &__button:focus &__icon {
+            background-color: transparent;
         }
     }
 }
