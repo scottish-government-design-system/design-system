@@ -126,6 +126,7 @@ $link__border-width: 3px;
     }
 }
 
+/*
 // Change top margins depending on preceding elements
 // (step 3) - .ds_question, .ds_notification-panel
 .ds_question + .ds_button,
@@ -156,7 +157,7 @@ pre + .ds_button {
 h5 + .ds_button {
     @include ds_responsive-margin(4, top, $collapse-spacing-unit: 1);
 }
-
+*/
 // SIZE VARIANTS
 .ds_button {
     &--small {
