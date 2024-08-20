@@ -11,3 +11,16 @@ legend {
 fieldset {
     border: 0;
 }
+
+// Layout for standardised form
+.ds_form {
+    display: flex;
+    flex-direction: column;
+
+    &__actions {
+        // Add block margins to buttons if in actions slot of form layout
+        .ds_button {
+            @include ds_block-margins;
+        }
+    }
+}
