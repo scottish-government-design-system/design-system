@@ -4,23 +4,30 @@
 \*------------------------------------*/
 
 .ds_page-header {
-    margin: 16px 0 32px;
+    margin: 1rem 0 2rem;
 
     &__title {
         margin-bottom: 0;
     }
 
     &__metadata {
-        margin-top: 8px;
+        margin-top: 0.5rem;
+    }
+
+    @include ds_media-query(medium) {
+        margin-top: 2rem;
+
+        &__label + &__title {
+            margin-top: -0.5rem;
+        }
     }
 }
 
-@include ds_media-query(medium) {
-    .ds_page-header {
-        margin-top: 32px;
+// Increase top margin to offset margin collapse between Error summary and Page header if siblings
+.ds_error-summary + .ds_page-header {
+    margin-top: 2.5rem;
 
-        &__label + &__title {
-            margin-top: -8px;
-        }
+    @include ds_media-query(medium) {
+        margin-top: 4rem;
     }
 }

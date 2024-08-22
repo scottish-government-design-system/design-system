@@ -17,6 +17,22 @@ fieldset {
     display: flex;
     flex-direction: column;
 
+    &__content {
+        // Move top margin to ds_question to handle when it has error state left border and avoid problems with fieldset and legend negative margins
+        .ds_question:has(.ds_page-header) {
+            margin-top: 1rem;
+            @include ds_media-query(medium) {
+                margin-top: 2rem;
+            }
+        }
+        .ds_question {
+            .ds_page-header {
+                margin-top: 0;
+            }
+        }
+    }
+
+
     &__actions {
         // Add block margins to buttons if in actions slot of form layout
         .ds_button {
