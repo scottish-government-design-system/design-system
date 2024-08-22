@@ -53,10 +53,3 @@
         }
     }
 }
-
-/*
-// When there is no margin collapse reduce size of top margin
-fieldset + .ds_button-group {
-    @include ds_responsive-margin(4, top, $collapse-spacing-unit: 3);
-}
-*/
