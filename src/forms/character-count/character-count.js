@@ -24,7 +24,7 @@ class CharacterCount {
                 return;
             }
 
-            this.emptyMessage = `You can enter up to ${this.maxLength} characters.`;
+            this.emptyMessage = `You can enter up to ${this.maxLength} characters`;
             this.emptyMessageElement = document.createElement('div');
             this.emptyMessageElement.classList.add('fully-hidden');
             this.emptyMessageElement.classList.add('ds_character-count__initial');
@@ -42,7 +42,7 @@ class CharacterCount {
             // we update this with a delay so screen readers will announce the input value, then the character count
             this.screenReaderMessageElement = document.createElement('div');
             this.screenReaderMessageElement.classList.add('visually-hidden');
-            this.screenReaderMessageElement.id = `character-count-remaining-${idModifier}.`;
+            this.screenReaderMessageElement.id = `character-count-remaining-${idModifier}`;
 
             this.describedByTokenList = new TokenList(this.inputElement.getAttribute('aria-describedby'));
             this.inputElement.setAttribute('aria-describedby', this.describedByTokenList.add([this.emptyMessageElement.id, this.screenReaderMessageElement.id]));
