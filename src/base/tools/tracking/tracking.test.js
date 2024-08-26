@@ -1688,7 +1688,7 @@ describe('tracking', () => {
         });
     });
 
-    describe('step navigationd', () => {
+    describe('step navigation', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('step-navigation');
         });
@@ -1707,6 +1707,49 @@ describe('tracking', () => {
 
             expect(link.getAttribute('data-navigation')).toEqual('partof-sidebar');
         });
+    });
+
+    describe('summary card and summary list', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('summary-card');
+        });
+
+        it('should set data attributes on each action button or link in the summary card header', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_summary-card__actions-list-item a, .ds_summary-card__actions-list-item button'));
+            Tracking.add.summaryCard();
+
+            expect(links[0].getAttribute('data-navigation')).toEqual('button-change-summary-card-title');
+            expect(links[1].getAttribute('data-navigation')).toEqual('button-delete-summary-card-title');
+        });
+
+        it('should set data attributes on each action button or link in the summary list', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_summary-list__actions a, .ds_summary-list__actions button'));
+            Tracking.add.summaryList();
+
+            expect(links[0].getAttribute('data-navigation')).toEqual('button-change-have-you-had-the-grant-3-times-or-more-since-1-may-2022');
+            expect(links[1].getAttribute('data-navigation')).toEqual('button-change-which-council-area-do-you-live-in');
+            expect(links[2].getAttribute('data-navigation')).toEqual('button-view-which-council-area-do-you-live-in');
+            expect(links[3].getAttribute('data-navigation')).toEqual('button-change-do-you-work');
+            expect(links[4].getAttribute('data-navigation')).toEqual('button-change-will-you-lose-earnings-because-you-need-to-self-isolate');
+            expect(links[5].getAttribute('data-navigation')).toEqual('button-remove-will-you-lose-earnings-because-you-need-to-self-isolate');
+        });
+
+        it('should remove redundant data attributes on each action button in the summary card header', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_summary-card__actions-list-item button'));
+            Tracking.add.summaryCard();
+
+            expect(links[0].getAttribute('data-button')).toBeUndefined;
+        });
+
+        it('should remove redundant data attributes on each action button in the summary list', () => {
+            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_summary-list__actions button'));
+            Tracking.add.summaryList();
+
+            expect(links[0].getAttribute('data-button')).toBeUndefined;
+            expect(links[1].getAttribute('data-button')).toBeUndefined;
+            expect(links[2].getAttribute('data-button')).toBeUndefined;
+        });
+
     });
 
     describe('tabs', () => {

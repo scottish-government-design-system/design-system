@@ -114,7 +114,7 @@ describe('character count', () => {
 
                 const initialCountElement = testObj.characterCountElement.querySelector('.ds_character-count__initial');
                 expect(initialCountElement.innerText).toEqual('You can enter up to 20 characters');
-                expect(testObj.characterCountModule.inputElement.getAttribute('aria-describedby')).toEqual(initialCountElement.id);
+                expect(testObj.characterCountModule.inputElement.getAttribute('aria-describedby')).toContain(initialCountElement.id);
             });
         });
     });

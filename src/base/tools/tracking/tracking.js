@@ -863,6 +863,42 @@ const tracking = {
             });
         },
 
+        summaryCard: function (scope = document) {
+            const summaryListActions = tracking.gatherElements('ds_summary-card__actions-list', scope);
+            summaryListActions.forEach(actions => {
+                const actionButtons = [].slice.call(actions.querySelectorAll('a, button'));
+                actionButtons.forEach(actionButton => {
+                    let questionText = '';
+                    if(!!actionButton.getAttribute('aria-describedby')){
+                        const question = scope.getElementById(actionButton.getAttribute('aria-describedby'));
+                        questionText = '-'+slugify(question.innerText);
+                    }
+                    actionButton.setAttribute('data-navigation', `button-${slugify(actionButton.innerText)}${questionText}`);
+                    if(actionButton.hasAttribute('data-button')){
+                        actionButton.removeAttribute('data-button');
+                    }
+                });
+            });
+        },
+
+        summaryList: function (scope = document) {
+            const summaryListActions = tracking.gatherElements('ds_summary-list__actions', scope);
+            summaryListActions.forEach(actions => {
+                const actionButtons = [].slice.call(actions.querySelectorAll('a, button'));
+                actionButtons.forEach(actionButton => {
+                    let questionText = '';
+                    if(!!actionButton.getAttribute('aria-describedby')){
+                        const question = scope.getElementById(actionButton.getAttribute('aria-describedby'));
+                        questionText = '-'+slugify(question.innerText);
+                    }
+                    actionButton.setAttribute('data-navigation', `button-${slugify(actionButton.innerText)}${questionText}`);
+                    if(actionButton.hasAttribute('data-button')){
+                        actionButton.removeAttribute('data-button');
+                    }
+                });
+            });
+        },
+
         tabs: function (scope = document) {
             const tabComponent = tracking.gatherElements('ds_tabs', scope);
             let tabSet = 1;
