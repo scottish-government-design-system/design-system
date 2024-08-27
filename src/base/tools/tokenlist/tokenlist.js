@@ -10,7 +10,7 @@ class TokenList {
     add(itemsToAdd) {
         // if supplied as space-separated list, convert to array
         if (typeof itemsToAdd === 'string') {
-            itemsToAdd = string.replace(/\s+/g, ' ').split(' ');
+            itemsToAdd = itemsToAdd.replace(/\s+/g, ' ').split(' ');
         }
 
         itemsToAdd.forEach(item => {
