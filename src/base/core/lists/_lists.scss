@@ -2,8 +2,8 @@
     LISTS
 \*------------------------------------*/
 
-ul, 
-ol, 
+ul,
+ol,
 dd {
     @include ds_last-child-no-margin;
     margin-left: px-to-rem(20px);
@@ -26,15 +26,11 @@ dt {
     font-weight: $bold;
 }
 
+ul {
+    list-style-type: disc;
+}
+
 ol {
     list-style-type: numeric;
     margin-left: px-to-rem(24px);
-}
-
-ol ol {
-    list-style-type: lower-alpha;
-}
-
-ol ol ol {
-    list-style-type: lower-roman;
 }

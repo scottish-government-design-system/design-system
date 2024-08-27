@@ -15,6 +15,15 @@ $step-content-line-height--medium: 32px;
 .ds_step-navigation {
     counter-reset: section;
 
+    &__list {
+        list-style-type: none;
+        margin: 0;
+
+        li {
+            margin-bottom: 0;
+        }
+    }
+
     &__title {
         font-size: $h3-size;
         line-height: 1.5rem;
