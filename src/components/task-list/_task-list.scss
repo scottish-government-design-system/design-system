@@ -48,6 +48,7 @@
             @include ds_responsive-margin(1, top);
         }
 
+        // Deprecated - use ds_tag component instead
         &-status {
             @include ds_small-size;
             @include ds_high-contrast-outline;
@@ -127,6 +128,8 @@
     }
 }
 
+
+// Deprecated - use ds_tag component instead
 @include ds_media-query-high-contrast {
     /*
      * [1] This is a little hacky but it does serve to differentiate the "complete" status.
