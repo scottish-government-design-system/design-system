@@ -7,6 +7,7 @@ import Tabs from './tabs';
 describe('tabs', () => {
     beforeEach(() => {
         loadFixtures('components/tabs/tabs.html');
+        viewport.set(800);
         testObj.tabsElement = document.querySelector('#tab');
         testObj.tabsModule = new Tabs(testObj.tabsElement);
     });
@@ -31,7 +32,7 @@ describe('tabs', () => {
     });
 
     it('should set the list of tabs with a role attribute of "tablist" on set()', () => {
-        let tabList = testObj.tabsElement.querySelector('.ds_tabs__list'); 
+        let tabList = testObj.tabsElement.querySelector('.ds_tabs__list');
         expect(tabList.hasAttribute('role')).toBeFalsy();
         testObj.tabsModule.init();
         expect(tabList.getAttribute('role')).toEqual('tablist');
@@ -53,7 +54,7 @@ describe('tabs', () => {
 
     it('should remove the role attribute on the list of tabs on reset', () => {
         testObj.tabsModule.init();
-        const tabList = testObj.tabsElement.querySelector('.ds_tabs__list'); 
+        const tabList = testObj.tabsElement.querySelector('.ds_tabs__list');
         expect(tabList.hasAttribute('role')).toBeTruthy();
         testObj.tabsModule.reset();
         expect(tabList.hasAttribute('role')).toBeFalsy();
@@ -150,7 +151,7 @@ describe('tabs', () => {
         it ('should show specified tab on init if hash present', () => {
             window.location.hash = '#tab2';
             testObj.tabsModule.init();
-            
+
             // Is initialised
             expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(true);
 
@@ -161,12 +162,12 @@ describe('tabs', () => {
 
         it ('should only change tab if a valid value is used on hash change event', () => {
             testObj.tabsModule.init();
-            
+
             // Is initialised
             expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(true);
             let currentTabItem = testObj.tabsElement.querySelector('.ds_current');
             expect(currentTabItem.querySelector('.ds_tabs__tab-link').getAttribute('href')).toBe('#tab1');
-            
+
             // Change hash
             window.location.hash = '#tab2';
             const event = new Event('hashchange');
@@ -208,12 +209,12 @@ describe('tabs', () => {
         it ('should not change the tab on hash change if smaller than medium size', () => {
             viewport.set(400); // set to a size smaller than medium
             testObj.tabsModule.init();
-            
+
             // Change hash
             window.location.hash = '#tab2';
             const event = new Event('hashchange');
             window.dispatchEvent(event);
-            
+
             // Is not initialised
             expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(false);
 
