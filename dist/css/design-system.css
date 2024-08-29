@@ -771,17 +771,13 @@ dt {
   font-weight: 700;
 }
 
+ul {
+  list-style-type: disc;
+}
+
 ol {
   list-style-type: numeric;
   margin-left: 1.5rem;
-}
-
-ol ol {
-  list-style-type: lower-alpha;
-}
-
-ol ol ol {
-  list-style-type: lower-roman;
 }
 
 /*------------------------------------*\
@@ -878,7 +874,6 @@ small,
   }
 }
 .ds_layout__content img, .ds_layout__partner img {
-  height: auto;
   max-width: 100%;
 }
 
@@ -2246,6 +2241,36 @@ fieldset {
   border: 0;
 }
 
+.ds_form {
+  display: flex;
+  flex-direction: column;
+}
+.ds_form__content .ds_question:has(.ds_page-header) {
+  margin-top: 1rem;
+}
+@media (min-width: 768px) {
+  .ds_form__content .ds_question:has(.ds_page-header) {
+    margin-top: 2rem;
+  }
+}
+.ds_form__content .ds_question .ds_page-header {
+  margin-top: 0;
+}
+.ds_form__actions .ds_button {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .ds_form__actions .ds_button {
+    margin-top: 2rem;
+  }
+}
+@media (min-width: 768px) {
+  .ds_form__actions .ds_button {
+    margin-bottom: 2rem;
+  }
+}
+
 /*------------------------------------*\
     CHARACTER COUNT
 \*------------------------------------*/
@@ -2430,7 +2455,7 @@ fieldset {
 }
 
 /*------------------------------------*\
-    $ERROR SUMMARY
+    ERROR SUMMARY
 \*------------------------------------*/
 .ds_error-summary {
   border: 4px solid #d32205;
@@ -2487,7 +2512,7 @@ fieldset {
 .ds_field-group--inline > div {
   margin-bottom: 0;
 }
-.ds_field-group--inline > div .ds_input {
+.ds_field-group--inline > div > :last-child {
   margin-bottom: 0;
 }
 
@@ -2575,6 +2600,9 @@ fieldset {
 .ds_question__error-message {
   color: #d32205;
   font-weight: 700;
+}
+.ds_question > fieldset > :last-child {
+  margin-bottom: 0;
 }
 
 /*------------------------------------*\
@@ -2937,19 +2965,19 @@ fieldset {
 
 .ds_input__wrapper {
   display: block;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
   overflow: auto;
 }
 .ds_input__wrapper .ds_input {
   float: left;
   margin-bottom: 0;
-  margin-right: -48px;
-  padding-right: 56px;
+  margin-right: -3rem;
+  padding-right: -3.5rem;
 }
 .ds_input__wrapper .ds_icon {
-  height: 32px;
-  padding: 8px;
-  width: 32px;
+  height: 2rem;
+  padding: 0.5rem;
+  width: 2rem;
 }
 .ds_input__wrapper > .ds_button {
   margin: 0;
@@ -3394,11 +3422,11 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 
 @media only screen {
   .ds_back-to-top {
-    bottom: 56px;
+    bottom: 3.5rem;
     display: block;
     pointer-events: none;
     position: absolute;
-    right: 8px;
+    right: 0.5rem;
     top: calc(100vh - 1px);
     z-index: 1;
   }
@@ -3415,16 +3443,16 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
     outline: 0 !important;
     font-size: 0.875rem;
     line-height: 1.7142857143;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.4);
     font-weight: 700;
     margin: 0;
-    min-width: 120px;
+    min-width: 7.5rem;
     pointer-events: all;
-    padding: 8px 32px 8px 16px;
+    padding: 0.5rem 2.125rem 0.5rem 1.125rem;
     position: fixed;
     position: sticky;
-    right: 8px;
-    top: calc(100vh - 56px);
+    right: 0.5rem;
+    top: calc(100vh - 3.5rem);
   }
   .ds_back-to-top__button:focus {
     background-color: #fdd522;
@@ -3451,10 +3479,35 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   }
 }
 @media only screen {
-  .ds_back-to-top__icon {
+  .ds_back-to-top__button::before {
+    content: "";
     position: absolute;
-    right: 8px;
-    top: 8px;
+    left: 1rem;
+    right: 2rem;
+    top: 0.5rem;
+    bottom: 0.5rem;
+    z-index: -1;
+  }
+  .ds_back-to-top__icon {
+    height: 1.5rem;
+    min-height: 1.5rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+  .ds_back-to-top__button::before, .ds_back-to-top__icon {
+    background-color: #ffffff;
+    transition: background-color 0.2s;
+  }
+}
+@media only screen and (forced-colors: active) and (prefers-contrast: more) {
+  .ds_back-to-top__button::before, .ds_back-to-top__icon {
+    background-color: transparent;
+  }
+}
+@media only screen {
+  .ds_back-to-top__button:hover::before, .ds_back-to-top__button:hover .ds_back-to-top__icon, .ds_back-to-top__button:focus::before, .ds_back-to-top__button:focus .ds_back-to-top__icon {
+    background-color: transparent;
   }
 }
 /*------------------------------------*\
@@ -3531,8 +3584,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   text-align: center;
   text-decoration: none;
   transition: background-color 0.2s;
-  margin-top: 2.5rem;
   margin-bottom: 1.5rem;
+  margin-top: 0;
 }
 @media (min-width: 768px) {
   .ds_button {
@@ -3544,11 +3597,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   height: 40px;
   padding: 8px;
   width: 40px;
-}
-@media (min-width: 768px) {
-  .ds_button {
-    margin-top: 3.5rem;
-  }
 }
 @media (min-width: 768px) {
   .ds_button {
@@ -3633,15 +3681,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   outline-offset: -2px;
 }
 
-fieldset + .ds_button {
-  margin-top: calc(2.5rem + -1.5rem);
-}
-@media (min-width: 768px) {
-  fieldset + .ds_button {
-    margin-top: calc(3.5rem + -1.5rem);
-  }
-}
-
 .ds_button--small {
   font-size: 0.875rem;
   line-height: 1.7142857143;
@@ -3697,7 +3736,7 @@ fieldset + .ds_button {
     BUTTON GROUP
 \*------------------------------------*/
 .ds_button-group {
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   gap: 1rem;
   display: flex;
@@ -3705,7 +3744,7 @@ fieldset + .ds_button {
 }
 @media (min-width: 768px) {
   .ds_button-group {
-    margin-top: 3.5rem;
+    margin-top: 2rem;
   }
 }
 @media (min-width: 768px) {
@@ -3719,6 +3758,7 @@ fieldset + .ds_button {
   }
 }
 .ds_button-group .ds_button {
+  align-content: center;
   margin: 0;
 }
 .ds_button-group a:not(.ds_button),
@@ -3746,15 +3786,6 @@ fieldset + .ds_button {
   .ds_button-group:not(.ds_button-group--inline) .ds_button--has-icon {
     padding-right: 56px;
     padding-left: 56px;
-  }
-}
-
-fieldset + .ds_button-group {
-  margin-top: calc(2.5rem + -1.5rem);
-}
-@media (min-width: 768px) {
-  fieldset + .ds_button-group {
-    margin-top: calc(3.5rem + -1.5rem);
   }
 }
 
@@ -4655,7 +4686,12 @@ fieldset + .ds_button-group {
 \*------------------------------------*/
 .ds_datepicker {
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .ds_datepicker {
+    margin-bottom: 1.5rem;
+  }
 }
 .ds_datepicker .ds_input {
   margin-bottom: 0;
@@ -5036,6 +5072,9 @@ fieldset + .ds_button-group {
   display: none;
   padding: 0.5rem;
   padding-left: calc(1.5rem + calc(4px * -1));
+}
+.ds_details__text > :last-child {
+  margin-bottom: 0;
 }
 @media (min-width: 768px) {
   .ds_details__text {
@@ -5487,8 +5526,8 @@ fieldset + .ds_button-group {
     #INSET TEXT
 \*------------------------------------*/
 .ds_inset-text {
-  border-left: 8px solid #b3b3b3;
-  padding: 16px;
+  border-left: 0.5rem solid #b3b3b3;
+  padding: 1rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -5510,10 +5549,14 @@ fieldset + .ds_button-group {
   margin-bottom: 0;
 }
 
+.ds_inset-text .ds_tag {
+  margin-bottom: 0.5rem;
+}
+
 @media (min-width: 768px) {
   .ds_inset-text {
-    padding-left: 32px;
-    padding-right: 64px;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }
 /*------------------------------------*\
@@ -5824,7 +5867,7 @@ fieldset + .ds_button-group {
     }
   }
 }
-.js-enabled .ds_notification__close {
+.js-initialised .ds_notification__close {
   display: block;
 }
 
@@ -5837,7 +5880,8 @@ fieldset + .ds_button-group {
   padding-bottom: 2.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  background: #f8f8f8;
+  background: #428542;
+  color: #ffffff;
   text-align: center;
 }
 @media (min-width: 768px) {
@@ -5879,9 +5923,9 @@ fieldset + .ds_button-group {
     margin-top: 3rem;
   }
 }
-.ds_notification-panel--success {
-  background: #428542;
-  color: #ffffff;
+.ds_notification-panel--neutral {
+  background: #f8f8f8;
+  color: #333333;
 }
 .ds_notification-panel__title {
   font-size: 1.875rem;
@@ -5925,23 +5969,32 @@ fieldset + .ds_button-group {
     title block for articles
 \*------------------------------------*/
 .ds_page-header {
-  margin: 16px 0 32px;
+  margin: 1rem 0 2rem;
 }
 .ds_page-header__title {
   margin-bottom: 0;
 }
 .ds_page-header__metadata {
-  margin-top: 8px;
+  margin-top: 0.5rem;
 }
-
 @media (min-width: 768px) {
   .ds_page-header {
-    margin-top: 32px;
+    margin-top: 2rem;
   }
   .ds_page-header__label + .ds_page-header__title {
-    margin-top: -8px;
+    margin-top: -0.5rem;
   }
 }
+
+.ds_error-summary + .ds_page-header {
+  margin-top: 2.5rem;
+}
+@media (min-width: 768px) {
+  .ds_error-summary + .ds_page-header {
+    margin-top: 4rem;
+  }
+}
+
 /*------------------------------------*\
     PAGINATION
 \*------------------------------------*/
@@ -5965,7 +6018,7 @@ fieldset + .ds_button-group {
 }
 .ds_pagination__item {
   display: inline-block;
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 }
 .ds_pagination__link {
   display: block;
@@ -5973,9 +6026,10 @@ fieldset + .ds_button-group {
   transition: background-color 0.2s, outline-color 0.2s;
   z-index: 1;
   outline: 0 !important;
-  line-height: 40px;
-  min-height: 40px;
-  min-width: 40px;
+  line-height: 2.5rem;
+  min-height: 2.5rem;
+  min-width: 2.5rem;
+  padding: 0 0.5rem;
   text-decoration: none;
 }
 .ds_pagination__link:focus {
@@ -6009,13 +6063,16 @@ fieldset + .ds_button-group {
   background-color: #f8f8f8;
 }
 .ds_pagination__link--text:not(.ds_pagination__link--icon) {
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
   width: auto;
 }
 .ds_pagination__link--ellipsis {
   min-width: 0;
   pointer-events: none;
+}
+.ds_pagination__link--ellipsis, .ds_pagination__link--icon {
+  padding: 0;
 }
 .ds_pagination__link .ds_icon {
   height: 2em;
@@ -6038,14 +6095,14 @@ fieldset + .ds_button-group {
     width: auto;
   }
   .ds_pagination__link--icon .ds_pagination__link-label {
-    padding-left: 16px;
+    padding-left: 1rem;
   }
   .ds_pagination__link--icon .ds_icon + .ds_pagination__link-label {
-    padding-right: 16px;
+    padding-right: 1rem;
     padding-left: 0;
   }
   .ds_pagination .ds_icon {
-    margin: 0 4px;
+    margin: 0 0.25rem;
   }
 }
 @media (max-width: 767px) {
@@ -6064,7 +6121,7 @@ fieldset + .ds_button-group {
   .ds_pagination__list {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
+    gap: 0.25rem;
     justify-content: center;
   }
   .ds_pagination__link {
@@ -6108,12 +6165,20 @@ fieldset + .ds_button-group {
   display: table;
   margin-bottom: 0;
 }
-.ds_phase-banner__tag {
+.ds_phase-banner__tag.ds_tag {
   margin-right: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7142857143;
 }
 @media (min-width: 768px) {
-  .ds_phase-banner__tag {
+  .ds_phase-banner__tag.ds_tag {
     margin-right: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .ds_phase-banner__tag.ds_tag {
+    font-size: 1rem;
+    line-height: 1.5;
   }
 }
 .ds_phase-banner__text {
@@ -7832,6 +7897,13 @@ fieldset + .ds_button-group {
 .ds_step-navigation {
   counter-reset: section;
 }
+.ds_step-navigation__list {
+  list-style-type: none;
+  margin: 0;
+}
+.ds_step-navigation__list li {
+  margin-bottom: 0;
+}
 .ds_step-navigation__title {
   font-size: 19px;
   line-height: 1.5rem;
@@ -8781,21 +8853,22 @@ fieldset + .ds_button-group {
     TAG
 \*------------------------------------*/
 .ds_tag {
-  font-size: 0.875rem;
-  line-height: 1.7142857143;
+  font-size: 1rem;
+  line-height: 1.5;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-  background: #0065bd;
-  border-radius: 2px;
-  color: #ffffff;
+  background: #d9eeff;
+  color: #00437d;
   display: inline-block;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-weight: 400;
+  outline: 1px solid currentColor;
+  outline-offset: -1px;
+  white-space: nowrap;
 }
 @media (min-width: 768px) {
   .ds_tag {
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 1.1875rem;
+    line-height: 1.6842105263;
   }
 }
 @media (min-width: 768px) {
@@ -8808,11 +8881,45 @@ fieldset + .ds_button-group {
     padding-right: 0.5rem;
   }
 }
-@media screen and (forced-colors: active) and (prefers-contrast: more) {
-  .ds_tag {
-    outline: 2px solid currentColor !important;
-    outline-offset: -2px !important;
-  }
+.ds_tag--grey {
+  background-color: #ebebeb;
+  color: #525252;
+}
+.ds_tag--green {
+  background-color: #e0f0e0;
+  color: #2d5a2d;
+}
+.ds_tag--teal {
+  background-color: #cdf3ef;
+  color: #1b6e67;
+}
+.ds_tag--darkblue {
+  background-color: #d9eeff;
+  color: #000b14;
+}
+.ds_tag--blue {
+  background-color: #d9eeff;
+  color: #00437d;
+}
+.ds_tag--purple {
+  background-color: #f8e6f7;
+  color: #5e1959;
+}
+.ds_tag--pink {
+  background-color: #ffe4f3;
+  color: #a5005b;
+}
+.ds_tag--red {
+  background-color: #fee6e1;
+  color: #951804;
+}
+.ds_tag--orange {
+  background-color: #fde7db;
+  color: #b8440a;
+}
+.ds_tag--yellow {
+  background-color: #feec98;
+  color: #7f6801;
 }
 
 /*------------------------------------*\
@@ -8824,9 +8931,10 @@ fieldset + .ds_button-group {
   padding: 0;
 }
 .ds_task-list__task {
+  align-items: center;
   border-top: 2px #ebebeb solid;
   display: flex;
-  align-items: center;
+  gap: 0.5rem 2rem;
   justify-content: space-between;
   margin: 0;
   padding-top: 1rem;
@@ -8887,7 +8995,6 @@ fieldset + .ds_button-group {
 .ds_task-list__task-status {
   font-size: 0.875rem;
   line-height: 1.7142857143;
-  margin-left: 2rem;
   background-color: #ebebeb;
   font-weight: 700;
   padding: 0.25rem 1rem;
@@ -8899,26 +9006,10 @@ fieldset + .ds_button-group {
     line-height: 1.5;
   }
 }
-@media (min-width: 768px) {
-  .ds_task-list__task-status {
-    margin-left: 2.5rem;
-  }
-}
 @media screen and (forced-colors: active) and (prefers-contrast: more) {
   .ds_task-list__task-status {
     outline: 2px solid currentColor !important;
     outline-offset: -2px !important;
-  }
-}
-@media (max-width: 479px) {
-  .ds_task-list__task-status {
-    margin-left: 0;
-    margin-top: 0.5rem;
-  }
-}
-@media (max-width: 479px) and (min-width: 768px) {
-  .ds_task-list__task-status {
-    margin-top: 0.5rem;
   }
 }
 .ds_task-list__task-status--complete {
