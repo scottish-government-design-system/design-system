@@ -6,6 +6,33 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [2.3.0]
+### Added
+- Inset text spacing support for tags
+- New ds_form layout for forms to separate contents from action buttons
+### Changed
+- Date picker has accessibility improvements for screen readers
+- Pagination spacing changes to improve padding for large numbers
+- Inset text padding reduced between left border and content
+- Character count now announces total characters allowed as well as characters remaining
+- Bottom margin removed on last element within a details component
+- Notification panel default now green 'success' state - no modifier is needed
+- Notification banner has js-initialised class applied to the component to determine when to show the close button
+- Task list spacing now uses flex gap and the tag component for statuses
+- No top margin on buttons
+- Spacing between error summary and page header more consistent across different layouts
+- Back to top style changes to meet WCAG 2.2 and not wholly obscure items behind
+- Tracking attributes for summary list and summary card action buttons
+- Tag component design changes and multiple colourways
+- Step navigation now uses an ordered list
+- Nested lists now use the same marker style at all levels
+### Deprecated
+- Status tags for task list now use the standard tag component
+### Fixed
+- Only the accordion containing an id specified in a hash in the URL opens
+- Aspect box image ratio now respected when placed within ds_layout__content or ds_layout__partner layout areas
+- Button text within a button group now vertically centred
+
 ## [2.2.0]
 ### Added
 - Colour function to check and adjust colours against a given contrast ratio
