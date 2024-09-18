@@ -9,7 +9,7 @@ $search-results-related-background: $ds_colour__background--secondary;
 
     &__title {
         @include ds_root-size;
-        @include ds-responsive-margin(2, bottom);
+        @include ds-responsive-margin(1, bottom);
         font-weight: $normal;
         margin-top: 0 !important;
 
