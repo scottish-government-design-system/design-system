@@ -870,7 +870,7 @@ const tracking = {
                 actionButtons.forEach(actionButton => {
                     let questionText = '';
                     if(!!actionButton.getAttribute('aria-describedby')){
-                        const question = scope.getElementById(actionButton.getAttribute('aria-describedby'));
+                        const question = scope.querySelector('#' + actionButton.getAttribute('aria-describedby'));
                         questionText = '-'+slugify(question.innerText);
                     }
                     actionButton.setAttribute('data-navigation', `button-${slugify(actionButton.innerText)}${questionText}`);
@@ -888,7 +888,7 @@ const tracking = {
                 actionButtons.forEach(actionButton => {
                     let questionText = '';
                     if(!!actionButton.getAttribute('aria-describedby')){
-                        const question = scope.getElementById(actionButton.getAttribute('aria-describedby'));
+                        const question = scope.querySelector('#' + actionButton.getAttribute('aria-describedby'));
                         questionText = '-'+slugify(question.innerText);
                     }
                     actionButton.setAttribute('data-navigation', `button-${slugify(actionButton.innerText)}${questionText}`);
