@@ -146,6 +146,11 @@ $page-nav__circle-size: 56px !default;
     }
 }
 
+.ds_sequential-nav__button:not(:focus) .ds_sequential-nav__text {
+    text-decoration: underline;
+    text-underline-offset: 1px;
+}
+
 @include ds_media-query(small) {
     .ds_sequential-nav__item {
         width: calc(50% - 16px);

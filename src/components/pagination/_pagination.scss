@@ -63,6 +63,8 @@
             padding: 0;
         }
 
+
+
         .ds_icon {
             height: 2em;
             width: 2em;
@@ -72,6 +74,11 @@
             pointer-events: none;
         }
     }
+}
+
+a.ds_pagination__link:not(.ds_current):not(:focus) {
+    text-decoration: underline;
+    text-underline-offset: 1px;
 }
 
 @include ds_media-query(medium) {
