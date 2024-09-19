@@ -6,6 +6,18 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [2.3.1]
+### Changed
+- Links now underlined in pagination and sequential navigation
+- Minor spacing changes to some headings in search results layout
+- Error summary links use colour contrast functions to generate hover state colours
+### Fixed
+- Invalid hash values are ignored by accordion
+- Tracking script for summary list and summary card action buttons now work with different scopes
+### Security
+- Bump webpack from 5.90.3 to 5.94.0
+- Bump body-parser from 1.20.2 to 1.20.3
+
 ## [2.3.0]
 ### Added
 - Inset text spacing support for tags
