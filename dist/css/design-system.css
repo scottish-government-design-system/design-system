@@ -2458,8 +2458,8 @@ fieldset {
     ERROR SUMMARY
 \*------------------------------------*/
 .ds_error-summary {
-  border: 4px solid #d32205;
-  padding: 20px 28px;
+  border: 0.25rem solid #d32205;
+  padding: 1.25rem 1.75rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
@@ -2487,6 +2487,11 @@ fieldset {
 }
 .ds_error-summary__list a {
   color: #d32205;
+}
+.ds_error-summary__list a:hover:not(:focus) {
+  background-color: #fee6e1;
+  color: #951804;
+  outline-color: #fee6e1;
 }
 .ds_error-summary__list a:focus {
   color: #333333;
@@ -6082,6 +6087,11 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   pointer-events: none;
 }
 
+a.ds_pagination__link:not(.ds_current):not(:focus) {
+  text-decoration: underline;
+  text-underline-offset: 1px;
+}
+
 @media (min-width: 768px) {
   .ds_pagination__load-more + .ds_pagination__list {
     display: block;
@@ -6335,7 +6345,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   */
 }
 .ds_search-filters__title {
-  padding-bottom: calc(1rem + -1px);
+  padding-bottom: calc(0.5rem + -1px);
   padding-top: 0.5rem;
   margin-bottom: 1rem;
   border-bottom: 1px solid #b3b3b3;
@@ -6343,7 +6353,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media (min-width: 768px) {
   .ds_search-filters__title {
-    padding-bottom: calc(1rem + -1px);
+    padding-bottom: calc(0.5rem + -1px);
   }
 }
 @media (min-width: 768px) {
@@ -6698,7 +6708,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_search-results__title {
   font-size: 1rem;
   line-height: 1.5;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   font-weight: 400;
   margin-top: 0 !important;
 }
@@ -6710,7 +6720,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media (min-width: 768px) {
   .ds_search-results__title {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 }
 .ds_search-results__title-query {
@@ -6933,6 +6943,11 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   .ds_sequential-nav__text::before {
     font-size: 1rem;
   }
+}
+
+.ds_sequential-nav__button:not(:focus) .ds_sequential-nav__text {
+  text-decoration: underline;
+  text-underline-offset: 1px;
 }
 
 @media (min-width: 480px) {
