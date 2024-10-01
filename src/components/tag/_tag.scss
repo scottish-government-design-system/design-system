@@ -30,7 +30,7 @@ $tag_colours: (
     color: $foreground;
     display: inline-block;
     font-weight: $normal;
-    outline: 1px solid currentColor;
+    outline: 1px solid rgba(red($tag__base-colour), green($tag__base-colour), blue($tag__base-colour), 0.8);
     outline-offset: -1px;
     white-space: nowrap;
 
@@ -43,6 +43,7 @@ $tag_colours: (
         &--#{$name} {
             background-color: $background;
             color: $foreground;
+            outline-color: rgba(red($foreground), green($foreground), blue($foreground), 0.8);
         }
     }
 }
