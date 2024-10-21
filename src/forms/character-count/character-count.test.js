@@ -319,4 +319,50 @@ describe('character count', () => {
             jasmine.clock().uninstall();
         });
     });
+
+    describe('character count with preexisting aria-invalid', () => {
+        it('should keep the aria-invalid attribute after initialisation', () => {
+            testObj.characterCountElement = document.querySelector('#aria-invalid');
+            const inputElement = testObj.characterCountElement.querySelector('input');
+            testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
+            testObj.characterCountModule.init();
+
+            expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
+        });
+
+        it('should not remove an aria-invalid attribute when the count is exceeded and reduced', () => {
+            testObj.characterCountElement = document.querySelector('#aria-invalid');
+            const inputElement = testObj.characterCountElement.querySelector('input');
+            inputElement.value = 'abcdefghijklmnopqrstuvwxyz';
+            testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
+            testObj.characterCountModule.init();
+
+            expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
+
+            inputElement.value = 'abcdefghijklmnopqrs';
+            event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+
+            expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
+        });
+
+        it('should treat a "false" aria-invalid value as normal', () => {
+            testObj.characterCountElement = document.querySelector('#aria-invalid-false');
+            const inputElement = testObj.characterCountElement.querySelector('input');
+            testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
+            testObj.characterCountModule.init();
+
+            expect(inputElement.getAttribute('aria-invalid')).toEqual('false');
+
+            inputElement.value = 'abcdefghijklmnopqrstuvwxyz';
+            event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+            expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
+
+            inputElement.value = 'abcdefghijklmnopqrs';
+            event = new Event('keyup');
+            inputElement.dispatchEvent(event);
+            expect(inputElement.getAttribute('aria-invalid')).toEqual('false');
+        });
+    });
 });

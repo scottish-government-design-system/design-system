@@ -51,6 +51,9 @@ class CharacterCount {
                 this.messageElement.classList.add('fully-hidden');
             }
 
+            // address GitHub issue #136 https://github.com/scottish-government-design-system/design-system/issues/136
+            this.initialInvalidState = (!!this.inputElement.getAttribute('aria-invalid') && this.inputElement.getAttribute('aria-invalid') !== 'false');
+
             this.field.appendChild(this.messageElement);
             this.field.appendChild(this.screenReaderMessageElement);
             this.field.appendChild(this.emptyMessageElement);
@@ -105,8 +108,12 @@ class CharacterCount {
             this.messageElement.classList.add('ds_input__message--error');
         }
         else {
-            this.inputElement.classList.remove('ds_input--error');
-            this.inputElement.setAttribute('aria-invalid', false);
+            if (!this.initialInvalidState) {
+                this.inputElement.classList.remove('ds_input--error');
+                this.inputElement.setAttribute('aria-invalid', false);
+            }
+
+            this.messageElement.classList.remove('ds_input__message--error');
 
             if (this.inputElement.value.length === 0) {
                 this.messageElement.innerText = this.emptyMessage;
@@ -114,7 +121,6 @@ class CharacterCount {
                 this.messageElement.innerText = `You have ${count} ${noun} remaining`;
             }
 
-            this.messageElement.classList.remove('ds_input__message--error');
         }
 
         if (this.inputElement.value.length < this.maxLength * this.threshold) {
