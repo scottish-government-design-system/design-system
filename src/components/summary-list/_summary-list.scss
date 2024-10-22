@@ -5,9 +5,9 @@
 $summary-card-header-background-colour: $ds_colour__background--primary--dim !default;
 
 .ds_summary-list {
-    @include ds_block-margins--bottom;
     list-style-type: none;
     margin-left: 0;
+    @include ds_block-margins--bottom;
 
     &__key {
         font-weight: $bold;
@@ -16,22 +16,22 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
     &__key,
     &__value,
     &__actions {
-        @include ds_responsive-margin(1, bottom);
         display: block;
         overflow-wrap: break-word;
+        @include ds_responsive-margin(1, bottom);
     }
 
     &__item {
-        @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(1, bottom, false, -1px);
         border-bottom: 1px solid $ds_colour__border;
         margin: 0;
         position: relative;
+        @include ds_responsive-padding(2, top);
+        @include ds_responsive-padding(1, bottom, false, -1px);
     }
 
     &--no-border &__item {
-        @include ds_responsive-padding(1, bottom);
         border-bottom: 0;
+        @include ds_responsive-padding(1, bottom);
     }
 
     &__value {
@@ -61,9 +61,9 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
             padding: 0;
 
             &:not(:first-child) {
+                position: relative;
                 @include ds_responsive-margin(1, left);
                 @include ds_responsive-padding(1, left, false, 1px);
-                position: relative;
 
                 &::before {
                     background: $ds_colour__text--secondary;
@@ -141,19 +141,19 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
 // Summary card
 // [1] - Add visual separation of header in high contrast mode
 .ds_summary-card {
-    @include ds_block-margins;
     border: 1px solid $ds_colour__border;
+    @include ds_block-margins;
 
     &__header {
-        @include ds_responsive-padding(3, top, $tuning: -1px);
-        @include ds_responsive-padding(3, right, $tuning: -1px);
-        @include ds_responsive-padding(3, bottom, $tuning: -1px);
-        @include ds_responsive-padding(3, left, $tuning: -1px);
         align-items: flex-start;
         border-bottom: 1px solid $summary-card-header-background-colour; //[1]
         background: $summary-card-header-background-colour;
         display: flex;
         justify-content: space-between;
+        @include ds_responsive-padding(3, top, $tuning: -1px);
+        @include ds_responsive-padding(3, right, $tuning: -1px);
+        @include ds_responsive-padding(3, bottom, $tuning: -1px);
+        @include ds_responsive-padding(3, left, $tuning: -1px);
 
         // Stack on mobile
         @include ds_media-query(medium-down) {
@@ -161,9 +161,9 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
         }
 
         &-title {
-            @include ds_h3-size;
             font-weight: $bold;
             margin: 0;
+            @include ds_h3-size;
         }
 
         .ds_link {
@@ -190,9 +190,9 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
             padding: 0;
 
             &:not(:first-child) {
+                position: relative;
                 @include ds_responsive-margin(1, left);
                 @include ds_responsive-padding(1, left, false, 1px);
-                position: relative;
 
                 &::before {
                     background: $ds_colour__text--secondary;

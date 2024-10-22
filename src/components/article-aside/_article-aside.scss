@@ -3,10 +3,10 @@
 \*------------------------------------*/
 
 .ds_article-aside {
-    @include ds_block-margins;
-    @include ds_small-size;
-    @include ds_responsive-padding(4, top);
     position: relative;
+    @include ds_small-size;
+    @include ds_block-margins;
+    @include ds_responsive-padding(4, top);
 
     &:first-child {
         margin-top: 0;

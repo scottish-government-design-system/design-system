@@ -8,7 +8,6 @@ $small-focus-border-colour: $ds_colour__border !default;
 
 
 @mixin ds_radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
-
     margin-bottom: 24px;
     padding-left: 40px;
     position: relative;
@@ -50,14 +49,13 @@ $small-focus-border-colour: $ds_colour__border !default;
     &__label::after {
         top: -4px;
 
-        @include ds_media-query(medium) {
-            top: 0;
-        }
-
         @if $round {
             border-radius: 50%;
         }
 
+        @include ds_media-query(medium) {
+            top: 0;
+        }
     }
 
     /// focus

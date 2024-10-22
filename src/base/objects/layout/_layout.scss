@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 .ds_layout {
-    @include ds_layout();
     margin-bottom: 96px;
+    @include ds_layout();
 
     &__content,
     &__partner {
@@ -121,7 +121,6 @@
         }
     }
 }
-
 
 @include ds_media-query(large) {
     .ds_layout {

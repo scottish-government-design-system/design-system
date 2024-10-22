@@ -69,13 +69,12 @@
     }
 
     &:focus-within {
-        @include ds_high-contrast-focus;
-
         background-color: $ds_colour__focus--background;
         box-shadow: 0 3px $ds_colour__link--focus__shadow;
         color: $ds_colour__focus;
         outline: 0;
         transition-duration: 0s;
+        @include ds_high-contrast-focus;
     }
 
     &:focus-within &__button-icon {

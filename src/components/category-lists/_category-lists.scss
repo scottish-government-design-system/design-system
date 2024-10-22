@@ -6,15 +6,13 @@
     margin: 32px 0;
 }
 
-
 .ds_category-list {
-    @include ds_layout();
-
     list-style-type: none;
     margin-bottom: 32px;
     margin-left: -8px;
     margin-top: -8px;
     padding: 8px;
+    @include ds_layout();
 
     > * {
         display: flex;

@@ -3,10 +3,10 @@
 \*------------------------------------*/
 
 .ds_link-list {
-    @include ds_layout();
     list-style: none;
     margin: 0;
     padding: 0;
+    @include ds_layout();
 
     @include ds_media-query(medium-down) {
         .ds_link-item + .ds_link-item {

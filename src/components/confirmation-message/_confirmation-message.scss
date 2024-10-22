@@ -3,16 +3,14 @@
 \*------------------------------------*/
 
 .ds_confirmation-message {
-
-	@include ds_block-margins;
-	@include ds_responsive-padding(2, top);
-    @include ds_responsive-padding(2, bottom);
-    @include ds_responsive-padding(2, right);
-
     background-color: $ds_colour__background--secondary;
     border-left: 0.25rem solid $ds_colour__state--positive;
     padding-left: 2.75rem;
     position: relative;
+	@include ds_block-margins;
+	@include ds_responsive-padding(2, top);
+    @include ds_responsive-padding(2, bottom);
+    @include ds_responsive-padding(2, right);
 
     /// [1] ratio of icon height (24px) to .ds_confirmation-message__title line height
     &__icon {
@@ -27,8 +25,8 @@
     }
 
     &__title {
-        @include ds_h2-size;
         margin-bottom: 0;
+        @include ds_h2-size;
     }
 
     &__title:not(:first-child) {
@@ -36,8 +34,8 @@
     }
 
     &__body {
-        @include ds_last-child-no-margin;
         margin-top: 0.5rem;
+        @include ds_last-child-no-margin;
     }
 
     /// [1] ratio of icon height (24px) to .ds_confirmation-message__body line height

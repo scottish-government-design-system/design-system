@@ -21,8 +21,8 @@
     }
 
     &--promoted {
-        @include ds_responsive-padding(3, bottom);
         padding-top: 0;
+        @include ds_responsive-padding(3, bottom);
 
         &-content {
             background: $ds_colour__background--secondary;
@@ -34,19 +34,25 @@
         }
 
         &-title {
-            @include ds_responsive-margin(1, bottom);
-            @include ds_tiny-size;
             color: $ds_colour__text--secondary;
             font-weight: $bold;
+            @include ds_responsive-margin(1, bottom);
+
+            & {
+                @include ds_tiny-size;
+            }
         }
 
         @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'promoted search result');
     }
 
     &__title {
-        @include ds_h3-size;
         margin: 0 !important;
-        @include ds_responsive-margin(1, bottom, true);
+        @include ds_h3-size;
+
+        & {
+            @include ds_responsive-margin(1, bottom, true);
+        }
 
         &:last-child {
             margin-bottom: 0 !important; // only needed if title is the only part of the result
@@ -54,20 +60,26 @@
     }
 
     &__sub-title {
-        @include ds_h4-size;
         margin: 0;
-        @include ds_responsive-margin(1, bottom);
+        @include ds_h4-size;
+
+        & {
+            @include ds_responsive-margin(1, bottom);
+        }
     }
 
     &__summary {
-        @include ds_root-size;
         margin: 0;
+        @include ds_root-size;
     }
 
     &__metadata {
-        @include ds_responsive-margin(1, top);
-        @include ds_tiny-size;
         margin-bottom: 0;
+        @include ds_responsive-margin(1, top);
+
+        & {
+            @include ds_tiny-size;
+        }
     }
 
     &__has-media {
@@ -89,9 +101,12 @@
     &__context {
         margin: 0;
         padding: 0;
-        @include ds_responsive-margin(2, top);
-        @include ds_responsive-padding(2, left);
         @include ds_small-size(4px); // Use 4px type grid
+
+        & {
+            @include ds_responsive-margin(2, top);
+            @include ds_responsive-padding(2, left);
+        }
 
         &-key {
             color: $ds_colour__text--secondary;

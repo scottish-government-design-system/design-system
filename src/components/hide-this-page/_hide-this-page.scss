@@ -29,8 +29,8 @@
     }
 
     &__text {
-        @include ds_tiny-size;
         margin-bottom: 0;
+        @include ds_tiny-size;
     }
 
     .js-enabled-text {
@@ -50,11 +50,11 @@
 
 @include ds_media-query(medium) {
     .ds_hide-page {
-        @include ds_block-margins;
         background-color: rgba(255, 255, 255, 0.9);
         left: auto;
         outline: 1px solid #ebebeb;
         outline-offset: -1px;
+        @include ds_block-margins;
 
         @supports (position: sticky) and (display: grid) {
             bottom: 8px;
@@ -85,5 +85,21 @@
         @include ds_media-query(large) {
             grid-area: 1/10/3/13;
         }
+    }
+}
+
+/// resolve WCAG 2.2 "focus not obscured" issues
+/// [1] height of htp button on small screens (=56px)
+/// [2] height of htp button and help text on small screens (=72px)
+/// [3] height of htp button, space above and help text on large screens (=104px)
+html:has(.ds_hide-page) {
+    scroll-padding-top: 7rem; /// [1]
+
+    @media only screen and (hover: hover) {
+        scroll-padding-top: 9rem; /// [2]
+    }
+
+    @include ds_media-query(medium) {
+        scroll-padding-top: 13rem; /// [3]
     }
 }

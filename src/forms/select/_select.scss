@@ -52,13 +52,10 @@
         color: $ds_colour__button;
         font-size: 1rem;
         position: absolute;
-        right: 0;
-        top: 0;
-        z-index: 1;
-
-        @include ds_chevron(down, 0.75em);
         right: calc(50% - 0.375em);
         top: calc(50% - 0.5625em);
+        z-index: 1;
+        @include ds_chevron(down, 0.75em);
     }
 }
 
@@ -71,9 +68,9 @@
 }
 
 .ds_select-wrapper {
-    @include ds_responsive-margin(3, bottom);
     max-width: max-content;
-    min-width: 10em
+    min-width: 10em;
+    @include ds_responsive-margin(3, bottom);
 }
 
 /// Error state

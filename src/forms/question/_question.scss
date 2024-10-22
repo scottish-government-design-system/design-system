@@ -3,7 +3,6 @@
 \*------------------------------------*/
 
 .ds_question {
-
     @include ds_responsive-margin(3, bottom);
 
     &--error {

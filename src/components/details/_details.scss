@@ -11,12 +11,12 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
 }
 
 .ds_details__summary {
-    @include ds_link;
-    @include ds_responsive-margin(2, bottom);
-    @include ds_responsive-padding(4, left);
     cursor: pointer;
     display: inline-block;
     position: relative;
+    @include ds_link;
+    @include ds_responsive-margin(2, bottom);
+    @include ds_responsive-padding(4, left);
 
     &::-webkit-details-marker {
         display: none;
@@ -40,10 +40,10 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
 }
 
 .ds_details__text {
-    @include ds_last-child-no-margin;
     border-left: $details-border-width solid #b3b3b3;
     box-sizing: border-box;
     display: none;
+    @include ds_last-child-no-margin;
     @include ds_responsive-padding(1);
     @include ds_responsive-padding(4, left, false, calc(#{$details-border-width} * -1));
 }
@@ -60,13 +60,12 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
 }
 
 .ds_details__toggle:focus ~ .ds_details__summary {
-    @include ds_focus-outline;
-
     background-color: $ds_colour__link--focus__background;
     box-shadow: #{$link__outline-width * -1} #{$link__outline-width + $link__border-width} $ds_colour__link--focus__shadow, $link__outline-width #{$link__outline-width + $link__border-width} $ds_colour__link--focus__shadow;
     color: $ds_colour__link--focus;
     text-decoration: none;
     transition-duration: 0s;
+    @include ds_focus-outline;
 }
 
 @include ds_media-query-high-contrast {

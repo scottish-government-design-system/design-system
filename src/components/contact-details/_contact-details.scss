@@ -12,10 +12,10 @@ $contact-details__border-colour: $ds_colour__border--highlight;
     $social-icon-size: px-to-rem(24px);
 
     &__title {
-        @include ds_responsive-padding(1, top);
         display: inline-block;
         margin-bottom: 0;
         position: relative;
+        @include ds_responsive-padding(1, top);
 
         &::after {
             border-top: 4px solid $contact-details__border-colour;
@@ -42,8 +42,8 @@ $contact-details__border-colour: $ds_colour__border--highlight;
     }
 
     &__social-item {
-        @include ds_responsive-margin(1, bottom);
         position: relative;
+        @include ds_responsive-margin(1, bottom);
 
         &:has(.ds_contact-details__social-icon):not(:first-of-type) {
             @include ds_responsive-margin(2, top);

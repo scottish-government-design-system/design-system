@@ -104,33 +104,33 @@
 /// Heading style mixins
 ///
 @mixin ds_h1-style {
+    font-weight: $bold;
     @include ds_h1-size;
     @include ds_responsive-margin(4, bottom);
-    font-weight: $bold;
 }
 
 @mixin ds_h2-style {
+    font-weight: $bold;
     @include ds_h2-size;
     @include ds_responsive-margin(2, bottom);
-    font-weight: $bold;
 }
 
 @mixin ds_h3-style {
+    font-weight: $bold;
     @include ds_h3-size;
     @include ds_responsive-margin(2, bottom);
-    font-weight: $bold;
 }
 
 @mixin ds_h4-style {
+    font-weight: $bold;
     @include ds_h4-size;
     @include ds_responsive-margin(2, bottom);
-    font-weight: $bold;
 }
 
 @mixin ds_h5-style {
+    font-weight: $bold;
     @include ds_h5-size;
     @include ds_responsive-margin(1, bottom);
-    font-weight: $bold;
 }
 
 

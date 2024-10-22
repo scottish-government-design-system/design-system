@@ -11,9 +11,8 @@ $site-navigation__highlight-colour: $ds_colour__border--highlight !default;
 $site-navigation__link-padding: 16px;
 
 .ds_site-navigation {
-    @include ds_small-size;
-
     display: none;
+    @include ds_small-size;
 
     &__toggle {
         display: none;
@@ -125,7 +124,6 @@ $site-navigation__link-padding: 16px;
                 box-shadow: 0 3px $ds_colour__link--focus__shadow;
                 outline: none;
                 padding-bottom: 5px;
-
                 @include ds_high-contrast-focus;
 
                 &::after {

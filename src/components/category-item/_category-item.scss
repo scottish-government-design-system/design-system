@@ -13,20 +13,20 @@ $border-width-size: 4px;
 
 
 .ds_category-item {
-
     @include ds_blocklink('.ds_category-item__link');
 
-    padding: 12px 16px 12px;
-    text-decoration: none;
-    transition: background-color $transition-out-time, border-color $transition-out-time;
-    width: 100%;
-
-    @include ds_last-child-no-margin;
+    & {
+        padding: 12px 16px 12px;
+        text-decoration: none;
+        transition: background-color $transition-out-time, border-color $transition-out-time;
+        width: 100%;
+        @include ds_last-child-no-margin;
+    }
 
     &__title {
-        @include ds_large-size;
         line-height: 28px;
         margin: 0 0 16px;
+        @include ds_large-size;
     }
 
     .ds_category-item__link::after {
@@ -68,10 +68,10 @@ $border-width-size: 4px;
     }
 
     &__summary {
-        @include ds_small-size;
         color: $ds_colour__text--secondary;
         line-height: 24px;
         margin: 0;
+        @include ds_small-size;
     }
 
     &:hover &__summary,

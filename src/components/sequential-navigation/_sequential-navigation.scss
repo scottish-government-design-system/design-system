@@ -31,13 +31,15 @@ $page-nav__circle-size: 56px !default;
 .ds_sequential-nav__button {
     @include ds_blocklink;
 
-    background: transparent;
-    display: inline-block;
-    line-height: 24px;
-    padding: 12px 4px;
-    position: relative;
-    text-decoration: none;
-    width: 100%;
+    & {
+        background: transparent;
+        display: inline-block;
+        line-height: 24px;
+        padding: 12px 4px;
+        position: relative;
+        text-decoration: none;
+        width: 100%;
+    }
 
     &:not([href]) {
         display: none;

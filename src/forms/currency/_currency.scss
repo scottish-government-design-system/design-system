@@ -8,7 +8,6 @@ $input-height: 48px;
     position: relative;
 
     &::before {
-        @include ds_large-size;
         content: '£';
         height: $input-height;
         font-weight: $bold;
@@ -18,6 +17,7 @@ $input-height: 48px;
         text-align: center;
         top: 0;
         width: $input-height;
+        @include ds_large-size;
     }
 
     &[data-symbol]::before {

@@ -31,9 +31,9 @@ $step-content-line-height--medium: 32px;
 
     &__title-link {
         display: block;
+        text-decoration: underline;
         @include ds_responsive-margin(3, bottom);
         @include ds_responsive-margin(1, top);
-        text-decoration: underline;
     }
 
     &__current-link::before {

@@ -6,11 +6,11 @@
     margin-bottom: 0.5rem;
 
     &__title {
+        border-bottom: 1px solid $ds_colour__border;
+        margin-top: 0;
         @include ds_responsive-padding(1, bottom, false, -1px);
         @include ds_responsive-padding(1, top);
         @include ds_responsive-margin(2, bottom);
-        border-bottom: 1px solid $ds_colour__border;
-        margin-top: 0;
 
         &:not(:first-child) {
             margin-top: 0;

@@ -6,20 +6,19 @@
 
 
 .ds_contents-nav {
-
     &__title {
-        @include ds_h3-size;
         margin: 0;
         padding: 0;
+        @include ds_h3-size;
         @include ds_responsive-margin(1, bottom);
     }
 
     &__list {
-        @include ds_small-size;
-        @include ds_responsive-margin(6, bottom);
         list-style: none;
         margin-left: 0;
         padding-left: 32px;
+        @include ds_small-size;
+        @include ds_responsive-margin(6, bottom);
     }
 
     &__item {

@@ -19,19 +19,19 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
 
     // Default title style matches contents list heading
     &__title {
-        @include ds_h3-size;
-        margin: 0;
-        padding: 0;
-        @include ds_responsive-margin(1, bottom);
+            margin: 0;
+            padding: 0;
+            @include ds_h3-size;
+            @include ds_responsive-margin(1, bottom);
     }
 
     // Default list style matches contents list
     &__list {
-        @include ds_small-size;
-        @include ds_responsive-margin(6, bottom);
         list-style: none;
         margin-left: 0;
         padding-left: 32px;
+        @include ds_small-size;
+        @include ds_responsive-margin(6, bottom);
     }
 
     &__tab {
@@ -74,15 +74,17 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                     &__toggle {
                         @include ds_blocklink;
 
-                        background-color: $ds_colour__background--primary;
-                        border: 2px solid $ds_colour__border--faint;
-                        color: $tab__toggle-colour;
-                        font-weight: $bold;
-                        margin: 0;
-                        padding: 14px 38px 14px 14px;
-                        text-align: left;
-                        text-decoration: none;
-                        width: 100%;
+                        & {
+                            background-color: $ds_colour__background--primary;
+                            border: 2px solid $ds_colour__border--faint;
+                            color: $tab__toggle-colour;
+                            font-weight: $bold;
+                            margin: 0;
+                            padding: 14px 38px 14px 14px;
+                            text-align: left;
+                            text-decoration: none;
+                            width: 100%;
+                        }
 
                         &:hover:not(:focus) {
                             color: $tab__toggle-colour--hover;
@@ -163,8 +165,11 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
 
                         &-link {
                             @include ds_blocklink;
-                            padding: 11px 16px; // 11px so 2px margin keeps to grid
-                            text-decoration: none;
+
+                            & {
+                                padding: 11px 16px; // 11px so 2px margin keeps to grid
+                                text-decoration: none;
+                            }
                         }
 
                         &.ds_current {
@@ -228,9 +233,12 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
 
                 &__tab-link {
                     @include ds_blocklink;// Not fully using typical blocklink styling so requires overrides
-                    color: $tab__link-colour;
-                    display: inline-block;
-                    padding: $tab__padding--vertical $tab__padding--horizontal;
+
+                    & {
+                        color: $tab__link-colour;
+                        display: inline-block;
+                        padding: $tab__padding--vertical $tab__padding--horizontal;
+                    }
 
                     &:hover {
                         color: $ds_colour__link--hover;
@@ -242,13 +250,12 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                 }
 
                 &__tab {
+                    background-color: $tab__background-colour;
+                    margin: 0;
 
                     &::before {
                         display: none;
                     }
-
-                    background-color: $tab__background-colour;
-                    margin: 0;
 
                     &.ds_current {
                         background-color: $tab__background-colour--current;

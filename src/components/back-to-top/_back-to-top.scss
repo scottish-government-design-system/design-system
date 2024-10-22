@@ -28,18 +28,20 @@
 
         &__button {
             @include ds_blocklink;
-            @include ds_small-size;
 
-            background-color: rgba(red($ds_colour__background--primary),green($ds_colour__background--primary),blue($ds_colour__background--primary),0.4);
-            font-weight: $bold;
-            margin: 0;
-            min-width: 7.5rem;
-            pointer-events: all;
-            padding: 0.5rem calc(2rem + 0.125rem) 0.5rem calc(1rem + 0.125rem); /// [2]
-            position: fixed; /// [3]
-            position: sticky;
-            right: 0.5rem;
-            top: calc(100vh - 3.5rem); /// [4]
+            & {
+                background-color: rgba(red($ds_colour__background--primary),green($ds_colour__background--primary),blue($ds_colour__background--primary),0.4);
+                font-weight: $bold;
+                margin: 0;
+                min-width: 7.5rem;
+                pointer-events: all;
+                padding: 0.5rem calc(2rem + 0.125rem) 0.5rem calc(1rem + 0.125rem); /// [2]
+                position: fixed; /// [3]
+                position: sticky;
+                right: 0.5rem;
+                top: calc(100vh - 3.5rem); /// [4]
+                @include ds_small-size;
+            }
 
             &::before {
                 content: '';
@@ -77,4 +79,11 @@
             background-color: transparent;
         }
     }
+}
+
+/// resolve WCAG 2.2 "focus not obscured" issues
+/// [1] height of back to top button + space below (=56px)
+html:has(.ds_back-to-top) {
+    scroll-padding-bottom: 7rem; /// [1]
+
 }

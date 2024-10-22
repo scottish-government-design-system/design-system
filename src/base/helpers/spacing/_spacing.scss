@@ -55,25 +55,27 @@
     $scale-values: map-get($ds_spacing-scale, $spacing-unit);
 
     @each $breakpoint, $value in $scale-values {
-        @if ($tuning) {
-            $value: calc(#{$value} + #{$tuning});
-        }
-        @if ($collapse-values) {
-            $value: calc(#{$value} - #{map-get($ds_spacing-scale, $collapse-spacing-unit, $breakpoint)});
-        }
-
-        @if $breakpoint == null {
-            @if not $direction {
-                #{$property}: $value if($important, !important, null);
-            } @else {
-                #{$property}-#{$direction}: $value if($important, !important, null);
+        & {
+            @if ($tuning) {
+                $value: calc(#{$value} + #{$tuning});
             }
-        } @else {
-            @include ds_media-query($breakpoint) {
+            @if ($collapse-values) {
+                $value: calc(#{$value} - #{map-get($ds_spacing-scale, $collapse-spacing-unit, $breakpoint)});
+            }
+
+            @if $breakpoint == null {
                 @if not $direction {
                     #{$property}: $value if($important, !important, null);
                 } @else {
                     #{$property}-#{$direction}: $value if($important, !important, null);
+                }
+            } @else {
+                @include ds_media-query($breakpoint) {
+                    @if not $direction {
+                        #{$property}: $value if($important, !important, null);
+                    } @else {
+                        #{$property}-#{$direction}: $value if($important, !important, null);
+                    }
                 }
             }
         }

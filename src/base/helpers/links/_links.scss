@@ -11,12 +11,13 @@ $link__border-width: 3px;
 /// look like links (e.g. buttons we want to have display with a link-like style)
 
 @mixin ds_link {
-    @include ds_high-contrast-link-style;
     color: $ds_colour__link;
     text-decoration: underline;
     outline: 0px solid transparent;
     text-underline-offset: 1px;
     transition: color $transition-out-time, background-color $transition-out-time, outline-color $transition-out-time;
+
+    @include ds_high-contrast-link-style;
 
     &:hover {
         background-color: $ds_colour__link--hover__background;
@@ -52,17 +53,15 @@ $link__border-width: 3px;
 
 @mixin ds_blocklink ($link-selector: null, $hover: true) {
     display: block;
+    outline: 0 !important;
     position: relative;
     transition: background-color $transition-out-time, outline-color $transition-out-time;
     z-index: 1;
-
-    outline: 0 !important;
 
     &:focus {
         background-color: $ds_colour__blocklink-bg--focus;
         box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow;
         color: $ds_colour__link--focus;
-
         @include ds_high-contrast-focus;
     }
 
@@ -117,7 +116,6 @@ $link__border-width: 3px;
                     &:focus {
                         box-shadow: none;
                         background-color: transparent;
-
                         @include ds_high-contrast-focus;
                     }
                 }

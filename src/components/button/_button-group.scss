@@ -3,11 +3,10 @@
 \*------------------------------------*/
 
 .ds_button-group {
-    @include ds_block-margins;
-    @include ds_responsive-spacing(2, 'gap');
-
     display: flex;
     flex-wrap: wrap;
+    @include ds_block-margins;
+    @include ds_responsive-spacing(2, 'gap');
 
     // Remove margins as the group handles the layout
     .ds_button {

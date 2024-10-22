@@ -60,10 +60,10 @@ $date-picker-focus-border-width: 3px;
         }
 
         &__title {
-            @include ds_small-size;
             line-height: line-height-on-grid($small-size, 2);
             margin: 0 !important;
             text-transform: uppercase;
+            @include ds_small-size;
         }
 
         &__navbuttons {
@@ -75,9 +75,11 @@ $date-picker-focus-border-width: 3px;
                 margin: 0;
                 padding: 4px;
                 min-width:  32px;
-
                 @include ds_blocklink;
-                display: inline-block;
+
+                & {
+                    display: inline-block;
+                }
 
                 &:hover {
                     color: currentColor;
@@ -106,9 +108,9 @@ $date-picker-focus-border-width: 3px;
             }
 
             th {
-                @include ds_small-size;
                 color: $ds_colour__text--secondary;
                 font-weight: $normal;
+                @include ds_small-size;
             }
 
             button {
@@ -120,9 +122,11 @@ $date-picker-focus-border-width: 3px;
                 margin: 0;
                 padding: 0;
                 min-width: 40px;
-
                 @include ds_small-size;
-                @include ds_blocklink;
+
+                & {
+                    @include ds_blocklink;
+                }
 
                 &:focus {
                     transition-duration: 0s;
@@ -188,15 +192,15 @@ $date-picker-focus-border-width: 3px;
         }
 
         &__table-caption {
-            @include ds_tiny-size;
             caption-side: bottom;
             line-height: 2;
             margin-top: 8px;
+            @include ds_tiny-size;
         }
 
         &__buttongroup {
-            @include ds_layout(8px);
             overflow: visible;
+            @include ds_layout(8px);
 
             // non-grid
             button {
@@ -213,10 +217,12 @@ $date-picker-focus-border-width: 3px;
     }
 
     &__button {
-        @include ds_small-size;
-        @include ds_button-sizing--small;
-
         align-self: end;
+        @include ds_small-size;
+
+        & {
+            @include ds_button-sizing--small;
+        }
     }
 }
 

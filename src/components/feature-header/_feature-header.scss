@@ -9,12 +9,13 @@
         @include ds_h1-style;
         @include ds_responsive-margin(1, bottom);
 
-        font-weight: $light;
+        & {
+            font-weight: $light;
+        }
     }
 
     &--background {
         background-color: $ds_colour__background--tertiary;
-
         @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'feature header');
         @include checkAndFixDescendantSecondaryButtonColour($ds_colour__button--secondary, $ds_colour__background--tertiary, 'feature header');
     }

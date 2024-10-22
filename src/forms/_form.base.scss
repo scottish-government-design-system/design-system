@@ -3,9 +3,9 @@
 \*------------------------------------*/
 
 legend {
-    @include ds_h3-size;
     font-weight: $bold;
     margin-bottom: 8px;
+    @include ds_h3-size;
 }
 
 fieldset {
@@ -21,6 +21,7 @@ fieldset {
         // Move top margin to ds_question to handle when it has error state left border and avoid problems with fieldset and legend negative margins
         .ds_question:has(.ds_page-header) {
             margin-top: 1rem;
+
             @include ds_media-query(medium) {
                 margin-top: 2rem;
             }

@@ -3,17 +3,16 @@
 \*------------------------------------*/
 
 .ds_prefilled-value-list {
-
     &__key {
         margin: 0;
-        @include ds_responsive-margin(1, bottom);
         padding: 0;
+        @include ds_responsive-margin(1, bottom);
     }
 
     &__value {
         margin: 0;
-        @include ds_responsive-margin(3, bottom);
         padding: 0;
+        @include ds_responsive-margin(3, bottom);
 
         @include ds_media-query(medium) {
             display: flex;
@@ -21,9 +20,6 @@
             &-actions {
                 @include ds_responsive-margin(3, left);
             }
-        
         }
-
     }
-
 }

@@ -26,7 +26,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     &__content {
         padding: 16px 0 15px; /// [1]
         position: relative;
-
         @include ds_last-child-no-margin;
 
         &--has-close {
@@ -37,7 +36,6 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     &__text {
         display: inline-block;
         margin-right: 16px;
-
         @include ds_last-child-no-margin;
     }
 

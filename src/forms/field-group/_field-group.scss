@@ -21,7 +21,6 @@
         // Remove bottom margin of all fields
         > div {
             margin-bottom: 0;
-
             @include ds_last-child-no-margin;
         }
     }

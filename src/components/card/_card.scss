@@ -5,13 +5,13 @@
 $card-grey-background-color: $ds_colour__background--primary--dim !default;
 
 .ds_card {
-    @include ds_box-shadow;
-    @include ds_small-size;
-    @include ds_high-contrast-outline;
     background-color: $ds_colour__background--primary;
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;
+    @include ds_box-shadow;
+    @include ds_small-size;
+    @include ds_high-contrast-outline;
 
     &--grey {
         background-color: $card-grey-background-color;
@@ -66,25 +66,25 @@ $card-grey-background-color: $ds_colour__background--primary--dim !default;
     }
 
     &__content {
-        @include ds_last-child-no-margin;
         display: grid;
         grid-template-rows: auto auto 1fr;
         height: 100%;
+        @include ds_last-child-no-margin;
         @include ds_responsive-padding(2, top);
         @include ds_responsive-padding(2, right);
         @include ds_responsive-padding(3, bottom);
         @include ds_responsive-padding(2, left);
 
         &-footer {
-            @include ds_last-child-no-margin;
             align-self: end;
+            @include ds_last-child-no-margin;
         }
     }
 
     &__title {
+        margin-top: 0 !important;
         @include ds_h3-style;
         @include ds_responsive-margin(1, bottom);
-        margin-top: 0 !important;
     }
 
     &__link--cover:focus {

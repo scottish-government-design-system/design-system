@@ -11,30 +11,34 @@ $side-nav__outline-width: 2px;
 
 
 .ds_side-navigation {
-    @include ds_block-margins;
-    @include ds_small-size;
-
     border: 1px solid $ds_colour__border;
     position: relative;
+    @include ds_block-margins;
+
+    & {
+        @include ds_small-size;
+    }
 
     /// [1] Allowance for 1px border on all sides of parent container
     &__expand {
         @include ds_blocklink;
 
-        background-color: $ds_colour__background--primary;
-        color: $side-nav__expand-colour;
-        cursor: pointer;
-        font-weight: $bold;
-        line-height: inherit;
-        margin: 0;
-        padding: 15px 47px 15px 15px; /// [1]
-        position: sticky;
-        text-align: left;
-        text-decoration: none;
-        top: 0;
-        transition: background-color $transition-in-time, box-shadow $transition-in-time;
-        width: 100%;
-        z-index: 2;
+        & {
+            background-color: $ds_colour__background--primary;
+            color: $side-nav__expand-colour;
+            cursor: pointer;
+            font-weight: $bold;
+            line-height: inherit;
+            margin: 0;
+            padding: 15px 47px 15px 15px; /// [1]
+            position: sticky;
+            text-align: left;
+            text-decoration: none;
+            top: 0;
+            transition: background-color $transition-in-time, box-shadow $transition-in-time;
+            width: 100%;
+            z-index: 2;
+        }
 
         &--shadow {
             box-shadow: 0px 5px 5px rgba(0,0,0,0.15);
@@ -54,13 +58,13 @@ $side-nav__outline-width: 2px;
     }
 
     &__expand-indicator {
-        @include ds_chevron(down, 0.75rem);
         border-width: 0px 0px 3px 3px;
         position: absolute;
         right: 23px;
         top: 17px;
         transition: transform 0.2s, top 0.2s;
         pointer-events: none;
+        @include ds_chevron(down, 0.75rem);
     }
 
     #show-side-navigation:focus ~ .ds_side-navigation__expand {
@@ -108,10 +112,12 @@ $side-nav__outline-width: 2px;
     &__link {
         @include ds_blocklink;
 
-        margin-bottom: 2px;
-        padding: 12px 40px 10px 16px; /// [2]
-        position: relative;
-        text-decoration: none;
+        & {
+            margin-bottom: 2px;
+            padding: 12px 40px 10px 16px; /// [2]
+            position: relative;
+            text-decoration: none;
+        }
 
         &:not([href]) {
             pointer-events: none;
@@ -187,7 +193,6 @@ $side-nav__outline-width: 2px;
 }
 
 @include ds_media-query(medium-down) {
-
     .js-initialised.ds_side-navigation .ds_side-navigation__list {
         display: block;
     }

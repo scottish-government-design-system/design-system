@@ -5,8 +5,8 @@
 ul,
 ol,
 dd {
-    @include ds_last-child-no-margin;
     margin-left: px-to-rem(20px);
+    @include ds_last-child-no-margin;
 }
 
 dd,

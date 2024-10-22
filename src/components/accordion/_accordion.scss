@@ -9,10 +9,9 @@ $accordion__header-colour: $ds_colour__link !default;
 
 
 .ds_accordion {
+    position: relative;
     @include ds_responsive-margin (4, bottom, false, -1px);
     @include ds_responsive-margin (4, top);
-
-    position: relative;
 
     &__open-all {
         display: none;
@@ -51,16 +50,18 @@ h1,h2,h3 {
 
     &__header {
         @include ds_blocklink;
-        @include ds_h4-size;
 
-        background-color: $ds_colour__background--primary;
-        border-width: 0;
-        color: $accordion__header-colour;
-        font-weight: $bold;
-        margin: 0;
-        position: relative;
-        text-align: left;
-        width: 100%;
+        & {
+            background-color: $ds_colour__background--primary;
+            border-width: 0;
+            color: $accordion__header-colour;
+            font-weight: $bold;
+            margin: 0;
+            position: relative;
+            text-align: left;
+            width: 100%;
+            @include ds_h4-size;
+        }
 
         &:hover:not(:focus) {
             color: $ds_colour__link--hover;
@@ -69,9 +70,9 @@ h1,h2,h3 {
 
     /// [1] subtracting the accordion item's border width
     &__title {
-        @include ds_h4-size;
         margin-bottom: 0;
         padding: 1rem 3rem calc(1rem - 1px) 1rem; /// [1]
+        @include ds_h4-size;
 
         &--button {
             padding: 0;
@@ -86,7 +87,6 @@ h1,h2,h3 {
         padding: 1rem 3rem calc(1rem - 1px) 1rem; /// [1]
         text-align: left;
         width: 100%;
-
         @include ds_blocklink;
     }
 
@@ -104,12 +104,12 @@ h1,h2,h3 {
     }
 
     &__indicator {
-        @include ds_chevron(down, 0.75em);
+        pointer-events: none;
         position: absolute;
         right: 1.5rem;
         top: 1.125rem;
         transition: transform 0.2s, top 0.2s;
-        pointer-events: none;
+        @include ds_chevron(down, 0.75em);
 
         @include ds_media-query(medium) {
             top: px-to-rem(21px); // nudges indicator to remain inline with first line of title
@@ -120,7 +120,6 @@ h1,h2,h3 {
     &__body {
         display: none;
         padding: 1.5rem 2.5rem 2rem 1rem;
-
         @include ds_last-child-no-margin;
 
         @include ds_media-query(medium) {

@@ -23,9 +23,9 @@
 
         // Stack at small size
         @include ds_media-query(small-down) {
-            @include ds_responsive-padding(3, bottom, $tuning: -2px);
             align-items: flex-start;
             flex-direction: column;
+            @include ds_responsive-padding(3, bottom, $tuning: -2px);
         }
 
         &-details {
@@ -34,9 +34,9 @@
 
         // remove heading styles
         &-heading {
-            @include ds_root-size;
             font-weight: $normal;
             margin: 0;
+            @include ds_root-size;
         }
 
         &-link {
@@ -50,12 +50,12 @@
 
         // Deprecated - use ds_tag component instead
         &-status {
-            @include ds_small-size;
-            @include ds_high-contrast-outline;
             background-color: $ds_colour__background--tertiary;
             font-weight: $bold;
             padding: px-to-rem(4px) px-to-rem(16px);
             white-space: nowrap;
+            @include ds_small-size;
+            @include ds_high-contrast-outline;
 
             &--complete {
                 background: $ds_colour__background--primary;
@@ -67,8 +67,8 @@
     }
 
     &-heading {
-        @include ds_h3-style;
         display: inline-block;
+        @include ds_h3-style;
     }
 
     &-intro {
@@ -106,8 +106,8 @@
         list-style-type: decimal;
 
         .ds_task-list-group__section::marker {
-            @include ds_h3-size;
             font-weight: $bold;
+            @include ds_h3-size;
         }
     }
 }

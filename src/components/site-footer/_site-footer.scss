@@ -10,9 +10,10 @@ $site-footer__background: $ds_colour__background--tertiary !default;
 
 .ds_site-footer {
     /// [1] subtracting the border width
-    @include ds_small-size;
+    ///
     background-color: $site-footer__background;
     border-top: 1px solid $ds_colour__border;
+    @include ds_small-size;
 
     &__content {
         padding-top: px-to-rem(23px); /// [1]
@@ -33,7 +34,6 @@ $site-footer__background: $ds_colour__background--tertiary !default;
             display: block;
             margin-bottom: 8px;
             width: 32px;
-
             @include ds_fancy-underscore();
 
             img {
@@ -60,7 +60,6 @@ $site-footer__background: $ds_colour__background--tertiary !default;
 
     &__org-link {
         display: block;
-
         @include ds_fancy-underscore();
     }
 
@@ -85,8 +84,6 @@ $site-footer__background: $ds_colour__background--tertiary !default;
 }
 
 @include ds_media-query(medium) {
-
-
     .ds_site-footer {
 
         &__copyright {

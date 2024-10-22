@@ -8,10 +8,10 @@ $search-results-related-background: $ds_colour__background--secondary;
     margin-top: 0.5rem;
 
     &__title {
-        @include ds_root-size;
-        @include ds-responsive-margin(1, bottom);
         font-weight: $normal;
         margin-top: 0 !important;
+        @include ds_root-size;
+        @include ds-responsive-margin(1, bottom);
 
         &-query {
             font-weight: $bold;
@@ -30,16 +30,19 @@ $search-results-related-background: $ds_colour__background--secondary;
     }
 
     &__related {
+        background: $search-results-related-background;
         @include ds_small-size;
         @include ds_block-margins;
         @include ds_last-child-no-margin;
         @include ds_responsive-padding(2);
-        background: $search-results-related-background;
 
         &-title {
-            @include ds_root-size;
             margin: 0;
-            @include ds_responsive-margin(1, bottom);
+            @include ds_root-size;
+
+            & {
+                @include ds_responsive-margin(1, bottom);
+            }
         }
 
         @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'related search results');

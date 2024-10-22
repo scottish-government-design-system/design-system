@@ -4,20 +4,24 @@
 \*------------------------------------*/
 
 .ds_link-item {
-
-    @include ds_responsive-padding (3, bottom, $tuning: -2px);
     border-bottom: 2px $ds_colour__border--faint solid;
     margin: 0;
+    @include ds_responsive-padding (3, bottom, $tuning: -2px);
 
     &__title {
-        @include ds_h3-size();
         margin: 0 !important;
+        @include ds_h3-size();
     }
 
     &__summary {
-        @include ds_small-size();
         margin: 0;
-        @include ds_responsive-margin (1, top);
-    }
 
+        & {
+            @include ds_small-size();
+        }
+
+        & {
+            @include ds_responsive-margin (1, top);
+        }
+    }
 }

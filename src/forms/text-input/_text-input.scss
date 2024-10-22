@@ -4,7 +4,6 @@
 \*------------------------------------*/
 
 .ds_input {
-    @include ds_responsive-margin (3, bottom);
     background-color: $ds_colour__background--primary;
     border: $field-border-width solid currentColor;
     border-radius: 0;
@@ -13,6 +12,7 @@
     min-height: 3rem;
     padding: px-to-rem(8px - $field-border-width) px-to-rem(12px - $field-border-width);
     width: 100%;
+    @include ds_responsive-margin (3, bottom);
 
     &:focus {
         @include ds_focus-outline;

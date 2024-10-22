@@ -3,8 +3,8 @@
 \*------------------------------------*/
 
 .ds_pagination {
-    @include ds_small-size;
     text-align: center;
+    @include ds_small-size;
 
     &__list {
         list-style-type: none;
@@ -23,11 +23,14 @@
 
     &__link {
         @include ds_blocklink;
-        line-height: 2.5rem;
-        min-height: 2.5rem;
-        min-width: 2.5rem;
-        padding: 0 0.5rem;
-        text-decoration: none;
+
+        & {
+            line-height: 2.5rem;
+            min-height: 2.5rem;
+            min-width: 2.5rem;
+            padding: 0 0.5rem;
+            text-decoration: none;
+        }
 
         &.ds_current {
             color: currentColor;

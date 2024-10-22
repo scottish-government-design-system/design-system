@@ -19,10 +19,6 @@ $tag_colours: (
 );
 
 .ds_tag {
-    @include ds_root-size;
-    @include ds_responsive-padding(1, left);
-    @include ds_responsive-padding(1, right);
-
     $background: adjustLuminance($tag__base-colour, 0.83);
     $foreground: adjustForContrast(darken($tag__base-colour, 12.5%), $background, 4.5);
 
@@ -33,6 +29,9 @@ $tag_colours: (
     outline: 1px solid rgba(red($tag__base-colour), green($tag__base-colour), blue($tag__base-colour), 0.8);
     outline-offset: -1px;
     white-space: nowrap;
+    @include ds_root-size;
+    @include ds_responsive-padding(1, left);
+    @include ds_responsive-padding(1, right);
 
     @each $color in $tag_colours {
         $name: nth($color, 1);

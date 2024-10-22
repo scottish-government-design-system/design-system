@@ -5,7 +5,6 @@
 .ds_inset-text {
     border-left: 0.5rem solid $ds_colour__border;
     padding: 1rem;
-
     @include ds_block-margins;
     @include ds_last-child-no-margin;
 }

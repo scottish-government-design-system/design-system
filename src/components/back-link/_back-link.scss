@@ -3,11 +3,11 @@
 \*------------------------------------*/
 
 .ds_back-link {
-    @include ds_small-size;
     align-items: center;
     display: inline-flex;
     margin: 16px 0 16px 16px;
     position: relative;
+    @include ds_small-size;
 
     &::before {
         @include ds_chevron(left, 0.5em);

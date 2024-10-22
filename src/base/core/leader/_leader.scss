@@ -4,11 +4,10 @@
 
 .ds_leader,
 .ds_leader-first-paragraph > p:first-child {
-    @include ds_large-size;
-    @include ds_responsive-margin(5, bottom);
-
     font-weight: $light;
     line-height: 32px;
+    @include ds_large-size;
+    @include ds_responsive-margin(5, bottom);
 
     @include ds_media-query(medium) {
         line-height: 40px;

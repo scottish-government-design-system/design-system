@@ -3,12 +3,12 @@
 \*------------------------------------*/
 
 .ds_phase-banner {
-    @include ds_small-size;
-    @include ds_responsive-padding(2, top, $tuning: -1px);
-    @include ds_responsive-padding(2, bottom);
     background: $ds_colour__background--tertiary;
     border-top: 1px solid transparent;
     clear: both;
+    @include ds_small-size;
+    @include ds_responsive-padding(2, top, $tuning: -1px);
+    @include ds_responsive-padding(2, bottom);
 
     &.no-bottom-margin {
         margin-bottom: 0;
@@ -21,7 +21,10 @@
 
     &__tag.ds_tag {
         @include ds_responsive-margin(2, right);
-        @include ds_small-size;
+
+        & {
+            @include ds_small-size;
+        }
     }
 
     &__text {
