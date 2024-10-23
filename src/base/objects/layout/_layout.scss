@@ -5,13 +5,6 @@
 .ds_layout {
     @include ds_layout();
     margin-bottom: 96px;
-
-    &__content,
-    &__partner {
-        img {
-            max-width: 100%;
-        }
-    }
 }
 
 @include ds_media-query(medium) {
