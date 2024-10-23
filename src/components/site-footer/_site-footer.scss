@@ -37,7 +37,6 @@ $site-footer__background: $ds_colour__background--tertiary !default;
             @include ds_fancy-underscore();
 
             img {
-                height: auto;
                 width: 100%;
             }
         }
@@ -54,7 +53,6 @@ $site-footer__background: $ds_colour__background--tertiary !default;
 
     &__org-logo {
         display: block;
-        height: auto;
         width: 100%;
     }
 

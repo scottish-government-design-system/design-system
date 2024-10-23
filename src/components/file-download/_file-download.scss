@@ -24,7 +24,6 @@ $file-download-background-colour: $ds_colour__background--secondary !default;
 
     &__thumbnail-image {
         display: block;
-        max-width: 100%;
         outline: 1px solid $ds_colour__border;
         outline-offset: -1px;
     }
