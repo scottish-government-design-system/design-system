@@ -87,3 +87,17 @@
         }
     }
 }
+
+/**
+  This "reverse" order follows GOV UK reasoning, where it assumed that it's better to have scroll
+  padding unnecessarily than risking not having it when it's needed.
+*/
+@supports (position: sticky) {
+    html {
+        scroll-padding-top: 6.5rem;
+
+        &:not(:has(.ds_hide-page)) {
+            scroll-padding-top: 0;
+        }
+    }
+}
