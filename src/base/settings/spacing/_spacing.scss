@@ -1,4 +1,8 @@
+@use "../../helpers/functions/functions";
+
 /// SPACING SCALE
+
+$base-spacing-unit: 0.5rem;
 
 /// [1] "null" is the default, i.e. small devices
 /// sizes can be specified for any breakpoint, but fewer is better
@@ -7,40 +11,40 @@ $ds_spacing-scale: (
     null:   0 /// [1]
     ),
   1: (
-    null:   px-to-rem(8px),
-    medium: px-to-rem(8px)
+    null:   $base-spacing-unit,
+    medium: $base-spacing-unit
     ),
   2: (
-    null:   px-to-rem(16px),
-    medium: px-to-rem(16px)
+    null:   $base-spacing-unit * 2,
+    medium: $base-spacing-unit * 2
     ),
   3: (
-    null:   px-to-rem(24px),
-    medium: px-to-rem(24px)
+    null:   $base-spacing-unit * 3,
+    medium: $base-spacing-unit * 3
     ),
   4: (
-    null:   px-to-rem(24px),
-    medium: px-to-rem(32px)
+    null:   $base-spacing-unit * 3,
+    medium: $base-spacing-unit * 4
     ),
   5: (
-    null:   px-to-rem(32px),
-    medium: px-to-rem(40px)
+    null:   $base-spacing-unit * 4,
+    medium: $base-spacing-unit * 5
     ),
   6: (
-    null:   px-to-rem(40px),
-    medium: px-to-rem(48px)
+    null:   $base-spacing-unit * 5,
+    medium: $base-spacing-unit * 6
     ),
   7: (
-    null:   px-to-rem(40px),
-    medium: px-to-rem(56px)
+    null:   $base-spacing-unit * 5,
+    medium: $base-spacing-unit * 7
     ),
   8: (
-    null:   px-to-rem(48px),
-    medium: px-to-rem(64px)
+    null:   $base-spacing-unit * 6,
+    medium: $base-spacing-unit * 8
     ),
   9: (
-    null:   px-to-rem(56px),
-    medium: px-to-rem(72px)
+    null:   $base-spacing-unit * 8,
+    medium: $base-spacing-unit * 9
     )
 ) !default;
 

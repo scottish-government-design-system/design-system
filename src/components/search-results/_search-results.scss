@@ -1,52 +1,60 @@
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     SEARCH RESULTS
 \*------------------------------------*/
 
-$search-results-related-background: $ds_colour__background--secondary;
+$search-results-related-background: colours.$ds_colour__background--secondary;
 
 .ds_search-results {
     margin-top: 0.5rem;
 
     &__title {
-        @include ds_root-size;
-        @include ds-responsive-margin(1, bottom);
-        font-weight: $normal;
+        @include headings.root-size;
+        @include spacing.responsive-margin(1, bottom);
+        font-weight: type.$normal;
         margin-top: 0 !important;
 
         &-query {
-            font-weight: $bold;
+            font-weight: type.$bold;
         }
     }
 
     &__suggestions + &__title {
-        @include ds_responsive-margin(2, top, $important: true);
+        @include spacing.responsive-margin(2, top, $important: true);
     }
 
     &__list {
-        border-bottom: 1px $ds_colour__border solid;
+        border-bottom: 0.0625rem colours.$ds_colour__border solid;
         list-style-type: none;
         margin: 0;
-        @include ds_responsive-margin(4, bottom);
+        @include spacing.responsive-margin(4, bottom);
     }
 
     &__related {
-        @include ds_small-size;
-        @include ds_block-margins;
-        @include ds_last-child-no-margin;
-        @include ds_responsive-padding(2);
+        @include headings.small-size;
+        @include block-margins.block-margins;
+        @include last-child-no-margin.last-child-no-margin;
+        @include spacing.responsive-padding(2);
         background: $search-results-related-background;
 
         &-title {
-            @include ds_root-size;
+            @include headings.root-size;
             margin: 0;
-            @include ds_responsive-margin(1, bottom);
+            @include spacing.responsive-margin(1, bottom);
         }
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'related search results');
+        @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, colours.$ds_colour__background--secondary, 'related search results');
     }
 
     &__divider {
-        margin-top: -1px;
+        margin-top: -0.0625rem;
         margin-bottom: 1.5rem;
     }
 }

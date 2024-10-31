@@ -1,36 +1,46 @@
+@use "../../base/helpers/box-shadow/box-shadow";
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/high-contrast/high-contrast";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     CARD
 \*------------------------------------*/
 
-$card-grey-background-color: $ds_colour__background--primary--dim !default;
+$card-grey-background-color: colours.$ds_colour__background--primary--dim !default;
 
 .ds_card {
-    @include ds_box-shadow;
-    @include ds_small-size;
-    @include ds_high-contrast-outline;
-    background-color: $ds_colour__background--primary;
+    @include box-shadow.box-shadow;
+    @include headings.small-size;
+    @include high-contrast.high-contrast-outline;
+    background-color: colours.$ds_colour__background--primary;
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;
 
     &--grey {
         background-color: $card-grey-background-color;
-        color: $ds_colour__text;
+        color: colours.$ds_colour__text;
 
         &:focus-within {
-            color: $ds_colour__link--focus;
+            color: colours.$ds_colour__link--focus;
         }
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $card-grey-background-color, 'grey card');
+        @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, $card-grey-background-color, 'grey card');
     }
 
     &--hover,
     &--has-hover {
         &:hover {
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+            @include box-shadow.box-shadow;
         }
         &:hover:not(:focus) {
-            background-color: $ds_colour__link--hover__background;
+            background-color: colours.$ds_colour__link--hover__background;
 
             // override metadata colour to meet contrast
             .ds_metadata {
@@ -39,8 +49,8 @@ $card-grey-background-color: $ds_colour__background--primary--dim !default;
         }
 
         &:focus-within {
-            background-color: $ds_colour__link--focus__background !important;
-            box-shadow: inset 0 -3px $ds_colour__link--focus__shadow, inset 0 -3px $ds_colour__link--focus__shadow;
+            background-color: colours.$ds_colour__link--focus__background !important;
+            box-shadow: inset 0 -1875rem colours.$ds_colour__link--focus__shadow, inset 0 -1875rem colours.$ds_colour__link--focus__shadow;
             transition-duration: 0s;
 
             .ds_card__link--cover {
@@ -57,46 +67,46 @@ $card-grey-background-color: $ds_colour__background--primary--dim !default;
     }
 
     &__media {
-        @include ds_media-query (medium-down) {
+        @include media-query.media-query (medium-down) {
             &--small-mobile {
-                margin: px-to-rem(16px) px-to-rem(16px) 0;
-                max-width: 384px;
+                margin: 1rem 1rem 0;
+                max-width: 24rem;
             }
         }
     }
 
     &__content {
-        @include ds_last-child-no-margin;
+        @include last-child-no-margin.last-child-no-margin;
         display: grid;
         grid-template-rows: auto auto 1fr;
         height: 100%;
-        @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(2, right);
-        @include ds_responsive-padding(3, bottom);
-        @include ds_responsive-padding(2, left);
+        @include spacing.responsive-padding(2, top);
+        @include spacing.responsive-padding(2, right);
+        @include spacing.responsive-padding(3, bottom);
+        @include spacing.responsive-padding(2, left);
 
         &-footer {
-            @include ds_last-child-no-margin;
+            @include last-child-no-margin.last-child-no-margin;
             align-self: end;
         }
     }
 
     &__title {
-        @include ds_h3-style;
-        @include ds_responsive-margin(1, bottom);
+        @include headings.h3-style;
+        @include spacing.responsive-margin(1, bottom);
         margin-top: 0 !important;
     }
 
     &__link--cover:focus {
-        @include ds_high-contrast-focus;
+        @include high-contrast.high-contrast-focus;
     }
 
     &__link--cover:after {
         content: "";
         height: 100%;
-        left: 0px;
+        left: 0;
         position: absolute;
-        top: 0px;
+        top: 0;
         width: 100%;
         z-index: 1;
     }

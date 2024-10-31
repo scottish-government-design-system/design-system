@@ -1,99 +1,104 @@
+@use "../../settings/type/type";
+@use "../functions/functions";
+@use "../media-query/media-query";
+@use "../spacing/spacing";
+
 ///
 /// Heading size mixins
 ///
 
-@mixin ds_h1-size($type-grid: 8px) {
-    font-size: px-to-rem($h1-size);
-    line-height: line-height-on-grid($h1-size, 1.3, $grid: $type-grid);
+@mixin h1-size($type-grid: 0.5rem) {
+    font-size: type.$h1-size;
+    line-height: functions.line-height-on-grid(type.$h1-size, 1.3, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($h1-size--medium);
-        line-height: line-height-on-grid($h1-size--medium, 1.3, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$h1-size--medium;
+        line-height: functions.line-height-on-grid(type.$h1-size--medium, 1.3, $grid: $type-grid);
     }
 }
 
-@mixin ds_h2-size($type-grid: 8px) {
-    font-size: px-to-rem($h2-size);
-    line-height: line-height-on-grid($h2-size, 1.3, $grid: $type-grid);
+@mixin h2-size($type-grid: 0.5rem) {
+    font-size: type.$h2-size;
+    line-height: functions.line-height-on-grid(type.$h2-size, 1.3, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($h2-size--medium);
-        line-height: line-height-on-grid($h2-size--medium, 1.3, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$h2-size--medium;
+        line-height: functions.line-height-on-grid(type.$h2-size--medium, 1.3, $grid: $type-grid);
     }
 }
 
-@mixin ds_h3-size($type-grid: 8px) {
-    font-size: px-to-rem($h3-size);
-    line-height: line-height-on-grid($h3-size, 1.3, $grid: $type-grid);
+@mixin h3-size($type-grid: 0.5rem) {
+    font-size: type.$h3-size;
+    line-height: functions.line-height-on-grid(type.$h3-size, 1.3, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($h3-size--medium);
-        line-height: line-height-on-grid($h3-size--medium, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$h3-size--medium;
+        line-height: functions.line-height-on-grid(type.$h3-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_h4-size($type-grid: 8px) {
-    font-size: px-to-rem($h4-size);
-    line-height: line-height-on-grid($h4-size, $grid: $type-grid);
+@mixin h4-size($type-grid: 0.5rem) {
+    font-size: type.$h4-size;
+    line-height: functions.line-height-on-grid(type.$h4-size, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($h4-size--medium);
-        line-height: line-height-on-grid($h4-size--medium, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$h4-size--medium;
+        line-height: functions.line-height-on-grid(type.$h4-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_h5-size($type-grid: 8px) {
-    font-size: px-to-rem($h5-size);
-    line-height: line-height-on-grid($h5-size, $grid: $type-grid);
+@mixin h5-size($type-grid: 0.5rem) {
+    font-size: type.$h5-size;
+    line-height: functions.line-height-on-grid(type.$h5-size, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($h5-size--medium);
-        line-height: line-height-on-grid($h5-size--medium, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$h5-size--medium;
+        line-height: functions.line-height-on-grid(type.$h5-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_tiny-size($type-grid: 8px) {
-    font-size: px-to-rem($tiny-size);
-    line-height: line-height-on-grid($tiny-size, $grid: $type-grid);
+@mixin tiny-size($type-grid: 0.5rem) {
+    font-size: type.$tiny-size;
+    line-height: functions.line-height-on-grid(type.$tiny-size, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($tiny-size--medium);
-        line-height: line-height-on-grid($tiny-size--medium, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$tiny-size--medium;
+        line-height: functions.line-height-on-grid(type.$tiny-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_small-size($type-grid: 8px) {
-    font-size: px-to-rem($small-size);
-    line-height: line-height-on-grid($small-size, $grid: $type-grid);
+@mixin small-size($type-grid: 0.5rem) {
+    font-size: type.$small-size;
+    line-height: functions.line-height-on-grid(type.$small-size, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($small-size--medium);
-        line-height: line-height-on-grid($small-size--medium, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$small-size--medium;
+        line-height: functions.line-height-on-grid(type.$small-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_small-size--fixed($type-grid: 8px) {
-    font-size: px-to-rem($small-size--fixed);
-    line-height: line-height-on-grid($small-size--fixed, $grid: $type-grid);
+@mixin small-size--fixed($type-grid: 0.5rem) {
+    font-size: type.$small-size--fixed;
+    line-height: functions.line-height-on-grid(type.$small-size--fixed, $grid: $type-grid);
 }
 
-@mixin ds_large-size($type-grid: 8px) {
-    font-size: px-to-rem($large-size);
-    line-height: line-height-on-grid($large-size, $grid: $type-grid);
+@mixin large-size($type-grid: 0.5rem) {
+    font-size: type.$large-size;
+    line-height: functions.line-height-on-grid(type.$large-size, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($large-size--medium);
-        line-height: line-height-on-grid($large-size--medium, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$large-size--medium;
+        line-height: functions.line-height-on-grid(type.$large-size--medium, $grid: $type-grid);
     }
 }
 
-@mixin ds_root-size($type-grid: 8px) {
-    font-size: px-to-rem($root-font-size);
-    line-height: line-height-on-grid($root-font-size, $grid: $type-grid);
+@mixin root-size($type-grid: 0.5rem) {
+    font-size: type.$root-font-size;
+    line-height: functions.line-height-on-grid(type.$root-font-size, $grid: $type-grid);
 
-    @include ds_media-query(medium) {
-        font-size: px-to-rem($root-font-size--medium);
-        line-height: line-height-on-grid($root-font-size--medium, $grid: $type-grid);
+    @include media-query.media-query(medium) {
+        font-size: type.$root-font-size--medium;
+        line-height: functions.line-height-on-grid(type.$root-font-size--medium, $grid: $type-grid);
     }
 }
 
@@ -103,68 +108,32 @@
 ///
 /// Heading style mixins
 ///
-@mixin ds_h1-style {
-    @include ds_h1-size;
-    @include ds_responsive-margin(4, bottom);
-    font-weight: $bold;
+@mixin h1-style {
+    @include h1-size;
+    @include spacing.responsive-margin(4, bottom);
+    font-weight: type.$bold;
 }
 
-@mixin ds_h2-style {
-    @include ds_h2-size;
-    @include ds_responsive-margin(2, bottom);
-    font-weight: $bold;
+@mixin h2-style {
+    @include h2-size;
+    @include spacing.responsive-margin(2, bottom);
+    font-weight: type.$bold;
 }
 
-@mixin ds_h3-style {
-    @include ds_h3-size;
-    @include ds_responsive-margin(2, bottom);
-    font-weight: $bold;
+@mixin h3-style {
+    @include h3-size;
+    @include spacing.responsive-margin(2, bottom);
+    font-weight: type.$bold;
 }
 
-@mixin ds_h4-style {
-    @include ds_h4-size;
-    @include ds_responsive-margin(2, bottom);
-    font-weight: $bold;
+@mixin h4-style {
+    @include h4-size;
+    @include spacing.responsive-margin(2, bottom);
+    font-weight: type.$bold;
 }
 
-@mixin ds_h5-style {
-    @include ds_h5-size;
-    @include ds_responsive-margin(1, bottom);
-    font-weight: $bold;
-}
-
-
-
-
-/// legacy non-prefixed names
-@mixin h1-size {
-    @include ds_h1-size;
-}
-
-@mixin h2-size {
-    @include ds_h2-size;
-}
-
-@mixin h3-size {
-    @include ds_h3-size;
-}
-
-@mixin h4-size {
-    @include ds_h4-size;
-}
-
-@mixin h5-size {
-    @include ds_h5-size;
-}
-
-@mixin tiny-size {
-    @include ds_tiny-size;
-}
-
-@mixin small-size {
-    @include ds_small-size;
-}
-
-@mixin large-size {
-    @include ds_large-size;
+@mixin h5-style {
+    @include h5-size;
+    @include spacing.responsive-margin(1, bottom);
+    font-weight: type.$bold;
 }

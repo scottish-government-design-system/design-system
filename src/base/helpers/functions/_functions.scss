@@ -1,3 +1,6 @@
+@use "sass:string";
+@use "../../settings/type/type";
+
 ///
 /// Miscellaneous functions, mostly used in the headings helpers
 ///
@@ -8,25 +11,25 @@
 }
 
 @function get-unit($value) {
-  @return str-slice($value * 0 + "", 2, -1);
+  @return string.slice($value * 0 + "", 2, -1);
 }
 
-@function px-to-em ($px, $base: $root-font-size) {
+@function px-to-em ($px, $base: type.$root-font-size) {
     @return math.div($px, $base) * 1em;
 }
 
-@function px-to-rem ($px, $base: $root-font-size) {
+@function px-to-rem ($px, $base: type.$root-font-size) {
     @return math.div($px, $base) * 1rem;
 }
 
-@function rem-to-px ($rem, $base: $root-font-size) {
+@function rem-to-px ($rem, $base: type.$root-font-size) {
     @return strip-unit($rem * $base) * 1px;
 }
 
-@function nearest-grid-size ($value, $grid: 8px) {
-    @return round(math.div($value, $grid)) * $grid;
+@function nearest-grid-size ($value, $grid: 0.5rem) {
+    @return math.round(math.div($value, $grid)) * $grid;
 }
 
-@function line-height-on-grid ($font-size, $line-height: 1.5, $grid: 8px) {
+@function line-height-on-grid ($font-size, $line-height: 1.5, $grid: 0.5rem) {
     @return math.div(nearest-grid-size($font-size * $line-height, $grid), $font-size);
 }

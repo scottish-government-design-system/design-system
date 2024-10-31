@@ -1,19 +1,22 @@
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     SEARCH BOX
 \*------------------------------------*/
 
 // modifiable vars
-$site-search__height: 48px !default;
-$site-search__height--medium: 48px !default;
-$site-search__background-colour: $ds_colour__background--primary--dim !default;
-$site-search__border-colour: $ds_colour__grey !default;
+$site-search__height: 3rem !default;
+$site-search__height--medium: 3rem !default;
+$site-search__background-colour: colours.$ds_colour__background--primary--dim !default;
+$site-search__border-colour: colours.$ds_colour__grey !default;
 
 
 
 
 .ds_site-search {
     box-sizing: border-box;
-    color: $ds_colour__text;
+    color: colours.$ds_colour__text;
     min-height: $site-search__height;
 
     &__input[type=text],
@@ -33,7 +36,7 @@ $site-search__border-colour: $ds_colour__grey !default;
     }
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_site-search {
         min-height: $site-search__height--medium;
 

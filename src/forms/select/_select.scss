@@ -1,3 +1,8 @@
+@use "../../base/helpers/focus/focus";
+@use "../../base/helpers/icons/icons";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     SELECT
 \*------------------------------------*/
@@ -11,19 +16,19 @@
     appearance: none;
     background-color: transparent;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M480-360 280-560h400L480-360Z'/%3E%3C/svg%3E");
-    background-position: center right 10px;
+    background-position: center right 0.625rem;
     background-repeat: no-repeat;
     border-radius: 0;
     border: 0;
-    box-shadow: inset 0 0 0 2px currentColor;
+    box-shadow: inset 0 0 0 0.125rem currentColor;
     min-height: 3rem;
-    outline: 2px solid transparent; /// [1]
-    outline-offset: -2px; /// [1]
+    outline: 0.125rem solid transparent; /// [1]
+    outline-offset: -0.125rem; /// [1]
     padding: 0.5rem 3rem 0.5rem 0.75rem;
 
     &:focus {
-        @include ds_focus-outline;
-        box-shadow: inset 0 0 0 4px currentColor;
+        @include focus.focus-outline;
+        box-shadow: inset 0 0 0 0.25rem currentColor;
     }
 
     &::-ms-expand {
@@ -35,11 +40,11 @@
 /// [1] renders an outline/border in windows high contrast mode
 ///
 .ds_select-arrow {
-    background: $ds_colour__button__background;
+    background: colours.$ds_colour__button__background;
     display: none;
     width: 3rem;
-    outline: 2px solid transparent; /// [1]
-    outline-offset: -2px; /// [1]
+    outline: 0.125rem solid transparent; /// [1]
+    outline-offset: -0.125rem; /// [1]
     pointer-events: none;
     position: relative;
 
@@ -49,29 +54,29 @@
 
     &::before {
         bottom: 0;
-        color: $ds_colour__button;
+        color: colours.$ds_colour__button;
         font-size: 1rem;
         position: absolute;
         right: 0;
         top: 0;
         z-index: 1;
 
-        @include ds_chevron(down, 0.75em);
+        @include icons.chevron(down, 0.75em);
         right: calc(50% - 0.375em);
         top: calc(50% - 0.5625em);
     }
 }
 
 .ds_select:focus + .ds_select-arrow {
-    background-color: $ds_colour__button--focus__background;
+    background-color: colours.$ds_colour__button--focus__background;
 
     &::before {
-        color: $ds_colour__button--focus;
+        color: colours.$ds_colour__button--focus;
     }
 }
 
 .ds_select-wrapper {
-    @include ds_responsive-margin(3, bottom);
+    @include spacing.responsive-margin(3, bottom);
     max-width: max-content;
     min-width: 10em
 }
@@ -82,10 +87,10 @@
     &.ds_input--error .ds_select, /// [1]
     .ds_select--error,
     .ds_input--error {
-        box-shadow: inset 0 0 0 4px $ds_colour__state--negative;
+        box-shadow: inset 0 0 0 0.25rem colours.$ds_colour__state--negative;
 
         &:focus {
-            box-shadow: inset 0 0 0 4px currentColor;
+            box-shadow: inset 0 0 0 0.25rem currentColor;
         }
     }
 }

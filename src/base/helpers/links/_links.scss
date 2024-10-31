@@ -1,6 +1,12 @@
+@use "../../settings/colours/colours";
+@use "../../settings/transition/transition";
+@use "../focus/focus";
+@use "../high-contrast/high-contrast";
+@use "../media-query/media-query";
+
 $blocklink__outline-width: 0;
-$link__outline-width: 2px;
-$link__border-width: 3px;
+$link__outline-width: 0.125rem;
+$link__border-width: 0.1875rem;
 
 
 
@@ -10,27 +16,27 @@ $link__border-width: 3px;
 /// Single definition to enforce consistent display of links and elements that
 /// look like links (e.g. buttons we want to have display with a link-like style)
 
-@mixin ds_link {
-    @include ds_high-contrast-link-style;
-    color: $ds_colour__link;
+@mixin link {
+    @include high-contrast.high-contrast-link-style;
+    color: colours.$ds_colour__link;
     text-decoration: underline;
-    outline: 0px solid transparent;
-    text-underline-offset: 1px;
-    transition: color $transition-out-time, background-color $transition-out-time, outline-color $transition-out-time;
+    outline: 0 solid transparent;
+    text-underline-offset: 0.0625rem;
+    transition: color transition.$transition-out-time, background-color transition.$transition-out-time, outline-color transition.$transition-out-time;
 
     &:hover {
-        background-color: $ds_colour__link--hover__background;
-        color: $ds_colour__link--hover;
-        outline: $link__outline-width solid $ds_colour__link--hover__background;
-        transition-duration: $transition-in-time;
+        background-color: colours.$ds_colour__link--hover__background;
+        color: colours.$ds_colour__link--hover;
+        outline: $link__outline-width solid colours.$ds_colour__link--hover__background;
+        transition-duration: transition.$transition-in-time;
     }
 
     &:focus {
-        @include ds_focus-outline;
+        @include focus.focus-outline;
 
-        background-color: $ds_colour__link--focus__background;
-        box-shadow: #{$link__outline-width * -1} #{$link__outline-width + $link__border-width} $ds_colour__link--focus__shadow, $link__outline-width #{$link__outline-width + $link__border-width} $ds_colour__link--focus__shadow;
-        color: $ds_colour__link--focus;
+        background-color: colours.$ds_colour__link--focus__background;
+        box-shadow: #{$link__outline-width * -1} #{$link__outline-width + $link__border-width} colours.$ds_colour__link--focus__shadow, $link__outline-width #{$link__outline-width + $link__border-width} colours.$ds_colour__link--focus__shadow;
+        color: colours.$ds_colour__link--focus;
         text-decoration: none;
         transition-duration: 0s;
     }
@@ -50,25 +56,25 @@ $link__border-width: 3px;
 /// @param {string} $link-selector - child element that is used as the link, optional
 /// @param {boolean} $hover - whether to apply a hover state
 
-@mixin ds_blocklink ($link-selector: null, $hover: true) {
+@mixin blocklink ($link-selector: null, $hover: true) {
     display: block;
     position: relative;
-    transition: background-color $transition-out-time, outline-color $transition-out-time;
+    transition: background-color transition.$transition-out-time, outline-color transition.$transition-out-time;
     z-index: 1;
 
     outline: 0 !important;
 
     &:focus {
-        background-color: $ds_colour__blocklink-bg--focus;
-        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow;
-        color: $ds_colour__link--focus;
+        background-color: colours.$ds_colour__blocklink-bg--focus;
+        box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} colours.$ds_colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} colours.$ds_colour__link--focus__shadow;
+        color: colours.$ds_colour__link--focus;
 
-        @include ds_high-contrast-focus;
+        @include high-contrast.high-contrast-focus;
     }
 
     @if $hover {
         &:hover:not(:focus) {
-            background-color: $ds_colour__blocklink-bg--hover;
+            background-color: colours.$ds_colour__blocklink-bg--hover;
         }
     }
 
@@ -90,13 +96,13 @@ $link__border-width: 3px;
                 &::after {
                     content: "";
                     height: 100%;
-                    left: 0px;
+                    left: 0;
                     position: absolute;
-                    top: 0px;
+                    top: 0;
                     width: 100%;
                     z-index: 0;
 
-                    @include ds_media-query-high-contrast {
+                    @include media-query.media-query-high-contrast {
                         content: none;
                     }
                 }
@@ -109,8 +115,8 @@ $link__border-width: 3px;
             }
 
             &:focus-within {
-                background-color: $ds_colour__blocklink-bg--focus !important;
-                box-shadow: inset 0 -3px #333333, inset 0 -3px #333333;
+                background-color: colours.$ds_colour__blocklink-bg--focus !important;
+                box-shadow: inset 0 -0.1875rem #333333, inset 0 -0.1875rem #333333;
                 transition-duration: 0s;
 
                 #{$link-selector} {
@@ -118,7 +124,7 @@ $link__border-width: 3px;
                         box-shadow: none;
                         background-color: transparent;
 
-                        @include ds_high-contrast-focus;
+                        @include high-contrast.high-contrast-focus;
                     }
                 }
             }
@@ -126,24 +132,8 @@ $link__border-width: 3px;
     }
 }
 
-@mixin ds_blocklink--solid($link-selector: null) {
-    @include ds_blocklink($link-selector);
-
-    background-color: $ds_colour__background--primary;
-}
-
-
-
-
-/// legacy non-prefixed names
-@mixin link {
-    @include ds_link;
-}
-
-@mixin blocklink($link-selector: null, $hover: true) {
-    @include ds_blocklink($link-selector, hover);
-}
-
 @mixin blocklink--solid($link-selector: null) {
-    @include ds_blocklink--solid($link-selector);
+    @include blocklink($link-selector);
+
+    background-color: colours.$ds_colour__background--primary;
 }

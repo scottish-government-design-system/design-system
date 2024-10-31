@@ -1,9 +1,15 @@
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/links/links";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/visibility/visibility";
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     PAGINATION
 \*------------------------------------*/
 
 .ds_pagination {
-    @include ds_small-size;
+    @include headings.small-size;
     text-align: center;
 
     &__list {
@@ -22,7 +28,7 @@
     }
 
     &__link {
-        @include ds_blocklink;
+        @include links.blocklink;
         line-height: 2.5rem;
         min-height: 2.5rem;
         min-width: 2.5rem;
@@ -34,7 +40,7 @@
             position: relative;
 
             &::before {
-                border-bottom: 3px solid currentColor;
+                border-bottom: 0.1875rem solid currentColor;
                 bottom: 0;
                 content: '';
                 left: 0;
@@ -44,7 +50,7 @@
         }
 
         &.ds_current:not(:focus) {
-            background-color: $ds_colour__link--current__background;
+            background-color: colours.$ds_colour__link--current__background;
         }
 
         &--text:not(&--icon) {
@@ -78,10 +84,10 @@
 
 a.ds_pagination__link:not(.ds_current):not(:focus) {
     text-decoration: underline;
-    text-underline-offset: 1px;
+    text-underline-offset: 0.0625rem;
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_pagination {
         &__load-more + &__list {
             display: block;
@@ -92,8 +98,8 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
         }
 
         &__link--icon {
-            padding-left: 0px;
-            padding-right: 0px;
+            padding-left: 0;
+            padding-right: 0;
             width: auto;
 
             .ds_pagination__link-label {
@@ -112,11 +118,11 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     }
 }
 
-@include ds_media-query(medium-down) {
+@include media-query.media-query(medium-down) {
     .ds_pagination {
         &__link--icon {
             .ds_pagination__link-label {
-                @include ds_visually-hidden;
+                @include visibility.visually-hidden;
             }
         }
     }

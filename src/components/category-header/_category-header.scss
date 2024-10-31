@@ -1,32 +1,38 @@
+@use "../../base/helpers/layout/layout";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/grid/grid";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     CATEGORY HEADER
 \*------------------------------------*/
 
 // modifiable vars
-$category-header__title-colour: $ds_colour__text !default;
+$category-header__title-colour: colours.$ds_colour__text !default;
 
 
 
 
 .ds_category-header {
-    padding-top: 16px;
-    padding-bottom: 32px;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
 
     &__header {
-        margin-bottom: 32px;
+        margin-bottom: 2rem;
     }
 
     &__title {
         color: $category-header__title-colour;
-        font-weight: $light;
-        margin-bottom: 8px;
+        font-weight: type.$light;
+        margin-bottom: 0.5rem;
     }
 
     &__summary {
-        line-height: 24px;
+        line-height: 1.5rem;
 
         > :last-child {
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
         }
     }
 
@@ -34,46 +40,46 @@ $category-header__title-colour: $ds_colour__text !default;
         display: block;
         margin: 0 auto;
         height: auto;
-        max-height: 360px;
-        max-width: 320px;
+        max-height: 22.5rem;
+        max-width: 20rem;
 
-        @include ds_media-query(medium) {
+        @include media-query.media-query(medium) {
             max-width: 100%;
         }
     }
 }
 
 .ds_reversed .ds_category-header {
-    color: $ds_colour__text--reversed;
+    color: colours.$ds_colour__text--reversed;
 
     &__title {
-        color: $ds_colour__text--reversed;
+        color: colours.$ds_colour__text--reversed;
     }
 }
 
 .ds_category-header {
-    @include ds_layout();
+    @include layout.layout();
 }
 
 .ds_category-header {
-    grid-gap: $grid-gap-y $grid-gap-x;
+    grid-gap: grid.$grid-gap-y grid.$grid-gap-x;
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_category-header {
         &__header {
             float: left;
-            @include ds_colwidth(8);
-            margin: 40px 0;
+            @include layout.colwidth(8);
+            margin: 2.5rem 0;
         }
 
         &__media-container {
             float: left;
-            @include ds_colwidth(4);
+            @include layout.colwidth(4);
         }
 
         &__summary {
-            line-height: 32px;
+            line-height: 2rem;
         }
     }
 }
@@ -83,7 +89,7 @@ $category-header__title-colour: $ds_colour__text !default;
         margin-bottom: 0;
     }
 
-    @include ds_media-query(medium) {
+    @include media-query.media-query(medium) {
         .ds_category-header {
             align-items: center;
             grid-template-columns: repeat(12, 1fr);
@@ -91,7 +97,7 @@ $category-header__title-colour: $ds_colour__text !default;
             &__header {
                 float: none;
                 grid-column: 1 / span 8;
-                margin: 40px 0;
+                margin: 2.5rem 0;
             }
 
             &__media-container {

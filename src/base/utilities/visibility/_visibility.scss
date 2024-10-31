@@ -1,9 +1,11 @@
+@use "../../helpers/visibility/visibility";
+
 /*------------------------------------*\
     VISIBILITY
 \*------------------------------------*/
 
 .visually-hidden {
-    @include ds_visually-hidden;
+    @include visibility.visually-hidden;
 }
 
 .fully-hidden {

@@ -1,32 +1,32 @@
 /// TYPE
 
-$root-font-size: 16px !default;
-$root-font-size--medium: 19px !default;
+$root-font-size: 1rem !default;
+$root-font-size--medium: 1.1875rem !default;
 
 // heading sizes
-$h1-size:               30px !default;
-$h2-size:               22px !default;
-$h3-size:               19px !default;
-$h4-size:               16px !default;
-$h5-size:               14px !default;
+$h1-size:               1.875rem !default;
+$h2-size:               1.375rem !default;
+$h3-size:               1.1875rem !default;
+$h4-size:               1rem !default;
+$h5-size:               0.875rem !default;
 
 // heading sizes at medium breakpoint
-$h1-size--medium:       44px !default;
-$h2-size--medium:       30px !default;
-$h3-size--medium:       22px !default;
-$h4-size--medium:       19px !default;
-$h5-size--medium:       16px !default;
+$h1-size--medium:       2.75rem !default;
+$h2-size--medium:       1.875rem !default;
+$h3-size--medium:       1.375rem !default;
+$h4-size--medium:       1.1875rem !default;
+$h5-size--medium:       1rem !default;
 
 // size variants
-$large-size:            19px !default;
-$small-size:            14px !default;
-$tiny-size:             12px !default;
+$large-size:            1.1875rem !default;
+$small-size:            0.875rem !default;
+$tiny-size:             0.75rem !default;
 
-$large-size--medium:    24px !default;
-$small-size--medium:    16px !default;
-$tiny-size--medium:     14px !default;
+$large-size--medium:    1.5rem !default;
+$small-size--medium:    1rem !default;
+$tiny-size--medium:     0.875rem !default;
 
-$small-size--fixed:     14px !default;
+$small-size--fixed:     0.875rem !default;
 
 // weights
 $light: 300 !default;

@@ -1,9 +1,15 @@
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/visibility/visibility";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     PAGE METADATA
 \*------------------------------------*/
 
 .ds_metadata {
-    @include ds_small-size--fixed;
+    @include headings.small-size--fixed;
     margin: 0;
     overflow: hidden;
 
@@ -18,11 +24,11 @@
 
     &__value {
         display: inline;
-        font-weight: $bold;
+        font-weight: type.$bold;
         margin-left: 0;
 
         a {
-            font-weight: $normal;
+            font-weight: type.$normal;
         }
     }
 }
@@ -31,10 +37,10 @@
  * Alternative display collapsing the metadata into a single line
  */
 .ds_metadata--inline {
-    @include ds_tiny-size;
+    @include headings.tiny-size;
 
-    color: $ds_colour__text--secondary;
-    margin-bottom: px-to-rem(8px);
+    color: colours.$ds_colour__text--secondary;
+    margin-bottom: 0.5rem;
 
     .ds_metadata__item {
         display: inline;
@@ -43,24 +49,24 @@
 
     .ds_metadata__item:not(:first-child) {
         margin-left: 0.25em;
-        padding-left: calc(0.5em + 1px);
+        padding-left: calc(0.5em + 0.0625rem);
 
         &::before {
             background: currentColor;
             content: '';
-            height: calc(1em - 1px);
+            height: calc(1em - 0.0625rem);
             left: 0;
             position: absolute;
-            top: 2px;
-            width: 1px;
+            top: 0.125rem;
+            width: 0.0625rem;
         }
     }
 
     .ds_metadata__key {
-        @include ds_visually-hidden;
+        @include visibility.visually-hidden;
     }
 
     .ds_metadata__value {
-        font-weight: $normal;
+        font-weight: type.$normal;
     }
 }

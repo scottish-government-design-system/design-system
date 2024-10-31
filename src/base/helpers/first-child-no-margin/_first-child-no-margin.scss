@@ -1,4 +1,4 @@
-@mixin ds_first-child-no-margin {
+@mixin first-child-no-margin {
     > :first-child {
         margin-top: 0;
     }

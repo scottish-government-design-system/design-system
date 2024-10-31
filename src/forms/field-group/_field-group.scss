@@ -1,3 +1,5 @@
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+
 /*------------------------------------*\
     FIELD GROUP
 \*------------------------------------*/
@@ -22,7 +24,7 @@
         > div {
             margin-bottom: 0;
 
-            @include ds_last-child-no-margin;
+            @include last-child-no-margin.last-child-no-margin;
         }
     }
 }

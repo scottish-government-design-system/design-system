@@ -1,15 +1,13 @@
+@use "../../settings/colours/colours";
+
 /*------------------------------------*\
     FOCUS
     Default focus indicator
 \*------------------------------------*/
 
-$focus__outline-width: 2px !default;
+$focus__outline-width: 0.125rem !default;
 
-@mixin ds_focus-outline($width: $focus__outline-width) {
-    outline: $width solid $ds_colour__link--focus__background;
+@mixin focus-outline($width: $focus__outline-width) {
+    outline: $width solid colours.$ds_colour__link--focus__background;
     outline-offset: 0;
-}
-
-@mixin focus-outline {
-    @include ds_focus-outline;
 }

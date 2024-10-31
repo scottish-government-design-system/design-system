@@ -1,8 +1,15 @@
+@use "../../base/helpers/box-shadow/box-shadow";
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/high-contrast/high-contrast";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     AUTOCOMPLETE
 \*------------------------------------*/
 
-$site-search__border-colour: $ds_colour__grey !default;
+$site-search__border-colour: colours.$ds_colour__grey !default;
 
 
 
@@ -11,9 +18,9 @@ $site-search__border-colour: $ds_colour__grey !default;
     position: relative;
 
     &__suggestions {
-        @include ds_box-shadow;
+        @include box-shadow.box-shadow;
 
-        border: 2px solid $site-search__border-colour;
+        border: 0.125rem solid $site-search__border-colour;
         display: none;
         left: 0;
         position: absolute;
@@ -31,41 +38,41 @@ $site-search__border-colour: $ds_colour__grey !default;
       [1] 10px = 12px (associated site search input) minus 2px (suggestions border), 11px = 12px vertical padding minus 2px (suggestions border) split evenly between top and bottom padding
     */
     &__suggestion {
-        background-color: $ds_colour__background--primary;
-        color: $ds_colour__text--secondary;
+        background-color: colours.$ds_colour__background--primary;
+        color: colours.$ds_colour__text--secondary;
         cursor: pointer;
         font-style: italic;
         margin-bottom: 0;
-        padding: 11px 10px; /* [1] */
+        padding: functions.px-to-rem(11px) functions.px-to-rem(10px); /* [1] */
         transition: background-color 0.2s;
 
         &:hover {
-            background-color: $ds_colour__link--hover__background;
+            background-color: colours.$ds_colour__link--hover__background;
         }
 
         &:not(:last-child) {
-            border-bottom: 2px solid $site-search__border-colour;
+            border-bottom: 0.125rem solid $site-search__border-colour;
         }
 
         &__text {
             font-style: normal;
-            color: $ds_colour__text;
+            color: colours.$ds_colour__text;
         }
 
         &__category {
-            color: $ds_colour__brand;
+            color: colours.$ds_colour__brand;
         }
 
         &.active {
-            @include ds_high-contrast-focus(2px){
-                outline-offset: -2px;
+            @include high-contrast.high-contrast-focus(0.125rem){
+                outline-offset: -0.125rem;
             }
-            background-color: $ds_colour__link--focus__background;
-            box-shadow: inset 0 -3px $ds_colour__link--focus__shadow;
+            background-color: colours.$ds_colour__link--focus__background;
+            box-shadow: inset 0 -0.1875rem colours.$ds_colour__link--focus__shadow;
         }
 
         &.active &__text {
-            color: $ds_colour__focus;
+            color: colours.$ds_colour__focus;
         }
     }
 }
@@ -74,9 +81,9 @@ $site-search__border-colour: $ds_colour__grey !default;
     display: block;
 }
 
-@include media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_autocomplete__suggestions {
-        font-size: px-to-rem($root-font-size);
-        line-height: line-height-on-grid($root-font-size);
+        font-size: type.$root-font-size;
+        line-height: functions.line-height-on-grid(type.$root-font-size);
     }
 }

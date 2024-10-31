@@ -1,10 +1,13 @@
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     LABEL
 \*------------------------------------*/
 
 .ds_label {
-    color: $ds_colour__text;
+    color: colours.$ds_colour__text;
     display: inline-block;
-    font-weight: $bold;
-    margin-bottom: 8px;
+    font-weight: type.$bold;
+    margin-bottom: 0.5rem;
 }

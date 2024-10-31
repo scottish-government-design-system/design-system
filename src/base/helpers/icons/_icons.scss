@@ -1,10 +1,10 @@
-@mixin ds_chevron($orientation: down, $size: 1em) {
+@mixin chevron($orientation: down, $size: 1em) {
     $chevron-width: #{$size * 0.25};
 
     content: '';
     background-color: transparent;
     border-style: solid;
-    border-width: 0px 0px $chevron-width $chevron-width;
+    border-width: 0 0 $chevron-width $chevron-width;
     border-top-color: transparent;
     display: inline-block;
     height: $size;
@@ -39,7 +39,7 @@
 ///     @include ds_icon-mask('/path/to/my/icon')
 ///   }
 
-@mixin ds_icon-mask($url) {
+@mixin icon-mask($url) {
     /// for IE11 support, use image without clip path
     background-image: url($url);
 
@@ -49,16 +49,4 @@
         -webkit-mask-image: url($url);
         mask-image: url($url);
     }
-}
-
-
-
-
-/// legacy non-prefixed names
-@mixin chevron($orientation: down, $size: 1em) {
-    @include ds_chevron($orientation, $size);
-}
-
-@mixin icon-mask($url) {
-    @include ds_icon-mask($url);
 }

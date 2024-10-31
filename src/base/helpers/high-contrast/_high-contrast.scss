@@ -1,9 +1,11 @@
+@use "../media-query/media-query";
+
 ///
 /// High contrast focus
 ///
 
-@mixin ds_high-contrast-focus($width: 2px) {
-    @include ds_media-query-high-contrast {
+@mixin high-contrast-focus($width: 0.125rem) {
+    @include media-query.media-query-high-contrast {
         outline-color: highlight !important;
         outline-style: solid !important;
         outline-width: $width !important;
@@ -12,16 +14,16 @@
     }
 }
 
-@mixin ds_high-contrast-outline($width: 2px) {
-    @include ds_media-query-high-contrast {
+@mixin high-contrast-outline($width: 0.125rem) {
+    @include media-query.media-query-high-contrast {
         outline: $width solid currentColor !important;
         outline-offset: #{$width * -1} !important;
     }
 }
 
 // Style to look like links
-@mixin ds_high-contrast-link-style {
-    @include ds_media-query-high-contrast {
+@mixin high-contrast-link-style {
+    @include media-query.media-query-high-contrast {
         color: LinkText;
 
         &:hover,

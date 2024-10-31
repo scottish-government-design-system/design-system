@@ -2,19 +2,19 @@
     DESIGN SYSTEM FORMS
 \*------------------------------------*/
 
-@import "form.settings";
-@import "form.mixins";
-@import "form.base";
-@import "character-count/character-count";
-@import "checkbox/checkbox";
-@import "currency/currency";
-@import "error-summary/error-summary";
-@import "field-group/field-group";
-@import "hint-text/hint-text";
-@import "label/label";
-@import "prefilled-value-list/prefilled-value-list";
-@import "question/question";
-@import "radio/radio";
-@import "reveal-content/reveal-content";
-@import "select/select";
-@import "text-input/text-input";
+@use "form.settings";
+@use "form.mixins" as form2;
+@use "form.base" as form3;
+@use "character-count/character-count";
+@use "checkbox/checkbox";
+@use "currency/currency";
+@use "error-summary/error-summary";
+@use "field-group/field-group";
+@use "hint-text/hint-text";
+@use "label/label";
+@use "prefilled-value-list/prefilled-value-list";
+@use "question/question";
+@use "radio/radio";
+@use "reveal-content/reveal-content";
+@use "select/select";
+@use "text-input/text-input";

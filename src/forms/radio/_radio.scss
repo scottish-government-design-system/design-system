@@ -1,39 +1,44 @@
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+@use "../form.mixins";
+
 /*------------------------------------*\
     RADIO BUTTONS
 \*------------------------------------*/
 
 .ds_radio {
-    @include ds_radiocheckboxstates(true, 1px);
+    @include form.radiocheckboxstates(true, max(0.0625rem, 1px));
 
     &__label::after {
-        top: 6px;
-        left: 10px;
+        top: functions.px-to-rem(6px);
+        left: functions.px-to-rem(10px);
         width: 0;
         height: 0;
-        border: 10px solid currentColor;
+        border: functions.px-to-rem(10px) solid currentColor;
         border-radius: 50%;
         background: currentColor;
     }
 
     &__input:focus + &__label::after {
-        color: $ds_colour__focus;
+        color: colours.$ds_colour__focus;
     }
 
     &--small &__label::after {
-        border-width: 6px;
-        left: 14px;
-        top: 10px;
+        border-width: functions.px-to-rem(6px);
+        left: functions.px-to-rem(14px);
+        top: functions.px-to-rem(10px);
     }
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_radio {
         &__label::after {
-            top: 10px;
+            top: functions.px-to-rem(10px);
         }
 
         &--small &__label::after {
-            top: 14px;
+            top: functions.px-to-rem(14px);
         }
     }
 }

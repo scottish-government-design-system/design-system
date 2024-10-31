@@ -1,51 +1,59 @@
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     FEATURE HEADER
 \*------------------------------------*/
 
 .ds_feature-header {
-    @include ds_responsive-margin(8, bottom);
+    @include spacing.responsive-margin(8, bottom);
 
     &__title {
-        @include ds_h1-style;
-        @include ds_responsive-margin(1, bottom);
+        @include headings.h1-style;
+        @include spacing.responsive-margin(1, bottom);
 
-        font-weight: $light;
+        font-weight: type.$light;
     }
 
     &--background {
-        background-color: $ds_colour__background--tertiary;
+        background-color: colours.$ds_colour__background--tertiary;
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'feature header');
-        @include checkAndFixDescendantSecondaryButtonColour($ds_colour__button--secondary, $ds_colour__background--tertiary, 'feature header');
+        @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, colours.$ds_colour__background--tertiary, 'feature header');
+        @include colours2.checkAndFixDescendantSecondaryButtonColour(colours.$ds_colour__button--secondary, colours.$ds_colour__background--tertiary, 'feature header');
     }
 
     &__primary {
-        padding: px-to-rem(16px) 0;
+        padding: 1rem 0;
         position: relative;
         z-index: 2;
 
-        @include media-query(medium) {
-            padding: px-to-rem(24px) 0;
+        @include media-query.media-query(medium) {
+            padding: 1.5rem 0;
         }
 
-        @include media-query(large) {
-            padding: px-to-rem(40px) 0;
+        @include media-query.media-query(large) {
+            padding: 2.5rem 0;
         }
     }
 
     &--background &__primary {
-        padding-left: px-to-rem(16px);
+        padding-left: 1rem;
 
-        @include media-query(medium-down) {
-            padding-right: px-to-rem(16px);
+        @include media-query.media-query(medium-down) {
+            padding-right: 1rem;
         }
 
-        @include media-query(medium) {
-            padding-left: px-to-rem(24px);
+        @include media-query.media-query(medium) {
+            padding-left: 1.5rem;
         }
 
-        @include media-query(large) {
-            padding-left: px-to-rem(40px);
+        @include media-query.media-query(large) {
+            padding-left: 2.5rem;
         }
     }
 
@@ -60,11 +68,11 @@
         width: 100%;
     }
 
-    @include media-query(medium) {
+    @include media-query.media-query(medium) {
         align-items: center;
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        grid-gap: 32px;
+        grid-gap: 2rem;
 
         &__primary {
             grid-area: 1/1/2/7;
@@ -94,18 +102,18 @@
 
 .ds_reversed .ds_feature-header__primary,
 .ds_reversed .ds_feature-header__primary a {
-    color: $ds_colour__text--reversed;
+    color: colours.$ds_colour__text--reversed;
 }
 
 
 // ie
 .ds_feature-header {
-    @include media-query(medium) {
+    @include media-query.media-query(medium) {
         display: -ms-grid;
-        -ms-grid-columns: 1fr 32px 1fr;
+        -ms-grid-columns: 1fr 2rem 1fr;
 
         &--wide {
-            -ms-grid-columns: 2fr 32px 1fr;
+            -ms-grid-columns: 2fr 2rem 1fr;
         }
 
         &__primary {

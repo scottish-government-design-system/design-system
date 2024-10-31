@@ -1,62 +1,34 @@
+@use "../../helpers/headings/headings";
+@use "../../helpers/spacing/spacing";
+
 /*------------------------------------*\
     HEADINGS
 \*------------------------------------*/
 
-$use-legacy-heading-styles: true !default;
-
-
-
-
 h1, .ds_h1 {
-    @include ds_h1-style;
+    @include headings.h1-style;
 }
 
 h2, .ds_h2 {
-    @include ds_h2-style;
+    @include headings.h2-style;
 
     &:not(:first-child) {
-        @include ds_responsive-margin(5, top);
+        @include spacing.responsive-margin(5, top);
     }
 }
 
 h3, .ds_h3 {
-    @include ds_h3-style;
+    @include headings.h3-style;
 
     &:not(:first-child) {
-        @include ds_responsive-margin(3, top);
+        @include spacing.responsive-margin(3, top);
     }
 }
 
 h4, .ds_h4 {
-    @include ds_h4-style;
+    @include headings.h4-style;
 }
 
 h5, .ds_h5 {
-    @include ds_h5-style;
-}
-
-
-
-
-@if $use-legacy-heading-styles {
-    // legacy
-    .alpha {
-        @extend .ds_h1;
-    }
-
-    .beta {
-        @extend .ds_h2;
-    }
-
-    .gamma {
-        @extend .ds_h3;
-    }
-
-    .delta {
-        @extend .ds_h4;
-    }
-
-    .epsilon {
-        @extend .ds_h5;
-    }
+    @include headings.h5-style;
 }

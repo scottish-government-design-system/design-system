@@ -1,10 +1,15 @@
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/button-sizing/button-sizing";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+
 /*------------------------------------*\
     BUTTON GROUP
 \*------------------------------------*/
 
 .ds_button-group {
-    @include ds_block-margins;
-    @include ds_responsive-spacing(2, 'gap');
+    @include block-margins.block-margins;
+    @include spacing.responsive-spacing(2, 'gap');
 
     display: flex;
     flex-wrap: wrap;
@@ -22,7 +27,7 @@
     }
 
     // Mobile size behaviour
-    @include ds_media-query(small-down) {
+    @include media-query.media-query(small-down) {
 
         // Default is to stack on mobile
         flex-direction: column;
@@ -47,8 +52,8 @@
         // Centre align icon button label text when stacked
         &:not(.ds_button-group--inline){
             .ds_button--has-icon {
-                padding-right: $button__height;
-                padding-left: $button__height;
+                padding-right: button-sizing.$button__height;
+                padding-left: button-sizing.$button__height;
             }
         }
     }

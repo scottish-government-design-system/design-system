@@ -1,33 +1,41 @@
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     CONFIRMATION MESSAGE
 \*------------------------------------*/
 
 .ds_confirmation-message {
 
-	@include ds_block-margins;
-	@include ds_responsive-padding(2, top);
-    @include ds_responsive-padding(2, bottom);
-    @include ds_responsive-padding(2, right);
+	@include block-margins.block-margins;
+	@include spacing.responsive-padding(2, top);
+    @include spacing.responsive-padding(2, bottom);
+    @include spacing.responsive-padding(2, right);
 
-    background-color: $ds_colour__background--secondary;
-    border-left: 0.25rem solid $ds_colour__state--positive;
+    background-color: colours.$ds_colour__background--secondary;
+    border-left: 0.25rem solid colours.$ds_colour__state--positive;
     padding-left: 2.75rem;
     position: relative;
 
     /// [1] ratio of icon height (24px) to .ds_confirmation-message__title line height
     &__icon {
-        color: $ds_colour__state--positive;
+        color: colours.$ds_colour__state--positive;
         left: 0.75rem;
         position: absolute;
         top: 1.25rem; /// [1]
 
-        @include ds_media-query(medium) {
+        @include media-query.media-query(medium) {
             top: 1.5rem; /// [1]
         }
     }
 
     &__title {
-        @include ds_h2-size;
+        @include headings.h2-size;
         margin-bottom: 0;
     }
 
@@ -36,7 +44,7 @@
     }
 
     &__body {
-        @include ds_last-child-no-margin;
+        @include last-child-no-margin.last-child-no-margin;
         margin-top: 0.5rem;
     }
 
@@ -44,7 +52,7 @@
     &:not(:has(&__title)) &__icon {
         top: 1rem; /// [2]
 
-        @include ds_media-query(medium) {
+        @include media-query.media-query(medium) {
             top: 1.25rem; /// [2]
         }
     }
@@ -53,5 +61,5 @@
         margin-top: 0;
     }
 
-    @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'confirmation message');
+    @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, colours.$ds_colour__background--secondary, 'confirmation message');
 }

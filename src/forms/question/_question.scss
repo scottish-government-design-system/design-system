@@ -1,28 +1,33 @@
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     QUESTION
 \*------------------------------------*/
 
 .ds_question {
 
-    @include ds_responsive-margin(3, bottom);
+    @include spacing.responsive-margin(3, bottom);
 
     &--error {
-        border-left: 0.25rem solid $ds_colour__state--negative;
+        border-left: 0.25rem solid colours.$ds_colour__state--negative;
         padding-left: 1.25rem;
     }
 
     &__message,
     &__error-message {
-        @include ds_responsive-margin(2, bottom);
+        @include spacing.responsive-margin(2, bottom);
     }
 
     &__error-message {
-        color: $ds_colour__state--negative;
-        font-weight: $bold;
+        color: colours.$ds_colour__state--negative;
+        font-weight: type.$bold;
     }
 
     // Remove bottom margin from last element if within a fieldset to prevent double margin
     & > fieldset {
-        @include ds_last-child-no-margin;
+        @include last-child-no-margin.last-child-no-margin;
     }
 }

@@ -1,12 +1,12 @@
 $iconsfile: '../images/icons/icons.stack.svg' !default;
 
-@import "helpers/all";
-@import "settings/all";
-@import "tools/all";
+@use "helpers/all";
+@use "settings/all" as all2;
+@use "tools/all" as all3;
 
-@import "initial/all";
-@import "core/all";
-@import "objects/all";
-@import "utilities/all";
+@use "initial/all" as all4;
+@use "core/all" as all5;
+@use "objects/all" as all6;
+@use "utilities/all" as all7;
 
-@import "overrides/all";
+@use "overrides/all" as all8;

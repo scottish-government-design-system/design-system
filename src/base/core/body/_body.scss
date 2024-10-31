@@ -1,23 +1,28 @@
+@use "../../helpers/functions/functions";
+@use "../../helpers/media-query/media-query";
+@use "../../settings/colours/colours";
+@use "../../settings/type/type";
+
 /*------------------------------------*\
     BODY
 \*------------------------------------*/
 
 body {
-    background: $ds_colour__background--primary;
-    color: $ds_colour__text;
-    font-family: $base-font-family;
-    font-size: px-to-rem($root-font-size); // 1rem
+    background: colours.$ds_colour__background--primary;
+    color: colours.$ds_colour__text;
+    font-family: type.$base-font-family;
+    font-size: functions.px-to-rem(type.$root-font-size); // 1rem
     font-style: normal;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
-    line-height: line-height-on-grid($root-font-size);
+    line-height: functions.line-height-on-grid(type.$root-font-size);
     margin: 0;
     text-rendering: optimizeLegibility;
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     body {
-        font-size: px-to-rem($root-font-size--medium);
-        line-height: line-height-on-grid($root-font-size--medium);
+        font-size: functions.px-to-rem(type.$root-font-size--medium);
+        line-height: functions.line-height-on-grid(type.$root-font-size--medium);
     }
 }

@@ -1,16 +1,21 @@
+@use "../base/helpers/functions/functions";
+@use "../base/helpers/high-contrast/high-contrast";
+@use "../base/helpers/media-query/media-query";
+@use "../base/settings/colours/colours";
+@use "form.settings";
+
 /*------------------------------------*\
     FORM MIXINS
 \*------------------------------------*/
 
-$small-focus-border-colour: $ds_colour__border !default;
+$small-focus-border-colour: colours.$ds_colour__border !default;
 
 
 
 
-@mixin ds_radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
-
-    margin-bottom: 24px;
-    padding-left: 40px;
+@mixin radiocheckboxstates ($round: false, $small-pip-padding: 0.125rem, $active-shadow-colour: colours.$ds_colour__input--focus__background) {
+    margin-bottom: 1.5rem;
+    padding-left: 2.5rem;
     position: relative;
 
     &__input {
@@ -24,33 +29,33 @@ $small-focus-border-colour: $ds_colour__border !default;
 
     &__label {
         display: inline-block;
-        padding: 4px 32px 4px 16px;
+        padding: 0.25rem 2rem 0.25rem 1rem;
     }
 
     &__label::before {
-        background-color: $ds_colour__background--primary;
-        border: $field-border-width solid $ds_colour__text;
+        background-color: colours.$ds_colour__background--primary;
+        border: form.$field-border-width solid colours.$ds_colour__text;
         content: '';
-        height: $input-size;
+        height: form.$input-size;
         left: 0;
         position: absolute;
-        width: $input-size;
+        width: form.$input-size;
     }
 
     &__label::after {
         content: "";
         position: absolute;
-        bottom: calc(100% - #{$input-size});
+        bottom: calc(100% - form.$input-size);
         left: 0;
-        right: calc(100% - #{$input-size});
+        right: calc(100% - form.$input-size);
         opacity: 0;
     }
 
     &__label::before,
     &__label::after {
-        top: -4px;
+        top: -0.25rem;
 
-        @include ds_media-query(medium) {
+        @include media-query.media-query(medium) {
             top: 0;
         }
 
@@ -62,13 +67,13 @@ $small-focus-border-colour: $ds_colour__border !default;
 
     /// focus
     &__input:focus + &__label::before {
-        background-color: $ds_colour__link--focus__background;
-        border-color: $ds_colour__link--focus;
-        border-width: $field-border-width--focus;
-        box-shadow: 0 0 0 $field-glow-width $ds_colour__input--focus__outline;
+        background-color: colours.$ds_colour__link--focus__background;
+        border-color: colours.$ds_colour__link--focus;
+        border-width: form.$field-border-width--focus;
+        box-shadow: 0 0 0 form.$field-glow-width colours.$ds_colour__input--focus__outline;
 
-        @include ds_high-contrast-focus(4px) {
-            outline-offset: -4px;
+        @include high-contrast.high-contrast-focus(0.25rem) {
+            outline-offset: -0.25rem;
         };
     }
 
@@ -78,8 +83,8 @@ $small-focus-border-colour: $ds_colour__border !default;
 
     /// [1] this negative margin makes the small checkboxes/radios align left with content
     &--small {
-        margin-bottom: 16px;
-        margin-left: -8px; /// [1]
+        margin-bottom: 1rem;
+        margin-left: -0.5rem; /// [1]
     }
 
     &--small &__input {
@@ -90,40 +95,28 @@ $small-focus-border-colour: $ds_colour__border !default;
     }
 
     &--small &__label::before {
-        height: px-to-rem(24px);
-        left: 8px;
-        top: 4px;
-        width: px-to-rem(24px);
+        height: 1.5rem;
+        left: 0.5rem;
+        top: 0.25rem;
+        width: 1.5rem;
 
-        @include ds_media-query(medium) {
-            top: 8px;
+        @include media-query.media-query(medium) {
+            top: 0.5rem;
         }
     }
 
     > .ds_hint-text {
-        padding-left: 16px;
+        padding-left: 1rem;
     }
 }
 
-@mixin ds_field-error {
-    border-color: $ds_colour__state--negative;
-    border-width: $field-border-width--error;
-    padding: 4px;
+@mixin field-error {
+    border-color: colours.$ds_colour__state--negative;
+    border-width: form.$field-border-width--error;
+    padding: 0.25rem;
 
     &:focus {
         border-color: currentColor;
         box-shadow: none;
     }
-}
-
-
-
-
-/// legacy non-prefixed names
-@mixin radiocheckboxstates($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
-    @include ds_radiocheckboxstates($round, $small-pip-padding, $active-shadow-colour);
-}
-
-@mixin field-error {
-    @include ds_field-error;
 }

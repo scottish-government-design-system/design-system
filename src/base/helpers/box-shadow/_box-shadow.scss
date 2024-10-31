@@ -2,14 +2,6 @@
 ///
 /// Single definition for consistent box shadows
 
-@mixin ds_box-shadow {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
-}
-
-
-
-
-/// legacy non-prefixed names
 @mixin box-shadow {
-    @include ds_box-shadow;
+    box-shadow: max(0.0625, 1px) max(0.0625, 1px) 0.25rem rgba(0, 0, 0, 0.15);
 }

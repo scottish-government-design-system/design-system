@@ -1,21 +1,28 @@
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/links/links";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     NOTIFICATION BANNER
 \*------------------------------------*/
 
 // modifiable vars
-$notification-banner__background-colour: $ds_colour__text !default;
-$notification-banner__background-colour--success: $ds_colour__state--positive !default;
-$notification-banner__colour-icon-colour: $ds_colour__yellow !default;
-$notification-banner__foreground-colour: $ds_colour__white !default;
+$notification-banner__background-colour: colours.$ds_colour__text !default;
+$notification-banner__background-colour--success: colours.$ds_colour__state--positive !default;
+$notification-banner__colour-icon-colour: colours.$ds_colour__yellow !default;
+$notification-banner__foreground-colour: colours.$ds_colour__white !default;
 
 // fixed vars
-$notification-banner__close-padding: 4px;
+$notification-banner__close-padding: 0.25rem;
 $notification-banner__icon-padding: $notification-banner__close-padding;
 
 .ds_notification {
     background: $notification-banner__background-colour;
-    border-bottom: 1px solid $notification-banner__foreground-colour;
-    color: $ds_colour__text--reversed;
+    border-bottom: 0.0625rem solid $notification-banner__foreground-colour;
+    color: colours.$ds_colour__text--reversed;
 
     &--success {
         background-color: $notification-banner__background-colour--success;
@@ -24,29 +31,29 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
 
     /// [1] compensate for bottom margin on parent
     &__content {
-        padding: 16px 0 15px; /// [1]
+        padding: 1rem 0 0.9375rem; /// [1]
         position: relative;
 
-        @include ds_last-child-no-margin;
+        @include last-child-no-margin.last-child-no-margin;
 
         &--has-close {
-            padding-right: 40px;
+            padding-right: 2.5rem;
         }
     }
 
     &__text {
         display: inline-block;
-        margin-right: 16px;
+        margin-right: 1rem;
 
-        @include ds_last-child-no-margin;
+        @include last-child-no-margin.last-child-no-margin;
     }
 
     &__actions {
-        margin-top: 32px;
+        margin-top: 2rem;
         text-align: center;
 
         > * {
-            margin-bottom: 16px;
+            margin-bottom: 1rem;
             margin-top: 0;
             white-space: nowrap;
             width: 100%;
@@ -56,24 +63,24 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     // specificity hack
     // deprecated - ds_notification__actions - use ds_button-group instead
     .ds_notification__actions {
-        margin-bottom: -16px;
+        margin-bottom: -1rem;
     }
 
     &__icon {
         display: block;
         position: absolute;
-        height: 32px;
+        height: 2rem;
         line-height: 0;
-        margin-left: -4px;
-        margin-top: -4px;
-        padding: 2px;
-        width: 32px;
+        margin-left: -0.25rem;
+        margin-top: -0.25rem;
+        padding: 0.125rem;
+        width: 2rem;
 
         + .ds_notification__text {
-            margin-left: 40px;
+            margin-left: 2.5rem;
 
-            @include ds_media-query(medium) {
-                margin-left: 64px;
+            @include media-query.media-query(medium) {
+                margin-left: 4rem;
             }
         }
 
@@ -82,8 +89,8 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         }
 
         &--inverse {
-            background-color: $ds_colour__text--reversed;
-            border-radius: 100px;
+            background-color: colours.$ds_colour__text--reversed;
+            border-radius: 6.25rem;
             color: $notification-banner__background-colour;
         }
 
@@ -98,22 +105,22 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         box-sizing: content-box;
         color: currentColor;
         display: none;
-        font-size: $small-size--fixed;
-        height: 40px;
+        font-size: type.$small-size--fixed;
+        height: 2.5rem;
         margin: 0;
         padding: 0;
         position: absolute;
-        right: -8px;
-        top: 8px;
-        width: 40px;
+        right: -0.5rem;
+        top: 0.5rem;
+        width: 2.5rem;
 
         min-height: 0;
         min-width: 0;
 
         &:focus {
-            background-color: $ds_colour__button--focus__background;
-            box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
-            color: $ds_colour__button--focus;
+            background-color: colours.$ds_colour__button--focus__background;
+            box-shadow: 0 links.$link__border-width colours.$ds_colour__link--focus__shadow;
+            color: colours.$ds_colour__button--focus;
             outline: 0;
 
             transition-duration: 0s;
@@ -122,7 +129,7 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         &:hover:not(:focus) {
             background-color: transparent;
             color: currentColor;
-            outline: 2px solid currentColor;
+            outline: 0.125rem solid currentColor;
         }
 
         > * {
@@ -133,13 +140,13 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
     //ds_button-group to be used in place of ds_notification__actions
     .ds_button-group {
         //override margins
-        @include ds_responsive-margin(4, top);
+        @include spacing.responsive-margin(4, top);
     }
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_notification__close {
-        top: 12px;
+        top: 0.75rem;
     }
 
     .ds_notification__icon {
@@ -155,13 +162,13 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         }
 
         > *:not(last-child) {
-            margin-right: 16px;
+            margin-right: 1rem;
         }
     }
 }
 
 @supports(display: flex) {
-    @include ds_media-query(medium) {
+    @include media-query.media-query(medium) {
         // deprecated - ds_notification__actions - use ds_button-group instead
         .ds_notification__actions {
             align-items: center;

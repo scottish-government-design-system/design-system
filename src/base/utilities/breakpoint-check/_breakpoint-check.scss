@@ -1,3 +1,5 @@
+@use "../../helpers/media-query/media-query";
+
 /*------------------------------------*\
     BREAKPOINT CHECK
 \*------------------------------------*/
@@ -5,25 +7,25 @@
 .ds_breakpoint-check {
     display: none;
 
-    @include ds_media-query(small) {
+    @include media-query.media-query(small) {
         &.ds_breakpoint-check--small {
             display: block;
         }
     }
 
-    @include ds_media-query(medium) {
+    @include media-query.media-query(medium) {
         &.ds_breakpoint-check--medium {
             display: block;
         }
     }
 
-    @include ds_media-query(large) {
+    @include media-query.media-query(large) {
         &.ds_breakpoint-check--large {
             display: block;
         }
     }
 
-    @include ds_media-query(xlarge) {
+    @include media-query.media-query(xlarge) {
         &.ds_breakpoint-check--xlarge {
             display: block;
         }

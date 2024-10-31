@@ -1,18 +1,21 @@
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/icons/icons";
+
 /*------------------------------------*\
     BACK LINK
 \*------------------------------------*/
 
 .ds_back-link {
-    @include ds_small-size;
+    @include headings.small-size;
     align-items: center;
     display: inline-flex;
-    margin: 16px 0 16px 16px;
+    margin: 1rem 0 1rem 1rem;
     position: relative;
 
     &::before {
-        @include ds_chevron(left, 0.5em);
-        border-width: 0 0 2px 2px;
-        left: -14px;
+        @include icons.chevron(left, 0.5em);
+        border-width: 0 0 0.125rem 0.125rem;
+        left: -0.875rem;
         position: absolute;
     }
 }

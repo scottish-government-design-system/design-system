@@ -1,17 +1,23 @@
+@use "../../base/helpers/fancy-underscore/fancy-underscore";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/high-contrast/high-contrast";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+
 /*
     SITE NAVIGATION
     containing site-navigation and mobile equivalent
 */
 
 // modifiable vars
-$site-navigation__mobile-menu-background: $ds_colour__background--primary--dim !default;
-$site-navigation__highlight-colour: $ds_colour__border--highlight !default;
+$site-navigation__mobile-menu-background: colours.$ds_colour__background--primary--dim !default;
+$site-navigation__highlight-colour: colours.$ds_colour__border--highlight !default;
 
 // common to both mobile and desktop
-$site-navigation__link-padding: 16px;
+$site-navigation__link-padding: 1rem;
 
 .ds_site-navigation {
-    @include ds_small-size;
+    @include headings.small-size;
 
     display: none;
 
@@ -44,21 +50,21 @@ $site-navigation__link-padding: 16px;
 }
 
 // small screens
-@include ds_media-query(medium-down) {
+@include media-query.media-query(medium-down) {
     .ds_site-navigation {
         background-color: $site-navigation__mobile-menu-background;
-        margin: 0 -16px;
+        margin: 0 -1rem;
 
         &--mobile {
             overflow: hidden;
         }
 
         &__list {
-            padding: 16px;
+            padding: 1rem;
         }
 
         &__item:not(:last-child) {
-            border-bottom: 1px solid $ds_colour__border;
+            border-bottom: 0.0625rem solid colours.$ds_colour__border;
         }
 
         &__link {
@@ -67,8 +73,8 @@ $site-navigation__link-padding: 16px;
 
             &:hover:not(:focus),
             &.ds_current {
-                $site-navigation__mobile-border-width: 4px;
-                border-left: $site-navigation__mobile-border-width solid $ds_colour__brand;
+                $site-navigation__mobile-border-width: 0.25rem;
+                border-left: $site-navigation__mobile-border-width solid colours.$ds_colour__brand;
                 padding-left: #{$site-navigation__link-padding - $site-navigation__mobile-border-width};
             }
         }
@@ -76,12 +82,12 @@ $site-navigation__link-padding: 16px;
 
     .ds_site-navigation__toggle:checked ~ .ds_site-navigation,
     .ds_site-navigation--open {
-        border-top: 1px solid $ds_colour__border--faint;
+        border-top: 0.0625rem solid colours.$ds_colour__border--faint;
         display: block;
     }
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_site-navigation {
         line-height: 2;
 
@@ -96,23 +102,23 @@ $site-navigation__link-padding: 16px;
         &__list {
             display: flex;
             flex-wrap: wrap;
-            margin: 0 0 0 -16px;
+            margin: 0 0 0 -1rem;
         }
 
         .ds_site-navigation__link {
-            @include ds_fancy-underscore;
+            @include fancy-underscore.fancy-underscore;
 
             &::after {
                 bottom: 0;
-                height: 3px;
+                height: 0.1875rems;
             }
 
             &.ds_current:not(:focus) {
-                background-color: $ds_colour__link--current__background;
-                color: $ds_colour__text;
+                background-color: colours.$ds_colour__link--current__background;
+                color: colours.$ds_colour__text;
 
                 &:after {
-                    border-bottom: 3px solid transparent;
+                    border-bottom: 0.1875rem solid transparent;
                     left: 0;
                     opacity: 1;
                     right: 0;
@@ -122,11 +128,11 @@ $site-navigation__link-padding: 16px;
 
         a.ds_site-navigation__link {
             &:focus {
-                box-shadow: 0 3px $ds_colour__link--focus__shadow;
+                box-shadow: 0 0.1875rem colours.$ds_colour__link--focus__shadow;
                 outline: none;
-                padding-bottom: 5px;
+                padding-bottom: 0.3125rem;
 
-                @include ds_high-contrast-focus;
+                @include high-contrast.high-contrast-focus;
 
                 &::after {
                     content: none;
@@ -134,7 +140,7 @@ $site-navigation__link-padding: 16px;
             }
 
             &:hover:not(:focus) {
-                background-color: $ds_colour__link--hover__background;
+                background-color: colours.$ds_colour__link--hover__background;
             }
         }
     }

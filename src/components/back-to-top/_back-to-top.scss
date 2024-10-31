@@ -1,3 +1,10 @@
+@use "sass:color";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/links/links";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     $BACK TO TOP
 \*------------------------------------*/
@@ -19,7 +26,7 @@
         pointer-events: none;
         position: absolute;
         right: 0.5rem;
-        top: calc(100vh - 1px); /// [1]
+        top: calc(100vh - 0.0625rem); /// [1]
         z-index: 1;
 
         @supports (bottom: var(--ds-back-to-top-offset)) {
@@ -27,11 +34,11 @@
         }
 
         &__button {
-            @include ds_blocklink;
-            @include ds_small-size;
+            @include links.blocklink;
+            @include headings.small-size;
 
-            background-color: rgba(red($ds_colour__background--primary),green($ds_colour__background--primary),blue($ds_colour__background--primary),0.4);
-            font-weight: $bold;
+            background-color: rgba(color.red(colours.$ds_colour__background--primary),color.green(colours.$ds_colour__background--primary),color.blue(colours.$ds_colour__background--primary),0.4);
+            font-weight: type.$bold;
             margin: 0;
             min-width: 7.5rem;
             pointer-events: all;
@@ -62,10 +69,10 @@
 
         &__button::before,
         &__icon {
-            background-color: $ds_colour__background--primary;
+            background-color: colours.$ds_colour__background--primary;
             transition: background-color 0.2s;
 
-            @include ds_media-query-high-contrast {
+            @include media-query.media-query-high-contrast {
                 background-color: transparent;
             }
         }

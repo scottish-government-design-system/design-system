@@ -1,16 +1,23 @@
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+
+@use "sass:color";
+
 /*------------------------------------*\
     HIDE THIS PAGE
 \*------------------------------------*/
 
-@include ds_media-query(medium-down) {
+@include media-query.media-query(medium-down) {
     .ds_has-hide-page .ds_page,
     .ds_page:has(.ds_hide-page) {
-        margin-top: 56px;
+        margin-top: 3.5rem;
     }
 }
 
 .ds_hide-page {
-    background-color: $ds_colour__background--tertiary;
+    background-color: colours.$ds_colour__background--tertiary;
     left: 0;
     position: fixed;
     right: 0;
@@ -19,17 +26,17 @@
     z-index: 1000;
 
     &__button {
-        background-color: $ds_colour__red;
+        background-color: colours.$ds_colour__red;
         margin: 0;
         width: 100%;
 
         &:hover:not(:focus) {
-            background-color: darken($ds_colour__red, 15%);
+            background-color: color.adjust(colours.$ds_colour__red, $lightness: -15%/*, $space: hsl*/);
         }
     }
 
     &__text {
-        @include ds_tiny-size;
+        @include headings.tiny-size;
         margin-bottom: 0;
     }
 
@@ -44,25 +51,25 @@
     }
 
     .ds_has-hide-page .ds_page {
-        margin-top: 80px;
+        margin-top: 5rem;
     }
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_hide-page {
-        @include ds_block-margins;
+        @include block-margins.block-margins;
         background-color: rgba(255, 255, 255, 0.9);
         left: auto;
-        outline: 1px solid #ebebeb;
-        outline-offset: -1px;
+        outline: 0.0625rem solid #ebebeb;
+        outline-offset: -0.0625rem;
 
         @supports (position: sticky) and (display: grid) {
-            bottom: 8px;
+            bottom: 0.5rem;
             position: sticky;
         }
 
         &__text {
-            margin: 8px 0;
+            margin: 0.5rem 0;
         }
     }
 
@@ -75,14 +82,14 @@
     .ds_hide-page {
         width: 100%;
 
-        @include ds_media-query(medium) {
+        @include media-query.media-query(medium) {
             align-self: start;
             grid-area: 1/9/3/13;
-            right: 8px;
-            top: 8px;
+            right: 0.5rem;
+            top: 0.5rem;
         }
 
-        @include ds_media-query(large) {
+        @include media-query.media-query(large) {
             grid-area: 1/10/3/13;
         }
     }

@@ -1,3 +1,11 @@
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/helpers/visibility/visibility";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     SEARCH RESULT
 \*------------------------------------*/
@@ -5,48 +13,48 @@
 .ds_search-result {
     margin: 0;
     padding: 0;
-    @include ds_responsive-padding(2, top);
-    @include ds_responsive-padding(3, bottom, $tuning: -1px);
+    @include spacing.responsive-padding(2, top);
+    @include spacing.responsive-padding(3, bottom, $tuning: -0.0625rem);
 
     &:first-child {
         padding-top:0;
     }
 
     & + &:not(&--promoted) {
-        border-top: 1px $ds_colour__border solid;
+        border-top: 0.0625rem colours.$ds_colour__border solid;
     }
 
     &--promoted + &:not(&--promoted) {
-        margin-top: -1px;
+        margin-top: -0.0625rem;
     }
 
     &--promoted {
-        @include ds_responsive-padding(3, bottom);
+        @include spacing.responsive-padding(3, bottom);
         padding-top: 0;
 
         &-content {
-            background: $ds_colour__background--secondary;
-            border-left: 4px solid $ds_colour__brand;
-            @include ds_responsive-padding(1, top);
-            @include ds_responsive-padding(2, left);
-            @include ds_responsive-padding(2, right);
-            @include ds_responsive-padding(2, bottom);
+            background: colours.$ds_colour__background--secondary;
+            border-left: 0.25rem solid colours.$ds_colour__brand;
+            @include spacing.responsive-padding(1, top);
+            @include spacing.responsive-padding(2, left);
+            @include spacing.responsive-padding(2, right);
+            @include spacing.responsive-padding(2, bottom);
         }
 
         &-title {
-            @include ds_responsive-margin(1, bottom);
-            @include ds_tiny-size;
-            color: $ds_colour__text--secondary;
-            font-weight: $bold;
+            @include spacing.responsive-margin(1, bottom);
+            @include headings.tiny-size;
+            color: colours.$ds_colour__text--secondary;
+            font-weight: type.$bold;
         }
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'promoted search result');
+        @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, colours.$ds_colour__background--secondary, 'promoted search result');
     }
 
     &__title {
-        @include ds_h3-size;
+        @include headings.h3-size;
         margin: 0 !important;
-        @include ds_responsive-margin(1, bottom, true);
+        @include spacing.responsive-margin(1, bottom, true);
 
         &:last-child {
             margin-bottom: 0 !important; // only needed if title is the only part of the result
@@ -54,19 +62,19 @@
     }
 
     &__sub-title {
-        @include ds_h4-size;
+        @include headings.h4-size;
         margin: 0;
-        @include ds_responsive-margin(1, bottom);
+        @include spacing.responsive-margin(1, bottom);
     }
 
     &__summary {
-        @include ds_root-size;
+        @include headings.root-size;
         margin: 0;
     }
 
     &__metadata {
-        @include ds_responsive-margin(1, top);
-        @include ds_tiny-size;
+        @include spacing.responsive-margin(1, top);
+        @include headings.tiny-size;
         margin-bottom: 0;
     }
 
@@ -75,32 +83,32 @@
     }
 
     &__media-wrapper {
-        @include ds_responsive-padding(2, right);
+        @include spacing.responsive-padding(2, right);
     }
 
     &__media {
-        width: 96px;
+        width: rem;
 
-        @include ds_media-query(small) {
-            width: 128px;
+        @include media-query.media-query(small) {
+            width: 8rem;
         }
     }
 
     &__context {
         margin: 0;
         padding: 0;
-        @include ds_responsive-margin(2, top);
-        @include ds_responsive-padding(2, left);
-        @include ds_small-size(4px); // Use 4px type grid
+        @include spacing.responsive-margin(2, top);
+        @include spacing.responsive-padding(2, left);
+        @include headings.small-size(0.25rem); // Use 4px type grid
 
         &-key {
-            color: $ds_colour__text--secondary;
+            color: colours.$ds_colour__text--secondary;
             margin: 0;
             padding: 0;
             position: relative;
 
             &:before {
-                border-left: 4px solid $ds_colour__brand;
+                border-left: 0.25rem solid colours.$ds_colour__brand;
                 bottom: 0;
                 content: '';
                 left: -1rem;
@@ -112,16 +120,16 @@
         &-value {
             margin: 0;
             padding: 0;
-            @include ds_responsive-margin(1, top);
+            @include spacing.responsive-margin(1, top);
         }
     }
 
     &__sublinks {
         margin-bottom: 0;
-        @include ds_responsive-margin(2, top);
+        @include spacing.responsive-margin(2, top);
 
         &-title {
-            @include ds_visually-hidden;
+            @include visibility.visually-hidden;
         }
     }
 }

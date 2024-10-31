@@ -1,3 +1,6 @@
+@use "../../helpers/spacing/spacing";
+@use "../../settings/colours/colours";
+
 /*------------------------------------*\
     HORIZONTAL RULE
 \*------------------------------------*/
@@ -5,8 +8,8 @@
 /// [1] compensate for border
 hr {
     border: none;
-    border-top: 1px solid $ds_colour__border;
+    border-top: 0.0625rem solid colours.$ds_colour__border;
 
-    @include ds_responsive-margin(4, top);
-    @include ds_responsive-margin(4, bottom, false, -1px); /// [1]
+    @include spacing.responsive-margin(4, top);
+    @include spacing.responsive-margin(4, bottom, false, -0.0625rem); /// [1]
 }

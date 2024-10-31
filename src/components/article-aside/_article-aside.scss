@@ -1,11 +1,16 @@
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     ARTICLE ASIDE
 \*------------------------------------*/
 
 .ds_article-aside {
-    @include ds_block-margins;
-    @include ds_small-size;
-    @include ds_responsive-padding(4, top);
+    @include block-margins.block-margins;
+    @include headings.small-size;
+    @include spacing.responsive-padding(4, top);
     position: relative;
 
     &:first-child {
@@ -13,7 +18,7 @@
     }
 
     &::before {
-        border-top: 2px solid $ds_colour__brand;
+        border-top: 0.125rem solid colours.$ds_colour__brand;
         content: '';
         left: 0;
         position: absolute;

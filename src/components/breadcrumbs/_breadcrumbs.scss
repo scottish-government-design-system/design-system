@@ -1,10 +1,16 @@
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/icons/icons";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     $BREADCRUMBS
 \*------------------------------------*/
 
 // fixed vars
-$breadcrumbs__colour: $ds_colour__text--secondary;
-$breadcrumbs__font-size: $small-size--fixed;
+$breadcrumbs__colour: colours.$ds_colour__text--secondary;
+$breadcrumbs__font-size: type.$small-size--fixed;
 
 
 
@@ -12,9 +18,9 @@ $breadcrumbs__font-size: $small-size--fixed;
 .ds_breadcrumbs {
     color: $breadcrumbs__colour;
     font-size: $breadcrumbs__font-size;
-    line-height: 24px;
+    line-height: 1.5rem;
     padding-left: 0;
-    margin: 24px 0 16px;
+    margin: 1.5rem 0 1rem;
 
     &__item {
         display: inline-block;
@@ -24,24 +30,24 @@ $breadcrumbs__font-size: $small-size--fixed;
 
     &__item:not(:first-child){
         .ds_breadcrumbs__link {
-            margin-left: -2px; // Negative margin to offset the 2px outline on links
+            margin-left: -0.125rem; // Negative margin to offset the 2px outline on links
         }
 
         &::before {
-            @include ds_chevron(right, 0.333333em);
-            margin: 0 8px 0 6px;
+            @include icons.chevron(right, 0.333333em);
+            margin: 0 functions.px-to-rem(8px) 0 functions.px-to-rem(6px);
             position: relative;
-            top: -1px;
+            top: -0.0625rem;
         }
     }
 
     &__container {
-        padding-top: 16px;
+        padding-top: 1rem;
     }
 
-    @include ds_media-query(medium) {
+    @include media-query.media-query(medium) {
         &__container {
-            padding-top: 24px;
+            padding-top: 1.5rem;
         }
     }
 
@@ -52,5 +58,5 @@ $breadcrumbs__font-size: $small-size--fixed;
 }
 
 .ds_reversed .ds_breadcrumbs {
-    color: $ds_colour__text--reversed;
+    color: colours.$ds_colour__text--reversed;
 }

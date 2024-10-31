@@ -1,3 +1,6 @@
+@use "../../helpers/media-query/media-query";
+@use "../../settings/type/type";
+
 /*------------------------------------*\
     MARKED TEXT
 \*------------------------------------*/
@@ -5,9 +8,9 @@
 mark {
     background-color: inherit;
     color: inherit;
-    font-weight: $bold;
+    font-weight: type.$bold;
 
-    @include ds_media-query-high-contrast {
+    @include media-query.media-query-high-contrast {
         background-color: Mark;
     }
 }

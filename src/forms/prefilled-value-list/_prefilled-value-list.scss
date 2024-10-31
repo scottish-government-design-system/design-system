@@ -1,3 +1,6 @@
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+
 /*------------------------------------*\
     PREFILLED VALUE LIST
 \*------------------------------------*/
@@ -6,22 +9,22 @@
 
     &__key {
         margin: 0;
-        @include ds_responsive-margin(1, bottom);
+        @include spacing.responsive-margin(1, bottom);
         padding: 0;
     }
 
     &__value {
         margin: 0;
-        @include ds_responsive-margin(3, bottom);
+        @include spacing.responsive-margin(3, bottom);
         padding: 0;
 
-        @include ds_media-query(medium) {
+        @include media-query.media-query(medium) {
             display: flex;
 
             &-actions {
-                @include ds_responsive-margin(3, left);
+                @include spacing.responsive-margin(3, left);
             }
-        
+
         }
 
     }

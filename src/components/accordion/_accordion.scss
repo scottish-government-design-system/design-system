@@ -1,29 +1,39 @@
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/icons/icons";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/links/links";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     ACCORDION
 \*------------------------------------*/
 
 // modifiable vars
-$accordion__header-colour: $ds_colour__link !default;
+$accordion__header-colour: colours.$ds_colour__link !default;
 
 
 
 
 .ds_accordion {
-    @include ds_responsive-margin (4, bottom, false, -1px);
-    @include ds_responsive-margin (4, top);
+    @include spacing.responsive-margin (4, bottom, false, -0.0625rem);
+    @include spacing.responsive-margin (4, top);
 
     position: relative;
 
     &__open-all {
         display: none;
         float: right;
-        line-height: line-height-on-grid($root-font-size);
+        line-height: functions.line-height-on-grid(type.$root-font-size);
         margin-bottom: 0.5rem;
         position: relative;
         text-decoration: none;
 
-        @include ds_media-query(medium) {
-            line-height: line-height-on-grid($root-font-size--medium);
+        @include media-query.media-query(medium) {
+            line-height: functions.line-height-on-grid(type.$root-font-size--medium);
         }
 
         + * {
@@ -46,32 +56,32 @@ h1,h2,h3 {
 }
 
 .ds_accordion-item {
-    border-bottom: 1px solid $ds_colour__border--faint;
-    border-top: 1px solid $ds_colour__border--faint;
+    border-bottom: 0.0625rem solid colours.$ds_colour__border--faint;
+    border-top: 0.0625rem solid colours.$ds_colour__border--faint;
 
     &__header {
-        @include ds_blocklink;
-        @include ds_h4-size;
+        @include links.blocklink;
+        @include headings.h4-size;
 
-        background-color: $ds_colour__background--primary;
+        background-color: colours.$ds_colour__background--primary;
         border-width: 0;
         color: $accordion__header-colour;
-        font-weight: $bold;
+        font-weight: type.$bold;
         margin: 0;
         position: relative;
         text-align: left;
         width: 100%;
 
         &:hover:not(:focus) {
-            color: $ds_colour__link--hover;
+            color: colours.$ds_colour__link--hover;
         }
     }
 
     /// [1] subtracting the accordion item's border width
     &__title {
-        @include ds_h4-size;
+        @include headings.h4-size;
         margin-bottom: 0;
-        padding: 1rem 3rem calc(1rem - 1px) 1rem; /// [1]
+        padding: 1rem 3rem 0.9375rem 1rem; /// [1]
 
         &--button {
             padding: 0;
@@ -83,11 +93,11 @@ h1,h2,h3 {
         appearance: unset;
         background: transparent;
         border: 0;
-        padding: 1rem 3rem calc(1rem - 1px) 1rem; /// [1]
+        padding: 1rem 3rem 0.9375rem 1rem; /// [1]
         text-align: left;
         width: 100%;
 
-        @include ds_blocklink;
+        @include links.blocklink;
     }
 
     &__label {
@@ -104,16 +114,16 @@ h1,h2,h3 {
     }
 
     &__indicator {
-        @include ds_chevron(down, 0.75em);
+        @include icons.chevron(down, 0.75em);
         position: absolute;
         right: 1.5rem;
         top: 1.125rem;
         transition: transform 0.2s, top 0.2s;
         pointer-events: none;
 
-        @include ds_media-query(medium) {
-            top: px-to-rem(21px); // nudges indicator to remain inline with first line of title
-            right: px-to-rem(26px);
+        @include media-query.media-query(medium) {
+            top: functions.px-to-rem(21px); // nudges indicator to remain inline with first line of title
+            right: functions.px-to-rem(26px);
         }
     }
 
@@ -121,9 +131,9 @@ h1,h2,h3 {
         display: none;
         padding: 1.5rem 2.5rem 2rem 1rem;
 
-        @include ds_last-child-no-margin;
+        @include last-child-no-margin.last-child-no-margin;
 
-        @include ds_media-query(medium) {
+        @include media-query.media-query(medium) {
             padding-right: 6.25rem;
         }
     }
@@ -133,30 +143,30 @@ h1,h2,h3 {
     }
 
     &__control:checked ~ &__header {
-        background-color: $ds_colour__link--current__background;
-        color: $ds_colour__link--current;
+        background-color: colours.$ds_colour__link--current__background;
+        color: colours.$ds_colour__link--current;
     }
 
     &__control:checked ~ &__header &__indicator {
         top: 1.375rem;
         transform: rotate(-225deg);
 
-        @include ds_media-query(medium) {
-            top: px-to-rem(27px); // nudges indicator to remain inline with first line of title
-            right: px-to-rem(26px);
+        @include media-query.media-query(medium) {
+            top: functions.px-to-rem(27px); // nudges indicator to remain inline with first line of title
+            right: functions.px-to-rem(26px);
         }
     }
 
     &__control:focus ~ &__header,
     &__control:focus:hover ~ &__header {
-        background: $ds_colour__blocklink-bg--focus;
-        box-shadow: 0 $link__border-width $ds_colour__link--focus;
-        color: $ds_colour__link--focus;
+        background: colours.$ds_colour__blocklink-bg--focus;
+        box-shadow: 0 links.$link__border-width colours.$ds_colour__link--focus;
+        color: colours.$ds_colour__link--focus;
         z-index: 2;
     }
 
     + .ds_accordion-item {
-        margin-top: -1px;
+        margin-top: -0.0625rem;
     }
 }
 
@@ -171,8 +181,8 @@ h1,h2,h3 {
     .ds_accordion-item__button,
     .ds_accordion-item__body,
     .ds_accordion__open-all {
-        font-size: px-to-rem($root-font-size); // 1rem
-        line-height: line-height-on-grid($root-font-size); //1.5
+        font-size: type.$root-font-size;
+        line-height: functions.line-height-on-grid(type.$root-font-size); //1.5
     }
 
     .ds_accordion-item__body {
@@ -180,7 +190,7 @@ h1,h2,h3 {
 
         h3, h4 {
             font-size: 1em; // 1rem
-            line-height: line-height-on-grid($root-font-size); //1.5
+            line-height: functions.line-height-on-grid(type.$root-font-size); //1.5
         }
     }
 
@@ -196,7 +206,7 @@ h1,h2,h3 {
     }
 }
 
-@include media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_accordion--small {
         .ds_accordion-item__indicator {
             top: 1.125rem;

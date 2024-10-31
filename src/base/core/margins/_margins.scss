@@ -1,3 +1,5 @@
+@use "../../helpers/spacing/spacing";
+
 /*------------------------------------*\
     BASIC MARGINS
 \*------------------------------------*/
@@ -7,5 +9,5 @@ ul, ol, dl,
 blockquote, p, address,
 table, figure,
 pre {
-  @include ds_responsive-margin(2, bottom);
+  @include spacing.responsive-margin(2, bottom);
 }

@@ -1,43 +1,54 @@
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/first-child-no-margin/first-child-no-margin";
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     #SUMMARY LIST
 \*------------------------------------*/
 
-$summary-card-header-background-colour: $ds_colour__background--primary--dim !default;
+$summary-card-header-background-colour: colours.$ds_colour__background--primary--dim !default;
 
 .ds_summary-list {
-    @include ds_block-margins--bottom;
+    @include block-margins.block-margins--bottom;
     list-style-type: none;
     margin-left: 0;
 
     &__key {
-        font-weight: $bold;
+        font-weight: type.$bold;
     }
 
     &__key,
     &__value,
     &__actions {
-        @include ds_responsive-margin(1, bottom);
+        @include spacing.responsive-margin(1, bottom);
         display: block;
         overflow-wrap: break-word;
     }
 
     &__item {
-        @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(1, bottom, false, -1px);
-        border-bottom: 1px solid $ds_colour__border;
+        @include spacing.responsive-padding(2, top);
+        @include spacing.responsive-padding(1, bottom, false, -0.0625rem);
+        border-bottom: 0.0625rem solid colours.$ds_colour__border;
         margin: 0;
         position: relative;
     }
 
     &--no-border &__item {
-        @include ds_responsive-padding(1, bottom);
+        @include spacing.responsive-padding(1, bottom);
         border-bottom: 0;
     }
 
     &__value {
         // Remove top margin of first element and bottom margin of last element to avoid additional spacing
-        @include ds_first-child-no-margin;
-        @include ds_last-child-no-margin;
+        @include first-child-no-margin.first-child-no-margin;
+        @include last-child-no-margin.last-child-no-margin;
 
         // If first element is visually hidden supporting text then remove top margin of next sibling
         .visually-hidden:first-child + * {
@@ -61,18 +72,18 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
             padding: 0;
 
             &:not(:first-child) {
-                @include ds_responsive-margin(1, left);
-                @include ds_responsive-padding(1, left, false, 1px);
+                @include spacing.responsive-margin(1, left);
+                @include spacing.responsive-padding(1, left, false, 0.0625rem);
                 position: relative;
 
                 &::before {
-                    background: $ds_colour__text--secondary;
+                    background: colours.$ds_colour__text--secondary;
                     content: '';
-                    height: calc(1em - 2px);
+                    height: calc(1em - 0.125rem);
                     left: 0;
                     position: absolute;
-                    top: calc(50% - (1em - 2px) / 2);
-                    width: 1px;
+                    top: calc(50% - (1em - 0.125rem) / 2);
+                    width: 0.0625rem;
                 }
             }
         }
@@ -80,7 +91,7 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
 
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_summary-list {
         border-collapse: collapse;
         display: table;
@@ -95,14 +106,14 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
         &__value,
         &__actions {
             display: table-cell;
-            padding: px-to-rem(16px) px-to-rem(16px) px-to-rem(15px) px-to-rem(16px);
+            padding: 1rem 1rem 0.9375rem 1rem;
         }
 
         &--no-border &__item {
             .ds_summary-list__key,
             .ds_summary-list__value,
             .ds_summary-list__action {
-                padding-bottom: px-to-rem(16px);
+                padding-bottom: 1rem;
             }
         }
 
@@ -126,7 +137,7 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
     }
 }
 
-@include ds_media-query(large) {
+@include media-query.media-query(large) {
     .ds_summary-list {
         // Shorter keys modifier
         &--short-keys &__key {
@@ -141,36 +152,36 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
 // Summary card
 // [1] - Add visual separation of header in high contrast mode
 .ds_summary-card {
-    @include ds_block-margins;
-    border: 1px solid $ds_colour__border;
+    @include block-margins.block-margins;
+    border: 0.0625rem solid colours.$ds_colour__border;
 
     &__header {
-        @include ds_responsive-padding(3, top, $tuning: -1px);
-        @include ds_responsive-padding(3, right, $tuning: -1px);
-        @include ds_responsive-padding(3, bottom, $tuning: -1px);
-        @include ds_responsive-padding(3, left, $tuning: -1px);
+        @include spacing.responsive-padding(3, top, $tuning: -0.0625rem);
+        @include spacing.responsive-padding(3, right, $tuning: -0.0625rem);
+        @include spacing.responsive-padding(3, bottom, $tuning: -0.0625rem);
+        @include spacing.responsive-padding(3, left, $tuning: -0.0625rem);
         align-items: flex-start;
-        border-bottom: 1px solid $summary-card-header-background-colour; //[1]
+        border-bottom: 0.0625rem solid $summary-card-header-background-colour; //[1]
         background: $summary-card-header-background-colour;
         display: flex;
         justify-content: space-between;
 
         // Stack on mobile
-        @include ds_media-query(medium-down) {
+        @include media-query.media-query(medium-down) {
             flex-direction: column;
         }
 
         &-title {
-            @include ds_h3-size;
-            font-weight: $bold;
+            @include headings.h3-size;
+            font-weight: type.$bold;
             margin: 0;
         }
 
         .ds_link {
-            font-weight: $bold;
+            font-weight: type.$bold;
         }
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $summary-card-header-background-colour, 'summary card header');
+        @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, $summary-card-header-background-colour, 'summary card header');
     }
 
     &__actions-list {
@@ -178,11 +189,11 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
         list-style: none;
         margin: 0;
         padding: 0;
-        padding-left: px-to-rem(32px);
+        padding-left: 2rem;
 
-        @include ds_media-query(medium-down) {
+        @include media-query.media-query(medium-down) {
             padding-left: 0;
-            padding-top: px-to-rem(8px);
+            padding-top: 0.5rem;
         }
 
         &-item {
@@ -190,28 +201,28 @@ $summary-card-header-background-colour: $ds_colour__background--primary--dim !de
             padding: 0;
 
             &:not(:first-child) {
-                @include ds_responsive-margin(1, left);
-                @include ds_responsive-padding(1, left, false, 1px);
+                @include spacing.responsive-margin(1, left);
+                @include spacing.responsive-padding(1, left, false, 0.0625rem);
                 position: relative;
 
                 &::before {
-                    background: $ds_colour__text--secondary;
+                    background: colours.$ds_colour__text--secondary;
                     content: '';
-                    height: calc(1em - 2px);
+                    height: calc(1em - 0.125rem);
                     left: 0;
                     position: absolute;
-                    top: calc(50% - (1em - 2px) / 2);
-                    width: 1px;
+                    top: calc(50% - (1em - 0.125rem) / 2);
+                    width: 0.0625rem;
                 }
             }
         }
     }
 
     &__content {
-        @include ds_responsive-padding(1, top);
-        @include ds_responsive-padding(3, right, $tuning: -1px);
-        @include ds_responsive-padding(1, bottom, $tuning: -1px);
-        @include ds_responsive-padding(3, left, $tuning: -1px);
+        @include spacing.responsive-padding(1, top);
+        @include spacing.responsive-padding(3, right, $tuning: -0.0625rem);
+        @include spacing.responsive-padding(1, bottom, $tuning: -0.0625rem);
+        @include spacing.responsive-padding(3, left, $tuning: -0.0625rem);
     }
 
     // Remove bottom margin and border

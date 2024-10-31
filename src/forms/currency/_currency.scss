@@ -1,17 +1,20 @@
+@use "../../base/helpers/headings/headings";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     CURRENCY WRAPPER
 \*------------------------------------*/
 
-$input-height: 48px;
+$input-height: 3rem;
 
 .ds_currency-wrapper {
     position: relative;
 
     &::before {
-        @include ds_large-size;
+        @include headings.large-size;
         content: '£';
         height: $input-height;
-        font-weight: $bold;
+        font-weight: type.$bold;
         line-height: $input-height !important;
         pointer-events: none;
         position: absolute;
@@ -25,12 +28,10 @@ $input-height: 48px;
     }
 
     & > .ds_input {
-        padding-left: 40px;
+        padding-left: 2.5rem;
     }
 
     & > .ds_input:focus {
-        padding-left: 39px;
+        padding-left: 2.4375rem; // 2.5rem - 1px
     }
-
-
 }

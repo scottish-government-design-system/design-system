@@ -1,9 +1,13 @@
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/high-contrast/high-contrast";
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     SEARCH FACETS
 \*------------------------------------*/
 
 .ds_facets {
-    @include ds_small-size;
+    @include headings.small-size;
 
     &__list {
         margin-bottom: 1.5rem;
@@ -51,8 +55,8 @@
 .ds_facet {
     line-height: 1.5rem;
     min-height: 2.5rem;
-    outline: 2px solid currentColor;
-    outline-offset: -2px;
+    outline: 0.125rem solid currentColor;
+    outline-offset: -0.125rem;
     padding: 0.5rem 2.75rem 0.5rem 0.75rem;
     position: relative;
     text-align: center;
@@ -65,15 +69,15 @@
     }
 
     &:hover {
-        background: $ds_colour__button--cancel--hover__background;
+        background: colours.$ds_colour__button--cancel--hover__background;
     }
 
     &:focus-within {
-        @include ds_high-contrast-focus;
+        @include high-contrast.high-contrast-focus;
 
-        background-color: $ds_colour__focus--background;
-        box-shadow: 0 3px $ds_colour__link--focus__shadow;
-        color: $ds_colour__focus;
+        background-color: colours.$ds_colour__focus--background;
+        box-shadow: 0 0.1875rem colours.$ds_colour__link--focus__shadow;
+        color: colours.$ds_colour__focus;
         outline: 0;
         transition-duration: 0s;
     }
@@ -95,7 +99,7 @@
         top: 0;
 
         &:focus {
-            background-color: $ds_colour__link--focus__background;
+            background-color: colours.$ds_colour__link--focus__background;
             z-index: -1;
         }
 
@@ -107,7 +111,7 @@
     }
 
     &__button-icon {
-        color: $ds_colour__text--secondary;
+        color: colours.$ds_colour__text--secondary;
         fill: currentColor;
         height: 1.5rem;
         margin-left: 0.5rem;

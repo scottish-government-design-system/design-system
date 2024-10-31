@@ -1,29 +1,37 @@
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/high-contrast/high-contrast";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     TASK LIST
 \*------------------------------------*/
 
 .ds_task-list {
     list-style-type: none;
-    margin: -2px 0 0 0; // Negative top margin to offset top border of first task
+    margin: -0.125rem 0 0 0; // Negative top margin to offset top border of first task
     padding: 0;
 
     &__task {
         align-items: center;
-        border-top: 2px $ds_colour__border--faint solid;
+        border-top: 0.125rem colours.$ds_colour__border--faint solid;
         display: flex;
         gap: 0.5rem 2rem;
         justify-content: space-between;
         margin: 0;
-        @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(2, bottom, $tuning: -2px);
+        @include spacing.responsive-padding(2, top);
+        @include spacing.responsive-padding(2, bottom, $tuning: -0.125rem);
 
         &:last-child {
-            border-bottom: 2px $ds_colour__border--faint solid;
+            border-bottom: 0.125rem colours.$ds_colour__border--faint solid;
         }
 
         // Stack at small size
-        @include ds_media-query(small-down) {
-            @include ds_responsive-padding(3, bottom, $tuning: -2px);
+        @include media-query.media-query(small-down) {
+            @include spacing.responsive-padding(3, bottom, $tuning: -0.125rem);
             align-items: flex-start;
             flex-direction: column;
         }
@@ -34,8 +42,8 @@
 
         // remove heading styles
         &-heading {
-            @include ds_root-size;
-            font-weight: $normal;
+            @include headings.root-size;
+            font-weight: type.$normal;
             margin: 0;
         }
 
@@ -45,34 +53,34 @@
 
         &-summary {
             margin: 0;
-            @include ds_responsive-margin(1, top);
+            @include spacing.responsive-margin(1, top);
         }
 
         // Deprecated - use ds_tag component instead
         &-status {
-            @include ds_small-size;
-            @include ds_high-contrast-outline;
-            background-color: $ds_colour__background--tertiary;
-            font-weight: $bold;
-            padding: px-to-rem(4px) px-to-rem(16px);
+            @include headings.small-size;
+            @include high-contrast.high-contrast-outline;
+            background-color: colours.$ds_colour__background--tertiary;
+            font-weight: type.$bold;
+            padding: 0.25rem 1rem;
             white-space: nowrap;
 
             &--complete {
-                background: $ds_colour__background--primary;
-                color: $ds_colour__state--positive;
-                border: 2px $ds_colour__state--positive solid;
-                padding: px-to-rem(2px) px-to-rem(16px);
+                background: colours.$ds_colour__background--primary;
+                color: colours.$ds_colour__state--positive;
+                border: 0.125rem colours.$ds_colour__state--positive solid;
+                padding: 0.125rem 1rem;
             }
         }
     }
 
     &-heading {
-        @include ds_h3-style;
+        @include headings.h3-style;
         display: inline-block;
     }
 
     &-intro {
-        @include ds_responsive-margin(2, bottom);
+        @include spacing.responsive-margin(2, bottom);
     }
 
     // Add top margin if following inline heading
@@ -81,7 +89,7 @@
     }
     // Include tuning for top border of tasks
     &-heading + & {
-        @include ds_responsive-margin(1, top, $tuning: -2px);
+        @include spacing.responsive-margin(1, top, $tuning: -0.125rem);
     }
 }
 
@@ -94,10 +102,10 @@
     &__section:last-child {
         margin: 0;
         padding: 0;
-        @include ds_responsive-margin(5, bottom);
+        @include spacing.responsive-margin(5, bottom);
 
-        @include ds_media-query(small-down) {
-            @include ds_responsive-margin(6, bottom);
+        @include media-query.media-query(small-down) {
+            @include spacing.responsive-margin(6, bottom);
         }
     }
 
@@ -106,31 +114,31 @@
         list-style-type: decimal;
 
         .ds_task-list-group__section::marker {
-            @include ds_h3-size;
-            font-weight: $bold;
+            @include headings.h3-size;
+            font-weight: type.$bold;
         }
     }
 }
 
 .ds_task-list-status {
-    @include ds_responsive-margin(5, bottom);
+    @include spacing.responsive-margin(5, bottom);
 
-    @include ds_media-query(small-down) {
-        @include ds_responsive-margin(6, bottom);
+    @include media-query.media-query(small-down) {
+        @include spacing.responsive-margin(6, bottom);
     }
 
     > p {
-        @include ds_responsive-margin(1, bottom);
+        @include spacing.responsive-margin(1, bottom);
     }
 
     &-heading {
-        @include ds_h3-style;
+        @include headings.h3-style;
     }
 }
 
 
 // Deprecated - use ds_tag component instead
-@include ds_media-query-high-contrast {
+@include media-query.media-query-high-contrast {
     /*
      * [1] This is a little hacky but it does serve to differentiate the "complete" status.
      *     And happens to be green by default.

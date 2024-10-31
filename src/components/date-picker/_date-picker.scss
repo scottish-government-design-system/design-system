@@ -1,13 +1,24 @@
+@use "../../base/helpers/box-shadow/box-shadow";
+@use "../../base/helpers/button-sizing/button-sizing";
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/layout/layout";
+@use "../../base/helpers/links/links";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     DATE PICKER
 \*------------------------------------*/
 
-$date-picker-focus-outline-width: 2px;
-$date-picker-focus-border-width: 3px;
+$date-picker-focus-outline-width: 0.125rem;
+$date-picker-focus-border-width: 0.1875rem;
 
 .ds_datepicker {
     position: relative;
-    @include ds_responsive-margin(3, bottom);
+    @include spacing.responsive-margin(3, bottom);
 
     .ds_input {
         margin-bottom: 0;
@@ -20,18 +31,18 @@ $date-picker-focus-border-width: 3px;
     }
 
     &__dialog {
-        @include ds_box-shadow;
+        @include box-shadow.box-shadow;
 
-        background-color: $ds_colour__background--primary;
+        background-color: colours.$ds_colour__background--primary;
         clear: both;
         display: none;
-        padding: 8px;
-        outline: 1px solid $ds_colour__border;
-        outline-offset: -1px;
+        padding: 0.5rem;
+        outline: 0.0625rem solid colours.$ds_colour__border;
+        outline-offset: -0.0625rem;
         position: static;
         top: 0;
         transition: background-color 0.2s, outline-color 0.2s;
-        width: 296px;
+        width: 18.5rem;
         z-index: 2;
 
         &--open {
@@ -49,19 +60,19 @@ $date-picker-focus-border-width: 3px;
             > :nth-child(1) {
                 position: absolute;
                 left: 0;
-                top: -2px;
+                top: -0.125rem;
             }
 
             > :nth-child(3) {
                 position: absolute;
                 right: 0;
-                top: -2px;
+                top: -0.125rem;
             }
         }
 
         &__title {
-            @include ds_small-size;
-            line-height: line-height-on-grid($small-size, 2);
+            @include headings.small-size;
+            line-height: functions.line-height-on-grid(type.$small-size, 2);
             margin: 0 !important;
             text-transform: uppercase;
         }
@@ -69,14 +80,14 @@ $date-picker-focus-border-width: 3px;
         &__navbuttons {
             button {
                 background-color: transparent;
-                color: $ds_colour__text;
-                font-weight: $normal;
-                min-height: 40px;
+                color: colours.$ds_colour__text;
+                font-weight: type.$normal;
+                min-height: 2.5rem;
                 margin: 0;
-                padding: 4px;
-                min-width:  32px;
+                padding: 0.25rem;
+                min-width: 2rem;
 
-                @include ds_blocklink;
+                @include links.blocklink;
                 display: inline-block;
 
                 &:hover {
@@ -84,10 +95,10 @@ $date-picker-focus-border-width: 3px;
                 }
 
                 .ds_icon {
-                    height: 32px;
+                    height: 2rem;
                     padding: 0;
                     position: static;
-                    width: 24px;
+                    width: 1.5rem;
                 }
             }
         }
@@ -95,7 +106,7 @@ $date-picker-focus-border-width: 3px;
         &__table {
 
             tbody:focus-within {
-                outline: $date-picker-focus-outline-width solid $ds_colour__link--focus__background;
+                outline: $date-picker-focus-outline-width solid colours.$ds_colour__link--focus__background;
             }
 
             td {
@@ -106,23 +117,23 @@ $date-picker-focus-border-width: 3px;
             }
 
             th {
-                @include ds_small-size;
-                color: $ds_colour__text--secondary;
-                font-weight: $normal;
+                @include headings.small-size;
+                color: colours.$ds_colour__text--secondary;
+                font-weight: type.$normal;
             }
 
             button {
                 background-color: transparent;
                 border-width: 0;
-                color: $ds_colour__text;
-                font-weight: $normal;
-                min-height: 40px;
+                color: colours.$ds_colour__text;
+                font-weight: type.$normal;
+                min-height: 2.5rem;
                 margin: 0;
                 padding: 0;
-                min-width: 40px;
+                min-width: 2.5rem;
 
-                @include ds_small-size;
-                @include ds_blocklink;
+                @include headings.small-size;
+                @include links.blocklink;
 
                 &:focus {
                     transition-duration: 0s;
@@ -130,57 +141,57 @@ $date-picker-focus-border-width: 3px;
 
                 &[disabled="true"],
                 &[aria-disabled="true"] {
-                    background-color: $ds_colour__link--disabled__background;
-                    color: $ds_colour__link--disabled;
+                    background-color: colours.$ds_colour__link--disabled__background;
+                    color: colours.$ds_colour__link--disabled;
                     pointer-events: none;
 
                     &:focus {
                         box-shadow:
-                            inset 0 #{$date-picker-focus-border-width * -1} $ds_colour__focus, // bottom shadow
-                            inset 0 $date-picker-focus-outline-width $ds_colour__focus--background, // top
-                            inset #{$date-picker-focus-outline-width * -1} 0 $ds_colour__focus--background, // right
-                            inset 0 #{($date-picker-focus-outline-width + $date-picker-focus-border-width) * -1} $ds_colour__focus--background, // bottom
-                            inset $date-picker-focus-outline-width 0 $ds_colour__focus--background; // left
+                            inset 0 #{$date-picker-focus-border-width * -1} colours.$ds_colour__focus, // bottom shadow
+                            inset 0 $date-picker-focus-outline-width colours.$ds_colour__focus--background, // top
+                            inset #{$date-picker-focus-outline-width * -1} 0 colours.$ds_colour__focus--background, // right
+                            inset 0 #{($date-picker-focus-outline-width + $date-picker-focus-border-width) * -1} colours.$ds_colour__focus--background, // bottom
+                            inset $date-picker-focus-outline-width 0 colours.$ds_colour__focus--background; // left
                     }
                 }
 
                 &.ds_datepicker__current {
-                    $dp-current-outline-width: 2px;
-                    outline: $dp-current-outline-width solid $ds_colour__border--strong !important;
+                    $dp-current-outline-width: 0.125rem;
+                    outline: $dp-current-outline-width solid colours.$ds_colour__border--strong !important;
                     outline-offset: #{$dp-current-outline-width * -1};
                 }
 
                 &.ds_datepicker__current[tabindex="-1"] {
-                    background: $ds_colour__link--current__background;
+                    background: colours.$ds_colour__link--current__background;
                     color: currentColor;
                 }
 
                 &.ds_datepicker__today {
-                    font-weight: $bold;
+                    font-weight: type.$bold;
 
                     &::after {
                         background-color: currentColor;
-                        border-radius: 4px;
-                        bottom: 6px;
+                        border-radius: 0.25rem;
+                        bottom: 0.375rem;
                         content: '';
-                        height: 4px;
+                        height: 0.25rem;
                         left: 50%;
-                        margin-left: -2px;
+                        margin-left: -0.125rem;
                         position: absolute;
-                        width: 4px;
+                        width: 0.25rem;
                     }
                 }
 
                 &.ds_selected:not(:focus) {
-                    background-color: $ds_colour__text;
-                    color: $ds_colour__text--reversed;
+                    background-color: colours.$ds_colour__text;
+                    color: colours.$ds_colour__text--reversed;
                 }
 
                 /*
                  * helps with focus in windows high contrast
                  */
                 &:focus {
-                    color: $ds_colour__focus;
+                    color: colours.$ds_colour__focus;
                     position: relative;
                     z-index: 2; // [1]
                 }
@@ -188,19 +199,19 @@ $date-picker-focus-border-width: 3px;
         }
 
         &__table-caption {
-            @include ds_tiny-size;
+            @include headings.tiny-size;
             caption-side: bottom;
             line-height: 2;
-            margin-top: 8px;
+            margin-top: 0.5rem;
         }
 
         &__buttongroup {
-            @include ds_layout(8px);
+            @include layout.layout(0.5rem);
             overflow: visible;
 
             // non-grid
             button {
-                @include ds_colwidth(1,2,8px);
+                @include layout.colwidth(1, 2, 0.5rem);
                 display: block;
                 float: left;
                 margin: 0;
@@ -213,41 +224,39 @@ $date-picker-focus-border-width: 3px;
     }
 
     &__button {
-        @include ds_small-size;
-        @include ds_button-sizing--small;
+        @include headings.small-size;
+        @include button-sizing.button-sizing--small;
 
         align-self: end;
     }
 }
 
-@include ds_media-query (medium) {
+@include media-query.media-query (medium) {
     .ds_datepicker {
         &__dialog {
             position: absolute;
 
             &__title {
-                line-height: line-height-on-grid($small-size--medium, 1.5);
-                padding: 8px 0;
+                line-height: functions.line-height-on-grid(type.$small-size--medium, 1.5);
+                padding: 0.5rem 0;
             }
 
             &__header {
                 > :nth-child(1) {
-                    // left: 8px;
                     top: 0;
                 }
 
                 > :nth-child(3) {
-                    // right: 8px;
                     top: 0;
                 }
             }
 
             &__table th {
-                line-height: line-height-on-grid($small-size--medium, 2);
+                line-height: functions.line-height-on-grid(type.$small-size--medium, 2);
             }
 
             &__table-caption {
-                line-height: line-height-on-grid($tiny-size--medium, 2);
+                line-height: functions.line-height-on-grid(type.$tiny-size--medium, 2);
             }
         }
     }

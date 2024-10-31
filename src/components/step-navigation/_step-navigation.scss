@@ -1,3 +1,9 @@
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     #STEP NAVIGATION
     Step navigation is an enhancement to the DS accordion
@@ -5,12 +11,12 @@
 
 @use "sass:math";
 
-$step-count-margin: 40px;
-$step-count-margin--medium: 48px;
-$step-count-size: 32px;
-$step-count-size--medium: 40px;
-$step-content-line-height: 24px;
-$step-content-line-height--medium: 32px;
+$step-count-margin: 2.5rem;
+$step-count-margin--medium: 3rem;
+$step-count-size: 2rem;
+$step-count-size--medium: 2.5rem;
+$step-content-line-height: 1.5rem;
+$step-content-line-height--medium: 2rem;
 
 .ds_step-navigation {
     counter-reset: section;
@@ -25,14 +31,14 @@ $step-content-line-height--medium: 32px;
     }
 
     &__title {
-        font-size: $h3-size;
+        font-size: type.$h3-size;
         line-height: 1.5rem;
     }
 
     &__title-link {
         display: block;
-        @include ds_responsive-margin(3, bottom);
-        @include ds_responsive-margin(1, top);
+        @include spacing.responsive-margin(3, bottom);
+        @include spacing.responsive-margin(1, top);
         text-decoration: underline;
     }
 
@@ -41,34 +47,34 @@ $step-content-line-height--medium: 32px;
         position: absolute;
         left: #{math.div($step-count-size, 2) - $step-count-margin};
         right: 100%;
-        height: 1px;
-        background: $ds_colour__border--strong;
+        height: 0.0625rem;
+        background: colours.$ds_colour__border--strong;
         margin-top: math.div($step-content-line-height, 2);
     }
 
     &__count {
-        background-color: $ds_colour__background--primary;
-        border: 1px solid currentColor;
-        border-radius: 20px;
-        color: $ds_colour__border--strong;
+        background-color: colours.$ds_colour__background--primary;
+        border: 0.0625rem solid currentColor;
+        border-radius: 1.25rem;
+        color: colours.$ds_colour__border--strong;
         content: counter(section);
         counter-increment: section;
         display: block;
-        font-size: $root-font-size;
-        font-weight: $bold;
+        font-size: type.$root-font-size;
+        font-weight: type.$bold;
         height: $step-count-size;
         left: #{$step-count-margin * -1};
-        line-height: #{$step-count-size - 2px};
+        line-height: #{$step-count-size - 0.125rem};
         position: absolute;
         text-align: center;
-        top: px-to-rem(12px);
+        top: 0.75rem;
         width: $step-count-size;
     }
 
     .ds_current &__count {
-        background-color: $ds_colour__link--current__background;
-        border: 2px solid $ds_colour__border--highlight;
-        line-height: #{$step-count-size - 4px};
+        background-color: colours.$ds_colour__link--current__background;
+        border: 0.125rem solid colours.$ds_colour__border--highlight;
+        line-height: #{$step-count-size - 0.25rem};
     }
 
     .ds_accordion {
@@ -79,14 +85,14 @@ $step-content-line-height--medium: 32px;
         position: relative;
 
         &::before {
-            background: $ds_colour__border--strong;
-            bottom: px-to-rem(-17px);
+            background: colours.$ds_colour__border--strong;
+            bottom: functions.px-to-rem(-17px);
             content: '';
             display: block;
             left: #{math.div($step-count-size, 2) - $step-count-margin};
             position: absolute;
-            top: px-to-rem(39px);
-            width: 1px;
+            top: functions.px-to-rem(39px);
+            width: 0.0625rem;
         }
 
         &:last-child::before {
@@ -94,14 +100,14 @@ $step-content-line-height--medium: 32px;
         }
 
         &:last-child::after {
-            background: $ds_colour__border--strong;
-            bottom: -1px;
+            background: colours.$ds_colour__border--strong;
+            bottom: -0.0625rem;
             content: '';
             display: block;
-            height: 1px;
-            left: #{math.div($step-count-size, 2) - $step-count-margin - 6px};
+            height: 0.0625rem;
+            left: #{math.div($step-count-size, 2) - $step-count-margin - 0.375rem};
             position: absolute;
-            width: 13px;
+            width: functions.px-to-rem(13px);
         }
     }
 
@@ -117,18 +123,18 @@ $step-content-line-height--medium: 32px;
     }
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_step-navigation:not(.ds_step-navigation--small) {
         .ds_step-navigation__count {
-            font-size: $root-font-size--medium;
+            font-size: type.$root-font-size--medium;
             height: $step-count-size--medium;
             left: #{$step-count-margin--medium * -1};
-            line-height: #{$step-count-size--medium - 2px};
+            line-height: #{$step-count-size--medium - 0.125rem};
             width: $step-count-size--medium;
         }
 
         .ds_current .ds_step-navigation__count {
-            line-height: #{$step-count-size--medium - 4px};
+            line-height: #{$step-count-size--medium - 0.25rem};
         }
 
         .ds_step-navigation__current-link::before {
@@ -141,13 +147,13 @@ $step-content-line-height--medium: 32px;
         }
 
         .ds_accordion-item::before {
-            bottom: px-to-rem(-17px);
+            bottom: functions.px-to-rem(-17px);
             left: #{math.div($step-count-size--medium, 2) - $step-count-margin--medium};
-            top: px-to-rem(49px);
+            top: functions.px-to-rem(49px);
         }
 
         .ds_accordion-item:last-child::after {
-            left: #{math.div($step-count-size--medium, 2) - $step-count-margin--medium - 6px};
+            left: #{math.div($step-count-size--medium, 2) - $step-count-margin--medium - 0.375rem};
         }
     }
 }

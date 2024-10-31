@@ -1,3 +1,5 @@
+@use "../../base/helpers/media-query/media-query";
+
 /*------------------------------------*\
     ARTICLE HEADER
     title block for articles
@@ -14,7 +16,7 @@
         margin-top: 0.5rem;
     }
 
-    @include ds_media-query(medium) {
+    @include media-query.media-query(medium) {
         margin-top: 2rem;
 
         &__label + &__title {
@@ -27,7 +29,7 @@
 .ds_error-summary + .ds_page-header {
     margin-top: 2.5rem;
 
-    @include ds_media-query(medium) {
+    @include media-query.media-query(medium) {
         margin-top: 4rem;
     }
 }

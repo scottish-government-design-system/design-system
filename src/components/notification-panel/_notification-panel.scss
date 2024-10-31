@@ -1,42 +1,48 @@
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/high-contrast/high-contrast";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     NOTIFICATION PANEL
 \*------------------------------------*/
 
 .ds_notification-panel {
-    @include ds_responsive-margin(3, bottom);
-    @include ds_responsive-padding(6, top);
-    @include ds_responsive-padding(6, bottom);
-    @include ds_responsive-padding(4, left);
-    @include ds_responsive-padding(4, right);
-    background: $ds_colour__state--positive;
-    color: $ds_colour__text--reversed;
+    @include spacing.responsive-margin(3, bottom);
+    @include spacing.responsive-padding(6, top);
+    @include spacing.responsive-padding(6, bottom);
+    @include spacing.responsive-padding(4, left);
+    @include spacing.responsive-padding(4, right);
+    background: colours.$ds_colour__state--positive;
+    color: colours.$ds_colour__text--reversed;
     text-align: center;
 
-    @include ds_high-contrast-outline(4px);
+    @include high-contrast.high-contrast-outline(0.25rem);
 
     // Add top margin if placed below another item
     &:not(:first-child) {
-        @include ds_responsive-margin(6, top);
+        @include spacing.responsive-margin(6, top);
     }
 
     &--neutral {
-        background: $ds_colour__background--secondary;
-        color: $ds_colour__text;
+        background: colours.$ds_colour__background--secondary;
+        color: colours.$ds_colour__text;
     }
 
     &__title {
         // Any heading level will display in standard way - design is separated from heading level
         // This needs improved so line height (and maybe also margin) also comes from mixin
         // Bottom margin reduced over normal h1 value
-        @include ds_h1-style;
-        @include ds_responsive-margin(2, bottom);
+        @include headings.h1-style;
+        @include spacing.responsive-margin(2, bottom);
     }
 
     &__content {
-        @include ds_last-child-no-margin;
+        @include last-child-no-margin.last-child-no-margin;
     }
 
     &__reference {
-        @include ds_large-size;
+        @include headings.large-size;
     }
 }

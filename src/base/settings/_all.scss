@@ -1,9 +1,9 @@
-@import "breakpoints/breakpoints";
-@import "colours/colours";
-@import "colours/data-visualisation-palette";
-@import "grid/grid";
-@import "transition/transition";
-@import "type/type";
+@use "breakpoints/breakpoints";
+@use "colours/colours";
+@use "colours/data-visualisation-palette";
+@use "grid/grid";
+@use "transition/transition";
+@use "type/type";
 
 /// depends on rules in type
-@import "spacing/spacing";
+@use "spacing/spacing";

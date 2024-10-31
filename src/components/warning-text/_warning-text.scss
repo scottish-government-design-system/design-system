@@ -1,20 +1,28 @@
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/high-contrast/high-contrast";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     #WARNING TEXT
 \*------------------------------------*/
 
 /// [1] compensate for border
 .ds_warning-text {
-    border: 1px solid currentColor;
-    border-width: 1px 0;
-    font-weight: $bold;
-    padding-left: 72px;
-    padding-right: 16px;
+    border: 0.0625rem solid currentColor;
+    border-width: 0.0625rem 0;
+    font-weight: type.$bold;
+    padding-left: 4.5rem;
+    padding-right: 1rem;
     position: relative;
 
-    @include ds_block-margins;
-    @include ds_last-child-no-margin;
-    @include ds_responsive-padding(4, top, false, -1px); /// 1
-    @include ds_responsive-padding(4, bottom, false, -1px); /// 1
+    @include block-margins.block-margins;
+    @include last-child-no-margin.last-child-no-margin;
+    @include spacing.responsive-padding(4, top, false, -0.0625rem); /// 1
+    @include spacing.responsive-padding(4, bottom, false, -0.0625rem); /// 1
 
     &:first-child {
         margin-top: 0;
@@ -22,40 +30,40 @@
 }
 
 .ds_warning-text__icon {
-    $warning-text-icon-size: 32px;
-    @include ds_high-contrast-outline;
+    $warning-text-icon-size: 2rem;
+    @include high-contrast.high-contrast-outline;
 
-    background: $ds_colour__text;
+    background: colours.$ds_colour__text;
     border-radius: 50%;
-    color: $ds_colour__background--primary;
+    color: colours.$ds_colour__background--primary;
     display: inline-block;
     height: $warning-text-icon-size;
     font-size: $warning-text-icon-size;
     font-weight: 700;
-    left: 24px;
+    left: 1.5rem;
     line-height: $warning-text-icon-size;
     position: absolute;
     text-align: center;
-    top: 20px;
+    top:1.25rem;
     width: $warning-text-icon-size;
 
     &::before {
         content: '!';
         display: block;
-        height: #{$warning-text-icon-size - 4px};
+        height: #{$warning-text-icon-size - 0.25rem};
     }
 }
 
 .ds_warning-text__text {
-    @include ds_last-child-no-margin;
+    @include last-child-no-margin.last-child-no-margin;
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_warning-text {
-        padding-right: 72px;
+        padding-right: 4.5rem;
     }
 
     .ds_warning-text__icon {
-        top: 31px;
+        top: 1.9375rem;
     }
 }

@@ -1,10 +1,14 @@
+@use "../../helpers/block-margins/block-margins";
+@use "../../helpers/layout/layout";
+@use "../../helpers/media-query/media-query";
+
 /*------------------------------------*\
     LAYOUT
 \*------------------------------------*/
 
 .ds_layout {
-    @include ds_layout();
-    margin-bottom: 96px;
+    @include layout.layout();
+    margin-bottom: 6rem;
 
     &__content,
     &__partner {
@@ -14,51 +18,51 @@
     }
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
     .ds_layout {
 
         // Defaults
         &__header {
             clear: left;
             float: left;
-            @include ds_colwidth(8);
+            @include layout.colwidth(8);
         }
 
         &__partner {
             float: left;
-            @include ds_colwidth(4);
+            @include layout.colwidth(4);
         }
 
         &__navigation {
             clear: left;
-            @include ds_colwidth(8);
+            @include layout.colwidth(8);
         }
 
         &__sidebar {
             float: left;
-            @include ds_colwidth(4);
+            @include layout.colwidth(4);
         }
 
         &__content {
             clear: left;
             float: left;
-            @include ds_colwidth(8);
+            @include layout.colwidth(8);
         }
 
         &__list {
             clear: left;
             float: left;
-            @include ds_colwidth(8);
+            @include layout.colwidth(8);
         }
 
         &__footer {
             clear: left;
-            @include ds_colwidth(8);
+            @include layout.colwidth(8);
         }
 
         &__feedback {
             clear: left;
-            @include ds_colwidth(8);
+            @include layout.colwidth(8);
         }
 
         // Layout overrides
@@ -68,7 +72,7 @@
                 &__grid {
                     clear: left;
                     float: left;
-                    @include ds_colwidth(12);
+                    @include layout.colwidth(12);
                 }
             }
         }
@@ -79,19 +83,19 @@
                 &__sidebar {
                     clear: left;
                     float: left;
-                    @include ds_colwidth(4);
+                    @include layout.colwidth(4);
                 }
 
                 &__list {
                     clear: none;
                     float: left;
-                    @include ds_colwidth(8);
+                    @include layout.colwidth(8);
                 }
 
                 &__feedback {
                     clear: left;
-                    @include ds_colpush(4);
-                    @include ds_colwidth(8);
+                    @include layout.colpush(4);
+                    @include layout.colwidth(8);
                 }
             }
         }
@@ -103,19 +107,19 @@
                 &__sidebar {
                     clear: left;
                     float: left;
-                    @include ds_colwidth(4);
+                    @include layout.colwidth(4);
                 }
 
                 &__content {
                     clear: none;
                     float: left;
-                    @include ds_colwidth(8);
+                    @include layout.colwidth(8);
                 }
 
                 &__feedback {
                     clear: left;
-                    @include ds_colpush(4);
-                    @include ds_colwidth(8);
+                    @include layout.colpush(4);
+                    @include layout.colwidth(8);
                 }
             }
         }
@@ -123,21 +127,21 @@
 }
 
 
-@include ds_media-query(large) {
+@include media-query.media-query(large) {
     .ds_layout {
         &--article {
             .ds_layout {
 
                 &__partner {
                     float: left;
-                    @include ds_colpush(1);
-                    @include ds_colwidth(3);
+                    @include layout.colpush(1);
+                    @include layout.colwidth(3);
                 }
 
                 &__sidebar {
                     float: left;
-                    @include ds_colpush(1);
-                    @include ds_colwidth(3);
+                    @include layout.colpush(1);
+                    @include layout.colwidth(3);
                 }
             }
         }
@@ -147,14 +151,14 @@
 
                 &__partner {
                     float: left;
-                    @include ds_colpush(1);
-                    @include ds_colwidth(3);
+                    @include layout.colpush(1);
+                    @include layout.colwidth(3);
                 }
 
                 &__sidebar {
                     float: left;
-                    @include ds_colpush(1);
-                    @include ds_colwidth(3);
+                    @include layout.colpush(1);
+                    @include layout.colwidth(3);
                 }
 
             }
@@ -241,7 +245,7 @@
         &__partner {
             grid-area: $grid-area-partner;
             align-self: start;
-            @include ds_block-margins;
+            @include block-margins.block-margins;
         }
 
         &__sidebar {
@@ -308,7 +312,7 @@
         }
     }
 
-    @include ds_media-query(small) {
+    @include media-query.media-query(small) {
         .ds_layout {
             grid-template-columns: repeat(6, 1fr);
 
@@ -381,7 +385,7 @@
         }
     }
 
-    @include ds_media-query(medium) {
+    @include media-query.media-query(medium) {
         .ds_layout {
             grid-template-areas:
                 'h h h h h h h h p p p p'
@@ -453,7 +457,7 @@
         }
     }
 
-    @include ds_media-query(large) {
+    @include media-query.media-query(large) {
         .ds_layout {
             &--article {
                 grid-template-areas:

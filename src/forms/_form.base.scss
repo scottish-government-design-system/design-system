@@ -1,11 +1,16 @@
+@use "../base/helpers/block-margins/block-margins";
+@use "../base/helpers/headings/headings";
+@use "../base/helpers/media-query/media-query";
+@use "../base/settings/type/type";
+
 /*------------------------------------*\
     FORM ELEMENTS (base)
 \*------------------------------------*/
 
 legend {
-    @include ds_h3-size;
-    font-weight: $bold;
-    margin-bottom: 8px;
+    @include headings.h3-size;
+    font-weight: type.$bold;
+    margin-bottom: 0.5rem;
 }
 
 fieldset {
@@ -21,7 +26,7 @@ fieldset {
         // Move top margin to ds_question to handle when it has error state left border and avoid problems with fieldset and legend negative margins
         .ds_question:has(.ds_page-header) {
             margin-top: 1rem;
-            @include ds_media-query(medium) {
+            @include media-query.media-query(medium) {
                 margin-top: 2rem;
             }
         }
@@ -36,7 +41,7 @@ fieldset {
     &__actions {
         // Add block margins to buttons if in actions slot of form layout
         .ds_button {
-            @include ds_block-margins;
+            @include block-margins.block-margins;
         }
     }
 }

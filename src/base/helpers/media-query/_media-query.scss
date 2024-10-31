@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "../../settings/breakpoints/breakpoints";
+
 /// Media query
 ///
 /// Shorthand @media alias that keeps media query rules to a defined set of
@@ -12,13 +15,13 @@
 ///     }
 ///   }
 
-@mixin ds_media-query($breakpoint) {
+@mixin media-query($breakpoint) {
     // validate param
-    @if not map-has-key($ds_breakpoints, $breakpoint) {
+    @if not map.has-key(breakpoints.$ds_breakpoints, $breakpoint) {
         @error 'Breakpoint "#{$breakpoint}" not defined.';
     }
 
-    $condition: map-get($ds_breakpoints, $breakpoint);
+    $condition: map.get(breakpoints.$ds_breakpoints, $breakpoint);
 
     @media #{$condition} {
         @content;
@@ -36,25 +39,8 @@
 ///     }
 ///   }
 
-@mixin ds_media-query-high-contrast {
+@mixin media-query-high-contrast {
     @media screen and (forced-colors: active) and (prefers-contrast: more) {
-        @content;
-    }
-}
-
-
-
-
-/// legacy non-prefixed name
-@mixin media-query($breakpoint) {
-    // validate param
-    @if not map-has-key($ds_breakpoints, $breakpoint) {
-        @error 'Breakpoint "#{$breakpoint}" not defined.';
-    }
-
-    $condition: map-get($ds_breakpoints, $breakpoint);
-
-    @media #{$condition} {
         @content;
     }
 }

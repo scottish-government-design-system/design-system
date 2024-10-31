@@ -1,4 +1,4 @@
-@mixin ds_last-child-no-margin {
+@mixin last-child-no-margin {
     > :last-child {
         margin-bottom: 0;
     }

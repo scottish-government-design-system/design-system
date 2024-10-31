@@ -1,40 +1,51 @@
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/fancy-underscore/fancy-underscore";
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/headings/headings";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/layout/layout";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/grid/grid";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     SITE FOOTER
 \*------------------------------------*/
 
 // modifiable vars
-$site-footer__background: $ds_colour__background--tertiary !default;
+$site-footer__background: colours.$ds_colour__background--tertiary !default;
 
 
 
 
 .ds_site-footer {
     /// [1] subtracting the border width
-    @include ds_small-size;
+    @include headings.small-size;
     background-color: $site-footer__background;
-    border-top: 1px solid $ds_colour__border;
+    border-top: 0.0625rem solid colours.$ds_colour__border;
 
     &__content {
-        padding-top: px-to-rem(23px); /// [1]
-        padding-bottom: px-to-rem(32px);
+        padding-top: 1.4375rem; /// [1]
+        padding-bottom: 2rem;
     }
 
     /// [1] subtracting the border width
     &__site-items {
-        border-bottom: 1px solid $ds_colour__border;
-        font-size: $small-size--fixed;
-        line-height: line-height-on-grid($small-size--fixed);
+        border-bottom: 0.0625rem solid colours.$ds_colour__border;
+        font-size: type.$small-size--fixed;
+        line-height: functions.line-height-on-grid(type.$small-size--fixed);
         list-style-type: none;
-        margin: px-to-rem(-8px) 0 px-to-rem(23px);
+        margin: -0.5rem 0 1.4375rem;
     }
 
     &__copyright {
         &-logo {
             display: block;
-            margin-bottom: 8px;
-            width: 32px;
+            margin-bottom: 0.5rem;
+            width: 2rem;
 
-            @include ds_fancy-underscore();
+            @include fancy-underscore.fancy-underscore();
 
             img {
                 height: auto;
@@ -42,13 +53,13 @@ $site-footer__background: $ds_colour__background--tertiary !default;
             }
         }
 
-        @include ds_media-query(medium) {
-            @include ds_last-child-no-margin;
+        @include media-query.media-query(medium) {
+            @include last-child-no-margin.last-child-no-margin;
         }
     }
 
     &__org {
-        max-width: 160px;
+        max-width: 10rem;
         position: relative;
     }
 
@@ -61,7 +72,7 @@ $site-footer__background: $ds_colour__background--tertiary !default;
     &__org-link {
         display: block;
 
-        @include ds_fancy-underscore();
+        @include fancy-underscore.fancy-underscore();
     }
 
     .ds_site-footer__org-link,
@@ -69,49 +80,49 @@ $site-footer__background: $ds_colour__background--tertiary !default;
         color: currentColor !important;
     }
 
-    @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'site footer');
+    @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, colours.$ds_colour__background--tertiary, 'site footer');
 }
 
 .ds_site-items {
     &__item,
     &__item:last-child {
         display: inline-block;
-        margin-bottom: px-to-rem(16px);
+        margin-bottom: 1rem;
 
         &:not(:last-child) {
-            margin-right: px-to-rem(24px);
+            margin-right: 1.5rem;
         }
     }
 }
 
-@include ds_media-query(medium) {
+@include media-query.media-query(medium) {
 
 
     .ds_site-footer {
 
         &__copyright {
-            padding-left: 48px;
+            padding-left: 3rem;
             position: relative;
 
             &-logo {
                 position: absolute;
                 left: 0;
-                top: 2px;
+                top: 0.125rem;
             }
         }
 
         &__content {
-            @include ds_layout();
+            @include layout.layout();
         }
 
         &__copyright {
             float: left;
-            @include ds_colwidth(8);
+            @include layout.colwidth(8);
         }
 
         &__org {
             float: right;
-            @include ds_colwidth(3);
+            @include layout.colwidth(3);
         }
     }
 
@@ -119,7 +130,7 @@ $site-footer__background: $ds_colour__background--tertiary !default;
         .ds_site-footer {
             &__content {
                 display: grid;
-                grid-gap: 0 $grid-gap-x;
+                grid-gap: 0 grid.$grid-gap-x;
                 grid-template-columns: repeat(12, 1fr);
                 grid-template-areas: 'a a a a a a a a a a a a'
                                      'b b b b b b b b . c c c';

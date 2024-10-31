@@ -1,9 +1,12 @@
+@use "../../base/helpers/headings/headings";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     CONTENT LABEL
 \*------------------------------------*/
 
 .ds_content-label {
-    @include ds_small-size;
-    font-weight: $normal;
+    @include headings.small-size;
+    font-weight: type.$normal;
     margin: 0;
 }

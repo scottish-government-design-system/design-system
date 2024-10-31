@@ -1,19 +1,29 @@
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/focus/focus";
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/helpers/links/links";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/transition/transition";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     DETAILS
 \*------------------------------------*/
 @use "sass:math";
 
-$details-border-width: 4px;
-$details-icon-size: math.div((1em * 8px), $root-font-size--medium);
+$details-border-width: 0.25rem;
+$details-icon-size: math.div((1em * 0.5rem), type.$root-font-size--medium);
 
 .ds_details {
-    @include ds_block-margins;
+    @include block-margins.block-margins;
 }
 
 .ds_details__summary {
-    @include ds_link;
-    @include ds_responsive-margin(2, bottom);
-    @include ds_responsive-padding(4, left);
+    @include links.link;
+    @include spacing.responsive-margin(2, bottom);
+    @include spacing.responsive-padding(4, left);
     cursor: pointer;
     display: inline-block;
     position: relative;
@@ -27,25 +37,25 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
         clip-path: polygon(0 0, 100% 50%, 0 100%);
         content: '';
         display: block;
-        height: calc(#{$details-icon-size} * 2);
+        height: calc($details-icon-size * 2);
         left: 0.25em;
         position: absolute;
-        top: calc(50% - #{$details-icon-size} + 1px); // 1px magic number for optical alignment in preference to mathematic alignment
+        top: calc(50% - $details-icon-size + 0.0625rem); // 1px magic number for optical alignment in preference to mathematic alignment
         width: $details-icon-size;
 
         @media (prefers-reduced-motion: no-preference) {
-            transition: transform $transition-in-time;
+            transition: transform transition.$transition-in-time;
         }
     }
 }
 
 .ds_details__text {
-    @include ds_last-child-no-margin;
-    border-left: $details-border-width solid #b3b3b3;
+    @include last-child-no-margin.last-child-no-margin;
+    border-left: $details-border-width solid colours.$ds_colour__border;
     box-sizing: border-box;
     display: none;
-    @include ds_responsive-padding(1);
-    @include ds_responsive-padding(4, left, false, calc(#{$details-border-width} * -1));
+    @include spacing.responsive-padding(1);
+    @include spacing.responsive-padding(4, left, false, calc($details-border-width * -1));
 }
 
 .ds_details[open],
@@ -60,16 +70,16 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
 }
 
 .ds_details__toggle:focus ~ .ds_details__summary {
-    @include ds_focus-outline;
+    @include focus.focus-outline;
 
-    background-color: $ds_colour__link--focus__background;
-    box-shadow: #{$link__outline-width * -1} #{$link__outline-width + $link__border-width} $ds_colour__link--focus__shadow, $link__outline-width #{$link__outline-width + $link__border-width} $ds_colour__link--focus__shadow;
-    color: $ds_colour__link--focus;
+    background-color: colours.$ds_colour__link--focus__background;
+    box-shadow: #{links.$link__outline-width * -1} #{links.$link__outline-width + links.$link__border-width} colours.$ds_colour__link--focus__shadow, links.$link__outline-width #{links.$link__outline-width + links.$link__border-width} colours.$ds_colour__link--focus__shadow;
+    color: colours.$ds_colour__link--focus;
     text-decoration: none;
     transition-duration: 0s;
 }
 
-@include ds_media-query-high-contrast {
+@include media-query.media-query-high-contrast {
     .ds_details__summary::before {
         background-color: LinkText;
     }

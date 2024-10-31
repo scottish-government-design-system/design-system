@@ -1,18 +1,25 @@
+@use "sass:color";
+@use "../../base/helpers/block-margins/block-margins";
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/last-child-no-margin/last-child-no-margin";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     ERROR SUMMARY
 \*------------------------------------*/
 
-$foreground-colour: $ds_colour__state--negative !default;
+$foreground-colour: colours.$ds_colour__state--negative !default;
 $link-colour: $foreground-colour;
-$link-hover-background-colour: adjustLuminance($link-colour, 0.83);
-$link-hover-colour: adjustForContrast(darken($link-colour, 12.5%), $link-hover-background-colour, 4.5);
+$link-hover-background-colour: colours2.adjustLuminance($link-colour, 0.83);
+$link-hover-colour: colours2.adjustForContrast(color.adjust($link-colour, $lightness: -12.5%), $link-hover-background-colour, 4.5);
 
 /// [1] compensate for border
 .ds_error-summary {
     border: 0.25rem solid $foreground-colour;
     padding: 1.25rem 1.75rem; /// [1]
-    @include ds_block-margins;
-    @include ds_last-child-no-margin;
+    @include block-margins.block-margins;
+    @include last-child-no-margin.last-child-no-margin;
 
     &__title {
         margin-top: 0;
@@ -20,7 +27,7 @@ $link-hover-colour: adjustForContrast(darken($link-colour, 12.5%), $link-hover-b
 
     &__list {
         color: $foreground-colour;
-        font-weight: $bold;
+        font-weight: type.$bold;
         list-style-type: none;
         margin-left: 0;
 
@@ -34,7 +41,7 @@ $link-hover-colour: adjustForContrast(darken($link-colour, 12.5%), $link-hover-b
             }
 
             &:focus {
-                color: $ds_colour__link--focus;
+                color: colours.$ds_colour__link--focus;
             }
         }
 

@@ -1,7 +1,9 @@
+@use "../../settings/colours/colours";
+
 /*------------------------------------*\
     PLACEHOLDER TEXT
 \*------------------------------------*/
 
 ::placeholder {
-    color: $ds_colour__placeholder;
+    color: colours.$ds_colour__placeholder;
 }

@@ -1,16 +1,16 @@
 /// margins needs to come first
-@import "margins/margins";
+@use "margins/margins";
 
-@import "abbr/abbr";
-@import "address/address";
-@import "body/body";
-@import "box-sizing/box-sizing";
-@import "headings/headings";
-@import "hr/hr";
-@import "leader/leader";
-@import "links/links";
-@import "lists/lists";
-@import "mark/mark";
-@import "placeholder/placeholder";
-@import "scrolling/scrolling";
-@import "small/small";
+@use "abbr/abbr";
+@use "address/address";
+@use "body/body";
+@use "box-sizing/box-sizing";
+@use "headings/headings";
+@use "hr/hr";
+@use "leader/leader";
+@use "links/links";
+@use "lists/lists";
+@use "mark/mark";
+@use "placeholder/placeholder";
+@use "scrolling/scrolling";
+@use "small/small";

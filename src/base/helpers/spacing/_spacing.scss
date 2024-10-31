@@ -1,3 +1,8 @@
+@use "sass:map";
+@use "sass:meta";
+@use "../../settings/spacing/spacing";
+@use "../media-query/media-query";
+
 /// Responsive spacing
 ///
 /// Returns a spacing rule for a given property and direction at a given entry
@@ -23,43 +28,43 @@
 ///     @include ds_responsive-spacing(2, 'padding', top);
 ///   }
 
-@mixin ds_responsive-spacing($spacing-unit, $property, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
+@mixin responsive-spacing($spacing-unit, $property, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
     // validate params
-    $spacing-unit-type: type-of($spacing-unit);
+    $spacing-unit-type: meta.type-of($spacing-unit);
     @if $spacing-unit-type != 'number' {
         @error 'Expected an integer for spacing unit but got a #{$spacing-unit-type}';
     }
 
-    @if not map-has-key($ds_spacing-scale, $spacing-unit) {
+    @if not map.has-key(spacing.$ds_spacing-scale, $spacing-unit) {
         @error 'Spacing unit "#{$spacing-unit}" not found in the spacing scale.';
     }
 
-    @if not map-has-key($ds_spacing-properties, $property) {
+    @if not map.has-key(spacing.$ds_spacing-properties, $property) {
         @error 'Spacing property "#{$property}" not allowed.';
     }
 
     @if $direction {
-        @if not map-has-key($ds_spacing-directions, $direction) {
+        @if not map.has-key(spacing.$ds_spacing-directions, $direction) {
             @error 'Invalid spacing direction specified: "#{$direction}"';
         }
     }
 
     $collapse-values: false;
     @if $collapse-spacing-unit {
-        @if not map-has-key($ds_spacing-scale, $collapse-spacing-unit) {
+        @if not map.has-key(spacing.$ds_spacing-scale, $collapse-spacing-unit) {
             @error 'Spacing unit "#{$collapse-spacing-unit}" not found in the spacing scale.';
         }
-        $collapse-values: map-get($ds_spacing-scale, $collapse-spacing-unit);
+        $collapse-values: map.get(spacing.$ds_spacing-scale, $collapse-spacing-unit);
     }
 
-    $scale-values: map-get($ds_spacing-scale, $spacing-unit);
+    $scale-values: map.get(spacing.$ds_spacing-scale, $spacing-unit);
 
     @each $breakpoint, $value in $scale-values {
         @if ($tuning) {
-            $value: calc(#{$value} + #{$tuning});
+            $value: calc($value + $tuning);
         }
         @if ($collapse-values) {
-            $value: calc(#{$value} - #{map-get($ds_spacing-scale, $collapse-spacing-unit, $breakpoint)});
+            $value: calc($value - map.get(spacing.$ds_spacing-scale, $collapse-spacing-unit, $breakpoint));
         }
 
         @if $breakpoint == null {
@@ -69,7 +74,7 @@
                 #{$property}-#{$direction}: $value if($important, !important, null);
             }
         } @else {
-            @include ds_media-query($breakpoint) {
+            @include media-query.media-query($breakpoint) {
                 @if not $direction {
                     #{$property}: $value if($important, !important, null);
                 } @else {
@@ -100,8 +105,8 @@
 ///     @include ds_responsive-margin(2, top);
 ///   }
 
-@mixin ds_responsive-margin($spacing-unit, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
-    @include ds_responsive-spacing($spacing-unit, 'margin', $direction, $important, $tuning, $collapse-spacing-unit);
+@mixin responsive-margin($spacing-unit, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
+    @include responsive-spacing($spacing-unit, 'margin', $direction, $important, $tuning, $collapse-spacing-unit);
 }
 
 /// Responsive padding
@@ -124,6 +129,6 @@
 ///     @include ds_responsive-padding(2, top);
 ///   }
 
-@mixin ds_responsive-padding($spacing-unit, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
-    @include ds_responsive-spacing($spacing-unit, 'padding', $direction, $important, $tuning, $collapse-spacing-unit);
+@mixin responsive-padding($spacing-unit, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
+    @include responsive-spacing($spacing-unit, 'padding', $direction, $important, $tuning, $collapse-spacing-unit);
 }

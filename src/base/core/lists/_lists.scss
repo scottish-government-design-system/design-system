@@ -1,3 +1,8 @@
+@use "../../helpers/functions/functions";
+@use "../../helpers/last-child-no-margin/last-child-no-margin";
+@use "../../helpers/spacing/spacing";
+@use "../../settings/type/type";
+
 /*------------------------------------*\
     LISTS
 \*------------------------------------*/
@@ -5,8 +10,8 @@
 ul,
 ol,
 dd {
-    @include ds_last-child-no-margin;
-    margin-left: px-to-rem(20px);
+    @include last-child-no-margin.last-child-no-margin;
+    margin-left: 1.25rem;
 }
 
 dd,
@@ -14,16 +19,16 @@ ul ul,
 ol ol,
 ol ul,
 ul ol {
-    @include ds_responsive-margin(1, top);
-    @include ds_responsive-margin(1, bottom);
+    @include spacing.responsive-margin(1, top);
+    @include spacing.responsive-margin(1, bottom);
 }
 
 li {
-    @include ds_responsive-margin(1, bottom);
+    @include spacing.responsive-margin(1, bottom);
 }
 
 dt {
-    font-weight: $bold;
+    font-weight: type.$bold;
 }
 
 ul {
@@ -32,5 +37,5 @@ ul {
 
 ol {
     list-style-type: numeric;
-    margin-left: px-to-rem(24px);
+    margin-left: 1.5rem;
 }

@@ -1,11 +1,19 @@
+@use "../../base/helpers/colours/colours" as colours2;
+@use "../../base/helpers/functions/functions";
+@use "../../base/helpers/media-query/media-query";
+@use "../../base/helpers/spacing/spacing";
+@use "../../base/helpers/visibility/visibility";
+@use "../../base/settings/colours/colours";
+@use "../../base/settings/type/type";
+
 /*------------------------------------*\
     TABLES
 \*------------------------------------*/
 
-$table-border-colour: $ds_colour__border !default;
-$table-border-colour--light: $ds_colour__border--faint !default;
-$table-header-background-colour: $ds_colour__background--tertiary !default;
-$table-row-zebra-colour: $ds_colour__background--primary--dim !default;
+$table-border-colour: colours.$ds_colour__border !default;
+$table-border-colour--light: colours.$ds_colour__border--faint !default;
+$table-header-background-colour: colours.$ds_colour__background--tertiary !default;
+$table-row-zebra-colour: colours.$ds_colour__background--primary--dim !default;
 
 
 
@@ -13,30 +21,30 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
 .ds_table {
     // table-layout: fixed;
     width: 100%;
-    @include ds_responsive-margin(2, bottom);
+    @include spacing.responsive-margin(2, bottom);
 
 
     caption {
-        @include ds_responsive-margin(2, bottom);
-        font-size: px-to-rem($root-font-size); // 1rem
-        font-weight: $bold;
-        line-height: line-height-on-grid($root-font-size);
+        @include spacing.responsive-margin(2, bottom);
+        font-size: type.$root-font-size; // 1rem
+        font-weight: type.$bold;
+        line-height: functions.line-height-on-grid(type.$root-font-size);
         text-align: left;
     }
 
     tbody,
     thead,
     tfoot {
-        border: 1px solid $table-border-colour;
+        border: 0.0625rem solid $table-border-colour;
     }
 
     tr {
-        border-bottom: 1px solid $table-border-colour--light;
+        border-bottom: 0.0625rem solid $table-border-colour--light;
     }
 
     tr > * {
         /// [1] compensate for table row 1px border
-        padding: px-to-rem(8px) px-to-rem(16px) px-to-rem(7px) px-to-rem(8px); /// [1]
+        padding: 0.5rem 1rem 0.4375rem 0.5rem; /// [1]
     }
 
     tr:last-child {
@@ -46,11 +54,11 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
 
     th {
         background-color: $table-header-background-colour;
-        font-weight: $bold;
+        font-weight: type.$bold;
         position: relative;
         text-align: left;
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $table-header-background-colour, 'table header');
+        @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, $table-header-background-colour, 'table header');
     }
 
     th,
@@ -59,16 +67,16 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
     }
 
     th[colspan] {
-        border: 1px solid $table-border-colour;
+        border: 0.0625rem solid $table-border-colour;
     }
 
     th:not(:first-child)::before {
-        border-left: 1px solid $table-border-colour;
-        bottom: 8px;
+        border-left: 0.0625rem solid $table-border-colour;
+        bottom: 0.5rem;
         content: '';
-        left: -1px;
+        left: -0.0625rem;
         position: absolute;
-        top: 8px;
+        top: 0.5rem;
     }
 
     thead > tr:last-child {
@@ -76,17 +84,17 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
     }
 
     tbody > tr > td {
-        background-color: $ds_colour__background--primary;
+        background-color: colours.$ds_colour__background--primary;
     }
 
     tbody > tr:nth-child(even) > td {
         background-color: $table-row-zebra-colour;
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $table-row-zebra-colour, 'table zebra');
+        @include colours2.checkAndFixDescendantLinkColour(colours.$ds_colour__link, $table-row-zebra-colour, 'table zebra');
     }
 }
 
-@include ds_media-query(medium-down) {
+@include media-query.media-query(medium-down) {
     .ds_table.js-is-scrolling {
         &[data-smallscreen="scrolling"] {
             display: block;
@@ -111,19 +119,19 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
             content: '';
             height: 100%;
             position: absolute;
-            right: -10px;
+            right: -0.625rem;
             top: 0;
-            width: 10px;
+            width: 0.625rem;
         }
 
         &[data-smallscreen="scrolling"] tr > :first-child::before {
             background: $table-border-colour;
             content: '';
             height: 100%;
-            left: -1px;
+            left: -0.0625rem;
             position: absolute;
             top: 0;
-            width: 1px;
+            width: 0.0625rem;
         }
 
         &[data-smallscreen="scrolling"] tr > th:first-child {
@@ -131,7 +139,7 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
         }
 
         &[data-smallscreen="scrolling"] tr > td:first-child {
-            border-right: 1px solid $table-header-background-colour;
+            border-right: 0.0625rem solid $table-header-background-colour;
         }
     }
 
@@ -143,7 +151,7 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
             }
 
             &[data-smallscreen="boxes"] thead {
-                @include ds_visually-hidden;
+                @include visibility.visually-hidden;
             }
 
             &[data-smallscreen="boxes"] tbody {
@@ -153,14 +161,14 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
             &[data-smallscreen="boxes"] tr {
                 border: 0;
                 display: block;
-                margin-bottom: 16px;
+                margin-bottom: 1rem;
             }
 
             &[data-smallscreen="boxes"] tr > * {
-                border: 1px solid $table-border-colour;
+                border: 0.0625rem solid $table-border-colour;
                 display: block;
                 overflow: auto;
-                padding-left: calc(50% - 8px);
+                padding-left: calc(50% - 0.5rem);
                 position: relative;
             }
 
@@ -170,7 +178,7 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
 
             &[data-smallscreen="boxes"] tr > th:last-child {
                 border-width: 0;
-                margin-top: 32px;
+                margin-top: 2rem;
             }
 
             &[data-smallscreen="boxes"] tr > td:not(:first-child) {
@@ -181,21 +189,21 @@ $table-row-zebra-colour: $ds_colour__background--primary--dim !default;
                 content: attr(data-heading);
                 display: block;
                 position: absolute;
-                font-weight: $bold;
+                font-weight: type.$bold;
                 left: 0;
-                margin-left: 16px;
-                margin-right: 16px;
+                margin-left: 1rem;
+                margin-right: 1rem;
                 text-align: left;
-                width: calc(50% - 16px);
+                width: calc(50% - 1rem);
             }
 
             &[data-smallscreen="boxes"] tr > td:first-child {
-                box-shadow: inset 0 4px 0 $table-border-colour--light;
-                padding-top: 11px
+                box-shadow: inset 0 0.25rem 0 $table-border-colour--light;
+                padding-top: 0.6875rem;
             }
 
             &[data-smallscreen="boxes"] tr > td:nth-child(odd) {
-                background-color: $ds_colour__background--primary;
+                background-color: colours.$ds_colour__background--primary;
             }
 
             &[data-smallscreen="boxes"] tr > td:nth-child(even) {

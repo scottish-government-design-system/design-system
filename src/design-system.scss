@@ -1,5 +1,5 @@
 $iconsfile: '../images/icons/icons.stack.svg' !default;
 
-@import "base/all-base";
-@import "forms/all-forms";
-@import "components/all-components";
+@use "base/all-base" with ($iconsfile: $iconsfile);
+@use "forms/all-forms";
+@use "components/all-components";

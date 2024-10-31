@@ -1,12 +1,14 @@
+@use "../../base/settings/colours/colours";
+
 /*------------------------------------*\
     HINT TEXT
 \*------------------------------------*/
 
 .ds_hint-text {
-    color: $ds_colour__text--secondary;
-    margin-bottom: 16px;
+    color: colours.$ds_colour__text--secondary;
+    margin-bottom: 1rem;
 
     > * {
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
 }
