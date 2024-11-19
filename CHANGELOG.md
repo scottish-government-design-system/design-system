@@ -6,6 +6,17 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`,
 `Removed`, `Fixed`, and `Security`.
 
 ---
+## [2.3.2]
+### Changed
+- Tag outline changed to 80% opacity
+### Fixed
+- Right padding on input within an input wrapper
+- Character count doesn't override already existing error states on input fields
+- Remove min-height on search results filter panels
+- Scroll padding added to prevent 'Hide this page' button overlapping focussed elements
+### Security
+- Bump cookie and socket.io
+
 ## [2.3.1]
 ### Changed
 - Links now underlined in pagination and sequential navigation
