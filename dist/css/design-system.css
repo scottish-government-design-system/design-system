@@ -2977,7 +2977,7 @@ fieldset {
   float: left;
   margin-bottom: 0;
   margin-right: -3rem;
-  padding-right: -3.5rem;
+  padding-right: 3.5rem;
 }
 .ds_input__wrapper .ds_icon {
   height: 2rem;
@@ -5422,6 +5422,18 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
     }
   }
 }
+/**
+  This "reverse" order follows GOV UK reasoning, where it assumed that it's better to have scroll
+  padding unnecessarily than risking not having it when it's needed.
+*/
+@supports (position: sticky) {
+  html {
+    scroll-padding-top: 6.5rem;
+  }
+  html:not(:has(.ds_hide-page)) {
+    scroll-padding-top: 0;
+  }
+}
 /*------------------------------------*\
     ICON
 \*------------------------------------*/
@@ -6372,7 +6384,6 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 .ds_search-filters__scrollable {
   margin-left: -0.25rem; /* [1] */
   max-height: 33.333333vh;
-  min-height: 13rem;
   padding-left: 0.25rem; /* [1] */
   padding-right: 0.5rem;
   overflow-y: auto;
@@ -8876,7 +8887,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   color: #00437d;
   display: inline-block;
   font-weight: 400;
-  outline: 1px solid currentColor;
+  outline: 1px solid rgba(0, 101, 189, 0.8);
   outline-offset: -1px;
   white-space: nowrap;
 }
@@ -8899,42 +8910,52 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 .ds_tag--grey {
   background-color: #ebebeb;
   color: #525252;
+  outline-color: rgba(82, 82, 82, 0.8);
 }
 .ds_tag--green {
   background-color: #e0f0e0;
   color: #2d5a2d;
+  outline-color: rgba(45, 90, 45, 0.8);
 }
 .ds_tag--teal {
   background-color: #cdf3ef;
   color: #1b6e67;
+  outline-color: rgba(27, 110, 103, 0.8);
 }
 .ds_tag--darkblue {
   background-color: #d9eeff;
   color: #000b14;
+  outline-color: rgba(0, 11, 20, 0.8);
 }
 .ds_tag--blue {
   background-color: #d9eeff;
   color: #00437d;
+  outline-color: rgba(0, 67, 125, 0.8);
 }
 .ds_tag--purple {
   background-color: #f8e6f7;
   color: #5e1959;
+  outline-color: rgba(94, 25, 89, 0.8);
 }
 .ds_tag--pink {
   background-color: #ffe4f3;
   color: #a5005b;
+  outline-color: rgba(165, 0, 91, 0.8);
 }
 .ds_tag--red {
   background-color: #fee6e1;
   color: #951804;
+  outline-color: rgba(149, 24, 4, 0.8);
 }
 .ds_tag--orange {
   background-color: #fde7db;
   color: #b8440a;
+  outline-color: rgba(184, 68, 10, 0.8);
 }
 .ds_tag--yellow {
   background-color: #feec98;
   color: #7f6801;
+  outline-color: rgba(127, 104, 1, 0.8);
 }
 
 /*------------------------------------*\
