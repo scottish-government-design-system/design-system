@@ -2,118 +2,243 @@
     FEATURE HEADER
 \*------------------------------------*/
 
+/// Customise colours
+/// [1] Background colour for feature header - defaults to brand colour
+/// [2] Set to false if you want to define foreground and button hover colours
+/// [3] Set foreground colour if [2] is set to true
+/// [4] Set button hover background colour if [2] is set to true
+$feature-header-background: $ds_colour__brand !default; /// [1]
+$feature-header-compute-colours: true !default; /// [2]
+$feature-header-foreground: $ds_colour__white !default; /// [3]
+$feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; /// [4]
+
+/// Get the background colour for a theme's button
+/// If the background is very close to white or black then the calculated background may not be visible and user defined colours are recommended instead
+/// @param {color} $background - the background colour for comparison
+/// @return {color} contrasting background colour
+/// [1] 0.83: the luminance of ds_colour__blue--light
+/// [2] 12.5%: the amount that ds_colour__blue--darker is darker than ds_colour__blue
+@function getThemeButtonBackground($foreground, $background) {
+    // Check contrast with white and black to decide whether to darken or lighten background
+    @if getContrastRatio($foreground, $ds_colour__white) > getContrastRatio($foreground, $ds_colour__black) {
+        @return adjustForContrast(adjustLuminance($foreground, 0.83), $foreground, 4.5); /// [1]
+    } @else {
+        // If foreground is white then check if background should be lightened instead of darkened
+        @if $foreground == white and darken($background, 12.5%) == black {
+            @return adjustForContrast(lighten($background, 12.5%), $foreground, 4.5); /// [2]
+        } @else {
+            @return adjustForContrast(darken($background, 12.5%), $foreground, 4.5); /// [2]
+        }
+    }
+}
+
+/// Style definitions dictated by theme
+/// @param {color} $foreground - the foreground colour
+/// @param {color} $background - the background colour
+/// @output Theme colour scheme which gives best contrast
+@mixin themeDefinitions($foreground, $buttonHover) {
+    color: $foreground;
+
+    hr {
+        border-color: $foreground;
+    }
+
+    a:not(:hover):not(:focus):not(.ds_button) {
+        color: currentColor;
+        text-decoration: underline;
+    }
+
+    // Button theming
+    .ds_button:not(:hover):not(:focus) {
+        background-color: transparent;
+        color: currentColor;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+    }
+    .ds_button:hover:not(:focus) {
+        background-color: $buttonHover;
+        color: currentColor;
+        outline: 2px solid currentColor;
+        outline-offset: -2px;
+    }
+}
+
+/// Select white or adjusted colour theme to meet a required contrast ratio against a provided background colour if foreground has insufficient contrast
+/// @param {color} $foreground - the foreground colour (main text colour)
+/// @param {color} $background - the background colour
+/// @param {text} $description - text description of the element, used in the debug message
+/// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
+/// @output Theme colour scheme which gives best contrast
+@mixin checkAndSetThemeColour($foreground, $background, $description: '', $ratio: 4.5) {
+    @if getContrastRatio($foreground, $background) < 4.5 {
+        // If not enough contrast try white
+        @if getContrastRatio($ds_colour__white, $background) > 4.5 {
+            @include themeDefinitions($ds_colour__white, getThemeButtonBackground($ds_colour__white, $background));
+        } @else {
+            // Otherwise adjust colour
+            $adjustedForeground: adjustForContrast($foreground, $background, $ratio);
+            @include themeDefinitions($adjustedForeground, getThemeButtonBackground($adjustedForeground, $background));
+        }
+    } @else {
+        // Use foreground colour as sufficient contrast
+        @include themeDefinitions($foreground, getThemeButtonBackground($foreground, $background));
+    }
+}
+
 .ds_feature-header {
-    @include ds_responsive-margin(8, bottom);
+    @include ds_responsive-margin(4, bottom);
 
     &__title {
         @include ds_h1-style;
-        @include ds_responsive-margin(1, bottom);
-
-        font-weight: $light;
+        @include ds_responsive-margin(2, bottom);
     }
 
     &--background {
-        background-color: $ds_colour__background--tertiary;
+        background-color: $feature-header-background;
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'feature header');
-        @include checkAndFixDescendantSecondaryButtonColour($ds_colour__button--secondary, $ds_colour__background--tertiary, 'feature header');
+        @if $feature-header-compute-colours {
+            // Adjust text, link and button for contrast (either light or dark theme)
+            @include checkAndSetThemeColour($ds_colour__text, $feature-header-background, 'feature header');
+        } @else {
+            // Use user defined colours
+            @include themeDefinitions($feature-header-foreground, $feature-header-button-hover-background);
+        }
+    }
+
+    &--background-secondary {
+        background-color: $ds_colour__background--secondary;
+    }
+
+    &--background-tertiary {
+        background-color: $ds_colour__background--tertiary;
     }
 
     &__primary {
-        padding: px-to-rem(16px) 0;
-        position: relative;
-        z-index: 2;
+        @include ds_responsive-padding(6, top);
+        @include ds_responsive-padding(5, bottom);
+        align-self: center;
 
-        @include media-query(medium) {
-            padding: px-to-rem(24px) 0;
+        > :last-child {
+            margin-bottom: 0;
         }
 
-        @include media-query(large) {
-            padding: px-to-rem(40px) 0;
-        }
     }
 
-    &--background &__primary {
-        padding-left: px-to-rem(16px);
+    // inset text if background and constrained width
+    &--background:not(&--fullwidth) &__primary,
+    &--background-secondary:not(&--fullwidth) &__primary,
+    &--background-tertiary:not(&--fullwidth) &__primary {
+        padding-left: 1rem;
+        padding-right: 1rem;
 
-        @include media-query(medium-down) {
-            padding-right: px-to-rem(16px);
+        @include ds_media-query(medium) {
+            padding-left: 2rem;
         }
 
-        @include media-query(medium) {
-            padding-left: px-to-rem(24px);
-        }
-
-        @include media-query(large) {
-            padding-left: px-to-rem(40px);
-        }
     }
 
     &__secondary {
+        align-self: center;
         position: relative;
-        z-index: 1;
     }
 
+    // Alignment options
+    &--top {
+        .ds_feature-header__primary,
+        .ds_feature-header__secondary {
+            align-self: start;
+        }
+    }
+
+    // Temp - will inherit some of these rules from upcoming change to default img
     &__image {
         display: block;
-        width: 100%;
+        height: auto;
+        max-width: 100%;
     }
 
-    @include media-query(medium) {
-        align-items: center;
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-gap: 32px;
+    // Full width image at fluid width has bottom padding
+    @include ds_media-query(medium-down) {
+        &--fullwidth &__secondary {
+            padding-bottom: 2.5rem;
+        }
+    }
 
-        &__primary {
-            grid-area: 1/1/2/7;
-            margin-right: 0;
+    // Fixed width
+    @include ds_media-query(medium) {
+        &--fullwidth &__secondary {
+            padding: 0;
+        }
+        // Add vertical padding to image if full width
+        &--fullwidth &__secondary:not(&__secondary--cover, &__secondary--no-padding) {
+            padding: 3rem 0;
+        }
 
-            > :last-child {
-                margin-bottom: 0;
+        // set image to cover
+        &__secondary--cover {
+
+            // Ignore cover option on IE11
+            @supports (object-fit: cover) {
+                align-self: auto;
+                overflow: hidden;
+                padding: 0;
+                position: relative;
+
+                .ds_feature-header__image {
+                    height: 100%;
+                    left: 0;
+                    width: 100%;
+                    object-fit: cover;
+                    position: absolute;
+                    right: 0;
+                }
             }
         }
+    }
 
-        &__secondary {
-            grid-area: 1/7/2/13;
+     // Button overrides
+     .ds_button {
+        @include ds_responsive-margin(1, top);
+    }
+}
+
+// Layout if supporting grid
+@supports(display: grid) {
+    @include ds_media-query(medium) {
+
+        .ds_feature-header__image {
+            float: right;
         }
 
-        &--wide {
+        .ds_feature-header:not(.ds_feature-header--fullwidth),
+        .ds_feature-header--fullwidth > .ds_wrapper {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-areas:
+                'p p p p p p s s s s s s';
+            grid-gap: 2rem;
+
             .ds_feature-header__primary {
-                grid-area: 1/1/2/9;
-                margin-right: 0;
+                grid-area: p;
+                padding-bottom: 3rem;
             }
 
             .ds_feature-header__secondary {
-                grid-area: 1/9/2/13;
+                grid-area: s;
             }
-        }
-    }
-}
 
-.ds_reversed .ds_feature-header__primary,
-.ds_reversed .ds_feature-header__primary a {
-    color: $ds_colour__text--reversed;
-}
-
-
-// ie
-.ds_feature-header {
-    @include media-query(medium) {
-        display: -ms-grid;
-        -ms-grid-columns: 1fr 32px 1fr;
-
-        &--wide {
-            -ms-grid-columns: 2fr 32px 1fr;
+            // Change grid columns if there is no image
+            &:not(:has(.ds_feature-header__secondary)){
+                grid-template-areas:
+                    'p p p p p p p p s s s s';
+                }
         }
 
-        &__primary {
-            -ms-grid-column: 1;
-            -ms-grid-row-align: center;
-        }
-
-        &__secondary {
-            -ms-grid-column: 3;
+        // Change grid columns if wide option
+        .ds_feature-header--wide:not(.ds_feature-header--fullwidth),
+        .ds_feature-header--wide.ds_feature-header--fullwidth > .ds_wrapper {
+            grid-template-areas:
+                'p p p p p p p p s s s s';
         }
     }
 }
