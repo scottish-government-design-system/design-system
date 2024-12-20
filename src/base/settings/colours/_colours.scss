@@ -110,7 +110,7 @@ $ds_colour__blocklink-bg--focus:        $ds_colour__link--focus__background !def
 // buttons
 $ds_colour__button:                     $ds_colour__white !default;
 $ds_colour__button__background:         $ds_colour__brand !default;
-$ds_colour__button--hover__background:  adjustForContrast(darken($ds_colour__button__background, 12.5%), $ds_colour__button, 4.5) !default; /// [1]
+$ds_colour__button--hover__background:  adjustForContrast(darken($ds_colour__button__background, 12.5%), $ds_colour__button, 4.5) !default; /// [2]
 $ds_colour__button--focus:              $ds_colour__link--focus !default;
 $ds_colour__button--focus__background:  $ds_colour__link--focus__background !default;
 
@@ -118,11 +118,11 @@ $ds_colour__button--focus__background:  $ds_colour__link--focus__background !def
 $ds_colour__button--secondary:                      $ds_colour__button__background !default;
 $ds_colour__button--secondary__background:          transparent !default;
 $ds_colour__button--secondary--hover:               $ds_colour__button--hover__background !default;
-$ds_colour__button--secondary--hover__background:   adjustLuminance($ds_colour__button--secondary, 0.83) !default; /// [2]
+$ds_colour__button--secondary--hover__background:   adjustLuminance($ds_colour__button--secondary, 0.83) !default; /// [1]
 $ds_colour__button--secondary--focus:               $ds_colour__button--focus !default;
 $ds_colour__button--cancel:                         $ds_colour__text !default;
 $ds_colour__button--cancel__background:             $ds_colour__button--secondary__background !default;
-$ds_colour__button--cancel--hover__background:      adjustLuminance($ds_colour__button--cancel, 0.83) !default; /// [2]
+$ds_colour__button--cancel--hover__background:      adjustLuminance($ds_colour__button--cancel, 0.83) !default; /// [1]
 $ds_colour__button--disabled__background:           $ds_colour__grey !default;
 
 
