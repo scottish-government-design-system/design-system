@@ -22,27 +22,39 @@
 }
 
 .ds_warning-text__icon {
-    $warning-text-icon-size: 32px;
+    $warning-text-icon-size: 2rem;
     @include ds_high-contrast-outline;
-
-    background: $ds_colour__text;
+    border: 2px solid $ds_colour__text;
     border-radius: 50%;
-    color: $ds_colour__background--primary;
     display: inline-block;
     height: $warning-text-icon-size;
-    font-size: $warning-text-icon-size;
-    font-weight: 700;
-    left: 24px;
-    line-height: $warning-text-icon-size;
+    left: 1.5rem;
+    line-height: 1;
+    padding: 2px;
     position: absolute;
     text-align: center;
-    top: 20px;
+    top: calc(1.25rem - 3px);
     width: $warning-text-icon-size;
 
     &::before {
-        content: '!';
-        display: block;
-        height: #{$warning-text-icon-size - 4px};
+        content: '';
+        background-image: url($iconsfile + "#priority_high");
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+    }
+
+    // Change to solid background and invert icon to white
+    @supports (filter: invert(100%)){
+        & {
+            background: $ds_colour__text;
+            border: 0;
+            top: calc(1.25rem - 1px);
+        }
+
+        &::before {
+            filter: invert(100%);
+        }
     }
 }
 
@@ -52,10 +64,14 @@
 
 @include ds_media-query(medium) {
     .ds_warning-text {
-        padding-right: 72px;
+        padding-right: 4.5rem;
     }
 
     .ds_warning-text__icon {
-        top: 31px;
+        top: calc(2rem - 3px);
+
+        @supports (filter: invert(100%)){
+            top: calc(2rem - 1px);
+        }
     }
 }
