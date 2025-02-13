@@ -162,6 +162,18 @@ const tracking = {
             });
         },
 
+        prefersColorScheme: function () {
+            if (!window.matchMedia) {
+                return;
+            }
+
+            const colorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+            tracking.pushToDataLayer({
+                prefersColorScheme: colorScheme
+            });
+        },
+
         accordions: function (scope = document) {
             const accordions = tracking.gatherElements('ds_accordion', scope);
 
