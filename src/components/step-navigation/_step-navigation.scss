@@ -11,6 +11,7 @@ $step-count-size: 32px;
 $step-count-size--medium: 40px;
 $step-content-line-height: 24px;
 $step-content-line-height--medium: 32px;
+$step-vertical-line-width: 2px;
 
 .ds_step-navigation {
     counter-reset: section;
@@ -61,7 +62,7 @@ $step-content-line-height--medium: 32px;
         line-height: #{$step-count-size - 2px};
         position: absolute;
         text-align: center;
-        top: px-to-rem(12px);
+        top: px-to-rem(4px);
         width: $step-count-size;
     }
 
@@ -75,18 +76,23 @@ $step-content-line-height--medium: 32px;
         margin-left: $step-count-margin;
     }
 
+    .ds_accordion__open-all {
+        margin-left: $step-count-margin * -1;
+        padding-left: 0;
+    }
+
     .ds_accordion-item {
         position: relative;
 
         &::before {
-            background: $ds_colour__border--strong;
-            bottom: px-to-rem(-17px);
+            background: $ds_colour__border;
+            bottom: px-to-rem(-9px);
             content: '';
             display: block;
-            left: #{math.div($step-count-size, 2) - $step-count-margin};
+            left: #{math.div($step-count-size, 2) - $step-count-margin - math.div($step-vertical-line-width, 2)};
             position: absolute;
-            top: px-to-rem(39px);
-            width: 1px;
+            top: px-to-rem(32px);
+            width: $step-vertical-line-width;
         }
 
         &:last-child::before {
@@ -94,7 +100,7 @@ $step-content-line-height--medium: 32px;
         }
 
         &:last-child::after {
-            background: $ds_colour__border--strong;
+            background: $ds_colour__border;
             bottom: -1px;
             content: '';
             display: block;
@@ -113,7 +119,7 @@ $step-content-line-height--medium: 32px;
     &__or &__count,
     &__and &__count {
         background-color: transparent;
-        border: none;
+        border-color: transparent;
     }
 }
 
@@ -124,6 +130,7 @@ $step-content-line-height--medium: 32px;
             height: $step-count-size--medium;
             left: #{$step-count-margin--medium * -1};
             line-height: #{$step-count-size--medium - 2px};
+            top: 0.75rem;
             width: $step-count-size--medium;
         }
 
@@ -138,6 +145,10 @@ $step-content-line-height--medium: 32px;
 
         .ds_accordion {
             margin-left: $step-count-margin--medium;
+        }
+
+        .ds_accordion__open-all {
+            margin-left: $step-count-margin--medium * -1;
         }
 
         .ds_accordion-item::before {

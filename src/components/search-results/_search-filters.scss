@@ -8,8 +8,7 @@
     &__title {
         @include ds_responsive-padding(1, bottom, false, -1px);
         @include ds_responsive-padding(1, top);
-        @include ds_responsive-margin(2, bottom);
-        border-bottom: 1px solid $ds_colour__border;
+        margin-bottom: 0;
         margin-top: 0;
 
         &:not(:first-child) {
@@ -59,10 +58,6 @@
         .ds_checkbox--small {
             margin-bottom: 0;
         }
-    }
-
-    .ds_accordion-item:first-child {
-        border-top-color: transparent;
     }
 
     .ds_accordion.js-initialised .ds_accordion-item__body {
@@ -118,5 +113,11 @@
                 top: 0.6875rem;
             }
         }
+    }
+
+    .ds_search-filters .ds_accordion-item__indicator {
+        font-size: px-to-rem($small-size);
+        line-height: 1.5rem;
+        margin-top: 0.25rem;
     }
 }
