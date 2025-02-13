@@ -54,8 +54,10 @@ class Accordion {
         itemButton.type = 'button';
 
         // we keep the control present but make it unavailable in the tab order or to screen readers
+        // browsers will generally remember the state of the checkbox on back/forward navigation
         itemControl.classList.remove('visually-hidden');
         itemControl.classList.add('fully-hidden');
+        itemControl.setAttribute('tabindex', -1);
 
         itemButton.innerHTML = itemTitle.innerHTML;
 
