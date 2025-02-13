@@ -876,19 +876,18 @@ const tracking = {
         },
 
         summaryCard: function (scope = document) {
-            const summaryListActions = tracking.gatherElements('ds_summary-card__actions-list', scope);
-            summaryListActions.forEach(actions => {
-                const actionButtons = [].slice.call(actions.querySelectorAll('a, button'));
-                actionButtons.forEach(actionButton => {
-                    let questionText = '';
-                    if(!!actionButton.getAttribute('aria-describedby')){
-                        const question = scope.querySelector('#' + actionButton.getAttribute('aria-describedby'));
-                        questionText = '-'+slugify(question.innerText);
-                    }
-                    actionButton.setAttribute('data-navigation', `button-${slugify(actionButton.innerText)}${questionText}`);
-                    if(actionButton.hasAttribute('data-button')){
-                        actionButton.removeAttribute('data-button');
-                    }
+            const summaryCards = tracking.gatherElements('ds_summary-card', scope);
+            summaryCards.forEach((cards, index) => {
+                const summaryListActions = [].slice.call(cards.querySelectorAll('.ds_summary-card__actions-list'));
+                summaryListActions.forEach(actions => {
+                    const actionButtons = [].slice.call(actions.querySelectorAll('button'));
+                    const actionLinks = [].slice.call(actions.querySelectorAll('a'));
+                    actionButtons.forEach(actionButton => {
+                        actionButton.setAttribute('data-button', `button-${slugify(actionButton.innerText)}-${index + 1}`);
+                    });
+                    actionLinks.forEach(actionLink => {
+                        actionLink.setAttribute('data-navigation', `navigation-${slugify(actionLink.innerText)}-${index + 1}`);
+                    });
                 });
             });
         },
@@ -896,17 +895,23 @@ const tracking = {
         summaryList: function (scope = document) {
             const summaryListActions = tracking.gatherElements('ds_summary-list__actions', scope);
             summaryListActions.forEach(actions => {
-                const actionButtons = [].slice.call(actions.querySelectorAll('a, button'));
+                const actionButtons = [].slice.call(actions.querySelectorAll('button'));
+                const actionLinks = [].slice.call(actions.querySelectorAll('a'));
                 actionButtons.forEach(actionButton => {
                     let questionText = '';
                     if(!!actionButton.getAttribute('aria-describedby')){
                         const question = scope.querySelector('#' + actionButton.getAttribute('aria-describedby'));
                         questionText = '-'+slugify(question.innerText);
                     }
-                    actionButton.setAttribute('data-navigation', `button-${slugify(actionButton.innerText)}${questionText}`);
-                    if(actionButton.hasAttribute('data-button')){
-                        actionButton.removeAttribute('data-button');
+                    actionButton.setAttribute('data-button', `button-${slugify(actionButton.innerText)}${questionText}`);
+                });
+                actionLinks.forEach(actionLink => {
+                    let questionText = '';
+                    if(!!actionLink.getAttribute('aria-describedby')){
+                        const question = scope.querySelector('#' + actionLink.getAttribute('aria-describedby'));
+                        questionText = '-'+slugify(question.innerText);
                     }
+                    actionLink.setAttribute('data-navigation', `navigation-${slugify(actionLink.innerText)}${questionText}`);
                 });
             });
         },
