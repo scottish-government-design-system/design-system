@@ -16,11 +16,10 @@ $accordion__header-colour: $ds_colour__link !default;
 
     &__open-all {
         display: none;
-        float: right;
         line-height: line-height-on-grid($root-font-size);
         margin-bottom: 0.5rem;
+        margin-left: 0.5rem;
         position: relative;
-        text-decoration: none;
 
         @include ds_media-query(medium) {
             line-height: line-height-on-grid($root-font-size--medium);
@@ -46,18 +45,18 @@ h1,h2,h3 {
 }
 
 .ds_accordion-item {
-    border-bottom: 1px solid $ds_colour__border--faint;
-    border-top: 1px solid $ds_colour__border--faint;
+    border-bottom: 1px solid $ds_colour__border;
+    border-top: 1px solid $ds_colour__border;
 
+    /// [1] subtracting the accordion item's border width
     &__header {
         @include ds_blocklink;
         @include ds_h4-size;
 
         background-color: $ds_colour__background--primary;
         border-width: 0;
-        color: $accordion__header-colour;
-        font-weight: $bold;
         margin: 0;
+        padding: 0.5rem 0.5rem calc(0.75rem - 1px); /// [1]
         position: relative;
         text-align: left;
         width: 100%;
@@ -65,16 +64,19 @@ h1,h2,h3 {
         &:hover:not(:focus) {
             color: $ds_colour__link--hover;
         }
+
+        &:has(.ds_accordion-item__button) {
+            padding: 0;
+        }
     }
 
-    /// [1] subtracting the accordion item's border width
     &__title {
         @include ds_h4-size;
-        margin-bottom: 0;
-        padding: 1rem 3rem calc(1rem - 1px) 1rem; /// [1]
+        margin-bottom: 0.25rem;
 
         &--button {
             padding: 0;
+            margin-bottom: 0;
         }
     }
 
@@ -83,7 +85,7 @@ h1,h2,h3 {
         appearance: unset;
         background: transparent;
         border: 0;
-        padding: 1rem 3rem calc(1rem - 1px) 1rem; /// [1]
+        padding: 0.5rem 0.5rem calc(0.75rem - 1px); /// [1]
         text-align: left;
         width: 100%;
 
@@ -104,46 +106,47 @@ h1,h2,h3 {
     }
 
     &__indicator {
-        @include ds_chevron(down, 0.75em);
-        position: absolute;
-        right: 1.5rem;
-        top: 1.125rem;
-        transition: transform 0.2s, top 0.2s;
-        pointer-events: none;
+        @include ds_small-size;
+        color: $ds_colour__link;
+        display: block;
+        font-weight: $normal;
+        margin-top: 0.25rem;
+        padding: 0 0 0 1.1875rem;
+        position: relative;
 
-        @include ds_media-query(medium) {
-            top: px-to-rem(21px); // nudges indicator to remain inline with first line of title
-            right: px-to-rem(26px);
+        &::before {
+            @include ds_chevron(down, 0.6125em);
+            left: 0.1875rem;
+            top: 0.375rem;
+            position: absolute;
+            transition: transform 0.2s, top 0.2s;
+            pointer-events: none;
+        }
+
+        &::after {
+            content: 'Open';
         }
     }
 
     &__body {
         display: none;
-        padding: 1.5rem 2.5rem 2rem 1rem;
+        padding: 1rem 0.5rem 1.5rem;
 
         @include ds_last-child-no-margin;
-
-        @include ds_media-query(medium) {
-            padding-right: 6.25rem;
-        }
     }
 
     &__control:checked ~ &__body {
         display: block;
     }
 
-    &__control:checked ~ &__header {
-        background-color: $ds_colour__link--current__background;
-        color: $ds_colour__link--current;
-    }
-
     &__control:checked ~ &__header &__indicator {
-        top: 1.375rem;
-        transform: rotate(-225deg);
+        &::before {
+            top: 0.625rem;
+            transform: rotate(-225deg);
+        }
 
-        @include ds_media-query(medium) {
-            top: px-to-rem(27px); // nudges indicator to remain inline with first line of title
-            right: px-to-rem(26px);
+        &::after {
+            content: 'Close';
         }
     }
 
@@ -155,8 +158,72 @@ h1,h2,h3 {
         z-index: 2;
     }
 
+    &__control:focus ~ &__header &__indicator {
+        color: $ds_colour__link--focus;
+    }
+
     + .ds_accordion-item {
         margin-top: -1px;
+    }
+
+    // link styling for indicator text content
+    &__indicator::after {
+        text-decoration: underline;
+        text-underline-offset: $link__underline-offset;
+    }
+
+    &__header:hover &__indicator::after {
+        text-underline-offset: $link__underline-offset--hover;
+        text-decoration-thickness: $link__underline-thickness--hover;
+    }
+
+    &__header:hover:not(:focus-within) &__indicator,
+    &__header:hover:not(:focus-within) &__indicator::after {
+        color: $ds_colour__link--hover;
+    }
+
+    .ds_accordion-item__button:focus &__indicator {
+        color: $ds_colour__link--focus;
+    }
+
+    &__control:focus ~ &__header &__indicator::after {
+        color: $ds_colour__link--focus;
+        text-decoration-thickness: auto;
+    }
+
+    @include ds_media-query(medium) {
+        &__indicator {
+            margin-top: 0.5rem;
+            padding-left: 1.375rem;
+
+            &::before {
+                top: 0.3125rem;
+            }
+        }
+
+        &__control:checked ~ &__header &__indicator {
+            &::before {
+                top: 0.625rem;
+            }
+        }
+
+        /// [1] subtracting the accordion item's border width
+        &__header,
+        &__button {
+            padding: 1rem 1rem calc(1rem - 1px) 0.5rem; /* [1] */
+        }
+
+        &__header:has(.ds_accordion-item__button) {
+            padding: 0;
+        }
+
+        &__title {
+            margin-bottom: 0.5rem;
+
+            &--button {
+                margin-bottom: 0;
+            }
+        }
     }
 }
 
@@ -181,25 +248,6 @@ h1,h2,h3 {
         h3, h4 {
             font-size: 1em; // 1rem
             line-height: line-height-on-grid($root-font-size); //1.5
-        }
-    }
-
-    .ds_accordion-item__indicator {
-        margin-top: 0;
-        right: 1.5rem;
-        top: 1.125rem;
-    }
-
-    .ds_accordion-item__control:checked~.ds_accordion-item__header .ds_accordion-item__indicator {
-        right: 1.5rem;
-        top: 1.5rem;
-    }
-}
-
-@include media-query(medium) {
-    .ds_accordion--small {
-        .ds_accordion-item__indicator {
-            top: 1.125rem;
         }
     }
 }
