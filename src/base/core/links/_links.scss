@@ -48,7 +48,7 @@ h1, h2, h3, h4 {
         text-decoration: none;
 
         &:hover:not(:focus) {
-            text-decoration: underline;
+            text-decoration-line: underline;
         }
     }
 }
