@@ -5,7 +5,7 @@
 $button__border-width: 2px !default;
 $button__outline-width: 3px !default;
 $button__padding--x: 16px !default;
-$link__border-width: 3px;
+$link__border-width: 0.16em !default;
 
 
 
@@ -36,7 +36,7 @@ $link__border-width: 3px;
     // Margins wont collapse as inline-block.
     // Assume block margins (step 4) on preceding element/component so no top margin is needed on ds_button
     margin-top: 0;
-    
+
 
     &:hover {
         background-color: $ds_colour__button--hover__background;

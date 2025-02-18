@@ -34,7 +34,7 @@ $site-branding-title-spacing--medium: 48px;
         position: relative;
         text-decoration: none;
 
-        @include ds_fancy-underscore(2px);
+        @include ds_fancy-underscore;
     }
 
     &__title {
