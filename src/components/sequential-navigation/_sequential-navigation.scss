@@ -30,6 +30,7 @@ $page-nav__circle-size: 56px !default;
 
 .ds_sequential-nav__button {
     @include ds_blocklink;
+    @include ds_link-underline('.ds_sequential-nav__text');
 
     background: transparent;
     display: inline-block;
@@ -144,11 +145,6 @@ $page-nav__circle-size: 56px !default;
             font-size: px-to-rem($root-font-size);
         }
     }
-}
-
-.ds_sequential-nav__button:not(:focus) .ds_sequential-nav__text {
-    text-decoration: underline;
-    text-underline-offset: 1px;
 }
 
 @include ds_media-query(small) {

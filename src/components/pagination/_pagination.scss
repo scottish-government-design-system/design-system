@@ -77,8 +77,7 @@
 }
 
 a.ds_pagination__link:not(.ds_current):not(:focus) {
-    text-decoration: underline;
-    text-underline-offset: 1px;
+    text-decoration-line: underline;
 }
 
 @include ds_media-query(medium) {

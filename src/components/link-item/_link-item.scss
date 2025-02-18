@@ -4,7 +4,6 @@
 \*------------------------------------*/
 
 .ds_link-item {
-
     @include ds_responsive-padding (3, bottom, $tuning: -2px);
     border-bottom: 2px $ds_colour__border--faint solid;
     margin: 0;
@@ -14,10 +13,13 @@
         margin: 0 !important;
     }
 
+    &__link {
+        display: inline-block;
+    }
+
     &__summary {
         @include ds_small-size();
         margin: 0;
         @include ds_responsive-margin (1, top);
     }
-
 }
