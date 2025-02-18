@@ -4,7 +4,7 @@
 ///
 /// @param {string} $width - width of the underscore
 
-@mixin ds_fancy-underscore($width: 1px) {
+@mixin ds_fancy-underscore($width: 0.16em) {
     position: relative;
     transition-duration: 0s !important;
 
@@ -36,6 +36,6 @@
 
 
 /// legacy non-prefixed names
-@mixin fancy-underscore($width: 1px) {
+@mixin fancy-underscore($width: 0.16em) {
     @include ds_fancy-underscore($width);
 }
