@@ -14,7 +14,6 @@
 $ds_colour__white:          #ffffff;
 $ds_colour__black:          #000000;
 
-$ds_colour__blue--lighter:  #e5f0f8;
 $ds_colour__blue--light:    #d9effc;
 $ds_colour__blue:           #0065bd;
 $ds_colour__blue--dark:     #00437e;
@@ -23,23 +22,23 @@ $ds_colour__blue--darker:   #002d54;
 $ds_colour__grey--lighter:  #f8f8f8;
 $ds_colour__grey--light:    #ebebeb;
 $ds_colour__grey--medium:   #b3b3b3;
-$ds_colour__grey:           #5e5e5e; // Previously #727272
-$ds_colour__grey--dark:     #1a1a1a; // Previously #333333
+$ds_colour__grey:           #5e5e5e;
+$ds_colour__grey--dark:     #1a1a1a;
 
-$ds_colour__grey--neutral:  #333e48;
+$ds_colour__sg-secondary:   #333e48;
 
 
 // extended palette
 $ds_colour__dark-blue:  $ds_colour__blue--darker;
 $ds_colour__teal:       #28a197;
-$ds_colour__dark-teal:  #1c5d5d; // Previously #017878
+$ds_colour__dark-teal:  #1c5d5d;
 $ds_colour__green:      #5eb135;
-$ds_colour__dark-green: #2e5d2e; // Previously #428542
+$ds_colour__dark-green: #2e5d2e;
 $ds_colour__yellow:     #fdd522;
 $ds_colour__orange:     #f47738;
 $ds_colour__red:        #d32205;
 $ds_colour__pink:       #e5007e;
-$ds_colour__purple:     #741e6d; // Previously #912668
+$ds_colour__purple:     #741e6d;
 $ds_colour__brown:      #592c20;
 
 
@@ -49,15 +48,13 @@ $ds_colour__brown:      #592c20;
 $ds_colour__background--primary:        $ds_colour__white !default;
 $ds_colour__background--secondary:      $ds_colour__grey--lighter !default;
 $ds_colour__background--tertiary:       $ds_colour__grey--light !default;
-$ds_colour__background--primary--dim:   $ds_colour__background--secondary !default;
 
 
 
 
 // branding
 $ds_colour__brand:              $ds_colour__blue !default;
-$ds_colour__brand--secondary:   $ds_colour__blue--darker !default;
-$ds_colour__brand--tertiary:    $ds_colour__grey--neutral !default;
+$ds_colour__brand--secondary:   $ds_colour__sg-secondary !default;
 $ds_brand-gradient-direction:   right !default;
 
 @if getContrastRatio(#ffffff, $ds_colour__brand) < 4.5 {
@@ -92,7 +89,7 @@ $ds_colour__link--focus__outline:       $ds_colour__focus--background !default;
 $ds_colour__link--focus__background:    $ds_colour__focus--background !default;
 $ds_colour__link--focus__shadow:        $ds_colour__focus !default;
 $ds_colour__link--current:              $ds_colour__text !default;
-$ds_colour__link--current__background:  $ds_colour__background--primary--dim !default;
+$ds_colour__link--current__background:  $ds_colour__background--secondary !default;
 $ds_colour__link--disabled:             $ds_colour__text !default;
 $ds_colour__link--disabled__background: $ds_colour__background--tertiary !default;
 $ds_colour__link--reversed:             currentColor !default;

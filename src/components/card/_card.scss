@@ -2,7 +2,7 @@
     CARD
 \*------------------------------------*/
 
-$card-grey-background-color: $ds_colour__background--primary--dim !default;
+$card-grey-background-color: $ds_colour__background--secondary !default;
 
 .ds_card {
     @include ds_box-shadow;
