@@ -60,7 +60,9 @@ class CharacterCount {
 
             this.updateCountMessage();
 
-            this.inputElement.addEventListener('keyup', this.checkIfChanged.bind(this));
+            this.inputElement.oldValue = this.inputElement.value;
+
+            this.inputElement.addEventListener('input', this.checkIfChanged.bind(this));
 
             this.field.classList.add('js-initialised');
         }
