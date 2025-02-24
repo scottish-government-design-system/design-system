@@ -1718,20 +1718,20 @@ describe('tracking', () => {
             const links = [].slice.call(testObj.scope.querySelectorAll('.ds_summary-card__actions-list-item a, .ds_summary-card__actions-list-item button'));
             Tracking.add.summaryCard();
 
-            expect(links[0].getAttribute('data-navigation')).toEqual('button-change-summary-card-title');
-            expect(links[1].getAttribute('data-navigation')).toEqual('button-delete-summary-card-title');
+            expect(links[0].getAttribute('data-navigation')).toEqual('navigation-change-1');
+            expect(links[1].getAttribute('data-button')).toEqual('button-delete-1');
         });
 
         it('should set data attributes on each action button or link in the summary list', () => {
             const links = [].slice.call(testObj.scope.querySelectorAll('.ds_summary-list__actions a, .ds_summary-list__actions button'));
             Tracking.add.summaryList();
 
-            expect(links[0].getAttribute('data-navigation')).toEqual('button-change-have-you-had-the-grant-3-times-or-more-since-1-may-2022');
-            expect(links[1].getAttribute('data-navigation')).toEqual('button-change-which-council-area-do-you-live-in');
-            expect(links[2].getAttribute('data-navigation')).toEqual('button-view-which-council-area-do-you-live-in');
-            expect(links[3].getAttribute('data-navigation')).toEqual('button-change-do-you-work');
-            expect(links[4].getAttribute('data-navigation')).toEqual('button-change-will-you-lose-earnings-because-you-need-to-self-isolate');
-            expect(links[5].getAttribute('data-navigation')).toEqual('button-remove-will-you-lose-earnings-because-you-need-to-self-isolate');
+            expect(links[0].getAttribute('data-navigation')).toEqual('navigation-change-have-you-had-the-grant-3-times-or-more-since-1-may-2022');
+            expect(links[1].getAttribute('data-navigation')).toEqual('navigation-change-which-council-area-do-you-live-in');
+            expect(links[2].getAttribute('data-navigation')).toEqual('navigation-view-which-council-area-do-you-live-in');
+            expect(links[3].getAttribute('data-button')).toEqual('button-change-do-you-work');
+            expect(links[4].getAttribute('data-button')).toEqual('button-change-will-you-lose-earnings-because-you-need-to-self-isolate');
+            expect(links[5].getAttribute('data-button')).toEqual('button-remove-will-you-lose-earnings-because-you-need-to-self-isolate');
         });
 
         it('should remove redundant data attributes on each action button in the summary card header', () => {
