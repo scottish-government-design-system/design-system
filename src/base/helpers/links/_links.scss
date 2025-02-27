@@ -1,6 +1,10 @@
 $blocklink__outline-width: 0;
 $link__outline-width: 2px;
 $link__border-width: 3px;
+$link__underline-offset: 1px;
+$link__underline-thickness: auto;
+$link__underline-offset--hover: $link__underline-offset;
+$link__underline-thickness--hover: auto;
 
 
 
@@ -13,15 +17,17 @@ $link__border-width: 3px;
 @mixin ds_link {
     @include ds_high-contrast-link-style;
     color: $ds_colour__link;
-    text-decoration: underline;
     outline: 0px solid transparent;
-    text-underline-offset: 1px;
+    text-decoration: underline;
+    text-underline-offset: $link__underline-offset;
     transition: color $transition-out-time, background-color $transition-out-time, outline-color $transition-out-time;
 
     &:hover {
         background-color: $ds_colour__link--hover__background;
         color: $ds_colour__link--hover;
         outline: $link__outline-width solid $ds_colour__link--hover__background;
+        text-underline-offset: $link__underline-offset--hover;
+        text-decoration-thickness: $link__underline-thickness--hover;
         transition-duration: $transition-in-time;
     }
 
@@ -62,6 +68,7 @@ $link__border-width: 3px;
         background-color: $ds_colour__blocklink-bg--focus;
         box-shadow: inset #{$blocklink__outline-width * -1} #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow, inset $blocklink__outline-width #{$blocklink__outline-width + $link__border-width * -1} $ds_colour__link--focus__shadow;
         color: $ds_colour__link--focus;
+        transition-duration: 0s;
 
         @include ds_high-contrast-focus;
     }
