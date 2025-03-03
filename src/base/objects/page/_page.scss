@@ -79,13 +79,26 @@ html {
 
 
 /*------------------------------------*\
-    CATEGORY PAGE LAYOUT
+    CATEGORY PAGE SUB-LAYOUT
 \*------------------------------------*/
 
-// todo: Does this belong here? Feels like no.
 .category-lower,
 .ds_category-lower {
     background: $ds_colour__background--secondary;
     border-top: 1px solid $ds_colour__border--faint;
     margin-top: -1px;
+}
+
+.ds_page__middle:has(.category-lower),
+.ds_page__middle:has(.ds_category-lower) {
+    grid-template-rows: auto;
+
+    &:has(.ds_breadcrumbs) {
+        grid-template-rows: auto 1fr;
+    }
+
+    > #main-content {
+        display: grid;
+        grid-template-rows: auto 1fr;
+    }
 }
