@@ -133,7 +133,7 @@ describe('character count', () => {
 
             // 6 characters. our max is 20.
             inputElement.value = '123456';
-            const event = new Event('keyup');
+            const event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(countElement.innerText.indexOf('14 characters')).toBeGreaterThan(-1);
@@ -147,14 +147,14 @@ describe('character count', () => {
 
             // 18 characters. our max is 20.
             inputElement.value = '123456789012345678';
-            let event = new Event('keyup');
+            let event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(countElement.innerText.indexOf('characters ')).toBeGreaterThan(-1);
 
             // 19 characters. our max is 20.
             inputElement.value = '1234567890123456789';
-            event = new Event('keyup');
+            event = new Event('input');
             inputElement.dispatchEvent(event);
             expect(countElement.innerText.indexOf('character ')).toBeGreaterThan(-1);
         });
@@ -166,7 +166,7 @@ describe('character count', () => {
 
             // 21 characters. our max is 20.
             inputElement.value = '123456789012345678901';
-            let event = new Event('keyup');
+            let event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(inputElement.classList.contains('ds_input--error')).toBe(true);
@@ -182,13 +182,13 @@ describe('character count', () => {
 
             // 9/20 characters -- under threshold (50%)
             inputElement.value = '123456789';
-            let event = new Event('keyup');
+            let event = new Event('input');
             inputElement.dispatchEvent(event);
             expect(countElement.classList.contains('fully-hidden')).toEqual(true);
 
             // 11/20 characters -- over threshold
             inputElement.value = '12345678901';
-            event = new Event('keyup');
+            event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(countElement.classList.contains('fully-hidden')).toEqual(false);
@@ -205,7 +205,7 @@ describe('character count', () => {
 
             // 6 characters. our max is 20.
             inputElement.value = '123456';
-            const event = new Event('keyup');
+            const event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(countElement.innerText).not.toEqual(initialValue);
@@ -233,7 +233,7 @@ describe('character count', () => {
             spyOn(testObj.characterCountModule, 'updateCountMessage');
             inputElement.oldValue = '123456';
             inputElement.value = '123456';
-            const event = new Event('keyup');
+            const event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(testObj.characterCountModule.updateCountMessage).not.toHaveBeenCalled();
@@ -249,7 +249,7 @@ describe('character count', () => {
 
             // 6 characters. our max is 20.
             inputElement.value = '123456';
-            const event = new Event('keyup');
+            const event = new Event('input');
             inputElement.dispatchEvent(event);
 
             jasmine.clock().tick(1000);
@@ -270,14 +270,14 @@ describe('character count', () => {
 
             // 6 characters. our max is 20.
             inputElement.value = '123456';
-            let event = new Event('keyup');
+            let event = new Event('input');
             inputElement.dispatchEvent(event);
 
             jasmine.clock().tick(500);
 
             // modify the value within the 1000ms window
             inputElement.value = '1234567';
-            event = new Event('keyup');
+            event = new Event('input');
             inputElement.dispatchEvent(event);
 
             jasmine.clock().tick(1000);
@@ -300,7 +300,7 @@ describe('character count', () => {
 
             // 9/20 characters -- under threshold (50%)
             inputElement.value = '123456789';
-            let event = new Event('keyup');
+            let event = new Event('input');
             inputElement.dispatchEvent(event);
 
             jasmine.clock().tick(1000);
@@ -309,7 +309,7 @@ describe('character count', () => {
 
             // 11/20 characters -- over threshold
             inputElement.value = '12345678901';
-            event = new Event('keyup');
+            event = new Event('input');
             inputElement.dispatchEvent(event);
 
             jasmine.clock().tick(1000);
@@ -340,7 +340,7 @@ describe('character count', () => {
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
 
             inputElement.value = 'abcdefghijklmnopqrs';
-            event = new Event('keyup');
+            event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
@@ -355,12 +355,12 @@ describe('character count', () => {
             expect(inputElement.getAttribute('aria-invalid')).toEqual('false');
 
             inputElement.value = 'abcdefghijklmnopqrstuvwxyz';
-            event = new Event('keyup');
+            event = new Event('input');
             inputElement.dispatchEvent(event);
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
 
             inputElement.value = 'abcdefghijklmnopqrs';
-            event = new Event('keyup');
+            event = new Event('input');
             inputElement.dispatchEvent(event);
             expect(inputElement.getAttribute('aria-invalid')).toEqual('false');
         });
