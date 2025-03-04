@@ -96,6 +96,10 @@ $date-picker-focus-border-width: 3px;
 
             tbody:focus-within {
                 outline: $date-picker-focus-outline-width solid $ds_colour__link--focus__background;
+
+                @include ds_media-query-high-contrast {
+                    outline-color: highlight;
+                }
             }
 
             td {

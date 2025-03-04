@@ -37,11 +37,16 @@
 ///   }
 
 @mixin ds_media-query-high-contrast {
-    @media screen and (forced-colors: active) and (prefers-contrast: more) {
+    @media screen and (forced-colors: active) {
         @content;
     }
 }
 
+@mixin ds_media-query-high-contrast--invert {
+    @media screen and (forced-colors: none) {
+        @content;
+    }
+}
 
 
 

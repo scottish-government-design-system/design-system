@@ -110,6 +110,8 @@ $notification-banner__icon-padding: $notification-banner__close-padding;
         min-height: 0;
         min-width: 0;
 
+        @include ds_high-contrast-button;
+
         &:focus {
             background-color: $ds_colour__button--focus__background;
             box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
