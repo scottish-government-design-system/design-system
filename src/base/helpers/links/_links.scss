@@ -1,9 +1,9 @@
 $blocklink__outline-width: 0;
 $link__outline-width: 2px;
 $link__border-width: 0.16em;
-$link__underline-offset: 0.0625em;
+$link__underline-offset: 0.16em;
 $link__underline-thickness: auto;
-$link__underline-offset--hover: 0.16em;
+$link__underline-offset--hover: $link__underline-offset;
 $link__underline-thickness--hover: 0.16em;
 
 
