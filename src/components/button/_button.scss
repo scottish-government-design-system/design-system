@@ -15,6 +15,7 @@ $link__border-width: 0.16em !default;
 .ds_button {
     @include ds_small-size;
     @include ds_button-sizing;
+    @include ds_high-contrast-button;
 
     background: $ds_colour__button__background;
     border: 0;

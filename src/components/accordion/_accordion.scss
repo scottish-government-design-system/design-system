@@ -152,7 +152,15 @@ h1,h2,h3 {
         background: $ds_colour__blocklink-bg--focus;
         box-shadow: 0 $link__border-width $ds_colour__link--focus;
         color: $ds_colour__link--focus;
+        transition-duration: 0s;
         z-index: 2;
+
+        @include ds_high-contrast-focus;
+    }
+
+    &__control:focus ~ &__header &__indicator {
+        color: $ds_colour__link--focus;
+        text-decoration-color: transparent;
     }
 
     &__control:focus ~ &__header &__indicator {
@@ -181,7 +189,7 @@ h1,h2,h3 {
 
     .ds_accordion-item__button:focus &__indicator {
         color: $ds_colour__link--focus;
-        text-decoration: none;
+        text-decoration-color: transparent;
     }
 
     @include ds_media-query(medium) {
@@ -264,5 +272,20 @@ h1,h2,h3 {
             font-size: 1em; // 1rem
             line-height: line-height-on-grid($root-font-size); //1.5
         }
+    }
+}
+
+
+/* HIGH CONTRAST */
+
+/// [1] specificity hack
+@include ds_media-query-high-contrast {
+    .ds_accordion-item__button:is(.ds_accordion-item__button) { /// [1]
+        color: CanvasText !important;
+        text-decoration-line: none !important;
+    }
+
+    .ds_accordion-item__indicator {
+        color: LinkText !important;
     }
 }

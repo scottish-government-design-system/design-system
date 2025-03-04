@@ -24,6 +24,11 @@
     &:focus {
         @include ds_focus-outline;
         box-shadow: inset 0 0 0 4px currentColor;
+
+        @include ds_media-query-high-contrast {
+            outline-offset: -2px;
+            outline-width: 4px;
+        }
     }
 
     &::-ms-expand {

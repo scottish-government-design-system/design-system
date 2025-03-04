@@ -21,6 +21,10 @@
         position: absolute;
         top: 1.25rem; /// [1]
 
+        @include ds_media-query-high-contrast {
+            color: highlight;
+        }
+
         @include ds_media-query(medium) {
             top: 1.5rem; /// [1]
         }

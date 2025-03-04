@@ -1,0 +1,23 @@
+@mixin ds_scrollbar {
+    @include ds_media-query-high-contrast--invert {
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+            background-color: rgba(0,0,0,0.1);
+            border-radius: 0.25rem;
+            outline: 0.0625rem solid transparent;
+        }
+
+        &::-webkit-scrollbar:horizontal {
+            height: 0.5rem;
+        }
+
+        &::-webkit-scrollbar:vertical {
+            width: 0.5rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            border-radius: 0.25rem;
+            background-color: rgba(0,0,0,0.5);
+        }
+    }
+}

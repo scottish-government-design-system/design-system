@@ -70,6 +70,10 @@ $step-vertical-line-width: 2px;
         background-color: $ds_colour__link--current__background;
         border: 2px solid $ds_colour__border--highlight;
         line-height: #{$step-count-size - 4px};
+
+        @include ds_media-query-high-contrast {
+            border-color: highlight;
+        }
     }
 
     .ds_accordion {
@@ -85,8 +89,8 @@ $step-vertical-line-width: 2px;
         position: relative;
 
         &::before {
-            background: $ds_colour__border;
-            bottom: px-to-rem(-9px);
+            border-left: 1px solid $ds_colour__border--strong;
+            bottom: px-to-rem(-17px);
             content: '';
             display: block;
             left: #{math.div($step-count-size, 2) - $step-count-margin - math.div($step-vertical-line-width, 2)};
@@ -100,7 +104,7 @@ $step-vertical-line-width: 2px;
         }
 
         &:last-child::after {
-            background: $ds_colour__border;
+            border-bottom: 1px solid $ds_colour__border--strong;
             bottom: -1px;
             content: '';
             display: block;

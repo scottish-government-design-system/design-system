@@ -67,9 +67,10 @@ $small-focus-border-colour: $ds_colour__border !default;
         border-width: $field-border-width--focus;
         box-shadow: 0 0 0 $field-glow-width $ds_colour__input--focus__outline;
 
-        @include ds_high-contrast-focus(4px) {
+        @include ds_media-query-high-contrast {
+            outline: 4px solid highlight;
             outline-offset: -4px;
-        };
+        }
     }
 
     &__input:checked + &__label::after {
