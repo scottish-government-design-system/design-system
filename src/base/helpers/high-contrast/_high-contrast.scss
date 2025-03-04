@@ -1,6 +1,7 @@
 ///
 /// High contrast focus
 ///
+///
 
 @mixin ds_high-contrast-focus($width: 2px) {
     @include ds_media-query-high-contrast {
@@ -19,14 +20,34 @@
     }
 }
 
-// Style to look like links
-@mixin ds_high-contrast-link-style {
+@mixin ds_high-contrast-link {
     @include ds_media-query-high-contrast {
-        color: LinkText;
+        &:is(:enabled, :link, summary) {
+            color: LinkText !important;
+            text-decoration-line: underline !important;
 
-        &:hover,
-        &:focus {
-            color: LinkText;
+            &:focus,
+            &:active {
+                outline: 2px solid highlight !important;
+            }
+        }
+    }
+}
+
+@mixin ds_high-contrast-button {
+    @include ds_media-query-high-contrast {
+        &:is(:enabled, :link) {
+            color: ButtonText !important;
+            text-decoration-line: none !important;
+
+            &:hover {
+                outline: 2px solid highlight !important;
+            }
+
+            &:focus,
+            &:active {
+                outline: 4px solid highlight !important;
+            }
         }
     }
 }

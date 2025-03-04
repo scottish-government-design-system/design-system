@@ -87,10 +87,6 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
         margin-top: 0 !important;
     }
 
-    &__link--cover:focus {
-        @include ds_high-contrast-focus;
-    }
-
     &__link--cover:after {
         content: "";
         height: 100%;

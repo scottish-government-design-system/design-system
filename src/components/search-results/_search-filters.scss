@@ -26,17 +26,7 @@
         padding-right: 0.5rem;
         overflow-y: auto;
 
-        &::-webkit-scrollbar {
-            -webkit-appearance: none;
-            background-color: rgba(0,0,0,0.1);
-            border-radius: 0.25rem;
-            width: 0.5rem;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            border-radius: 0.25rem;
-            background-color: rgba(0,0,0,0.5);
-        }
+        @include ds_scrollbar;
     }
 
     &__filter-count {
