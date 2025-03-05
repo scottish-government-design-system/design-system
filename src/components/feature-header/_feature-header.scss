@@ -19,19 +19,14 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
 /// [1] 0.83: the luminance of ds_colour__blue--light
 /// [2] 12.5%: the amount that ds_colour__blue--darker is darker than ds_colour__blue
 @function getThemeButtonBackground($foreground, $background) {
-    @debug 'Foreground #{$foreground} and Background #{$background}';
-    @debug 'White ratio #{getContrastRatio($foreground, $ds_colour__white)} and Black ratio #{getContrastRatio($foreground, $ds_colour__black)}';
     // Check contrast with white and black to decide whether to darken or lighten background
     @if getContrastRatio($foreground, $ds_colour__white) > getContrastRatio($foreground, $ds_colour__black) {
-    @debug 'Lighten button to #{adjustForContrast(adjustLuminance($foreground, 0.83), $foreground, 4.5)}';
         @return adjustForContrast(adjustLuminance($foreground, 0.83), $foreground, 4.5); /// [1]
     } @else {
         // If foreground is white then check if background should be lightened instead of darkened
         @if $foreground == white and darken($background, 12.5%) == black {
-            @debug 'Lighten button instead of darken to #{adjustForContrast(lighten($background, 12.5%), $foreground, 4.5)}';
             @return adjustForContrast(lighten($background, 12.5%), $foreground, 4.5); /// [2]
         } @else {
-            @debug 'Darken button to #{adjustForContrast(darken($background, 12.5%), $foreground, 4.5)}';
             @return adjustForContrast(darken($background, 12.5%), $foreground, 4.5); /// [2]
         }
     }
@@ -75,18 +70,13 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
 /// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
 /// @output Theme colour scheme which gives best contrast
 @mixin checkAndSetThemeColour($foreground, $background, $description: '', $ratio: 4.5) {
-    @debug 'Calculate colours from foreground #{$foreground} and background #{$background}';
-    @debug 'Contrast ratio is #{getContrastRatio($foreground, $background)}';
     @if getContrastRatio($foreground, $background) < 4.5 {
         // If not enough contrast try white
         @if getContrastRatio($ds_colour__white, $background) > 4.5 {
-            @debug 'Adjusting theme colour #{$foreground} to #{$ds_colour__white} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
             @include themeDefinitions($ds_colour__white, getThemeButtonBackground($ds_colour__white, $background));
         } @else {
             // Otherwise adjust colour
-            @debug 'Adjust colour';
             $adjustedForeground: adjustForContrast($foreground, $background, $ratio);
-            @debug 'Adjusting theme colour #{$foreground} to #{$adjustedForeground} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
             @include themeDefinitions($adjustedForeground, getThemeButtonBackground($adjustedForeground, $background));
         }
     } @else {
@@ -141,7 +131,7 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
         padding-left: 1rem;
         padding-right: 1rem;
 
-        @include media-query(medium) {
+        @include ds_media-query(medium) {
             padding-left: 2rem;
         }
 
@@ -168,14 +158,14 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
     }
 
     // Full width image at fluid width has bottom padding
-    @include media-query(medium-down) {
+    @include ds_media-query(medium-down) {
         &--fullwidth &__secondary {
             padding-bottom: 2.5rem;
         }
     }
 
     // Fixed width
-    @include media-query(medium) {
+    @include ds_media-query(medium) {
         &--fullwidth &__secondary {
             padding: 0;
         }
@@ -214,7 +204,7 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
 
 // Layout if supporting grid
 @supports(display: grid) {
-    @include media-query(medium) {
+    @include ds_media-query(medium) {
 
         .ds_feature-header__image {
             float: right;
