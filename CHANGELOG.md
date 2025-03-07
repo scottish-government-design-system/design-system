@@ -2,10 +2,37 @@
 
 All notable changes to the Scottish Government Design System will be documented in this file.
 
-Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, 
-`Removed`, `Fixed`, and `Security`.
+Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`, 
+`Removed` and `Security`.
 
 ---
+## [3.0.0]
+### Added
+- 'Secondary SG' grey colour for neutral theming
+- Accordion open/close button text can be customised
+- Tracking for dark mode preference of a user
+### Changed
+- Extended palette's purple, dark green and dark teal colour values amended
+- Text grey and dark grey colour values amended 
+- Default img display behaviour to support responsive images
+- Accordion design changes to open/close button to improve accessibility
+- Step navigation and search filters inherit new accordion design
+- Link underline has larger offset that is relative to the font size
+- Link hover state uses a thicker underline rather than background colour change
+- Links in windows high contrast no longer have an initial outline
+- Bottom border for focus state is relative to the font size
+- Tracking improved for summary list and summary card action buttons
+- Feature header has additional layout and colour options
+### Fixed
+- Filter scrollbars now visible in windows high contrast
+- Warning text icon changed to SVG to improve accessibility
+- Character count now detects more events so it updates correctly
+- Grey background on category sub layout extends to full height of layout to reach footer
+- Redundant duplicate box-shadow value for link focus state
+### Removed
+- Breaking change - removed unused $ds_colour__blue--lighter and $ds_colour__background--primary--dim colour Sass variables
+- Breaking change - removed unused SVG files for checkbox and radio
+
 ## [2.3.2]
 ### Changed
 - Tag outline changed to 80% opacity
