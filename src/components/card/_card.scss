@@ -40,7 +40,7 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
 
         &:focus-within {
             background-color: $ds_colour__link--focus__background !important;
-            box-shadow: inset 0 -3px $ds_colour__link--focus__shadow, inset 0 -3px $ds_colour__link--focus__shadow;
+            box-shadow: inset 0 -0.16em $ds_colour__link--focus__shadow;
             transition-duration: 0s;
 
             .ds_card__link--cover {
