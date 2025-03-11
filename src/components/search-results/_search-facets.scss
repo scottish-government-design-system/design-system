@@ -69,7 +69,7 @@
 
     &:focus-within {
         background-color: $ds_colour__focus--background;
-        box-shadow: 0 3px $ds_colour__link--focus__shadow;
+        box-shadow: 0 0.16em $ds_colour__link--focus__shadow;
         color: $ds_colour__focus;
         outline: 0;
         transition-duration: 0s;

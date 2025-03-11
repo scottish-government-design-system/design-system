@@ -49,7 +49,7 @@ $side-nav__outline-width: 2px;
         }
 
         &--shadow:focus {
-            box-shadow: 0 3px $ds_colour__link--focus__shadow, 0px 8px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 0.16em $ds_colour__link--focus__shadow, 0px 8px 5px rgba(0,0,0,0.15);
         }
     }
 
@@ -132,7 +132,7 @@ $side-nav__outline-width: 2px;
         }
 
         &:focus {
-            box-shadow: 0 3px $ds_colour__link--focus__shadow;
+            box-shadow: 0 0.16em $ds_colour__link--focus__shadow;
             z-index: 2;
         }
 
