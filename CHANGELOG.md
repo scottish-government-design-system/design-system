@@ -23,6 +23,7 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 - Bottom border for focus state is relative to the font size
 - Tracking improved for summary list and summary card action buttons
 - Feature header has additional layout and colour options
+- Breaking change - ds_high-contrast-link-style mixin renamed to ds_high-contrast-link
 ### Fixed
 - Filter scrollbars now visible in windows high contrast
 - Warning text icon changed to SVG to improve accessibility
