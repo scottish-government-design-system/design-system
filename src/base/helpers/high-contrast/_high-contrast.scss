@@ -51,3 +51,8 @@
         }
     }
 }
+
+@mixin ds_high-contrast-link-style {
+    @include ds_high-contrast-link;
+    @debug "Mixin 'ds_high-contrast-link-style' has been renamed to 'ds_high-contrast-link'. This alias will be removed in a future version of the Design System.";
+}
