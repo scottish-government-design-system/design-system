@@ -91,6 +91,7 @@ $step-vertical-line-width: 2px;
         &::before {
             border-left: 1px solid $ds_colour__border--strong;
             bottom: px-to-rem(-17px);
+            bottom: px-to-rem(-10px);
             content: '';
             display: block;
             left: #{math.div($step-count-size, 2) - $step-count-margin - math.div($step-vertical-line-width, 2)};
@@ -128,6 +129,17 @@ $step-vertical-line-width: 2px;
 }
 
 @include ds_media-query(medium) {
+    .ds_step-navigation--small {
+        .ds_step-navigation__count {
+            top: 0.75rem;
+        }
+
+        .ds_accordion-item::before {
+            bottom: px-to-rem(-18px);
+            top: px-to-rem(40px);
+        }
+    }
+
     .ds_step-navigation:not(.ds_step-navigation--small) {
         .ds_step-navigation__count {
             font-size: $root-font-size--medium;
