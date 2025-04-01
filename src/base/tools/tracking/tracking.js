@@ -347,8 +347,10 @@ const tracking = {
                 // data attributes
                 let attributeValue = checkbox.getAttribute('data-form');
 
-                if (!checkbox.getAttribute('data-form') && checkbox.id) {
+                if (!attributeValue && checkbox.id) {
                     attributeValue = `checkbox-${checkbox.id}`;
+                } else {
+                    attributeValue = attributeValue.replace(/-checked/g, '');
                 }
 
                 if (checkbox.checked) {
