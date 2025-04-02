@@ -8203,6 +8203,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 .ds_step-navigation .ds_accordion-item::before {
   border-left: 1px solid #1a1a1a;
   bottom: -1.0625rem;
+  bottom: -0.625rem;
   content: "";
   display: block;
   left: -25px;
@@ -8232,6 +8233,13 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 
 @media (min-width: 768px) {
+  .ds_step-navigation--small .ds_step-navigation__count {
+    top: 0.75rem;
+  }
+  .ds_step-navigation--small .ds_accordion-item::before {
+    bottom: -1.125rem;
+    top: 2.5rem;
+  }
   .ds_step-navigation:not(.ds_step-navigation--small) .ds_step-navigation__count {
     font-size: 19px;
     height: 40px;
