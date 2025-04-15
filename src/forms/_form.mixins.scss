@@ -27,6 +27,10 @@ $small-focus-border-colour: $ds_colour__border !default;
         padding: 4px 32px 4px 16px;
     }
 
+    &--small &__label {
+        padding-left: 8px;
+    }
+
     &__label::before {
         background-color: $ds_colour__background--primary;
         border: $field-border-width solid $ds_colour__text;
