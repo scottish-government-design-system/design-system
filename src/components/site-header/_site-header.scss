@@ -56,6 +56,7 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
     &__control {
         @include ds_blocklink;
+        @include ds_high-contrast-button;
 
         color: inherit;
         cursor: pointer;

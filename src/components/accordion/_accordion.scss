@@ -50,11 +50,12 @@ h1,h2,h3 {
 
     /// [1] subtracting the accordion item's border width
     &__header {
-        @include ds_blocklink;
-        @include ds_h4-size;
+        @include ds_link;
+        @include ds_link--block;
 
         background-color: $ds_colour__background--primary;
         border-width: 0;
+        color: currentColor;
         margin: 0;
         padding: 0.5rem 0.5rem calc(0.75rem - 1px); /// [1]
         position: relative;
@@ -86,10 +87,10 @@ h1,h2,h3 {
         background: transparent;
         border: 0;
         padding: 0.5rem 0.5rem calc(0.75rem - 1px); /// [1]
+        position: relative;
         text-align: left;
         width: 100%;
-
-        @include ds_blocklink;
+        z-index: 1;
     }
 
     &__label {
@@ -149,14 +150,9 @@ h1,h2,h3 {
     }
 
     &__control:focus ~ &__header,
-    &__control:focus:hover ~ &__header {
-        background: $ds_colour__blocklink-bg--focus;
-        box-shadow: 0 $link__border-width $ds_colour__link--focus;
-        color: $ds_colour__link--focus;
-        transition-duration: 0s;
-        z-index: 2;
-
-        @include ds_high-contrast-focus;
+    &__button:focus {
+        @include ds_focus;
+        @include ds_focus--inset;
     }
 
     &__control:focus ~ &__header &__indicator {
@@ -278,15 +274,8 @@ h1,h2,h3 {
 
 
 /* HIGH CONTRAST */
-
-/// [1] specificity hack
 @include ds_media-query-high-contrast {
-    .ds_accordion-item__button:is(.ds_accordion-item__button) { /// [1]
-        color: CanvasText !important;
-        text-decoration-line: none !important;
-    }
-
     .ds_accordion-item__indicator {
-        color: LinkText !important;
+        color: linktext !important;
     }
 }

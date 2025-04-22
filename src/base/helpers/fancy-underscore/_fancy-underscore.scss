@@ -30,6 +30,12 @@
         opacity: 1;
         right: 0;
     }
+
+    &:focus {
+        &::after {
+            content: none;
+        }
+    }
 }
 
 

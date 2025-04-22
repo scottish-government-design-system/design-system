@@ -22,7 +22,9 @@
     }
 
     &__link {
-        @include ds_blocklink;
+        @include ds_link--block;
+        @include ds_link--currentable;
+
         line-height: 2.5rem;
         min-height: 2.5rem;
         min-width: 2.5rem;
@@ -43,10 +45,6 @@
             }
         }
 
-        &.ds_current:not(:focus) {
-            background-color: $ds_colour__link--current__background;
-        }
-
         &--text:not(&--icon) {
             padding-left: 0.5rem;
             padding-right: 0.5rem;
@@ -54,6 +52,7 @@
         }
 
         &--ellipsis {
+            color: currentColor;
             min-width: 0;
             pointer-events: none;
         }

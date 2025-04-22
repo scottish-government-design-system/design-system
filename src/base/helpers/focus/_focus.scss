@@ -3,13 +3,56 @@
     Default focus indicator
 \*------------------------------------*/
 
-$focus__outline-width: 2px !default;
+$focus-outline-width: 0.125em !default;
+$focus-shadow-width: 0.16em !default;
 
-@mixin ds_focus-outline($width: $focus__outline-width) {
-    outline: $width solid $ds_colour__link--focus__background;
+@mixin ds_focus($hasoutline: true) {
+    background-color: $ds_colour__link--focus__background;
+    color: $ds_colour__link--focus;
+    outline-offset: 0;
+    text-decoration-line: none;
+    transition-duration: 0s;
+
+    @if $hasoutline {
+        outline: max(0.125rem, $focus-outline-width) solid $ds_colour__link--focus__background;
+    }
+
+    @include ds_focus-shadow($hasoutline);
+
+    @include ds_high-contrast-outline($inset: false, $color: highlight);
+}
+
+@mixin ds_focus--button {
+    outline-width: 0;
+}
+
+@mixin ds_focus--inset {
+    box-shadow: inset 0px #{$focus-shadow-width * -1} 0px $ds_colour__link--focus__shadow;
+    filter: none;
+    outline-width: 0;
+}
+
+@mixin ds_input-focus($outline: $focus-outline-width) {
+    box-shadow: inset 0 0 0 $focus-outline-width currentColor;
+    outline: $outline solid $ds_colour__link--focus__background;
     outline-offset: 0;
 }
 
-@mixin focus-outline {
-    @include ds_focus-outline;
+
+///
+/// after we drop ie11 support, replace this with
+/// filter: drop-shadow(0px $focus-shadow-width 0px $ds_colour__link--focus__shadow);
+///
+@mixin ds_focus-shadow($hasoutline: true) {
+    // IE11 support
+    @if $hasoutline {
+        box-shadow: 0 calc($focus-outline-width + $focus-shadow-width) 0 currentColor;
+    } @else {
+        box-shadow: 0 $focus-shadow-width 0 currentColor;
+    }
+
+    @supports(filter: drop-shadow(0 0 0 currentColor)) {
+        box-shadow: none;
+        filter: drop-shadow(0px $focus-shadow-width 0px $ds_colour__link--focus__shadow);
+    }
 }

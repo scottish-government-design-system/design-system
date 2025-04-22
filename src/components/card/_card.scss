@@ -45,7 +45,8 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
 
             .ds_card__link--cover {
                 background-color: transparent;
-                box-shadow: none;
+                box-shadow: none; /// IE11 fallback
+                filter: none;
                 outline: none;
             }
 

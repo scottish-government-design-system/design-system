@@ -20,6 +20,7 @@ $side-nav__outline-width: 2px;
     /// [1] Allowance for 1px border on all sides of parent container
     &__expand {
         @include ds_blocklink;
+        @include ds_high-contrast-button;
 
         background-color: $ds_colour__background--primary;
         color: $side-nav__expand-colour;
@@ -106,12 +107,11 @@ $side-nav__outline-width: 2px;
 
     /// [2] vertical padding offsets the text slightly for visual balance
     &__link {
-        @include ds_blocklink;
+        @include ds_link--block;
+        @include ds_link--currentable;
 
         margin-bottom: 2px;
         padding: 12px 40px 10px 16px; /// [2]
-        position: relative;
-        text-decoration: none;
 
         &:not([href]) {
             pointer-events: none;
@@ -138,14 +138,6 @@ $side-nav__outline-width: 2px;
 
         &:focus::before {
             content: none;
-        }
-
-        &.ds_current:not(:focus) {
-            background-color: $ds_colour__link--current__background;
-
-            &:hover {
-                background-color: $ds_colour__link--current__background;
-            }
         }
 
         &--inactive {

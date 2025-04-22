@@ -3,54 +3,47 @@
 ///
 ///
 
-@mixin ds_high-contrast-focus($width: 2px) {
+@mixin ds_high-contrast-button($border-width: 0.125rem) {
     @include ds_media-query-high-contrast {
-        outline-color: highlight !important;
-        outline-style: solid !important;
-        outline-width: $width !important;
+        &:is(:enabled, :link) {
+            transition-duration: 0s;
 
-        @content;
-    }
-}
+            &:hover {
+                outline: $border-width solid highlight !important;
+            }
 
-@mixin ds_high-contrast-outline($width: 2px) {
-    @include ds_media-query-high-contrast {
-        outline: $width solid currentColor !important;
-        outline-offset: #{$width * -1} !important;
+            &:focus,
+            &:active {
+                outline-offset: -$border-width !important;
+                outline-width: $border-width * 2 !important;
+            }
+        }
     }
 }
 
 @mixin ds_high-contrast-link {
     @include ds_media-query-high-contrast {
-        &:is(:enabled, :link, summary) {
-            color: LinkText !important;
-            text-decoration-line: underline !important;
-
-            &:focus,
-            &:active {
-                outline: 2px solid highlight !important;
-            }
-        }
-    }
-}
-
-@mixin ds_high-contrast-button {
-    @include ds_media-query-high-contrast {
         &:is(:enabled, :link) {
-            color: ButtonText !important;
-            text-decoration-line: none !important;
+            color: linkText !important;
 
-            &:hover {
-                outline: 2px solid highlight !important;
-            }
-
-            &:focus,
-            &:active {
-                outline: 4px solid highlight !important;
+            &:not(:focus) {
+                text-decoration-line: underline !important;
             }
         }
     }
 }
+
+@mixin ds_high-contrast-outline($width: 0.125em, $inset: true, $color: canvastext) {
+    @include ds_media-query-high-contrast {
+        outline: max(0.125rem, $width) solid $color !important;
+        @if inset == true {
+            outline-offset: calc(max(0.125rem, $width) * -1) !important;
+        }
+    }
+}
+
+
+
 
 @mixin ds_high-contrast-link-style {
     @include ds_high-contrast-link;

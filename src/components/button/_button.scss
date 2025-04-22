@@ -15,7 +15,7 @@ $link__border-width: 0.16em !default;
 .ds_button {
     @include ds_small-size;
     @include ds_button-sizing;
-    @include ds_high-contrast-button;
+    @include ds_high-contrast-button($button__border-width);
 
     background: $ds_colour__button__background;
     border: 0;
@@ -29,12 +29,12 @@ $link__border-width: 0.16em !default;
     outline-offset: -2px; /// [1]
     position: relative;
     text-align: center;
-    text-decoration: none;
+    text-decoration-line: none;
     transition: background-color $transition-out-time;
 
     @include ds_responsive-margin(4, bottom);
 
-    // Margins wont collapse as inline-block.
+    // Margins won't collapse as inline-block.
     // Assume block margins (step 4) on preceding element/component so no top margin is needed on ds_button
     margin-top: 0;
 
@@ -47,13 +47,8 @@ $link__border-width: 0.16em !default;
     }
 
     &:focus {
-        background-color: $ds_colour__button--focus__background;
-        box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
-        color: $ds_colour__button--focus;
-        outline: 0;
-        transition-duration: 0s;
-
-        @include ds_high-contrast-focus(4px);
+        @include ds_focus($hasoutline: false);
+        @include ds_focus--button;
     }
 
     // ICONS ON BUTTONS
@@ -68,6 +63,10 @@ $link__border-width: 0.16em !default;
         font-weight: $normal;
         outline: none;
         pointer-events: none;
+
+        @include ds_media-query-high-contrast {
+            outline: 0.0625rem dashed graytext !important;
+        }
     }
 }
 

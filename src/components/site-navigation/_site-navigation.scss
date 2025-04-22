@@ -101,15 +101,13 @@ $site-navigation__link-padding: 16px;
 
         .ds_site-navigation__link {
             @include ds_fancy-underscore;
+            @include ds_link--currentable;
 
             &::after {
                 bottom: 0;
             }
 
             &.ds_current:not(:focus) {
-                background-color: $ds_colour__link--current__background;
-                color: $ds_colour__text;
-
                 &:after {
                     border-bottom: 0.16em solid transparent;
                     left: 0;
@@ -121,13 +119,9 @@ $site-navigation__link-padding: 16px;
 
         a.ds_site-navigation__link {
             &:focus {
-                box-shadow: 0 0.16em $ds_colour__link--focus__shadow;
+                box-shadow: inset 0 -0.16em $ds_colour__link--focus__shadow;
+                filter: none;
                 outline: none;
-                padding-bottom: 5px;
-
-                &::after {
-                    content: none;
-                }
             }
 
             &:hover:not(:focus) {
