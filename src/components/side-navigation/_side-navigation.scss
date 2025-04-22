@@ -6,7 +6,7 @@
 $side-nav__expand-colour: $ds_colour__brand !default;
 
 // fixed vars
-$side-nav__outline-width: 2px;
+$side-nav__outline-width: 0.125rem;
 
 
 
@@ -18,8 +18,11 @@ $side-nav__outline-width: 2px;
     position: relative;
 
     /// [1] Allowance for 1px border on all sides of parent container
+    /// [2] The 'unsupportedCSSFallback' mixin does not work with comma-separated values
     &__expand {
-        @include ds_blocklink;
+        @include ds_link;
+        @include ds_link--block;
+        @include ds_high-contrast-button;
 
         background-color: $ds_colour__background--primary;
         color: $side-nav__expand-colour;
@@ -48,8 +51,10 @@ $side-nav__outline-width: 2px;
             color: $ds_colour__link--hover;
         }
 
+        /// [2]
         &--shadow:focus {
-            box-shadow: 0 0.16em $ds_colour__link--focus__shadow, 0px 8px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 round($focus__shadow-width, 1px) $ds_colour__link--focus__shadow, 0px 8px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 $focus__shadow-width $ds_colour__link--focus__shadow, 0px 8px 5px rgba(0,0,0,0.15);
         }
     }
 
@@ -63,11 +68,12 @@ $side-nav__outline-width: 2px;
         pointer-events: none;
     }
 
+    #show-side-navigation {
+        @include ds_visually-hidden;
+    }
+
     #show-side-navigation:focus ~ .ds_side-navigation__expand {
-        background: $ds_colour__blocklink-bg--focus;
-        box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
-        color: $ds_colour__link--focus;
-        transition-duration: 0s;
+        @include ds_focus;
     }
 
     #show-side-navigation:checked ~ .ds_side-navigation__expand .ds_side-navigation__expand-indicator {
@@ -89,6 +95,11 @@ $side-nav__outline-width: 2px;
         display: none;
         list-style-type: none;
         margin: 8px 16px;
+        overflow: hidden;
+
+        &:focus-within {
+            overflow: visible;
+        }
     }
 
     &__list &__list {
@@ -106,12 +117,12 @@ $side-nav__outline-width: 2px;
 
     /// [2] vertical padding offsets the text slightly for visual balance
     &__link {
-        @include ds_blocklink;
+        @include ds_link--block;
 
         margin-bottom: 2px;
         padding: 12px 40px 10px 16px; /// [2]
-        position: relative;
-        text-decoration: none;
+
+
 
         &:not([href]) {
             pointer-events: none;
@@ -132,7 +143,6 @@ $side-nav__outline-width: 2px;
         }
 
         &:focus {
-            box-shadow: 0 0.16em $ds_colour__link--focus__shadow;
             z-index: 2;
         }
 
@@ -153,61 +163,11 @@ $side-nav__outline-width: 2px;
             background-color: $ds_colour__link--disabled__background;
         }
     }
-
-    // different style for third nav level (?)
-    &__list &__list &__list &__link {
-        padding-left: 24px;
-
-        &::before {
-            border-left: 4px solid $ds_colour__border;
-            bottom: 12px;
-            content: '';
-            left: 12px;
-            opacity: 0.26;
-            position: absolute;
-            right: 100%;
-            top: 12px;
-        }
-
-        &:hover,
-        &.ds_current {
-            &::before {
-                border-color: $ds_colour__border--highlight;
-                opacity: 1;
-            }
-        }
-
-        &:focus {
-            &::before {
-                border-color: $ds_colour__link--focus;
-                opacity: 1;
-            }
-        }
-    }
 }
 
 @include ds_media-query(medium-down) {
-
-    .js-initialised.ds_side-navigation .ds_side-navigation__list {
-        display: block;
-    }
-
-    /// [3] Allowance for 1px border on left and right
-    ///
-    .js-initialised.ds_side-navigation > .ds_side-navigation__list {
-
-        margin: 0 15px; ///[3]
-        max-height: var(--ds-side-nav-max-height);
-        overflow: hidden;
-
-        @media (prefers-reduced-motion: no-preference) {
-            transition: max-height $transition-in-time, padding $transition-in-time;
-        }
-    }
-
-    .js-initialised.ds_side-navigation #show-side-navigation:checked ~ .ds_side-navigation__list {
-        padding-bottom: 8px;
-        padding-top: 8px;
+    .js-initialised #show-side-navigation {
+        display: none;
     }
 }
 
@@ -223,7 +183,6 @@ $side-nav__outline-width: 2px;
         &__list {
             display: block !important;
             margin: 0;
-            max-height: none !important;
         }
 
         #show-side-navigation {

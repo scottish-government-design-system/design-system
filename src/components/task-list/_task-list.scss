@@ -127,15 +127,3 @@
         @include ds_h3-style;
     }
 }
-
-
-// Deprecated - use ds_tag component instead
-@include ds_media-query-high-contrast {
-    /*
-     * [1] This is a little hacky but it does serve to differentiate the "complete" status.
-     *     And happens to be green by default.
-     */
-    .ds_task-list__task-status--complete {
-        color: GrayText; // 1
-    }
-}

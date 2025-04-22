@@ -1,0 +1,4 @@
+@mixin ds_unsupported-css-fallback($prop, $modern, $fallback) {
+    #{$prop}: #{$fallback};
+    #{$prop}: $modern;
+}

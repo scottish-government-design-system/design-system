@@ -27,7 +27,7 @@
         }
 
         &__button {
-            @include ds_blocklink;
+            @include ds_link--block;
             @include ds_small-size;
 
             background-color: rgba(red($ds_colour__background--primary),green($ds_colour__background--primary),blue($ds_colour__background--primary),0.4);
@@ -66,7 +66,7 @@
             transition: background-color 0.2s;
 
             @include ds_media-query-high-contrast {
-                background-color: transparent;
+                background-color: canvas;
             }
         }
 
@@ -75,6 +75,11 @@
         &__button:focus::before,
         &__button:focus &__icon {
             background-color: transparent;
+        }
+
+        &__button:focus::before,
+        &__button:focus &__icon {
+            transition-duration: 0s;
         }
     }
 }

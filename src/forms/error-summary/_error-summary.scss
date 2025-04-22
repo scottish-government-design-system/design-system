@@ -23,15 +23,11 @@ $link-hover-colour: darken($link-colour, 12.5%);
         list-style-type: none;
         margin-left: 0;
 
-        a {
+        a:not(:focus) {
             color: $link-colour;
 
-            &:hover:not(:focus) {
+            &:hover {
                 color: $link-hover-colour;
-            }
-
-            &:focus {
-                color: $ds_colour__link--focus;
             }
         }
 

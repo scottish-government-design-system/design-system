@@ -13,8 +13,7 @@ $border-width-size: 4px;
 
 
 .ds_category-item {
-
-    @include ds_blocklink('.ds_category-item__link');
+    @include ds_link--block('.ds_category-item__link');
 
     padding: 12px 16px 12px;
     text-decoration: none;
@@ -45,6 +44,10 @@ $border-width-size: 4px;
             position: absolute;
             top: 0;
             width: $border-width-size;
+        }
+
+        &:focus {
+            outline-width: 0;
         }
 
         &:focus::before {

@@ -7,6 +7,29 @@ $small-focus-border-colour: $ds_colour__border !default;
 
 
 
+@mixin ds_input {
+    background-color: $ds_colour__background--primary;
+    border: $field-border-width solid currentColor;
+    border-radius: 0;
+    min-height: 3rem;
+    padding: (0.5rem - $field-border-width) (0.75rem - $field-border-width);
+
+    &:focus {
+        @include ds_input-focus;
+    }
+
+    &--error {
+        border-color: $ds_colour__state--negative;
+        border-width: $field-border-width--error;
+        padding: (0.5rem - $field-border-width--error) (0.75rem - $field-border-width--error);
+
+        &:focus {
+            border-color: currentColor;
+            box-shadow: none;
+        }
+    }
+}
+
 @mixin ds_radiocheckboxstates ($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
 
     margin-bottom: 24px;
@@ -110,25 +133,10 @@ $small-focus-border-colour: $ds_colour__border !default;
     }
 }
 
-@mixin ds_field-error {
-    border-color: $ds_colour__state--negative;
-    border-width: $field-border-width--error;
-    padding: 4px;
-
-    &:focus {
-        border-color: currentColor;
-        box-shadow: none;
-    }
-}
-
 
 
 
 /// legacy non-prefixed names
 @mixin radiocheckboxstates($round: false, $small-pip-padding: 2px, $active-shadow-colour: $ds_colour__input--focus__background) {
     @include ds_radiocheckboxstates($round, $small-pip-padding, $active-shadow-colour);
-}
-
-@mixin field-error {
-    @include ds_field-error;
 }
