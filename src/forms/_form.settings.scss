@@ -2,10 +2,10 @@
     FORM VARIABLES
 \*------------------------------------*/
 
-$field-glow-width: 3px;
-$field-border-width: 2px;
-$field-border-width--focus: 4px;
-$field-border-width--error: 4px;
+$field-glow-width: 0.1875rem;
+$field-border-width: 0.125rem;
+$field-border-width--focus: 0.25rem;
+$field-border-width--error: 0.25rem;
 
 $input-size: 40px !default;
 $small-input-size: 24px !default;

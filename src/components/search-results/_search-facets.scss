@@ -49,6 +49,8 @@
 /// [1] IE 11 and pre-Chromium Edge
 /// [2] unsetting margin set in [1]
 .ds_facet {
+    @include ds_high-contrast-button($selector: '.ds_facet');
+
     line-height: 1.5rem;
     margin: 0 0.5rem; /// [1]
     min-height: 2.5rem;
@@ -68,11 +70,8 @@
     }
 
     &:focus-within {
-        background-color: $ds_colour__focus--background;
-        box-shadow: 0 0.16em $ds_colour__link--focus__shadow;
-        color: $ds_colour__focus;
-        outline: 0;
-        transition-duration: 0s;
+        @include ds_focus;
+        @include ds_focus--button;
     }
 
     &:focus-within &__button-icon {
@@ -90,17 +89,6 @@
         right: 0;
         text-align: right;
         top: 0;
-
-        &:focus {
-            background-color: $ds_colour__link--focus__background;
-            z-index: -1;
-        }
-
-        &:hover:not(:focus) {
-            background-color: transparent;
-            color: inherit;
-            outline: 0;
-        }
     }
 
     &__button-icon {
@@ -112,26 +100,9 @@
         pointer-events: none;
         vertical-align: middle;
         width: 1.5rem;
-    }
 
-    @include ds_media-query-high-contrast {
-        &__button-icon {
+        @include ds_media-query-high-contrast {
             color: currentColor;
         }
-
-        &:has(.ds_facet__button:hover) {
-            outline-color: highlight;
-        }
-
-        &:has(.ds_facet__button:focus) {
-            outline: 4px solid highlight;
-        }
-    }
-}
-
-@supports selector(:focus-within) {
-    .ds_facet__button:focus {
-        background-color: transparent;
-        z-index: auto;
     }
 }

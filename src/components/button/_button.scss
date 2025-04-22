@@ -2,20 +2,17 @@
     BUTTONS
 \*------------------------------------*/
 
-$button__border-width: 2px !default;
-$button__outline-width: 3px !default;
-$button__padding--x: 16px !default;
-$link__border-width: 0.16em !default;
+$button__border-width: 0.125rem !default;
+$button__outline-width: 0.1875rem !default;
+$button__padding--x: 1rem !default;
 
 
 
-///
-/// [1] renders an outline/border in windows high contrast mode
-///
+
 .ds_button {
     @include ds_small-size;
     @include ds_button-sizing;
-    @include ds_high-contrast-button;
+    @include ds_high-contrast-button($button__border-width);
 
     background: $ds_colour__button__background;
     border: 0;
@@ -25,16 +22,14 @@ $link__border-width: 0.16em !default;
     display: inline-block;
     font-weight: $bold;
     line-height: 1.5rem;
-    outline: 2px solid transparent; /// [1]
-    outline-offset: -2px; /// [1]
     position: relative;
     text-align: center;
-    text-decoration: none;
+    text-decoration-line: none;
     transition: background-color $transition-out-time;
 
     @include ds_responsive-margin(4, bottom);
 
-    // Margins wont collapse as inline-block.
+    // Margins won't collapse as inline-block.
     // Assume block margins (step 4) on preceding element/component so no top margin is needed on ds_button
     margin-top: 0;
 
@@ -47,27 +42,20 @@ $link__border-width: 0.16em !default;
     }
 
     &:focus {
-        background-color: $ds_colour__button--focus__background;
-        box-shadow: 0 $link__border-width $ds_colour__link--focus__shadow;
-        color: $ds_colour__button--focus;
-        outline: 0;
-        transition-duration: 0s;
-
-        @include ds_high-contrast-focus(4px);
-    }
-
-    // ICONS ON BUTTONS
-    .ds_icon {
-        pointer-events: none;
+        @include ds_focus($hasoutline: false);
+        @include ds_focus--button;
     }
 
     &[disabled] {
         background-color: $ds_colour__button--disabled__background;
-        box-shadow: none;
         color: $ds_colour__button;
         font-weight: $normal;
         outline: none;
         pointer-events: none;
+
+        @include ds_media-query-high-contrast {
+            outline: 0.0625rem dashed graytext !important;
+        }
     }
 }
 
@@ -101,28 +89,28 @@ $link__border-width: 0.16em !default;
     &--secondary {
         background-color: $ds_colour__button--secondary__background;
         color: $ds_colour__button--secondary;
-        outline: 2px solid currentColor;
-        outline-offset: -2px;
+        outline: $button__border-width solid currentColor;
+        outline-offset: -$button__border-width;
 
         &:hover:not(:focus) {
             background-color: $ds_colour__button--secondary--hover__background;
             color: $ds_colour__button--secondary--hover;
-            outline: 2px solid currentColor;
-            outline-offset: -2px;
+            outline: $button__border-width solid currentColor;
+            outline-offset: -($button__border-width);
         }
     }
 
     &--cancel {
         background-color: $ds_colour__button--cancel__background;
         color: $ds_colour__button--cancel;
-        outline: 2px solid currentColor;
-        outline-offset: -2px;
+        outline: $button__border-width solid currentColor;
+        outline-offset: -$button__border-width;
 
         &:hover:not(:focus) {
             background-color: $ds_colour__button--cancel--hover__background;
             color: $ds_colour__button--cancel;
-            outline: 2px solid currentColor;
-            outline-offset: -2px;
+            outline: $button__border-width solid currentColor;
+            outline-offset: -($button__border-width);
         }
     }
 }

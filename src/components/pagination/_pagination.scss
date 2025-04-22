@@ -22,7 +22,8 @@
     }
 
     &__link {
-        @include ds_blocklink;
+        @include ds_link--block;
+
         line-height: 2.5rem;
         min-height: 2.5rem;
         min-width: 2.5rem;
@@ -30,16 +31,16 @@
         text-decoration: none;
 
         &.ds_current {
+            @include ds_unsupported-css-fallback(
+                $prop: 'box-shadow',
+                $modern: inset 0px round(#{$link__current-underline-thickness * -1}, 1px) 0px $ds_colour__link--focus__shadow,
+                $fallback: inset 0px #{$link__current-underline-thickness * -1} 0px $ds_colour__link--focus__shadow
+            );
             color: currentColor;
             position: relative;
 
-            &::before {
-                border-bottom: 0.16em solid currentColor;
-                bottom: 0;
-                content: '';
-                left: 0;
-                position: absolute;
-                right: 0;
+            @include ds_media-query-high-contrast {
+                border-bottom: $link__current-underline-thickness solid currentColor
             }
         }
 
@@ -54,6 +55,7 @@
         }
 
         &--ellipsis {
+            color: currentColor;
             min-width: 0;
             pointer-events: none;
         }

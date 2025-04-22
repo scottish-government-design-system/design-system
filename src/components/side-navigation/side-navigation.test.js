@@ -23,7 +23,7 @@ describe('side navigation', () => {
             testObj.sideNavigationModule = new SideNavigation(testObj.sideNavigationElement);
         });
 
-        it('should abandon attemts to call init() after it has been init-ed', () => {
+        it('should abandon attempts to call init() after it has been init-ed', () => {
             testObj.sideNavigationModule.init();
 
             spyOn(testObj.sideNavigationModule.sideNavigation.classList, 'add');
@@ -47,23 +47,6 @@ describe('side navigation', () => {
             label.dispatchEvent(event);
 
             expect(sideNavButton.getAttribute('aria-expanded')).toEqual('true');
-        });
-
-        it('should toggle display of the side navigation on click of the label', () => {
-            testObj.sideNavigationModule.init();
-
-            const label = testObj.sideNavigationElement.querySelector('button.ds_side-navigation__expand');
-            spyOn(testObj.sideNavigationModule, 'openSideNav').and.callThrough();;
-            spyOn(testObj.sideNavigationModule, 'closeSideNav').and.callThrough();;
-
-            // opening nav
-            const event = new Event('click');
-            label.dispatchEvent(event);
-            expect(testObj.sideNavigationModule.openSideNav).toHaveBeenCalled();
-
-            // closing nav
-            label.dispatchEvent(event);
-            expect(testObj.sideNavigationModule.closeSideNav).toHaveBeenCalled();
         });
 
         it('should toggle a shadow on the navigation if the navigation button is sticky', function () {

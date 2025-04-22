@@ -45,7 +45,7 @@ a[disabled] {
 // no underline on header links
 h1, h2, h3, h4 {
     a {
-        text-decoration: none;
+        text-decoration-line: none;
 
         &:hover:not(:focus) {
             text-decoration-line: underline;

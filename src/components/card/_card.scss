@@ -39,13 +39,20 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
         }
 
         &:focus-within {
+            @include ds_high-contrast-outline($width: 0.25em, $colour: highlight);
+
             background-color: $ds_colour__link--focus__background !important;
-            box-shadow: inset 0 -0.16em $ds_colour__link--focus__shadow;
+            @include ds_unsupported-css-fallback(
+                $prop: 'box-shadow',
+                $modern: inset 0px round(#{$focus__shadow-width * -1}, 1px) 0px $ds_colour__link--focus__shadow,
+                $fallback: inset 0px #{$focus__shadow-width * -1} 0px $ds_colour__link--focus__shadow
+            );
             transition-duration: 0s;
 
             .ds_card__link--cover {
                 background-color: transparent;
-                box-shadow: none;
+                box-shadow: none; /// IE11 fallback
+                filter: none;
                 outline: none;
             }
 
@@ -95,6 +102,14 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
         top: 0px;
         width: 100%;
         z-index: 1;
+    }
+
+    &:has(.ds_card__link--cover) {
+        @include ds_link--block('.ds_card__link--cover');
+
+        &:focus-within {
+            @include ds_high-contrast-outline($width: 0.25em, $colour: highlight)
+        }
     }
 }
 
