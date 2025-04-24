@@ -6,6 +6,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 `Removed` and `Security`.
 
 ---
+## [3.0.1]
+### Fixed
+- Reduce space on small sized variant between radio/checkbox and their label
+- Add background colour (primary background / white) to select dropdown so it can be placed on other backgrounds
+- Remove recurrence of trailing ‘checked’ tracking attribute on async search filter checkboxes 
+- Click event tracking on accordion open indicator now attributed to accordion header element
+### Security
+- Updates to npm dependencies
+
 ## [3.0.0]
 ### Added
 - 'Secondary SG' grey colour for neutral theming
