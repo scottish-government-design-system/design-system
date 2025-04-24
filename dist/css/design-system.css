@@ -2318,6 +2318,9 @@ fieldset {
   display: inline-block;
   padding: 4px 32px 4px 16px;
 }
+.ds_checkbox--small .ds_checkbox__label {
+  padding-left: 8px;
+}
 .ds_checkbox__label::before {
   background-color: #ffffff;
   border: 2px solid #1a1a1a;
@@ -2646,6 +2649,9 @@ fieldset {
   display: inline-block;
   padding: 4px 32px 4px 16px;
 }
+.ds_radio--small .ds_radio__label {
+  padding-left: 8px;
+}
 .ds_radio__label::before {
   background-color: #ffffff;
   border: 2px solid #1a1a1a;
@@ -2770,7 +2776,7 @@ fieldset {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-color: transparent;
+  background-color: #ffffff;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M480-360 280-560h400L480-360Z'/%3E%3C/svg%3E");
   background-position: center right 10px;
   background-repeat: no-repeat;
@@ -3183,6 +3189,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   margin-top: 0.25rem;
   min-height: 1.5rem;
   padding: 0 0 0 1.1875rem;
+  pointer-events: none;
   position: relative;
 }
 @media (min-width: 768px) {
