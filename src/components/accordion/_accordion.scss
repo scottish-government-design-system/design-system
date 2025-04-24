@@ -113,6 +113,7 @@ h1,h2,h3 {
         margin-top: 0.25rem;
         min-height: 1.5rem;
         padding: 0 0 0 1.1875rem;
+        pointer-events: none;
         position: relative;
 
         &::after {
