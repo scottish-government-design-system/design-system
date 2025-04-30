@@ -58,11 +58,14 @@ $site-search__border-colour: $ds_colour__grey !default;
 
         &.active {
             @include ds_focus;
-            @include ds_focus--inset;
             @include ds_media-query-high-contrast {
                 outline-offset: -0.125rem !important;
                 outline-width: 0.25rem !important;
             }
+        }
+
+        &.active {
+            @include ds_focus--inset;
         }
 
         &.active &__text {

@@ -3,17 +3,20 @@
 ///
 ///
 
-@mixin ds_high-contrast-button($border-width: 0.125rem) {
+@mixin ds_high-contrast-button($border-width: 0.125rem, $selector: ':enabled, :link') {
     @include ds_media-query-high-contrast {
-        &:is(:enabled, :link) {
-            transition-duration: 0s;
+        &:is(#{$selector}) {
+            outline: $border-width solid transparent !important;
+            outline-offset: -$border-width !important;
+            transition-duration: 0s !important;
 
             &:hover {
-                outline: $border-width solid highlight !important;
+                outline-color: highlight !important;
             }
 
             &:focus,
-            &:active {
+            &:active,
+            &:focus-within {
                 outline-offset: -$border-width !important;
                 outline-width: $border-width * 2 !important;
             }
@@ -21,9 +24,9 @@
     }
 }
 
-@mixin ds_high-contrast-link {
+@mixin ds_high-contrast-link($selector: ':enabled, :link, summary') {
     @include ds_media-query-high-contrast {
-        &:is(:enabled, :link) {
+        &:is(#{$selector}) {
             color: linkText !important;
 
             &:not(:focus) {
@@ -33,12 +36,22 @@
     }
 }
 
-@mixin ds_high-contrast-outline($width: 0.125em, $inset: true, $color: canvastext) {
+@mixin ds_high-contrast-outline($width: 0.125em, $inset: true, $colour: canvastext) {
     @include ds_media-query-high-contrast {
-        outline: max(0.125rem, $width) solid $color !important;
+        @include ds_unsupported-css-fallback(
+            $prop: 'outline',
+            $modern: round(#{$width}, 1px) solid $colour !important,
+            $fallback: $width solid $colour !important
+        );
         @if inset == true {
-            outline-offset: calc(max(0.125rem, $width) * -1) !important;
+            @include ds_unsupported-css-fallback(
+                $prop: 'outline-offset',
+                $modern: calc(round(#{$width}, 1px) * -1) !important,
+                $fallback: calc($width * -1) !important
+            );
         }
+
+        @content;
     }
 }
 
@@ -48,4 +61,9 @@
 @mixin ds_high-contrast-link-style {
     @include ds_high-contrast-link;
     @debug "Mixin 'ds_high-contrast-link-style' has been renamed to 'ds_high-contrast-link'. This alias will be removed in a future version of the Design System.";
+}
+
+@mixin ds_high-contrast-focus($width: 0.125rem) {
+    @include ds_high-contrast-outline($width: $width, $colour: highlight);
+    @debug "Mixin 'ds_high-contrast-focus' has been deprecated. Use 'ds_high-contrast-outline' with a $color parameter instead. This alias will be removed in a future version of the Design System.";
 }

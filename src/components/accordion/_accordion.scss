@@ -37,10 +37,14 @@ h1,h2,h3 {
     }
 }
 
-// Open all button is shown after JavaScript is initialised
 .ds_accordion.js-initialised {
+    // Open all button is shown after JavaScript is initialised
     .ds_accordion__open-all {
         display: block;
+    }
+
+    .ds_accordion-item__header {
+        padding: 0;
     }
 }
 
@@ -64,10 +68,6 @@ h1,h2,h3 {
 
         &:hover:not(:focus) {
             color: $ds_colour__link--hover;
-        }
-
-        &:has(.ds_accordion-item__button) {
-            padding: 0;
         }
     }
 
@@ -152,6 +152,10 @@ h1,h2,h3 {
     &__control:focus ~ &__header,
     &__button:focus {
         @include ds_focus;
+    }
+
+    &__control:focus ~ &__header,
+    &__button:focus {
         @include ds_focus--inset;
     }
 
@@ -211,10 +215,6 @@ h1,h2,h3 {
             padding: 1rem 1rem calc(1rem - 1px) 0.5rem; /* [1] */
         }
 
-        &__header:has(.ds_accordion-item__button) {
-            padding: 0;
-        }
-
         &__title {
             margin-bottom: 0.5rem;
 
@@ -229,16 +229,14 @@ h1,h2,h3 {
 
 
 /* Open/close label display */
-.ds_accordion-item {
-    .ds_accordion-item__indicator::before {
-        content: 'Open';
-    }
-    .ds_accordion-item__indicator[data-open-text]::before {
-        content: attr(data-open-text);
-    }
+.ds_accordion-item__indicator::before {
+    content: 'Open';
+}
+.ds_accordion-item__indicator[data-open-text]::before {
+    content: attr(data-open-text);
 }
 
-.ds_accordion-item:has(.ds_accordion-item__control:checked) {
+.ds_accordion-item__control:checked ~ .ds_accordion-item__header {
     .ds_accordion-item__indicator::before {
         content: 'Close';
     }
@@ -246,7 +244,6 @@ h1,h2,h3 {
         content: attr(data-close-text);
     }
 }
-
 
 
 

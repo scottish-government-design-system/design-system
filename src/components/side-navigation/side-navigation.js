@@ -46,12 +46,6 @@ class SideNavigation {
         navButton.addEventListener('click', () => {
             const isOpen = navControl.checked;
 
-            if (!isOpen) {
-                this.openSideNav();
-            } else {
-                this.closeSideNav();
-            }
-
             navButton.setAttribute('aria-expanded', !isOpen);
             navControl.checked = !isOpen;
         });
@@ -65,15 +59,6 @@ class SideNavigation {
         });
 
         this.sideNavigation.classList.add('js-initialised');
-        document.documentElement.style.setProperty('--ds-side-nav-max-height', 0);
-    }
-
-    openSideNav() {
-        document.documentElement.style.setProperty('--ds-side-nav-max-height', this.navList.scrollHeight + 16 + 'px');
-    }
-
-    closeSideNav() {
-        document.documentElement.style.setProperty('--ds-side-nav-max-height', 0);
     }
 }
 

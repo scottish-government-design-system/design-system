@@ -3,7 +3,7 @@
 \*------------------------------------*/
 
 $date-picker-focus-outline-width: 0.125em;
-$date-picker-focus-border-width: 0.16em;
+$date-picker-focus-border-width: $focus__shadow-width;
 
 .ds_datepicker {
     position: relative;

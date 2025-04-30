@@ -1,6 +1,6 @@
 $blocklink__outline-width: 0;
+$link__current-underline-thickness: 0.16em;
 $link__outline-width: 0.125em;
-$link__border-width: 0.16em;
 $link__underline-offset: 0.16em;
 $link__underline-thickness: auto;
 $link__underline-offset--hover: $link__underline-offset;
@@ -26,7 +26,11 @@ $link__underline-thickness--hover: 0.16em;
     &:hover {
         color: $ds_colour__link--hover;
         text-underline-offset: $link__underline-offset--hover;
-        text-decoration-thickness: $link__underline-thickness--hover;
+        @include ds_unsupported-css-fallback(
+            $prop: 'text-decoration-thickness',
+            $modern: round($link__underline-thickness--hover, 1px),
+            $fallback: $link__underline-thickness--hover
+        );
         transition-duration: $transition-in-time;
     }
 
@@ -81,17 +85,6 @@ $link__underline-thickness--hover: 0.16em;
     }
 }
 
-@mixin ds_link--currentable {
-    &.ds_current:not(:focus),
-    &.ds_current:not(:focus):hover {
-        background-color: $ds_colour__link--current__background;
-        color: $ds_colour__text;
-    }
-}
-
-
-
-
 @mixin ds_link-underline($link-selector) {
     @if $link-selector {
         &:not(:focus) #{$link-selector} {
@@ -101,7 +94,11 @@ $link__underline-thickness--hover: 0.16em;
 
         &:hover #{$link-selector} {
             text-underline-offset: $link__underline-offset--hover;
-            text-decoration-thickness: $link__underline-thickness--hover;
+            @include ds_unsupported-css-fallback(
+                $prop: 'text-decoration-thickness',
+                $modern: round($link__underline-thickness--hover, 1px),
+                $fallback: $link__underline-thickness--hover
+            );
         }
     }
     @else {
@@ -110,7 +107,11 @@ $link__underline-thickness--hover: 0.16em;
 
         &:hover {
             text-underline-offset: $link__underline-offset--hover;
-            text-decoration-thickness: $link__underline-thickness--hover;
+            @include ds_unsupported-css-fallback(
+                $prop: 'text-decoration-thickness',
+                $modern: round($link__underline-thickness--hover, 1px),
+                $fallback: $link__underline-thickness--hover
+            );
         }
     }
 }

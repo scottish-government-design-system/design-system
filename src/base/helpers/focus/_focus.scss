@@ -3,23 +3,23 @@
     Default focus indicator
 \*------------------------------------*/
 
-$focus-outline-width: 0.125em !default;
-$focus-shadow-width: 0.16em !default;
+$focus__outline-width: 0.125em !default;
+$focus__shadow-width: 0.16em !default;
+$focus__input-shadow-width: 0.125em !default;
 
 @mixin ds_focus($hasoutline: true) {
     background-color: $ds_colour__link--focus__background;
     color: $ds_colour__link--focus;
-    outline-offset: 0;
     text-decoration-line: none;
     transition-duration: 0s;
 
     @if $hasoutline {
-        outline: max(0.125rem, $focus-outline-width) solid $ds_colour__link--focus__background;
+        @include ds_focus-outline;
     }
 
     @include ds_focus-shadow($hasoutline);
 
-    @include ds_high-contrast-outline($inset: false, $color: highlight);
+    @include ds_high-contrast-outline($inset: false, $colour: highlight);
 }
 
 @mixin ds_focus--button {
@@ -27,32 +27,47 @@ $focus-shadow-width: 0.16em !default;
 }
 
 @mixin ds_focus--inset {
-    box-shadow: inset 0px #{$focus-shadow-width * -1} 0px $ds_colour__link--focus__shadow;
+    @include ds_unsupported-css-fallback(
+        $prop: 'box-shadow',
+        $modern: inset 0 round(#{$focus__shadow-width * -1}, 1px) 0 $ds_colour__link--focus__shadow,
+        $fallback: inset 0 (-$focus__shadow-width) 0 $ds_colour__link--focus__shadow
+    );
     filter: none;
     outline-width: 0;
 }
 
-@mixin ds_input-focus($outline: $focus-outline-width) {
-    box-shadow: inset 0 0 0 $focus-outline-width currentColor;
-    outline: $outline solid $ds_colour__link--focus__background;
+@mixin ds_input-focus($outline: $focus__outline-width, $shadow: $focus__input-shadow-width) {
+    @include ds_unsupported-css-fallback(
+        $prop: 'box-shadow',
+        $modern: inset 0 0 0 round(#{$shadow}, 1px) $ds_colour__link--focus__shadow,
+        $fallback: inset 0 0 0 $shadow $ds_colour__link--focus__shadow
+    );
+    @include ds_focus-outline;
+}
+
+@mixin ds_focus-outline($width: $focus__outline-width) {
+    @include ds_unsupported-css-fallback(
+        $prop: 'outline',
+        $modern: round(#{$width}, 1px) solid $ds_colour__link--focus__background,
+        $fallback: 0.125rem solid $ds_colour__link--focus__background
+    );
     outline-offset: 0;
 }
 
-
 ///
 /// after we drop ie11 support, replace this with
-/// filter: drop-shadow(0px $focus-shadow-width 0px $ds_colour__link--focus__shadow);
+/// filter: drop-shadow(0px round($focus__shadow-width, 1px) 0px $ds_colour__link--focus__shadow);
 ///
 @mixin ds_focus-shadow($hasoutline: true) {
     // IE11 support
     @if $hasoutline {
-        box-shadow: 0 calc($focus-outline-width + $focus-shadow-width) 0 currentColor;
+        box-shadow: 0 calc($focus__outline-width + $focus__shadow-width) 0 currentColor;
     } @else {
-        box-shadow: 0 $focus-shadow-width 0 currentColor;
+        box-shadow: 0 $focus__shadow-width 0 currentColor;
     }
 
     @supports(filter: drop-shadow(0 0 0 currentColor)) {
         box-shadow: none;
-        filter: drop-shadow(0px $focus-shadow-width 0px $ds_colour__link--focus__shadow);
+        filter: drop-shadow(0px round($focus__shadow-width, 1px) 0px $ds_colour__link--focus__shadow);
     }
 }
