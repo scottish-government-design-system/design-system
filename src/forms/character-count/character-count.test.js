@@ -365,4 +365,26 @@ describe('character count', () => {
             expect(inputElement.getAttribute('aria-invalid')).toEqual('false');
         });
     });
+
+    describe('Github issue 172', () => {
+        it('should show the count message at 950 characters out of 1000 when a threshold of "95" is set', () => {
+            testObj.characterCountElement = document.querySelector('#github-172');
+            testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
+            testObj.characterCountModule.init();
+
+            const countElement = testObj.characterCountElement.querySelector('.ds_input__message');
+            const inputElement = testObj.characterCountModule.inputElement;
+            const event = new Event('input');
+
+            expect(countElement.classList.contains('fully-hidden')).toEqual(true);
+
+            inputElement.value = inputElement.value + '1';
+            inputElement.dispatchEvent(event);
+            expect(countElement.classList.contains('fully-hidden')).toEqual(false);
+
+            inputElement.value = inputElement.value + '1';
+            inputElement.dispatchEvent(event);
+            expect(countElement.classList.contains('fully-hidden')).toEqual(false);
+        });
+    })
 });

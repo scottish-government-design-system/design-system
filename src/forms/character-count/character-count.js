@@ -18,6 +18,7 @@ class CharacterCount {
 
         if (!this.field.classList.contains('js-initialised')) {
             this.setMaxLength();
+            this.setThresholdCharacters();
             const idModifier = elementIdModifier();
 
             if (!this.maxLength) {
@@ -47,7 +48,7 @@ class CharacterCount {
             this.describedByTokenList = new TokenList(this.inputElement.getAttribute('aria-describedby'));
             this.inputElement.setAttribute('aria-describedby', this.describedByTokenList.add([this.emptyMessageElement.id, this.screenReaderMessageElement.id]));
 
-            if (this.inputElement.value.length < this.maxLength * this.threshold) {
+            if (this.inputElement.value.length < this.thresholdCharacters) {
                 this.messageElement.classList.add('fully-hidden');
             }
 
@@ -76,6 +77,10 @@ class CharacterCount {
         } else {
             this.maxLength = this.field.dataset.maxlength;
         }
+    }
+
+    setThresholdCharacters() {
+        this.thresholdCharacters = Math.round(this.maxLength * this.threshold);
     }
 
     /*
@@ -125,7 +130,7 @@ class CharacterCount {
 
         }
 
-        if (this.inputElement.value.length < this.maxLength * this.threshold) {
+        if (this.inputElement.value.length < this.thresholdCharacters) {
             this.messageElement.classList.add('fully-hidden');
         } else {
             this.messageElement.classList.remove('fully-hidden');
@@ -133,7 +138,7 @@ class CharacterCount {
 
         clearTimeout(this.messageTimeout);
         this.messageTimeout = setTimeout(() => {
-            if (this.inputElement.value.length >= this.maxLength * this.threshold) {
+            if (this.inputElement.value.length >= this.thresholdCharacters) {
                 this.updateScreenReaderMessage();
             } else {
                 this.screenReaderMessageElement.innerHTML = '&nbsp;';
