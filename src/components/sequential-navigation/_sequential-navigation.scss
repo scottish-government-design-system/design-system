@@ -29,15 +29,12 @@ $page-nav__circle-size: 56px !default;
 }
 
 .ds_sequential-nav__button {
-    @include ds_blocklink;
+    @include ds_link--block;
     @include ds_link-underline('.ds_sequential-nav__text');
 
-    background: transparent;
-    display: inline-block;
     line-height: 24px;
     padding: 12px 4px;
     position: relative;
-    text-decoration: none;
     width: 100%;
 
     &:not([href]) {
@@ -121,6 +118,10 @@ $page-nav__circle-size: 56px !default;
     &::before {
         background-color: $page-nav__circle-focus;
         border-color: $page-nav__circle-focus;
+    }
+
+    &::after {
+        border-color: $ds_colour__link--focus__background;
     }
 }
 

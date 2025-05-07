@@ -72,7 +72,9 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                 .ds_tabs {
 
                     &__toggle {
-                        @include ds_blocklink;
+                        @include ds_link;
+                        @include ds_link--block;
+                        @include ds_high-contrast-button;
 
                         background-color: $ds_colour__background--primary;
                         border: 2px solid $ds_colour__border--faint;
@@ -162,7 +164,8 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                         }
 
                         &-link {
-                            @include ds_blocklink;
+                            @include ds_link;
+                            @include ds_link--block;
                             padding: 11px 16px; // 11px so 2px margin keeps to grid
                             text-decoration: none;
                         }
@@ -227,18 +230,9 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
                 }
 
                 &__tab-link {
-                    @include ds_blocklink;// Not fully using typical blocklink styling so requires overrides
+                    @include ds_link--block($underline: true);
                     color: $tab__link-colour;
-                    display: inline-block;
                     padding: $tab__padding--vertical $tab__padding--horizontal;
-
-                    &:hover {
-                        color: $ds_colour__link--hover;
-                    }
-
-                    &:focus {
-                        color: $ds_colour__link--focus;
-                    }
                 }
 
                 &__tab {
@@ -266,7 +260,6 @@ $tab__toggle-colour--hover: $ds_colour__link--hover !default;
 
                             &:focus {
                                 border: 0;
-                                color: $ds_colour__focus;
                                 padding: $tab__padding--vertical $tab__padding--horizontal calc(#{$tab__padding--vertical} + #{$tab__border-width});
                             }
                         }

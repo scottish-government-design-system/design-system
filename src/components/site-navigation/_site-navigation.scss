@@ -111,7 +111,7 @@ $site-navigation__link-padding: 16px;
                 color: $ds_colour__text;
 
                 &:after {
-                    border-bottom: 0.16em solid transparent;
+                    border-bottom: $link__current-underline-thickness solid transparent;
                     left: 0;
                     opacity: 1;
                     right: 0;
@@ -121,13 +121,13 @@ $site-navigation__link-padding: 16px;
 
         a.ds_site-navigation__link {
             &:focus {
-                box-shadow: 0 0.16em $ds_colour__link--focus__shadow;
+                @include ds_unsupported-css-fallback(
+                    $prop: 'box-shadow',
+                    $modern: inset 0 round(#{$focus__shadow-width * -1}, 1px) $ds_colour__link--focus__shadow,
+                    $fallback: inset 0 #{$focus__shadow-width * -1} $ds_colour__link--focus__shadow
+                );
+                filter: none;
                 outline: none;
-                padding-bottom: 5px;
-
-                &::after {
-                    content: none;
-                }
             }
 
             &:hover:not(:focus) {

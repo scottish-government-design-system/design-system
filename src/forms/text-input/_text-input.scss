@@ -5,30 +5,11 @@
 
 .ds_input {
     @include ds_responsive-margin (3, bottom);
-    background-color: $ds_colour__background--primary;
-    border: $field-border-width solid currentColor;
-    border-radius: 0;
+    @include ds_input;
+
     display: block;
     line-height: 2rem;
-    min-height: 3rem;
-    padding: px-to-rem(8px - $field-border-width) px-to-rem(12px - $field-border-width);
     width: 100%;
-
-    &:focus {
-        @include ds_focus-outline;
-        box-shadow: inset 0 0 0 #{$field-border-width--focus - $field-border-width};
-    }
-
-    &--error {
-        border-color: $ds_colour__state--negative;
-        border-width: $field-border-width--error;
-        padding: px-to-rem(8px - $field-border-width--error) px-to-rem(12px - $field-border-width--error);
-
-        &:focus {
-            border-color: currentColor;
-            box-shadow: none;
-        }
-    }
 
     & + &__message {
         margin-top: -1rem;
