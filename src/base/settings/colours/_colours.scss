@@ -44,14 +44,6 @@ $ds_colour__brown:      #592c20;
 
 
 
-// general backgrounds
-$ds_colour__background--primary:        $ds_colour__white !default;
-$ds_colour__background--secondary:      $ds_colour__grey--lighter !default;
-$ds_colour__background--tertiary:       $ds_colour__grey--light !default;
-
-
-
-
 // branding
 $ds_colour__brand:              $ds_colour__blue !default;
 $ds_colour__brand--secondary:   $ds_colour__sg-secondary !default;
@@ -60,6 +52,27 @@ $ds_brand-gradient-direction:   right !default;
 @if getContrastRatio(#ffffff, $ds_colour__brand) < 4.5 {
     @warn 'Brand colour #{$ds_colour__brand} does not meet 4.5:1 contrast ratio against white.';
 }
+
+
+
+
+// general backgrounds
+$ds_colour__background--primary:        $ds_colour__white !default;
+$ds_colour__background--secondary:      $ds_colour__grey--lighter !default;
+$ds_colour__background--tertiary:       $ds_colour__grey--light !default;
+
+
+
+
+// borders
+$ds_colour__border:             $ds_colour__grey--medium !default;
+$ds_colour__border--strong:     $ds_colour__grey--dark !default;
+$ds_colour__border--faint:      $ds_colour__grey--light !default;
+$ds_colour__border--highlight:  $ds_colour__brand !default;
+
+// deprecated border colour names
+$ds_colour__border--dark:       $ds_colour__border--strong !default;
+$ds_colour__border--light:      $ds_colour__border--faint !default;
 
 
 
@@ -130,23 +143,11 @@ $ds_colour__button--disabled__background:           $ds_colour__grey--medium !de
 
 
 // input
-$ds_colour__input--hover__border:       $ds_colour__grey--medium !default;
+$ds_colour__input--border:              $ds_colour__border--strong !default;
+$ds_colour__input--hover__border:       $ds_colour__grey--medium !default; // not currently used
 $ds_colour__input--focus__background:   $ds_colour__white !default;
 $ds_colour__input--focus__outline:      $ds_colour__focus--background !default;
 $ds_colour__input--spot:                currentColor !default; // not currently used
-
-
-
-
-// borders
-$ds_colour__border:             $ds_colour__grey--medium !default;
-$ds_colour__border--strong:     $ds_colour__grey--dark !default;
-$ds_colour__border--faint:      $ds_colour__grey--light !default;
-$ds_colour__border--highlight:  $ds_colour__brand !default;
-
-// deprecated border colour names
-$ds_colour__border--dark:       $ds_colour__border--strong !default;
-$ds_colour__border--light:      $ds_colour__border--faint !default;
 
 
 
