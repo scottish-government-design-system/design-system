@@ -12,11 +12,14 @@
     -moz-appearance: none;
     appearance: none;
     background-color: $ds_colour__background--primary;
+
+    // background image is a fallback for old browsers. remove after we remove support for IE11
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M480-360 280-560h400L480-360Z'/%3E%3C/svg%3E");
     background-position: center right 10px;
     background-repeat: no-repeat;
     padding-right: 3rem - $field-border-width;
 
+    // ie11 fallback
     &::-ms-expand {
         display: none;
     }
@@ -26,7 +29,6 @@
 /// [1] renders an outline/border in windows high contrast mode
 ///
 .ds_select-arrow {
-    background: $ds_colour__button__background;
     display: none;
     width: 3rem;
     outline: 2px solid transparent; /// [1]
@@ -40,7 +42,7 @@
 
     &::before {
         bottom: 0;
-        color: $ds_colour__button;
+        color: $ds_colour__text;
         font-size: 1rem;
         position: absolute;
         right: 0;
@@ -50,14 +52,6 @@
         @include ds_chevron(down, 0.75em);
         right: calc(50% - 0.375em);
         top: calc(50% - 0.5625em);
-    }
-}
-
-.ds_select:focus + .ds_select-arrow {
-    background-color: $ds_colour__button--focus__background;
-
-    &::before {
-        color: $ds_colour__button--focus;
     }
 }
 
