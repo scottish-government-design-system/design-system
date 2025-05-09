@@ -6,7 +6,7 @@
 .ds_input {
     @include ds_responsive-margin (3, bottom);
     background-color: $ds_colour__background--primary;
-    border: $field-border-width solid currentColor;
+    border: $field-border-width solid $ds_colour__input--border;
     border-radius: 0;
     display: block;
     line-height: 2rem;
@@ -16,7 +16,7 @@
 
     &:focus {
         @include ds_focus-outline;
-        box-shadow: inset 0 0 0 #{$field-border-width--focus - $field-border-width};
+        box-shadow: inset 0 0 0 #{$field-border-width--focus - $field-border-width} $ds_colour__input--border;
     }
 
     &--error {
@@ -25,7 +25,7 @@
         padding: px-to-rem(8px - $field-border-width--error) px-to-rem(12px - $field-border-width--error);
 
         &:focus {
-            border-color: currentColor;
+            border-color: $ds_colour__input--border;
             box-shadow: none;
         }
     }
