@@ -61,13 +61,15 @@ class Accordion {
 
         itemButton.innerHTML = itemTitle.innerHTML;
 
+        itemIndicator.setAttribute('aria-hidden', true);
+
         itemTitle.innerHTML = '';
         itemTitle.insertBefore(itemButton, itemTitle.firstChild);
         itemButton.appendChild(itemIndicator);
         itemLabelContent.classList.add('fully-hidden');
 
-        itemBody.id = itemBody.id || `accordion-item-${elementIdModifier()}`;
-        itemButton.setAttribute('aria-controls', itemBody.id);
+        item.id = item.id || `accordion-item-${elementIdModifier()}`;
+        itemBody.id = itemBody.id || `accordion-item-${elementIdModifier()}-body`;
 
         if (startsOpen) {
             item.classList.add('ds_accordion-item--open');
@@ -117,6 +119,9 @@ class Accordion {
 
             this.setOpenAllButton(opening);
         });
+
+        this.openAllButton.setAttribute('aria-controls', this.items.map(item => item.id).join(' '));
+        this.openAllButton.setAttribute('aria-expanded', false);
     }
 
     toggleAccordionItem(item) {
@@ -144,6 +149,7 @@ class Accordion {
         } else {
             this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>';
         }
+        this.openAllButton.setAttribute('aria-expanded', open)
     }
 
     checkAllOpen() {
