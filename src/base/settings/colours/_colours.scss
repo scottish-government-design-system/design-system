@@ -123,7 +123,8 @@ $ds_colour__button--secondary--focus:               $ds_colour__button--focus !d
 $ds_colour__button--cancel:                         $ds_colour__text !default;
 $ds_colour__button--cancel__background:             $ds_colour__button--secondary__background !default;
 $ds_colour__button--cancel--hover__background:      adjustLuminance($ds_colour__button--cancel, 0.83) !default; /// [1]
-$ds_colour__button--disabled__background:           $ds_colour__grey !default;
+$ds_colour__button--disabled:                       $ds_colour__text !default;
+$ds_colour__button--disabled__background:           $ds_colour__grey--medium !default;
 
 
 
