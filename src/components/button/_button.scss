@@ -64,7 +64,7 @@ $link__border-width: 0.16em !default;
     &[disabled] {
         background-color: $ds_colour__button--disabled__background;
         box-shadow: none;
-        color: $ds_colour__button;
+        color: $ds_colour__button--disabled;
         font-weight: $normal;
         outline: none;
         pointer-events: none;
@@ -112,18 +112,9 @@ $link__border-width: 0.16em !default;
         }
     }
 
+    // .ds_button--cancel is deprecated - this will be removed in a future release
     &--cancel {
-        background-color: $ds_colour__button--cancel__background;
-        color: $ds_colour__button--cancel;
-        outline: 2px solid currentColor;
-        outline-offset: -2px;
-
-        &:hover:not(:focus) {
-            background-color: $ds_colour__button--cancel--hover__background;
-            color: $ds_colour__button--cancel;
-            outline: 2px solid currentColor;
-            outline-offset: -2px;
-        }
+        @extend .ds_button--secondary;
     }
 }
 
