@@ -2,7 +2,6 @@
 
 'use strict';
 
-import storage from '../storage/storage';
 import version from '../../../version';
 
 function slugify(string) {
@@ -120,10 +119,8 @@ const tracking = {
     },
 
     pushToDataLayer: function(data) {
-        if (storage.hasPermission(storage.categories.statistics)) {
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push(data);
-        }
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(data);
     },
 
     add: {

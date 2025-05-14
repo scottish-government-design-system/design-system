@@ -1922,14 +1922,5 @@ describe('tracking', () => {
 
             expect(window.dataLayer).toEqual([trackingObject]);
         });
-
-        it('should NOT push items to the deta layer if analytics/statistics cookies are disabled', () => {
-            window.storage.hasPermission = function () {
-                return false;
-            }
-
-            Tracking.pushToDataLayer({ foo: 'bar' });
-            expect(window.dataLayer).toEqual([]);
-        });
     })
 });
