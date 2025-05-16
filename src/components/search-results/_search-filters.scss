@@ -5,6 +5,10 @@
 .ds_search-filters {
     margin-bottom: 0.5rem;
 
+    &__search {
+        margin-top: 0.5rem; // Add extra space to align with search results when search is within sidebar
+    }
+    
     &__title {
         @include ds_responsive-padding(1, bottom, false, -1px);
         @include ds_responsive-padding(1, top);
