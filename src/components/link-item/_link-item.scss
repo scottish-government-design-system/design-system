@@ -22,4 +22,21 @@
         margin: 0;
         @include ds_responsive-margin (1, top);
     }
+
+
+    &__image-link {
+        display: block;
+    }
+
+    &__image {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    &__metadata {
+        .ds_metadata--inline {
+            line-height: 1.5rem; // override on default
+            margin-bottom: 0;
+        }
+    }
 }
