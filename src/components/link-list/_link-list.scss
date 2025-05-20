@@ -31,4 +31,33 @@
             grid-template-columns: 1fr 1fr 1fr;
         }
     }
+
+    &--no-border {
+        @include ds_media-query(medium) {
+            .ds_link-item {
+                @include ds_responsive-padding (3, bottom);
+                border-bottom: none !important; 
+            }
+        }
+    }
+
+    &-2-items {
+        @include ds_media-query(medium) {
+            .ds_link-item {
+                float: left;
+                @include ds_colwidth(6);
+
+                &:nth-child(2n+1) {
+                    clear: left;
+                    margin-left: 0;
+                }
+            }
+
+            @supports(display: grid) {
+                display: grid;
+                row-gap: px-to-rem(24px);
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
 }
