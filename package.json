@@ -9,11 +9,12 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist; npm run webpack && npm run sass && npm run sass-min && npm run svgsprite",
+    "build": "rm -rf ./dist; npm run webpack && npm run sass && npm run sass-min && npm run svgsprite && npm run copyicons",
     "prepack": "npm run test && npm run build",
     "sass": "sass --style=expanded src/design-system.scss dist/css/design-system.css",
     "sass-min": "sass --style=compressed src/design-system.scss dist/css/design-system.min.css",
     "svgsprite": "node ./svg-sprite",
+    "copyicons": "copyfiles -f ./src/images/documents/svg/*.svg ./dist/images/documents/svg",
     "test": "karma start ./karma.conf.js",
     "webpack": "webpack"
   },
@@ -26,6 +27,7 @@
     "@babel/runtime": "^7.23.9",
     "babel-loader": "^9.1.3",
     "copy-webpack-plugin": "^12.0.2",
+    "copyfiles": "^2.4.1",
     "coverage-istanbul-loader": "^3.0.5",
     "jasmine-core": "^5.1.2",
     "jasmine-jquery": "^2.1.1",
