@@ -66,8 +66,8 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
     &__media {
         @include ds_media-query (medium-down) {
             &--small-mobile {
-                margin: px-to-rem(16px) px-to-rem(16px) 0;
-                max-width: 384px;
+                padding: 1rem 1rem 0;
+                max-width: calc(360px + 2rem);
             }
         }
     }
