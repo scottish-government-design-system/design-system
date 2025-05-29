@@ -194,6 +194,12 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
                 }
             }
         }
+
+        &--top {
+            .ds_feature-header__secondary--cover {
+                align-self: unset;
+            }
+        }
     }
 
      // Button overrides
