@@ -10,6 +10,8 @@ $site-navigation__highlight-colour: $ds_colour__border--highlight !default;
 // common to both mobile and desktop
 $site-navigation__link-padding: 16px;
 
+$site-navigation__link-underline-thickness: calc(4em/19);
+
 .ds_site-navigation {
     @include ds_small-size;
 
@@ -32,7 +34,7 @@ $site-navigation__link-padding: 16px;
     &__link {
         color: currentColor;
         display: block;
-        padding: #{$site-navigation__link-padding * 0.5} $site-navigation__link-padding;
+        padding: #{$site-navigation__link-padding * 0.75} $site-navigation__link-padding;
         text-decoration: none;
         white-space: nowrap;
 
@@ -83,7 +85,7 @@ $site-navigation__link-padding: 16px;
 
 @include ds_media-query(medium) {
     .ds_site-navigation {
-        line-height: 2;
+        line-height: 1.5;
 
         &:not(&--mobile) {
             display: block;
@@ -100,21 +102,21 @@ $site-navigation__link-padding: 16px;
         }
 
         .ds_site-navigation__link {
-            @include ds_fancy-underscore;
+            @include ds_fancy-underscore($width: $site-navigation__link-underline-thickness, $horiz-padding: $site-navigation__link-padding);
 
             &::after {
                 bottom: 0;
             }
 
             &.ds_current:not(:focus) {
-                background-color: $ds_colour__link--current__background;
                 color: $ds_colour__text;
 
                 &:after {
-                    border-bottom: $link__current-underline-thickness solid transparent;
-                    left: 0;
+                    background-color: $ds_colour__link;
+                    border-bottom: $site-navigation__link-underline-thickness solid transparent;
+                    left: $site-navigation__link-padding;
                     opacity: 1;
-                    right: 0;
+                    right: $site-navigation__link-padding;
                 }
             }
         }
@@ -128,10 +130,6 @@ $site-navigation__link-padding: 16px;
                 );
                 filter: none;
                 outline: none;
-            }
-
-            &:hover:not(:focus) {
-                background-color: $ds_colour__link--hover__background;
             }
         }
     }
