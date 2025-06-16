@@ -4,7 +4,7 @@
 ///
 /// @param {string} $width - width of the underscore
 
-@mixin ds_fancy-underscore($width: $link__current-underline-thickness) {
+@mixin ds_fancy-underscore($width: $link__current-underline-thickness, $horiz-padding: 0) {
     position: relative;
     transition-duration: 0s !important;
 
@@ -26,9 +26,9 @@
     }
 
     &:hover::after {
-        left: 0;
+        left: $horiz-padding;
         opacity: 1;
-        right: 0;
+        right: $horiz-padding;
     }
 
     &:focus {

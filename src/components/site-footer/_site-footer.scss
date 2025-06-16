@@ -34,7 +34,7 @@ $site-footer__background: $ds_colour__background--tertiary !default;
             margin-bottom: 8px;
             width: 32px;
 
-            @include ds_fancy-underscore();
+            @include ds_fancy-underscore;
 
             img {
                 width: 100%;
@@ -59,7 +59,7 @@ $site-footer__background: $ds_colour__background--tertiary !default;
     &__org-link {
         display: block;
 
-        @include ds_fancy-underscore();
+        @include ds_fancy-underscore;
     }
 
     .ds_site-footer__org-link,
