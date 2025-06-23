@@ -655,13 +655,11 @@ a,
 @media screen and (forced-colors: active) {
   a:is(:enabled, :link, summary),
   .ds_link:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
+    color: linkText !important;
   }
-  a:is(:enabled, :link, summary):focus, a:is(:enabled, :link, summary):active,
-  .ds_link:is(:enabled, :link, summary):focus,
-  .ds_link:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
+  a:is(:enabled, :link, summary):not(:focus),
+  .ds_link:is(:enabled, :link, summary):not(:focus) {
+    text-decoration-line: underline !important;
   }
 }
 a:hover,
@@ -669,17 +667,33 @@ a:hover,
   color: #00437d;
   text-underline-offset: 0.16em;
   text-decoration-thickness: 0.16em;
+  text-decoration-thickness: round(0.16em, 1px);
   transition-duration: 0.2s;
 }
 a:focus,
 .ds_link:focus {
-  outline: 2px solid #fdd522;
-  outline-offset: 0;
   background-color: #fdd522;
-  box-shadow: -2px calc(2px + 0.16em) #1a1a1a, 2px calc(2px + 0.16em) #1a1a1a;
   color: #1a1a1a;
   text-decoration-line: none;
   transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  a:focus,
+  .ds_link:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  a:focus,
+  .ds_link:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
 }
 a > svg,
 .ds_link > svg {
@@ -720,7 +734,7 @@ a[disabled] {
 }
 
 h1 a, h2 a, h3 a, h4 a {
-  text-decoration: none;
+  text-decoration-line: none;
 }
 h1 a:hover:not(:focus), h2 a:hover:not(:focus), h3 a:hover:not(:focus), h4 a:hover:not(:focus) {
   text-decoration-line: underline;
@@ -2323,7 +2337,7 @@ fieldset {
 }
 .ds_checkbox__label::before {
   background-color: #ffffff;
-  border: 2px solid #1a1a1a;
+  border: 0.125rem solid #1a1a1a;
   content: "";
   height: 40px;
   left: 0;
@@ -2349,8 +2363,8 @@ fieldset {
 .ds_checkbox__input:focus + .ds_checkbox__label::before {
   background-color: #fdd522;
   border-color: #1a1a1a;
-  border-width: 4px;
-  box-shadow: 0 0 0 3px #fdd522;
+  border-width: 0.25rem;
+  box-shadow: 0 0 0 0.1875rem #fdd522;
 }
 @media screen and (forced-colors: active) {
   .ds_checkbox__input:focus + .ds_checkbox__label::before {
@@ -2506,14 +2520,11 @@ fieldset {
   list-style-type: none;
   margin-left: 0;
 }
-.ds_error-summary__list a {
+.ds_error-summary__list a:not(:focus) {
   color: #d32205;
 }
-.ds_error-summary__list a:hover:not(:focus) {
+.ds_error-summary__list a:not(:focus):hover {
   color: #951804;
-}
-.ds_error-summary__list a:focus {
-  color: #1a1a1a;
 }
 .ds_error-summary__list li {
   margin-left: 0;
@@ -2654,7 +2665,7 @@ fieldset {
 }
 .ds_radio__label::before {
   background-color: #ffffff;
-  border: 2px solid #1a1a1a;
+  border: 0.125rem solid #1a1a1a;
   content: "";
   height: 40px;
   left: 0;
@@ -2681,8 +2692,8 @@ fieldset {
 .ds_radio__input:focus + .ds_radio__label::before {
   background-color: #fdd522;
   border-color: #1a1a1a;
-  border-width: 4px;
-  box-shadow: 0 0 0 3px #fdd522;
+  border-width: 0.25rem;
+  box-shadow: 0 0 0 0.1875rem #fdd522;
 }
 @media screen and (forced-colors: active) {
   .ds_radio__input:focus + .ds_radio__label::before {
@@ -2725,9 +2736,6 @@ fieldset {
   border: 10px solid currentColor;
   border-radius: 50%;
   background: currentColor;
-}
-.ds_radio__input:focus + .ds_radio__label::after {
-  color: #1a1a1a;
 }
 .ds_radio--small .ds_radio__label::after {
   border-width: 6px;
@@ -2773,6 +2781,11 @@ fieldset {
     SELECT
 \*------------------------------------*/
 .ds_select {
+  background-color: #ffffff;
+  border: 0.125rem solid currentColor;
+  border-radius: 0;
+  min-height: 3rem;
+  padding: 0.375rem 0.625rem;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -2780,24 +2793,23 @@ fieldset {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M480-360 280-560h400L480-360Z'/%3E%3C/svg%3E");
   background-position: center right 10px;
   background-repeat: no-repeat;
-  border-radius: 0;
-  border: 0;
-  box-shadow: inset 0 0 0 2px currentColor;
-  min-height: 3rem;
-  outline: 2px solid transparent;
-  outline-offset: -2px;
-  padding: 0.5rem 3rem 0.5rem 0.75rem;
+  padding-right: 2.875rem;
 }
 .ds_select:focus {
-  outline: 2px solid #fdd522;
+  box-shadow: inset 0 0 0 0.125em #1a1a1a;
+  box-shadow: inset 0 0 0 round(0.125em, 1px) #1a1a1a;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
   outline-offset: 0;
-  box-shadow: inset 0 0 0 4px currentColor;
 }
-@media screen and (forced-colors: active) {
-  .ds_select:focus {
-    outline-offset: -2px;
-    outline-width: 4px;
-  }
+.ds_select--error {
+  border-color: #d32205;
+  border-width: 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+.ds_select--error:focus {
+  border-color: currentColor;
+  box-shadow: none;
 }
 .ds_select::-ms-expand {
   display: none;
@@ -2856,21 +2868,6 @@ fieldset {
   }
 }
 
-.ds_select-wrapper.ds_input--error .ds_select,
-.ds_select-wrapper .ds_select--error,
-.ds_select-wrapper .ds_input--error {
-  box-shadow: inset 0 0 0 4px #d32205;
-}
-.ds_select-wrapper.ds_input--error .ds_select:focus,
-.ds_select-wrapper .ds_select--error:focus,
-.ds_select-wrapper .ds_input--error:focus {
-  box-shadow: inset 0 0 0 4px currentColor;
-}
-
-.ds_select-wrapper.ds_input--error {
-  padding: 0;
-}
-
 @supports (display: grid) {
   .ds_select-wrapper {
     display: grid;
@@ -2891,12 +2888,12 @@ fieldset {
 .ds_input {
   margin-bottom: 1.5rem;
   background-color: #ffffff;
-  border: 2px solid currentColor;
+  border: 0.125rem solid currentColor;
   border-radius: 0;
-  display: block;
-  line-height: 2rem;
   min-height: 3rem;
   padding: 0.375rem 0.625rem;
+  display: block;
+  line-height: 2rem;
   width: 100%;
 }
 @media (min-width: 768px) {
@@ -2905,13 +2902,15 @@ fieldset {
   }
 }
 .ds_input:focus {
-  outline: 2px solid #fdd522;
+  box-shadow: inset 0 0 0 0.125em #1a1a1a;
+  box-shadow: inset 0 0 0 round(0.125em, 1px) #1a1a1a;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
   outline-offset: 0;
-  box-shadow: inset 0 0 0 2px;
 }
 .ds_input--error {
   border-color: #d32205;
-  border-width: 4px;
+  border-width: 0.25rem;
   padding: 0.25rem 0.5rem;
 }
 .ds_input--error:focus {
@@ -3070,21 +3069,26 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_accordion.js-initialised .ds_accordion__open-all {
   display: block;
 }
+.ds_accordion.js-initialised .ds_accordion-item__header {
+  padding: 0;
+}
 
 .ds_accordion-item {
   border-bottom: 1px solid #b3b3b3;
   border-top: 1px solid #b3b3b3;
 }
 .ds_accordion-item__header {
+  color: #0065bd;
+  outline: 0px solid transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
   display: block;
-  outline: 0;
   position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
-  font-size: 1rem;
-  line-height: 1.5;
+  text-decoration-line: none;
   background-color: #ffffff;
   border-width: 0;
+  color: currentColor;
   margin: 0;
   padding: 0.5rem 0.5rem calc(0.75rem - 1px);
   position: relative;
@@ -3093,34 +3097,56 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media screen and (forced-colors: active) {
   .ds_accordion-item__header:is(:enabled, :link, summary) {
-    color: LinkText !important;
+    color: linkText !important;
+  }
+  .ds_accordion-item__header:is(:enabled, :link, summary):not(:focus) {
     text-decoration-line: underline !important;
   }
-  .ds_accordion-item__header:is(:enabled, :link, summary):focus, .ds_accordion-item__header:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
+}
+.ds_accordion-item__header:hover {
+  color: #00437d;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.16em;
+  text-decoration-thickness: round(0.16em, 1px);
+  transition-duration: 0.2s;
 }
 .ds_accordion-item__header:focus {
   background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
   color: #1a1a1a;
+  text-decoration-line: none;
   transition-duration: 0s;
-  outline: 0;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_accordion-item__header:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_accordion-item__header:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_accordion-item__header > svg {
+  fill: currentColor;
+}
+.ds_accordion-item__header:focus {
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_accordion-item__header:hover:not(:focus) {
   background-color: #d9eeff;
-}
-@media (min-width: 768px) {
-  .ds_accordion-item__header {
-    font-size: 1.1875rem;
-    line-height: 1.6842105263;
-  }
+  color: #00437d;
 }
 .ds_accordion-item__header:hover:not(:focus) {
   color: #00437d;
-}
-.ds_accordion-item__header:has(.ds_accordion-item__button) {
-  padding: 0;
 }
 .ds_accordion-item__title {
   font-size: 1rem;
@@ -3142,32 +3168,10 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   background: transparent;
   border: 0;
   padding: 0.5rem 0.5rem calc(0.75rem - 1px);
+  position: relative;
   text-align: left;
   width: 100%;
-  display: block;
-  outline: 0;
-  position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
   z-index: 1;
-}
-@media screen and (forced-colors: active) {
-  .ds_accordion-item__button:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
-  }
-  .ds_accordion-item__button:is(:enabled, :link, summary):focus, .ds_accordion-item__button:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
-}
-.ds_accordion-item__button:focus {
-  background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
-  color: #1a1a1a;
-  transition-duration: 0s;
-  outline: 0;
-}
-.ds_accordion-item__button:hover:not(:focus) {
-  background-color: #d9eeff;
 }
 .ds_accordion-item__label {
   cursor: pointer;
@@ -3231,19 +3235,33 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator .js-close-label {
   display: inline;
 }
-.ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__control:focus:hover ~ .ds_accordion-item__header {
-  background: #fdd522;
-  box-shadow: 0 0.16em #1a1a1a;
+.ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__button:focus {
+  background-color: #fdd522;
   color: #1a1a1a;
+  text-decoration-line: none;
   transition-duration: 0s;
-  z-index: 2;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__button:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
 }
 @media screen and (forced-colors: active) {
-  .ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__control:focus:hover ~ .ds_accordion-item__header {
-    outline-color: highlight !important;
-    outline-style: solid !important;
-    outline-width: 2px !important;
+  .ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__button:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
   }
+}
+.ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__button:focus {
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_accordion-item__control:focus ~ .ds_accordion-item__header .ds_accordion-item__indicator {
   color: #1a1a1a;
@@ -3285,9 +3303,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   .ds_accordion-item__header, .ds_accordion-item__button {
     padding: 1rem 1rem calc(1rem - 1px) 0.5rem; /* [1] */
   }
-  .ds_accordion-item__header:has(.ds_accordion-item__button) {
-    padding: 0;
-  }
   .ds_accordion-item__title {
     margin-bottom: 0.5rem;
   }
@@ -3297,17 +3312,18 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 
 /* Open/close label display */
-.ds_accordion-item .ds_accordion-item__indicator::before {
+.ds_accordion-item__indicator::before {
   content: "Open";
 }
-.ds_accordion-item .ds_accordion-item__indicator[data-open-text]::before {
+
+.ds_accordion-item__indicator[data-open-text]::before {
   content: attr(data-open-text);
 }
 
-.ds_accordion-item:has(.ds_accordion-item__control:checked) .ds_accordion-item__indicator::before {
+.ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator::before {
   content: "Close";
 }
-.ds_accordion-item:has(.ds_accordion-item__control:checked) .ds_accordion-item__indicator[data-close-text]::before {
+.ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator[data-close-text]::before {
   content: attr(data-close-text);
 }
 
@@ -3330,12 +3346,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 
 /* HIGH CONTRAST */
 @media screen and (forced-colors: active) {
-  .ds_accordion-item__button:is(.ds_accordion-item__button) {
-    color: CanvasText !important;
-    text-decoration-line: none !important;
-  }
   .ds_accordion-item__indicator {
-    color: LinkText !important;
+    color: linktext !important;
   }
 }
 /*------------------------------------*\
@@ -3464,15 +3476,37 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 .ds_autocomplete__suggestion.active {
   background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
+  color: #1a1a1a;
+  text-decoration-line: none;
+  transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_autocomplete__suggestion.active {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
 }
 @media screen and (forced-colors: active) {
   .ds_autocomplete__suggestion.active {
-    outline-color: highlight !important;
-    outline-style: solid !important;
-    outline-width: 4px !important;
-    outline-offset: -2px;
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
   }
+}
+@media screen and (forced-colors: active) {
+  .ds_autocomplete__suggestion.active {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
+  }
+}
+.ds_autocomplete__suggestion.active {
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_autocomplete__suggestion.active .ds_autocomplete__suggestion__text {
   color: #1a1a1a;
@@ -3496,7 +3530,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   line-height: 1.7142857143;
   align-items: center;
   display: inline-flex;
-  margin: 16px 0 16px 16px;
+  margin: 1rem 0;
+  padding-left: 1rem;
   position: relative;
 }
 @media (min-width: 768px) {
@@ -3515,8 +3550,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   height: 0.5em;
   width: 0.5em;
   transform: rotate(-315deg);
-  border-width: 0 0 2px 2px;
-  left: -14px;
+  border-width: 0 0 0.125em 0.125em;
+  left: 0.125em;
   position: absolute;
 }
 
@@ -3544,10 +3579,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   }
   .ds_back-to-top__button {
     display: block;
-    outline: 0;
     position: relative;
-    transition: background-color 0.2s, outline-color 0.2s;
-    z-index: 1;
+    text-decoration-line: none;
     font-size: 0.875rem;
     line-height: 1.7142857143;
     background-color: rgba(255, 255, 255, 0.4);
@@ -3561,26 +3594,15 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
     right: 0.5rem;
     top: calc(100vh - 3.5rem);
   }
-}
-@media only screen and (forced-colors: active) {
-  .ds_back-to-top__button:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
-  }
-  .ds_back-to-top__button:is(:enabled, :link, summary):focus, .ds_back-to-top__button:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
-}
-@media only screen {
   .ds_back-to-top__button:focus {
-    background-color: #fdd522;
-    box-shadow: inset 0 -0.16em #1a1a1a;
-    color: #1a1a1a;
-    transition-duration: 0s;
-    outline: 0;
+    box-shadow: inset 0 -0.16em 0 #1a1a1a;
+    box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+    filter: none;
+    outline-width: 0;
   }
   .ds_back-to-top__button:hover:not(:focus) {
     background-color: #d9eeff;
+    color: #00437d;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -3613,12 +3635,15 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media only screen and (forced-colors: active) {
   .ds_back-to-top__button::before, .ds_back-to-top__icon {
-    background-color: transparent;
+    background-color: canvas;
   }
 }
 @media only screen {
   .ds_back-to-top__button:hover::before, .ds_back-to-top__button:hover .ds_back-to-top__icon, .ds_back-to-top__button:focus::before, .ds_back-to-top__button:focus .ds_back-to-top__icon {
     background-color: transparent;
+  }
+  .ds_back-to-top__button:focus::before, .ds_back-to-top__button:focus .ds_back-to-top__icon {
+    transition-duration: 0s;
   }
 }
 /*------------------------------------*\
@@ -3689,11 +3714,9 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   display: inline-block;
   font-weight: 700;
   line-height: 1.5rem;
-  outline: 2px solid transparent;
-  outline-offset: -2px;
   position: relative;
   text-align: center;
-  text-decoration: none;
+  text-decoration-line: none;
   transition: background-color 0.2s;
   margin-bottom: 1.5rem;
   margin-top: 0;
@@ -3711,14 +3734,16 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media screen and (forced-colors: active) {
   .ds_button:is(:enabled, :link) {
-    color: ButtonText !important;
-    text-decoration-line: none !important;
+    outline: 0.125rem solid transparent !important;
+    outline-offset: -0.125rem !important;
+    transition-duration: 0s !important;
   }
   .ds_button:is(:enabled, :link):hover {
-    outline: 2px solid highlight !important;
+    outline-color: highlight !important;
   }
-  .ds_button:is(:enabled, :link):focus, .ds_button:is(:enabled, :link):active {
-    outline: 4px solid highlight !important;
+  .ds_button:is(:enabled, :link):focus, .ds_button:is(:enabled, :link):active, .ds_button:is(:enabled, :link):focus-within {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
   }
 }
 @media (min-width: 768px) {
@@ -3734,28 +3759,36 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 .ds_button:focus {
   background-color: #fdd522;
-  box-shadow: 0 0.16em #1a1a1a;
   color: #1a1a1a;
-  outline: 0;
+  text-decoration-line: none;
   transition-duration: 0s;
+  box-shadow: 0 0.16em 0 currentColor;
+  outline-width: 0;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_button:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
 }
 @media screen and (forced-colors: active) {
   .ds_button:focus {
-    outline-color: highlight !important;
-    outline-style: solid !important;
-    outline-width: 4px !important;
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
   }
 }
-.ds_button .ds_icon {
-  pointer-events: none;
-}
 .ds_button[disabled] {
-  background-color: #5e5e5e;
+  background-color: #b3b3b3;
   box-shadow: none;
-  color: #ffffff;
+  color: #1a1a1a;
   font-weight: 400;
   outline: none;
   pointer-events: none;
+}
+@media screen and (forced-colors: active) {
+  .ds_button[disabled] {
+    outline: 0.0625rem dashed graytext !important;
+  }
 }
 
 .ds_reversed .ds_button {
@@ -3768,42 +3801,29 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_reversed .ds_button:hover {
   background-color: #d9eeff;
 }
-.ds_reversed .ds_button--secondary {
+.ds_reversed .ds_button--secondary, .ds_reversed .ds_button--cancel {
   background-color: transparent;
   border-color: currentColor;
   color: #ffffff;
 }
-.ds_reversed .ds_button--secondary:hover:not(:focus) {
+.ds_reversed .ds_button--secondary:hover:not(:focus), .ds_reversed .ds_button--cancel:hover:not(:focus) {
   background-color: rgba(0, 0, 0, 0.3);
   color: #ffffff;
   outline-color: currentColor;
 }
 
-.ds_button--secondary {
+.ds_button--secondary, .ds_button--cancel {
   background-color: transparent;
   color: #0065bd;
-  outline: 2px solid currentColor;
-  outline-offset: -2px;
+  outline: 0.125rem solid currentColor;
+  outline-offset: -0.125rem;
 }
-.ds_button--secondary:hover:not(:focus) {
+.ds_button--secondary:hover:not(:focus), .ds_button--cancel:hover:not(:focus) {
   background-color: #d9eeff;
   color: #00437d;
-  outline: 2px solid currentColor;
-  outline-offset: -2px;
+  outline: 0.125rem solid currentColor;
+  outline-offset: -0.125rem;
 }
-.ds_button--cancel {
-  background-color: transparent;
-  color: #1a1a1a;
-  outline: 2px solid currentColor;
-  outline-offset: -2px;
-}
-.ds_button--cancel:hover:not(:focus) {
-  background-color: #ebebeb;
-  color: #1a1a1a;
-  outline: 2px solid currentColor;
-  outline-offset: -2px;
-}
-
 .ds_button--small {
   font-size: 0.875rem;
   line-height: 1.7142857143;
@@ -3844,11 +3864,11 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   top: 0;
 }
 .ds_button--has-icon {
-  padding-right: calc(56px + 16px);
+  padding-right: calc(56px + 1rem);
 }
 .ds_button--has-icon--left {
-  padding-left: calc(56px + 16px);
-  padding-right: 16px;
+  padding-left: calc(56px + 1rem);
+  padding-right: 1rem;
 }
 .ds_button--has-icon--left .ds_icon {
   left: 0;
@@ -4007,8 +4027,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media screen and (forced-colors: active) {
   .ds_card {
-    outline: 2px solid currentColor !important;
-    outline-offset: -2px !important;
+    outline: 0.125em solid canvastext !important;
+    outline: round(0.125em, 1px) solid canvastext !important;
   }
 }
 .ds_card--grey {
@@ -4029,12 +4049,20 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 .ds_card--hover:focus-within, .ds_card--has-hover:focus-within {
   background-color: #fdd522 !important;
-  box-shadow: inset 0 -0.16em #1a1a1a;
+  box-shadow: inset 0px -0.16em 0px #1a1a1a;
+  box-shadow: inset 0px round(-0.16em, 1px) 0px #1a1a1a;
   transition-duration: 0s;
+}
+@media screen and (forced-colors: active) {
+  .ds_card--hover:focus-within, .ds_card--has-hover:focus-within {
+    outline: 0.25em solid highlight !important;
+    outline: round(0.25em, 1px) solid highlight !important;
+  }
 }
 .ds_card--hover:focus-within .ds_card__link--cover, .ds_card--has-hover:focus-within .ds_card__link--cover {
   background-color: transparent;
   box-shadow: none;
+  filter: none;
   outline: none;
 }
 .ds_card--hover:focus-within .ds_metadata, .ds_card--has-hover:focus-within .ds_metadata {
@@ -4042,8 +4070,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media (max-width: 767px) {
   .ds_card__media--small-mobile {
-    margin: 1rem 1rem 0;
-    max-width: 384px;
+    padding: 1rem 1rem 0;
+    max-width: calc(360px + 2rem);
   }
 }
 .ds_card__content {
@@ -4116,6 +4144,58 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   top: 0px;
   width: 100%;
   z-index: 1;
+}
+.ds_card:has(.ds_card__link--cover) {
+  display: block;
+  position: relative;
+  text-decoration-line: none;
+}
+.ds_card:has(.ds_card__link--cover) .ds_card__link--cover:focus {
+  filter: none;
+}
+@media screen and (forced-colors: active) {
+  .ds_card:has(.ds_card__link--cover) .ds_card__link--cover:focus {
+    outline-width: 0 !important;
+  }
+}
+.ds_card:has(.ds_card__link--cover) .ds_card__link--cover:focus:hover {
+  text-decoration-line: none;
+}
+.ds_card:has(.ds_card__link--cover):focus-within {
+  background-color: #fdd522;
+  color: #1a1a1a;
+  text-decoration-line: none;
+  transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_card:has(.ds_card__link--cover):focus-within {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_card:has(.ds_card__link--cover):focus-within {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_card:has(.ds_card__link--cover):hover:not(:focus-within) {
+  background-color: #d9eeff;
+  color: #00437d;
+}
+@media screen and (forced-colors: active) {
+  .ds_card:has(.ds_card__link--cover):focus-within {
+    outline: 0.25em solid highlight !important;
+    outline: round(0.25em, 1px) solid highlight !important;
+  }
 }
 
 /* Support for old markup */
@@ -4229,71 +4309,53 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 \*------------------------------------*/
 .ds_category-item {
   display: block;
-  outline: 0;
   position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
-  /*
-      supports grid is a hack as a proxy for supports :focus-within
-  */
+  text-decoration-line: none;
   padding: 12px 16px 12px;
   text-decoration: none;
   transition: background-color 0.2s, border-color 0.2s;
   width: 100%;
 }
+.ds_category-item .ds_category-item__link:focus {
+  filter: none;
+}
 @media screen and (forced-colors: active) {
-  .ds_category-item:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
+  .ds_category-item .ds_category-item__link:focus {
+    outline-width: 0 !important;
   }
-  .ds_category-item:is(:enabled, :link, summary):focus, .ds_category-item:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
-}
-.ds_category-item:focus {
-  background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
-  color: #1a1a1a;
-  transition-duration: 0s;
-  outline: 0;
-}
-.ds_category-item:hover:not(:focus) {
-  background-color: #d9eeff;
 }
 .ds_category-item .ds_category-item__link:focus:hover {
   text-decoration-line: none;
 }
-@supports (display: grid) {
-  .ds_category-item .ds_category-item__link {
-    background-color: transparent;
-    outline: none;
-  }
-  .ds_category-item .ds_category-item__link::after {
-    content: "";
-    height: 100%;
-    left: 0px;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    z-index: 0;
-  }
-  @media screen and (forced-colors: active) {
-    .ds_category-item .ds_category-item__link::after {
-      content: none;
-    }
-  }
-  .ds_category-item .ds_category-item__link:focus::after {
-    transition-duration: 0s;
-  }
+.ds_category-item:focus-within {
+  background-color: #fdd522;
+  color: #1a1a1a;
+  text-decoration-line: none;
+  transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
   .ds_category-item:focus-within {
-    background-color: #fdd522 !important;
-    box-shadow: inset 0 -0.16em #1a1a1a, inset 0 -0.16em #1a1a1a;
-    transition-duration: 0s;
-  }
-  .ds_category-item:focus-within .ds_category-item__link:focus {
     box-shadow: none;
-    background-color: transparent;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
   }
+}
+@media screen and (forced-colors: active) {
+  .ds_category-item:focus-within {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_category-item:hover:not(:focus-within) {
+  background-color: #d9eeff;
+  color: #00437d;
 }
 .ds_category-item > :last-child {
   margin-bottom: 0;
@@ -4325,6 +4387,9 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   position: absolute;
   top: 0;
   width: 4px;
+}
+.ds_category-item__link:focus {
+  outline-width: 0;
 }
 .ds_category-item__link:focus::before {
   content: none;
@@ -4868,38 +4933,72 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   }
 }
 .ds_datepicker__dialog__navbuttons button {
+  color: #0065bd;
+  outline: 0px solid transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
+  display: block;
+  position: relative;
+  text-decoration-line: none;
   background-color: transparent;
   color: #1a1a1a;
+  display: inline-block;
   font-weight: 400;
   min-height: 40px;
   margin: 0;
   padding: 4px;
   min-width: 32px;
-  display: block;
-  outline: 0;
-  position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
-  display: inline-block;
 }
 @media screen and (forced-colors: active) {
   .ds_datepicker__dialog__navbuttons button:is(:enabled, :link, summary) {
-    color: LinkText !important;
+    color: linkText !important;
+  }
+  .ds_datepicker__dialog__navbuttons button:is(:enabled, :link, summary):not(:focus) {
     text-decoration-line: underline !important;
   }
-  .ds_datepicker__dialog__navbuttons button:is(:enabled, :link, summary):focus, .ds_datepicker__dialog__navbuttons button:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
+}
+.ds_datepicker__dialog__navbuttons button:hover {
+  color: #00437d;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.16em;
+  text-decoration-thickness: round(0.16em, 1px);
+  transition-duration: 0.2s;
 }
 .ds_datepicker__dialog__navbuttons button:focus {
   background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
   color: #1a1a1a;
+  text-decoration-line: none;
   transition-duration: 0s;
-  outline: 0;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_datepicker__dialog__navbuttons button:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_datepicker__dialog__navbuttons button:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_datepicker__dialog__navbuttons button > svg {
+  fill: currentColor;
+}
+.ds_datepicker__dialog__navbuttons button:focus {
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_datepicker__dialog__navbuttons button:hover:not(:focus) {
   background-color: #d9eeff;
+  color: #00437d;
 }
 .ds_datepicker__dialog__navbuttons button:hover {
   color: currentColor;
@@ -4911,7 +5010,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   width: 24px;
 }
 .ds_datepicker__dialog__table tbody:focus-within {
-  outline: 2px solid #fdd522;
+  outline: 0.125em solid #fdd522;
 }
 @media screen and (forced-colors: active) {
   .ds_datepicker__dialog__table tbody:focus-within {
@@ -4937,6 +5036,16 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   }
 }
 .ds_datepicker__dialog__table button {
+  font-size: 0.875rem;
+  line-height: 1.7142857143;
+  color: #0065bd;
+  outline: 0px solid transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
+  display: block;
+  position: relative;
+  text-decoration-line: none;
   background-color: transparent;
   border-width: 0;
   color: #1a1a1a;
@@ -4945,13 +5054,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   margin: 0;
   padding: 0;
   min-width: 40px;
-  font-size: 0.875rem;
-  line-height: 1.7142857143;
-  display: block;
-  outline: 0;
-  position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
   /*
    * helps with focus in windows high contrast
    */
@@ -4964,25 +5066,53 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media screen and (forced-colors: active) {
   .ds_datepicker__dialog__table button:is(:enabled, :link, summary) {
-    color: LinkText !important;
+    color: linkText !important;
+  }
+  .ds_datepicker__dialog__table button:is(:enabled, :link, summary):not(:focus) {
     text-decoration-line: underline !important;
   }
-  .ds_datepicker__dialog__table button:is(:enabled, :link, summary):focus, .ds_datepicker__dialog__table button:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
+}
+.ds_datepicker__dialog__table button:hover {
+  color: #00437d;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.16em;
+  text-decoration-thickness: round(0.16em, 1px);
+  transition-duration: 0.2s;
 }
 .ds_datepicker__dialog__table button:focus {
   background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
   color: #1a1a1a;
+  text-decoration-line: none;
   transition-duration: 0s;
-  outline: 0;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_datepicker__dialog__table button:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_datepicker__dialog__table button:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_datepicker__dialog__table button > svg {
+  fill: currentColor;
+}
+.ds_datepicker__dialog__table button:focus {
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_datepicker__dialog__table button:hover:not(:focus) {
   background-color: #d9eeff;
-}
-.ds_datepicker__dialog__table button:focus {
-  transition-duration: 0s;
+  color: #00437d;
 }
 .ds_datepicker__dialog__table button[disabled=true], .ds_datepicker__dialog__table button[aria-disabled=true] {
   background-color: #ebebeb;
@@ -4990,7 +5120,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   pointer-events: none;
 }
 .ds_datepicker__dialog__table button[disabled=true]:focus, .ds_datepicker__dialog__table button[aria-disabled=true]:focus {
-  box-shadow: inset 0 -3px #1a1a1a, inset 0 2px #fdd522, inset -2px 0 #fdd522, inset 0 -5px #fdd522, inset 2px 0 #fdd522;
+  box-shadow: inset 0 -0.16em #1a1a1a, inset 0 0.125em #fdd522, inset -0.125em 0 #fdd522, inset 0 -0.285em #fdd522, inset 0.125em 0 #fdd522;
 }
 .ds_datepicker__dialog__table button.ds_datepicker__current {
   outline: 2px solid #1a1a1a !important;
@@ -5142,27 +5272,40 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media screen and (forced-colors: active) {
   .ds_details__summary:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
+    color: linkText !important;
   }
-  .ds_details__summary:is(:enabled, :link, summary):focus, .ds_details__summary:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
+  .ds_details__summary:is(:enabled, :link, summary):not(:focus) {
+    text-decoration-line: underline !important;
   }
 }
 .ds_details__summary:hover {
   color: #00437d;
   text-underline-offset: 0.16em;
   text-decoration-thickness: 0.16em;
+  text-decoration-thickness: round(0.16em, 1px);
   transition-duration: 0.2s;
 }
 .ds_details__summary:focus {
-  outline: 2px solid #fdd522;
-  outline-offset: 0;
   background-color: #fdd522;
-  box-shadow: -2px calc(2px + 0.16em) #1a1a1a, 2px calc(2px + 0.16em) #1a1a1a;
   color: #1a1a1a;
   text-decoration-line: none;
   transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_details__summary:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_details__summary:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
 }
 .ds_details__summary > svg {
   fill: currentColor;
@@ -5228,18 +5371,34 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 
 .ds_details__toggle:focus ~ .ds_details__summary {
-  outline: 2px solid #fdd522;
-  outline-offset: 0;
   background-color: #fdd522;
-  box-shadow: -2px calc(2px + 0.16em) #1a1a1a, 2px calc(2px + 0.16em) #1a1a1a;
   color: #1a1a1a;
-  text-decoration: none;
+  text-decoration-line: none;
   transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_details__toggle:focus ~ .ds_details__summary {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_details__toggle:focus ~ .ds_details__summary {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
 }
 
 @media screen and (forced-colors: active) {
+  .ds_details__summary {
+    color: linktext !important;
+  }
   .ds_details__summary::before {
-    background-color: LinkText;
+    background-color: linktext !important;
   }
 }
 /*------------------------------------*\
@@ -5372,6 +5531,9 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
       position: absolute;
       right: 0;
     }
+  }
+  .ds_feature-header--top .ds_feature-header__secondary--cover {
+    align-self: unset;
   }
 }
 .ds_feature-header .ds_button {
@@ -5790,6 +5952,17 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
     margin-top: 0.5rem;
   }
 }
+.ds_link-item__image-link {
+  display: block;
+}
+.ds_link-item__image {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.ds_link-item__metadata .ds_metadata--inline {
+  line-height: 1.5rem;
+  margin-bottom: 0;
+}
 
 /*------------------------------------*\
     LINK LIST
@@ -5841,6 +6014,34 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
       display: grid;
       row-gap: 1.5rem;
       grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}
+@media (min-width: 768px) {
+  .ds_link-list--no-border .ds_link-item {
+    padding-bottom: 1.5rem;
+    border-bottom: none !important;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
+  .ds_link-list--no-border .ds_link-item {
+    padding-bottom: 1.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .ds_link-list-2-items .ds_link-item {
+    float: left;
+    width: calc(50% - 32px);
+  }
+  .ds_link-list-2-items .ds_link-item:nth-child(2n+1) {
+    clear: left;
+    margin-left: 0;
+  }
+  @supports (display: grid) {
+    .ds_link-list-2-items {
+      display: grid;
+      row-gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
     }
   }
 }
@@ -5985,45 +6186,80 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   background-color: #fdd522;
 }
 .ds_notification__close {
+  color: #0065bd;
+  outline: 0px solid transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
   background: transparent;
   border-width: 0;
-  box-sizing: content-box;
   color: currentColor;
   display: none;
-  font-size: 14px;
   height: 40px;
-  margin: 0;
   padding: 0;
   position: absolute;
   right: -8px;
   top: 8px;
   width: 40px;
-  min-height: 0;
-  min-width: 0;
 }
 @media screen and (forced-colors: active) {
-  .ds_notification__close:is(:enabled, :link) {
-    color: ButtonText !important;
-    text-decoration-line: none !important;
+  .ds_notification__close:is(:enabled, :link, summary) {
+    color: linkText !important;
   }
-  .ds_notification__close:is(:enabled, :link):hover {
-    outline: 2px solid highlight !important;
+  .ds_notification__close:is(:enabled, :link, summary):not(:focus) {
+    text-decoration-line: underline !important;
   }
-  .ds_notification__close:is(:enabled, :link):focus, .ds_notification__close:is(:enabled, :link):active {
-    outline: 4px solid highlight !important;
-  }
+}
+.ds_notification__close:hover {
+  color: #00437d;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.16em;
+  text-decoration-thickness: round(0.16em, 1px);
+  transition-duration: 0.2s;
 }
 .ds_notification__close:focus {
   background-color: #fdd522;
-  box-shadow: 0 0.16em #1a1a1a;
   color: #1a1a1a;
-  outline: 0;
+  text-decoration-line: none;
   transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_notification__close:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_notification__close:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_notification__close > svg {
+  fill: currentColor;
+}
+@media screen and (forced-colors: active) {
+  .ds_notification__close:is(:enabled, :link) {
+    outline: 0.125rem solid transparent !important;
+    outline-offset: -0.125rem !important;
+    transition-duration: 0s !important;
+  }
+  .ds_notification__close:is(:enabled, :link):hover {
+    outline-color: highlight !important;
+  }
+  .ds_notification__close:is(:enabled, :link):focus, .ds_notification__close:is(:enabled, :link):active, .ds_notification__close:is(:enabled, :link):focus-within {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
+  }
 }
 .ds_notification__close:hover:not(:focus) {
-  background-color: transparent;
   color: currentColor;
   outline: 2px solid currentColor;
+  outline-offset: -2px;
 }
 .ds_notification__close > * {
   pointer-events: none;
@@ -6112,8 +6348,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media screen and (forced-colors: active) {
   .ds_notification-panel {
-    outline: 4px solid currentColor !important;
-    outline-offset: -4px !important;
+    outline: 4px solid canvastext !important;
+    outline: round(4px, 1px) solid canvastext !important;
   }
 }
 .ds_notification-panel:not(:first-child) {
@@ -6223,46 +6459,34 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 .ds_pagination__link {
   display: block;
-  outline: 0;
   position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
+  text-decoration-line: none;
   line-height: 2.5rem;
   min-height: 2.5rem;
   min-width: 2.5rem;
   padding: 0 0.5rem;
   text-decoration: none;
 }
-@media screen and (forced-colors: active) {
-  .ds_pagination__link:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
-  }
-  .ds_pagination__link:is(:enabled, :link, summary):focus, .ds_pagination__link:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
-}
 .ds_pagination__link:focus {
-  background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
-  color: #1a1a1a;
-  transition-duration: 0s;
-  outline: 0;
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_pagination__link:hover:not(:focus) {
   background-color: #d9eeff;
+  color: #00437d;
 }
 .ds_pagination__link.ds_current {
+  box-shadow: inset 0px -0.16em 0px #1a1a1a;
+  box-shadow: inset 0px round(-0.16em, 1px) 0px #1a1a1a;
   color: currentColor;
   position: relative;
 }
-.ds_pagination__link.ds_current::before {
-  border-bottom: 0.16em solid currentColor;
-  bottom: 0;
-  content: "";
-  left: 0;
-  position: absolute;
-  right: 0;
+@media screen and (forced-colors: active) {
+  .ds_pagination__link.ds_current {
+    border-bottom: 0.16em solid currentColor;
+  }
 }
 .ds_pagination__link.ds_current:not(:focus) {
   background-color: #f8f8f8;
@@ -6273,6 +6497,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   width: auto;
 }
 .ds_pagination__link--ellipsis {
+  color: currentColor;
   min-width: 0;
   pointer-events: none;
 }
@@ -6471,6 +6696,20 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   text-align: center;
   transition: background-color 0.2s;
 }
+@media screen and (forced-colors: active) {
+  .ds_facet:is(.ds_facet) {
+    outline: 0.125rem solid transparent !important;
+    outline-offset: -0.125rem !important;
+    transition-duration: 0s !important;
+  }
+  .ds_facet:is(.ds_facet):hover {
+    outline-color: highlight !important;
+  }
+  .ds_facet:is(.ds_facet):focus, .ds_facet:is(.ds_facet):active, .ds_facet:is(.ds_facet):focus-within {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
+  }
+}
 @supports (gap: 0) {
   .ds_facet {
     margin: 0;
@@ -6481,10 +6720,26 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 .ds_facet:focus-within {
   background-color: #fdd522;
-  box-shadow: 0 0.16em #1a1a1a;
   color: #1a1a1a;
-  outline: 0;
+  text-decoration-line: none;
   transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+  outline-width: 0;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_facet:focus-within {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_facet:focus-within {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
 }
 .ds_facet:focus-within .ds_facet__button-icon {
   color: currentColor;
@@ -6501,15 +6756,6 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   text-align: right;
   top: 0;
 }
-.ds_facet__button:focus {
-  background-color: #fdd522;
-  z-index: -1;
-}
-.ds_facet__button:hover:not(:focus) {
-  background-color: transparent;
-  color: inherit;
-  outline: 0;
-}
 .ds_facet__button-icon {
   color: #5e5e5e;
   fill: currentColor;
@@ -6524,20 +6770,8 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   .ds_facet__button-icon {
     color: currentColor;
   }
-  .ds_facet:has(.ds_facet__button:hover) {
-    outline-color: highlight;
-  }
-  .ds_facet:has(.ds_facet__button:focus) {
-    outline: 4px solid highlight;
-  }
 }
 
-@supports selector(:focus-within) {
-  .ds_facet__button:focus {
-    background-color: transparent;
-    z-index: auto;
-  }
-}
 /*------------------------------------*\
     SEARCH FILTERS
 \*------------------------------------*/
@@ -6546,6 +6780,9 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   /**
   [1] provides room for yellow focus outline on checkboxes
   */
+}
+.ds_search-filters__search {
+  margin-top: 0.5rem;
 }
 .ds_search-filters__title {
   padding-bottom: calc(0.5rem + -1px);
@@ -6835,6 +7072,9 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     padding-right: 1rem;
   }
 }
+.ds_search-result__media-link {
+  display: block;
+}
 .ds_search-result__media {
   width: 96px;
 }
@@ -7029,36 +7269,22 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 .ds_sequential-nav__button {
   display: block;
-  outline: 0;
   position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
-  background: transparent;
-  display: inline-block;
+  text-decoration-line: none;
   line-height: 24px;
   padding: 12px 4px;
   position: relative;
-  text-decoration: none;
   width: 100%;
 }
-@media screen and (forced-colors: active) {
-  .ds_sequential-nav__button:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
-  }
-  .ds_sequential-nav__button:is(:enabled, :link, summary):focus, .ds_sequential-nav__button:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
-}
 .ds_sequential-nav__button:focus {
-  background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
-  color: #1a1a1a;
-  transition-duration: 0s;
-  outline: 0;
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_sequential-nav__button:hover:not(:focus) {
   background-color: #d9eeff;
+  color: #00437d;
 }
 .ds_sequential-nav__button:not(:focus) .ds_sequential-nav__text {
   text-decoration: underline;
@@ -7067,11 +7293,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 .ds_sequential-nav__button:hover .ds_sequential-nav__text {
   text-underline-offset: 0.16em;
   text-decoration-thickness: 0.16em;
-}
-@media screen and (forced-colors: active) {
-  .ds_sequential-nav__button .ds_sequential-nav__text {
-    text-decoration: underline;
-  }
+  text-decoration-thickness: round(0.16em, 1px);
 }
 .ds_sequential-nav__button:not([href]) {
   display: none;
@@ -7146,6 +7368,9 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 .ds_sequential-nav__button:focus::before {
   background-color: #1a1a1a;
   border-color: #1a1a1a;
+}
+.ds_sequential-nav__button:focus::after {
+  border-color: #fdd522;
 }
 
 .ds_sequential-nav__text {
@@ -7233,11 +7458,14 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   }
 }
 .ds_side-navigation__expand {
+  color: #0065bd;
+  outline: 0px solid transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
   display: block;
-  outline: 0;
   position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
+  text-decoration-line: none;
   background-color: #ffffff;
   color: #0065bd;
   cursor: pointer;
@@ -7255,22 +7483,67 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 @media screen and (forced-colors: active) {
   .ds_side-navigation__expand:is(:enabled, :link, summary) {
-    color: LinkText !important;
+    color: linkText !important;
+  }
+  .ds_side-navigation__expand:is(:enabled, :link, summary):not(:focus) {
     text-decoration-line: underline !important;
   }
-  .ds_side-navigation__expand:is(:enabled, :link, summary):focus, .ds_side-navigation__expand:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
+}
+.ds_side-navigation__expand:hover {
+  color: #00437d;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.16em;
+  text-decoration-thickness: round(0.16em, 1px);
+  transition-duration: 0.2s;
 }
 .ds_side-navigation__expand:focus {
   background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
   color: #1a1a1a;
+  text-decoration-line: none;
   transition-duration: 0s;
-  outline: 0;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_side-navigation__expand:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_side-navigation__expand:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_side-navigation__expand > svg {
+  fill: currentColor;
+}
+.ds_side-navigation__expand:focus {
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_side-navigation__expand:hover:not(:focus) {
   background-color: #d9eeff;
+  color: #00437d;
+}
+@media screen and (forced-colors: active) {
+  .ds_side-navigation__expand:is(:enabled, :link) {
+    outline: 0.125rem solid transparent !important;
+    outline-offset: -0.125rem !important;
+    transition-duration: 0s !important;
+  }
+  .ds_side-navigation__expand:is(:enabled, :link):hover {
+    outline-color: highlight !important;
+  }
+  .ds_side-navigation__expand:is(:enabled, :link):focus, .ds_side-navigation__expand:is(:enabled, :link):active, .ds_side-navigation__expand:is(:enabled, :link):focus-within {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
+  }
 }
 .ds_side-navigation__expand--shadow {
   box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.15);
@@ -7282,6 +7555,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   color: #00437d;
 }
 .ds_side-navigation__expand--shadow:focus {
+  box-shadow: 0 round(0.16em, 1px) #1a1a1a, 0px 8px 5px rgba(0, 0, 0, 0.15);
   box-shadow: 0 0.16em #1a1a1a, 0px 8px 5px rgba(0, 0, 0, 0.15);
 }
 .ds_side-navigation__expand-indicator {
@@ -7301,11 +7575,34 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   transition: transform 0.2s, top 0.2s;
   pointer-events: none;
 }
+.ds_side-navigation #show-side-navigation {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+}
 .ds_side-navigation #show-side-navigation:focus ~ .ds_side-navigation__expand {
-  background: #fdd522;
-  box-shadow: 0 0.16em #1a1a1a;
+  background-color: #fdd522;
   color: #1a1a1a;
+  text-decoration-line: none;
   transition-duration: 0s;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_side-navigation #show-side-navigation:focus ~ .ds_side-navigation__expand {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_side-navigation #show-side-navigation:focus ~ .ds_side-navigation__expand {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
 }
 .ds_side-navigation #show-side-navigation:checked ~ .ds_side-navigation__expand .ds_side-navigation__expand-indicator {
   top: 23px;
@@ -7322,6 +7619,10 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   display: none;
   list-style-type: none;
   margin: 8px 16px;
+  overflow: hidden;
+}
+.ds_side-navigation__list:focus-within {
+  overflow: visible;
 }
 .ds_side-navigation__list .ds_side-navigation__list {
   margin: 0 0 0 16px;
@@ -7335,33 +7636,20 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 .ds_side-navigation__link {
   display: block;
-  outline: 0;
   position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
+  text-decoration-line: none;
   margin-bottom: 2px;
   padding: 12px 40px 10px 16px;
-  position: relative;
-  text-decoration: none;
-}
-@media screen and (forced-colors: active) {
-  .ds_side-navigation__link:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
-  }
-  .ds_side-navigation__link:is(:enabled, :link, summary):focus, .ds_side-navigation__link:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
 }
 .ds_side-navigation__link:focus {
-  background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
-  color: #1a1a1a;
-  transition-duration: 0s;
-  outline: 0;
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_side-navigation__link:hover:not(:focus) {
   background-color: #d9eeff;
+  color: #00437d;
 }
 .ds_side-navigation__link:not([href]) {
   pointer-events: none;
@@ -7370,7 +7658,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   position: relative;
 }
 .ds_side-navigation__link:hover::before, .ds_side-navigation__link.ds_current::before {
-  border-left: 2px solid #0065bd;
+  border-left: 0.125rem solid #0065bd;
   bottom: 0;
   content: "";
   position: absolute;
@@ -7378,7 +7666,6 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   top: 0;
 }
 .ds_side-navigation__link:focus {
-  box-shadow: 0 0.16em #1a1a1a;
   z-index: 2;
 }
 .ds_side-navigation__link:focus::before {
@@ -7394,47 +7681,10 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   pointer-events: none;
   background-color: #ebebeb;
 }
-.ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__link {
-  padding-left: 24px;
-}
-.ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__link::before {
-  border-left: 4px solid #b3b3b3;
-  bottom: 12px;
-  content: "";
-  left: 12px;
-  opacity: 0.26;
-  position: absolute;
-  right: 100%;
-  top: 12px;
-}
-.ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__link:hover::before, .ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__link.ds_current::before {
-  border-color: #0065bd;
-  opacity: 1;
-}
-.ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__list .ds_side-navigation__link:focus::before {
-  border-color: #1a1a1a;
-  opacity: 1;
-}
 
 @media (max-width: 767px) {
-  .js-initialised.ds_side-navigation .ds_side-navigation__list {
-    display: block;
-  }
-  .js-initialised.ds_side-navigation > .ds_side-navigation__list {
-    margin: 0 15px;
-    max-height: var(--ds-side-nav-max-height);
-    overflow: hidden;
-  }
-}
-@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
-  .js-initialised.ds_side-navigation > .ds_side-navigation__list {
-    transition: max-height 0.2s, padding 0.2s;
-  }
-}
-@media (max-width: 767px) {
-  .js-initialised.ds_side-navigation #show-side-navigation:checked ~ .ds_side-navigation__list {
-    padding-bottom: 8px;
-    padding-top: 8px;
+  .js-initialised #show-side-navigation {
+    display: none;
   }
 }
 @media (min-width: 768px) {
@@ -7448,7 +7698,6 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   .ds_side-navigation__list {
     display: block !important;
     margin: 0;
-    max-height: none !important;
   }
   .ds_side-navigation #show-side-navigation {
     display: none;
@@ -7547,7 +7796,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     background-color: currentColor;
     bottom: -5px;
     content: "";
-    height: 0.16em;
+    height: round(0.16em, 1px);
     left: 50%;
     opacity: 0;
     position: absolute;
@@ -7558,6 +7807,9 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     left: 0;
     opacity: 1;
     right: 0;
+  }
+  .ds_site-navigation .ds_site-navigation__link:focus::after {
+    content: none;
   }
   .ds_site-navigation .ds_site-navigation__link::after {
     bottom: 0;
@@ -7573,12 +7825,10 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     right: 0;
   }
   .ds_site-navigation a.ds_site-navigation__link:focus {
-    box-shadow: 0 0.16em #1a1a1a;
+    box-shadow: inset 0 -0.16em #1a1a1a;
+    box-shadow: inset 0 round(-0.16em, 1px) #1a1a1a;
+    filter: none;
     outline: none;
-    padding-bottom: 5px;
-  }
-  .ds_site-navigation a.ds_site-navigation__link:focus::after {
-    content: none;
   }
   .ds_site-navigation a.ds_site-navigation__link:hover:not(:focus) {
     background-color: #d9eeff;
@@ -7588,7 +7838,6 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     BRANDING
 \*------------------------------------*/
 .ds_site-branding {
-  overflow: hidden;
   padding: 12px 0;
   position: relative;
 }
@@ -7617,7 +7866,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   background-color: currentColor;
   bottom: -5px;
   content: "";
-  height: 0.16em;
+  height: round(0.16em, 1px);
   left: 50%;
   opacity: 0;
   position: absolute;
@@ -7628,6 +7877,9 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   left: 0;
   opacity: 1;
   right: 0;
+}
+.ds_site-branding__link:focus::after {
+  content: none;
 }
 .ds_site-branding__title {
   font-weight: 300;
@@ -7713,7 +7965,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   background-color: currentColor;
   bottom: -5px;
   content: "";
-  height: 0.16em;
+  height: round(0.16em, 1px);
   left: 50%;
   opacity: 0;
   position: absolute;
@@ -7724,6 +7976,9 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   left: 0;
   opacity: 1;
   right: 0;
+}
+.ds_site-footer__copyright-logo:focus::after {
+  content: none;
 }
 .ds_site-footer__copyright-logo img {
   width: 100%;
@@ -7754,7 +8009,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   background-color: currentColor;
   bottom: -5px;
   content: "";
-  height: 0.16em;
+  height: round(0.16em, 1px);
   left: 50%;
   opacity: 0;
   position: absolute;
@@ -7765,6 +8020,9 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   left: 0;
   opacity: 1;
   right: 0;
+}
+.ds_site-footer__org-link:focus::after {
+  content: none;
 }
 .ds_site-footer .ds_site-footer__org-link,
 .ds_site-footer .ds_site-footer__copyright-logo {
@@ -7877,11 +8135,14 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   margin: 0;
 }
 .ds_site-header__control {
+  color: #0065bd;
+  outline: 0px solid transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
   display: block;
-  outline: 0;
   position: relative;
-  transition: background-color 0.2s, outline-color 0.2s;
-  z-index: 1;
+  text-decoration-line: none;
   color: inherit;
   cursor: pointer;
   font-size: 1rem;
@@ -7893,22 +8154,67 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 @media screen and (forced-colors: active) {
   .ds_site-header__control:is(:enabled, :link, summary) {
-    color: LinkText !important;
+    color: linkText !important;
+  }
+  .ds_site-header__control:is(:enabled, :link, summary):not(:focus) {
     text-decoration-line: underline !important;
   }
-  .ds_site-header__control:is(:enabled, :link, summary):focus, .ds_site-header__control:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
+}
+.ds_site-header__control:hover {
+  color: #00437d;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 0.16em;
+  text-decoration-thickness: round(0.16em, 1px);
+  transition-duration: 0.2s;
 }
 .ds_site-header__control:focus {
   background-color: #fdd522;
-  box-shadow: inset 0 -0.16em #1a1a1a;
   color: #1a1a1a;
+  text-decoration-line: none;
   transition-duration: 0s;
-  outline: 0;
+  outline: 0.125rem solid #fdd522;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  box-shadow: 0 0.285em 0 currentColor;
+}
+@supports (filter: drop-shadow(0 0 0 currentColor)) {
+  .ds_site-header__control:focus {
+    box-shadow: none;
+    filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+  }
+}
+@media screen and (forced-colors: active) {
+  .ds_site-header__control:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_site-header__control > svg {
+  fill: currentColor;
+}
+.ds_site-header__control:focus {
+  box-shadow: inset 0 -0.16em 0 #1a1a1a;
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
 }
 .ds_site-header__control:hover:not(:focus) {
   background-color: #d9eeff;
+  color: #00437d;
+}
+@media screen and (forced-colors: active) {
+  .ds_site-header__control:is(:enabled, :link) {
+    outline: 0.125rem solid transparent !important;
+    outline-offset: -0.125rem !important;
+    transition-duration: 0s !important;
+  }
+  .ds_site-header__control:is(:enabled, :link):hover {
+    outline-color: highlight !important;
+  }
+  .ds_site-header__control:is(:enabled, :link):focus, .ds_site-header__control:is(:enabled, :link):active, .ds_site-header__control:is(:enabled, :link):focus-within {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
+  }
 }
 .ds_site-header__control--active {
   background-color: #f8f8f8;
@@ -8809,11 +9115,14 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 @media (max-width: 767px) {
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle {
+    color: #0065bd;
+    outline: 0px solid transparent;
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+    transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
     display: block;
-    outline: 0;
     position: relative;
-    transition: background-color 0.2s, outline-color 0.2s;
-    z-index: 1;
+    text-decoration-line: none;
     background-color: #ffffff;
     border: 2px solid #ebebeb;
     color: #0065bd;
@@ -8827,24 +9136,73 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 @media screen and (max-width: 767px) and (forced-colors: active) {
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
+    color: linkText !important;
   }
-  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link, summary):focus, .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link, summary):not(:focus) {
+    text-decoration-line: underline !important;
   }
 }
 @media (max-width: 767px) {
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:hover {
+    color: #00437d;
+    text-underline-offset: 0.16em;
+    text-decoration-thickness: 0.16em;
+    text-decoration-thickness: round(0.16em, 1px);
+    transition-duration: 0.2s;
+  }
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:focus {
     background-color: #fdd522;
-    box-shadow: inset 0 -0.16em #1a1a1a;
     color: #1a1a1a;
+    text-decoration-line: none;
     transition-duration: 0s;
-    outline: 0;
+    outline: 0.125rem solid #fdd522;
+    outline: round(0.125em, 1px) solid #fdd522;
+    outline-offset: 0;
+    box-shadow: 0 0.285em 0 currentColor;
+  }
+  @supports (filter: drop-shadow(0 0 0 currentColor)) {
+    .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:focus {
+      box-shadow: none;
+      filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+    }
+  }
+}
+@media screen and (max-width: 767px) and (forced-colors: active) {
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+@media (max-width: 767px) {
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle > svg {
+    fill: currentColor;
+  }
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:focus {
+    box-shadow: inset 0 -0.16em 0 #1a1a1a;
+    box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+    filter: none;
+    outline-width: 0;
   }
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:hover:not(:focus) {
     background-color: #d9eeff;
+    color: #00437d;
   }
+}
+@media screen and (max-width: 767px) and (forced-colors: active) {
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link) {
+    outline: 0.125rem solid transparent !important;
+    outline-offset: -0.125rem !important;
+    transition-duration: 0s !important;
+  }
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link):hover {
+    outline-color: highlight !important;
+  }
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link):focus, .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link):active, .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:is(:enabled, :link):focus-within {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
+  }
+}
+@media (max-width: 767px) {
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__toggle:hover:not(:focus) {
     color: #00437d;
   }
@@ -8921,34 +9279,70 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     display: none;
   }
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link {
+    color: #0065bd;
+    outline: 0px solid transparent;
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+    transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
     display: block;
-    outline: 0;
     position: relative;
-    transition: background-color 0.2s, outline-color 0.2s;
-    z-index: 1;
+    text-decoration-line: none;
     padding: 11px 16px;
     text-decoration: none;
   }
 }
 @media screen and (max-width: 767px) and (forced-colors: active) {
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
+    color: linkText !important;
   }
-  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:is(:enabled, :link, summary):focus, .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:is(:enabled, :link, summary):not(:focus) {
+    text-decoration-line: underline !important;
   }
 }
 @media (max-width: 767px) {
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:hover {
+    color: #00437d;
+    text-underline-offset: 0.16em;
+    text-decoration-thickness: 0.16em;
+    text-decoration-thickness: round(0.16em, 1px);
+    transition-duration: 0.2s;
+  }
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:focus {
     background-color: #fdd522;
-    box-shadow: inset 0 -0.16em #1a1a1a;
     color: #1a1a1a;
+    text-decoration-line: none;
     transition-duration: 0s;
-    outline: 0;
+    outline: 0.125rem solid #fdd522;
+    outline: round(0.125em, 1px) solid #fdd522;
+    outline-offset: 0;
+    box-shadow: 0 0.285em 0 currentColor;
+  }
+  @supports (filter: drop-shadow(0 0 0 currentColor)) {
+    .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:focus {
+      box-shadow: none;
+      filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+    }
+  }
+}
+@media screen and (max-width: 767px) and (forced-colors: active) {
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:focus {
+    outline: 0.125em solid highlight !important;
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+@media (max-width: 767px) {
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link > svg {
+    fill: currentColor;
+  }
+  .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:focus {
+    box-shadow: inset 0 -0.16em 0 #1a1a1a;
+    box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+    filter: none;
+    outline-width: 0;
   }
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab-link:hover:not(:focus) {
     background-color: #d9eeff;
+    color: #00437d;
   }
   .ds_tabs.ds_tabs--links .ds_tabs__navigation.js-initialised .ds_tabs__tab.ds_current {
     font-weight: 400;
@@ -8989,40 +9383,19 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   }
   .ds_tabs.js-initialised .ds_tabs__tab-link, .ds_tabs.ds_tabs--links .ds_tabs__tab-link {
     display: block;
-    outline: 0;
     position: relative;
-    transition: background-color 0.2s, outline-color 0.2s;
-    z-index: 1;
     color: #1a1a1a;
-    display: inline-block;
     padding: 12px 16px;
   }
-}
-@media screen and (min-width: 768px) and (forced-colors: active) {
-  .ds_tabs.js-initialised .ds_tabs__tab-link:is(:enabled, :link, summary), .ds_tabs.ds_tabs--links .ds_tabs__tab-link:is(:enabled, :link, summary) {
-    color: LinkText !important;
-    text-decoration-line: underline !important;
-  }
-  .ds_tabs.js-initialised .ds_tabs__tab-link:is(:enabled, :link, summary):focus, .ds_tabs.js-initialised .ds_tabs__tab-link:is(:enabled, :link, summary):active, .ds_tabs.ds_tabs--links .ds_tabs__tab-link:is(:enabled, :link, summary):focus, .ds_tabs.ds_tabs--links .ds_tabs__tab-link:is(:enabled, :link, summary):active {
-    outline: 2px solid highlight !important;
-  }
-}
-@media (min-width: 768px) {
   .ds_tabs.js-initialised .ds_tabs__tab-link:focus, .ds_tabs.ds_tabs--links .ds_tabs__tab-link:focus {
-    background-color: #fdd522;
-    box-shadow: inset 0 -0.16em #1a1a1a;
-    color: #1a1a1a;
-    transition-duration: 0s;
-    outline: 0;
+    box-shadow: inset 0 -0.16em 0 #1a1a1a;
+    box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+    filter: none;
+    outline-width: 0;
   }
   .ds_tabs.js-initialised .ds_tabs__tab-link:hover:not(:focus), .ds_tabs.ds_tabs--links .ds_tabs__tab-link:hover:not(:focus) {
     background-color: #d9eeff;
-  }
-  .ds_tabs.js-initialised .ds_tabs__tab-link:hover, .ds_tabs.ds_tabs--links .ds_tabs__tab-link:hover {
     color: #00437d;
-  }
-  .ds_tabs.js-initialised .ds_tabs__tab-link:focus, .ds_tabs.ds_tabs--links .ds_tabs__tab-link:focus {
-    color: #1a1a1a;
   }
   .ds_tabs.js-initialised .ds_tabs__tab, .ds_tabs.ds_tabs--links .ds_tabs__tab {
     background-color: #f8f8f8;
@@ -9047,7 +9420,6 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   }
   .ds_tabs.js-initialised .ds_tabs__tab.ds_current .ds_tabs__tab-link:focus, .ds_tabs.ds_tabs--links .ds_tabs__tab.ds_current .ds_tabs__tab-link:focus {
     border: 0;
-    color: #1a1a1a;
     padding: 12px 16px calc(12px + 2px);
   }
   .ds_tabs.js-initialised .ds_tabs__tab:focus-within, .ds_tabs.ds_tabs--links .ds_tabs__tab:focus-within {
@@ -9191,9 +9563,9 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   outline-color: rgba(149, 24, 4, 0.8);
 }
 .ds_tag--orange {
-  background-color: #fde7db;
-  color: #b8440a;
-  outline-color: rgba(184, 68, 10, 0.8);
+  background-color: #fde7da;
+  color: #8f3708;
+  outline-color: rgba(143, 55, 8, 0.8);
 }
 .ds_tag--yellow {
   background-color: #feec98;
@@ -9287,8 +9659,8 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 @media screen and (forced-colors: active) {
   .ds_task-list__task-status {
-    outline: 2px solid currentColor !important;
-    outline-offset: -2px !important;
+    outline: 0.125em solid canvastext !important;
+    outline: round(0.125em, 1px) solid canvastext !important;
   }
 }
 .ds_task-list__task-status--complete {
@@ -9417,15 +9789,6 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   }
 }
 
-@media screen and (forced-colors: active) {
-  /*
-   * [1] This is a little hacky but it does serve to differentiate the "complete" status.
-   *     And happens to be green by default.
-   */
-  .ds_task-list__task-status--complete {
-    color: GrayText;
-  }
-}
 /*------------------------------------*\
     #WARNING TEXT
 \*------------------------------------*/
@@ -9483,8 +9846,8 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 @media screen and (forced-colors: active) {
   .ds_warning-text__icon {
-    outline: 2px solid currentColor !important;
-    outline-offset: -2px !important;
+    outline: 0.125em solid canvastext !important;
+    outline: round(0.125em, 1px) solid canvastext !important;
   }
 }
 .ds_warning-text__icon::before {
