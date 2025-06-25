@@ -2,15 +2,10 @@
     HIDE THIS PAGE
 \*------------------------------------*/
 
-@include ds_media-query(medium-down) {
-    .ds_has-hide-page .ds_page,
-    .ds_page:has(.ds_hide-page) {
-        margin-top: 56px;
-    }
-}
+$hide-this-page-background-color: $ds_colour__red;
+$hide-this-page-background-color--hover: darken($ds_colour__red, 15%);
 
 .ds_hide-page {
-    background-color: $ds_colour__background--tertiary;
     left: 0;
     position: fixed;
     right: 0;
@@ -19,22 +14,67 @@
     z-index: 1000;
 
     &__button {
-        background-color: $ds_colour__red;
+        background-color: $hide-this-page-background-color;
+        position: static;
         margin: 0;
         width: 100%;
 
         &:hover:not(:focus) {
-            background-color: darken($ds_colour__red, 15%);
+            background-color: $hide-this-page-background-color--hover;
+
+            & + .ds_hide-page__text {
+                border-color: $hide-this-page-background-color--hover;
+            }
+        }
+
+        &:focus {
+            filter: none;
+
+            & + .ds_hide-page__text {
+                border-color: $ds_colour__link--focus__shadow;
+                position: relative;
+            }
+        }
+
+        &::before {
+            bottom: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
         }
     }
 
     &__text {
         @include ds_tiny-size;
+
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 0.125rem solid $hide-this-page-background-color;
+        border-top-width: 0.1875rem;
         margin-bottom: 0;
+        margin-top: -0.1875rem;
+        padding: 0.5rem 0.5rem 0.375rem;
     }
 
     .js-enabled-text {
         display: none;
+    }
+}
+
+@include ds_media-query(medium-down) {
+    .ds_has-hide-page .ds_page,
+    .ds_page:has(.ds_hide-page) {
+        margin-top: 2.5rem;
+    }
+
+    .ds_hide-page__button {
+        // override items set in ds_button
+        height: 2.5rem;
+        min-height: 2.5rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     }
 }
 
@@ -44,25 +84,18 @@
     }
 
     .ds_has-hide-page .ds_page {
-        margin-top: 80px;
+        margin-top: 4.5rem;
     }
 }
 
 @include ds_media-query(medium) {
     .ds_hide-page {
         @include ds_block-margins;
-        background-color: rgba(255, 255, 255, 0.9);
         left: auto;
-        outline: 1px solid #ebebeb;
-        outline-offset: -1px;
 
         @supports (position: sticky) and (display: grid) {
             bottom: 8px;
             position: sticky;
-        }
-
-        &__text {
-            margin: 8px 0;
         }
     }
 
