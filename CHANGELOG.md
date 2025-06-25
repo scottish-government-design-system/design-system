@@ -6,6 +6,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 `Removed` and `Security`.
 
 ---
+
+(upcoming)
+### Deprecated
+- Category header deprecated in favour of feature header
+
+## [3.0.2]
+### Fixed
+- All icons use a 0 0 24 24 viewbox (fixed: cancel, double chevron left, double chevron right)
+
 ## [3.0.1]
 ### Fixed
 - Reduce space on small sized variant between radio/checkbox and their label
