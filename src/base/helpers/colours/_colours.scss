@@ -109,7 +109,7 @@
         $adjustedForeground: adjustForContrast($foreground, $background, $ratio);
         @debug 'Adjusting link colour #{$foreground} to #{$adjustedForeground} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
         a, .ds_link {
-            &:not(:focus):not(:hover) {
+            &:not(:focus):not(:hover):not(.ds_button) {
                 color: $adjustedForeground;
             }
         }
