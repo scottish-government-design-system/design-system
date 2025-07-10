@@ -5,15 +5,16 @@
 /// Customise colours
 /// [1] Background colour for feature header - defaults to brand colour
 /// [2] Set to false if you want to define foreground and button hover colours
-/// [3] Set foreground colour if [2] is set to true
-/// [4] Set button hover background colour if [2] is set to true
+/// [3] Set foreground colour if [2] is set to false
+/// [4] Set button hover background colour if [2] is set to false
 $feature-header-background: $ds_colour__brand !default; /// [1]
 $feature-header-compute-colours: true !default; /// [2]
 $feature-header-foreground: $ds_colour__white !default; /// [3]
-$feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; /// [4]
+$feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; /// [4]
 
 /// Get the background colour for a theme's button
 /// If the background is very close to white or black then the calculated background may not be visible and user defined colours are recommended instead
+/// @param {color} $foreground - the foreground colour
 /// @param {color} $background - the background colour for comparison
 /// @return {color} contrasting background colour
 /// [1] 0.83: the luminance of ds_colour__blue--light
@@ -21,20 +22,20 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
 @function getThemeButtonBackground($foreground, $background) {
     // Check contrast with white and black to decide whether to darken or lighten background
     @if getContrastRatio($foreground, $ds_colour__white) > getContrastRatio($foreground, $ds_colour__black) {
-        @return adjustForContrast(adjustLuminance($foreground, 0.83), $foreground, 4.5); /// [1]
+        @return adjustForContrast(adjustLuminance($foreground, 0.83), $foreground, 4.5, true); /// [1]
     } @else {
         // If foreground is white then check if background should be lightened instead of darkened
         @if $foreground == white and darken($background, 12.5%) == black {
-            @return adjustForContrast(lighten($background, 12.5%), $foreground, 4.5); /// [2]
+            @return adjustForContrast(lighten($background, 12.5%), $foreground, 4.5, true); /// [2]
         } @else {
-            @return adjustForContrast(darken($background, 12.5%), $foreground, 4.5); /// [2]
+            @return adjustForContrast(darken($background, 12.5%), $foreground, 4.5, true); /// [2]
         }
     }
 }
 
 /// Style definitions dictated by theme
 /// @param {color} $foreground - the foreground colour
-/// @param {color} $background - the background colour
+/// @param {color} $buttonHover - the background colour of button on hover
 /// @output Theme colour scheme which gives best contrast
 @mixin themeDefinitions($foreground, $buttonHover) {
     color: $foreground;
@@ -43,9 +44,14 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
         border-color: $foreground;
     }
 
+    // Link theming
     a:not(:hover):not(:focus):not(.ds_button) {
         color: currentColor;
         text-decoration: underline;
+    }
+
+    a:hover:not(:focus):not(.ds_button){
+        color: currentColor;
     }
 
     // Button theming
@@ -70,13 +76,15 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
 /// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
 /// @output Theme colour scheme which gives best contrast
 @mixin checkAndSetThemeColour($foreground, $background, $description: '', $ratio: 4.5) {
-    @if getContrastRatio($foreground, $background) < 4.5 {
+    @if getContrastRatio($foreground, $background) < $ratio {
         // If not enough contrast try white
-        @if getContrastRatio($ds_colour__white, $background) > 4.5 {
+        @if getContrastRatio($ds_colour__white, $background) > $ratio {
+            @debug 'Adjusting text colour #{$foreground} to #{$ds_colour__white} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
             @include themeDefinitions($ds_colour__white, getThemeButtonBackground($ds_colour__white, $background));
         } @else {
-            // Otherwise adjust colour
+            // Otherwise adjust foreground colours
             $adjustedForeground: adjustForContrast($foreground, $background, $ratio);
+            @debug 'Adjusting text colour #{$foreground} to #{$adjustedForeground} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
             @include themeDefinitions($adjustedForeground, getThemeButtonBackground($adjustedForeground, $background));
         }
     } @else {
@@ -98,7 +106,7 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
 
         @if $feature-header-compute-colours {
             // Adjust text, link and button for contrast (either light or dark theme)
-            @include checkAndSetThemeColour($ds_colour__text, $feature-header-background, 'feature header');
+            @include checkAndSetThemeColour($ds_colour__text, $feature-header-background, 'feature header custom');
         } @else {
             // Use user defined colours
             @include themeDefinitions($feature-header-foreground, $feature-header-button-hover-background);
@@ -107,10 +115,12 @@ $feature-header-button-hover-background: rgba($ds_colour__white, 20%) !default; 
 
     &--background-secondary {
         background-color: $ds_colour__background--secondary;
+        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'feature header');
     }
 
     &--background-tertiary {
         background-color: $ds_colour__background--tertiary;
+        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'feature header');
     }
 
     &__primary {
