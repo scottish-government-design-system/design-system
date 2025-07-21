@@ -11,7 +11,6 @@ class SideNavigation {
     init() {
         if (this.sideNavigation && !this.sideNavigation.classList.contains('js-initialised')) {
             this.setupSideNavigation();
-            this.sideNavigation.classList.add('js-initialised');
         }
     }
 
@@ -34,6 +33,8 @@ class SideNavigation {
         navButton.setAttribute('aria-controls', this.navList.id);
 
         navLabel.classList.add('fully-hidden');
+        navControl.classList.add('fully-hidden');
+        navControl.classList.remove('visually-hidden');
 
         this.sideNavigation.insertBefore(navButton, this.navList);
 
@@ -54,8 +55,9 @@ class SideNavigation {
                 navButton.classList.remove('ds_side-navigation__expand--shadow');
             }
         });
-
+            
         this.sideNavigation.classList.add('js-initialised');
+
     }
 }
 
