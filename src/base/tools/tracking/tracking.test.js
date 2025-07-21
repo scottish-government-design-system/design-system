@@ -139,6 +139,7 @@ describe('tracking', () => {
                 Tracking.add.checkboxes();
 
                 expect(checkbox.getAttribute('data-form')).toEqual('checkbox-education');
+                expect(checkbox.getAttribute('data-value')).toEqual('education');
             });
 
             it('should NOT add a generated data attribute on checkboxes with attributes already set', () => {
@@ -146,6 +147,7 @@ describe('tracking', () => {
                 Tracking.add.checkboxes();
 
                 expect(checkbox.getAttribute('data-form')).toEqual('checkbox-foo');
+                expect(checkbox.getAttribute('data-value')).toEqual('housing-foo');
             });
 
             it('should mark prechecked checkboxes as checked in the data attribute', () => {
@@ -207,6 +209,7 @@ describe('tracking', () => {
             Tracking.add.radios();
 
             expect(radio.getAttribute('data-form')).toEqual('radio-feedback-type-useful-yes');
+            expect(radio.getAttribute('data-value')).toEqual('useful-yes');
         });
 
         it('should NOT add a generated data attribute on radio buttons with attributes already set', () => {
@@ -214,6 +217,7 @@ describe('tracking', () => {
             Tracking.add.radios();
 
             expect(radio.getAttribute('data-form')).toEqual('radio-foo');
+            expect(radio.getAttribute('data-value')).toEqual('useful-no-foo');
         });
     });
 
@@ -400,6 +404,17 @@ describe('tracking', () => {
                 Tracking.add.accordions();
 
                 expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-open-all');
+            });
+
+            it('should only set generated data attribute on links without attributes already set', () => {
+                const withoutAttribute = testObj.accordionElement.querySelector('[data-unit="without-attribute"]');
+                const withAttribute = testObj.accordionElement.querySelector('[data-unit="with-attribute"]');
+                Tracking.add.accordions();
+                Tracking.add.links();
+                expect(withoutAttribute.getAttribute('data-navigation')).toEqual('accordion-link');
+                expect(withoutAttribute.getAttribute('data-section')).toEqual('Healthcare for veterans');
+                expect(withAttribute.getAttribute('data-navigation')).toEqual('accordion-link-foo');
+                expect(withAttribute.getAttribute('data-section')).toEqual('section-foo');
             });
         });
 
@@ -832,6 +847,18 @@ describe('tracking', () => {
 
             summary.dispatchEvent(event);
             expect(summary.getAttribute('data-accordion')).toEqual('detail-open');
+        });
+
+        it('should only set generated data attribute on links without attributes already set', () => {
+            const details = testObj.scope.querySelector('details');
+            const withoutAttribute = details.querySelector('[data-unit="without-attribute"]');
+            const withAttribute = details.querySelector('[data-unit="with-attribute"]');
+            Tracking.add.details();
+            Tracking.add.links();
+            expect(withoutAttribute.getAttribute('data-navigation')).toEqual('details-link');
+            expect(withoutAttribute.getAttribute('data-section')).toEqual('System requirements');
+            expect(withAttribute.getAttribute('data-navigation')).toEqual('details-link-foo');
+            expect(withAttribute.getAttribute('data-section')).toEqual('section-foo');
         });
     });
 

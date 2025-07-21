@@ -99,9 +99,9 @@ const tracking = {
     },
 
     getNearestSectionHeader: function (element) {
-        const linkSectionExceptions = 'nav,.ds_metadata';
-        const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_accordion__button';
-        const linkSectionSpecialCases = '.ds_page-header,.ds_layout__header';
+        const linkSectionExceptions = 'nav,.ds_metadata,.ds_summary-card__header';
+        const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_details__summary';
+        const linkSectionSpecialCases = '.ds_page-header,.ds_layout__header,.ds_accordion-item__header';
 
         if (typeof element.closest === 'function' && element.closest(linkSectionExceptions)) {
             return false;
@@ -183,6 +183,13 @@ const tracking = {
                 if (!accordion.classList.contains('js-initialised')) {
                     return;
                 }
+
+                const links = [].slice.call(accordion.querySelectorAll('a:not(.ds_button)'));
+                links.forEach(link => {
+                    if (!link.getAttribute('data-navigation')) {
+                        link.setAttribute('data-navigation', `accordion-link`);
+                    }
+                });
 
                 const openAll = accordion.querySelector('.js-open-all');
                 const items = [].slice.call(accordion.querySelectorAll('.ds_accordion-item'));
@@ -356,6 +363,11 @@ const tracking = {
 
                 checkbox.setAttribute('data-form', attributeValue);
 
+
+                if (checkbox.id && !(checkbox.getAttribute('data-value'))) {
+                    checkbox.setAttribute('data-value', `${checkbox.id}`);
+                }
+
                 // events
                 const label = scope.querySelector(`[for=${checkbox.id}]`);
                 if (label && !checkbox.classList.contains('js-has-tracking-event')) {
@@ -419,6 +431,13 @@ const tracking = {
 
                 summary.addEventListener('click', () => {
                     summary.setAttribute('data-accordion', `detail-${detailsElement.open ? 'open' : 'close'}`);
+                });
+
+                const links = [].slice.call(detailsElement.querySelectorAll('a:not(.ds_button)'));
+                links.forEach(link => {
+                    if (!link.getAttribute('data-navigation')) {
+                        link.setAttribute('data-navigation', `details-link`);
+                    }
                 });
             });
         },
@@ -512,18 +531,21 @@ const tracking = {
 
                 const links = [].slice.call(insetText.querySelectorAll('.ds_inset-text__text a:not(.ds_button)'));
                 links.forEach(link => {
-                    link.setAttribute('data-navigation', 'inset-link');
+                    if (!link.getAttribute('data-navigation')) {
+                        link.setAttribute('data-navigation', 'inset-link');
+                    }
                 });
             });
         },
 
         links: function () {
             const links = [].slice.call(document.querySelectorAll('a'));
-
             links.forEach(link => {
                 const nearestHeader = tracking.getNearestSectionHeader(link);
                 if (nearestHeader) {
-                    link.setAttribute('data-section', nearestHeader.innerText);
+                    if (!link.getAttribute('data-section')) {
+                        link.setAttribute('data-section', nearestHeader.innerText);
+                    }
                 }
             });
         },
@@ -613,6 +635,10 @@ const tracking = {
             radios.forEach(radio => {
                 if (!radio.getAttribute('data-form') && radio.name && radio.id) {
                     radio.setAttribute('data-form', `radio-${radio.name}-${radio.id}`);
+                }
+
+                if (radio.id && !(radio.getAttribute('data-value'))) {
+                    radio.setAttribute('data-value', `${radio.id}`);
                 }
             });
         },
