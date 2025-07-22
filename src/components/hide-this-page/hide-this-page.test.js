@@ -85,7 +85,7 @@ describe('hide page', () => {
 
             testObj.hidePage.doHidePage({ preventDefault: () => { } });
 
-            expect(testObj.hidePage.window.location.replace).toHaveBeenCalledWith('https://www.google.co.uk');
+            expect(testObj.hidePage.window.location.replace).toHaveBeenCalledWith('https://www.google.com');
         });
 
         // note: this might not be testable with this test tool. disabling spec.
