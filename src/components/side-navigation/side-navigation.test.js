@@ -61,6 +61,16 @@ describe('side navigation', () => {
 
             expect(sideNavigationExpand.classList.contains('ds_side-navigation__expand--shadow')).toEqual(true);
         });
+
+        it('should fully hide the toggle checkbox on init', () => {
+            const toggle = testObj.sideNavigationElement.querySelector('.js-toggle-side-navigation');
+            expect(toggle.classList.contains('fully-hidden')).toBeFalse();
+            expect(toggle.classList.contains('visually-hidden')).toBeTrue();
+
+            testObj.sideNavigationModule.init();
+            expect(toggle.classList.contains('fully-hidden')).toBeTrue();
+            expect(toggle.classList.contains('visually-hidden')).toBeFalse();
+        });
     });
 
     it('should assign an ID to the navigation list if one wasn\'t already in the markup', () => {
