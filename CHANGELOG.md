@@ -7,9 +7,37 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
-(upcoming)
+## [3.1.0]
+### Added
+- Tracking script attributes for links within details and accordions
+- Tracking script attributes for checkbox and radio values
+- File download icons for open document formats
+- File download icons included in /dist folder
+- Option to include search input within the search filters pattern rather than just above it
+- Link items can now include metadata and images
+- Lists of link items can have bottom borders removed using modifier
+### Changed
+- Site navigation style changes to hover and current states at fixed width sizes
+- Select dropdown arrow no longer styled like a primary button
+- Hide this page default target points to google.com rather than google.co.uk
+- Hide this page button style changes
+- Disabled button style changes
+- Focus state style improvements to a number of components
+- Tracking script no longer needs the statistic cookie category to be accepted
+- Tracking script has amends to link section attribute
+- 'Orange' colour changed for improved contrast with background colours
+- 'Dark green' colour changed to be more suitable when used in a positive success situation
+- File download document icons coloured to reflect common file type colours
 ### Deprecated
 - Category header deprecated in favour of feature header
+- Cancel button deprecated in favour of secondary button
+### Fixed
+- Accordion accessibility for screen readers improved with aria attributes
+- Character count floating point error fixed for threshold calculations
+- Side navigation items no longer tabbable when menu closed at mobile
+- Side navigation menu toggle can now be accessed via keyboard when JavaScript is not enabled
+- Feature header cover image option now works if top alignment is also being used
+- Links within feature header have correct hover style when placed on a dark background colour
 
 ## [3.0.2]
 ### Fixed
