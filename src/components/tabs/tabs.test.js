@@ -110,6 +110,7 @@ describe('tabs', () => {
             testObj.tabsModule.init();
 
             const tabItems = testObj.tabsElement.querySelectorAll('.ds_tabs__tab');
+            const tabContents = testObj.tabsElement.querySelectorAll('.ds_tabs__content');
 
             for (let i = 0, il = tabItems.length; i < il; i++) {
                 expect(tabItems[i].getAttribute('role')).toEqual('presentation');
@@ -125,9 +126,12 @@ describe('tabs', () => {
                     expect(tabLink.getAttribute('aria-selected')).toEqual('false');
                     expect(tabLink.getAttribute('tabindex')).toEqual('-1');
                 }
-
             }
 
+            for (let i = 0, il = tabContents.length; i < il; i++) {
+                expect(tabContents[i].getAttribute('role')).toEqual('tabpanel');
+                expect(tabContents[i].getAttribute('tabindex')).toEqual('0');
+            }
         });
 
         it ('should have attributes removed on reset', () => {
@@ -135,6 +139,7 @@ describe('tabs', () => {
             testObj.tabsModule.reset();
 
             const tabItems = testObj.tabsElement.querySelectorAll('.ds_tabs__tab');
+            const tabContents = testObj.tabsElement.querySelectorAll('.ds_tabs__content');
 
             for (let i = 0, il = tabItems.length; i < il; i++) {
                 expect(tabItems[i].hasAttribute('role')).toBeFalsy();
@@ -144,14 +149,17 @@ describe('tabs', () => {
                 expect(tabLink.hasAttribute('aria-controls')).toBeFalsy();
                 expect(tabLink.hasAttribute('aria-selected')).toBeFalsy();
                 expect(tabLink.hasAttribute('tabindex')).toBeFalsy();
+            }
 
+            for (let i = 0, il = tabContents.length; i < il; i++) {
+                expect(tabContents[i].hasAttribute('role')).toBeFalsy();
+                expect(tabContents[i].hasAttribute('tabindex')).toBeFalsy();
             }
         });
 
         it ('should show specified tab on init if hash present', () => {
             window.location.hash = '#tab2';
             testObj.tabsModule.init();
-
             // Is initialised
             expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(true);
 
@@ -168,7 +176,7 @@ describe('tabs', () => {
             let currentTabItem = testObj.tabsElement.querySelector('.ds_current');
             expect(currentTabItem.querySelector('.ds_tabs__tab-link').getAttribute('href')).toBe('#tab1');
 
-            // Change hash
+            // // Change hash
             window.location.hash = '#tab2';
             const event = new Event('hashchange');
             window.dispatchEvent(event);
@@ -245,38 +253,20 @@ describe('tabs', () => {
             expect(currentTabLink.getAttribute('href')).toBe('#tab1');
         });
 
-        it ('should change to previous tab on up arrow key press', () => {
-            // Set second tab to be the selected one
-            window.location.hash = '#tab2';
-            testObj.tabsModule.init();
-
-            let currentTab = testObj.tabsElement.querySelector('.ds_current');
-            let currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
-            expect(currentTabLink.getAttribute('href')).toBe('#tab2');
-
-            // Press on up arrow key from second tab
-            const event = new KeyboardEvent( 'keydown' , {'keyCode':38} );
-            currentTabLink.dispatchEvent(event);
-
-            currentTab = testObj.tabsElement.querySelector('.ds_current');
-            currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
-            expect(currentTabLink.getAttribute('href')).toBe('#tab1');
-        });
-
-        it ('should remain on first tab on up arrow key press', () => {
+        it ('should go to last tab from first tab on left key press', () => {
             testObj.tabsModule.init();
 
             let currentTab = testObj.tabsElement.querySelector('.ds_current');
             let currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
             expect(currentTabLink.getAttribute('href')).toBe('#tab1');
 
-            // Press on up arrow key from second tab
-            const event = new KeyboardEvent( 'keydown' , {'keyCode':38} );
+            // Press on left arrow key from first tab
+            const event = new KeyboardEvent( 'keydown' , {'keyCode':37} );
             currentTabLink.dispatchEvent(event);
 
             currentTab = testObj.tabsElement.querySelector('.ds_current');
             currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
-            expect(currentTabLink.getAttribute('href')).toBe('#tab1');
+            expect(currentTabLink.getAttribute('href')).toBe('#tab4');
         });
 
         it ('should change to next tab on right arrow key press', () => {
@@ -295,24 +285,7 @@ describe('tabs', () => {
             expect(currentTabLink.getAttribute('href')).toBe('#tab2');
         });
 
-        it ('should change to next tab on down arrow key press', () => {
-            testObj.tabsModule.init();
-
-            let currentTab = testObj.tabsElement.querySelector('.ds_current');
-            let currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
-            expect(currentTabLink.getAttribute('href')).toBe('#tab1');
-
-            // Press on down arrow key from first tab
-            const event = new KeyboardEvent( 'keydown' , {'keyCode':40} );
-            currentTabLink.dispatchEvent(event);
-
-            currentTab = testObj.tabsElement.querySelector('.ds_current');
-            currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
-            expect(currentTabLink.getAttribute('href')).toBe('#tab2');
-        });
-
-        it ('should remain on last tab on down arrow key press', () => {
-            // Set last tab to be the selected one
+        it('should go to first tab from last tab on right key press', () => {
             window.location.hash = '#tab4';
             testObj.tabsModule.init();
 
@@ -320,13 +293,47 @@ describe('tabs', () => {
             let currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
             expect(currentTabLink.getAttribute('href')).toBe('#tab4');
 
-            // Press on down arrow key from first tab
-            const event = new KeyboardEvent( 'keydown' , {'keyCode':40} );
+            // Press on left arrow key from first tab
+            const event = new KeyboardEvent( 'keydown' , {'keyCode':39} );
+            currentTabLink.dispatchEvent(event);
+
+            currentTab = testObj.tabsElement.querySelector('.ds_current');
+            currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
+            expect(currentTabLink.getAttribute('href')).toBe('#tab1');
+        });
+
+        it ('should change to last tab on End key press', () => {
+            testObj.tabsModule.init();
+
+            let currentTab = testObj.tabsElement.querySelector('.ds_current');
+            let currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
+            expect(currentTabLink.getAttribute('href')).toBe('#tab1');
+
+            // Press on End key from first tab
+            const event = new KeyboardEvent( 'keydown' , {'keyCode':35} );
             currentTabLink.dispatchEvent(event);
 
             currentTab = testObj.tabsElement.querySelector('.ds_current');
             currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
             expect(currentTabLink.getAttribute('href')).toBe('#tab4');
+        });
+
+        it ('should change to first tab on Home key press', () => {
+            // Set second tab to be the selected one
+            window.location.hash = '#tab4';
+            testObj.tabsModule.init();
+
+            let currentTab = testObj.tabsElement.querySelector('.ds_current');
+            let currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
+            expect(currentTabLink.getAttribute('href')).toBe('#tab4');
+
+            // Press on End key from first tab
+            const event = new KeyboardEvent( 'keydown' , {'keyCode':36} );
+            currentTabLink.dispatchEvent(event);
+
+            currentTab = testObj.tabsElement.querySelector('.ds_current');
+            currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
+            expect(currentTabLink.getAttribute('href')).toBe('#tab1');
         });
 
         it ('should remain on same tab if key pressed is not an arrow key', () => {
@@ -361,8 +368,8 @@ describe('tabs', () => {
             let currentTabLink = currentTab.querySelector('.ds_tabs__tab-link');
             expect(currentTabLink.getAttribute('href')).toBe('#tab1');
 
-            // Press on down arrow key from first tab to change to second tab
-            const event = new KeyboardEvent( 'keydown' , {'keyCode':40} );
+            // Press on right arrow key from first tab to change to second tab
+            const event = new KeyboardEvent( 'keydown' , {'keyCode':39} );
             currentTabLink.dispatchEvent(event);
 
             currentTab = testObj.tabsElement.querySelector('.ds_current');
@@ -384,6 +391,36 @@ describe('tabs', () => {
             // Returns content for selected tab
             expect(currentTabContent.innerHTML).toContain('Tab 4 content');
 
+        });
+    });
+
+    describe('manual activation', () => {
+        beforeEach(() => {
+            testObj.tabsElement = document.querySelector('#tab');
+            testObj.tabsElement.classList.add('ds_tabs--manual');
+            testObj.tabsModule = new Tabs(testObj.tabsElement);
+        });
+
+        it('should not automatically switch tabs on press of left, right, home or end keys', () => {
+            window.location.hash = '#tab1';
+            testObj.tabsModule.init();
+            testObj.tabsModule.init();
+
+            spyOn(testObj.tabsModule, 'goToTab');
+
+            const currentTabLink = testObj.tabsElement.querySelector('.ds_current a');
+
+            // Press on tab key (9) from first tab
+            let event = new KeyboardEvent('keydown', { 'keyCode': 35 });
+            currentTabLink.dispatchEvent(event);
+            event = new KeyboardEvent('keydown', { 'keyCode': 36 });
+            currentTabLink.dispatchEvent(event);
+            event = new KeyboardEvent('keydown', { 'keyCode': 37 });
+            currentTabLink.dispatchEvent(event);
+            event = new KeyboardEvent( 'keydown' , {'keyCode':39} );
+            currentTabLink.dispatchEvent(event);
+
+            expect(testObj.tabsModule.goToTab).not.toHaveBeenCalled();
         });
     });
 });
