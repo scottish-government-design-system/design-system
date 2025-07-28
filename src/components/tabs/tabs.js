@@ -148,30 +148,34 @@ class Tabs {
         // Only set event listeners on initial setup
         if(!this.eventsEnabled){
             tabLink.addEventListener('click', event => {
-                event.preventDefault();
-                this.goToTab(tabHeader);
+                if (breakpointCheck('medium')) {
+                    event.preventDefault();
+                    this.goToTab(tabHeader);
+                }
             });
 
             tabLink.addEventListener('keydown', (event) => {
-                const tab = event.target.parentElement;
-                let tabNavKey = true;
+                if (breakpointCheck('medium')) {
+                    const tab = event.target.parentElement;
+                    let tabNavKey = true;
 
-                if (event.keyCode === this.keycodes.right) {
-                    this.navToTab(this.getNextTab(tab));
-                } else if (event.keyCode === this.keycodes.left) {
-                    this.navToTab(this.getPreviousTab(tab));
-                } else if (event.keyCode === this.keycodes.home) {
-                    this.navToTab(this.getFirstTab());
-                } else if (event.keyCode === this.keycodes.end) {
-                    this.navToTab(this.getLastTab());
-                } else if (event.keyCode === this.keycodes.space) {
-                    this.goToTab(tab, true)
-                } else {
-                    tabNavKey = false;
-                }
+                    if (event.keyCode === this.keycodes.right) {
+                        this.navToTab(this.getNextTab(tab));
+                    } else if (event.keyCode === this.keycodes.left) {
+                        this.navToTab(this.getPreviousTab(tab));
+                    } else if (event.keyCode === this.keycodes.home) {
+                        this.navToTab(this.getFirstTab());
+                    } else if (event.keyCode === this.keycodes.end) {
+                        this.navToTab(this.getLastTab());
+                    } else if (event.keyCode === this.keycodes.space) {
+                        this.goToTab(tab, true)
+                    } else {
+                        tabNavKey = false;
+                    }
 
-                if (tabNavKey) {
-                    event.preventDefault();
+                    if (tabNavKey) {
+                        event.preventDefault();
+                    }
                 }
             });
         }
