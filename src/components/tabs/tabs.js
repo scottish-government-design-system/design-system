@@ -9,6 +9,8 @@ class Tabs {
         this.resizeTimer = null;
         this.eventsEnabled = false;
 
+        this.automaticActivation = !tabContainer.classList.contains('ds_tabs--manual');
+
         this.tabContainer = tabContainer;
         // The list containing the tabs
         this.tabList = tabContainer.querySelector('.ds_tabs__list');
@@ -18,10 +20,11 @@ class Tabs {
         this.tabContents = [].slice.call(tabContainer.querySelectorAll('.ds_tabs__content'));
 
         this.keycodes = {
+            'space': 32,
+            'end': 35,
+            'home': 36,
             'left': 37,
-            'up': 38,
-            'right': 39,
-            'down': 40
+            'right': 39
         };
 
         // Handle hashchange events
@@ -39,10 +42,15 @@ class Tabs {
             this.tabList.setAttribute('role', 'tablist');
             this.tabHeaders.forEach((tabHeader, index) => this.initTab(tabHeader, index));
 
+            this.tabContents.forEach(item => {
+                item.setAttribute('tabindex', '0')
+                item.setAttribute('role', 'tabpanel');
+            });
+
             // Set the active tab based on the URL's hash or the first tab
             let currentTabLink = this.getTab(window.location.hash) || this.tabHeaders[0].querySelector('.ds_tabs__tab-link');
             let currentTab = currentTabLink.parentElement;
-            this.activateTab(currentTab);
+            this.goToTab(currentTab);
 
             // Mark as initialised for specific layout support
             this.tabContainer.classList.add('js-initialised');
@@ -66,6 +74,10 @@ class Tabs {
             this.tabList.removeAttribute('role');
             this.tabHeaders.forEach((tabHeader, index) => this.resetTab(tabHeader, index));
 
+            this.tabContents.forEach(item => {
+                item.removeAttribute('tabindex');
+                item.removeAttribute('role');
+            });
         }
     }
 
@@ -85,20 +97,13 @@ class Tabs {
     onHashChange() {
         let tabWithHashLink = this.getTab(window.location.hash);
         if (!tabWithHashLink) {
-          return;
+            return;
         }
+
         let tabWithHash = tabWithHashLink.parentElement;
 
-        // Prevent changing the hash
-        if (this.changingHash) {
-          this.changingHash = false;
-          return;
-        }
-
         if (breakpointCheck('medium')) {
-            let currentTab = this.getCurrentTab();
-            this.deactivateTab(currentTab);
-            this.activateTab(tabWithHash);
+            this.goToTab(tabWithHash);
             tabWithHash.querySelector('.ds_tabs__tab-link').focus();
         }
     }
@@ -106,8 +111,7 @@ class Tabs {
     // Add the specified tab to the browser history
     createHistoryEntry(tab) {
         let tabId = this.getHref(tab);
-        this.changingHash = true;
-        window.location.hash = tabId;
+        history.pushState(null,null,tabId);
     }
 
     // Reset tab back to original state
@@ -117,7 +121,6 @@ class Tabs {
 
         const tabLink = tabHeader.querySelector('.ds_tabs__tab-link');
         const tabContent = this.tabContents[index];
-        const tabId = tabContent.getAttribute('id');
 
         tabLink.removeAttribute('role');
         tabLink.removeAttribute('aria-controls');
@@ -144,65 +147,74 @@ class Tabs {
 
         // Only set event listeners on initial setup
         if(!this.eventsEnabled){
-            tabLink.addEventListener('click', () => {
+            tabLink.addEventListener('click', event => {
                 if (breakpointCheck('medium')) {
-                    let currentTab = this.getCurrentTab();
-                    this.deactivateTab(currentTab);
-                    this.activateTab(tabHeader);
+                    event.preventDefault();
+                    this.goToTab(tabHeader);
                 }
             });
 
             tabLink.addEventListener('keydown', (event) => {
-                let tabNavKey = true;
-
                 if (breakpointCheck('medium')) {
+                    const tab = event.target.parentElement;
+                    let tabNavKey = true;
+
                     if (event.keyCode === this.keycodes.right) {
-                        this.activateNextTab(event);
+                        this.navToTab(this.getNextTab(tab));
                     } else if (event.keyCode === this.keycodes.left) {
-                        this.activatePreviousTab(event);
-                    } else if (event.keyCode === this.keycodes.up) {
-                        this.activatePreviousTab(event);
-                    } else if (event.keyCode === this.keycodes.down) {
-                        this.activateNextTab(event);
+                        this.navToTab(this.getPreviousTab(tab));
+                    } else if (event.keyCode === this.keycodes.home) {
+                        this.navToTab(this.getFirstTab());
+                    } else if (event.keyCode === this.keycodes.end) {
+                        this.navToTab(this.getLastTab());
+                    } else if (event.keyCode === this.keycodes.space) {
+                        this.goToTab(tab, true)
                     } else {
                         tabNavKey = false;
                     }
 
                     if (tabNavKey) {
                         event.preventDefault();
-                        event.stopPropagation();
                     }
                 }
             });
         }
     }
 
-    // Activate next tab from the current selected tab
-    activateNextTab() {
-        let currentTab = this.getCurrentTab();
-        let nextTab = currentTab.nextElementSibling;
-        if (nextTab){
-            this.deactivateTab(currentTab);
-            this.activateTab(nextTab);
-            this.createHistoryEntry(nextTab);
-            nextTab.querySelector('.ds_tabs__tab-link').focus();
+    navToTab(tab) {
+        // first, focus the tab
+        tab.querySelector('.ds_tabs__tab-link').focus();
+
+        // then navigate
+        if (this.automaticActivation) {
+            this.goToTab(tab);
         }
     }
 
-    // Activate previous tab from the current selected tab
-    activatePreviousTab() {
-        let currentTab = this.getCurrentTab();
-        let previousTab = currentTab.previousElementSibling;
-        if (previousTab){
-            this.deactivateTab(currentTab);
-            this.activateTab(previousTab);
-            this.createHistoryEntry(previousTab);
-            previousTab.querySelector('.ds_tabs__tab-link').focus();
-        }
+    getNextTab(currentTab) {
+        return currentTab.nextElementSibling || this.getFirstTab();
     }
 
-    // Activate specified tab
-    activateTab(targetTab) {
+    getPreviousTab(currentTab) {
+        return currentTab.previousElementSibling || this.getLastTab();
+    }
+
+    getFirstTab() {
+        return this.tabHeaders[0];
+    }
+
+    getLastTab() {
+        return this.tabHeaders[this.tabHeaders.length - 1];
+    }
+
+    // Go to specified tab
+    goToTab(targetTab) {
+        let oldTab = this.getCurrentTab();
+
+        if (oldTab === targetTab) {
+            return;
+        }
+
         let targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
         let targetTabContent = this.getTabContent(targetTab);
 
@@ -212,6 +224,9 @@ class Tabs {
 
         // Show content for tab
         targetTabContent.classList.remove('ds_tabs__content--hidden');
+
+        this.deactivateTab(oldTab);
+        this.createHistoryEntry(targetTab);
     }
 
     // Deactivate specified tab
