@@ -4,7 +4,7 @@
 
 .ds_question {
 
-    @include ds_responsive-margin(3, bottom);
+    @include ds_responsive-margin(4, bottom);
 
     &--error {
         border-left: 0.25rem solid $ds_colour__state--negative;
