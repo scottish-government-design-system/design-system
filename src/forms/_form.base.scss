@@ -5,7 +5,7 @@
 legend {
     @include ds_h3-size;
     font-weight: $bold;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 
 fieldset {
@@ -29,6 +29,13 @@ fieldset {
             .ds_page-header {
                 margin-top: 0;
             }
+        }
+
+        // Reduce bottom margin on final ds_question within a form
+        // Reduce bottom margin on final datepicker within a form
+        .ds_question:last-child,
+        .ds_datepicker:last-child {
+            @include ds_responsive-margin(3, bottom);
         }
     }
 
