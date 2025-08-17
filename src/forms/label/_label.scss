@@ -3,8 +3,10 @@
 \*------------------------------------*/
 
 .ds_label {
+    @include ds_root-size;
+
     color: $ds_colour__text;
     display: inline-block;
     font-weight: $bold;
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
