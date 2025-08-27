@@ -6776,6 +6776,11 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   text-align: right;
   top: 0;
 }
+.ds_facet__button:focus {
+  background-color: transparent;
+  filter: none;
+  outline: none;
+}
 .ds_facet__button-icon {
   color: #5e5e5e;
   fill: currentColor;
