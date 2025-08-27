@@ -7,6 +7,19 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## [3.2.0]
+### Added
+- Tabs component variant that uses manual activation of tabs
+
+### Changed
+- Tabs component accessibility improvements to bring it in line with W3C APG recommendations
+
+### Fixed
+- Focus state on search result filter buttons now correct when they are links rather than buttons
+
+### Security
+- Bump tmp from 0.2.1 to 0.2.4
+
 ## [3.1.0]
 ### Added
 - Tracking script attributes for links within details and accordions
