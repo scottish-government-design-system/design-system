@@ -150,7 +150,7 @@ class Tabs {
             tabLink.addEventListener('click', event => {
                 if (breakpointCheck('medium')) {
                     event.preventDefault();
-                    this.goToTab(tabHeader);
+                    this.goToTab(tabHeader, true);
                 }
             });
 
@@ -187,7 +187,7 @@ class Tabs {
 
         // then navigate
         if (this.automaticActivation) {
-            this.goToTab(tab);
+            this.goToTab(tab, true);
         }
     }
 
@@ -208,7 +208,7 @@ class Tabs {
     }
 
     // Go to specified tab
-    goToTab(targetTab) {
+    goToTab(targetTab, updateHistory = false) {
         let oldTab = this.getCurrentTab();
 
         if (oldTab === targetTab) {
@@ -226,7 +226,10 @@ class Tabs {
         targetTabContent.classList.remove('ds_tabs__content--hidden');
 
         this.deactivateTab(oldTab);
-        this.createHistoryEntry(targetTab);
+
+        if (updateHistory) {
+            this.createHistoryEntry(targetTab);
+        }
     }
 
     // Deactivate specified tab

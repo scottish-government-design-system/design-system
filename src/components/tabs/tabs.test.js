@@ -98,6 +98,11 @@ describe('tabs', () => {
         clock.uninstall();
     });
 
+    it('should NOT update window.location.hash when it shows the first tab on load', () => {
+        testObj.tabsModule.init();
+        expect(window.location.hash).toEqual('');
+    });
+
     describe('tab items', () => {
         it ('should show first tab on init if no hash present', () => {
             const firstTabItem = testObj.tabsElement.querySelector('.ds_tabs__tab');
