@@ -7,6 +7,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## [3.2.1]
+### Fixed
+- Tabs should not update window.location.hash when initialised
+
 ## [3.2.0]
 ### Added
 - Tabs component variant that uses manual activation of tabs
