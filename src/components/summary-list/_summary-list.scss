@@ -43,6 +43,22 @@ $summary-card-header-background-colour: $ds_colour__background--secondary !defau
         .visually-hidden:first-child + * {
             margin-top: 0;
         }
+
+        // Additional styling for compound values
+        dt,
+        dd {
+            margin: 0;
+        }
+
+        dt {
+            margin-top: 1rem;
+        }
+
+        @include ds_media-query(medium) {
+            dl:first-child  {
+                margin-top: -1rem;
+            }
+        }
     }
 
     &__answer::before,
