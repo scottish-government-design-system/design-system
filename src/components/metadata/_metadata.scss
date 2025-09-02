@@ -31,7 +31,6 @@
  * Alternative display collapsing the metadata into a single line
  */
 .ds_metadata--inline {
-    @include ds_tiny-size;
 
     color: $ds_colour__text--secondary;
     margin-bottom: px-to-rem(8px);
