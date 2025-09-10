@@ -927,25 +927,17 @@ const tracking = {
         },
 
         summaryList: function (scope = document) {
-            const summaryListActions = tracking.gatherElements('ds_summary-list__actions', scope);
-            summaryListActions.forEach(actions => {
-                const actionButtons = [].slice.call(actions.querySelectorAll('button'));
-                const actionLinks = [].slice.call(actions.querySelectorAll('a'));
-                actionButtons.forEach(actionButton => {
-                    let questionText = '';
-                    if(!!actionButton.getAttribute('aria-describedby')){
-                        const question = scope.querySelector('#' + actionButton.getAttribute('aria-describedby'));
-                        questionText = '-'+slugify(question.innerText);
-                    }
-                    actionButton.setAttribute('data-button', `button-${slugify(actionButton.innerText)}${questionText}`);
-                });
-                actionLinks.forEach(actionLink => {
-                    let questionText = '';
-                    if(!!actionLink.getAttribute('aria-describedby')){
-                        const question = scope.querySelector('#' + actionLink.getAttribute('aria-describedby'));
-                        questionText = '-'+slugify(question.innerText);
-                    }
-                    actionLink.setAttribute('data-navigation', `navigation-${slugify(actionLink.innerText)}${questionText}`);
+            const summaryListActionContainers = tracking.gatherElements('ds_summary-list__actions', scope);
+            summaryListActionContainers.forEach(actionContainer => {
+                const actionElements = [].slice.call(actionContainer.querySelectorAll('button, a'));
+
+                actionElements.forEach(actionElement => {
+                    const actionElementType = actionElement.tagName === 'BUTTON' ? 'button' : 'navigation';
+
+                    const keyForAction = actionElement.closest('.ds_summary-list__item').querySelector('.ds_summary-list__key');
+                    const keyText = '-' + slugify(keyForAction.textContent);
+
+                    actionElement.setAttribute(`data-${actionElementType}`, `${actionElementType}-${slugify(actionElement.innerText)}${keyText}`);
                 });
             });
         },
