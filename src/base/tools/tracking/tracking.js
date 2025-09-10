@@ -153,10 +153,13 @@ const tracking = {
             }
         },
 
-        version: function () {
-            tracking.pushToDataLayer({
-                version: version
-            });
+        canonicalUrl: () => {
+            const canonicalLink = document.querySelector('link[rel="canonical"]');
+            if (canonicalLink && canonicalLink.href) {
+                tracking.pushToDataLayer({
+                    canonicalUrl: canonicalLink.href
+                });
+            }
         },
 
         prefersColorScheme: function () {
@@ -168,6 +171,12 @@ const tracking = {
 
             tracking.pushToDataLayer({
                 prefersColorScheme: colorScheme
+            });
+        },
+
+        version: function () {
+            tracking.pushToDataLayer({
+                version: version
             });
         },
 
