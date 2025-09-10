@@ -19,7 +19,6 @@ $site-footer__background: $ds_colour__background--tertiary !default;
         padding-bottom: px-to-rem(32px);
     }
 
-    /// [1] subtracting the border width
     &__site-items {
         border-bottom: 1px solid $ds_colour__border;
         font-size: $small-size--fixed;
@@ -28,13 +27,11 @@ $site-footer__background: $ds_colour__background--tertiary !default;
         margin: px-to-rem(-8px) 0 px-to-rem(23px);
     }
 
+    /// [2] minimum OGL logo width for digital according to the OGL branding guidelines
     &__copyright {
         &-logo {
             display: block;
-            margin-bottom: 8px;
-            width: 32px;
-
-            @include ds_fancy-underscore;
+            width: 41px; /// [2]
 
             img {
                 width: 100%;
@@ -83,21 +80,7 @@ $site-footer__background: $ds_colour__background--tertiary !default;
 }
 
 @include ds_media-query(medium) {
-
-
     .ds_site-footer {
-
-        &__copyright {
-            padding-left: 48px;
-            position: relative;
-
-            &-logo {
-                position: absolute;
-                left: 0;
-                top: 2px;
-            }
-        }
-
         &__content {
             @include ds_layout();
         }
