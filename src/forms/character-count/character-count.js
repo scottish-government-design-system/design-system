@@ -29,7 +29,7 @@ class CharacterCount {
             this.emptyMessageElement = document.createElement('div');
             this.emptyMessageElement.classList.add('fully-hidden');
             this.emptyMessageElement.classList.add('ds_character-count__initial');
-            this.emptyMessageElement.innerText = this.emptyMessage;
+            this.emptyMessageElement.textContent = this.emptyMessage;
             this.emptyMessageElement.id = `character-count-empty-${idModifier}`;
 
             // dynamically create the visible message element
@@ -107,11 +107,11 @@ class CharacterCount {
         if (Math.abs(count) === 1) {
             noun = 'character';
         }
-        this.messageElement.innerText = `You have ${count} ${noun} remaining`;
+        this.messageElement.textContent = `You have ${count} ${noun} remaining`;
         if (count < 0) {
             this.inputElement.classList.add('ds_input--error');
             this.inputElement.setAttribute('aria-invalid', true);
-            this.messageElement.innerText = `You have ${Math.abs(count)} ${noun} too many`;
+            this.messageElement.textContent = `You have ${Math.abs(count)} ${noun} too many`;
             this.messageElement.classList.add('ds_input__message--error');
         }
         else {
@@ -123,9 +123,9 @@ class CharacterCount {
             this.messageElement.classList.remove('ds_input__message--error');
 
             if (this.inputElement.value.length === 0) {
-                this.messageElement.innerText = this.emptyMessage;
+                this.messageElement.textContent = this.emptyMessage;
             } else {
-                this.messageElement.innerText = `You have ${count} ${noun} remaining`;
+                this.messageElement.textContent = `You have ${count} ${noun} remaining`;
             }
 
         }
@@ -147,7 +147,7 @@ class CharacterCount {
     }
 
     updateScreenReaderMessage() {
-        this.screenReaderMessageElement.innerText = this.messageElement.innerText;
+        this.screenReaderMessageElement.textContent = this.messageElement.textContent;
     }
 }
 
