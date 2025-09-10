@@ -9,6 +9,7 @@ function slugify(string) {
     string = String(string);
 
     return string
+        .trim()
         // Make lower-case
         .toLowerCase()
         // Remove misc punctuation
@@ -317,7 +318,7 @@ const tracking = {
             const buttons = [].slice.call(scope.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button'));
             buttons.forEach(button => {
                 if (!button.getAttribute('data-button')) {
-                    button.setAttribute('data-button', `button-${slugify(button.innerText)}`);
+                    button.setAttribute('data-button', `button-${slugify(button.textContent)}`);
                 }
             });
         },
@@ -396,7 +397,7 @@ const tracking = {
                 const socialLinks = [].slice.call(contactDetails.querySelectorAll('.ds_contact-details__social-link'));
                 socialLinks.forEach(link => {
                     if (!link.getAttribute('data-navigation')) {
-                        link.setAttribute('data-navigation', `contact-details-${slugify(link.innerText)}`);
+                        link.setAttribute('data-navigation', `contact-details-${slugify(link.textContent)}`);
                     }
                 });
 
@@ -544,7 +545,7 @@ const tracking = {
                 const nearestHeader = tracking.getNearestSectionHeader(link);
                 if (nearestHeader) {
                     if (!link.getAttribute('data-section')) {
-                        link.setAttribute('data-section', nearestHeader.innerText);
+                        link.setAttribute('data-section', nearestHeader.textContent.trim());
                     }
                 }
             });
@@ -558,7 +559,7 @@ const tracking = {
                 let key;
 
                 if (keyElement) {
-                    key = keyElement.innerText;
+                    key = keyElement.textContent.trim();
                 } else {
                     key = `metadata-${index}`;
                 }
@@ -588,7 +589,7 @@ const tracking = {
                 const buttons = [].slice.call(banner.querySelectorAll('.ds_button:not(.ds_notification__close)'));
                 buttons.forEach(button => {
                     if (!button.getAttribute('data-banner')) {
-                        button.setAttribute('data-banner', `banner-${bannername}-${slugify(button.innerText)}`);
+                        button.setAttribute('data-banner', `banner-${bannername}-${slugify(button.textContent)}`);
                     }
                 });
 
@@ -610,7 +611,7 @@ const tracking = {
                 const paginationLinks = [].slice.call(pagination.querySelectorAll('a.ds_pagination__link'));
                 paginationLinks.forEach(link => {
                     if (!link.getAttribute('data-search')) {
-                        link.setAttribute('data-search', `pagination-${slugify(link.innerText)}`);
+                        link.setAttribute('data-search', `pagination-${slugify(link.textContent)}`);
                     }
                 });
             });
@@ -619,7 +620,7 @@ const tracking = {
         phaseBanners: function (scope = document) {
             const phaseBanners = tracking.gatherElements('ds_phase-banner', scope);
             phaseBanners.forEach(banner => {
-                const bannername = banner.querySelector('.ds_tag') ? banner.querySelector('.ds_tag').innerText : 'phase';
+                const bannername = banner.querySelector('.ds_tag') ? banner.querySelector('.ds_tag').textContent.trim() : 'phase';
 
                 const links = [].slice.call(banner.querySelectorAll('a'));
                 links.forEach(link => {
@@ -908,35 +909,27 @@ const tracking = {
                     const actionButtons = [].slice.call(actions.querySelectorAll('button'));
                     const actionLinks = [].slice.call(actions.querySelectorAll('a'));
                     actionButtons.forEach(actionButton => {
-                        actionButton.setAttribute('data-button', `button-${slugify(actionButton.innerText)}-${index + 1}`);
+                        actionButton.setAttribute('data-button', `button-${slugify(actionButton.textContent)}-${index + 1}`);
                     });
                     actionLinks.forEach(actionLink => {
-                        actionLink.setAttribute('data-navigation', `navigation-${slugify(actionLink.innerText)}-${index + 1}`);
+                        actionLink.setAttribute('data-navigation', `navigation-${slugify(actionLink.textContent)}-${index + 1}`);
                     });
                 });
             });
         },
 
         summaryList: function (scope = document) {
-            const summaryListActions = tracking.gatherElements('ds_summary-list__actions', scope);
-            summaryListActions.forEach(actions => {
-                const actionButtons = [].slice.call(actions.querySelectorAll('button'));
-                const actionLinks = [].slice.call(actions.querySelectorAll('a'));
-                actionButtons.forEach(actionButton => {
-                    let questionText = '';
-                    if(!!actionButton.getAttribute('aria-describedby')){
-                        const question = scope.querySelector('#' + actionButton.getAttribute('aria-describedby'));
-                        questionText = '-'+slugify(question.innerText);
-                    }
-                    actionButton.setAttribute('data-button', `button-${slugify(actionButton.innerText)}${questionText}`);
-                });
-                actionLinks.forEach(actionLink => {
-                    let questionText = '';
-                    if(!!actionLink.getAttribute('aria-describedby')){
-                        const question = scope.querySelector('#' + actionLink.getAttribute('aria-describedby'));
-                        questionText = '-'+slugify(question.innerText);
-                    }
-                    actionLink.setAttribute('data-navigation', `navigation-${slugify(actionLink.innerText)}${questionText}`);
+            const summaryListActionContainers = tracking.gatherElements('ds_summary-list__actions', scope);
+            summaryListActionContainers.forEach(actionContainer => {
+                const actionElements = [].slice.call(actionContainer.querySelectorAll('button, a'));
+
+                actionElements.forEach(actionElement => {
+                    const actionElementType = actionElement.tagName === 'BUTTON' ? 'button' : 'navigation';
+
+                    const keyForAction = actionElement.closest('.ds_summary-list__item').querySelector('.ds_summary-list__key');
+                    const keyText = '-' + slugify(keyForAction.textContent);
+
+                    actionElement.setAttribute(`data-${actionElementType}`, `${actionElementType}-${slugify(actionElement.textContent)}${keyText}`);
                 });
             });
         },

@@ -113,7 +113,7 @@ class DSDatePicker {
         const dateInputFields = [this.inputElement, this.dateInput, this.monthInput, this.yearInput];
         dateInputFields.forEach(input => {
             if (input) {
-                input.addEventListener('blur', () => { this.calendarButtonElement.querySelector('span').innerText = 'Choose date'; });
+                input.addEventListener('blur', () => { this.calendarButtonElement.querySelector('span').textContent = 'Choose date'; });
             }
         });
 
@@ -438,7 +438,7 @@ class DSDatePicker {
             return false;
         }
 
-        this.calendarButtonElement.querySelector('span').innerText = `Choose date. Selected date is ${this.formattedDateHuman(date)}`;
+        this.calendarButtonElement.querySelector('span').textContent = `Choose date. Selected date is ${this.formattedDateHuman(date)}`;
         this.setDate(date);
 
         const changeEvent = document.createEvent('Event');

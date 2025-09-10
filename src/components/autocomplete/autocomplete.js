@@ -102,7 +102,7 @@ class Autocomplete {
 
     acceptSelectedSuggestion() {
         const selectedItem = document.querySelector('#' + this.inputElement.getAttribute('aria-activedescendant'));
-        this.inputElement.value = selectedItem.querySelector('.js-suggestion-text').innerText;
+        this.inputElement.value = selectedItem.querySelector('.js-suggestion-text').textContent.trim();
 
         // required for tracking
         this.inputElement.dataset.autocompletetext = this.inputElement.value;
@@ -210,7 +210,7 @@ class Autocomplete {
             }
 
             this.statusTimeout = window.setTimeout(() => {
-                this.statusElement.innerText = text + this.tempToggleCharacter;
+                this.statusElement.textContent = text + this.tempToggleCharacter;
             }, delay);
         } else {
             console.log('autocomplete status element not present');
