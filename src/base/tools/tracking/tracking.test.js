@@ -7,6 +7,8 @@ import Accordion from '../../../components/accordion/accordion';
 import Autocomplete from "../../../components/autocomplete/autocomplete";
 import SideNavigation from '../../../components/side-navigation/side-navigation';
 
+import version from '../../../version';
+
 describe('tracking', () => {
     beforeEach(() => {
         loadFixtures('base/tools/tracking/tracking.html');
@@ -1949,5 +1951,76 @@ describe('tracking', () => {
 
             expect(window.dataLayer).toEqual([trackingObject]);
         });
-    })
+    });
+
+    describe('canonical', () => {
+        beforeEach(() => {
+            testObj.tempHasPermission = window.storage.hasPermission;
+            window.dataLayer = [];
+        });
+
+        afterEach(() => {
+            window.storage.hasPermission = testObj.tempHasPermission;
+        });
+
+        it('should add the canonical URL to the datalayer if a canonical element is present', () => {
+            // mock storage object
+            window.storage.hasPermission = function () {
+                return true;
+            }
+
+            const CANONICAL_URL = 'https://my.canonical.link/';
+
+            const canonicalLink = document.createElement('link');
+            canonicalLink.setAttribute('rel', 'canonical');
+            canonicalLink.setAttribute('href', CANONICAL_URL);
+            document.head.appendChild(canonicalLink);
+
+            Tracking.add.canonicalUrl();
+
+            expect(window.dataLayer[0]).toEqual({
+                canonicalUrl: CANONICAL_URL
+            });
+
+            // cleanup
+            canonicalLink.parentNode.removeChild(canonicalLink);
+        });
+
+        it('should NOT add the canonical URL to the datalayer if no canonical element is present', () => {
+            // mock storage object
+            window.storage.hasPermission = function () {
+                return true;
+            }
+
+            Tracking.add.canonicalUrl();
+
+            expect(window.dataLayer[0]).toBeUndefined();
+        });
+    });
+
+    describe('version', () => {
+        beforeEach(() => {
+            testObj.tempHasPermission = window.storage.hasPermission;
+            window.dataLayer = [];
+        });
+
+        afterEach(() => {
+            window.storage.hasPermission = testObj.tempHasPermission;
+        });
+
+        it('should add the current DS version number to the datalayer', () => {
+            // mock storage object
+            window.storage.hasPermission = function () {
+                return true;
+            }
+
+            const VERSION = version;
+
+            Tracking.add.version();
+
+            expect(window.dataLayer[0]).toEqual({
+                version: VERSION
+            });
+        });
+    });
 });
