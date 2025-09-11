@@ -21,6 +21,12 @@ class BackToTop {
         this.checkDisplay();
 
         this.window.addEventListener('resize', () => this.checkDisplay());
+
+        const resizeObserver = new ResizeObserver(() => {
+            this.checkDisplay();
+        });
+
+        resizeObserver.observe(document.body);
     }
 
     checkDisplay() {
