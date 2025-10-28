@@ -4,7 +4,16 @@ import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 'use strict';
 
 class Details {
-    constructor(element) {
+    content: HTMLElement;
+    details: HTMLDetailsElement;
+    summary: HTMLElement;
+    openAttribute: 'open' | 'data-open';
+    keycodes: {
+        enter: number,
+        space: number
+    };
+
+    constructor(element: HTMLDetailsElement) {
         this.details = element;
         this.summary = element.querySelector('.ds_details__summary');
         this.content = element.querySelector('.ds_details__text');
