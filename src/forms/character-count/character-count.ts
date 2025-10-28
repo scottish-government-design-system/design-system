@@ -4,11 +4,27 @@
 import TokenList from '../../base/tools/tokenlist/tokenlist';
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
+interface CharacterCountInputElement extends HTMLInputElement {
+    oldValue: string
+}
+
 class CharacterCount {
-    constructor(field) {
+    describedByTokenList: TokenList;
+    emptyMessage: string;
+    emptyMessageElement: HTMLElement;
+    field: HTMLElement;
+    isInvalidInitialState: boolean;
+    inputElement: CharacterCountInputElement;
+    maxLength: number;
+    messageElement: HTMLElement;
+    screenReaderMessageElement: HTMLElement;
+    threshold: number;
+    thresholdCharacters: number;
+
+    constructor(field: HTMLElement) {
         this.field = field;
         this.inputElement = this.field.querySelector('input, textarea');
-        this.threshold = this.field.dataset.threshold ? this.field.dataset.threshold * 0.01 : 0;
+        this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0;
     }
 
     init() {
@@ -53,7 +69,7 @@ class CharacterCount {
             }
 
             // address GitHub issue #136 https://github.com/scottish-government-design-system/design-system/issues/136
-            this.initialInvalidState = (!!this.inputElement.getAttribute('aria-invalid') && this.inputElement.getAttribute('aria-invalid') !== 'false');
+            this.isInvalidInitialState = (!!this.inputElement.getAttribute('aria-invalid') && this.inputElement.getAttribute('aria-invalid') !== 'false');
 
             this.field.appendChild(this.messageElement);
             this.field.appendChild(this.screenReaderMessageElement);
@@ -73,9 +89,9 @@ class CharacterCount {
         if (this.inputElement.getAttribute('maxlength')) {
             this.maxLength = parseInt(this.inputElement.getAttribute('maxlength'), 10);
             this.inputElement.removeAttribute('maxlength');
-            this.field.dataset.maxlength = this.maxLength;
+            this.field.dataset.maxlength = this.maxLength.toString();
         } else {
-            this.maxLength = this.field.dataset.maxlength;
+            this.maxLength = Number(this.field.dataset.maxlength);
         }
     }
 
@@ -110,14 +126,14 @@ class CharacterCount {
         this.messageElement.textContent = `You have ${count} ${noun} remaining`;
         if (count < 0) {
             this.inputElement.classList.add('ds_input--error');
-            this.inputElement.setAttribute('aria-invalid', true);
+            this.inputElement.setAttribute('aria-invalid', true.toString());
             this.messageElement.textContent = `You have ${Math.abs(count)} ${noun} too many`;
             this.messageElement.classList.add('ds_input__message--error');
         }
         else {
-            if (!this.initialInvalidState) {
+            if (!this.isInvalidInitialState) {
                 this.inputElement.classList.remove('ds_input--error');
-                this.inputElement.setAttribute('aria-invalid', false);
+                this.inputElement.setAttribute('aria-invalid', false.toString());
             }
 
             this.messageElement.classList.remove('ds_input__message--error');
@@ -136,8 +152,9 @@ class CharacterCount {
             this.messageElement.classList.remove('fully-hidden');
         }
 
-        clearTimeout(this.messageTimeout);
-        this.messageTimeout = setTimeout(() => {
+        let messageTimeout: number;
+        clearTimeout(messageTimeout);
+        messageTimeout = window.setTimeout(() => {
             if (this.inputElement.value.length >= this.thresholdCharacters) {
                 this.updateScreenReaderMessage();
             } else {

@@ -1,6 +1,53 @@
 'use strict';
 
-const storage = {
+interface Categories {
+    necessary?: boolean;
+    preferences?: boolean;
+    statistics?: boolean;
+    campaigns?: boolean;
+    marketing?: boolean;
+}
+
+type Category = 'necessary' | 'preferences' | 'statistics' | 'campaigns' | 'marketing';
+
+type Storage = {
+    categories: any,
+    types: any,
+
+    hasPermission: Function;
+    getIsJsonString: Function;
+    get: Function;
+    remove: Function;
+    set: Function;
+
+    getCookie: Function;
+    getLocalStorage: Function;
+    getSessionStorage: Function;
+    removeCookie: Function;
+    removeLocalStorage: Function;
+    removeSessionStorage: Function;
+    setCookie: Function;
+    setLocalStorage: Function;
+    setSessionStorage: Function;
+
+    cookie: {
+        get: Function;
+        remove: Function;
+        set: Function;
+    }
+}
+
+type CookieData = {
+    name: string,
+    value: string,
+    expires?: string
+}
+
+declare global {
+    interface Window { storage: Storage; }
+}
+
+const storage: Storage = {
     categories: {
         necessary: 'necessary',
         preferences: 'preferences',
@@ -28,10 +75,10 @@ const storage = {
      *   - {string} value
      *   - {number} expires - days to remember a cookie for (only relevant to cookies)
      */
-    set: function (obj) {
+    set: function (obj: {type: string, name: string, value: string, expiresDays: number, category: string}) {
         if (storage.hasPermission(obj.category)) {
             if (obj.type === storage.types.cookie) {
-                return storage.cookie.set(obj.name, obj.value, obj.expires);
+                return storage.cookie.set(obj.name, obj.value, obj.expiresDays);
             } else if (obj.type === storage.types.localStorage) {
                 localStorage.setItem(obj.name, obj.value);
             } else if (obj.type === storage.types.sessionStorage) {
@@ -52,8 +99,8 @@ const storage = {
      *
      * @returns {string} value of the storage item
      */
-    get: function (obj) {
-        let value;
+    get: function (obj: {type: string, name: string}) {
+        let value: string;
 
         if (obj.type === storage.types.cookie) {
             value = storage.cookie.get(obj.name);
@@ -76,7 +123,7 @@ const storage = {
      *   - {string} type (accepted values: 'cookie', 'local', 'session')
      *   - {string} name
      */
-    remove: function (obj) {
+    remove: function (obj: {type: string, name: string}) {
         if (obj.type === storage.types.cookie) {
             storage.cookie.remove(obj.name);
         } else if (obj.type === storage.types.localStorage) {
@@ -87,68 +134,68 @@ const storage = {
     },
 
     // more direct method than set({type: cookies, category: 'aaa', name: 'bbb', value: 'ccc', expires: ddd})
-    setCookie: function (category, name, value, expires) {
+    setCookie: function (category: string, name: string, value: string, expiresDays: number) {
         if (storage.hasPermission(category)) {
-            storage.cookie.set(name, value, expires);
+            storage.cookie.set(name, value, expiresDays);
         }
     },
 
     // more direct method than set({type: localStorage, category: 'aaa', name: 'bbb', value: 'ccc'})
-    setLocalStorage: function (category, name, value) {
+    setLocalStorage: function (category: string, name: string, value: string) {
         if (storage.hasPermission(category)) {
             localStorage.setItem(name, value);
         }
     },
 
     // more direct method than set({type: sessionStorage, category: 'aaa', name: 'bbb', value: 'ccc'})
-    setSessionStorage: function (category, name, value) {
+    setSessionStorage: function (category: string, name: string, value: string) {
         if (storage.hasPermission(category)) {
             sessionStorage.setItem(name, value);
         }
     },
 
     // more direct method than get({type: cookies, name: foo}
-    getCookie: function (name) {
+    getCookie: function (name: string) {
         return storage.cookie.get(name);
     },
 
     // more direct method than get({type: localStorage, name: foo}
-    getLocalStorage: function (name) {
+    getLocalStorage: function (name: string) {
         return localStorage.getItem(name);
     },
 
     // more direct method than get({type: sessionStorage, name: foo}
-    getSessionStorage: function (name) {
+    getSessionStorage: function (name: string) {
         return sessionStorage.getItem(name);
     },
 
     // more direct method than remove({type: cookies, name: foo}
-    removeCookie: function (name) {
+    removeCookie: function (name: string) {
         return storage.cookie.remove(name);
     },
 
     // more direct method than remove({type: localStorage, name: foo}
-    removeLocalStorage: function (name) {
+    removeLocalStorage: function (name: string) {
         return localStorage.removeItem(name);
     },
 
     // more direct method than remove({type: sessionStorage, name: foo}
-    removeSessionStorage: function (name) {
+    removeSessionStorage: function (name: string) {
         return sessionStorage.removeItem(name);
     },
 
     cookie: {
-        set: function (name, value, expires) {
+        set: function (name: string, value: string, expiresDays: number) {
             value = window.btoa(value);
 
-            const cookieData = {
+            const cookieData: CookieData = {
                 name: name,
                 value: value
             };
 
-            if (expires) {
+            if (expiresDays) {
                 const date = new Date();
-                date.setTime(date.getTime() + (expires * 24 * 60 * 60 * 1000));
+                date.setTime(date.getTime() + (expiresDays * 24 * 60 * 60 * 1000));
 
                 cookieData.expires = date.toUTCString();
             }
@@ -166,12 +213,12 @@ const storage = {
             return cookieData;
         },
 
-        get: function (name) {
+        get: function (name: string) {
             const nameEQ = name + '=',
                 cookiesArray = document.cookie.split(';');
 
-            function isBase64(str) {
-                if (str ==='' || str.trim() ===''){ return false; }
+            function isBase64(str: string) {
+                if (str === '' || str.trim() === '') { return false; }
                 try {
                     return window.btoa(window.atob(str)) == str;
                 } catch (err) {
@@ -203,7 +250,7 @@ const storage = {
         },
 
         // indiscriminately hit no domain, domain, and .domain
-        remove: function (name) {
+        remove: function (name: string) {
             const hostparts = window.location.host.split('.');
             let domain;
 
@@ -220,24 +267,24 @@ const storage = {
         }
     },
 
-    hasPermission(category) {
+    hasPermission(category: Category) {
         const cookiePermissionsString = storage.get({
             type: storage.types.cookie,
             name: 'cookiePermissions'
         }) || '';
 
-        let cookiePermissions = {};
+        let cookiePermissions: Categories = {};
 
-        if (storage.isJsonString(cookiePermissionsString)) {
+        if (storage.getIsJsonString(cookiePermissionsString)) {
             cookiePermissions = JSON.parse(cookiePermissionsString);
         }
 
         return category === storage.categories.necessary || cookiePermissions[category] === true;
     },
 
-    isJsonString: function (str) {
+    getIsJsonString: function (string: string) {
         try {
-            JSON.parse(str);
+            JSON.parse(string);
         } catch (e) {
             return false;
         }

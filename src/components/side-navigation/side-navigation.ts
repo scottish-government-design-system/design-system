@@ -4,7 +4,10 @@ import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 'use strict';
 
 class SideNavigation {
-    constructor (sideNavigation) {
+    navList: HTMLElement;
+    sideNavigation: HTMLElement;
+
+    constructor (sideNavigation: HTMLElement) {
         this.sideNavigation = sideNavigation;
     }
 
@@ -16,8 +19,8 @@ class SideNavigation {
 
     setupSideNavigation() {
         // transform markup to button-driven version
-        const navControl = this.sideNavigation.querySelector('.js-toggle-side-navigation');
-        const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand');
+        const navControl: HTMLInputElement = this.sideNavigation.querySelector('.js-toggle-side-navigation');
+        const navLabel: HTMLElement = this.sideNavigation.querySelector('.ds_side-navigation__expand');
         this.navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
         this.navList.id = this.navList.id || `side-navigation-${elementIdModifier()}`;
 
@@ -27,9 +30,9 @@ class SideNavigation {
         navButton.classList.add('ds_side-navigation__expand');
         navButton.classList.add('ds_link');
         navButton.classList.add('js-side-navigation-button');
-        navButton.setAttribute('aria-expanded', false);
+        navButton.setAttribute('aria-expanded', false.toString());
         navButton.innerHTML = navLabel.innerHTML;
-        navButton.setAttribute('aria-expanded', false);
+        navButton.setAttribute('aria-expanded', false.toString());
         navButton.setAttribute('aria-controls', this.navList.id);
 
         navLabel.classList.add('fully-hidden');
@@ -44,7 +47,7 @@ class SideNavigation {
         navButton.addEventListener('click', () => {
             const isOpen = navControl.checked;
 
-            navButton.setAttribute('aria-expanded', !isOpen);
+            navButton.setAttribute('aria-expanded', (!isOpen).toString());
             navControl.checked = !isOpen;
         });
 
@@ -55,7 +58,7 @@ class SideNavigation {
                 navButton.classList.remove('ds_side-navigation__expand--shadow');
             }
         });
-            
+
         this.sideNavigation.classList.add('js-initialised');
 
     }

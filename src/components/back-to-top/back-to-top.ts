@@ -1,9 +1,20 @@
 /* global document, window */
 
 'use strict';
+type BTTOptions = {
+    footerElSelector?: string
+}
 
 class BackToTop {
-    constructor(el, _window = window, options = {}) {
+    backToTopElement: HTMLElement;
+    footerEl: HTMLElement;
+    window: Window;
+
+    constructor(
+        el: HTMLElement,
+        _window = window,
+        options: BTTOptions = {}
+    ) {
         if (options.footerElSelector) {
             this.footerEl = document.querySelector(options.footerElSelector);
         } else {

@@ -1,16 +1,21 @@
-function highlight(element, pattern, options) {
+type HighlightOptions = {
+    className?: string;
+    tagName?: string;
+}
+
+function highlight(element: HTMLElement, pattern: string, options: HighlightOptions) {
     const defaults = {
         tagName: 'MARK'
     };
 
     options = Object.assign({}, defaults, options);
 
-    function highlightTextNode(textNode) {
+    function highlightTextNode(textNode: Text, pattern: string) {
         if (!textNode.data) {
             return false;
         }
 
-        let match, patternNode, wrapperNode;
+        let match: RegExpExecArray, patternNode: Text, wrapperNode: HTMLElement;
 
         let regex = new RegExp(pattern, 'i');
 
@@ -28,18 +33,18 @@ function highlight(element, pattern, options) {
         return !!match;
     }
 
-    function traverse(element) {
-        let childNode, TEXT_NODE_TYPE = 3;
+    function traverse(element: Node) {
+        let childNode: Node, TEXT_NODE_TYPE = 3;
 
         for (let i = 0; i < element.childNodes.length; i++) {
             childNode = element.childNodes[i];
 
             if (childNode.nodeType === TEXT_NODE_TYPE) {
-                i += highlightTextNode(childNode, pattern) ? 1 : 0;
+                i += highlightTextNode(childNode as Text, pattern) ? 1 : 0;
             }
 
             else {
-                traverse(childNode, highlightTextNode);
+                traverse(childNode);
             }
         }
     }

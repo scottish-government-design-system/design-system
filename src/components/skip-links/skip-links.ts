@@ -6,11 +6,11 @@ import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
 
 const skipLinks = {
     init() {
-        [].slice.call(document.querySelectorAll('.ds_skip-links__link')).forEach(link => {
+        [].slice.call(document.querySelectorAll('.ds_skip-links__link')).forEach((link: HTMLLinkElement) => {
             link.addEventListener('click', () => {
                 const linkTarget = document.querySelector(link.getAttribute('href'));
                 if (linkTarget) {
-                    temporaryFocus(linkTarget);
+                    temporaryFocus(linkTarget as HTMLElement);
                 }
             });
         });

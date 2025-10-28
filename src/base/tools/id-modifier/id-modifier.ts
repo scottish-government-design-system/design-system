@@ -1,3 +1,7 @@
+declare global {
+    interface Window { DS: any; }
+}
+
 export default function () {
     window.DS = window.DS || {};
     window.DS.elementIdModifier = window.DS.elementIdModifier || 0;

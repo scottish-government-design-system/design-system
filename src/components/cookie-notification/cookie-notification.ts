@@ -6,7 +6,20 @@ import _storage from '../../base/tools/storage/storage';
 import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
 
 class CookieNotification {
-    constructor(el, storage = _storage) {
+    storage: {
+        get: Function;
+        setCookie: Function;
+
+        categories: any;
+        types: any;
+    };
+
+    cookieAcceptAllButton: HTMLButtonElement;
+    cookieAcceptEssentialButton: HTMLButtonElement;
+    cookieNoticeElement: HTMLElement;
+    cookieNoticeSuccessElement: HTMLElement;
+
+    constructor(el: HTMLElement, storage = _storage) {
         this.storage = storage;
 
         this.cookieNoticeElement = el;
@@ -44,7 +57,7 @@ class CookieNotification {
         });
     }
 
-    setAllOptionalPermissions(allow) {
+    setAllOptionalPermissions(allow: boolean) {
         const cookiePermissions = JSON.parse(JSON.stringify(this.storage.categories));
         for (const key in cookiePermissions) {
             if (key === this.storage.categories.necessary) {
