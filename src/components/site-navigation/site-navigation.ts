@@ -3,7 +3,10 @@
 'use strict';
 
 class MobileMenu {
-    constructor (mobileMenu) {
+    mobileMenu: HTMLElement;
+    newMenuButton: HTMLButtonElement;
+
+    constructor (mobileMenu: HTMLElement) {
         this.mobileMenu = mobileMenu;
     }
 
@@ -19,7 +22,7 @@ class MobileMenu {
         newMenuButton.setAttribute('class', oldMenuButton.getAttribute('class'));
         newMenuButton.classList.add('ds_link');
         newMenuButton.setAttribute('aria-controls', oldMenuButton.getAttribute('aria-controls'));
-        newMenuButton.setAttribute('aria-expanded', false);
+        newMenuButton.setAttribute('aria-expanded', false.toString());
         oldMenuButton.parentNode.appendChild(newMenuButton);
         oldMenuButton.classList.add('fully-hidden');
 
@@ -42,13 +45,13 @@ class MobileMenu {
     openMenu() {
         this.mobileMenu.classList.add('ds_site-navigation--open');
         this.newMenuButton.classList.add('ds_site-header__control--active');
-        this.newMenuButton.setAttribute('aria-expanded', true);
+        this.newMenuButton.setAttribute('aria-expanded', true.toString());
     }
 
     closeMenu() {
         this.mobileMenu.classList.remove('ds_site-navigation--open');
         this.newMenuButton.classList.remove('ds_site-header__control--active');
-        this.newMenuButton.setAttribute('aria-expanded', false);
+        this.newMenuButton.setAttribute('aria-expanded', false.toString());
     }
 }
 

@@ -1,5 +1,7 @@
 class TokenList {
-    constructor(string) {
+    private tokens: Array<String>;
+
+    constructor(string: string) {
         if (string && string.trim().length > 0) {
             this.tokens = string.replace(/\s+/g, ' ').split(' ');
         } else {
@@ -7,7 +9,7 @@ class TokenList {
         }
     }
 
-    add(itemsToAdd) {
+    add(itemsToAdd: string | Array<String>) {
         // if supplied as space-separated list, convert to array
         if (typeof itemsToAdd === 'string') {
             itemsToAdd = itemsToAdd.replace(/\s+/g, ' ').split(' ');
@@ -22,7 +24,7 @@ class TokenList {
         return this.value();
     }
 
-    remove(string) {
+    remove(string: string) {
         const itemsToRemove = string.replace(/\s+/g, ' ').split(' ');
 
         itemsToRemove.forEach(item => {
@@ -34,7 +36,7 @@ class TokenList {
         return this.value();
     }
 
-    contains(string) {
+    contains(string: string) {
         return this.tokens.includes(string);
     }
 

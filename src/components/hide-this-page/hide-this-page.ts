@@ -3,6 +3,10 @@
 'use strict';
 
 class HidePage {
+    altlink: string;
+    button: HTMLAnchorElement;
+    window: Window;
+
     constructor(_window = window) {
         this.button = document.querySelector('.js-hide-page');
         this.window = _window;
@@ -20,7 +24,7 @@ class HidePage {
 
     attachKeyboardEvents() {
         document.addEventListener('keyup', (event) => {
-            if (event.key === 'Escape' || event.keyCode === 27) {
+            if (event.key === 'Escape') {
                 this.doHidePage(event);
             }
         });
@@ -35,7 +39,7 @@ class HidePage {
     // clear page body
     // replace history item
     // navigate
-    doHidePage(event) {
+    doHidePage(event: Event) {
         event.preventDefault();
         document.body.innerHTML = '';
         document.title = '.';

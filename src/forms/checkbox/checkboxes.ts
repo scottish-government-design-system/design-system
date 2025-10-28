@@ -1,7 +1,9 @@
 'use strict';
 
 class Checkboxes {
-    constructor(checkboxes) {
+    private checkboxes: HTMLInputElement[];
+
+    constructor(checkboxes: HTMLElement) {
         this.checkboxes = [].slice.call(checkboxes.querySelectorAll('.ds_checkbox__input'));
     }
 
