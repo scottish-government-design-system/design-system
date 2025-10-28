@@ -4,7 +4,11 @@
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
 class Accordion {
-    constructor(accordion) {
+    accordion: HTMLElement;
+    items: HTMLElement[];
+    openAllButton: HTMLButtonElement;
+
+    constructor(accordion: HTMLElement) {
         this.accordion = accordion;
         this.items = [].slice.call(accordion.querySelectorAll('.ds_accordion-item'));
         this.openAllButton = accordion.querySelector('.js-open-all');
@@ -12,7 +16,7 @@ class Accordion {
 
     init() {
         if (!this.accordion.classList.contains('js-initialised')) {
-            this.items.forEach((item, index) => this.initAccordionItem(item, index));
+            this.items.forEach((item) => this.initAccordionItem(item));
             if (this.openAllButton) {
                 this.initOpenAll();
             }
@@ -20,14 +24,14 @@ class Accordion {
         }
     }
 
-    initAccordionItem(item) {
+    initAccordionItem(item: HTMLElement) {
         // transform markup to button-driven version
-        const itemBody = item.querySelector('.ds_accordion-item__body');
-        const itemControl = item.querySelector('.ds_accordion-item__control');
-        const itemHeader = item.querySelector('.ds_accordion-item__header');
-        const itemIndicator = item.querySelector('.ds_accordion-item__indicator');
-        const itemLabelContent = item.querySelector('.ds_accordion-item__label span');
-        const itemTitle = itemHeader.querySelector('.ds_accordion-item__title');
+        const itemBody: HTMLElement = item.querySelector('.ds_accordion-item__body');
+        const itemControl: HTMLInputElement = item.querySelector('.ds_accordion-item__control');
+        const itemHeader: HTMLElement = item.querySelector('.ds_accordion-item__header');
+        const itemIndicator: HTMLElement = item.querySelector('.ds_accordion-item__indicator');
+        const itemLabelContent: HTMLElement = item.querySelector('.ds_accordion-item__label span');
+        const itemTitle: HTMLHeadingElement = itemHeader.querySelector('.ds_accordion-item__title');
 
         // check for hash to open an accordion with
         let accordionHasLocationHashInIt = false;
@@ -57,11 +61,11 @@ class Accordion {
         // browsers will generally remember the state of the checkbox on back/forward navigation
         itemControl.classList.remove('visually-hidden');
         itemControl.classList.add('fully-hidden');
-        itemControl.setAttribute('tabindex', -1);
+        itemControl.setAttribute('tabindex', (-1).toString());
 
         itemButton.innerHTML = itemTitle.innerHTML;
 
-        itemIndicator.setAttribute('aria-hidden', true);
+        itemIndicator.setAttribute('aria-hidden', true.toString());
 
         itemTitle.innerHTML = '';
         itemTitle.insertBefore(itemButton, itemTitle.firstChild);
@@ -81,7 +85,7 @@ class Accordion {
             }
         }
 
-        itemButton.setAttribute('aria-expanded', startsOpen);
+        itemButton.setAttribute('aria-expanded', startsOpen.toString());
         itemButton.setAttribute('aria-controls', itemBody.id);
 
         // events
@@ -93,9 +97,9 @@ class Accordion {
 
     initOpenAll() {
         this.openAllButton.addEventListener('click', () => {
-            function getAccordionItemForButton(button) {
+            function getAccordionItemForButton(button: HTMLButtonElement) {
                 if (Element.prototype.closest) {
-                    return button.closest('.ds_accordion-item');
+                    return button.closest('.ds_accordion-item') as HTMLElement;
                 } else {
                     return button.parentElement.parentElement.parentElement;
                 }
@@ -104,16 +108,16 @@ class Accordion {
             // if we're opening, open all unopened panels
             // if we're closing, close all opened panels
             const opening = !this.checkAllOpen();
-            const allPanelButtons = [].slice.call(this.accordion.querySelectorAll('.js-accordion-button'));
+            const allPanelButtons: HTMLButtonElement[] = [].slice.call(this.accordion.querySelectorAll('.js-accordion-button'));
 
-            let panelsToToggle;
+            let panelsToToggle: HTMLElement[];
             if (opening) {
                 panelsToToggle = allPanelButtons.filter(button => !getAccordionItemForButton(button).classList.contains('ds_accordion-item--open'));
             } else {
                 panelsToToggle = allPanelButtons.filter(button => getAccordionItemForButton(button).classList.contains('ds_accordion-item--open'));
             }
 
-            panelsToToggle.forEach(button => {
+            panelsToToggle.forEach((button: HTMLButtonElement) => {
                 this.toggleAccordionItem(getAccordionItemForButton(button));
             });
 
@@ -121,12 +125,12 @@ class Accordion {
         });
 
         this.openAllButton.setAttribute('aria-controls', this.items.map(item => item.id).join(' '));
-        this.openAllButton.setAttribute('aria-expanded', false);
+        this.openAllButton.setAttribute('aria-expanded', false.toString());
     }
 
-    toggleAccordionItem(item) {
+    toggleAccordionItem(item: HTMLElement) {
         const itemButton = item.querySelector('.js-accordion-button');
-        const itemControl = item.querySelector('.ds_accordion-item__control');
+        const itemControl: HTMLInputElement = item.querySelector('.ds_accordion-item__control');
         const isOpen = item.classList.contains('ds_accordion-item--open');
 
         if (!isOpen) {
@@ -135,7 +139,7 @@ class Accordion {
             item.classList.remove('ds_accordion-item--open');
         }
 
-        itemButton.setAttribute('aria-expanded', !isOpen);
+        itemButton.setAttribute('aria-expanded', (!isOpen).toString());
         itemControl.checked = !isOpen;
 
         if (this.openAllButton) {
@@ -143,13 +147,13 @@ class Accordion {
         }
     }
 
-    setOpenAllButton(open) {
-        if (open) {
+    setOpenAllButton(isOpen: boolean) {
+        if (isOpen) {
             this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
         } else {
             this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>';
         }
-        this.openAllButton.setAttribute('aria-expanded', open)
+        this.openAllButton.setAttribute('aria-expanded', isOpen.toString())
     }
 
     checkAllOpen() {

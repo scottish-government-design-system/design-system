@@ -5,25 +5,52 @@
 import highlight from './highlight';
 import PromiseRequest from '../../base/tools/promise-request/promise-request';
 
+type AutocompleteOptions = {
+    minLength?: number;
+    suggestionMappingFunction?: Function;
+    throttleDelay?: number;
+}
+
+type Suggestion = {
+    displayText: string;
+    isActive: boolean;
+}
+
 class Autocomplete {
-    constructor(element, endpointUrl, options = {}) {
+    inputElement: HTMLInputElement;
+    listBoxElement: HTMLElement;
+    statusElement: HTMLElement;
+
+    PromiseRequest: any;
+
+    activeSuggestion: Suggestion;
+    endpointUrl: string;
+    keypressTimeout: number;
+    minLength: number;
+    selectedSuggestion: number;
+    statusTextCache: string;
+    statusTimeout: number;
+    suggestions: Suggestion[];
+    tempToggleCharacter: string;
+    throttleDelay: number;
+
+    suggestionMappingFunction: Function;
+
+    constructor(
+        element: HTMLElement,
+        endpointUrl: string,
+        options: AutocompleteOptions = {}
+    ) {
         this.inputElement = element.querySelector('.js-autocomplete-input');
 
         this.endpointUrl = endpointUrl;
-        this.suggestionMappingFunction = options.suggestionMappingFunction || (suggestions => suggestions);
+        this.suggestionMappingFunction = options.suggestionMappingFunction || ((suggestions: Suggestion[]) => suggestions);
         this.throttleDelay = options.throttleDelay || 100;
         this.minLength = options.minLength || 3;
         this.tempToggleCharacter = '';
 
         this.PromiseRequest = PromiseRequest;
 
-        this.keycodes = {
-            'tab': 'Tab',
-            'enter': 'Enter',
-            'esc': 'Escape',
-            'up': 'ArrowUp',
-            'down': 'ArrowDown'
-        };
         this.statusElement = document.querySelector('#autocomplete-status');
     }
 
@@ -42,15 +69,15 @@ class Autocomplete {
         this.listBoxElement = document.getElementById(this.inputElement.getAttribute('aria-owns')).querySelector('.ds_autocomplete__suggestions-list');
 
         this.inputElement.addEventListener('keydown', event => {
-            if (event.key === this.keycodes.down) {
+            if (event.key === 'ArrowDown') {
                 event.preventDefault();
                 this.selectSuggestion(typeof this.selectedSuggestion === 'undefined' ? 0 : this.selectedSuggestion + 1);
-            } else if (event.key === this.keycodes.up) {
+            } else if (event.key === 'ArrowUp') {
                 event.preventDefault();
                 this.selectSuggestion(typeof this.selectedSuggestion === 'undefined' ? -1 : this.selectedSuggestion - 1);
-            } else if (event.key === this.keycodes.esc) {
+            } else if (event.key === 'Esc') {
                 this.clearSearch();
-            } else if (event.key === this.keycodes.enter && this.activeSuggestion) {
+            } else if (event.key === 'Enter' && this.activeSuggestion) {
                 event.preventDefault();
                 this.acceptSelectedSuggestion();
             }
@@ -61,7 +88,7 @@ class Autocomplete {
             const value = this.inputElement.value.trim();
             if (value.length >= this.minLength) {
                 this.keypressTimeout = window.setTimeout(() => {
-                    this.fetchSuggestions(value).then(suggestions => {
+                    this.fetchSuggestions(value).then((suggestions: Suggestion[]) => {
                         this.suggestions = suggestions;
                         this.showSuggestions(this.suggestions);
 
@@ -91,7 +118,10 @@ class Autocomplete {
 
         this.listBoxElement.addEventListener('mousedown', event => {
             event.preventDefault();
-            const suggestionElement = event.target.classList.contains('ds_autocomplete__suggestion') ? event.target : event.target.closest('.ds_autocomplete__suggestion');
+
+            const target = event.target as HTMLElement;
+
+            const suggestionElement = target.classList.contains('ds_autocomplete__suggestion') ? target : target.closest('.ds_autocomplete__suggestion');
             if (suggestionElement) {
                 const selectedIndex = Array.from(suggestionElement.parentNode.children).indexOf(suggestionElement);
                 this.selectSuggestion(selectedIndex);
@@ -106,13 +136,13 @@ class Autocomplete {
 
         // required for tracking
         this.inputElement.dataset.autocompletetext = this.inputElement.value;
-        this.inputElement.dataset.autocompletecount = this.suggestions.length;
-        this.inputElement.dataset.autocompleteposition = [].slice.call(this.listBoxElement.childNodes).filter(item => item.tagName === 'LI').indexOf(selectedItem) + 1;
+        this.inputElement.dataset.autocompletecount = this.suggestions.length.toString();
+        this.inputElement.dataset.autocompleteposition = [].slice.call(this.listBoxElement.childNodes).filter((item: HTMLElement) => item.tagName === 'LI').indexOf(selectedItem) + 1;
 
         this.clearSuggestions();
     }
 
-    buildSuggestionHtml(suggestionHtml) {
+    buildSuggestionHtml(suggestionHtml: string) {
         let html = `<span aria-hidden="true" class="ds_autocomplete__suggestion__text  js-suggestion-text">${suggestionHtml}</span>
                 <span class="visually-hidden">${suggestionHtml}</span>`;
 
@@ -134,32 +164,32 @@ class Autocomplete {
         this.statusElement.innerHTML = '';
 
         if (this.suggestions) {
-            this.suggestions.filter(item => item.active).forEach(item => {item.active = false})
+            this.suggestions.filter(item => item.isActive).forEach(item => {item.isActive = false})
         }
     }
 
-    fetchSuggestions(searchTerm) {
+    fetchSuggestions(searchTerm: string) {
         return this.PromiseRequest(this.endpointUrl + encodeURIComponent(searchTerm))
-            .then(result => this.suggestionMappingFunction(result))
-            .catch(result => console.log('fetch failed', result));
+            .then((result: any) => this.suggestionMappingFunction(result))
+            .catch((result: any) => console.log('fetch failed', result));
     }
 
-    selectSuggestion (selectionIndex) {
+    selectSuggestion (selectionIndex: number) {
         this.selectedSuggestion = selectionIndex;
 
         this.suggestions.forEach((suggestion, index) => {
             if (index === this.modulo(selectionIndex, this.suggestions.length)) {
-                suggestion.active = true;
+                suggestion.isActive = true;
                 this.activeSuggestion = suggestion;
                 this.inputElement.setAttribute('aria-activedescendant', 'suggestion-' + index);
             } else {
-                delete suggestion.active;
+                delete suggestion.isActive;
             }
         });
         this.showSuggestions(this.suggestions);
     }
 
-    showSuggestions(suggestions) {
+    showSuggestions(suggestions: Suggestion[]) {
         this.listBoxElement.innerHTML = '';
 
         if (suggestions.length) {
@@ -174,18 +204,18 @@ class Autocomplete {
                 const suggestionText = document.createElement('span');
                 suggestionText.classList.add('js-suggestion-text');
 
-                if (suggestion.active) {
+                if (suggestion.isActive) {
                     suggestionElement.classList.add('active');
                 }
 
                 suggestionElement.innerHTML = this.buildSuggestionHtml(suggestion.displayText);
-                highlight(suggestionElement.querySelector('.js-suggestion-text'), this.inputElement.value);
+                highlight(suggestionElement.querySelector('.js-suggestion-text'), this.inputElement.value, {});
                 this.listBoxElement.appendChild(suggestionElement);
             }
             this.inputElement.classList.add('js-has-suggestions');
 
             // remove items that make the box too high for the viewport
-            while (window.visualViewport.height < this.listBoxElement.parentNode.offsetHeight + this.inputElement.offsetHeight + 16) {
+            while (window.visualViewport.height < this.listBoxElement.parentElement.offsetHeight + this.inputElement.offsetHeight + 16) {
                 let lastItem = this.listBoxElement.querySelector('li:last-child');
                 lastItem.parentNode.removeChild(lastItem);
 
@@ -196,7 +226,7 @@ class Autocomplete {
         }
     }
 
-    updateStatus(text, delay = 100) {
+    updateStatus(text: string, delay = 100) {
         if (this.statusElement) {
             // This full stop triggers browsers to think the string has changed, and read it. This is a hack, albeit a harmless one.
             if (this.tempToggleCharacter.length) {
@@ -217,7 +247,7 @@ class Autocomplete {
         }
     }
 
-    modulo (a, b) {
+    modulo (a: number, b: number) {
         return ((a % b) + b) % b;
     }
 }

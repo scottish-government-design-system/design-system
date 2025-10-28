@@ -1,7 +1,10 @@
 'use strict';
 
 class Notification {
-    constructor (notification) {
+    notification: HTMLElement;
+    notificationClose: HTMLElement;
+
+    constructor (notification: HTMLElement) {
         this.notification = notification;
         this.notificationClose = notification.querySelector('.js-close-notification');
     }

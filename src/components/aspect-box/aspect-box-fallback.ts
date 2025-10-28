@@ -3,7 +3,10 @@
 'use strict';
 
 class AspectBox {
-    constructor(aspectBox, _document = document) {
+    aspectBox: HTMLElement;
+    document: Document;
+
+    constructor(aspectBox: HTMLElement, _document = document) {
         this.aspectBox = aspectBox;
         this.document = _document;
     }
@@ -13,7 +16,7 @@ class AspectBox {
          * When browsers do not support object-fit: cover, this fallback replicates the desired effect
          */
         if ('objectFit' in this.document.documentElement.style === false) {
-            const image = this.aspectBox.querySelector('img.ds_aspect-box__inner');
+            const image: HTMLImageElement = this.aspectBox.querySelector('img.ds_aspect-box__inner');
             // Add image as a background image
             if (image) {
                 this.aspectBox.style.backgroundImage = `url(${image.src})`;
