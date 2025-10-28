@@ -1,7 +1,5 @@
-let testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi, afterEach, beforeEach, describe, expect, it } from 'vitest';
+import loadHtml from '../../../loadHtml';
 import DSDatePicker from './date-picker';
 
 function leadingZeroes(value, length = 2) {
@@ -14,21 +12,11 @@ function leadingZeroes(value, length = 2) {
     return ret;
 }
 
-describe('date picker', () => {
-    const keycodes = {
-        'tab': 9,
-        'pageup': 33,
-        'pagedown': 34,
-        'end': 35,
-        'home': 36,
-        'left': 37,
-        'up': 38,
-        'right': 39,
-        'down': 40
-    };
+let testObj = {};
 
-    beforeEach(() => {
-        loadFixtures('components/date-picker/date-picker.html');
+describe('date picker', () => {
+    beforeEach(async () => {
+        await loadHtml('src/components/date-picker/date-picker.html');
     });
 
     afterEach(() => {
@@ -53,31 +41,29 @@ describe('date picker', () => {
             testObj.datePickerElement = document.querySelector('#basic');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
             testObj.datePickerModule.init();
-            expect(testObj.datePickerElement.parentNode.querySelector('.js-calendar-button')).toBeTruthy();
+            expect(testObj.datePickerElement.parentNode.querySelector('.js-calendar-button')).toBeDefined();
         });
 
         it('should add a calendar button to the input wrapper (multiple input)', () => {
             testObj.datePickerElement = document.querySelector('#multiple');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
             testObj.datePickerModule.init();
-            expect(testObj.datePickerElement.parentNode.querySelector('.js-calendar-button')).toBeTruthy();
+            expect(testObj.datePickerElement.parentNode.querySelector('.js-calendar-button')).toBeDefined();
         });
 
         it('should add a calendar dialog', () => {
             testObj.datePickerElement = document.querySelector('#basic');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
             testObj.datePickerModule.init();
-            expect(testObj.datePickerElement.parentNode.parentNode.querySelector('.ds_datepicker__dialog')).toBeTruthy();
+            expect(testObj.datePickerElement.parentNode.parentNode.querySelector('.ds_datepicker__dialog')).toBeDefined();
         });
-
-
 
         describe('min date', () => {
             it('should set a min date if one is specified as a data attribute', () => {
                 testObj.datePickerElement = document.querySelector('#minmaxdate');
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
                 testObj.datePickerModule.init();
-                expect(testObj.datePickerModule.minDate).toEqual(new Date('01/06/2020'));
+                expect(testObj.datePickerModule.options.minDate).toEqual(new Date('01/06/2020'));
             });
 
             it('should set a min date if one is specified in options param, YMD format', () => {
@@ -92,7 +78,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+                expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
             });
 
             it('should set a min date if one is specified as a data attribute, MDY format', () => {
@@ -107,7 +93,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+                expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
             });
 
             it('should set a min date if one is specified as a data attribute, DMY format', () => {
@@ -122,7 +108,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+                expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
             });
         });
 
@@ -130,7 +116,7 @@ describe('date picker', () => {
             testObj.datePickerElement = document.querySelector('#minmaxdate');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.maxDate).toEqual(new Date('01/06/2021'));
+            expect(testObj.datePickerModule.options.maxDate).toEqual(new Date('01/06/2021'));
         });
 
         it('should make the current date the earliest permitted date if the earliest permittted date is later than today', () => {
@@ -151,8 +137,8 @@ describe('date picker', () => {
             testObj.datePickerElement = document.querySelector('#basic');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, { minDate: new Date('01/06/2020'), maxDate: new Date('01/06/2021')});
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('01/06/2020'));
-            expect(testObj.datePickerModule.maxDate).toEqual(new Date('01/06/2021'));
+            expect(testObj.datePickerModule.options.minDate).toEqual(new Date('01/06/2020'));
+            expect(testObj.datePickerModule.options.maxDate).toEqual(new Date('01/06/2021'));
         });
 
         it('should support presupplied dates in dd/mm/yyyy format', () => {
@@ -161,7 +147,7 @@ describe('date picker', () => {
             testObj.datePickerModule.inputElement.dataset.dateformat = 'DMY';
             testObj.datePickerModule.inputElement.dataset.mindate = '01/07/2020';
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+            expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
         });
 
         it('should support presupplied dates in mm/dd/yyyy format', () => {
@@ -170,7 +156,7 @@ describe('date picker', () => {
             testObj.datePickerModule.inputElement.dataset.dateformat = 'MDY';
             testObj.datePickerModule.inputElement.dataset.mindate = '07/01/2020';
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+            expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
         });
 
         it('should support presupplied dates in yyyy/mm/dd format', () => {
@@ -179,7 +165,7 @@ describe('date picker', () => {
             testObj.datePickerModule.inputElement.dataset.dateformat = 'YMD';
             testObj.datePickerModule.inputElement.dataset.mindate = '2020/07/01';
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+            expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
         });
 
         it('should ignore presupplied dates that do not match the expected format', () => {
@@ -188,11 +174,11 @@ describe('date picker', () => {
             testObj.datePickerModule.inputElement.dataset.dateformat = 'YMD';
             testObj.datePickerModule.inputElement.dataset.mindate = 'nonsense';
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toBeNull();
+            expect(testObj.datePickerModule.options.minDate).toBeNull();
         });
     });
 
-    describe('functions', () => {
+    describe('dialog functions', () => {
         beforeEach(() => {
             // setup
             testObj.datePickerElement = document.querySelector('#basic');
@@ -200,10 +186,20 @@ describe('date picker', () => {
             testObj.datePickerModule.init();
         });
 
+        it('should reset the position of the dialog when it is opened', () => {
+            // a nonsense value
+            testObj.datePickerModule.dialogElement.classList.add('ds_!_off-l-111');
+            testObj.datePickerModule.openDialog();
+
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_!_off-l-111')).toBeFalsy();
+            // 22 is a magic number
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_!_off-l-22')).toBeTruthy();
+        });
+
         it('should focus on today when opening the dialog with no value in the input element', () => {
             testObj.datePickerModule.openDialog();
 
-            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeTruthy();
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBe(true);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
@@ -211,14 +207,14 @@ describe('date picker', () => {
             expect(testObj.datePickerModule.currentDate).toEqual(today);
 
             // displayed date is today
-            expect(document.activeElement.innerText).toEqual(today.getDate().toString());
+            expect(document.activeElement.textContent).toEqual(today.getDate().toString());
         });
 
         it('should focus on today when opening the dialog with invalid value in the input element', () => {
             testObj.datePickerModule.inputElement.value = 'nonsense';
             testObj.datePickerModule.openDialog();
 
-            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeTruthy();
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBe(true);
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
@@ -226,7 +222,7 @@ describe('date picker', () => {
             expect(testObj.datePickerModule.currentDate).toEqual(today);
 
             // focused element is today
-            expect(document.activeElement.innerText).toEqual(today.getDate().toString());
+            expect(document.activeElement.textContent).toEqual(today.getDate().toString());
         });
 
         it('should focus on date in the input element (if complete and valid) when opening the dialog (single input)', () => {
@@ -234,14 +230,14 @@ describe('date picker', () => {
 
             testObj.datePickerModule.openDialog();
 
-            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeTruthy();
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBe(true);
             const targetDate = new Date('01/06/2020');
 
             // current date is today
             expect(testObj.datePickerModule.currentDate).toEqual(targetDate);
 
             // focused element is today
-            expect(document.activeElement.innerText).toEqual(targetDate.getDate().toString());
+            expect(document.activeElement.textContent).toEqual(targetDate.getDate().toString());
         });
 
         it('should focus on date in the input element (if complete and valid) when opening the dialog (multiple input)', () => {
@@ -255,24 +251,24 @@ describe('date picker', () => {
 
             datePickerModule.openDialog();
 
-            expect(datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeTruthy();
+            expect(datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBe(true);
             const targetDate = new Date('01/06/2020');
 
             // current date is today
             expect(datePickerModule.currentDate).toEqual(targetDate);
 
             // focused element is today
-            expect(document.activeElement.innerText).toEqual(targetDate.getDate().toString());
+            expect(document.activeElement.textContent).toEqual(targetDate.getDate().toString());
         });
 
         it('should focus on the calendar button closing the dialog', () => {
             testObj.datePickerModule.openDialog();
             testObj.datePickerModule.closeDialog();
 
-            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeFalsy();
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBe(false);
 
             // focused element is calendar button
-            expect(document.activeElement.classList.contains('js-calendar-button')).toBeTruthy();
+            expect(document.activeElement.classList.contains('js-calendar-button')).toBe(true);
         });
     });
 
@@ -331,18 +327,36 @@ describe('date picker', () => {
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
 
+        // general case: not the end of a long month
         it('next month', () => {
-            const ppp = new Date(testObj.datePickerModule.currentDate);
-            ppp.setMonth(ppp.getMonth() + 1);
+            testObj.datePickerModule.currentDate = new Date('10/15/2025');
+            const expected = new Date('11/15/2025')
             testObj.datePickerModule.focusNextMonth({ preventDefault: function () { } });
-            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
         });
 
+        // special case: next month from the end of a long month into a short month (e.g. oct -> nov)
+        it('next month from Oct 31', () => {
+            testObj.datePickerModule.currentDate = new Date('10/31/2025');
+            const expected = new Date('11/30/2025')
+            testObj.datePickerModule.focusNextMonth({ preventDefault: function () { } });
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
+        });
+
+        // general case: not the end of a long month
         it('previous month', () => {
-            const ppp = new Date(testObj.datePickerModule.currentDate);
-            ppp.setMonth(ppp.getMonth() - 1);
+            testObj.datePickerModule.currentDate = new Date('10/15/2025');
+            const expected = new Date('09/15/2025')
             testObj.datePickerModule.focusPreviousMonth({ preventDefault: function () { } });
-            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
+        });
+
+        // special case: prev month from the end of a long month into a short month (e.g. oct -> nov)
+        it('prev month from Oct 31', () => {
+            testObj.datePickerModule.currentDate = new Date('10/31/2025');
+            const expected = new Date('09/30/2025')
+            testObj.datePickerModule.focusPreviousMonth({ preventDefault: function () { } });
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
         });
 
         it('next year', () => {
@@ -360,19 +374,17 @@ describe('date picker', () => {
         });
 
         it('next month without focusing', () => {
-            const ppp = new Date(testObj.datePickerModule.currentDate);
-            ppp.setMonth(ppp.getMonth() + 1);
-            ppp.setDate(1);
+            testObj.datePickerModule.currentDate = new Date('10/15/2025');
+            const expected = new Date('11/01/2025')
             testObj.datePickerModule.focusNextMonth({ preventDefault: function () { } }, false);
-            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
         });
 
         it('previous month without focusing', () => {
-            const ppp = new Date(testObj.datePickerModule.currentDate);
-            ppp.setMonth(ppp.getMonth() - 1);
-            ppp.setDate(1);
+            testObj.datePickerModule.currentDate = new Date('10/15/2025');
+            const expected = new Date('09/01/2025')
             testObj.datePickerModule.focusPreviousMonth({ preventDefault: function () { } }, false);
-            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
         });
 
         it('next year without focusing', () => {
@@ -416,7 +428,7 @@ describe('date picker', () => {
             expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelectorAll('[tabindex="0"]').length).toEqual(1);
 
             // expect that date button to be current date
-            expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelector('[tabindex="0"]').innerText).toEqual('6');
+            expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelector('[tabindex="0"]').textContent).toEqual('6');
 
             // expect that date button to be have focus
             expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelector('[tabindex="0"]')).toEqual(document.activeElement);
@@ -430,7 +442,24 @@ describe('date picker', () => {
             testObj.datePickerModule.init();
             testObj.datePickerModule.openDialog();
 
-            expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelector('.ds_datepicker__current').innerText).toEqual('8');
+            expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelector('.ds_datepicker__current').textContent).toEqual('8');
+        });
+
+        it('should restore the default button text if the input is blurred', () => {
+            testObj.datePickerElement = document.querySelector('#basic');
+            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
+            testObj.datePickerModule.inputElement.value = '08/06/2020';
+            testObj.datePickerModule.currentDate = new Date('06/06/2020');
+            testObj.datePickerModule.init();
+            testObj.datePickerModule.openDialog();
+
+            const buttonSpan = testObj.datePickerElement.querySelector('.ds_datepicker__button span');
+            buttonSpan.textContent = 'foo';
+
+            const event = new MouseEvent( 'blur');
+            testObj.datePickerModule.inputElement.dispatchEvent(event);
+
+            expect(buttonSpan.textContent).toEqual('Choose date');
         });
     });
 
@@ -489,12 +518,13 @@ describe('date picker', () => {
 
         it('should go to the next year on click of "next year" button', () => {
             testObj.datePickerModule.openDialog();
-            spyOn(testObj.datePickerModule, 'focusNextYear');
+            vi.spyOn(testObj.datePickerModule, 'focusNextYear').mockImplementation();
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-next-year');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusNextYear).toHaveBeenCalled();
@@ -502,12 +532,13 @@ describe('date picker', () => {
 
         it('should go to the next month on click of "next month" button', () => {
             testObj.datePickerModule.openDialog();
-            spyOn(testObj.datePickerModule, 'focusNextMonth');
+            vi.spyOn(testObj.datePickerModule, 'focusNextMonth').mockImplementation();
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-next-month');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusNextMonth).toHaveBeenCalled();
@@ -515,12 +546,13 @@ describe('date picker', () => {
 
         it('should go to the previous month on click of "previous month" button', () => {
             testObj.datePickerModule.openDialog();
-            spyOn(testObj.datePickerModule, 'focusPreviousMonth');
+            vi.spyOn(testObj.datePickerModule, 'focusPreviousMonth').mockImplementation();
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-prev-month');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusPreviousMonth).toHaveBeenCalled();
@@ -528,12 +560,13 @@ describe('date picker', () => {
 
         it('should go to the previous year on click of "previous year" button', () => {
             testObj.datePickerModule.openDialog();
-            spyOn(testObj.datePickerModule, 'focusPreviousYear');
+            vi.spyOn(testObj.datePickerModule, 'focusPreviousYear').mockImplementation();
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-prev-year');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusPreviousYear).toHaveBeenCalled();
@@ -541,12 +574,13 @@ describe('date picker', () => {
 
         it('should close the dialog on click of the "cancel" button', () => {
             testObj.datePickerModule.openDialog();
-            spyOn(testObj.datePickerModule, 'closeDialog');
+            vi.spyOn(testObj.datePickerModule, 'closeDialog').mockImplementation();
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-cancel');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
@@ -557,8 +591,9 @@ describe('date picker', () => {
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-ok');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             // expected date is today's date
@@ -569,18 +604,20 @@ describe('date picker', () => {
         });
 
         it('should toggle the display of the dialog on click of the calendar button', () => {
-            spyOn(testObj.datePickerModule, 'openDialog').and.callThrough();
-            spyOn(testObj.datePickerModule, 'closeDialog').and.callThrough();
+            vi.spyOn(testObj.datePickerModule, 'openDialog');
+            vi.spyOn(testObj.datePickerModule, 'closeDialog');
 
             const button = testObj.datePickerModule.calendarButtonElement;
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            let event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
             expect(testObj.datePickerModule.openDialog).toHaveBeenCalled();
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
             expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
         });
@@ -594,9 +631,7 @@ describe('date picker', () => {
 
             lastButton.focus();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.tab;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'Tab'} );
             document.activeElement.dispatchEvent(event);
 
             expect (document.activeElement).toEqual(firstButton);
@@ -611,10 +646,7 @@ describe('date picker', () => {
 
             firstButton.focus();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.tab;
-            event.shiftKey = true;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'Tab', 'shiftKey': true} );
             document.activeElement.dispatchEvent(event);
 
             expect (document.activeElement).toEqual(lastButton);
@@ -628,27 +660,24 @@ describe('date picker', () => {
             const lastEnabledButton = enabledButtons[enabledButtons.length - 1];
 
             firstEnabledButton.focus();
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.up;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'UpArrow'} );
             document.activeElement.dispatchEvent(event);
 
             lastEnabledButton.focus();
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.up;
-            event.initEvent('keydown');
-            document.activeElement.dispatchEvent(event);
+            const event2 = new KeyboardEvent( 'keydown' , {'key': 'UpArrow'} );
+            document.activeElement.dispatchEvent(event2);
         });
 
         it('should close the calendar on click of any non-calendar element', () => {
-            event = document.createEvent('Event');
-            event.initEvent('mouseup');
+            const event = new MouseEvent( 'mouseup', {
+                bubbles: true
+            });
 
             testObj.datePickerModule.openDialog();
-            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeTrue();
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBe(true);
 
             document.body.dispatchEvent(event);
-            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBeFalse();
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBe(false);
         });
     });
 
@@ -661,123 +690,99 @@ describe('date picker', () => {
         });
 
         it('left cursor goes to previous day', () => {
-            spyOn(testObj.datePickerModule, 'focusPreviousDay');
+            vi.spyOn(testObj.datePickerModule, 'focusPreviousDay').mockImplementation();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.left;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'ArrowLeft'} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusPreviousDay).toHaveBeenCalled();
         });
 
         it('right cursor goes to next day', () => {
-            spyOn(testObj.datePickerModule, 'focusNextDay');
+            vi.spyOn(testObj.datePickerModule, 'focusNextDay').mockImplementation();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.right;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'ArrowRight'} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusNextDay).toHaveBeenCalled();
         });
 
         it('up cursor goes to previous week', () => {
-            spyOn(testObj.datePickerModule, 'focusPreviousWeek');
+            vi.spyOn(testObj.datePickerModule, 'focusPreviousWeek').mockImplementation();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.up;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'ArrowUp'} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusPreviousWeek).toHaveBeenCalled();
         });
 
         it('down cursor goes to next week', () => {
-            spyOn(testObj.datePickerModule, 'focusNextWeek');
+            vi.spyOn(testObj.datePickerModule, 'focusNextWeek').mockImplementation();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.down;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'ArrowDown'} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusNextWeek).toHaveBeenCalled();
         });
 
         it('home goes to first day of week', () => {
-            spyOn(testObj.datePickerModule, 'focusFirstDayOfWeek').and.callThrough();
+            vi.spyOn(testObj.datePickerModule, 'focusFirstDayOfWeek');
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.home;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'Home'} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusFirstDayOfWeek).toHaveBeenCalled();
         });
 
         it('end goes to first day of week', () => {
-            spyOn(testObj.datePickerModule, 'focusLastDayOfWeek').and.callThrough();
+            vi.spyOn(testObj.datePickerModule, 'focusLastDayOfWeek');
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.end;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'End'} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusLastDayOfWeek).toHaveBeenCalled();
         });
 
         it('pageup goes to previous month', () => {
-            spyOn(testObj.datePickerModule, 'focusPreviousMonth').and.callThrough();
+            vi.spyOn(testObj.datePickerModule, 'focusPreviousMonth');
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.pageup;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'PageUp'} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusPreviousMonth).toHaveBeenCalled();
         });
 
         it('shift-pageup goes to previous year', () => {
-            spyOn(testObj.datePickerModule, 'focusPreviousYear');
+            vi.spyOn(testObj.datePickerModule, 'focusPreviousYear').mockImplementation();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.pageup;
-            event.shiftKey = true;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'PageUp', 'shiftKey': true} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusPreviousYear).toHaveBeenCalled();
         });
 
         it('pagedown goes to next month', () => {
-            spyOn(testObj.datePickerModule, 'focusNextMonth').and.callThrough();
+            vi.spyOn(testObj.datePickerModule, 'focusNextMonth');
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.pagedown;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'PageDown'} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusNextMonth).toHaveBeenCalled();
         });
 
         it('shift-pagedown goes to next year', () => {
-            spyOn(testObj.datePickerModule, 'focusNextYear');
+            vi.spyOn(testObj.datePickerModule, 'focusNextYear').mockImplementation();
 
-            event = document.createEvent('Event');
-            event.keyCode = keycodes.pagedown;
-            event.shiftKey = true;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'PageDown', 'shiftKey': true} );
             document.activeElement.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusNextYear).toHaveBeenCalled();
         });
 
         it('any other key behaves normally', () => {
-            spyOn(testObj.datePickerModule, 'closeDialog');
+            vi.spyOn(testObj.datePickerModule, 'closeDialog').mockImplementation();
 
-            event = document.createEvent('Event');
-            event.keyCode = 1;
-            event.initEvent('keydown');
+            const event = new KeyboardEvent( 'keydown' , {'key': 'A'} );
             document.activeElement.dispatchEvent(event);
         });
 
@@ -785,8 +790,9 @@ describe('date picker', () => {
             // pick a day
             const dayButton = testObj.datePickerModule.dialogElement.querySelector('button[tabindex="0"]');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             dayButton.dispatchEvent(event);
 
             // expected date is today's date
@@ -799,24 +805,47 @@ describe('date picker', () => {
     describe('calendar with disabled dates', () => {
         beforeEach(() => {
             testObj.datePickerElement = document.querySelector('#basic');
+        });
+
+        it('should not permit the selection of a disabled date (provided in options)', () => {
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, {
                 disabledDates: [
                     new Date()
                 ]
             });
             testObj.datePickerModule.init();
-        });
 
-        it('should not permit the selection of a disabled date', () => {
-            spyOn(testObj.datePickerModule, 'setDate');
+            vi.spyOn(testObj.datePickerModule, 'setDate').mockImplementation();
 
             testObj.datePickerModule.openDialog();
 
             // pick a day
             const dayButton = testObj.datePickerModule.dialogElement.querySelector('table button[aria-disabled]');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
+            dayButton.dispatchEvent(event);
+
+            expect(testObj.datePickerModule.setDate).not.toHaveBeenCalled();
+        });
+
+        it('should not permit the selection of a disabled date (provided in data attribute)', () => {
+            const date = new Date();
+            testObj.datePickerElement.dataset.disableddates = `${leadingZeroes(date.getDate())}/${leadingZeroes(date.getMonth()+1)}/${leadingZeroes(date.getFullYear())}`
+            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
+            testObj.datePickerModule.init();
+
+            vi.spyOn(testObj.datePickerModule, 'setDate').mockImplementation();
+
+            testObj.datePickerModule.openDialog();
+
+            // pick a day
+            const dayButton = testObj.datePickerModule.dialogElement.querySelector('table button[aria-disabled]');
+
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             dayButton.dispatchEvent(event);
 
             expect(testObj.datePickerModule.setDate).not.toHaveBeenCalled();
@@ -833,10 +862,10 @@ describe('date picker', () => {
 
         testObj.datePickerModule.init();
 
-        spyOn(testObj.datePickerModule, 'dateSelectCallback');
+        vi.spyOn(testObj.datePickerModule.options, 'dateSelectCallback').mockImplementation();
 
         testObj.datePickerModule.selectDate(new Date('1/8/2020'));
 
-        expect(testObj.datePickerModule.dateSelectCallback).toHaveBeenCalledWith(new Date('1/8/2020'));
+        expect(testObj.datePickerModule.options.dateSelectCallback).toHaveBeenCalledWith(new Date('1/8/2020'));
     });
 });
