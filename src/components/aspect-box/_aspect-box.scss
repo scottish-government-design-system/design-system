@@ -19,16 +19,6 @@
         padding-bottom: calc(900%/21);
     }
 
-    &--fallback {
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    &--fallback &__inner {
-        display: none;
-    }
-
     &__inner {
         height: 100%;
         left: 0;

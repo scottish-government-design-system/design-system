@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "allowJs": false,
+      "declaration": true,
+      "outDir": "./dist/scripts",
+      "lib": [
+        "dom",
+        "esnext"
+      ],
+      "module": "NodeNext",
+      "moduleResolution": "nodenext",
+      "noImplicitAny": true,
+      "target": "esnext",
+      "types": ["vitest/globals"],
+      "strict": true
+    },
+    "include": ["./src/**/*"],
+    "exclude": [
+      "node_modules/**/*",
+      "./src/all.ts"
+    ]
+}
