@@ -106,7 +106,8 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
 
     &:has(.ds_card__link--cover) {
         @include ds_link--block('.ds_card__link--cover');
-
+        display: grid;
+        
         &:focus-within {
             @include ds_high-contrast-outline($width: 0.25em, $colour: highlight)
         }
