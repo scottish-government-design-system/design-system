@@ -1,13 +1,13 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi } from 'vitest';
+import loadHtml from '../../../loadHtml';
 import CookieNotification from './cookie-notification';
 import storage from '../../base/tools/storage/storage';
 
+const testObj = {};
+
 describe('cookie notification banners', () => {
-    beforeEach(() => {
-        loadFixtures('components/cookie-notification/cookie-notification.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/cookie-notification/cookie-notification.html');
         testObj.cookieNotificationElement = document.getElementById('cookie-notice');
         testObj.cookieSuccessElement = document.getElementById('cookie-confirm');
     });
@@ -21,7 +21,7 @@ describe('cookie notification banners', () => {
 
         testObj.cookieNotificationModule.init();
 
-        expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBeFalse();
+        expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBe(false);
         storage.get = tempStorageGet;
     });
 
@@ -34,7 +34,7 @@ describe('cookie notification banners', () => {
 
         testObj.cookieNotificationModule.init();
 
-        expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBeTrue();
+        expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBe(true);
 
         storage.get = tempStorageGet;
     });
@@ -49,12 +49,12 @@ describe('cookie notification banners', () => {
             two: 'two'
         };
 
-        spyOn(storage, 'setCookie');
+        const spy = vi.spyOn(storage, 'setCookie');
         const allowedButton = testObj.cookieNotificationElement.querySelector('.js-accept-all-cookies');
         const event = new Event('click');
         allowedButton.dispatchEvent(event);
-        expect(storage.setCookie.calls.argsFor(0)).toEqual(['necessary', 'cookiePermissions', '{"necessary":true,"one":true,"two":true}', 365]);
-        expect(storage.setCookie.calls.argsFor(1)).toEqual(['necessary', 'cookie-notification-acknowledged', 'yes', 365]);
+        expect(spy.mock.calls[0]).toEqual(['necessary', 'cookiePermissions', '{"necessary":true,"one":true,"two":true}', 365]);
+        expect(spy.mock.calls[1]).toEqual(['necessary', 'cookie-notification-acknowledged', 'yes', 365]);
     });
 
     it('should set all cookie options to "not allowed" on click of the "essential only" button', () => {
@@ -67,12 +67,13 @@ describe('cookie notification banners', () => {
             two: 'two'
         };
 
-        spyOn(storage, 'setCookie');
+        const spy = vi.spyOn(storage, 'setCookie');
         const allowedButton = testObj.cookieNotificationElement.querySelector('.js-accept-essential-cookies');
         const event = new Event('click');
+
         allowedButton.dispatchEvent(event);
-        expect(storage.setCookie.calls.argsFor(0)).toEqual(['necessary', 'cookiePermissions', '{"necessary":true,"one":false,"two":false}', 365]);
-        expect(storage.setCookie.calls.argsFor(1)).toEqual(['necessary', 'cookie-notification-acknowledged', 'yes', 365]);
+        expect(spy.mock.calls[0]).toEqual(['necessary', 'cookiePermissions', '{"necessary":true,"one":false,"two":false}', 365]);
+        expect(spy.mock.calls[1]).toEqual(['necessary', 'cookie-notification-acknowledged', 'yes', 365]);
     });
 
     it('should show a success notice when a positive action has been taken', () => {
@@ -83,8 +84,8 @@ describe('cookie notification banners', () => {
         const event = new Event('click');
 
         allowedButton.dispatchEvent(event);
-        expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBeTrue();
-        expect(testObj.cookieSuccessElement.classList.contains('fully-hidden')).toBeFalse();
+        expect(testObj.cookieNotificationElement.classList.contains('fully-hidden')).toBe(true);
+        expect(testObj.cookieSuccessElement.classList.contains('fully-hidden')).toBe(false);
         expect(document.activeElement.id).toEqual(testObj.cookieSuccessElement.id);
     });
 

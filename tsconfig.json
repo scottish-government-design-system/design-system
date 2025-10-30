@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "allowJs": false,
+      "outDir": "./dist/scripts2",
+      "lib": [
+        "dom",
+        "esnext"
+      ],
+      "module": "NodeNext",
+      "moduleResolution": "nodenext",
+      "noImplicitAny": true,
+      "target": "esnext",
+      "types": []
+    },
+    "include": ["./src/**/*"],
+    "exclude": ["node_modules/**/*"]
+}
