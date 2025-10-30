@@ -2262,7 +2262,7 @@ legend {
   font-size: 1.1875rem;
   line-height: 1.2631578947;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 @media (min-width: 768px) {
   legend {
@@ -2289,6 +2289,16 @@ fieldset {
 }
 .ds_form__content .ds_question .ds_page-header {
   margin-top: 0;
+}
+.ds_form__content .ds_question:last-child,
+.ds_form__content .ds_datepicker:last-child {
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .ds_form__content .ds_question:last-child,
+  .ds_form__content .ds_datepicker:last-child {
+    margin-bottom: 1.5rem;
+  }
 }
 .ds_form__actions .ds_button {
   margin-top: 1.5rem;
@@ -2556,20 +2566,28 @@ fieldset {
 \*------------------------------------*/
 .ds_hint-text {
   color: #5e5e5e;
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
 }
 .ds_hint-text > * {
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 /*------------------------------------*\
     LABEL
 \*------------------------------------*/
 .ds_label {
+  font-size: 1rem;
+  line-height: 1.5;
   color: #1a1a1a;
   display: inline-block;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 768px) {
+  .ds_label {
+    font-size: 1.1875rem;
+    line-height: 1.6842105263;
+  }
 }
 
 /*------------------------------------*\
@@ -2577,13 +2595,7 @@ fieldset {
 \*------------------------------------*/
 .ds_prefilled-value-list__key {
   margin: 0;
-  margin-bottom: 0.5rem;
   padding: 0;
-}
-@media (min-width: 768px) {
-  .ds_prefilled-value-list__key {
-    margin-bottom: 0.5rem;
-  }
 }
 .ds_prefilled-value-list__value {
   margin: 0;
@@ -2595,19 +2607,6 @@ fieldset {
     margin-bottom: 1.5rem;
   }
 }
-@media (min-width: 768px) {
-  .ds_prefilled-value-list__value {
-    display: flex;
-  }
-  .ds_prefilled-value-list__value-actions {
-    margin-left: 1.5rem;
-  }
-}
-@media (min-width: 768px) and (min-width: 768px) {
-  .ds_prefilled-value-list__value-actions {
-    margin-left: 1.5rem;
-  }
-}
 
 /*------------------------------------*\
     QUESTION
@@ -2617,7 +2616,7 @@ fieldset {
 }
 @media (min-width: 768px) {
   .ds_question {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 }
 .ds_question--error {
@@ -4141,6 +4140,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   display: block;
   position: relative;
   text-decoration-line: none;
+  display: grid;
 }
 .ds_card:has(.ds_card__link--cover) .ds_card__link--cover:focus {
   filter: none;
@@ -4865,7 +4865,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media (min-width: 768px) {
   .ds_datepicker {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 }
 .ds_datepicker .ds_input {
@@ -4874,7 +4874,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_datepicker__input-wrapper {
   display: flex;
   gap: 1rem;
-  margin-bottom: 1.5rem;
 }
 .ds_datepicker__dialog {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
@@ -6095,16 +6094,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
  * Alternative display collapsing the metadata into a single line
  */
 .ds_metadata--inline {
-  font-size: 0.75rem;
-  line-height: 1.3333333333;
   color: #5e5e5e;
   margin-bottom: 0.5rem;
-}
-@media (min-width: 768px) {
-  .ds_metadata--inline {
-    font-size: 0.875rem;
-    line-height: 1.7142857143;
-  }
 }
 .ds_metadata--inline .ds_metadata__item {
   display: inline;
@@ -7974,33 +7965,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 .ds_site-footer__copyright-logo {
   display: block;
-  margin-bottom: 8px;
-  width: 32px;
-  position: relative;
-  transition-duration: 0s !important;
-}
-.ds_site-footer__copyright-logo:hover:not(:focus) {
-  background: transparent;
-  outline-color: transparent;
-}
-.ds_site-footer__copyright-logo::after {
-  background-color: currentColor;
-  bottom: -5px;
-  content: "";
-  height: round(0.16em, 1px);
-  left: 50%;
-  opacity: 0;
-  position: absolute;
-  right: 50%;
-  transition: left 0.2s, right 0.2s, opacity 0.2s;
-}
-.ds_site-footer__copyright-logo:hover::after {
-  left: 0;
-  opacity: 1;
-  right: 0;
-}
-.ds_site-footer__copyright-logo:focus::after {
-  content: none;
+  width: 41px;
 }
 .ds_site-footer__copyright-logo img {
   width: 100%;
@@ -8060,15 +8025,6 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 
 @media (min-width: 768px) {
-  .ds_site-footer__copyright {
-    padding-left: 48px;
-    position: relative;
-  }
-  .ds_site-footer__copyright-logo {
-    position: absolute;
-    left: 0;
-    top: 2px;
-  }
   .ds_site-footer__content {
     margin-right: -32px;
     overflow: hidden;
@@ -8665,6 +8621,18 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 .ds_summary-list__value .visually-hidden:first-child + * {
   margin-top: 0;
+}
+.ds_summary-list__value dt,
+.ds_summary-list__value dd {
+  margin: 0;
+}
+.ds_summary-list__value dt {
+  margin-top: 1rem;
+}
+@media (min-width: 768px) {
+  .ds_summary-list__value dl:first-child {
+    margin-top: -1rem;
+  }
 }
 .ds_summary-list__answer::before, .ds_summary-list__answer::after {
   content: "";
@@ -9874,7 +9842,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 .ds_warning-text__icon::before {
   content: "";
-  background-image: url("../images/icons/icons.stack.svg#priority_high");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%' viewBox='0 0 24 24' width='100%' fill='%23000000'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Ccircle cx='12' cy='19' r='2'/%3E%3Cpath d='M10 3h4v12h-4z'/%3E%3C/svg%3E");
   display: inline-block;
   height: 100%;
   width: 100%;
