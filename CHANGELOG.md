@@ -7,6 +7,28 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## [3.3.0]
+### Added
+- Tracking script includes adding canonical url to datalayer if present on the page
+- Summary lists can now include nested summary lists to support conversion of a summary card to become part of a larger summary list
+
+### Changed
+- Prefilled value list button label simplified and moved underneath the value rather than alongside
+- Date picker and warning text components use their own SVG icons rather than referencing a path to the SVG sprite
+- JavaScript uses of element.innerText changed to element.textContent
+- Size and position of OGL logo in site footer now above text and matching OGL brand guidelines
+- Bottom margin on form ds_question and ds_datepicker elements increased
+- ds_label class now includes the font size property so it can be applied to fieldset legends to look the same as other input labels
+
+### Fixed
+- Card content height no longer expands below the card if the card includes an image
+- Back to top button position now correctly displays when a page has async updates
+- Summary card action buttons now support multiple aria-describedby values if necessary
+
+### Removed
+- Site footer OGL logo link not required as text link is in the footer already
+- Tiny font size removed from inline metadata to make metadata more consistent
+
 ## [3.2.1]
 ### Fixed
 - Tabs should not update window.location.hash when initialised
