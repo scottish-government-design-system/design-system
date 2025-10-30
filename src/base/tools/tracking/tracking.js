@@ -41,6 +41,7 @@ function findElementInNodeArray(nodeArray, selector, specialCases) {
     nodeArray.reverse();
 
     // polyfill for IE
+    /* v8 ignore if -- @preserve */
     if (!Element.prototype.matches) {
         Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
     }
@@ -167,6 +168,7 @@ const tracking = {
         },
 
         prefersColorScheme: function () {
+            /* v8 ignore if -- @preserve */
             if (!window.matchMedia) {
                 return;
             }
@@ -550,6 +552,7 @@ const tracking = {
 
                 const links = [].slice.call(insetText.querySelectorAll('.ds_inset-text__text a:not(.ds_button)'));
                 links.forEach(link => {
+                    /* v8 ignore else -- @preserve */
                     if (!link.getAttribute('data-navigation')) {
                         link.setAttribute('data-navigation', 'inset-link');
                     }
