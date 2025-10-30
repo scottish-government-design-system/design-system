@@ -1,13 +1,10 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import loadHtml from '../../../loadHtml';
 import skipLinks from './skip-links';
 
 describe('skip links', () => {
 
-    beforeEach(function () {
-        loadFixtures('components/skip-links/skip-links.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/skip-links/skip-links.html');
         skipLinks.init();
     });
 

@@ -1,24 +1,20 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi } from 'vitest';
+import { page } from 'vitest/browser';
+import loadHtml from '../../../loadHtml';
 import BackToTop from './back-to-top';
 
-// mock window
-const windowObj = {
-    addEventListener: function () { }
-};
+const testObj = {};
 
 describe('back to top', () => {
-    beforeEach(() => {
-        loadFixtures('components/back-to-top/back-to-top.html');
-        windowObj.innerHeight = 600;
+    beforeEach(async () => {
+        await loadHtml('src/components/back-to-top/back-to-top.html');
+        await page.viewport(800, 600)
     });
 
     it('should exit init without doing anything if no element supplied', () => {
         testObj.backToTopModule = new BackToTop();
 
-        spyOn(testObj.backToTopModule, 'checkDisplay');
+        vi.spyOn(testObj.backToTopModule, 'checkDisplay');
         testObj.backToTopModule.init();
 
         expect(testObj.backToTopModule.checkDisplay).not.toHaveBeenCalled();
@@ -31,7 +27,7 @@ describe('back to top', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
-        spyOn(testObj.backToTopModule, 'checkDisplay');
+        vi.spyOn(testObj.backToTopModule, 'checkDisplay');
         testObj.backToTopModule.init();
 
         expect(testObj.backToTopModule.checkDisplay).not.toHaveBeenCalled();
@@ -41,7 +37,7 @@ describe('back to top', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
-        spyOn(testObj.backToTopModule, 'checkDisplay');
+        vi.spyOn(testObj.backToTopModule, 'checkDisplay');
         testObj.backToTopModule.init();
 
         expect(testObj.backToTopModule.checkDisplay).toHaveBeenCalled();
@@ -49,21 +45,21 @@ describe('back to top', () => {
 
     it('should not display if the page is taller than the viewport', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
-        testObj.backToTopModule = new BackToTop(testObj.backToTopElement, windowObj);
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
         testObj.backToTopModule.init();
-        expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeTrue();
+        expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBe(true);
     });
 
-    it('should display if the page is taller than the viewport', () => {
+    it('should display if the page is taller than the viewport', async () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
 
-        windowObj.innerHeight = 1;
+        await page.viewport(800, 0);
 
-        testObj.backToTopModule = new BackToTop(testObj.backToTopElement, windowObj);
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
         testObj.backToTopModule.init();
-        expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeFalse();
+        expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBe(false);
     });
 
     it('should check positioning on resize', () => {
@@ -72,7 +68,7 @@ describe('back to top', () => {
 
         testObj.backToTopModule.init();
 
-        spyOn(testObj.backToTopModule, 'checkPosition');
+        vi.spyOn(testObj.backToTopModule, 'checkPosition');
 
         event = document.createEvent('Event');
         event.initEvent('resize');
