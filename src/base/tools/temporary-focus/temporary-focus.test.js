@@ -1,13 +1,10 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import loadHtml from '../../../../loadHtml';
 import temporaryFocus from './temporary-focus';
 
 describe('temporary focus', () => {
 
-    beforeEach(function () {
-        loadFixtures('base/tools/temporary-focus/temporary-focus.html');
+    beforeEach(async () => {
+        await loadHtml('src/base/tools/temporary-focus/temporary-focus.html');
     });
 
     describe('temporary focus', () => {

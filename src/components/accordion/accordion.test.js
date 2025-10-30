@@ -1,18 +1,15 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi } from 'vitest';
+import loadHtml from '../../../loadHtml';
 import Accordion from './accordion';
 
-describe('accordion', () => {
-    beforeEach(() => {
-        loadFixtures('components/accordion/accordion.html');
+const testObj = {};
 
+describe('accordion', () => {
+    beforeEach(async () => {
+        await loadHtml('src/components/accordion/accordion.html');
         testObj.accordionElement = document.querySelector('#withopenall');
         testObj.accordionModule = new Accordion(testObj.accordionElement);
     });
-
-
 
     it('should set a class of "js-initialised" on init', () => {
         // grab the first accordion
@@ -24,7 +21,7 @@ describe('accordion', () => {
     it('should abandon attemts to call init() after it has been init-ed', () => {
         testObj.accordionModule.init();
 
-        spyOn(testObj.accordionModule.accordion.classList, 'add');
+        vi.spyOn(testObj.accordionModule.accordion.classList, 'add');
         testObj.accordionModule.init();
         expect(testObj.accordionModule.accordion.classList.add).not.toHaveBeenCalled();
     });
@@ -39,7 +36,6 @@ describe('accordion', () => {
 
         it('should be opened if window.location.hash matches an element inside the accordion', () => {
             const hashAccordionItem = testObj.accordionElement.querySelector('#hashAccordionItem');
-
             window.location.hash = 'foo';
             testObj.accordionModule.init();
             expect(hashAccordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
@@ -137,22 +133,21 @@ describe('accordion', () => {
 });
 
 describe('accordion without "open all" button', function () {
-    beforeEach(() => {
-        loadFixtures('components/accordion/accordion.html');
-
+    beforeEach(async () => {
+        await loadHtml('src/components/accordion/accordion.html');
         testObj.accordionElement = document.querySelector('#withoutopenall');
         testObj.accordionModule = new Accordion(testObj.accordionElement);
     });
 
     it('should not attempt to init the open all button', () => {
-        spyOn(testObj.accordionModule, 'initOpenAll');
+        vi.spyOn(testObj.accordionModule, 'initOpenAll');
         testObj.accordionModule.init();
 
         expect(testObj.accordionModule.initOpenAll).not.toHaveBeenCalled();
     });
 
     it('should not attempt to update the open all button when panels are toggled', () => {
-        spyOn(testObj.accordionModule, 'setOpenAllButton');
+        vi.spyOn(testObj.accordionModule, 'setOpenAllButton');
         testObj.accordionModule.init();
 
         const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');

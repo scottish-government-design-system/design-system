@@ -1,26 +1,27 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi } from 'vitest';
+import { page } from 'vitest/browser';
+import loadHtml from '../../../loadHtml';
 import Tabs from './tabs';
 
+const testObj = {};
+
 describe('tabs', () => {
-    beforeEach(() => {
-        loadFixtures('components/tabs/tabs.html');
-        viewport.set(800);
+    beforeEach(async () => {
+        await loadHtml('src/components/tabs/tabs.html');
+        await page.viewport(800, 400);
         testObj.tabsElement = document.querySelector('#tab');
         testObj.tabsModule = new Tabs(testObj.tabsElement);
     });
 
-    afterEach(() => {
+    afterEach(async () => {
         // reset viewport size
-        viewport.reset();
+        await page.viewport(800, 400);
         // remove hash if present
         history.pushState("", document.title, window.location.pathname);
     });
 
-    it('should not be initialised if smaller than medium size', () => {
-        viewport.set(400); // set to a size smaller than medium
+    it('should not be initialised if smaller than medium size', async () => {
+        await page.viewport(400, 400); // set to a size smaller than medium
         testObj.tabsModule.init();
         expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(false);
     });
@@ -33,14 +34,14 @@ describe('tabs', () => {
 
     it('should set the list of tabs with a role attribute of "tablist" on set()', () => {
         let tabList = testObj.tabsElement.querySelector('.ds_tabs__list');
-        expect(tabList.hasAttribute('role')).toBeFalsy();
+        expect(tabList.hasAttribute('role')).toBe(false);
         testObj.tabsModule.init();
         expect(tabList.getAttribute('role')).toEqual('tablist');
     });
 
     it('should abandon attempts to initialise after it has been init-ed', () => {
         testObj.tabsModule.init();
-        spyOn(testObj.tabsModule.tabContainer.classList, 'add');
+        vi.spyOn(testObj.tabsModule.tabContainer.classList, 'add').mockImplementation();
         testObj.tabsModule.init();
         expect(testObj.tabsModule.tabContainer.classList.add).not.toHaveBeenCalled();
     });
@@ -55,9 +56,9 @@ describe('tabs', () => {
     it('should remove the role attribute on the list of tabs on reset', () => {
         testObj.tabsModule.init();
         const tabList = testObj.tabsElement.querySelector('.ds_tabs__list');
-        expect(tabList.hasAttribute('role')).toBeTruthy();
+        expect(tabList.hasAttribute('role')).toBe(true);
         testObj.tabsModule.reset();
-        expect(tabList.hasAttribute('role')).toBeFalsy();
+        expect(tabList.hasAttribute('role')).toBe(false);
     });
 
     it('should abandon attempts to reset if it has not been init-ed', () => {
@@ -66,36 +67,34 @@ describe('tabs', () => {
         expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(false);
     });
 
-    it('should reset if the viewport is resized to become smaller than medium size', () => {
-        const clock = jasmine.clock().install();
-        viewport.set(800); // set to a size larger than medium
+    it('should reset if the viewport is resized to become smaller than medium size', async () => {
+        vi.useFakeTimers()
+        await page.viewport(800, 400); // set to a size larger than medium
         testObj.tabsModule.init();
         expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(true);
 
         // Send resize event
-        viewport.set(400); // set to a size smaller than medium
+        await page.viewport(400, 400); // set to a size smaller than medium
         const event = new Event('resize');
         window.dispatchEvent(event);
-        clock.tick(300); // wait for debounce interval
+        vi.advanceTimersByTime(300);
 
         expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(false);
-        clock.uninstall();
     });
 
-    it('should be set if the viewport is resized to become larger than medium size', () => {
-        const clock = jasmine.clock().install();
-        viewport.set(400); // set to a size smaller than medium
+    it('should be set if the viewport is resized to become larger than medium size', async () => {
+        vi.useFakeTimers()
+        await page.viewport(400, 400); // set to a size smaller than medium
         testObj.tabsModule.init();
         expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(false);
 
         // Send resize event
-        viewport.set(800); // set to a size larger than medium
+        await page.viewport(800, 400); // set to a size larger than medium
         const event = new Event('resize');
         window.dispatchEvent(event);
-        clock.tick(300); // wait for debounce interval
+        vi.advanceTimersByTime(300); // wait for debounce interval
 
         expect(testObj.tabsElement.classList.contains('js-initialised')).toBe(true);
-        clock.uninstall();
     });
 
     it('should NOT update window.location.hash when it shows the first tab on load', () => {
@@ -147,18 +146,18 @@ describe('tabs', () => {
             const tabContents = testObj.tabsElement.querySelectorAll('.ds_tabs__content');
 
             for (let i = 0, il = tabItems.length; i < il; i++) {
-                expect(tabItems[i].hasAttribute('role')).toBeFalsy();
+                expect(tabItems[i].hasAttribute('role')).toBe(false);
 
                 const tabLink = tabItems[i].querySelector('.ds_tabs__tab-link');
-                expect(tabLink.hasAttribute('role')).toBeFalsy();
-                expect(tabLink.hasAttribute('aria-controls')).toBeFalsy();
-                expect(tabLink.hasAttribute('aria-selected')).toBeFalsy();
-                expect(tabLink.hasAttribute('tabindex')).toBeFalsy();
+                expect(tabLink.hasAttribute('role')).toBe(false);
+                expect(tabLink.hasAttribute('aria-controls')).toBe(false);
+                expect(tabLink.hasAttribute('aria-selected')).toBe(false);
+                expect(tabLink.hasAttribute('tabindex')).toBe(false);
             }
 
             for (let i = 0, il = tabContents.length; i < il; i++) {
-                expect(tabContents[i].hasAttribute('role')).toBeFalsy();
-                expect(tabContents[i].hasAttribute('tabindex')).toBeFalsy();
+                expect(tabContents[i].hasAttribute('role')).toBe(false);
+                expect(tabContents[i].hasAttribute('tabindex')).toBe(false);
             }
         });
 
@@ -219,8 +218,8 @@ describe('tabs', () => {
 
         });
 
-        it ('should not change the tab on hash change if smaller than medium size', () => {
-            viewport.set(400); // set to a size smaller than medium
+        it ('should not change the tab on hash change if smaller than medium size', async() => {
+            await page.viewport(400, 400); // set to a size smaller than medium
             testObj.tabsModule.init();
 
             // Change hash
@@ -236,7 +235,7 @@ describe('tabs', () => {
 
             // Check all tabs that none are selected
             for (let i = 0, il = tabItems.length; i < il; i++) {
-                expect(tabItems[i].querySelector('.ds_current')).toBeFalsy();
+                expect(tabItems[i].querySelector('.ds_current')).toBeNull();
             }
         });
 
@@ -411,7 +410,7 @@ describe('tabs', () => {
             testObj.tabsModule.init();
             testObj.tabsModule.init();
 
-            spyOn(testObj.tabsModule, 'goToTab');
+            vi.spyOn(testObj.tabsModule, 'goToTab').mockImplementation();
 
             const currentTabLink = testObj.tabsElement.querySelector('.ds_current a');
 

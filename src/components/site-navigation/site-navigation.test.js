@@ -1,17 +1,16 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import loadHtml from '../../../loadHtml';
 import MobileMenu from './site-navigation';
 
+const testObj = {};
+
 describe('site navigation', () => {
-    beforeEach(function () {
-        loadFixtures('components/site-navigation/site-navigation.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/site-navigation/site-navigation.html');
     });
 
     describe('no site navigation', () => {
         it('should not have any errors', () => {
-            const ppp = new MobileMenu();
+            const ppp = new MobileMenu(undefined);
             ppp.init();
         });
     });
@@ -32,6 +31,7 @@ describe('site navigation', () => {
                 testObj.siteNavigationModule.init();
 
                 const button = document.querySelector('button.js-toggle-menu');
+
                 expect(document.querySelectorAll('button.js-toggle-menu').length).toEqual(1);
                 expect(button.getAttribute('aria-controls')).toEqual(expectedAttribs.controls);
                 expect(button.getAttribute('aria-expanded')).toEqual(expectedAttribs.expanded.toString());
@@ -49,15 +49,15 @@ describe('site navigation', () => {
                 const event = new Event('click');
                 button.dispatchEvent(event);
 
-                expect(menu.classList.contains('ds_site-navigation--open')).toBeTruthy();
-                expect(button.classList.contains('ds_site-header__control--active')).toBeTruthy();
+                expect(menu.classList.contains('ds_site-navigation--open')).toBe(true);
+                expect(button.classList.contains('ds_site-header__control--active')).toBe(true);
                 expect(button.getAttribute('aria-expanded')).toEqual(true.toString());
 
                 // CLOSE
                 button.dispatchEvent(event);
 
-                expect(menu.classList.contains('ds_site-navigation--open')).toBeFalsy();
-                expect(button.classList.contains('ds_site-header__control--active')).toBeFalsy();
+                expect(menu.classList.contains('ds_site-navigation--open')).toBe(false);
+                expect(button.classList.contains('ds_site-header__control--active')).toBe(false);
                 expect(button.getAttribute('aria-expanded')).toEqual(false.toString());
             });
         });
