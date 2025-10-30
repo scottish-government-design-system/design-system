@@ -1,7 +1,4 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import loadHtml from '../../../loadHtml';
 import AspectBox from './aspect-box-fallback';
 
 // mock window
@@ -12,9 +9,11 @@ const documentObj = {
     querySelectorAll: document.querySelectorAll.bind(document)
 };
 
+const testObj = {};
+
 describe('aspect box fallback', () => {
-    beforeEach(() => {
-        loadFixtures('components/aspect-box/aspect-box.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/aspect-box/aspect-box.html');
 
         testObj.aspectBox = document.querySelector('.ds_aspect-box');
         testObj.aspectBoxInner = testObj.aspectBox.querySelector('.ds_aspect-box__inner');
@@ -31,7 +30,7 @@ describe('aspect box fallback', () => {
         const aspectBox = new AspectBox(testObj.aspectBox, documentObj);
         aspectBox.init();
         expect(testObj.aspectBox.style.backgroundImage).toEqual(`url("${testObj.aspectBoxInner.src}")`);
-        expect(testObj.aspectBox.classList.contains('ds_aspect-box--fallback')).toBeTruthy();
+        expect(testObj.aspectBox.classList.contains('ds_aspect-box--fallback')).toBe(true);
     });
 
     it('should do nothing if object-fit not supported but there is no image', () => {

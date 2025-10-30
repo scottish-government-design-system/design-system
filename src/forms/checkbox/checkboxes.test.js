@@ -1,12 +1,11 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import loadHtml from '../../../loadHtml';
 import Checkboxes from './checkboxes';
 
+const testObj = {};
+
 describe('checkboxes', () => {
-    beforeEach(() => {
-        loadFixtures('forms/checkbox/checkboxes.html');
+    beforeEach(async () => {
+        await loadHtml('src/forms/checkbox/checkboxes.html');
         testObj.checkboxesElement = document.querySelector('[data-module="ds-checkboxes"]');
         testObj.checkboxesModule = new Checkboxes(testObj.checkboxesElement);
     });
@@ -28,8 +27,8 @@ describe('checkboxes', () => {
         exclusiveCheckbox.dispatchEvent(event);
 
         // ASSERT
-        expect(checkbox1.checked).toBeFalse();
-        expect(checkbox2.checked).toBeFalse();
+        expect(checkbox1.checked).toBe(false);
+        expect(checkbox2.checked).toBe(false)
     });
 
     it('should be unchecked when any other checkbox in its group is checked', () => {
@@ -47,7 +46,7 @@ describe('checkboxes', () => {
         checkbox1.dispatchEvent(event);
 
         // ASSERT
-        expect(checkbox1.checked).toBeTrue();
-        expect(exclusiveCheckbox.checked).toBeFalse();
+        expect(checkbox1.checked).toBe(true);
+        expect(exclusiveCheckbox.checked).toBe(false);
     });
 });

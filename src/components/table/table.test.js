@@ -1,18 +1,18 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi } from 'vitest';
+import loadHtml from '../../../loadHtml';
 import MobileTables from './table';
 
+const testObj = {};
+
 describe('mobile tables', () => {
-    beforeEach(function () {
-        loadFixtures('components/table/table.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/table/table.html');
         testObj.mobileTables = new MobileTables();
     });
 
     describe('scrolling tables', () => {
         it('should check whether to change the table display on init', () => {
-            spyOn(testObj.mobileTables, 'checkScrollingTables');
+            vi.spyOn(testObj.mobileTables, 'checkScrollingTables').mockImplementation();
 
             testObj.mobileTables.init();
 
@@ -22,7 +22,7 @@ describe('mobile tables', () => {
         it('should check whether to change the table display on resize', () => {
             testObj.mobileTables.init();
 
-            spyOn(testObj.mobileTables, 'checkScrollingTables');
+            vi.spyOn(testObj.mobileTables, 'checkScrollingTables').mockImplementation();
 
             let event = new Event('resize');
             testObj.mobileTables.window.dispatchEvent(event);
@@ -32,20 +32,20 @@ describe('mobile tables', () => {
 
         it('should change the table display if the table is wider than its container', () => {
             const table = document.getElementById('scrolling');
-            table.parentNode.style.width = '400px';
+            table.parentElement.style.width = '400px';
 
             testObj.mobileTables.init();
 
-            expect(table.classList.contains('js-is-scrolling')).toBeTrue();
+            expect(table.classList.contains('js-is-scrolling')).toBe(true);
         });
 
-        it('should use the normaltable display if the table is narrower than its container', () => {
+        it('should use the normal table display if the table is narrower than its container', () => {
             const table = document.getElementById('scrolling');
-            table.parentNode.style.width = '800px';
+            table.parentElement.style.width = '800px';
 
             testObj.mobileTables.init();
 
-            expect(table.classList.contains('js-is-scrolling')).toBeFalse();
+            expect(table.classList.contains('js-is-scrolling')).toBe(false);
         });
     });
 
@@ -62,7 +62,7 @@ describe('mobile tables', () => {
 
         it('should add a data attribute with the heading to each table cell', () => {
             const table = document.getElementById('boxes');
-            const tableHeadings = [].slice.call(table.querySelectorAll('th')).map(cell => cell.innerText);
+            const tableHeadings = [].slice.call(table.querySelectorAll('th')).map(cell => cell.textContent);
 
             testObj.mobileTables.init();
 

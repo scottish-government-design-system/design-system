@@ -1,5 +1,7 @@
 'use strict';
 
+import isBase64 from "./isBase64";
+
 const storage = {
     categories: {
         necessary: 'necessary',
@@ -169,15 +171,6 @@ const storage = {
         get: function (name) {
             const nameEQ = name + '=',
                 cookiesArray = document.cookie.split(';');
-
-            function isBase64(str) {
-                if (str ==='' || str.trim() ===''){ return false; }
-                try {
-                    return window.btoa(window.atob(str)) == str;
-                } catch (err) {
-                    return false;
-                }
-            }
 
             // find a matching cookie
             for (let i = 0, il = cookiesArray.length; i < il; i++) {

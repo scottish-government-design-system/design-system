@@ -1,12 +1,11 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import loadHtml from '../../../loadHtml';
 import stepNav from './step-navigation';
 
+const testObj = {};
+
 describe('step navigation', () => {
-    beforeEach(function () {
-        loadFixtures('components/step-navigation/step-navigation.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/step-navigation/step-navigation.html');
         testObj.stepNavigationElement = document.querySelector('#stepNav');
     });
 
@@ -24,7 +23,7 @@ describe('step navigation', () => {
         const targetLink = document.querySelector('#target-link');
         const currentBodyLinks = document.querySelectorAll('.ds_accordion-item__body a.ds_step-navigation__current-link');
 
-        expect(targetLink.classList.contains('ds_step-navigation__current-link')).toBeTrue();
+        expect(targetLink.classList.contains('ds_step-navigation__current-link')).toBe(true);
         expect(currentBodyLinks.length).toEqual(1);
     });
 

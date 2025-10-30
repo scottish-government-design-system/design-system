@@ -1,13 +1,13 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi } from 'vitest';
+import loadHtml from '../../../loadHtml';
 import SideNavigation from './side-navigation';
+
+const testObj = {};
 
 describe('side navigation', () => {
 
-    beforeEach(function () {
-        loadFixtures('components/side-navigation/side-navigation.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/side-navigation/side-navigation.html');
     });
 
     describe('no side navigation', () => {
@@ -26,7 +26,7 @@ describe('side navigation', () => {
         it('should abandon attempts to call init() after it has been init-ed', () => {
             testObj.sideNavigationModule.init();
 
-            spyOn(testObj.sideNavigationModule.sideNavigation.classList, 'add');
+            vi.spyOn(testObj.sideNavigationModule.sideNavigation.classList, 'add').mockImplementation();
             testObj.sideNavigationModule.init();
             expect(testObj.sideNavigationModule.sideNavigation.classList.add).not.toHaveBeenCalledWith('js-initialised');
         });
@@ -64,12 +64,12 @@ describe('side navigation', () => {
 
         it('should fully hide the toggle checkbox on init', () => {
             const toggle = testObj.sideNavigationElement.querySelector('.js-toggle-side-navigation');
-            expect(toggle.classList.contains('fully-hidden')).toBeFalse();
-            expect(toggle.classList.contains('visually-hidden')).toBeTrue();
+            expect(toggle.classList.contains('fully-hidden')).toBe(false);
+            expect(toggle.classList.contains('visually-hidden')).toBe(true);
 
             testObj.sideNavigationModule.init();
-            expect(toggle.classList.contains('fully-hidden')).toBeTrue();
-            expect(toggle.classList.contains('visually-hidden')).toBeFalse();
+            expect(toggle.classList.contains('fully-hidden')).toBe(true);
+            expect(toggle.classList.contains('visually-hidden')).toBe(false);
         });
     });
 

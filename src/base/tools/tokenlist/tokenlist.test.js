@@ -41,7 +41,7 @@ describe('Token List', () => {
 
     it('should allow checking for the presence of a value', () => {
         const tokenList = new TokenList('foo bar');
-        expect(tokenList.contains('bar')).toBeTrue();
-        expect(tokenList.contains('baz')).toBeFalse();
+        expect(tokenList.contains('bar')).toBe(true);
+        expect(tokenList.contains('baz')).toBe(false);
     });
 });
