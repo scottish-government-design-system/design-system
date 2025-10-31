@@ -1,5 +1,5 @@
 class TokenList {
-    private tokens: Array<String>;
+    private tokens: Array<string>;
 
     constructor(string: string) {
         if (string && string.trim().length > 0) {
@@ -9,7 +9,7 @@ class TokenList {
         }
     }
 
-    add(itemsToAdd: string | Array<String>) {
+    add(itemsToAdd: string | Array<string>) {
         // if supplied as space-separated list, convert to array
         if (typeof itemsToAdd === 'string') {
             itemsToAdd = itemsToAdd.replace(/\s+/g, ' ').split(' ');

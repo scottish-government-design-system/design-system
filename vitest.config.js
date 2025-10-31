@@ -14,9 +14,8 @@ export default defineConfig({
             // at least one instance is required
             instances: [
                 {
-                    browser: 'chromium',
-
-                },
+                    browser: 'chromium'
+                }
             ],
             provider: playwright()
         },

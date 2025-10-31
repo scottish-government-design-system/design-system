@@ -17,6 +17,7 @@ class CharacterCount {
     inputElement: CharacterCountInputElement;
     maxLength: number;
     messageElement: HTMLElement;
+    messageTimeout: number;
     screenReaderMessageElement: HTMLElement;
     threshold: number;
     thresholdCharacters: number;
@@ -152,9 +153,8 @@ class CharacterCount {
             this.messageElement.classList.remove('fully-hidden');
         }
 
-        let messageTimeout: number;
-        clearTimeout(messageTimeout);
-        messageTimeout = window.setTimeout(() => {
+        clearTimeout(this.messageTimeout);
+        this.messageTimeout = window.setTimeout(() => {
             if (this.inputElement.value.length >= this.thresholdCharacters) {
                 this.updateScreenReaderMessage();
             } else {

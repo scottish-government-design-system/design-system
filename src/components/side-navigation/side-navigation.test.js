@@ -31,13 +31,13 @@ describe('side navigation', () => {
             expect(testObj.sideNavigationModule.sideNavigation.classList.add).not.toHaveBeenCalledWith('js-initialised');
         });
 
-        it ('should set an initial aria-expanded value on the control', () => {
+        it('should set an initial aria-expanded value on the control', () => {
             testObj.sideNavigationModule.init();
             const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button');
             expect(sideNavButton.getAttribute('aria-expanded')).toEqual('false');
         });
 
-        it ('should update the control\'s aria-expanded attribute when interacted with', () => {
+        it('should update the control\'s aria-expanded attribute when interacted with', () => {
             testObj.sideNavigationModule.init();
             const sideNavButton = testObj.sideNavigationElement.querySelector('.js-side-navigation-button');
             const label = testObj.sideNavigationElement.querySelector('button.ds_side-navigation__expand');

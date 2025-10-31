@@ -43,7 +43,7 @@ class MobileTables {
             if (headerRow) {
                 for (let j = 1, jl = trs.length; j < jl; j++) {
                     [].slice.call(trs[j].cells).forEach((td: HTMLTableCellElement, index: number) => {
-                        td.setAttribute('data-heading', headerRow.cells[index].innerText);
+                        td.setAttribute('data-heading', headerRow.cells[index].textContent);
                     });
                 }
             }

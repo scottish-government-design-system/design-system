@@ -106,7 +106,7 @@ describe('storage', () => {
             expect(storage.cookie.remove).toHaveBeenCalledWith('foo');
         });
 
-        it ('should remove from localStorage', () => {
+        it('should remove from localStorage', () => {
             vi.spyOn(Storage.prototype, 'removeItem').mockImplementation();
             storage.remove({
                 type: 'local',
@@ -116,7 +116,7 @@ describe('storage', () => {
             expect(localStorage.removeItem).toHaveBeenCalledWith('foo');
         });
 
-        it ('should remove from sessionStorage', () => {
+        it('should remove from sessionStorage', () => {
             vi.spyOn(Storage.prototype, 'removeItem').mockImplementation();
             storage.remove({
                 type: 'session',
@@ -198,7 +198,7 @@ describe('storage', () => {
             expect(cookieData.expires).toBeUndefined();
         });
 
-        it ('remove actual cookie', () => {
+        it('remove actual cookie', () => {
             // set a cookie
             document.cookie = `foo=bar;path=/;`;
 

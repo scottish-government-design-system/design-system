@@ -27,9 +27,8 @@ describe('hide page', () => {
 
             vi.spyOn(testObj.hidePage, 'doHidePage').mockImplementation();
 
-            const event = document.createEvent('Event');
+            const event = new Event('keyup');
             event.key = 'Escape';
-            event.initEvent('keyup');
             document.dispatchEvent(event);
 
             expect(testObj.hidePage.doHidePage).toHaveBeenCalled();
@@ -42,9 +41,8 @@ describe('hide page', () => {
             // and if not the esc key, behave as normal
             vi.spyOn(testObj.hidePage, 'doHidePage').mockImplementation();
 
-            const event = document.createEvent('Event');
-            event.keyCode = 1;
-            event.initEvent('keyup');
+            const event = new Event('keyup');
+            event.key = 'A';
             document.dispatchEvent(event);
 
             expect(testObj.hidePage.doHidePage).not.toHaveBeenCalled();

@@ -57,8 +57,7 @@ describe('back to top', () => {
 
         vi.spyOn(testObj.backToTopModule, 'checkPosition');
 
-        event = document.createEvent('Event');
-        event.initEvent('resize');
+        const event = new Event('resize');
         window.dispatchEvent(event);
 
         expect(testObj.backToTopModule.checkPosition).toHaveBeenCalled();
