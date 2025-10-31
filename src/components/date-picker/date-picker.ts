@@ -41,10 +41,10 @@ class DSDatePicker {
 
     calendarDays: CalendarDay[];
 
-    dayLabels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    monthLabels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    icons: {
+    icons = {
         calendar_today: '<svg class="ds_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>',
         chevron_left: '<svg focusable="false" class="ds_icon" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>',
         chevron_right: '<svg focusable="false" class="ds_icon" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>',
@@ -478,16 +478,11 @@ class DSDatePicker {
         this.calendarButtonElement.querySelector('span').textContent = `Choose date. Selected date is ${this.formattedDateHuman(date)}`;
         this.setDate(date);
 
-        const changeEvent = document.createEvent('Event');
+        const changeEvent = new Event('change'); // todo: true true (bubbles, etc?)
         this.inputElement.dispatchEvent(changeEvent);
-        if (this.
-            dateSelectCallback) {
-                changeEvent.initEvent('change', true, true);
-            this.
 
-
-
-            dateSelectCallback(date);
+        if (this.dateSelectCallback) {
+            this.dateSelectCallback(date);
         }
 
         this.closeDialog();
@@ -587,16 +582,11 @@ class DSDatePicker {
         if (this.options.maxDate) {
             this.maxDate = this.options.maxDate;
         } else if (this.datePickerParent.dataset.maxdate) {
+            this.maxDate = this.formattedDateFromString(this.datePickerParent.dataset.maxdate, null);
         }
-        if (this.options.
-            dateSelectCallback) {
-                this.maxDate = this.formattedDateFromString(this.datePickerParent.dataset.maxdate, null);
-            this
-            .
 
-
-            dateSelectCallback = this.options.
-            dateSelectCallback;
+        if (this.options.dateSelectCallback) {
+            this.dateSelectCallback = this.options.dateSelectCallback;
         }
 
         if (this.options.disabledDates) {

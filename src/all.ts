@@ -18,6 +18,8 @@ import StepNavigation from './components/step-navigation/step-navigation';
 import Tabs from './components/tabs/tabs';
 import TabsNavigation from './components/tabs/tabs-navigation';
 
+
+// @ts-ignore
 import tracking from './base/tools/tracking/tracking';
 import version from './version';
 
@@ -51,34 +53,34 @@ const components = {
 function initAll(scope = document) {
     page.init();
 
-    const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]'));
+    const accordions = [].slice.call(scope.querySelectorAll('[data-module="ds-accordion"]')) as HTMLElement[];
     accordions.forEach(accordion => new Accordion(accordion).init());
 
-    const aspectBoxes = [].slice.call(document.querySelectorAll('.ds_aspect-box:not(.ds_aspect-box--fallback)'));
+    const aspectBoxes = [].slice.call(document.querySelectorAll('.ds_aspect-box:not(.ds_aspect-box--fallback)')) as HTMLElement[];
     aspectBoxes.forEach(aspectBox => new AspectBox(aspectBox).init());
 
-    const backToTopEl = scope.querySelector('[data-module="ds-back-to-top"]');
+    const backToTopEl = scope.querySelector('[data-module="ds-back-to-top"]') as HTMLElement;
     if (backToTopEl) {
         const backToTop = new BackToTop(backToTopEl);
         backToTop.init();
     }
 
-    const characterCountModules = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]'));
+    const characterCountModules = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]')) as HTMLElement[];
     characterCountModules.forEach(characterCount => new CharacterCount(characterCount).init());
 
-    const checkboxesModules = [].slice.call(scope.querySelectorAll('[data-module="ds-checkboxes"]'));
+    const checkboxesModules = [].slice.call(scope.querySelectorAll('[data-module="ds-checkboxes"]')) as HTMLElement[];
     checkboxesModules.forEach(checkboxes => new Checkboxes(checkboxes).init());
 
-    const cookieNotificationEl = document.querySelector('[data-module="ds-cookie-notification"]');
+    const cookieNotificationEl = document.querySelector('[data-module="ds-cookie-notification"]') as HTMLElement;
     if (cookieNotificationEl) {
         const cookieNotification = new CookieNotification(cookieNotificationEl);
         cookieNotification.init();
     }
 
-    const datePickers = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]'));
+    const datePickers = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]')) as HTMLElement[];
     datePickers.forEach(datePicker => new DSDatePicker(datePicker).init());
 
-    const detailsModules = [].slice.call(document.querySelectorAll('[data-module="ds-details"]'));
+    const detailsModules = [].slice.call(document.querySelectorAll('[data-module="ds-details"]')) as HTMLDetailsElement[];
     detailsModules.forEach(details => new Details(details).init());
 
     // this one is handled differently because it applies an event to the whole body and we only want that event once
@@ -88,19 +90,19 @@ function initAll(scope = document) {
         hidePage.init();
     }
 
-    const mobileMenus = [].slice.call(scope.querySelectorAll('[data-module="ds-mobile-navigation-menu"]'));
+    const mobileMenus = [].slice.call(scope.querySelectorAll('[data-module="ds-mobile-navigation-menu"]')) as HTMLElement[]
     mobileMenus.forEach(mobileMenu =>  new MobileMenu(mobileMenu).init());
 
-    const notificationBanners = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]'));
+    const notificationBanners = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]')) as HTMLElement[]
     notificationBanners.forEach(notificationBanner => new NotificationBanner(notificationBanner).init());
 
-    const sideNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-side-navigation"]'));
+    const sideNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-side-navigation"]')) as HTMLElement[]
     sideNavigations.forEach(sideNavigation => new SideNavigation(sideNavigation).init());
 
     // skip links doesn't need any special treatment -- just init it
     skipLinks.init();
 
-    const stepNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-step-navigation"]'));
+    const stepNavigations = [].slice.call(scope.querySelectorAll('[data-module="ds-step-navigation"]')) as HTMLElement[];
     stepNavigations.forEach(stepNavigation => new StepNavigation(stepNavigation).init());
 
     const tables = [].slice.call(scope.querySelectorAll('table[data-smallscreen]'));
@@ -109,10 +111,10 @@ function initAll(scope = document) {
         mobileTables.init();
     }
 
-    const tabSets = [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]'));
+    const tabSets = [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]')) as HTMLElement[];
     tabSets.forEach(tabSet => new Tabs(tabSet).init());
 
-    const tabNavigationSets = [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]'));
+    const tabNavigationSets = [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]')) as HTMLElement[];
     tabNavigationSets.forEach(tabNavigationSet => new TabsNavigation(tabNavigationSet).init());
 
     tracking.init();

@@ -538,7 +538,7 @@ const tracking = {
 
                     // event
                     document.addEventListener('keyup', (event) => {
-                        if (event.key === 'Escape' || event.keyCode === 27) {
+                        if (event.key === 'Esc') {
                             tracking.pushToDataLayer({ 'event': 'hide-this-page-keyboard' });
                         }
                     });

@@ -17,7 +17,7 @@ describe('skip links', () => {
             expect(document.activeElement.id).toEqual(link.getAttribute('href').substring(1))
         });
 
-        it ('should not focus on a non-existent target', () => {
+        it('should not focus on a non-existent target', () => {
             const link = document.querySelector('.ds_skip-links__link');
             link.href = '#foo';
             const event = new Event('click');
