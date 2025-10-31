@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
       "allowJs": false,
-      "outDir": "./dist/scripts2",
+      "declaration": true,
+      "outDir": "./dist/scripts",
       "lib": [
         "dom",
         "esnext"
@@ -10,8 +11,11 @@
       "moduleResolution": "nodenext",
       "noImplicitAny": true,
       "target": "esnext",
-      "types": []
+      "types": ["vitest/globals"]
     },
     "include": ["./src/**/*"],
-    "exclude": ["node_modules/**/*"]
+    "exclude": [
+      "node_modules/**/*",
+      "./src/all.ts"
+    ]
 }

@@ -17,24 +17,21 @@ type Suggestion = {
 }
 
 class Autocomplete {
-    inputElement: HTMLInputElement;
-    listBoxElement: HTMLElement;
-    statusElement: HTMLElement;
-
-    PromiseRequest: any;
-
     activeSuggestion: Suggestion;
     endpointUrl: string;
+    inputElement: HTMLInputElement;
     keypressTimeout: number;
+    listBoxElement: HTMLElement;
     minLength: number;
+    PromiseRequest: any;
     selectedSuggestion: number;
+    statusElement: HTMLElement;
     statusTextCache: string;
     statusTimeout: number;
     suggestions: Suggestion[];
+    suggestionMappingFunction: Function;
     tempToggleCharacter: string;
     throttleDelay: number;
-
-    suggestionMappingFunction: Function;
 
     constructor(
         element: HTMLElement,

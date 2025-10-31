@@ -415,13 +415,13 @@ describe('tabs', () => {
             const currentTabLink = testObj.tabsElement.querySelector('.ds_current a');
 
             // Press on tab key (9) from first tab
-            let event = new KeyboardEvent('keydown', { 'keyCode': 35 });
+            let event = new KeyboardEvent('keydown', { key: 'End' });
             currentTabLink.dispatchEvent(event);
-            event = new KeyboardEvent('keydown', { 'keyCode': 36 });
+            event = new KeyboardEvent('keydown', { key: 'Home' });
             currentTabLink.dispatchEvent(event);
-            event = new KeyboardEvent('keydown', { 'keyCode': 37 });
+            event = new KeyboardEvent('keydown', { key: 'ArrowLeft' });
             currentTabLink.dispatchEvent(event);
-            event = new KeyboardEvent( 'keydown' , {'keyCode':39} );
+            event = new KeyboardEvent( 'keydown' , {key: 'ArrowRight' } );
             currentTabLink.dispatchEvent(event);
 
             expect(testObj.tabsModule.goToTab).not.toHaveBeenCalled();

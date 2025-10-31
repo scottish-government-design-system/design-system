@@ -15,18 +15,6 @@ function leadingZeroes(value, length = 2) {
 let testObj = {};
 
 describe('date picker', () => {
-    const keycodes = {
-        'tab': 9,
-        'pageup': 33,
-        'pagedown': 34,
-        'end': 35,
-        'home': 36,
-        'left': 37,
-        'up': 38,
-        'right': 39,
-        'down': 40
-    };
-
     beforeEach(async () => {
         await loadHtml('src/components/date-picker/date-picker.html');
     });
@@ -329,18 +317,36 @@ describe('date picker', () => {
             expect(testObj.datePickerModule.currentDate).toEqual(ppp);
         });
 
+        // general case: not the end of a long month
         it('next month', () => {
-            const ppp = new Date(testObj.datePickerModule.currentDate);
-            ppp.setMonth(ppp.getMonth() + 1);
+            testObj.datePickerModule.currentDate = new Date('10/15/2025');
+            const expected = new Date('11/15/2025')
             testObj.datePickerModule.focusNextMonth({ preventDefault: function () { } });
-            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
         });
 
+        // special case: next month from the end of a long month into a short month (e.g. oct -> nov)
+        it('next month from Oct 31', () => {
+            testObj.datePickerModule.currentDate = new Date('10/31/2025');
+            const expected = new Date('11/30/2025')
+            testObj.datePickerModule.focusNextMonth({ preventDefault: function () { } });
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
+        });
+
+        // general case: not the end of a long month
         it('previous month', () => {
-            const ppp = new Date(testObj.datePickerModule.currentDate);
-            ppp.setMonth(ppp.getMonth() - 1);
+            testObj.datePickerModule.currentDate = new Date('10/15/2025');
+            const expected = new Date('09/15/2025')
             testObj.datePickerModule.focusPreviousMonth({ preventDefault: function () { } });
-            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
+        });
+
+        // special case: prev month from the end of a long month into a short month (e.g. oct -> nov)
+        it('prev month from Oct 31', () => {
+            testObj.datePickerModule.currentDate = new Date('10/31/2025');
+            const expected = new Date('09/30/2025')
+            testObj.datePickerModule.focusPreviousMonth({ preventDefault: function () { } });
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
         });
 
         it('next year', () => {
@@ -358,19 +364,17 @@ describe('date picker', () => {
         });
 
         it('next month without focusing', () => {
-            const ppp = new Date(testObj.datePickerModule.currentDate);
-            ppp.setMonth(ppp.getMonth() + 1);
-            ppp.setDate(1);
+            testObj.datePickerModule.currentDate = new Date('10/15/2025');
+            const expected = new Date('11/01/2025')
             testObj.datePickerModule.focusNextMonth({ preventDefault: function () { } }, false);
-            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
         });
 
         it('previous month without focusing', () => {
-            const ppp = new Date(testObj.datePickerModule.currentDate);
-            ppp.setMonth(ppp.getMonth() - 1);
-            ppp.setDate(1);
+            testObj.datePickerModule.currentDate = new Date('10/15/2025');
+            const expected = new Date('09/01/2025')
             testObj.datePickerModule.focusPreviousMonth({ preventDefault: function () { } }, false);
-            expect(testObj.datePickerModule.currentDate).toEqual(ppp);
+            expect(testObj.datePickerModule.currentDate).toEqual(expected);
         });
 
         it('next year without focusing', () => {

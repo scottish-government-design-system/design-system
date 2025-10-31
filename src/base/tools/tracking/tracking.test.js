@@ -1030,15 +1030,13 @@ describe('tracking', () => {
 
             Tracking.add.hideThisPage();
 
-            const event = document.createEvent('Event');
-            event.initEvent('keyup');
-            event.keyCode = 27;
+            const event = new Event('keyup');
+            event.key = 'Esc';
             document.dispatchEvent(event);
             let dataLayerLength = window.dataLayer.length;
             expect(window.dataLayer[window.dataLayer.length - 1]).toEqual({ 'event': 'hide-this-page-keyboard' });
 
-            event.keyCode = 28;
-            event.initEvent('keyup');
+            event.key = ' ';
             document.dispatchEvent(event);
             expect(window.dataLayer.length).toEqual(dataLayerLength);
             expect(window.dataLayer[window.dataLayer.length - 1]).toEqual({ 'event': 'hide-this-page-keyboard' });
