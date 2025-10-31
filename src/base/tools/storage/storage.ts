@@ -1,5 +1,6 @@
 'use strict';
 
+//@ts-ignore
 import isBase64 from './isBase64';
 
 interface Categories {

@@ -27,7 +27,7 @@ describe('accordion', () => {
     });
 
     describe('accordion items', () => {
-        it ('should switch to the "open" view if selected on init', () => {
+        it('should switch to the "open" view if selected on init', () => {
             const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item');
 
             testObj.accordionModule.init();
@@ -42,7 +42,7 @@ describe('accordion', () => {
             window.location.hash = '';
         });
 
-        it ('should set aria-expanded appropriately on each content item depending on open/closed state', () => {
+        it('should set aria-expanded appropriately on each content item depending on open/closed state', () => {
             testObj.accordionModule.init();
 
             const accordionItems = testObj.accordionElement.querySelectorAll('.ds_accordion-item');
@@ -56,7 +56,7 @@ describe('accordion', () => {
             }
         });
 
-        it ('should open on click of its header if currently closed (and vice versa)', () => {
+        it('should open on click of its header if currently closed (and vice versa)', () => {
             testObj.accordionModule.init();
 
             const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
@@ -73,7 +73,7 @@ describe('accordion', () => {
     });
 
     describe('open all', () => {
-        it ('"open all" button should open all panels when clicked', () => {
+        it('"open all" button should open all panels when clicked', () => {
             testObj.accordionModule.init();
 
             const button = testObj.accordionElement.querySelector('.js-open-all');
@@ -91,7 +91,7 @@ describe('accordion', () => {
             }
         });
 
-        it ('"open all" button should change to "close all" if no panels left to open', () => {
+        it('"open all" button should change to "close all" if no panels left to open', () => {
             const button = testObj.accordionElement.querySelector('.ds_accordion__open-all');
             const secondCheckbox = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2) .ds_accordion-item__control');
             secondCheckbox.setAttribute('checked', true);
@@ -106,7 +106,7 @@ describe('accordion', () => {
             // todo: no assertion, test success is inferred from there being no execution errors
         });
 
-        it ('"close all" button should close all panels when clicked', () => {
+        it('"close all" button should close all panels when clicked', () => {
             const accordionItems = testObj.accordionElement.querySelectorAll('.ds_accordion-item');
             const button = testObj.accordionElement.querySelector('.ds_accordion__open-all');
             const secondCheckbox = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2) .ds_accordion-item__control');

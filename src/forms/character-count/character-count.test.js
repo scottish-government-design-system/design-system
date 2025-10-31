@@ -21,7 +21,7 @@ describe('character count', () => {
         });
 
         describe('missing information', () => {
-            it ('should exit if no maxlength set', () => {
+            it('should exit if no maxlength set', () => {
                 testObj.characterCountElement = document.querySelector('#bad-no-maxlength');
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
                 testObj.characterCountModule.init();
@@ -29,7 +29,7 @@ describe('character count', () => {
                 expect(countElement.length).toEqual(0);
             });
 
-            it ('should exit if no input element present', () => {
+            it('should exit if no input element present', () => {
                 testObj.characterCountElement = document.querySelector('#bad-no-input');
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
                 testObj.characterCountModule.init();
@@ -44,14 +44,14 @@ describe('character count', () => {
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
             });
 
-            it ('should set a max length correctly', () => {
+            it('should set a max length correctly', () => {
                 const expectedMaxLength = parseInt(document.querySelector('#textinput1-character-limit').getAttribute('maxlength'), 10);
 
                 testObj.characterCountModule.init();
                 expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
             });
 
-            it ('should remove the maxlength attribute', () => {
+            it('should remove the maxlength attribute', () => {
                 testObj.characterCountModule.init();
                 expect(document.querySelector('#textinput1-character-limit').getAttribute('maxlength')).toBeNull();
             });
@@ -63,8 +63,8 @@ describe('character count', () => {
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
             });
 
-            it ('should set a max length correctly', () => {
-                const expectedMaxLength = testObj.characterCountElement.dataset.maxlength;
+            it('should set a max length correctly', () => {
+                const expectedMaxLength = Number(testObj.characterCountElement.dataset.maxlength);
 
                 testObj.characterCountModule.init();
                 expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
@@ -77,7 +77,7 @@ describe('character count', () => {
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
             });
 
-            it ('on init, should hide the character count if necessary', () => {
+            it('on init, should hide the character count if necessary', () => {
                 testObj.characterCountModule.init();
 
                 const countElement = testObj.characterCountElement.querySelector('.ds_input__message');
@@ -85,7 +85,7 @@ describe('character count', () => {
                 expect(countElement.classList.contains('fully-hidden')).toEqual(true);
             });
 
-            it ('on init, should show the character count if the input is prepopulated and the input length is greater than the threshold', () => {
+            it('on init, should show the character count if the input is prepopulated and the input length is greater than the threshold', () => {
                 const inputElement = testObj.characterCountElement.querySelector('input');
                 inputElement.value = '1234567890123456789';
 
@@ -125,7 +125,7 @@ describe('character count', () => {
             testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
         });
 
-        it ('should decrement the character count as the user types', () => {
+        it('should decrement the character count as the user types', () => {
             testObj.characterCountModule.init();
 
             const inputElement = testObj.characterCountElement.querySelector('input');
@@ -139,7 +139,7 @@ describe('character count', () => {
             expect(countElement.textContent.indexOf('14 characters')).toBeGreaterThan(-1);
         });
 
-        it ('should nicely pluralise the message', () => {
+        it('should nicely pluralise the message', () => {
             testObj.characterCountModule.init();
 
             const inputElement = testObj.characterCountElement.querySelector('input');
@@ -159,7 +159,7 @@ describe('character count', () => {
             expect(countElement.textContent.indexOf('character ')).toBeGreaterThan(-1);
         });
 
-        it ('should have error styling if the character limit is exceeded', () => {
+        it('should have error styling if the character limit is exceeded', () => {
             testObj.characterCountModule.init();
 
             const inputElement = testObj.characterCountElement.querySelector('input');
@@ -172,7 +172,7 @@ describe('character count', () => {
             expect(inputElement.classList.contains('ds_input--error')).toBe(true);
         });
 
-        it ('should show the character count if a threshold is set and the threshold is exceeded', () => {
+        it('should show the character count if a threshold is set and the threshold is exceeded', () => {
             testObj.characterCountElement = document.querySelector('#data-threshold');
             testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
             testObj.characterCountModule.init();
@@ -258,7 +258,7 @@ describe('character count', () => {
         });
 
         it('should reset the aria-live update delay after a keypress', () => {
-            vi.useFakeTimers()
+            vi.useFakeTimers();
 
             testObj.characterCountModule.init();
 

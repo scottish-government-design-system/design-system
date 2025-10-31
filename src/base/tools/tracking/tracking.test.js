@@ -1030,15 +1030,13 @@ describe('tracking', () => {
 
             Tracking.add.hideThisPage();
 
-            const event = document.createEvent('Event');
-            event.keyCode = 27;
-            event.initEvent('keyup');
+            const event = new Event('keyup');
+            event.key = 'Esc';
             document.dispatchEvent(event);
             let dataLayerLength = window.dataLayer.length;
             expect(window.dataLayer[window.dataLayer.length - 1]).toEqual({ 'event': 'hide-this-page-keyboard' });
 
-            event.keyCode = 28;
-            event.initEvent('keyup');
+            event.key = ' ';
             document.dispatchEvent(event);
             expect(window.dataLayer.length).toEqual(dataLayerLength);
             expect(window.dataLayer[window.dataLayer.length - 1]).toEqual({ 'event': 'hide-this-page-keyboard' });
@@ -1662,7 +1660,7 @@ describe('tracking', () => {
                 testObj.nav = testObj.scope.querySelector('.ds_site-navigation:not(.ds_site-navigation--mobile)');
             });
 
-            it ('should add a generated data attribute to site navigation links (one-indexed)', () => {
+            it('should add a generated data attribute to site navigation links (one-indexed)', () => {
                 const links = [].slice.call(testObj.nav.querySelectorAll('.ds_site-navigation__link'));
 
                 Tracking.add.siteNavigation();
@@ -1673,7 +1671,7 @@ describe('tracking', () => {
                 expect(links[3].getAttribute('data-header')).toEqual('header-link-4');
             });
 
-            it ('should NOT add a generated data attribute to site navigation links with attributes already set', () => {
+            it('should NOT add a generated data attribute to site navigation links with attributes already set', () => {
                 const links = [].slice.call(testObj.nav.querySelectorAll('.ds_site-navigation__link'));
                 links[0].setAttribute('data-header', 'header-bar');
 

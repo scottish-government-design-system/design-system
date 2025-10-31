@@ -8,10 +8,6 @@ class Details {
     details: HTMLDetailsElement;
     summary: HTMLElement;
     openAttribute: 'open' | 'data-open';
-    keycodes: {
-        enter: number,
-        space: number
-    };
 
     constructor(element: HTMLDetailsElement) {
         this.details = element;
@@ -23,11 +19,6 @@ class Details {
         } else {
             this.openAttribute = 'data-open';
         }
-
-        this.keycodes = {
-            'enter': 13,
-            'space': 32
-        };
     }
 
     init() {
@@ -65,14 +56,14 @@ class Details {
     polyfillEvents() {
         this.summary.addEventListener('click', () => { this.setState(); });
         this.summary.addEventListener('keypress', event => {
-            if (event.keyCode === this.keycodes.enter || event.keyCode === this.keycodes.space) {
+            if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
                 this.setState();
             }
         });
 
         this.summary.addEventListener('keyup', event => {
-            if (event.keyCode === this.keycodes.space) {
+            if (event.key === ' ') {
                 event.preventDefault();
             }
         });

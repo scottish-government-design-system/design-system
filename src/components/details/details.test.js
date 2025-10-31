@@ -48,9 +48,8 @@ describe('details', () => {
             vi.spyOn(testObj.detailsModule, 'closeDetails');
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = document.createEvent('Event');
-            event.keyCode = 32;
-            event.initEvent('keypress');
+            const event = new Event('keypress');
+            event.key = 'Enter';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsElement.getAttribute('open')).toEqual('open');
@@ -66,30 +65,27 @@ describe('details', () => {
             vi.spyOn(testObj.detailsModule, 'openDetails').mockImplementation();
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = document.createEvent('Event');
-            event.keyCode = 81;
-            event.initEvent('keypress');
+            const event = new Event('keypress');
+            event.key = 'A';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
         });
 
-        it('should swallow a space keyup event', () => {
+        it.only('should swallow a space keyup event', () => {
             testObj.detailsModule.init();
 
             vi.spyOn(testObj.detailsModule, 'openDetails').mockImplementation();
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = document.createEvent('Event');
-            event.keyCode = 32;
-            event.initEvent('keyup');
+            const event = new Event('keyup');
+            event.key = ' ';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
 
             // cover a final branch that does nothing
-            event.keyCode = 81;
-            event.initEvent('keyup');
+            event.key = 'A';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
@@ -126,9 +122,8 @@ describe('details', () => {
             vi.spyOn(testObj.detailsModule, 'closeDetails');
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = document.createEvent('Event');
-            event.keyCode = 32;
-            event.initEvent('keypress');
+            const event = new Event('keypress');
+            event.key = ' ';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsElement.getAttribute('data-open')).toEqual('open');

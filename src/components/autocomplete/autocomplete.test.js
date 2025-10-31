@@ -178,7 +178,7 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowDown'});
                 for (let i = 0, il = testObj.autocompleteModule.suggestions.length; i < il; i++) {
                     testObj.autocompleteModule.inputElement.dispatchEvent(event);
-                    expect(testObj.autocompleteModule.suggestions[i].active).toBe(true);
+                    expect(testObj.autocompleteModule.suggestions[i].isActive).toBe(true);
                     expect(document.querySelector('.active .js-suggestion-text').textContent).toEqual(testData[i].displayText);
                 }
             });
@@ -194,7 +194,7 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowUp'});
                 for (let i = testObj.autocompleteModule.suggestions.length - 1; i > -1; i--) {
                     testObj.autocompleteModule.inputElement.dispatchEvent(event);
-                    expect(testObj.autocompleteModule.suggestions[i].active).toBe(true);
+                    expect(testObj.autocompleteModule.suggestions[i].isActive).toBe(true);
                     expect(document.querySelector('.active .js-suggestion-text').textContent).toEqual(testData[i].displayText);
                 }
             });
@@ -210,7 +210,7 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowDown'});
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
-                expect(testObj.autocompleteModule.suggestions[0].active).toBe(true);
+                expect(testObj.autocompleteModule.suggestions[0].isActive).toBe(true);
                 expect(document.querySelector('.active .js-suggestion-text').textContent).toEqual(testData[0].displayText);
             });
 
@@ -225,7 +225,7 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowUp'});
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
-                expect(testObj.autocompleteModule.suggestions[testData.length - 1].active).toBe(true);
+                expect(testObj.autocompleteModule.suggestions[testData.length - 1].isActive).toBe(true);
                 expect(document.querySelector('.active .js-suggestion-text').textContent).toEqual(testData[testData.length - 1].displayText);
             });
 
@@ -256,7 +256,7 @@ describe('"autocomplete" component', () => {
                 let focusEvent = new Event('focus');
                 testObj.autocompleteModule.inputElement.dispatchEvent(focusEvent);
 
-                let event = new KeyboardEvent('keydown', { key: 'Escape'});
+                let event = new KeyboardEvent('keydown', { key: 'Esc'});
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
                 expect(testObj.autocompleteModule.listBoxElement.children.length).toEqual(0);
