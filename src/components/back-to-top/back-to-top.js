@@ -40,8 +40,8 @@ class BackToTop {
     }
 
     checkPosition() {
-        const backToTopOffset = this.footerEl.offsetHeight + 8 + 'px';
-        document.documentElement.style.setProperty('--ds-back-to-top-offset', backToTopOffset);
+        const backToTopOffset = this.footerEl.offsetHeight + 8;
+        this.backToTopElement.dataset.dsBttFooterOffset = backToTopOffset / 16;
     }
 }
 
