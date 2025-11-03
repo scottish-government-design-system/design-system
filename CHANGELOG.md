@@ -7,6 +7,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## [3.3.1]
+### Security
+- Replace dynamically-updated CSS custom properties to meet strict content security policies (CSP)
+
 ## [3.3.0]
 ### Added
 - Tracking script includes adding canonical url to datalayer if present on the page
