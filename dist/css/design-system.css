@@ -3555,18 +3555,13 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 
 @media only screen {
   .ds_back-to-top {
-    bottom: 3.5rem;
+    bottom: attr(data-ds-btt-footer-offset rem, 0);
     display: block;
     pointer-events: none;
     position: absolute;
     right: 0.5rem;
     top: calc(100vh - 1px);
     z-index: 1;
-  }
-  @supports (bottom: var(--ds-back-to-top-offset)) {
-    .ds_back-to-top {
-      bottom: var(--ds-back-to-top-offset, 0);
-    }
   }
   .ds_back-to-top__button {
     display: block;
@@ -4891,11 +4886,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 .ds_datepicker__dialog--open {
   display: block;
-}
-@supports (left: var(--ds-date-picker-left-offset)) {
-  .ds_datepicker__dialog--open {
-    left: var(--ds-date-picker-left-offset);
-  }
+  left: attr(data-ds-date-picker-left-offset rem);
 }
 .ds_datepicker__dialog__header {
   position: relative;
