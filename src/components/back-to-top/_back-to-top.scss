@@ -14,17 +14,13 @@
     /// [3] fallback for older browsers
     /// [4] this is the button's height plus 0.5rem spacing
     .ds_back-to-top {
-        bottom: 3.5rem;
+        bottom: attr(data-ds-btt-footer-offset rem, 0);
         display: block;
         pointer-events: none;
         position: absolute;
         right: 0.5rem;
         top: calc(100vh - 1px); /// [1]
         z-index: 1;
-
-        @supports (bottom: var(--ds-back-to-top-offset)) {
-            bottom: var(--ds-back-to-top-offset, 0);
-        }
 
         &__button {
             @include ds_link--block;

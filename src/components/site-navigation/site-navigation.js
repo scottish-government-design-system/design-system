@@ -8,12 +8,7 @@ class MobileMenu {
     }
 
     init() {
-        // detect support for CSS custom properties
-        if (window.CSS && CSS.supports('color', 'var(--primary)')) {
-            if (this.mobileMenu) {
-                this.setupMobileNavigation();
-            }
-        }
+        this.setupMobileNavigation();
     }
 
     setupMobileNavigation() {
@@ -33,8 +28,6 @@ class MobileMenu {
             event.preventDefault();
 
             this.mobileMenu = document.getElementById(newMenuButton.getAttribute('aria-controls'));
-
-            document.documentElement.style.setProperty('--ds-mobile-menu-height', this.mobileMenu.scrollHeight + 'px');
 
             if (this.mobileMenu.classList.contains('ds_site-navigation--open')) {
                 this.closeMenu();
