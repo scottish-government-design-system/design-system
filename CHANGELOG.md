@@ -7,6 +7,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## [3.3.2]
+### Added
+- Override classes for offset positioning
+### Fixed
+- Back to top and date picker positioning now uses override classes to fix browser compatibility issues introduced with v3.3.1
+
 ## [3.3.1]
 ### Security
 - Replace dynamically-updated CSS custom properties to meet strict content security policies (CSP)
