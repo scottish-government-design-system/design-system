@@ -1,3 +1,5 @@
+'use strict';
+
 class TokenList {
     private tokens: Array<string>;
 
@@ -21,7 +23,7 @@ class TokenList {
             }
         });
 
-        return this.value();
+        return this.value;
     }
 
     remove(string: string) {
@@ -33,14 +35,14 @@ class TokenList {
             }
         });
 
-        return this.value();
+        return this.value;
     }
 
     contains(string: string) {
         return this.tokens.includes(string);
     }
 
-    value() {
+    get value() {
         return this.tokens.join(' ').trim();
     }
 }

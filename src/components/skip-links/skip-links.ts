@@ -1,5 +1,3 @@
-/* global document, window */
-
 'use strict';
 
 import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";

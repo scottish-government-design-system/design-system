@@ -1,15 +1,16 @@
-/* global document, window */
-import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
-
 'use strict';
 
-class Details {
-    content: HTMLElement;
-    details: HTMLDetailsElement;
-    summary: HTMLElement;
-    openAttribute: 'open' | 'data-open';
+import DSComponent from '../../base/component/component';
+import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
+
+class Details extends DSComponent {
+    private content: HTMLElement;
+    private details: HTMLDetailsElement;
+    private summary: HTMLElement;
+    private openAttribute: 'open' | 'data-open';
 
     constructor(element: HTMLDetailsElement) {
+        super(element);
         this.details = element;
         this.summary = element.querySelector('.ds_details__summary');
         this.content = element.querySelector('.ds_details__text');
@@ -26,19 +27,21 @@ class Details {
             this.polyfillAttributes();
             this.polyfillEvents();
         }
+
+        this.isInitialised = true;
     }
 
-    closeDetails() {
+    private closeDetails() {
         this.details.removeAttribute(this.openAttribute);
         this.summary.setAttribute('aria-expanded', 'false');
     }
 
-    openDetails() {
+    private openDetails() {
         this.details.setAttribute(this.openAttribute, 'open');
         this.summary.setAttribute('aria-expanded', 'true');
     }
 
-    polyfillAttributes() {
+    private polyfillAttributes() {
         this.content.id = this.content.id || `details-${elementIdModifier()}`;
         this.details.setAttribute('role', 'group');
         this.summary.setAttribute('role', 'button');
@@ -53,7 +56,7 @@ class Details {
         this.summary.setAttribute('aria-expanded', isOpen.toString());
     }
 
-    polyfillEvents() {
+    private polyfillEvents() {
         this.summary.addEventListener('click', () => { this.setState(); });
         this.summary.addEventListener('keypress', event => {
             if (event.key === 'Enter' || event.key === ' ') {
@@ -69,7 +72,7 @@ class Details {
         });
     }
 
-    setState() {
+    private setState() {
         if (this.details.hasAttribute(this.openAttribute)) {
             this.closeDetails();
 

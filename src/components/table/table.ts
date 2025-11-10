@@ -1,11 +1,9 @@
-/* global document, window */
-
 'use strict';
 
 class MobileTables {
-    window: Window;
-    scrollingTables: NodeListOf<Element>;
-    boxesTables: NodeListOf<Element>;
+    private window: Window;
+    private scrollingTables: NodeListOf<Element>;
+    private boxesTables: NodeListOf<Element>;
 
     constructor(_window = window) {
         this.window = _window;
@@ -21,7 +19,7 @@ class MobileTables {
         this.setupBoxesTables();
     }
 
-    checkScrollingTables() {
+    private checkScrollingTables() {
         this.scrollingTables.forEach(table => {
             if (table.querySelector('tbody').offsetWidth > table.parentElement.offsetWidth) {
                 table.classList.add('js-is-scrolling');
@@ -31,7 +29,7 @@ class MobileTables {
         });
     }
 
-    setupBoxesTables() {
+    private setupBoxesTables() {
         for (let i = 0, il = this.boxesTables.length; i < il; i++) {
             const trs = this.boxesTables[i].querySelectorAll('tr');
             let headerRow: HTMLTableRowElement;

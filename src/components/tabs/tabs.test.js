@@ -180,7 +180,7 @@ describe('tabs', () => {
             let currentTabItem = testObj.tabsElement.querySelector('.ds_current');
             expect(currentTabItem.querySelector('.ds_tabs__tab-link').getAttribute('href')).toBe('#tab1');
 
-            // // Change hash
+            // Change hash
             window.location.hash = '#tab2';
             const event = new Event('hashchange');
             window.dispatchEvent(event);
@@ -218,6 +218,24 @@ describe('tabs', () => {
 
         });
 
+        it('should not change the tab on click if smaller than medium size', async () => {
+            const firstTabItem = testObj.tabsElement.querySelector('.ds_tabs__tab');
+            const firstTabLink = firstTabItem.querySelector('.ds_tabs__tab-link');
+
+            // Set 2nd tab to be selected
+            window.location.hash = '#tab2';
+            testObj.tabsModule.init();
+            await page.viewport(400, 400); // set to a size smaller than medium
+
+            vi.spyOn(testObj.tabsModule, 'goToTab').mockImplementation();
+
+            // Click event on first tab
+            const event = new Event('click');
+            firstTabLink.dispatchEvent(event);
+
+            expect(testObj.tabsModule.goToTab).not.toHaveBeenCalled();
+        });
+
         it('should not change the tab on hash change if smaller than medium size', async() => {
             await page.viewport(400, 400); // set to a size smaller than medium
             testObj.tabsModule.init();
@@ -237,6 +255,32 @@ describe('tabs', () => {
             for (let i = 0, il = tabItems.length; i < il; i++) {
                 expect(tabItems[i].querySelector('.ds_current')).toBeNull();
             }
+        });
+
+        it('should not do keyboard events if smaller than medium size', async () => {
+            const firstTabItem = testObj.tabsElement.querySelector('.ds_tabs__tab');
+            const firstTabLink = firstTabItem.querySelector('.ds_tabs__tab-link');
+
+            // Set 2nd tab to be selected
+            window.location.hash = '#tab2';
+            testObj.tabsModule.init();
+            await page.viewport(400, 400); // set to a size smaller than medium
+
+            vi.spyOn(testObj.tabsModule, 'goToTab').mockImplementation();
+
+            // Click event on first tab
+            let event = new Event('keydown', { key: 'ArrowRight' });
+            firstTabLink.dispatchEvent(event);
+            event = new Event('keydown', { key: 'ArrowLeft' });
+            firstTabLink.dispatchEvent(event);
+            event = new Event('keydown', { key: 'Home' });
+            firstTabLink.dispatchEvent(event);
+            event = new Event('keydown', { key: 'End' });
+            firstTabLink.dispatchEvent(event);
+            event = new Event('keydown', { key: ' ' });
+            firstTabLink.dispatchEvent(event);
+
+            expect(testObj.tabsModule.goToTab).not.toHaveBeenCalled();
         });
 
         it('should change to previous tab on left arrow key press', () => {

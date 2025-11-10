@@ -1,28 +1,29 @@
-/* global document */
 'use strict';
 
 import TokenList from '../../base/tools/tokenlist/tokenlist';
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
+import DSComponent from '../../base/component/component';
 
 interface CharacterCountInputElement extends HTMLInputElement {
     oldValue: string
 }
 
-class CharacterCount {
-    describedByTokenList: TokenList;
-    emptyMessage: string;
-    emptyMessageElement: HTMLElement;
-    field: HTMLElement;
-    isInvalidInitialState: boolean;
-    inputElement: CharacterCountInputElement;
-    maxLength: number;
-    messageElement: HTMLElement;
-    messageTimeout: number;
-    screenReaderMessageElement: HTMLElement;
-    threshold: number;
-    thresholdCharacters: number;
+class CharacterCount extends DSComponent {
+    private describedByTokenList: TokenList;
+    private emptyMessage: string;
+    private emptyMessageElement: HTMLElement;
+    private field: HTMLElement;
+    private isInvalidInitialState: boolean;
+    private inputElement: CharacterCountInputElement;
+    private maxLength: number;
+    private messageElement: HTMLElement;
+    private messageTimeout: number;
+    private screenReaderMessageElement: HTMLElement;
+    private threshold: number;
+    private thresholdCharacters: number;
 
     constructor(field: HTMLElement) {
+        super(field);
         this.field = field;
         this.inputElement = this.field.querySelector('input, textarea');
         this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0;
@@ -33,7 +34,7 @@ class CharacterCount {
             return;
         }
 
-        if (!this.field.classList.contains('js-initialised')) {
+        if (!this.isInitialised) {
             this.setMaxLength();
             this.setThresholdCharacters();
             const idModifier = elementIdModifier();
@@ -82,21 +83,28 @@ class CharacterCount {
 
             this.inputElement.addEventListener('input', this.checkIfChanged.bind(this));
 
-            this.field.classList.add('js-initialised');
+            this.isInitialised = true;
         }
     }
 
-    setMaxLength() {
+    /**
+     * Set the component's "maxLength" based on either a supplied maxlength attribute or
+     * data-maxlength attribute. Remove a maxlength attribute if it is present.
+     */
+    private setMaxLength() {
         if (this.inputElement.getAttribute('maxlength')) {
-            this.maxLength = parseInt(this.inputElement.getAttribute('maxlength'), 10);
+            this.maxLength = Number(this.inputElement.getAttribute('maxlength'));
             this.inputElement.removeAttribute('maxlength');
-            this.field.dataset.maxlength = this.maxLength.toString();
-        } else {
+        } else if (this.field.dataset.maxlength) {
             this.maxLength = Number(this.field.dataset.maxlength);
         }
     }
 
-    setThresholdCharacters() {
+    /**
+     * Set the number of characters required to make the character count appear, calculated from
+     * the maxlength and the supplied threshold
+     */
+    private setThresholdCharacters() {
         this.thresholdCharacters = Math.round(this.maxLength * this.threshold);
     }
 
@@ -106,7 +114,7 @@ class CharacterCount {
      * fields by directly changing its `value`. These changes don't trigger events
      * in JavaScript, so we need to poll to handle when and if they occur."
      */
-    checkIfChanged() {
+    private checkIfChanged() {
         if (!this.inputElement.oldValue) {
             this.inputElement.oldValue = '';
         }
@@ -118,7 +126,7 @@ class CharacterCount {
         }
     }
 
-    updateCountMessage() {
+    private updateCountMessage() {
         const count = this.maxLength - this.inputElement.value.length;
         let noun = 'characters';
         if (Math.abs(count) === 1) {
@@ -163,7 +171,7 @@ class CharacterCount {
         }, 1000);
     }
 
-    updateScreenReaderMessage() {
+    private updateScreenReaderMessage() {
         this.screenReaderMessageElement.textContent = this.messageElement.textContent;
     }
 }

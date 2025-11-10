@@ -1,10 +1,13 @@
 'use strict';
 
-class Notification {
-    notification: HTMLElement;
-    notificationClose: HTMLElement;
+import DSComponent from "../../base/component/component";
 
-    constructor (notification: HTMLElement) {
+class Notification extends DSComponent {
+    private notification: HTMLElement;
+    private notificationClose: HTMLElement;
+
+    constructor(notification: HTMLElement) {
+        super(notification);
         this.notification = notification;
         this.notificationClose = notification.querySelector('.js-close-notification');
     }
@@ -16,7 +19,7 @@ class Notification {
             });
         }
 
-        this.notification.classList.add('js-initialised');
+        this.isInitialised = true;
     }
 }
 

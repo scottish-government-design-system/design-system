@@ -32,6 +32,7 @@ type Storage = {
     setCookie: Function;
     setLocalStorage: Function;
     setSessionStorage: Function;
+    unsetCookieWithDomain: Function;
 
     cookie: {
         get: Function;
@@ -231,7 +232,9 @@ const storage: Storage = {
                 if (cookie.indexOf(nameEQ) === 0) {
                     const string = cookie.substring(nameEQ.length, cookie.length);
 
-                    if (isBase64(string)) {
+                    const base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+
+                    if (base64regex.test(string)) {
                         return window.atob(string);
                     } else {
                         return string;
@@ -244,17 +247,17 @@ const storage: Storage = {
         },
 
         // indiscriminately hit no domain, domain, and .domain
-        remove: function (name: string) {
-            const hostparts = window.location.host.split('.');
+        remove: function (name: string, _window = window) {
+            const hostparts = _window.location.host.split('.');
             let domain;
 
-            document.cookie = `${name}=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+            storage.unsetCookieWithDomain(name);
 
             while (hostparts.length > 1) {
                 domain = hostparts.join('.');
 
-                document.cookie = `${name}=;path=/;domain=${domain};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
-                document.cookie = `${name}=;path=/;domain=.${domain};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
+                storage.unsetCookieWithDomain(name, domain);
+                storage.unsetCookieWithDomain(name, `.${domain}`);
 
                 hostparts.shift();
             }
@@ -283,6 +286,12 @@ const storage: Storage = {
             return false;
         }
         return true;
+    },
+
+    unsetCookieWithDomain: function (name: string, domain: string) {
+        const domainString = domain ? `domain=${domain};` : ''
+
+        document.cookie = `${name}=;path=/;${domainString};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
     }
 };
 

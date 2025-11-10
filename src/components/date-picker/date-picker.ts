@@ -1,7 +1,7 @@
-/* global document, window */
-import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
-
 'use strict';
+
+import DSComponent from '../../base/component/component';
+import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
 type CalendarDay = {
     init: Function;
@@ -15,36 +15,34 @@ type CalendarDay = {
     isHidden?: boolean
 }
 
-class DSDatePicker {
-    options: any;
+class DSDatePicker extends DSComponent {
+    private options: any;
+    private calendarButtonElement: HTMLButtonElement;
+    private dateInput: HTMLInputElement;
+    private datePickerParent: HTMLElement;
+    private dialogElement: HTMLElement;
+    private dialogTitleElement: HTMLElement;
+    private firstButtonInDialog: HTMLButtonElement;
+    private inputElement: HTMLInputElement;
+    private lastButtonInDialog: HTMLButtonElement;
+    private monthInput: HTMLInputElement;
+    private yearInput: HTMLInputElement;
 
-    calendarButtonElement: HTMLButtonElement;
-    dateInput: HTMLInputElement;
-    datePickerParent: HTMLElement;
-    dialogElement: HTMLElement;
-    dialogTitleElement: HTMLElement;
-    firstButtonInDialog: HTMLButtonElement;
-    inputElement: HTMLInputElement;
-    lastButtonInDialog: HTMLButtonElement;
-    monthInput: HTMLInputElement;
-    yearInput: HTMLInputElement;
+    private isMultipleInput: boolean;
 
-    isMultipleInput: boolean;
+    private dateSelectCallback: Function;
 
-    dateSelectCallback: Function;
+    private currentDate: Date;
+    private disabledDates: Date[];
+    private inputDate: Date;
+    private maxDate: Date;
+    private minDate: Date;
 
-    currentDate: Date;
-    disabledDates: Date[];
-    inputDate: Date;
-    maxDate: Date;
-    minDate: Date;
+    private calendarDays: CalendarDay[];
 
-    calendarDays: CalendarDay[];
-
-    dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-    icons = {
+    private dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    private monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    private icons = {
         calendar_today: '<svg class="ds_icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"/></svg>',
         chevron_left: '<svg focusable="false" class="ds_icon" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>',
         chevron_right: '<svg focusable="false" class="ds_icon" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>',
@@ -53,6 +51,8 @@ class DSDatePicker {
     }
 
     constructor(el: HTMLElement, options = {}) {
+        super(el);
+
         if (!el) {
             return;
         }
@@ -72,7 +72,7 @@ class DSDatePicker {
     }
 
     init() {
-        if (!this.inputElement || this.datePickerParent.classList.contains('js-initialised')) {
+        if (!this.inputElement || this.isInitialised) {
             return;
         }
 
@@ -167,10 +167,10 @@ class DSDatePicker {
         // populates calendar with inital dates, avoids Wave errors about null buttons
         this.updateCalendar();
 
-        this.datePickerParent.classList.add('js-initialised');
+        this.isInitialised = true;
     }
 
-    addMonths(date: Date, months: number) {
+    private addMonths(date: Date, months: number) {
         const tempDate = date.getDate();
         date.setMonth(date.getMonth() + +months);
         if (date.getDate() !== tempDate) {
@@ -179,7 +179,7 @@ class DSDatePicker {
         return date;
     }
 
-    buttonTemplate() {
+    private buttonTemplate() {
         return `<button type="button" class="ds_button  ds_button--icon-only  ds_datepicker__button  ds_no-margin  js-calendar-button" aria-expanded="false">
             <span class="visually-hidden">Choose date</span>
             ${this.icons.calendar_today}
@@ -187,7 +187,7 @@ class DSDatePicker {
         `;
     }
 
-    dialogTemplate(id: string) {
+    private dialogTemplate(id: string) {
         return `<div class="ds_datepicker__dialog__header">
         <div class="ds_datepicker__dialog__navbuttons">
             <button type="button" class="ds_button  ds_button--icon-only  js-datepicker-prev-year" aria-label="previous year" data-button="button-datepicker-prevyear">
@@ -260,7 +260,7 @@ class DSDatePicker {
       </div>`;
     }
 
-    leadingZeroes(value: number, length = 2) {
+    private leadingZeroes(value: number, length = 2) {
         let ret = value.toString();
 
         while (ret.length < length) {
@@ -270,7 +270,7 @@ class DSDatePicker {
         return ret;
     }
 
-    backgroundClick(event: MouseEvent) {
+    private backgroundClick(event: MouseEvent) {
         const target = event.target as Node;
         if (this.isOpen() &&
             !this.dialogElement.contains(target) &&
@@ -282,13 +282,13 @@ class DSDatePicker {
         }
     }
 
-    closeDialog() {
+    private closeDialog() {
         this.dialogElement.classList.remove('ds_datepicker__dialog--open');
         this.calendarButtonElement.setAttribute('aria-expanded', false.toString());
         this.calendarButtonElement.focus();
     }
 
-    firstButtonKeyup(event: KeyboardEvent) {
+    private firstButtonKeyup(event: KeyboardEvent) {
         if (event.key === 'Tab' && event.shiftKey) {
             this.lastButtonInDialog.focus();
             event.preventDefault();
@@ -359,7 +359,7 @@ class DSDatePicker {
         this.goToDate(date, focus);
     }
 
-    formattedDateFromString(dateString: string, fallback = new Date()) {
+    private formattedDateFromString(dateString: string, fallback = new Date()) {
         let formattedDate = null;
         const parts = dateString.split('/');
 
@@ -389,7 +389,7 @@ class DSDatePicker {
         return `${this.dayLabels[date.getDay()]} ${date.getDate()} ${this.monthLabels[date.getMonth()]} ${date.getFullYear()}`;
     }
 
-    goToDate(date: Date, focus = false) {
+    goToDate(date: Date, focus?: boolean) {
         const current = this.currentDate;
 
         this.currentDate = date;
@@ -401,7 +401,7 @@ class DSDatePicker {
         this.setCurrentDate(focus);
     }
 
-    isDisabledDate(date: Date) {
+    private isDisabledDate(date: Date) {
         let disabled = false;
 
         if (this.minDate && this.minDate > date) {
@@ -420,24 +420,24 @@ class DSDatePicker {
         return disabled;
     }
 
-    isOpen() {
+    private isOpen() {
         return this.dialogElement.classList.contains('ds_datepicker__dialog--open');
     }
 
-    lastButtonKeyup(event: KeyboardEvent) {
+    private lastButtonKeyup(event: KeyboardEvent) {
         if (event.key === 'Tab' && !event.shiftKey) {
             this.firstButtonInDialog.focus();
             event.preventDefault();
         }
     }
 
-    openDialog() {
+    private openDialog() {
         // display the dialog
         this.dialogElement.classList.add('ds_datepicker__dialog--open');
         this.calendarButtonElement.setAttribute('aria-expanded', true.toString());
 
         // position the dialog
-        let leftOffset: string;
+        let leftOffset: number;
 
         // get the date from the input element(s)
         let dateAsString: string;
@@ -488,7 +488,7 @@ class DSDatePicker {
         this.closeDialog();
     }
 
-    setCurrentDate(focus = true) {
+    private setCurrentDate(focus = true) {
         const currentDate = this.currentDate;
 
         const filteredDays = this.calendarDays.filter(calendarDay => calendarDay.button.classList.contains('fully-hidden') === false);
@@ -537,7 +537,7 @@ class DSDatePicker {
         }
     }
 
-    setDate(date: Date) {
+    private setDate(date: Date) {
         if (this.isMultipleInput) {
             this.dateInput.value = date.getDate().toString();
             this.monthInput.value = (date.getMonth() + 1).toString();
@@ -560,7 +560,7 @@ class DSDatePicker {
         }
     }
 
-    setMinAndMaxDatesOnCalendar() {
+    private setMinAndMaxDatesOnCalendar() {
         if (this.minDate && this.currentDate < this.minDate) {
             this.currentDate = this.minDate;
         }
@@ -570,7 +570,7 @@ class DSDatePicker {
         }
     }
 
-    setOptions() {
+    private setOptions() {
         this.transformLegacyDataAttributes();
 
         if (this.options.minDate) {
@@ -600,7 +600,7 @@ class DSDatePicker {
         }
     }
 
-    toggleDialog(event: Event) {
+    private toggleDialog(event: Event) {
         event.preventDefault();
         if (this.isOpen()) {
             this.closeDialog();
@@ -610,7 +610,7 @@ class DSDatePicker {
         }
     }
 
-    transformLegacyDataAttributes() {
+    private transformLegacyDataAttributes() {
         if (this.inputElement.dataset.mindate) {
             this.datePickerParent.dataset.mindate = this.inputElement.dataset.mindate;
         }
@@ -625,7 +625,7 @@ class DSDatePicker {
     }
 
      // render calendar
-    updateCalendar() {
+    private updateCalendar() {
         this.dialogTitleElement.innerHTML = `${this.monthLabels[this.currentDate.getMonth()]} ${this.currentDate.getFullYear()}`;
         this.dialogElement.setAttribute('aria-label', this.dialogTitleElement.innerHTML);
 
@@ -664,11 +664,11 @@ class DSDatePicker {
 }
 
 class DSCalendarDay {
-    index: number;
-    row: number;
-    column: number;
+    private index: number;
+    private row: number;
+    private column: number;
     button: HTMLButtonElement;
-    picker: DSDatePicker;
+    private picker: DSDatePicker;
     date: Date;
 
     constructor(button: HTMLButtonElement, index: number, row: number, column: number, picker: DSDatePicker) {

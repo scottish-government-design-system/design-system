@@ -1,3 +1,5 @@
+'use strict';
+
 type PromiseRequestType = {
     url: string,
     method: 'GET' | 'POST'
@@ -14,6 +16,7 @@ const PromiseRequest = function ({
                 return;
             }
 
+            /* v8 ignore if -- @preserve */
             if (request.status >= 200 && request.status < 300) {
                 resolve(request);
             } else {

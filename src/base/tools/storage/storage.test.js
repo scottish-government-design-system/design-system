@@ -1,6 +1,13 @@
 import { vi } from 'vitest';
 import storage from './storage';
 
+// mock window
+const windowObj = {
+    location: {
+        host: ''
+    }
+};
+
 describe('storage', () => {
     describe('set', () => {
         it('should do nothing with requests in disallowed categories', () => {
@@ -104,6 +111,18 @@ describe('storage', () => {
             });
 
             expect(storage.cookie.remove).toHaveBeenCalledWith('foo');
+        });
+
+        it('should remove from cookies NOW WITH DOMAIN', () => {
+            windowObj.location.host = 'www.example.com';
+
+            vi.spyOn(storage, 'unsetCookieWithDomain').mockImplementation();
+            storage.cookie.remove('foo', windowObj);
+
+            expect(storage.unsetCookieWithDomain).toHaveBeenCalledWith('foo');
+            expect(storage.unsetCookieWithDomain).toHaveBeenCalledWith('foo', 'www.example.com');
+            expect(storage.unsetCookieWithDomain).toHaveBeenCalledWith('foo', '.example.com');
+            expect(storage.unsetCookieWithDomain).toHaveBeenCalledWith('foo', 'example.com');
         });
 
         it('should remove from localStorage', () => {

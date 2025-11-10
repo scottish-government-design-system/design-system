@@ -1,6 +1,7 @@
 import { vi } from 'vitest';
 import loadHtml from '../../../loadHtml';
 import CharacterCount from './character-count';
+import DSComponent from '../../base/component/component';
 
 const testObj = {};
 

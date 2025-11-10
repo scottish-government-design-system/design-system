@@ -1,12 +1,14 @@
-/* global document */
-
 'use strict';
 
-class MobileMenu {
-    mobileMenu: HTMLElement;
-    newMenuButton: HTMLButtonElement;
+import DSComponent from "../../base/component/component";
 
-    constructor (mobileMenu: HTMLElement) {
+class MobileMenu extends DSComponent {
+    private mobileMenu: HTMLElement;
+    private newMenuButton: HTMLButtonElement;
+
+    constructor(mobileMenu: HTMLElement) {
+        super(mobileMenu);
+
         this.mobileMenu = mobileMenu;
     }
 
@@ -14,7 +16,7 @@ class MobileMenu {
         this.setupMobileNavigation();
     }
 
-    setupMobileNavigation() {
+    private setupMobileNavigation() {
         // dom transform:
         const oldMenuButton = document.querySelector('.js-toggle-menu');
         const newMenuButton = document.createElement('button');
@@ -42,13 +44,13 @@ class MobileMenu {
         this.newMenuButton = newMenuButton;
     }
 
-    openMenu() {
+    private openMenu() {
         this.mobileMenu.classList.add('ds_site-navigation--open');
         this.newMenuButton.classList.add('ds_site-header__control--active');
         this.newMenuButton.setAttribute('aria-expanded', true.toString());
     }
 
-    closeMenu() {
+    private closeMenu() {
         this.mobileMenu.classList.remove('ds_site-navigation--open');
         this.newMenuButton.classList.remove('ds_site-header__control--active');
         this.newMenuButton.setAttribute('aria-expanded', false.toString());

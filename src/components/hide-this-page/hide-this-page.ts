@@ -1,13 +1,14 @@
-/* global document, window */
-
 'use strict';
 
-class HidePage {
-    altlink: string;
-    button: HTMLAnchorElement;
-    window: Window;
+import DSComponent from "../../base/component/component";
+
+class HidePage extends DSComponent {
+    private altlink: string;
+    private button: HTMLAnchorElement;
+    private window: Window;
 
     constructor(_window = window) {
+        super(document.querySelector('.js-hide-page'));
         this.button = document.querySelector('.js-hide-page');
         this.window = _window;
     }
@@ -20,9 +21,11 @@ class HidePage {
         this.attachMouseEvents();
 
         this.altlink = this.button.dataset.altlink || 'https://www.google.com';
+
+        this.isInitialised = true;
     }
 
-    attachKeyboardEvents() {
+    private attachKeyboardEvents() {
         document.addEventListener('keyup', (event) => {
             if (event.key === 'Escape') {
                 this.doHidePage(event);
@@ -30,7 +33,7 @@ class HidePage {
         });
     }
 
-    attachMouseEvents() {
+    private attachMouseEvents() {
         this.button.addEventListener('click', (event) => {
             this.doHidePage(event);
         });

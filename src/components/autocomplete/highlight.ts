@@ -11,7 +11,7 @@ function highlight(element: HTMLElement, pattern: string, options: HighlightOpti
     options = Object.assign({}, defaults, options);
 
     function highlightTextNode(textNode: Text, pattern: string) {
-        if (!textNode.data) {
+        if (!textNode.data || pattern === '') {
             return false;
         }
 

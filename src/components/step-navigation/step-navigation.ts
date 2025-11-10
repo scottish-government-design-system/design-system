@@ -1,10 +1,13 @@
 'use strict';
 
-class StepNavigation {
-    container: HTMLElement;
-    window: Window;
+import DSComponent from "../../base/component/component";
+
+class StepNavigation extends DSComponent {
+    private container: HTMLElement;
+    private window: Window;
 
     constructor(container: HTMLElement, _window = window) {
+        super(container);
         this.container = container;
         this.window = _window;
     }
@@ -17,6 +20,8 @@ class StepNavigation {
                 link.classList.add('ds_step-navigation__current-link');
             }
         });
+
+        this.isInitialised = true;
     }
 }
 
