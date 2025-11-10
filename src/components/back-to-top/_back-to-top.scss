@@ -14,7 +14,7 @@
     /// [3] fallback for older browsers
     /// [4] this is the button's height plus 0.5rem spacing
     .ds_back-to-top {
-        bottom: attr(data-ds-btt-footer-offset rem, 0);
+        bottom: 0;
         display: block;
         pointer-events: none;
         position: absolute;

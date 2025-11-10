@@ -35,7 +35,7 @@ $date-picker-focus-border-width: $focus__shadow-width;
 
         &--open {
             display: block;
-            left: attr(data-ds-date-picker-left-offset rem);
+            left: 0;
         }
 
         &__header {

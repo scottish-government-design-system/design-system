@@ -417,16 +417,23 @@ class DSDatePicker {
         let dateAsString;
 
         if (this.isMultipleInput) {
-            // leftOffset in REM
-            leftOffset = (this.calendarButtonElement.offsetLeft + this.calendarButtonElement.offsetWidth + 16) / 16;
+            // leftOffset in multiples of the 8px spacing
+            leftOffset = this.calendarButtonElement.offsetLeft + this.calendarButtonElement.offsetWidth + 16;
             dateAsString = `${this.dateInput.value}/${this.monthInput.value}/${this.yearInput.value}`;
         } else {
-            // leftOffset in REM
-            leftOffset = (this.inputElement.offsetWidth + 16) / 16;
+            // leftOffset in multiples of the 8px spacing
+            leftOffset = this.inputElement.offsetWidth + 16;
             dateAsString = this.inputElement.value;
         }
 
-        this.dialogElement.dataset.dsDatePickerLeftOffset = leftOffset;
+        const dialogElementSpacingUnits = Math.ceil(leftOffset / 8);
+
+        this.dialogElement.classList.forEach(className => {
+            if (className.match(/ds_!_off-l-/)) {
+                this.dialogElement.classList.remove(className);
+            }
+        });
+        this.dialogElement.classList.add(`ds_!_off-l-${dialogElementSpacingUnits}`);
 
         if (dateAsString.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
             this.inputDate = this.formattedDateFromString(dateAsString);
