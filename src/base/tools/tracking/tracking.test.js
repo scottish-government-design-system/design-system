@@ -1,5 +1,7 @@
 
 import { vi } from 'vitest';
+import MatchMediaMock from 'vitest-matchmedia-mock'
+
 import loadHtml from '../../../../loadHtml';
 import Tracking from './tracking';
 import Accordion from '../../../components/accordion/accordion';
@@ -510,12 +512,12 @@ describe('tracking', () => {
             Tracking.add.autocompletes();
         });
 
-        it.skip('should set a datalayer value when an item is selected via keyboard', () => {
+        it('should set a datalayer value when an item is selected via keyboard', () => {
             // arrange
             const inputElement = testObj.autocompleteElement.querySelector('.js-autocomplete-input');
             inputElement.setAttribute('aria-activedescendant', 'suggestion-1');
             testObj.autocompleteModule.activeSuggestion = true;
-            testObj.autocompleteModule.suggestions = [1,2,3];
+            testObj.autocompleteModule.suggestions = [1, 2, 3].map(item => ({displayText: item}));
             testObj.autocompleteModule.inputElement.dataset.autocompleteposition = 2;
 
             vi.spyOn(Tracking, 'pushToDataLayer').mockImplementation();
@@ -549,11 +551,11 @@ describe('tracking', () => {
         });
 
         // skip because there's a potential issue with trying to set .active on string/num in autocomplete.js
-        it.skip('should set a datalayer value when an item is clicked', () => {
+        it('should set a datalayer value when an item is clicked', () => {
             // arrange
             const suggestion1 = testObj.autocompleteElement.querySelector('#suggestion-1');
             testObj.autocompleteModule.activeSuggestion = true;
-            testObj.autocompleteModule.suggestions = [1,2,3];
+            testObj.autocompleteModule.suggestions = [{ displayText: 1 }, { displayText: 2 }, { displayText: 3 }];//.map(item => ({displayText: item}));
             testObj.autocompleteModule.inputElement.dataset.autocompleteposition = 2;
             testObj.autocompleteModule.inputElement.dataset.autocompletetext = 'bar';
             testObj.autocompleteModule.inputElement.dataset.autocompletecount = 3;
@@ -572,7 +574,7 @@ describe('tracking', () => {
             expect(Tracking.pushToDataLayer).toHaveBeenCalledWith({
                 event: 'autocomplete',
                 searchText: '',
-                clickText: 'bar',
+                clickText: '2',
                 resultsCount: 3,
                 clickedResults: 'result 2 of 3'
             });
@@ -961,6 +963,7 @@ describe('tracking', () => {
 
         it('should not add a data attribute to absolute internal links', () => {
             const link = testObj.scope.querySelector('#internal-absolute');
+            link.setAttribute('href', link.getAttribute('href').replace('PORT', window.location.port))
             Tracking.add.externalLinks(testObj.scope , testObj._window);
             expect(link.getAttribute('data-navigation')).not.toEqual('link-external');
         });
@@ -1908,7 +1911,7 @@ describe('tracking', () => {
 
             Tracking.init();
 
-            expect(Tracking.add.accordions).toHaveBeenCalledWith(document);
+            expect(Tracking.add.accordions).toHaveBeenCalledWith(document.documentElement);
         });
 
         it('should act on only a container element if specified', () => {
@@ -2064,6 +2067,38 @@ describe('tracking', () => {
             Tracking.add.version();
 
             expect(window.dataLayer.push).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe('prefers color scheme', () => {
+        let matchMediaMock = new MatchMediaMock();
+        beforeEach(() => {
+            window.dataLayer = [];
+        });
+
+        afterEach(() => {
+            matchMediaMock.clear();
+        });
+
+        afterAll(() => {
+            matchMediaMock.destroy();
+        });
+
+        it('should add the preferred color scheme to the datalayer', () => {
+            Tracking.add.prefersColorScheme();
+
+            expect(window.dataLayer[0]).toEqual({
+                prefersColorScheme: 'light'
+            });
+        });
+
+        it('should add the preferred color scheme to the datalayer', () => {
+            matchMediaMock.useMediaQuery('(prefers-color-scheme: dark)');
+            Tracking.add.prefersColorScheme();
+
+            expect(window.dataLayer[0]).toEqual({
+                prefersColorScheme: 'dark'
+            });
         });
     });
 });

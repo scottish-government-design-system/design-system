@@ -434,6 +434,23 @@ describe('date picker', () => {
 
             expect(testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-grid').querySelector('.ds_datepicker__current').textContent).toEqual('8');
         });
+
+        it('should restore the default button text if the input is blurred', () => {
+            testObj.datePickerElement = document.querySelector('#basic');
+            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
+            testObj.datePickerModule.inputElement.value = '08/06/2020';
+            testObj.datePickerModule.currentDate = new Date('06/06/2020');
+            testObj.datePickerModule.init();
+            testObj.datePickerModule.openDialog();
+
+            const buttonSpan = testObj.datePickerElement.querySelector('.ds_datepicker__button span');
+            buttonSpan.textContent = 'foo';
+
+            const event = new MouseEvent( 'blur');
+            testObj.datePickerModule.inputElement.dispatchEvent(event);
+
+            expect(buttonSpan.textContent).toEqual('Choose date');
+        });
     });
 
     describe('selecting a date', () => {
@@ -495,8 +512,9 @@ describe('date picker', () => {
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-next-year');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusNextYear).toHaveBeenCalled();
@@ -508,8 +526,9 @@ describe('date picker', () => {
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-next-month');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusNextMonth).toHaveBeenCalled();
@@ -521,8 +540,9 @@ describe('date picker', () => {
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-prev-month');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusPreviousMonth).toHaveBeenCalled();
@@ -534,8 +554,9 @@ describe('date picker', () => {
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-prev-year');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.focusPreviousYear).toHaveBeenCalled();
@@ -547,8 +568,9 @@ describe('date picker', () => {
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-cancel');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
@@ -559,8 +581,9 @@ describe('date picker', () => {
 
             const button = testObj.datePickerModule.dialogElement.querySelector('.js-datepicker-ok');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
 
             // expected date is today's date
@@ -576,13 +599,15 @@ describe('date picker', () => {
 
             const button = testObj.datePickerModule.calendarButtonElement;
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            let event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
             expect(testObj.datePickerModule.openDialog).toHaveBeenCalled();
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             button.dispatchEvent(event);
             expect(testObj.datePickerModule.closeDialog).toHaveBeenCalled();
         });
@@ -634,8 +659,9 @@ describe('date picker', () => {
         });
 
         it('should close the calendar on click of any non-calendar element', () => {
-            event = document.createEvent('Event');
-            event.initEvent('mouseup');
+            const event = new MouseEvent( 'mouseup', {
+                bubbles: true
+            });
 
             testObj.datePickerModule.openDialog();
             expect(testObj.datePickerModule.dialogElement.classList.contains('ds_datepicker__dialog--open')).toBe(true);
@@ -754,8 +780,9 @@ describe('date picker', () => {
             // pick a day
             const dayButton = testObj.datePickerModule.dialogElement.querySelector('button[tabindex="0"]');
 
-            event = document.createEvent('Event');
-            event.initEvent('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             dayButton.dispatchEvent(event);
 
             // expected date is today's date
@@ -768,15 +795,16 @@ describe('date picker', () => {
     describe('calendar with disabled dates', () => {
         beforeEach(() => {
             testObj.datePickerElement = document.querySelector('#basic');
+        });
+
+        it('should not permit the selection of a disabled date (provided in options)', () => {
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, {
                 disabledDates: [
                     new Date()
                 ]
             });
             testObj.datePickerModule.init();
-        });
 
-        it('should not permit the selection of a disabled date', () => {
             vi.spyOn(testObj.datePickerModule, 'setDate').mockImplementation();
 
             testObj.datePickerModule.openDialog();
@@ -784,7 +812,30 @@ describe('date picker', () => {
             // pick a day
             const dayButton = testObj.datePickerModule.dialogElement.querySelector('table button[aria-disabled]');
 
-            event = new Event('click');
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
+            dayButton.dispatchEvent(event);
+
+            expect(testObj.datePickerModule.setDate).not.toHaveBeenCalled();
+        });
+
+        it('should not permit the selection of a disabled date (provided in data attribute)', () => {
+            const date = new Date();
+            testObj.datePickerElement.dataset.disableddates = `${leadingZeroes(date.getDate())}/${leadingZeroes(date.getMonth()+1)}/${leadingZeroes(date.getFullYear())}`
+            testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
+            testObj.datePickerModule.init();
+
+            vi.spyOn(testObj.datePickerModule, 'setDate').mockImplementation();
+
+            testObj.datePickerModule.openDialog();
+
+            // pick a day
+            const dayButton = testObj.datePickerModule.dialogElement.querySelector('table button[aria-disabled]');
+
+            const event = new MouseEvent( 'click', {
+                bubbles: true
+            });
             dayButton.dispatchEvent(event);
 
             expect(testObj.datePickerModule.setDate).not.toHaveBeenCalled();

@@ -1,21 +1,22 @@
-/* global document, window */
-
 'use strict';
 
+import DSComponent from '../../base/component/component';
 import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
 
-class Tabs {
-    hasAutomaticActivation: boolean;
-    boundOnHashChange: Function;
-    boundOnResize: Function;
-    hasEventsEnabled: boolean;
-    resizeTimer?: number;
-    tabContainer: HTMLElement;
-    tabContents: HTMLElement[];
-    tabHeaders: HTMLElement[];
-    tabList: HTMLElement;
+class Tabs extends DSComponent {
+    private hasAutomaticActivation: boolean;
+    private boundOnHashChange: Function;
+    private boundOnResize: Function;
+    private hasEventsEnabled: boolean;
+    private resizeTimer?: number;
+    private tabContainer: HTMLElement;
+    private tabContents: HTMLElement[];
+    private tabHeaders: HTMLElement[];
+    private tabList: HTMLElement;
 
     constructor(tabContainer: HTMLElement) {
+        super(tabContainer);
+
         this.resizeTimer = null;
         this.hasEventsEnabled = false;
 
@@ -38,9 +39,17 @@ class Tabs {
         window.addEventListener('resize', this.boundOnResize as EventListenerOrEventListenerObject, true);
     }
 
+    // Initialise tabs if medium size or larger
+    init() {
+        if (breakpointCheck('medium')) {
+            this.set();
+            this.hasEventsEnabled = true;
+        }
+    }
+
     // Setup tabs
-    set() {
-        if (!this.tabContainer.classList.contains('js-initialised')) {
+    private set() {
+        if (!this.isInitialised) {
             this.tabList.setAttribute('role', 'tablist');
             this.tabHeaders.forEach((tabHeader, index) => this.initTab(tabHeader, index));
 
@@ -55,22 +64,14 @@ class Tabs {
             this.goToTab(currentTab);
 
             // Mark as initialised for specific layout support
-            this.tabContainer.classList.add('js-initialised');
-        }
-    }
-
-    // Initialise tabs if medium size or larger
-    init() {
-        if (breakpointCheck('medium')) {
-            this.set();
-            this.hasEventsEnabled = true;
+            this.isInitialised = true;
         }
     }
 
     // Reset tabs to original
-    reset() {
-        if (this.tabContainer.classList.contains('js-initialised')) {
-            this.tabContainer.classList.remove('js-initialised');
+    private reset() {
+        if (this.isInitialised) {
+            this.isInitialised = false;
 
             // reset attributes to default behaviour
             this.tabList.removeAttribute('role');
@@ -84,7 +85,7 @@ class Tabs {
     }
 
     // Runs when the browser is resized - includes debounce to prevent multiple calls in quick succession
-    onResize() {
+    private onResize() {
         clearTimeout(this.resizeTimer);
         this.resizeTimer = window.setTimeout(() => {
             if (breakpointCheck('medium')) {
@@ -96,7 +97,7 @@ class Tabs {
     }
 
     // Runs when the hash value in the browser changes
-    onHashChange() {
+    private onHashChange() {
         let tabWithHashLink = this.getTab(window.location.hash);
         if (!tabWithHashLink) {
             return;
@@ -111,13 +112,13 @@ class Tabs {
     }
 
     // Add the specified tab to the browser history
-    createHistoryEntry(tab: HTMLElement) {
+    private createHistoryEntry(tab: HTMLElement) {
         let tabId = this.getHref(tab);
         history.pushState(null,null,tabId);
     }
 
     // Reset tab back to original state
-    resetTab(
+    private resetTab(
         tabHeader: HTMLElement,
         index: number
     ) {
@@ -136,7 +137,7 @@ class Tabs {
     }
 
     // Initialise tab and add event listeners for click and arrow keys
-    initTab(
+    private initTab(
         tabHeader: HTMLElement,
         index: number
     ) {
@@ -154,7 +155,7 @@ class Tabs {
         tabContent.classList.add('ds_tabs__content--hidden');
 
         // Only set event listeners on initial setup
-        if(!this.hasEventsEnabled){
+        if (!this.hasEventsEnabled) {
             tabLink.addEventListener('click', event => {
                 if (breakpointCheck('medium')) {
                     event.preventDefault();
@@ -189,7 +190,7 @@ class Tabs {
         }
     }
 
-    navToTab(tab: HTMLElement) {
+    private navToTab(tab: HTMLElement) {
         // first, focus the tab
         (tab.querySelector('.ds_tabs__tab-link') as HTMLElement).focus();
 
@@ -199,26 +200,26 @@ class Tabs {
         }
     }
 
-    getNextTab(currentTab: HTMLElement) {
+    private getNextTab(currentTab: HTMLElement) {
         const tab = currentTab.nextElementSibling || this.getFirstTab();
         return tab as HTMLElement;
     }
 
-    getPreviousTab(currentTab: HTMLElement) {
+    private getPreviousTab(currentTab: HTMLElement) {
         const tab = currentTab.previousElementSibling || this.getLastTab();
         return tab as HTMLElement;
     }
 
-    getFirstTab() {
+    private getFirstTab() {
         return this.tabHeaders[0];
     }
 
-    getLastTab() {
+    private getLastTab() {
         return this.tabHeaders[this.tabHeaders.length - 1];
     }
 
     // Go to specified tab
-    goToTab(targetTab: HTMLElement, updateHistory = false) {
+    private goToTab(targetTab: HTMLElement, updateHistory = false) {
         let oldTab = this.getCurrentTab();
 
         if (oldTab === targetTab) {
@@ -243,7 +244,7 @@ class Tabs {
     }
 
     // Deactivate specified tab
-    deactivateTab(targetTab: HTMLElement) {
+    private deactivateTab(targetTab: HTMLElement) {
         if(!targetTab){
             return;
         }
@@ -259,24 +260,24 @@ class Tabs {
     }
 
     // Returns the tab which matches the specified hash value
-    getTab(hash: string) {
+    private getTab(hash: string) {
         return this.tabContainer.querySelector('.ds_tabs__tab-link[href="' + hash + '"]') as HTMLElement;
     }
 
     // Returns the current tab
-    getCurrentTab() {
+    private getCurrentTab() {
         return this.tabList.querySelector('.ds_tabs__tab.ds_current') as HTMLElement;
     }
 
     // Returns the href of the specified tab
-    getHref(tab: HTMLElement) {
+    private getHref(tab: HTMLElement) {
         let tabLink = tab.querySelector('.ds_tabs__tab-link');
         let href = tabLink.getAttribute('href');
         return href.slice(href.indexOf('#'), href.length);
     }
 
     // Returns the content for the specified tab
-    getTabContent(tab: HTMLElement) {
+    private getTabContent(tab: HTMLElement) {
         return this.tabContainer.querySelector(this.getHref(tab)) as HTMLElement;
     }
 }

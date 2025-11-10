@@ -86,7 +86,7 @@ describe('hide page', () => {
             expect(testObj.hidePage.window.location.replace).toHaveBeenCalledWith('https://www.google.com');
         });
 
-        // note: this might not be testable with this test tool. disabling spec.
+        // note: this is not testable with this test tool. disabling spec.
         it.skip('should replace the current history entry', () => {
             testObj.hidePage = new HidePage(windowObj);
             testObj.hidePage.init();

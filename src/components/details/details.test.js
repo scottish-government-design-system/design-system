@@ -72,7 +72,7 @@ describe('details', () => {
             expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
         });
 
-        it.only('should swallow a space keyup event', () => {
+        it('should swallow a space keyup event', () => {
             testObj.detailsModule.init();
 
             vi.spyOn(testObj.detailsModule, 'openDetails').mockImplementation();

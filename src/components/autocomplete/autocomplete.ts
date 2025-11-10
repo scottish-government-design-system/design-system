@@ -1,9 +1,8 @@
-/* global window, document */
-
 'use strict';
 
 import highlight from './highlight';
 import PromiseRequest from '../../base/tools/promise-request/promise-request';
+import DSComponent from '../../base/component/component';
 
 type AutocompleteOptions = {
     minLength?: number;
@@ -16,28 +15,29 @@ type Suggestion = {
     isActive: boolean;
 }
 
-class Autocomplete {
-    activeSuggestion: Suggestion;
-    endpointUrl: string;
-    inputElement: HTMLInputElement;
-    keypressTimeout: number;
-    listBoxElement: HTMLElement;
-    minLength: number;
-    PromiseRequest: any;
-    selectedSuggestion: number;
-    statusElement: HTMLElement;
-    statusTextCache: string;
-    statusTimeout: number;
-    suggestions: Suggestion[];
-    suggestionMappingFunction: Function;
-    tempToggleCharacter: string;
-    throttleDelay: number;
+class Autocomplete extends DSComponent {
+    private activeSuggestion: Suggestion;
+    private endpointUrl: string;
+    private inputElement: HTMLInputElement;
+    private keypressTimeout: number;
+    private listBoxElement: HTMLElement;
+    private minLength: number;
+    private PromiseRequest: any;
+    private selectedSuggestion: number;
+    private statusElement: HTMLElement;
+    private statusTimeout: number;
+    private suggestions: Suggestion[];
+    private suggestionMappingFunction: Function;
+    private tempToggleCharacter: string;
+    private throttleDelay: number;
 
     constructor(
         element: HTMLElement,
         endpointUrl: string,
         options: AutocompleteOptions = {}
     ) {
+        super(element);
+
         this.inputElement = element.querySelector('.js-autocomplete-input');
 
         this.endpointUrl = endpointUrl;
@@ -54,12 +54,6 @@ class Autocomplete {
     init() {
         // abort if inputElement or endpointUrl not present
         if (!this.inputElement || !this.endpointUrl) {
-            return false;
-        }
-
-        // abort if browser does not support Promise
-        // TODO: polyfill promises for old browsers
-        if (typeof Promise === 'undefined') {
             return false;
         }
 
@@ -89,7 +83,7 @@ class Autocomplete {
                         this.suggestions = suggestions;
                         this.showSuggestions(this.suggestions);
 
-                        this.updateStatus(`There ${suggestions.length === 1 ? 'is' : 'are'} ${suggestions.length} ${suggestions.length === 1 ? 'option' : 'options'}`, 1500);
+                        this.updateStatus(this.suggestions.length, 1500);
                     });
                 }, this.throttleDelay);
             } else {
@@ -102,7 +96,7 @@ class Autocomplete {
                 if (this.suggestions) {
                     this.showSuggestions(this.suggestions);
 
-                    this.updateStatus(`There ${this.suggestions.length === 1 ? 'is' : 'are'} ${this.suggestions.length} ${this.suggestions.length === 1 ? 'option' : 'options'}`, 1500);
+                    this.updateStatus(this.suggestions.length, 1500);
                 } else {
                     this.fetchSuggestions(this.inputElement.value.trim());
                 }
@@ -125,9 +119,11 @@ class Autocomplete {
                 this.acceptSelectedSuggestion();
             }
         });
+
+        this.isInitialised = true;
     }
 
-    acceptSelectedSuggestion() {
+    private acceptSelectedSuggestion() {
         const selectedItem = document.querySelector('#' + this.inputElement.getAttribute('aria-activedescendant'));
         this.inputElement.value = selectedItem.querySelector('.js-suggestion-text').textContent.trim();
 
@@ -139,25 +135,24 @@ class Autocomplete {
         this.clearSuggestions();
     }
 
-    buildSuggestionHtml(suggestionHtml: string) {
+    private buildSuggestionHtml(suggestionHtml: string) {
         let html = `<span aria-hidden="true" class="ds_autocomplete__suggestion__text  js-suggestion-text">${suggestionHtml}</span>
                 <span class="visually-hidden">${suggestionHtml}</span>`;
 
         return html;
     }
 
-    clearSearch () {
+    private clearSearch () {
         this.inputElement.value = '';
         this.clearSuggestions();
     }
 
-    clearSuggestions () {
+    private clearSuggestions () {
         delete this.activeSuggestion;
         delete this.selectedSuggestion;
         this.listBoxElement.innerHTML = '';
         this.inputElement.removeAttribute('aria-activedescendant');
         this.inputElement.classList.remove('js-has-suggestions');
-        this.statusTextCache = this.statusElement.innerHTML;
         this.statusElement.innerHTML = '';
 
         if (this.suggestions) {
@@ -165,13 +160,13 @@ class Autocomplete {
         }
     }
 
-    fetchSuggestions(searchTerm: string) {
+    private fetchSuggestions(searchTerm: string) {
         return this.PromiseRequest(this.endpointUrl + encodeURIComponent(searchTerm))
             .then((result: any) => this.suggestionMappingFunction(result))
             .catch((result: any) => console.log('fetch failed', result));
     }
 
-    selectSuggestion(selectionIndex: number) {
+    private selectSuggestion(selectionIndex: number) {
         this.selectedSuggestion = selectionIndex;
 
         this.suggestions.forEach((suggestion, index) => {
@@ -186,9 +181,8 @@ class Autocomplete {
         this.showSuggestions(this.suggestions);
     }
 
-    showSuggestions(suggestions: Suggestion[]) {
+    private showSuggestions(suggestions: Suggestion[]) {
         this.listBoxElement.innerHTML = '';
-
         if (suggestions.length) {
             for (let i = 0, il = suggestions.length; i < il; i++) {
                 const suggestion = suggestions[i];
@@ -223,28 +217,31 @@ class Autocomplete {
         }
     }
 
-    updateStatus(text: string, delay = 100) {
+    private updateStatus(suggestionCount: number, delay = 100) {
         if (this.statusElement) {
-            // This full stop triggers browsers to think the string has changed, and read it. This is a hack, albeit a harmless one.
-            if (this.tempToggleCharacter.length) {
-                this.tempToggleCharacter = '';
-            } else {
-                this.tempToggleCharacter = '.';
-            }
-
             if (this.statusTimeout) {
                 window.clearTimeout(this.statusTimeout);
             }
 
+            const text = `There ${suggestionCount === 1 ? 'is' : 'are'} ${suggestionCount} ${suggestionCount === 1 ? 'option' : 'options'}`;
+
             this.statusTimeout = window.setTimeout(() => {
-                this.statusElement.textContent = text + this.tempToggleCharacter;
+                this.updateStatusText(text);
             }, delay);
-        } else {
-            console.log('autocomplete status element not present');
         }
     }
 
-    modulo (a: number, b: number) {
+    private updateStatusText(text: string) {
+        // This full stop triggers screen readers to think the element content has changed, and read it. This is a hack, albeit a harmless one.
+        if (this.tempToggleCharacter.length) {
+            this.tempToggleCharacter = '';
+        } else {
+            this.tempToggleCharacter = '.';
+        }
+        this.statusElement.textContent = text + this.tempToggleCharacter;
+    }
+
+    private modulo (a: number, b: number) {
         return ((a % b) + b) % b;
     }
 }
