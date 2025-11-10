@@ -41,7 +41,14 @@ class BackToTop {
 
     checkPosition() {
         const backToTopOffset = this.footerEl.offsetHeight + 8;
-        this.backToTopElement.dataset.dsBttFooterOffset = backToTopOffset / 16;
+
+        const backToTopSpacingUnits = Math.ceil(backToTopOffset / 8);
+        this.backToTopElement.classList.forEach(className => {
+            if (className.match(/ds_!_off-b-/)) {
+                this.backToTopElement.classList.remove(className);
+            }
+        });
+        this.backToTopElement.classList.add(`ds_!_off-b-${backToTopSpacingUnits}`);
     }
 }
 

@@ -1,0 +1,11 @@
+@for $i from 1 through 60 {
+    .ds_\!_off-l-#{$i} {
+        left: $i * 0.5rem !important;
+    }
+}
+
+@for $i from 1 through 60 {
+    .ds_\!_off-b-#{$i} {
+        bottom: $i * 0.5rem !important;
+    }
+}
