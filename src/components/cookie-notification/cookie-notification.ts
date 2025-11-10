@@ -1,11 +1,10 @@
-/* global document */
-
 'use strict';
 
+import DSComponent from '../../base/component/component';
 import _storage from '../../base/tools/storage/storage';
 import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
 
-class CookieNotification {
+class CookieNotification extends DSComponent {
     storage: {
         get: Function;
         setCookie: Function;
@@ -14,15 +13,17 @@ class CookieNotification {
         types: any;
     };
 
-    cookieAcceptAllButton: HTMLButtonElement;
-    cookieAcceptEssentialButton: HTMLButtonElement;
-    cookieNoticeElement: HTMLElement;
-    cookieNoticeSuccessElement: HTMLElement;
+    private cookieAcceptAllButton: HTMLButtonElement;
+    private cookieAcceptEssentialButton: HTMLButtonElement;
+    private cookieNoticeElement: HTMLElement;
+    private cookieNoticeSuccessElement: HTMLElement;
 
-    constructor(el: HTMLElement, storage = _storage) {
+    constructor(element: HTMLElement, storage = _storage) {
+        super(element);
+
         this.storage = storage;
 
-        this.cookieNoticeElement = el;
+        this.cookieNoticeElement = element;
         this.cookieNoticeSuccessElement = document.getElementById('cookie-confirm');
         this.cookieAcceptAllButton = this.cookieNoticeElement.querySelector('.js-accept-all-cookies');
         this.cookieAcceptEssentialButton = this.cookieNoticeElement.querySelector('.js-accept-essential-cookies');
@@ -55,9 +56,11 @@ class CookieNotification {
             this.cookieNoticeSuccessElement.classList.remove('fully-hidden');
             temporaryFocus(this.cookieNoticeSuccessElement);
         });
+
+        this.isInitialised = true;
     }
 
-    setAllOptionalPermissions(allow: boolean) {
+    private setAllOptionalPermissions(allow: boolean) {
         const cookiePermissions = JSON.parse(JSON.stringify(this.storage.categories));
         for (const key in cookiePermissions) {
             if (key === this.storage.categories.necessary) {

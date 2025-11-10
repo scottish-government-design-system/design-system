@@ -22,6 +22,9 @@ export default defineConfig({
         clearMocks: true,
         environment: 'jsdom',
         globals: true,
-        include: ['src/**/*.test.js']
+        include: ['src/**/*.test.js'],
+        reporters: [
+            ['default', { summary: false }]
+        ]
     }
 });

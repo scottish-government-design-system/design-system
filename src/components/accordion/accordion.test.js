@@ -47,7 +47,6 @@ describe('accordion', () => {
 
             const accordionItems = testObj.accordionElement.querySelectorAll('.ds_accordion-item');
 
-
             // in fixture, first item is checked, others are not
             const states = [true, false, false];
             for (let i = 0, il = accordionItems.length; i < il; i++) {

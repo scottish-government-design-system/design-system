@@ -1,10 +1,9 @@
-/* global document, window */
-
 'use strict';
 
+import DSComponent from '../../base/component/component';
 import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
 
-class TabsNavigation {
+class TabsNavigation extends DSComponent {
     boundOnResize: Function;
     hasEventsEnabled: boolean;
     resizeTimer?: number;
@@ -15,6 +14,8 @@ class TabsNavigation {
     tabTitle: HTMLElement;
 
     constructor(tabContainer: HTMLElement) {
+        super(tabContainer)
+
         this.resizeTimer = null;
         this.hasEventsEnabled = false;
 
@@ -33,9 +34,19 @@ class TabsNavigation {
         window.addEventListener('resize', this.boundOnResize as EventListenerOrEventListenerObject, true);
     }
 
+        // Initialise tab navigation if smaller than medium size
+    init() {
+        if (breakpointCheck('medium')) {
+            // do nothing
+        } else {
+            this.set();
+            this.hasEventsEnabled = true;
+        }
+    }
+
     // Setup tab navigation dropdown
-    set() {
-        if (!this.tabNavigation.classList.contains('js-initialised')) {
+    private set() {
+        if (!this.isInitialised) {
 
             // Swap title to button
             const navButton = document.createElement('button');
@@ -62,24 +73,14 @@ class TabsNavigation {
             }
 
             // Mark as initialised for specific layout support
-            this.tabNavigation.classList.add('js-initialised');
-        }
-    }
-
-    // Initialise tab navigation if smaller than medium size
-    init() {
-        if (breakpointCheck('medium')) {
-            // do nothing
-        } else {
-            this.set();
-            this.hasEventsEnabled = true;
+            this.isInitialised = true;
         }
     }
 
     // Reset tabs to original
-    reset() {
-        if (this.tabNavigation.classList.contains('js-initialised')) {
-            this.tabNavigation.classList.remove('js-initialised');
+    private reset() {
+        if (this.isInitialised) {
+            this.isInitialised = false;
 
             // Remove button
             const navButton = this.tabContainer.querySelector('.ds_tabs__toggle');
@@ -91,7 +92,7 @@ class TabsNavigation {
     }
 
     // Runs when the browser is resized - includes debounce to prevent multiple calls in quick succession
-    onResize() {
+    private onResize() {
         clearTimeout(this.resizeTimer);
         this.resizeTimer = window.setTimeout(() => {
             if (breakpointCheck('medium')) {

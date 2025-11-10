@@ -1,23 +1,25 @@
-/* global document, window */
-import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
-
 'use strict';
 
-class SideNavigation {
-    navList: HTMLElement;
-    sideNavigation: HTMLElement;
+import DSComponent from '../../base/component/component';
+import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
-    constructor (sideNavigation: HTMLElement) {
+class SideNavigation extends DSComponent {
+    private navList: HTMLElement;
+    private sideNavigation: HTMLElement;
+
+    constructor(sideNavigation: HTMLElement) {
+        super(sideNavigation);
         this.sideNavigation = sideNavigation;
     }
 
     init() {
-        if (this.sideNavigation && !this.sideNavigation.classList.contains('js-initialised')) {
+        if (this.sideNavigation && !this.isInitialised) {
             this.setupSideNavigation();
+            this.isInitialised = true;
         }
     }
 
-    setupSideNavigation() {
+    private setupSideNavigation() {
         // transform markup to button-driven version
         const navControl: HTMLInputElement = this.sideNavigation.querySelector('.js-toggle-side-navigation');
         const navLabel: HTMLElement = this.sideNavigation.querySelector('.ds_side-navigation__expand');
@@ -58,9 +60,6 @@ class SideNavigation {
                 navButton.classList.remove('ds_side-navigation__expand--shadow');
             }
         });
-
-        this.sideNavigation.classList.add('js-initialised');
-
     }
 }
 
