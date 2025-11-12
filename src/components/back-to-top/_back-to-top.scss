@@ -79,3 +79,7 @@
         }
     }
 }
+
+.ds_back-to-top--hidden:not(:focus-within) {
+    @include ds_visually-hidden;
+}
