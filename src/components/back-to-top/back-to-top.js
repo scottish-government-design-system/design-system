@@ -31,9 +31,9 @@ class BackToTop {
 
     checkDisplay() {
         if (document.body.offsetHeight - this.footerEl.offsetHeight < this.window.innerHeight) {
-            this.backToTopElement.classList.add('visually-hidden');
+            this.backToTopElement.classList.add('ds_back-to-top--hidden');
         } else {
-            this.backToTopElement.classList.remove('visually-hidden');
+            this.backToTopElement.classList.remove('ds_back-to-top--hidden');
         }
 
         this.checkPosition();
