@@ -79,3 +79,13 @@
         }
     }
 }
+
+.ds_back-to-top--hidden:not(:focus-within) {
+    @include ds_visually-hidden;
+}
+
+.ds_back-to-top--hidden:focus-within {
+    bottom: auto !important;
+    margin-top: -3rem;
+    top: auto;
+}
