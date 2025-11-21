@@ -2,8 +2,196 @@
     CARD
 \*------------------------------------*/
 
+$card-background--primary: $ds_colour__background--primary !default;
+$card-background--secondary: $ds_colour__background--secondary !default;
+
+// Deprecated - use $card-background--secondary
 $card-grey-background-color: $ds_colour__background--secondary !default;
 
+.ds_card {
+    @include ds_small-size;
+    background: $card-background--primary;
+    border: 1px solid $ds_colour__border;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+
+    &--hover {
+        @include ds_box-shadow;
+        @include ds_high-contrast-outline;
+    }
+
+    &__content {
+        @include ds_last-child-no-margin;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 
+            "h"
+            "m"
+            "f";
+        gap: 0.5rem;
+        height: 100%;
+        padding: 1rem;
+
+        &:has(&-actions) {
+        grid-template-columns: 1fr auto;
+        grid-template-areas: 
+            "h a"
+            "m m"
+            "f f";
+        }
+
+        &-header {
+            grid-area: h;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            
+            // Position badge closer to icon if both present
+            .ds_icon + .ds_badge {
+                margin-left: -0.25rem;
+            }
+
+            // Status tag is always small size
+            .ds_tag {
+                @include ds_root-size--fixed;
+            }
+        }
+
+        &-main {
+            @include ds_last-child-no-margin;
+            grid-area: m;
+        }
+
+        &-footer {
+            @include ds_last-child-no-margin;
+            grid-area: f;
+            align-self: end;
+            padding-top: 0.5rem;
+        }
+
+        &-actions {
+            grid-area: a;
+        }
+    }
+
+    &__title {
+        @include ds_h3-size;
+        width: 100%;
+        
+        // Override styling applied to heading margins
+        &,
+        &:not(:first-child) {
+            margin: 0;
+        }
+    }
+
+
+
+    &--background-secondary {
+        background-color: $card-background--secondary;
+    }
+
+
+    &__link {
+        display: inline-block;
+    }
+
+    &__link--cover:after {
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+    }
+
+
+    /*
+    &:has(.ds_card__link--cover) {
+        @include ds_link--block('.ds_card__link--cover');
+        display: flex;
+        
+        &:focus-within {
+            @include ds_high-contrast-outline($width: 0.25em, $colour: highlight)
+        }
+    }
+*/
+}
+
+// Container queries to transform the cards based on their size
+.ds_card-container {
+    container-name: ds_card-container;
+    container-type: inline-size;
+
+    .ds_card {
+        height: 100%;
+    }
+}
+
+// When a card container is wider than small breakpoint (480px) with 16px gutters
+@container ds_card-container (width > 447px) {
+    .ds_card {
+        flex-direction: row;
+
+        &__media {
+            flex: 1 0 auto;
+            width: min(50cqw, 24rem); // Max width of 384px
+        }
+
+        &__content {
+            height: auto;
+        }
+    }
+}
+
+// Move to own layout
+.ds_card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+
+    // Default grid behaviour
+    // 3 columns @ xlarge
+    // 3 columns @ large
+    // 3 columns @ medium
+    // 1 column @ small
+    // 1 column @ fluid
+    @include ds_media-query(medium) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    // 2 columns @ medium
+    &--medium-2 {
+        @include ds_media-query(medium-to-large) {
+            grid-template-columns: 1fr 1fr;
+        }    
+    }
+
+    // Examples of placing cards across columns and grids
+    // 1st card takes up all of 1st row
+    &--leader-wide-2 {
+        > .ds_card-container:first-child,
+        > .ds_card:first-child {
+            grid-column: 1 / span 2;
+        }
+    }
+    
+    // 1st card takes up all of 1st row
+    &--leader-square-2 {
+        > .ds_card-container:first-child,
+        > .ds_card:first-child {
+            grid-column: 1 / span 2;
+            grid-row: 1 / span 2;
+        }
+    }
+}
+
+/*
 .ds_card {
     @include ds_box-shadow;
     @include ds_small-size;
@@ -114,7 +302,7 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
     }
 }
 
-/* Support for old markup */
+/* Support for old markup
 .ds_card {
     .ds_category-item__link {
         &:hover {
@@ -124,3 +312,4 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
         }
     }
 }
+ */
