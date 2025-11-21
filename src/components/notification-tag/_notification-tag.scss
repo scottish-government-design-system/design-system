@@ -1,0 +1,73 @@
+/*------------------------------------*\
+    NOTIFICATION TAG
+    Currently only to be used attached to the icon for a card
+\*------------------------------------*/
+
+$notification-tag__background: $ds_colour__red !default;
+$notification-tag__colour: $ds_colour__white !default;
+
+.ds_notification-tag {
+    background: $notification-tag__background;
+    border-radius: 0.5rem;
+    color: $notification-tag__colour;
+    display: inline-block;
+    font-size: px-to-rem($tiny-size);
+    font-weight: $bold;
+    height: 1rem;
+    line-height: 1rem;
+    min-width: 1rem;
+    outline: 0.0625rem solid $notification-tag__colour;
+    padding: 0 0.1875rem;
+    text-align: center;
+
+    &--dot {
+        border-radius: 0.375rem;
+        content: "";
+        height: 0.75rem;
+        line-height: 0.75rem;
+        min-width: 0.75rem;
+        padding: 0;
+    }
+
+    @include ds_media-query(medium) {
+        border-radius: 0.625rem;
+        font-size: px-to-rem($tiny-size--medium);
+        height: 1.25rem;
+        line-height: 1.25rem;
+        min-width: 1.25rem;
+        padding: 0 0.25rem;
+
+        &--dot {
+            border-radius: 0.5rem;
+            height: 1rem;
+            line-height: 1rem;
+            min-width: 1rem;
+            padding: 0;
+        }
+    }
+}
+
+.ds_notification-tag__wrapper {
+    display: inline-block;
+    position: relative;
+
+    .ds_notification-tag {
+        position: absolute;
+        top:-0.125rem;
+        right:-0.5rem;
+
+        &--dot {
+            right:-0.375rem;
+        }
+
+        @include ds_media-query(medium) {
+            right:-0.625rem;
+
+            &--dot {
+                right:-0.5rem;
+            }
+        }
+    }
+
+
+}

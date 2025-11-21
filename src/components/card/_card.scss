@@ -2,125 +2,250 @@
     CARD
 \*------------------------------------*/
 
+$card-background--primary: $ds_colour__background--primary !default;
+$card-background--secondary: $ds_colour__background--secondary !default;
+
+// Deprecated - use $card-background--secondary
 $card-grey-background-color: $ds_colour__background--secondary !default;
 
 .ds_card {
-    @include ds_box-shadow;
     @include ds_small-size;
-    @include ds_high-contrast-outline;
-    background-color: $ds_colour__background--primary;
-    display: grid;
-    grid-template-rows: auto 1fr;
+    background: $card-background--primary;
+    border: 1px solid $ds_colour__border;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
 
-    &--grey {
-        background-color: $card-grey-background-color;
-        color: $ds_colour__text;
+    &--hover {
+        @include ds_box-shadow;
 
-        &:focus-within {
-            color: $ds_colour__link--focus;
+        .ds_icon {
+            color: $ds_colour__link;
+            
+            @include ds_media-query-high-contrast {
+                color: linktext !important;
+            }
         }
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $card-grey-background-color, 'grey card');
-    }
-
-    &--hover,
-    &--has-hover {
         &:hover {
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
-        }
-        &:hover:not(:focus) {
-            background-color: $ds_colour__link--hover__background;
-
-            // override metadata colour to meet contrast
-            .ds_metadata {
-                color: inherit;
-            }
-        }
-
-        &:focus-within {
-            @include ds_high-contrast-outline($width: 0.25em, $colour: highlight);
-
-            background-color: $ds_colour__link--focus__background !important;
-            @include ds_unsupported-css-fallback(
-                $prop: 'box-shadow',
-                $modern: inset 0px round(#{$focus__shadow-width * -1}, 1px) 0px $ds_colour__link--focus__shadow,
-                $fallback: inset 0px #{$focus__shadow-width * -1} 0px $ds_colour__link--focus__shadow
-            );
-            transition-duration: 0s;
-
-            .ds_card__link--cover {
-                background-color: transparent;
-                box-shadow: none; /// IE11 fallback
-                filter: none;
-                outline: none;
-            }
-
-            // override metadata colour to meet contrast
-            .ds_metadata {
-                color: inherit;
+            .ds_icon {
+                color: $ds_colour__link--hover;
             }
         }
     }
 
     &__media {
-        @include ds_media-query (medium-down) {
-            &--small-mobile {
-                padding: 1rem 1rem 0;
-                max-width: calc(360px + 2rem);
-            }
+        img {
+            display: block;
         }
     }
 
     &__content {
         @include ds_last-child-no-margin;
         display: grid;
-        grid-template-rows: auto auto 1fr;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 
+            "h"
+            "m"
+            "f";
+        gap: 0.5rem;
         height: 100%;
-        @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(2, right);
-        @include ds_responsive-padding(3, bottom);
-        @include ds_responsive-padding(2, left);
+        padding: 1rem;
+
+        &:has(&-actions) {
+        grid-template-columns: 1fr auto;
+        grid-template-areas: 
+            "h a"
+            "m m"
+            "f f";
+        }
+
+        &-header {
+            grid-area: h;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            
+            .ds_icon {
+                height: 2.5rem;
+                max-width: 2.5rem;
+                width: auto;
+
+                @include ds_media-query(medium){
+                    height: 3rem;
+                    max-width: 3rem;   
+                    width: auto; 
+                }
+            }
+
+            .ds_tag {
+                @include ds_small-size;
+            }
+        }
+
+        &-main {
+            @include ds_last-child-no-margin;
+            grid-area: m;
+        }
 
         &-footer {
             @include ds_last-child-no-margin;
+            grid-area: f;
             align-self: end;
+            padding-top: 0.5rem;
+        }
+
+        &-actions {
+            grid-area: a;
         }
     }
 
     &__title {
-        @include ds_h3-style;
-        @include ds_responsive-margin(1, bottom);
-        margin-top: 0 !important;
+        @include ds_h3-size;
+        width: 100%;
+        
+        // Override styling applied to heading margins
+        &,
+        &:not(:first-child) {
+            margin: 0;
+        }
+    }
+
+    &--background-secondary {
+        background-color: $card-background--secondary;
+    }
+
+
+    &__link {
+        display: inline-block;
     }
 
     &__link--cover:after {
         content: "";
         height: 100%;
-        left: 0px;
+        left: 0;
         position: absolute;
-        top: 0px;
+        top: 0;
         width: 100%;
         z-index: 1;
     }
 
-    &:has(.ds_card__link--cover) {
-        @include ds_link--block('.ds_card__link--cover');
-        display: grid;
-        
-        &:focus-within {
-            @include ds_high-contrast-outline($width: 0.25em, $colour: highlight)
-        }
-    }
+
 }
 
-/* Support for old markup */
-.ds_card {
-    .ds_category-item__link {
-        &:hover {
-            &:before {
-                display: none;
+// Horizontal card layout (default is vertical)
+@mixin ds_card--horizontal {
+    flex-direction: row;
+
+    .ds_card__media {
+        flex: 1 0 auto;
+        width: max(calc(100% / 3), 8rem); 
+        max-width: max(calc(100% / 3), 8rem);
+
+        &--narrow {
+            width: max(calc(100% / 3), 6rem); 
+            max-width: max(calc(100% / 3), 6rem);
+        }
+
+        &--wide {
+            width: 50%; 
+            max-width: 50%;
+        }
+
+        // Increase size above small width
+        // [1] 350px is largest width of a card in a 3 col grid
+        @include ds_media-query(small) {
+            width: min(50%, 21.875rem); //[1]
+            max-width: min(50%, 21.875rem); 
+
+            &--narrow {
+                width: min(calc(100% / 3), 21.875rem); //[1]
+                max-width: min(calc(100% / 3), 21.875rem); 
+            }
+
+            &--wide {
+                width: calc(300% / 4); 
+                max-width: calc(300% / 4); 
+            }
+        }
+
+        // Cover variant overrides aspect box
+        &--cover {
+            .ds_aspect-box {
+                height: 100%;
             }
         }
     }
+
+    .ds_card__content {
+        flex-grow: 1;
+        height: auto;
+    }
+}
+
+// Card is always horizontal
+.ds_card--horizontal {
+    @include ds_card--horizontal;
+}
+
+// Card is horizontal at viewport sizes up to small breakpoint 30rem(480px
+// Use this when you want horizontal rather than stacked at mobile sizes
+.ds_card--horizontal-small {
+    @include ds_media-query(small-down) {
+        @include ds_card--horizontal;
+    }
+}
+
+// Card container for container queries
+.ds_card-container {
+    container-name: ds_card-container;
+    container-type: inline-size;
+
+    .ds_card {
+        height: 100%;
+    }
+}
+
+// When a card container is wider than small breakpoint 30rem(480px) with 2rem(32px) gutters
+@container ds_card-container (min-width: 28rem) {
+    .ds_card {
+        @include ds_card--horizontal;
+    }
+}
+
+// Card grid
+.ds_card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    @include ds_responsive-spacing(4, "gap");
+
+    // Default grid behaviour
+    // 3 columns @ xlarge
+    // 3 columns @ large
+    // 3 columns @ medium
+    // 1 column @ small
+    // 1 column @ fluid
+    @include ds_media-query(medium) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    // 2 columns @ medium
+    &--medium-2 {
+        @include ds_media-query(medium-to-large) {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }    
+    }
+}
+
+// Add block margins to grid
+.ds_card-grid-container {
+    @include ds_block-margins;
+}
+
+// DEPRECATED - use ds_card--background-secondary instead
+.ds_card--grey {
+    background-color: $card-background--secondary;
 }

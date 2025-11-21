@@ -97,6 +97,11 @@
     }
 }
 
+@mixin ds_root-size--fixed($type-grid: 8px) {
+    font-size: px-to-rem($root-font-size--fixed);
+    line-height: line-height-on-grid($root-font-size--fixed, $grid: $type-grid);
+}
+
 
 
 

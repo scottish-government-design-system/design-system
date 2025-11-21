@@ -13,6 +13,7 @@ $button__height--small: 48px !default;
     @if $icon {
         > .ds_icon {
             height: 40px;
+            max-width: 40px;
             padding: 8px;
             width: 40px;
         }
@@ -28,6 +29,7 @@ $button__height--small: 48px !default;
     @if $icon {
         > .ds_icon {
             height: 32px;
+            max-width: 32px;
             padding: 8px;
             width: 32px;
         }
