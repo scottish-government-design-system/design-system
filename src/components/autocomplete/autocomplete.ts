@@ -6,7 +6,7 @@ import DSComponent from '../../base/component/component';
 
 type AutocompleteOptions = {
     minLength?: number;
-    suggestionMappingFunction?: Function;
+    suggestionMappingFunction?: (suggestions: object[]) => Suggestion[];
     throttleDelay?: number;
 }
 
@@ -22,12 +22,12 @@ class Autocomplete extends DSComponent {
     private keypressTimeout: number;
     private listBoxElement: HTMLElement;
     private minLength: number;
-    private PromiseRequest: any;
+    private PromiseRequest: (url: string | {url: string, method: string}) => Promise<unknown>;
     private selectedSuggestion: number;
     private statusElement: HTMLElement;
     private statusTimeout: number;
     private suggestions: Suggestion[];
-    private suggestionMappingFunction: Function;
+    private suggestionMappingFunction: (suggestions: object[]) => Suggestion[]
     private tempToggleCharacter: string;
     private throttleDelay: number;
 
@@ -136,7 +136,7 @@ class Autocomplete extends DSComponent {
     }
 
     private buildSuggestionHtml(suggestionHtml: string) {
-        let html = `<span aria-hidden="true" class="ds_autocomplete__suggestion__text  js-suggestion-text">${suggestionHtml}</span>
+        const html = `<span aria-hidden="true" class="ds_autocomplete__suggestion__text  js-suggestion-text">${suggestionHtml}</span>
                 <span class="visually-hidden">${suggestionHtml}</span>`;
 
         return html;
@@ -162,8 +162,8 @@ class Autocomplete extends DSComponent {
 
     private fetchSuggestions(searchTerm: string) {
         return this.PromiseRequest(this.endpointUrl + encodeURIComponent(searchTerm))
-            .then((result: any) => this.suggestionMappingFunction(result))
-            .catch((result: any) => console.log('fetch failed', result));
+            .then((result: object[]) => this.suggestionMappingFunction(result))
+            .catch((result: object) => console.log('fetch failed', result));
     }
 
     private selectSuggestion(selectionIndex: number) {
@@ -207,7 +207,7 @@ class Autocomplete extends DSComponent {
 
             // remove items that make the box too high for the viewport
             while (window.visualViewport.height < this.listBoxElement.parentElement.offsetHeight + this.inputElement.offsetHeight + 16) {
-                let lastItem = this.listBoxElement.querySelector('li:last-child');
+                const lastItem = this.listBoxElement.querySelector('li:last-child');
                 lastItem.parentNode.removeChild(lastItem);
 
                 suggestions = suggestions.splice(suggestions.length - 1);

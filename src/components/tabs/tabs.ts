@@ -5,8 +5,8 @@ import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-ch
 
 class Tabs extends DSComponent {
     private hasAutomaticActivation: boolean;
-    private boundOnHashChange: Function;
-    private boundOnResize: Function;
+    private boundOnHashChange: () => void;
+    private boundOnResize: () => void;
     private hasEventsEnabled: boolean;
     private resizeTimer?: number;
     private tabContainer: HTMLElement;
@@ -59,8 +59,8 @@ class Tabs extends DSComponent {
             });
 
             // Set the active tab based on the URL's hash or the first tab
-            let currentTabLink = this.getTab(window.location.hash) || this.tabHeaders[0].querySelector('.ds_tabs__tab-link');
-            let currentTab = currentTabLink.parentElement;
+            const currentTabLink = this.getTab(window.location.hash) || this.tabHeaders[0].querySelector('.ds_tabs__tab-link');
+            const currentTab = currentTabLink.parentElement;
             this.goToTab(currentTab);
 
             // Mark as initialised for specific layout support
@@ -98,12 +98,12 @@ class Tabs extends DSComponent {
 
     // Runs when the hash value in the browser changes
     private onHashChange() {
-        let tabWithHashLink = this.getTab(window.location.hash);
+        const tabWithHashLink = this.getTab(window.location.hash);
         if (!tabWithHashLink) {
             return;
         }
 
-        let tabWithHash = tabWithHashLink.parentElement;
+        const tabWithHash = tabWithHashLink.parentElement;
 
         if (breakpointCheck('medium')) {
             this.goToTab(tabWithHash);
@@ -113,7 +113,7 @@ class Tabs extends DSComponent {
 
     // Add the specified tab to the browser history
     private createHistoryEntry(tab: HTMLElement) {
-        let tabId = this.getHref(tab);
+        const tabId = this.getHref(tab);
         history.pushState(null,null,tabId);
     }
 
@@ -220,14 +220,14 @@ class Tabs extends DSComponent {
 
     // Go to specified tab
     private goToTab(targetTab: HTMLElement, updateHistory = false) {
-        let oldTab = this.getCurrentTab();
+        const oldTab = this.getCurrentTab();
 
         if (oldTab === targetTab) {
             return;
         }
 
-        let targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
-        let targetTabContent = this.getTabContent(targetTab);
+        const targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
+        const targetTabContent = this.getTabContent(targetTab);
 
         targetTab.classList.add('ds_current');
         targetTabLink.setAttribute('aria-selected', true.toString());
@@ -248,8 +248,8 @@ class Tabs extends DSComponent {
         if(!targetTab){
             return;
         }
-        let targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
-        let targetTabContent = this.getTabContent(targetTab);
+        const targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
+        const targetTabContent = this.getTabContent(targetTab);
 
         targetTab.classList.remove('ds_current');
         targetTabLink.setAttribute('aria-selected', false.toString());
@@ -271,8 +271,8 @@ class Tabs extends DSComponent {
 
     // Returns the href of the specified tab
     private getHref(tab: HTMLElement) {
-        let tabLink = tab.querySelector('.ds_tabs__tab-link');
-        let href = tabLink.getAttribute('href');
+        const tabLink = tab.querySelector('.ds_tabs__tab-link');
+        const href = tabLink.getAttribute('href');
         return href.slice(href.indexOf('#'), href.length);
     }
 

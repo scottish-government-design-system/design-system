@@ -9,7 +9,11 @@ export default class DSComponent {
 
     set isInitialised(initialised: boolean) {
         this.#isInitialised = initialised;
-        initialised ? this.#element.classList.add('js-initialised') : this.#element.classList.remove('js-initialised');
+        if (initialised) {
+            this.#element.classList.add('js-initialised');
+        } else {
+            this.#element.classList.remove('js-initialised');
+        }
     }
 
     get isInitialised() {

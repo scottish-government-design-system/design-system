@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from 'vitest';
 import loadHtml from '../../../loadHtml';
 import MobileMenu from './site-navigation';
 

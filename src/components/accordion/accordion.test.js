@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi, beforeEach, describe, expect, it } from 'vitest';
 import loadHtml from '../../../loadHtml';
 import Accordion from './accordion';
 
@@ -91,7 +91,6 @@ describe('accordion', () => {
         });
 
         it('"open all" button should change to "close all" if no panels left to open', () => {
-            const button = testObj.accordionElement.querySelector('.ds_accordion__open-all');
             const secondCheckbox = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2) .ds_accordion-item__control');
             secondCheckbox.setAttribute('checked', true);
 
