@@ -1,7 +1,6 @@
-import { vi } from 'vitest';
+import { vi, beforeEach, describe, expect, it } from 'vitest';
 import loadHtml from '../../../loadHtml';
 import CharacterCount from './character-count';
-import DSComponent from '../../base/component/component';
 
 const testObj = {};
 
@@ -335,7 +334,7 @@ describe('character count', () => {
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
 
             inputElement.value = 'abcdefghijklmnopqrs';
-            event = new Event('input');
+            const event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
@@ -350,7 +349,7 @@ describe('character count', () => {
             expect(inputElement.getAttribute('aria-invalid')).toEqual('false');
 
             inputElement.value = 'abcdefghijklmnopqrstuvwxyz';
-            event = new Event('input');
+            let event = new Event('input');
             inputElement.dispatchEvent(event);
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
 

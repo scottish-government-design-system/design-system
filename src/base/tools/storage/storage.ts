@@ -1,8 +1,5 @@
 'use strict';
 
-//@ts-ignore
-import isBase64 from './isBase64';
-
 interface Categories {
     necessary?: boolean;
     preferences?: boolean;
@@ -14,30 +11,27 @@ interface Categories {
 type Category = 'necessary' | 'preferences' | 'statistics' | 'campaigns' | 'marketing';
 
 type Storage = {
-    categories: any,
-    types: any,
+    hasPermission: (name: string) => boolean;
+    getIsJsonString: (string: string) => boolean;
+    get: (obj: { type: string, name: string }) => string;
+    remove: (obj: {type: string, name: string}) => void;
+    set: (obj: {type: string, name: string, value: string, expiresDays?: number, category: string}) => void;
 
-    hasPermission: Function;
-    getIsJsonString: Function;
-    get: Function;
-    remove: Function;
-    set: Function;
-
-    getCookie: Function;
-    getLocalStorage: Function;
-    getSessionStorage: Function;
-    removeCookie: Function;
-    removeLocalStorage: Function;
-    removeSessionStorage: Function;
-    setCookie: Function;
-    setLocalStorage: Function;
-    setSessionStorage: Function;
-    unsetCookieWithDomain: Function;
+    getCookie: (name: string) => void;
+    getLocalStorage: (name: string) => void;
+    getSessionStorage: (name: string) => void;
+    removeCookie: (name: string) => void;
+    removeLocalStorage: (name: string) => void;
+    removeSessionStorage: (name: string) => void;
+    setCookie: (category: string, name: string, value: string, expiresDays: number) => void;
+    setLocalStorage: (category: string, name: string, value: string) => void;
+    setSessionStorage: (category: string, name: string, value: string) => void;
+    unsetCookieWithDomain: (name: string, domain?: string) => void
 
     cookie: {
-        get: Function;
-        remove: Function;
-        set: Function;
+        get: (name: string) => string;
+        remove: (name: string, _window?: Window) => void;
+        set: (name: string, value: string, expiresDays?: number) => void;
     }
 }
 
@@ -52,20 +46,6 @@ declare global {
 }
 
 const storage: Storage = {
-    categories: {
-        necessary: 'necessary',
-        preferences: 'preferences',
-        statistics: 'statistics',
-        campaigns: 'campaigns',
-        marketing: 'marketing'
-    },
-
-    types: {
-        cookie: 'cookie',
-        localStorage: 'local',
-        sessionStorage: 'session'
-    },
-
     /**
      * Sets a storage item (local, session, or cookie)
      *
@@ -81,11 +61,11 @@ const storage: Storage = {
      */
     set: function (obj: {type: string, name: string, value: string, expiresDays: number, category: string}) {
         if (storage.hasPermission(obj.category)) {
-            if (obj.type === storage.types.cookie) {
+            if (obj.type === 'cookie') {
                 return storage.cookie.set(obj.name, obj.value, obj.expiresDays);
-            } else if (obj.type === storage.types.localStorage) {
+            } else if (obj.type === 'local') {
                 localStorage.setItem(obj.name, obj.value);
-            } else if (obj.type === storage.types.sessionStorage) {
+            } else if (obj.type === 'session') {
                 sessionStorage.setItem(obj.name, obj.value);
             }
         }
@@ -106,11 +86,11 @@ const storage: Storage = {
     get: function (obj: {type: string, name: string}) {
         let value: string;
 
-        if (obj.type === storage.types.cookie) {
+        if (obj.type === 'cookie') {
             value = storage.cookie.get(obj.name);
-        } else if (obj.type === storage.types.localStorage) {
+        } else if (obj.type === 'local') {
             value = localStorage.getItem(obj.name);
-        } else if (obj.type === storage.types.sessionStorage) {
+        } else if (obj.type === 'session') {
             value = sessionStorage.getItem(obj.name);
         }
 
@@ -128,11 +108,11 @@ const storage: Storage = {
      *   - {string} name
      */
     remove: function (obj: {type: string, name: string}) {
-        if (obj.type === storage.types.cookie) {
+        if (obj.type === 'cookie') {
             storage.cookie.remove(obj.name);
-        } else if (obj.type === storage.types.localStorage) {
+        } else if (obj.type === 'local') {
             localStorage.removeItem(obj.name);
-        } else if (obj.type === storage.types.sessionStorage) {
+        } else if (obj.type === 'session') {
             sessionStorage.removeItem(obj.name);
         }
     },
@@ -266,7 +246,7 @@ const storage: Storage = {
 
     hasPermission(category: Category) {
         const cookiePermissionsString = storage.get({
-            type: storage.types.cookie,
+            type: 'cookie',
             name: 'cookiePermissions'
         }) || '';
 
@@ -276,13 +256,14 @@ const storage: Storage = {
             cookiePermissions = JSON.parse(cookiePermissionsString);
         }
 
-        return category === storage.categories.necessary || cookiePermissions[category] === true;
+        return category === 'necessary' || cookiePermissions[category] === true;
     },
 
     getIsJsonString: function (string: string) {
         try {
             JSON.parse(string);
-        } catch (e) {
+        } catch (error) {
+            this.error = error;
             return false;
         }
         return true;

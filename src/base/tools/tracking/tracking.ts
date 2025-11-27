@@ -3,7 +3,7 @@
 import version from '../../../version';
 
 declare global {
-    interface Window { dataLayer: Record<string, any>[]; }
+    interface Window { dataLayer: Record<string, string | number>[]; }
 }
 
 function slugify(string: string) {
@@ -57,7 +57,10 @@ function findElementInNodeArray(nodeArray: HTMLElement[], selector: string, spec
 }
 
 const tracking = {
+    hasAddedCanonicalUrl: false,
     hasAddedClickTracking: false,
+    hasAddedPrefersColorScheme: false,
+    hasAddedVersion: false,
 
     init: function (scope = document.documentElement) {
         let key: keyof typeof tracking.add;
@@ -67,7 +70,7 @@ const tracking = {
     },
 
     gatherElements: function (className: string, scope: HTMLElement) {
-        let elements = [].slice.call(scope.querySelectorAll(`.${className}`)) as HTMLElement[];
+        const elements = [].slice.call(scope.querySelectorAll(`.${className}`)) as HTMLElement[];
 
         if (scope.classList && scope.classList.contains(className)) {
             elements.push(scope);
@@ -116,7 +119,7 @@ const tracking = {
         return nearestSectionHeader;
     },
 
-    pushToDataLayer: function(data: {}) {
+    pushToDataLayer: function(data: { [key: string]: string | number }) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(data);
     },
@@ -692,7 +695,7 @@ const tracking = {
                     const parentLink = item.querySelector('.ds_search-result__context a');
 
                     if(item.classList.contains('ds_search-result--promoted')){
-                        let attributeValue = `search-promoted-${index + 1}/${promotedItems.length}`;
+                        const attributeValue = `search-promoted-${index + 1}/${promotedItems.length}`;
                         link.setAttribute('data-search', attributeValue);
                     } else {
 
@@ -702,7 +705,7 @@ const tracking = {
                         }
 
                         let attributeValue = `search-result-${start + index - promotedItems.length}`;
-                        let mediaAttributeValue = `search-image-${start + index - promotedItems.length}`;
+                        const mediaAttributeValue = `search-image-${start + index - promotedItems.length}`;
                         let parentAttributeValue = `search-parent-link-${start + index - promotedItems.length}`;
                         if (count) {
                             attributeValue += `/${count}`;

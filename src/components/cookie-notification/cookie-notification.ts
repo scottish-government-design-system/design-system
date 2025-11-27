@@ -6,22 +6,30 @@ import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
 
 class CookieNotification extends DSComponent {
     storage: {
-        get: Function;
-        setCookie: Function;
-
-        categories: any;
-        types: any;
+        get: (obj: { type: string, name: string }) => string;
+        setCookie: (category: string, name: string, value: string, expiresDays: number) => void;
     };
+
+    categories: string[];
 
     private cookieAcceptAllButton: HTMLButtonElement;
     private cookieAcceptEssentialButton: HTMLButtonElement;
     private cookieNoticeElement: HTMLElement;
     private cookieNoticeSuccessElement: HTMLElement;
 
-    constructor(element: HTMLElement, storage = _storage) {
+    constructor(element: HTMLElement, storage = _storage, categories?: string[]) {
         super(element);
 
+        const defaultCategories = [
+            'necessary',
+            'preferences',
+            'statistics',
+            'campaigns',
+            'marketing'
+        ];
+
         this.storage = storage;
+        this.categories = categories || defaultCategories;
 
         this.cookieNoticeElement = element;
         this.cookieNoticeSuccessElement = document.getElementById('cookie-confirm');
@@ -31,7 +39,7 @@ class CookieNotification extends DSComponent {
 
     init() {
         // check whether we need to display the cookie notice
-        if (!this.storage.get({type: this.storage.types.cookie, name: 'cookie-notification-acknowledged'})) {
+        if (!this.storage.get({type: 'cookie', name: 'cookie-notification-acknowledged'})) {
             this.cookieNoticeElement.classList.remove('fully-hidden');
         }
 
@@ -61,9 +69,12 @@ class CookieNotification extends DSComponent {
     }
 
     private setAllOptionalPermissions(allow: boolean) {
-        const cookiePermissions = JSON.parse(JSON.stringify(this.storage.categories));
+        const cookiePermissions = Object.fromEntries(this.categories.map((category) => {
+            return [category, category === 'necessary' ? true : allow];
+        }));
+
         for (const key in cookiePermissions) {
-            if (key === this.storage.categories.necessary) {
+            if (key === 'necessary') {
                 // always allow necessary
                 cookiePermissions[key] = true;
             } else {
@@ -72,14 +83,14 @@ class CookieNotification extends DSComponent {
         }
 
         this.storage.setCookie(
-            this.storage.categories.necessary,
+            'necessary',
             'cookiePermissions',
             JSON.stringify(cookiePermissions),
             365
         );
 
         this.storage.setCookie(
-            this.storage.categories.necessary,
+            'necessary',
             'cookie-notification-acknowledged',
             'yes',
             365
