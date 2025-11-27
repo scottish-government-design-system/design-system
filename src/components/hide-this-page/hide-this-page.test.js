@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi, beforeEach, describe, expect, it } from 'vitest';
 import loadHtml from '../../../loadHtml';
 import HidePage from './hide-this-page';
 
@@ -16,13 +16,14 @@ const windowObj = {
 const testObj = {};
 
 describe('hide page', () => {
-    describe('with mocked window object', () => {
-        beforeEach(async () => {
-            await loadHtml('src/components/hide-this-page/hide-this-page.html');
-        });
+    beforeEach(async () => {
+        await loadHtml('src/components/hide-this-page/hide-this-page.html');
+        testObj.hidePageElement = document.querySelector('.ds_hide-page');
+    });
 
+    describe('with mocked window object', () => {
         it('should exit the page on esc key', () => {
-            testObj.hidePage = new HidePage(windowObj);
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
             testObj.hidePage.init();
 
             vi.spyOn(testObj.hidePage, 'doHidePage').mockImplementation();
@@ -35,7 +36,7 @@ describe('hide page', () => {
         });
 
         it('should not exit the page on other keys', () => {
-            testObj.hidePage = new HidePage(windowObj);
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
             testObj.hidePage.init();
 
             // and if not the esc key, behave as normal
@@ -49,7 +50,7 @@ describe('hide page', () => {
         });
 
         it('should exit the page on click of hide page button', () => {
-            testObj.hidePage = new HidePage(windowObj);
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
             testObj.hidePage.init();
 
             vi.spyOn(testObj.hidePage, 'doHidePage').mockImplementation();
@@ -62,7 +63,7 @@ describe('hide page', () => {
         });
 
         it('should go to a specified URL', () => {
-            testObj.hidePage = new HidePage(windowObj);
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
             const hidePageButton = document.querySelector('.js-hide-page');
             hidePageButton.setAttribute('data-altlink', 'https://foo.scot');
 
@@ -76,7 +77,7 @@ describe('hide page', () => {
         });
 
         it('should go to google if a URL has not been provided', () => {
-            testObj.hidePage = new HidePage(windowObj);
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
             testObj.hidePage.init();
 
             vi.spyOn(testObj.hidePage.window.location, 'replace').mockImplementation();
@@ -88,7 +89,7 @@ describe('hide page', () => {
 
         // note: this is not testable with this test tool. disabling spec.
         it.skip('should replace the current history entry', () => {
-            testObj.hidePage = new HidePage(windowObj);
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
             testObj.hidePage.init();
 
             vi.spyOn(testObj.hidePage.window.history, 'replaceState').mockImplementation();
@@ -99,7 +100,7 @@ describe('hide page', () => {
         });
 
         it('should empty the body', () => {
-            testObj.hidePage = new HidePage(windowObj);
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
             testObj.hidePage.init();
 
             testObj.hidePage.doHidePage({ preventDefault: () => { } });
@@ -110,7 +111,7 @@ describe('hide page', () => {
 
     describe('with native window object', () => {
         beforeEach(function () {
-            testObj.hidePage = new HidePage();
+            testObj.hidePage = new HidePage(testObj.hidePageElement);
             // we don't want to actually call this
             testObj.hidePage.doHidePage = function () { };
             testObj.hidePage.init();
@@ -122,12 +123,11 @@ describe('hide page', () => {
     });
 
     it('should not bind any events if the hide this page button is not present', async () => {
-        await loadHtml('src/components/hide-this-page/hide-this-page.html');
         // remove the button
-        const hidePageButton = document.querySelector('.js-hide-page');
-        hidePageButton.parentElement.remove(hidePageButton);
+        const hidePageButton = testObj.hidePageElement.querySelector('.js-hide-page');
+        testObj.hidePageElement.removeChild(hidePageButton);
 
-        testObj.hidePage = new HidePage(windowObj);
+        testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
 
         vi.spyOn(testObj.hidePage, 'attachKeyboardEvents').mockImplementation();
         vi.spyOn(testObj.hidePage, 'attachMouseEvents').mockImplementation();

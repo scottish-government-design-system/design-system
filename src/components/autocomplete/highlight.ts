@@ -15,13 +15,18 @@ function highlight(element: HTMLElement, pattern: string, options: HighlightOpti
             return false;
         }
 
-        let match: RegExpExecArray, patternNode: Text, wrapperNode: HTMLElement;
+        let patternNode: Text
+        let wrapperNode: HTMLElement;
 
-        let regex = new RegExp(pattern, 'i');
+        const regex = new RegExp(pattern, 'i');
+        const match = regex.exec(textNode.data);
 
-        if (match = regex.exec(textNode.data)) {
+        if (match) {
             wrapperNode = document.createElement(options.tagName);
-            options.className && (wrapperNode.className = options.className);
+
+            if (options.className) {
+                wrapperNode.className = options.className;
+            }
 
             patternNode = textNode.splitText(match.index);
             patternNode.splitText(match[0].length);
@@ -34,7 +39,8 @@ function highlight(element: HTMLElement, pattern: string, options: HighlightOpti
     }
 
     function traverse(element: Node) {
-        let childNode: Node, TEXT_NODE_TYPE = 3;
+        let childNode: Node;
+        const TEXT_NODE_TYPE = 3;
 
         for (let i = 0; i < element.childNodes.length; i++) {
             childNode = element.childNodes[i];

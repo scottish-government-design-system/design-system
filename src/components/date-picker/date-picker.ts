@@ -4,10 +4,10 @@ import DSComponent from '../../base/component/component';
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
 type CalendarDay = {
-    init: Function;
-    update: Function;
-    click: Function;
-    keyPress: Function;
+    init: () => void;
+    update: (day: Date, isHidden?: boolean, isDisabled?: boolean) => void;
+    click: (event: MouseEvent) => void;
+    keyPress: (event: KeyboardEvent) => void;
 
     button: HTMLButtonElement;
     date: Date;
@@ -15,8 +15,15 @@ type CalendarDay = {
     isHidden?: boolean
 }
 
+type DatePickerOptions = {
+    minDate?: Date;
+    maxDate?: Date;
+    disabledDates?: Date[];
+    dateSelectCallback?: (date: Date) => void;
+}
+
 class DSDatePicker extends DSComponent {
-    private options: any;
+    private options: DatePickerOptions;
     private calendarButtonElement: HTMLButtonElement;
     private dateInput: HTMLInputElement;
     private datePickerParent: HTMLElement;
@@ -30,7 +37,7 @@ class DSDatePicker extends DSComponent {
 
     private isMultipleInput: boolean;
 
-    private dateSelectCallback: Function;
+    private dateSelectCallback: (date: Date) => void;
 
     private currentDate: Date;
     private disabledDates: Date[];
@@ -629,7 +636,7 @@ class DSDatePicker extends DSComponent {
         this.dialogTitleElement.innerHTML = `${this.monthLabels[this.currentDate.getMonth()]} ${this.currentDate.getFullYear()}`;
         this.dialogElement.setAttribute('aria-label', this.dialogTitleElement.innerHTML);
 
-        let day = this.currentDate;
+        const day = this.currentDate;
 
         const firstOfMonth = new Date(day.getFullYear(), day.getMonth(), 1);
         const dayOfWeek = firstOfMonth.getDay();
@@ -640,7 +647,7 @@ class DSDatePicker extends DSComponent {
 
         // loop through our days
         for (const element of this.calendarDays) {
-            let hidden = thisDay.getMonth() !== day.getMonth();
+            const isHidden = thisDay.getMonth() !== day.getMonth();
 
             let isDisabled: boolean;
 
@@ -656,7 +663,7 @@ class DSDatePicker extends DSComponent {
                 isDisabled = true;
             }
 
-            element.update(thisDay, hidden, isDisabled);
+            element.update(thisDay, isHidden, isDisabled);
 
             thisDay.setDate(thisDay.getDate() + 1);
         }
@@ -735,10 +742,18 @@ class DSCalendarDay {
             this.picker.focusLastDayOfWeek();
             break;
         case 'PageUp':
-            event.shiftKey ? this.picker.focusPreviousYear(event) : this.picker.focusPreviousMonth(event);
+            if (event.shiftKey) {
+                this.picker.focusPreviousYear(event);
+            } else {
+                this.picker.focusPreviousMonth(event);
+            }
             break;
         case 'PageDown':
-            event.shiftKey ? this.picker.focusNextYear(event) : this.picker.focusNextMonth(event);
+            if (event.shiftKey) {
+                this.picker.focusNextYear(event);
+            } else {
+                this.picker.focusNextMonth(event);
+            }
             break;
         default:
             calendarNavKey = false;

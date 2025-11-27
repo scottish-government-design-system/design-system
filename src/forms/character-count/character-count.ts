@@ -1,6 +1,6 @@
 'use strict';
 
-import TokenList from '../../base/tools/tokenlist/tokenlist';
+import TokenList from '../../base/tools/token-list/token-list';
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 import DSComponent from '../../base/component/component';
 

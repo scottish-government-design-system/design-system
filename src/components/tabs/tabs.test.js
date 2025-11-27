@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi, afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { page } from 'vitest/browser';
 import loadHtml from '../../../loadHtml';
 import Tabs from './tabs';

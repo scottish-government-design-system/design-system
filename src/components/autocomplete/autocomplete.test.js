@@ -1,4 +1,4 @@
-import { test, vi } from 'vitest';
+import { vi, beforeEach, describe, expect, it } from 'vitest';
 import { page } from 'vitest/browser';
 import loadHtml from '../../../loadHtml';
 import Autocomplete from './autocomplete';
@@ -205,7 +205,7 @@ describe('"autocomplete" component', () => {
 
         it('should throw if the request fails', () => {
             const mockPromiseRequest = function () {
-                return Promise.reject(sampleData);
+                return Promise.reject({});
             };
             testObj.autocompleteModule.PromiseRequest = mockPromiseRequest;
             testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, 'endpointUrl');

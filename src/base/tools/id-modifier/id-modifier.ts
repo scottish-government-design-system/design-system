@@ -1,10 +1,7 @@
 'use strict';
 
-declare global {
-    interface Window { DS: any; }
-}
-
 export default function () {
+    // @ts-expect-error window type
     window.DS = window.DS || {};
     window.DS.elementIdModifier = window.DS.elementIdModifier || 0;
     window.DS.elementIdModifier += 1;

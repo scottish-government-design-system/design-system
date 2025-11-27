@@ -4,7 +4,8 @@ import DSComponent from '../../base/component/component';
 import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
 
 class TabsNavigation extends DSComponent {
-    boundOnResize: Function;
+    boundOnResize: () => void;
+    breakpointCheck: (size: string) => boolean;
     hasEventsEnabled: boolean;
     resizeTimer?: number;
     tabContainer: HTMLElement;
@@ -13,9 +14,10 @@ class TabsNavigation extends DSComponent {
     tabNavigation: HTMLElement;
     tabTitle: HTMLElement;
 
-    constructor(tabContainer: HTMLElement) {
+    constructor(tabContainer: HTMLElement, _breakpointCheck = breakpointCheck) {
         super(tabContainer)
 
+        this.breakpointCheck = _breakpointCheck;
         this.resizeTimer = null;
         this.hasEventsEnabled = false;
 

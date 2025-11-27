@@ -1,4 +1,4 @@
-import { vi } from 'vitest';
+import { vi, beforeEach, describe, expect, it } from 'vitest';
 import loadHtml from '../../../loadHtml';
 import CookieNotification from './cookie-notification';
 import storage from '../../base/tools/storage/storage';
@@ -43,17 +43,11 @@ describe('cookie notification banners', () => {
         testObj.cookieNotificationModule = new CookieNotification(testObj.cookieNotificationElement, storage);
         testObj.cookieNotificationModule.init();
 
-        storage.categories = {
-            necessary: 'necessary',
-            one: 'one',
-            two: 'two'
-        };
-
         const spy = vi.spyOn(storage, 'setCookie');
         const allowedButton = testObj.cookieNotificationElement.querySelector('.js-accept-all-cookies');
         const event = new Event('click');
         allowedButton.dispatchEvent(event);
-        expect(spy.mock.calls[0]).toEqual(['necessary', 'cookiePermissions', '{"necessary":true,"one":true,"two":true}', 365]);
+        expect(spy.mock.calls[0]).toEqual(['necessary', 'cookiePermissions', '{"necessary":true,"preferences":true,"statistics":true,"campaigns":true,"marketing":true}', 365]);
         expect(spy.mock.calls[1]).toEqual(['necessary', 'cookie-notification-acknowledged', 'yes', 365]);
     });
 
@@ -61,18 +55,12 @@ describe('cookie notification banners', () => {
         testObj.cookieNotificationModule = new CookieNotification(testObj.cookieNotificationElement, storage);
         testObj.cookieNotificationModule.init();
 
-        storage.categories = {
-            necessary: 'necessary',
-            one: 'one',
-            two: 'two'
-        };
-
         const spy = vi.spyOn(storage, 'setCookie');
         const allowedButton = testObj.cookieNotificationElement.querySelector('.js-accept-essential-cookies');
         const event = new Event('click');
 
         allowedButton.dispatchEvent(event);
-        expect(spy.mock.calls[0]).toEqual(['necessary', 'cookiePermissions', '{"necessary":true,"one":false,"two":false}', 365]);
+        expect(spy.mock.calls[0]).toEqual(['necessary', 'cookiePermissions', '{"necessary":true,"preferences":false,"statistics":false,"campaigns":false,"marketing":false}', 365]);
         expect(spy.mock.calls[1]).toEqual(['necessary', 'cookie-notification-acknowledged', 'yes', 365]);
     });
 

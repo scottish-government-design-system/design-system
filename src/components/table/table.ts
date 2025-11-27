@@ -1,51 +1,65 @@
 'use strict';
 
+import DSComponent from "../../base/component/component";
+
+export class MobileTable extends DSComponent {
+    private element: HTMLTableElement;
+    private window: Window;
+
+    constructor(element: HTMLTableElement, _window: Window = window) {
+        super(element);
+        this.element = element;
+        this.window = _window;
+    }
+
+    init() {
+        if (this.element.dataset.smallscreen === 'scrolling') {
+            this.checkScrollingTable();
+            this.window.addEventListener('resize', () => { this.checkScrollingTable(); });
+            this.isInitialised = true;
+        } else if (this.element.dataset.smallscreen === 'boxes') {
+            this.setupBoxesTable();
+            this.isInitialised = true;
+        }
+    }
+
+    private checkScrollingTable() {
+        if (this.element.querySelector('tbody')?.offsetWidth > this.element.parentElement?.offsetWidth) {
+            this.element.classList.add('js-is-scrolling');
+        } else {
+            this.element.classList.remove('js-is-scrolling');
+        }
+    }
+
+    private setupBoxesTable() {
+        const trs = this.element.querySelectorAll('tr');
+        let headerRow: HTMLTableRowElement;
+
+        if ([].slice.call(trs[0].cells).filter((cell: HTMLTableCellElement) => cell.tagName === 'TH').length === trs[0].cells.length) {
+            headerRow = trs[0];
+        }
+
+        if (headerRow) {
+            for (let j = 1, jl = trs.length; j < jl; j++) {
+                [].slice.call(trs[j].cells).forEach((td: HTMLTableCellElement, index: number) => {
+                    td.setAttribute('data-heading', headerRow.cells[index].textContent);
+                });
+            }
+        }
+    }
+}
+
 class MobileTables {
     private window: Window;
-    private scrollingTables: NodeListOf<Element>;
-    private boxesTables: NodeListOf<Element>;
+    private mobileTables: NodeListOf<Element>;
 
     constructor(_window = window) {
         this.window = _window;
     }
 
     init() {
-        this.scrollingTables = document.querySelectorAll('table[data-smallscreen="scrolling"]');
-        this.boxesTables = document.querySelectorAll('table[data-smallscreen="boxes"]');
-
-        this.checkScrollingTables();
-        this.window.addEventListener('resize', () => { this.checkScrollingTables(); });
-
-        this.setupBoxesTables();
-    }
-
-    private checkScrollingTables() {
-        this.scrollingTables.forEach(table => {
-            if (table.querySelector('tbody').offsetWidth > table.parentElement.offsetWidth) {
-                table.classList.add('js-is-scrolling');
-            } else {
-                table.classList.remove('js-is-scrolling');
-            }
-        });
-    }
-
-    private setupBoxesTables() {
-        for (let i = 0, il = this.boxesTables.length; i < il; i++) {
-            const trs = this.boxesTables[i].querySelectorAll('tr');
-            let headerRow: HTMLTableRowElement;
-
-            if ([].slice.call(trs[0].cells).filter((cell: HTMLTableCellElement) => cell.tagName === 'TH').length === trs[0].cells.length) {
-                headerRow = trs[0];
-            }
-
-            if (headerRow) {
-                for (let j = 1, jl = trs.length; j < jl; j++) {
-                    [].slice.call(trs[j].cells).forEach((td: HTMLTableCellElement, index: number) => {
-                        td.setAttribute('data-heading', headerRow.cells[index].textContent);
-                    });
-                }
-            }
-        }
+        this.mobileTables = document.querySelectorAll('table[data-smallscreen]');
+        this.mobileTables.forEach(table =>  new MobileTable(table as HTMLTableElement, this.window).init())
     }
 }
 

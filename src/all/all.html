@@ -1,0 +1,97 @@
+<div id="accordion" data-module="ds-accordion"></div>
+
+<div id="back-to-top" data-module="ds-back-to-top"></div>
+
+<div id="cookie-notification" data-module="ds-cookie-notification">
+    <button class="js-accept-all-cookies"></button>
+    <button class="js-accept-essential-cookies"></button>
+</div>
+
+<div id="date-picker" data-module="ds-datepicker">
+    <input/>
+</div>
+
+<div id="details" data-module="ds-details">
+    <div class="ds_details__summary"></div>
+    <div class="ds_details__text"></div>
+</div>
+
+<div id="hide-this-page" class="ds_hide-page">
+    <button class="js-hide-page"></button>
+</div>
+
+<div id="notification-banner" data-module="ds-notification"></div>
+
+<div id="side-navigation" data-module="ds-side-navigation">
+    <input type="checkbox" class="js-toggle-side-navigation" />
+    <ul class="ds_side-navigation__list"></ul>
+    <div class="ds_side-navigation__expand"></div>
+</div>
+
+<div id="site-navigation" data-module="ds-mobile-navigation-menu">
+    <button class="js-toggle-menu"></button>
+</div>
+
+<div id="step-navigation" data-module="ds-step-navigation"></div>
+
+<table id="table" data-smallscreen="scrolling">
+    <tbody>
+        <tr>
+            <td>Some content to force the table to be wider than the viewport</td>
+        </tr>
+    </tbody>
+</table>
+
+<div id="tabs" data-module="ds-tabs">
+    <ul class="ds_tabs__list">
+        <li class="ds_tabs__tab">
+            <a class="ds_tabs__tab-link" href="#tab1"></a>
+        </li>
+    </ul>
+    <div class="ds_tabs__content" id="tab1"></div>
+</div>
+
+<div id="tabs-navigation" data-module="ds-tabs-navigation">
+    <nav class="ds_tabs__navigation">
+        <h2 class="ds_tabs__title"></h2>
+        <ul class="ds_tabs__list" id="tablist"></ul>
+    </nav>
+</div>
+
+<div id="character-count" data-module="ds-character-count">
+    <input maxlength="20"/>
+</div>
+
+<div id="checkbox" data-module="ds-checkboxes"></div>
+
+<div class="ds_site-footer"></div>
+
+<style>
+.ds_breakpoint-check {
+    display: none;
+}
+
+@media screen and (min-width: 480px) {
+    .ds_breakpoint-check.ds_breakpoint-check--small {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .ds_breakpoint-check.ds_breakpoint-check--medium {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .ds_breakpoint-check.ds_breakpoint-check--large {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .ds_breakpoint-check.ds_breakpoint-check--xlarge {
+        display: block;
+    }
+}
+</style>

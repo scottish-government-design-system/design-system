@@ -1,4 +1,5 @@
-import TokenList from './tokenlist';
+import { describe, expect, it } from 'vitest';
+import TokenList from './token-list';
 
 describe('Token List', () => {
     it('should create a "token list" from an input string', () => {

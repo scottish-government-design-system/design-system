@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import elementIdModifier from './id-modifier';
 
 describe('Element ID modifier', () => {

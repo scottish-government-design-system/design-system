@@ -1,11 +1,11 @@
 'use strict';
 
-const SVGSpriter = require('svg-sprite');
-const path = require('path');
-const mkdirp = require('mkdirp');
-const fs = require('fs');
-const File = require('vinyl');
-const glob = require('glob');
+import SVGSpriter from 'svg-sprite';
+import path from 'path';
+import { mkdirp } from 'mkdirp';
+import fs from 'fs';
+import File from 'vinyl';
+import glob from 'glob';
 
 const filename = "icons.stack.svg";
 const destpath = 'dist/images/icons/';
@@ -35,7 +35,7 @@ spritePaths.forEach(spritePath => {
     const cwd = path.resolve(spritePath);
 
     // Register some SVG files with the spriter
-    glob.sync('**/*.svg', { cwd: cwd }).forEach(function (file, index) {
+    glob.sync('**/*.svg', { cwd: cwd }).forEach(function (file) {
         spriter.add(new File({
             path: path.join(cwd, file),
             base: cwd,
@@ -45,7 +45,7 @@ spritePaths.forEach(spritePath => {
 });
 
 // Compile the sprite
-spriter.compile(function(error, result, cssData) {
+spriter.compile(function(error, result) {
     // Run through all configured output modes
     for (var mode in result) {
         // Run through all created resources and write them to disk

@@ -7,9 +7,10 @@ class HidePage extends DSComponent {
     private button: HTMLAnchorElement;
     private window: Window;
 
-    constructor(_window = window) {
-        super(document.querySelector('.js-hide-page'));
-        this.button = document.querySelector('.js-hide-page');
+    constructor(element: HTMLElement, _window = window) {
+        const button = element.querySelector('.js-hide-page') as HTMLAnchorElement;
+        super(button);
+        this.button = button;
         this.window = _window;
     }
 
