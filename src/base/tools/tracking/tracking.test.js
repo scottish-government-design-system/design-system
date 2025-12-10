@@ -1957,6 +1957,7 @@ describe('tracking', () => {
         beforeEach(() => {
             testObj.tempHasPermission = window.storage.hasPermission;
             window.dataLayer = [];
+            Tracking.hasAddedCanonicalUrl = false;
         });
 
         afterEach(() => {
@@ -1992,9 +1993,33 @@ describe('tracking', () => {
                 return true;
             }
 
+            const link = document.querySelector('link[rel="canonical"]')
+            if (link) { link.parentNode.removeChild(link) }
+
             Tracking.add.canonicalUrl();
 
             expect(window.dataLayer[0]).toBeUndefined();
+        });
+
+        it('should only add the canonical URL to the datalayer the first time it is called', () => {
+            window.storage.hasPermission = function () {
+                return true;
+            }
+
+            const CANONICAL_URL = 'https://my.canonical.link/';
+
+            const canonicalLink = document.createElement('link');
+            canonicalLink.setAttribute('rel', 'canonical');
+            canonicalLink.setAttribute('href', CANONICAL_URL);
+            document.head.appendChild(canonicalLink);
+
+            const ppp = spyOn(window.dataLayer,'push');
+
+            Tracking.add.canonicalUrl();
+            Tracking.add.canonicalUrl();
+            Tracking.add.canonicalUrl();
+
+            expect(window.dataLayer.push).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -2002,6 +2027,7 @@ describe('tracking', () => {
         beforeEach(() => {
             testObj.tempHasPermission = window.storage.hasPermission;
             window.dataLayer = [];
+            Tracking.hasAddedVersion = false;
         });
 
         afterEach(() => {
@@ -2021,6 +2047,20 @@ describe('tracking', () => {
             expect(window.dataLayer[0]).toEqual({
                 version: VERSION
             });
+        });
+
+        it('should only add the version to the datalayer the first time it is called', () => {
+            window.storage.hasPermission = function () {
+                return true;
+            }
+
+            const ppp = spyOn(window.dataLayer,'push');
+
+            Tracking.add.version();
+            Tracking.add.version();
+            Tracking.add.version();
+
+            expect(window.dataLayer.push).toHaveBeenCalledTimes(1);
         });
     });
 });
