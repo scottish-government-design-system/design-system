@@ -24,17 +24,19 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
         .ds_icon {
             color: $ds_colour__link;
         }
-        .ds_badge {
+        /*
+        .ds_notification-tag {
             background-color: $ds_colour__link;
-        }
+        }*/
 
         &:hover {
             .ds_icon {
                 color: $ds_colour__link--hover;
             }
-            .ds_badge {
+            /*
+            .ds_notification-tag {
                 background-color: $ds_colour__link--hover;
-            }
+            }*/
         }
     }
 
@@ -66,14 +68,18 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
             flex-wrap: wrap;
             gap: 0.5rem;
             
-            // Position badge closer to icon if both present
-            .ds_icon + .ds_badge {
-                margin-left: -0.25rem;
+            .ds_icon {
+                height: 2.5rem;
+                width: 2.5rem;
+
+                @include ds_media-query(medium){
+                    height: 3rem;
+                    width: 3rem;    
+                }
             }
 
-            // Status tag is always small size
             .ds_tag {
-                @include ds_root-size--fixed;
+                @include ds_small-size;
             }
         }
 
