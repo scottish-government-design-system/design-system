@@ -157,9 +157,12 @@ const tracking = {
         canonicalUrl: () => {
             const canonicalLink = document.querySelector('link[rel="canonical"]');
             if (canonicalLink && canonicalLink.href) {
-                tracking.pushToDataLayer({
-                    canonicalUrl: canonicalLink.href
-                });
+                if (!tracking.hasAddedCanonicalUrl) {
+                    tracking.pushToDataLayer({
+                        canonicalUrl: canonicalLink.href
+                    });
+                    tracking.hasAddedCanonicalUrl = true;
+                }
             }
         },
 
@@ -170,15 +173,21 @@ const tracking = {
 
             const colorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-            tracking.pushToDataLayer({
-                prefersColorScheme: colorScheme
-            });
+            if (!tracking.hasAddedPrefersColorScheme) {
+                tracking.pushToDataLayer({
+                    prefersColorScheme: colorScheme
+                });
+                tracking.hasAddedPrefersColorScheme = true;
+            }
         },
 
         version: function () {
-            tracking.pushToDataLayer({
-                version: version
-            });
+            if (!tracking.hasAddedVersion) {
+                tracking.pushToDataLayer({
+                    version: version
+                });
+                tracking.hasAddedVersion = true;
+            }
         },
 
         accordions: function (scope = document) {
