@@ -6,8 +6,13 @@ declare global {
     interface Window { dataLayer: Record<string, string | number>[]; }
 }
 
-function slugify(string: string) {
-
+/**
+ * Slugify a string
+ *
+ * @param {string} string - the string to slugify
+ * @returns {string} the slugified string
+ */
+function slugify(string: string): string {
     string = String(string);
 
     return string
@@ -22,7 +27,13 @@ function slugify(string: string) {
         .replace(/^-+|-+$/g, '');
 }
 
-function prevUntil (node: HTMLElement) {
+/**
+ * Get all previous siblings of an element
+ *
+ * @param {HTMLElement} node
+ * @returns {HTMLElement[]}
+ */
+function prevUntil (node: HTMLElement): HTMLElement[] {
     const prevNodes = [];
 
     if (node.parentElement) {
@@ -39,7 +50,17 @@ function prevUntil (node: HTMLElement) {
     return prevNodes;
 }
 
-function findElementInNodeArray(nodeArray: HTMLElement[], selector: string, specialCases?: string) {
+/**
+ * Find an element in an array of nodes matching a selector
+ * - also handles special cases where the selector is inside a special case element
+ *   e.g. finding a heading inside a ds_page-header block
+ *
+ * @param {HTMLElement[]} nodeArray
+ * @param {string} selector
+ * @param {string} specialCases
+ * @returns {HTMLElement | null}
+ */
+function findElementInNodeArray(nodeArray: HTMLElement[], selector: string, specialCases?: string): HTMLElement | null {
     nodeArray.reverse();
 
     for (let i = 0, il = nodeArray.length; i < il; i++) {
@@ -56,20 +77,39 @@ function findElementInNodeArray(nodeArray: HTMLElement[], selector: string, spec
     }
 }
 
+/**
+ * Tracking tools
+ * - adds data attributes for tracking and pushes data to the dataLayer
+ * - can be re-initialized on dynamic content by calling tracking.init(scope)
+ * - scope parameter is optional and defaults to document.documentElement
+ */
 const tracking = {
     hasAddedCanonicalUrl: false,
     hasAddedClickTracking: false,
     hasAddedPrefersColorScheme: false,
     hasAddedVersion: false,
 
-    init: function (scope = document.documentElement) {
+    /**
+     * Initialize tracking
+     *
+     * @param {HTMLElement} scope - the element to initialize tracking on
+     * @returns {void}
+     */
+    init: function (scope: HTMLElement = document.documentElement): void {
         let key: keyof typeof tracking.add;
         for (key in tracking.add) {
             tracking.add[key](scope)
         }
     },
 
-    gatherElements: function (className: string, scope: HTMLElement) {
+    /**
+     * Gather elements by class name
+     *
+     * @param {string} className - the class name to gather elements for
+     * @param {HTMLElement} scope - the element to search within
+     * @returns {HTMLElement[]}
+     */
+    gatherElements: function (className: string, scope: HTMLElement): HTMLElement[] {
         const elements = [].slice.call(scope.querySelectorAll(`.${className}`)) as HTMLElement[];
 
         if (scope.classList && scope.classList.contains(className)) {
@@ -79,7 +119,13 @@ const tracking = {
         return elements;
     },
 
-    getClickType: function (event: MouseEvent) {
+    /**
+     * Get the type of click (left/middle/right + modifier keys)
+     *
+     * @param {MouseEvent} event
+     * @returns {string} - click type
+     */
+    getClickType: function (event: MouseEvent): string {
         switch (event.type) {
             case 'click':
                 if (event.ctrlKey) {
@@ -98,6 +144,16 @@ const tracking = {
         }
     },
 
+    /**
+     * Get the nearest section header element for an element
+     * - skips certain exceptions such as navigation elements
+     * - looks for certain special cases such as page headers
+     * - recursively checks parent elements if none found in previous siblings
+     * - returns undefined if in an exception element
+     *
+     * @param {HTMLElement} element - the element to find the nearest section header for
+     * @returns {Element} - nearest section header element
+     */
     getNearestSectionHeader: function (element: HTMLElement): Element {
         const linkSectionExceptions = 'nav,.ds_metadata,.ds_summary-card__header';
         const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_details__summary';
@@ -119,13 +175,31 @@ const tracking = {
         return nearestSectionHeader;
     },
 
-    pushToDataLayer: function(data: { [key: string]: string | number }) {
+    /**
+     * Push data to the dataLayer
+     *
+     * @param data
+     * @returns {void}
+     */
+    pushToDataLayer: function(data: { [key: string]: string | number }): void {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(data);
     },
 
+    /**
+     * Add various tracking features
+     */
     add: {
-        clicks: function (scope = document.documentElement) {
+        /**
+         * Add click tracking
+         * - listens for click, auxclick and contextmenu events
+         * - pushes click type to dataLayer
+         * - only adds listeners once
+         *
+         * @param {HTMLElement} scope - the element to add click tracking to
+         * @returns {void}
+         */
+        clicks: function (scope: HTMLElement = document.documentElement): void {
             if (!tracking.hasAddedClickTracking) {
                 scope.addEventListener('click', event => {
                     // push to datalayer
@@ -154,7 +228,13 @@ const tracking = {
             }
         },
 
-        canonicalUrl: () => {
+        /**
+         * Add canonical URL to dataLayer
+         * - only adds once
+         *
+         * @returns {void}
+         */
+        canonicalUrl: (): void => {
             const canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
             if (canonicalLink && canonicalLink.href) {
                 if (!tracking.hasAddedCanonicalUrl) {
@@ -166,7 +246,13 @@ const tracking = {
             }
         },
 
-        prefersColorScheme: function () {
+        /**
+         * Add prefers color scheme to dataLayer
+         * - only adds once
+         *
+         * @returns {void}
+         */
+        prefersColorScheme: function (): void {
             /* v8 ignore if -- @preserve */
             if (!window.matchMedia) {
                 return;
@@ -182,7 +268,13 @@ const tracking = {
             }
         },
 
-        version: function () {
+        /**
+         * Add version to dataLayer
+         * - only adds once
+         *
+         * @returns {void}
+         */
+        version: function (): void {
             if (!tracking.hasAddedVersion) {
                 tracking.pushToDataLayer({
                     version: version
@@ -191,7 +283,16 @@ const tracking = {
             }
         },
 
-        accordions: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="accordion-link" on links in accordion panels
+         * Sets data-accordion="accordion-[NAME]-[open/close]-all" on accordion open/close all buttons
+         * Sets data-accordion="accordion-[NAME]-[open/close]-[INDEX+1]" on accordion header buttons
+         * Adds event listeners to toggle the open/close state used in those attributed
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        accordions: function (scope: HTMLElement = document.documentElement): void {
             const accordions = tracking.gatherElements('ds_accordion', scope);
 
             accordions.forEach(accordion => {
@@ -214,12 +315,23 @@ const tracking = {
                 const openAll = accordion.querySelector('.js-open-all') as HTMLButtonElement;
                 const items = [].slice.call(accordion.querySelectorAll('.ds_accordion-item')) as HTMLElement[];
 
-                function checkOpenAll() {
+                /**
+                 * Check if all accordion items are open
+                 *
+                 * @returns {boolean}
+                 */
+                function checkOpenAll(): boolean {
                     const openItemsCount = accordion.querySelectorAll('.ds_accordion-item--open').length;
                     return (items.length === openItemsCount);
                 }
 
-                function setOpenAll(openAll: HTMLButtonElement) {
+                /**
+                 * Set open all button data attribute
+                 *
+                 * @param {HTMLButtonElement} openAll
+                 * @returns {void}
+                 */
+                function setOpenAll(openAll: HTMLButtonElement): void {
                     if (openAll) {
                         const open = checkOpenAll();
 
@@ -231,7 +343,14 @@ const tracking = {
                     }
                 }
 
-                function setAccordionItem(item: HTMLElement, index: number) {
+                /**
+                 * Set accordion item data attribute
+                 *
+                 * @param {HTMLElement} item
+                 * @param {number} index
+                 * @returns {void}
+                 */
+                function setAccordionItem(item: HTMLElement, index: number): void {
                     const itemButton = item.querySelector('.ds_accordion-item__button') as HTMLButtonElement;
                     const itemControl = item.querySelector('.ds_accordion-item__control') as HTMLInputElement;
                     itemButton.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
@@ -264,7 +383,13 @@ const tracking = {
             });
         },
 
-        asides: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="link-related-[INDEX+1]" to article aside components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        asides: function (scope: HTMLElement = document.documentElement): void {
             const asides = tracking.gatherElements('ds_article-aside', scope);
             asides.forEach(aside => {
                 const links = [].slice.call(aside.querySelectorAll('a:not(.ds_button)')) as HTMLLinkElement[];
@@ -277,7 +402,20 @@ const tracking = {
             });
         },
 
-        autocompletes: function (scope = document.documentElement) {
+        /**
+         * Adds an event listener to push autocomplete data to the datalayer on click and keydown
+         *
+         * Pushed data:
+         * - {string} event
+         * - {string} searchText
+         * - {string} clickText
+         * - {number} resultsCount
+         * - {string} clickedResults
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        autocompletes: function (scope: HTMLElement = document.documentElement): void {
             function autocompleteDataLayerPush(storedValue: string, inputElement: HTMLInputElement) {
                 tracking.pushToDataLayer({
                     event: 'autocomplete',
@@ -313,14 +451,26 @@ const tracking = {
             });
         },
 
-        backToTop: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="backtotop" on back to top components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        backToTop: function (scope: HTMLElement = document.documentElement): void {
             const backToTops = tracking.gatherElements('ds_back-to-top__button', scope);
             backToTops.forEach(backToTop => {
                 backToTop.setAttribute('data-navigation', 'backtotop');
             });
         },
 
-        breadcrumbs: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="breadcrumb-[INDEX+1]" on breadcrumb item components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        breadcrumbs: function (scope: HTMLElement = document.documentElement): void {
             const breadcrumbLists = tracking.gatherElements('ds_breadcrumbs', scope);
             breadcrumbLists.forEach(breadcrumbList => {
                 const links = [].slice.call(breadcrumbList.querySelectorAll('.ds_breadcrumbs__link')) as HTMLLinkElement[];
@@ -333,7 +483,13 @@ const tracking = {
             });
         },
 
-        buttons: function (scope = document.documentElement) {
+        /**
+         * Sets data-button="button-[TEXT]" on button components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        buttons: function (scope: HTMLElement = document.documentElement): void {
             const buttons = [].slice.call(scope.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button')) as HTMLButtonElement[];
             buttons.forEach(button => {
                 if (!button.getAttribute('data-button')) {
@@ -342,7 +498,13 @@ const tracking = {
             });
         },
 
-        cards: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="card-[INDEX+1]" on cards that are links
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        cards: function (scope: HTMLElement = document.documentElement): void {
             const linkedCards = tracking.gatherElements('ds_card__link--cover', scope);
             linkedCards.forEach((link, index) => {
                 if (!link.getAttribute('data-navigation')) {
@@ -351,7 +513,13 @@ const tracking = {
             });
         },
 
-        categoryLists: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="category-item-[INDEX+1]" on category item components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        categoryLists: function (scope: HTMLElement = document.documentElement): void {
             const categoryLists = tracking.gatherElements('ds_category-list', scope);
             categoryLists.forEach(categoryList => {
                 const links = [].slice.call(categoryList.querySelectorAll('.ds_category-item__link')) as HTMLLinkElement[];
@@ -364,7 +532,16 @@ const tracking = {
             });
         },
 
-        checkboxes: function (scope = document.documentElement) {
+        /**
+         * Sets data-form="checkbox-[ID]" on unchecked checkboxes
+         * Sets data-form="checkbox-[ID]-checked" on checked checkboxes
+         * Sets data-value="[ID]" on checkboxes
+         * Adds an event listener to toggle that checked state on change
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        checkboxes: function (scope: HTMLElement = document.documentElement): void {
             const checkboxes = tracking.gatherElements('ds_checkbox__input', scope) as HTMLInputElement[];
             checkboxes.forEach(checkbox => {
 
@@ -399,7 +576,13 @@ const tracking = {
             });
         },
 
-        confirmationMessages: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="confirmation-link" on links in confirmation message components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        confirmationMessages: function (scope: HTMLElement = document.documentElement): void {
             const confirmationMessages = tracking.gatherElements('ds_confirmation-message', scope);
             confirmationMessages.forEach(confirmationMessage => {
 
@@ -410,7 +593,14 @@ const tracking = {
             });
         },
 
-        contactDetails: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="contact-details-[TEXT]" on social media links in contact details blocks
+         * Sets data-navigation="contact-details-email" on email links in contact details blocks
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        contactDetails: function (scope: HTMLElement = document.documentElement): void {
             const contactDetailsBlocks = tracking.gatherElements('ds_contact-details', scope);
             contactDetailsBlocks.forEach(contactDetails => {
                 const socialLinks = [].slice.call(contactDetails.querySelectorAll('.ds_contact-details__social-link')) as HTMLLinkElement[];
@@ -429,7 +619,13 @@ const tracking = {
             });
         },
 
-        contentNavs: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="contentsnav-[INDEX+1]" on contents nav links
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        contentNavs: function (scope: HTMLElement = document.documentElement): void {
             const contentsNavs = tracking.gatherElements('ds_contents-nav', scope);
             contentsNavs.forEach(contentsNav => {
                 const links = [].slice.call(contentsNav.querySelectorAll('.ds_contents-nav__link')) as HTMLLinkElement[];
@@ -442,7 +638,15 @@ const tracking = {
             });
         },
 
-        details: function (scope = document.documentElement) {
+        /**
+         * Sets data-accordion="details-[STATE]" on the details summary element
+         * Sets data-navigation="details-link" on links in details content
+         * Adds an event listener to toggle the STATE value used in the data-accordion attribute
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        details: function (scope: HTMLElement = document.documentElement): void {
             const detailsElements = tracking.gatherElements('ds_details', scope) as HTMLDetailsElement[];
             detailsElements.forEach(detailsElement => {
                 const summary = detailsElement.querySelector('.ds_details__summary') as HTMLElement;;
@@ -462,7 +666,14 @@ const tracking = {
             });
         },
 
-        errorMessages: function (scope = document.documentElement) {
+        /**
+         * Sets data-form="error-[NAME]" on error messages
+         * NAME refers to the erroring field
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        errorMessages: function (scope: HTMLElement = document.documentElement): void {
             const errorMessages = tracking.gatherElements('ds_question__error-message', scope);
             errorMessages.forEach((errorMessage, index) => {
                 if (typeof errorMessage.closest === 'function' && errorMessage.closest('.ds_question')) {
@@ -499,8 +710,14 @@ const tracking = {
             });
         },
 
-        errorSummaries: function (scope = document.documentElement) {
-
+        /**
+         * Sets data-form="error-[NAME]" to links in error summary components
+         * NAME is derived fro the fragment identifier in the link's href
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        errorSummaries: function (scope: HTMLElement = document.documentElement): void {
             const errorSummaries = tracking.gatherElements('ds_error-summary', scope);
             errorSummaries.forEach(errorSummary => {
                 const errorSummaryLinks = [].slice.call(errorSummary.querySelectorAll('.ds_error-summary__list a')) as HTMLLinkElement[]
@@ -512,7 +729,13 @@ const tracking = {
             });
         },
 
-        externalLinks: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="link-external" to external links
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        externalLinks: function (scope: HTMLElement = document.documentElement): void {
             const links = [].slice.call(scope.querySelectorAll('a')) as HTMLLinkElement[];
 
             links.filter(link => {
@@ -528,7 +751,14 @@ const tracking = {
             });
         },
 
-        hideThisPage: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="hide-this-page" on hide this page links
+         * Adds an event listener to push 'esc' presses the data layer
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        hideThisPage: function (scope: HTMLElement = document.documentElement): void {
             const hideThisPageElements = tracking.gatherElements('ds_hide-page', scope);
             hideThisPageElements.forEach(hideThisPageElement => {
                 const hideThisPageButtons = [].slice.call(hideThisPageElement.querySelectorAll('.ds_hide-page__button')) as HTMLLinkElement[];
@@ -547,7 +777,13 @@ const tracking = {
             });
         },
 
-        insetTexts: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="inset-link" on links in inset text components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        insetTexts: function (scope: HTMLElement = document.documentElement): void {
             const insetTexts = tracking.gatherElements('ds_inset-text', scope);
             insetTexts.forEach(insetText => {
 
@@ -561,6 +797,10 @@ const tracking = {
             });
         },
 
+        /**
+         * Sets data-section="[SECTIONNAME]" on links
+         * SECIONNAME is determined by seeking the closest heading (or headinglike) element to the link
+         */
         links: function () {
             const links = [].slice.call(document.querySelectorAll('a')) as HTMLLinkElement[];
             links.forEach(link => {
@@ -573,7 +813,13 @@ const tracking = {
             });
         },
 
-        metadataItems: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="[NAME]-[INDEX+1]" on links in metadata items
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        metadataItems: function (scope: HTMLElement = document.documentElement): void {
             const metadataItems = tracking.gatherElements('ds_metadata__item', scope);
 
             metadataItems.forEach((metadataItem, index) => {
@@ -596,7 +842,15 @@ const tracking = {
             });
         },
 
-        notifications: function (scope = document.documentElement) {
+        /**
+         * Sets data-banner="banner-[NAME]-link" on links in notification banners
+         * Sets data-banner="banner-[NAME]-[BUTTONTEXT]" on buttons in notification banners
+         * Sets data-banner="banner-[NAME]-close" on notification banner close buttons
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        notifications: function (scope: HTMLElement = document.documentElement): void {
             const notificationBanners = tracking.gatherElements('ds_notification', scope);
             notificationBanners.forEach((banner, index) => {
                 const bannername = banner.id || (index + 1).toString();
@@ -622,7 +876,14 @@ const tracking = {
             });
         },
 
-        pagination: function (scope = document.documentElement) {
+        /**
+         * Sets data-search="pagination-more" on "load more" links
+         * Sets data-search="pagination-[LINKTEXT]" on pagination links
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        pagination: function (scope: HTMLElement = document.documentElement): void {
             const paginations = tracking.gatherElements('ds_pagination', scope);
             paginations.forEach(pagination => {
                 const loadmore = pagination.querySelector('.ds_pagination__load-more button');
@@ -639,7 +900,13 @@ const tracking = {
             });
         },
 
-        phaseBanners: function (scope = document.documentElement) {
+        /**
+         * Sets data-banner="banner-[NAME]-link" on links in phase banners
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        phaseBanners: function (scope: HTMLElement = document.documentElement): void {
             const phaseBanners = tracking.gatherElements('ds_phase-banner', scope);
             phaseBanners.forEach(banner => {
                 const bannername = banner.querySelector('.ds_tag') ? banner.querySelector('.ds_tag').textContent.trim() : 'phase';
@@ -653,7 +920,14 @@ const tracking = {
             });
         },
 
-        radios: function (scope = document.documentElement) {
+        /**
+         * Sets data-form="radio-[NAME]-[ID]" on radio buttons
+         * Sets data-value="[ID]" on radio buttons
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        radios: function (scope: HTMLElement = document.documentElement): void {
             const radios = tracking.gatherElements('ds_radio__input', scope) as HTMLInputElement[];
             radios.forEach(radio => {
                 if (!radio.getAttribute('data-form') && radio.name && radio.id) {
@@ -666,14 +940,29 @@ const tracking = {
             });
         },
 
-        searchFacets: function (scope = document.documentElement) {
+        /**
+         * Sets data-button="button-filter-[SLUG]-remove" on search facet buttons
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        searchFacets: function (scope: HTMLElement = document.documentElement): void {
             const facetButtons = tracking.gatherElements('ds_facet__button', scope);
             facetButtons.forEach(facetButton => {
                 facetButton.setAttribute('data-button', `button-filter-${facetButton.dataset.slug}-remove`);
             });
         },
 
-        searchResults: function (scope = document.documentElement) {
+        /**
+         * Sets data-search="search-promoted-[INDEX+1]/[TOTALPROMOTED]" on promoted results
+         * Sets data-search="search-result-[INDEX+1]" on search results
+         * Sets data-search="search-image-[INDEX+1]" on images in search results
+         * Sets data-search="search-parent-link-[INDEX+1]" on search result context links
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        searchResults: function (scope: HTMLElement = document.documentElement): void {
             const searchResultsSets = tracking.gatherElements('ds_search-results', scope);
             searchResultsSets.forEach(searchResults => {
                 const list = searchResults.querySelector('.ds_search-results__list');
@@ -724,7 +1013,13 @@ const tracking = {
             });
         },
 
-        searchSuggestions: function (scope = document.documentElement) {
+        /**
+         * Sets data-search="suggestion-result=[INDEX+1]/[TOTALSUGGESTIONS]" on search suggestions
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        searchSuggestions: function (scope: HTMLElement = document.documentElement): void {
             const searchSuggestionBlocks = tracking.gatherElements('ds_search-suggestions', scope);
             searchSuggestionBlocks.forEach(searchSuggestionBlock => {
                 const searchSuggestionLinks = [].slice.call(searchSuggestionBlock.querySelectorAll('.ds_search-suggestions a')) as HTMLLinkElement[];
@@ -734,7 +1029,13 @@ const tracking = {
             });
         },
 
-        searchRelated: function (scope = document.documentElement) {
+        /**
+         * Sets data-search="search-related-[INDEX+1]/[TOTALLINKS]" on related search items
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        searchRelated: function (scope: HTMLElement = document.documentElement): void {
             const searchRelatedBlocks = tracking.gatherElements('ds_search-results__related', scope);
             searchRelatedBlocks.forEach(searchRelatedBlock => {
                 const searchRelatedLinks = [].slice.call(searchRelatedBlock.querySelectorAll('.ds_search-results__related a')) as HTMLLinkElement[];
@@ -744,7 +1045,15 @@ const tracking = {
             });
         },
 
-        selects: function (scope = document.documentElement) {
+        /**
+         * Sets data-form="select=[ID]" on select components
+         * Sets data-form="select-[ID]-[value]" on options
+         * Adds an event listener to push change events to the data layer
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        selects: function (scope: HTMLElement = document.documentElement): void {
             const selects = tracking.gatherElements('ds_select', scope) as HTMLSelectElement[];
             selects.forEach(select => {
                 // data attributes
@@ -774,7 +1083,14 @@ const tracking = {
             });
         },
 
-        sequentialNavs: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="sequential-previous" on previous links
+         * Sets data-navigation="sequential-previous" on next links
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        sequentialNavs: function (scope: HTMLElement = document.documentElement): void {
             const sequentialNavs = tracking.gatherElements('ds_sequential-nav', scope);
             sequentialNavs.forEach(sequentialNav => {
                 const prev = sequentialNav.querySelector('.ds_sequential-nav__item--prev > .ds_sequential-nav__button ');
@@ -789,7 +1105,23 @@ const tracking = {
             });
         },
 
-        sideNavs: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="navigation-[STATE]" on the side nav open/close button
+         * Sets data-navigation="sidenav-[COMPLICATEDINDEX]" on side nav links where
+         *   COMPLICATEDINDEX represents the link's location in the tree
+         *
+         * e.g.
+         * - foo (sidenav-1)
+         * - bar (sidenav-2)
+         *   - baz (sidenav-2-1)
+         *   - qux (sidenav-2-2)
+         *
+         * etc
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        sideNavs: function (scope: HTMLElement = document.documentElement): void {
             const sideNavs = tracking.gatherElements('ds_side-navigation', scope);
             sideNavs.forEach(sideNav => {
                 const list = sideNav.querySelector('.ds_side-navigation__list') as HTMLUListElement;
@@ -827,7 +1159,14 @@ const tracking = {
             });
         },
 
-        siteBranding: function (scope = document.documentElement) {
+        /**
+         * Sets data-header="header-logo" on brand/logo link
+         * Sets data-header="header-title" on site title link
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        siteBranding: function (scope: HTMLElement = document.documentElement): void {
             const siteBrandings = tracking.gatherElements('ds_site-branding', scope);
             siteBrandings.forEach(branding => {
                 const logo = branding.querySelector('.ds_site-branding__logo');
@@ -844,7 +1183,15 @@ const tracking = {
             });
         },
 
-        siteFooter: function (scope = document.documentElement) {
+        /**
+         * Sets data-footer="footer-logo" on footer org logo link(s)
+         * Sets data-footer="footer-copyright" on footer copyright link(s)
+         * Sets data-footer="footer-link-[INDEX+1]" on footer utility links
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        siteFooter: function (scope: HTMLElement = document.documentElement): void {
             const siteFooters = tracking.gatherElements('ds_site-footer', scope);
             siteFooters.forEach(footer => {
                 const logoLinks = [].slice.call(footer.querySelectorAll('.ds_site-footer__org-link')) as HTMLLinkElement[];
@@ -871,7 +1218,15 @@ const tracking = {
             });
         },
 
-        siteNavigation: function (scope = document.documentElement) {
+        /**
+         * Sets data-device attribute on site nav links, value either 'mobile' and 'desktop'
+         * Sets data-header="header-link-[INDEX+1]" on site nav links
+         * Sets data-header="header-menu-toggle" on the site nav open/close button
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        siteNavigation: function (scope: HTMLElement = document.documentElement): void {
             const siteNavigations = tracking.gatherElements('ds_site-navigation', scope);
             siteNavigations.forEach(siteNavigation => {
                 const links = [].slice.call(siteNavigation.querySelectorAll('.ds_site-navigation__link')) as HTMLLinkElement[];
@@ -898,7 +1253,13 @@ const tracking = {
             });
         },
 
-        skipLinks: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="skip-link-[INDEX+1]" on links in skip links components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        skipLinks: function (scope: HTMLElement = document.documentElement): void {
             const skipLinks = [].slice.call(scope.querySelectorAll('.ds_skip-links__link')) as HTMLLinkElement[];
             skipLinks.forEach((link, index) => {
                 if (!link.getAttribute('data-navigation')) {
@@ -907,7 +1268,14 @@ const tracking = {
             });
         },
 
-        stepNavigation: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="partof-sidebar" on stepnav sidebar links
+         * Sets data-navigation="partof-header" on stepnav header links
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        stepNavigation: function (scope: HTMLElement = document.documentElement): void {
             const stepNavigations = tracking.gatherElements('ds_step-navigation', scope);
             stepNavigations.forEach(stepNavigation => {
                 const partOfLinks = [].slice.call(stepNavigation.querySelectorAll('.ds_step-navigation__title-link')) as HTMLLinkElement[];
@@ -925,7 +1293,17 @@ const tracking = {
             });
         },
 
-        summaryCard: function (scope = document.documentElement) {
+        /**
+         * Sets data attributes on action links/buttons in summary cards
+         * - data-navigation for links
+         * - data-button for buttons
+         *
+         * The value of the attribute is derived from the element's text and the surrounding context.
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        summaryCard: function (scope: HTMLElement = document.documentElement): void {
             const summaryCards = tracking.gatherElements('ds_summary-card', scope);
             summaryCards.forEach((cards, index) => {
                 const summaryListActions = [].slice.call(cards.querySelectorAll('.ds_summary-card__actions-list'));
@@ -942,7 +1320,17 @@ const tracking = {
             });
         },
 
-        summaryList: function (scope = document.documentElement) {
+        /**
+         * Sets data attributes on action links/buttons in summary lists
+         * - data-navigation for links
+         * - data-button for buttons
+         *
+         * The value of the attribute is derived from the element's text and the surrounding context.
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        summaryList: function (scope: HTMLElement = document.documentElement): void {
             const summaryListActionContainers = tracking.gatherElements('ds_summary-list__actions', scope);
             summaryListActionContainers.forEach(actionContainer => {
                 const actionElements = [].slice.call(actionContainer.querySelectorAll('button, a')) as HTMLLinkElement[] | HTMLButtonElement[];
@@ -958,7 +1346,13 @@ const tracking = {
             });
         },
 
-        tabs: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="tab-link-[TABSET]-[LINKINDEX+1]" on tabs
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        tabs: function (scope: HTMLElement = document.documentElement): void {
             const tabComponent = tracking.gatherElements('ds_tabs', scope);
             let tabSet = 1;
             tabComponent.forEach(tabs => {
@@ -972,7 +1366,14 @@ const tracking = {
             });
         },
 
-        taskList: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="tasklist" on links in task lists
+         * Sets data-navigation="tasklist-skip" on skip links in task lists
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        taskList: function (scope: HTMLElement = document.documentElement): void {
             const taskListLinks = tracking.gatherElements('ds_task-list__task-link', scope) as HTMLLinkElement[];
             taskListLinks.forEach(link => {
                 if (!link.getAttribute('data-navigation')) {
@@ -988,7 +1389,14 @@ const tracking = {
             });
         },
 
-        textInputs: function (scope = document.documentElement) {
+        /**
+         * Sets data-form="[TYPE]input-[ID]" on text input components
+         * e.g. data-form="textinput-foo", data-form="numberinput-bar"
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        textInputs: function (scope: HTMLElement = document.documentElement): void {
             const textInputs = [].slice.call(scope.querySelectorAll('input.ds_input')) as HTMLInputElement[];
             textInputs.forEach(textInput => {
                 if (!textInput.getAttribute('data-form') && textInput.id) {
@@ -998,7 +1406,13 @@ const tracking = {
             });
         },
 
-        textareas: function (scope = document.documentElement) {
+        /**
+         * Sets data-form="textarea-[ID]" on textarea components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        textareas: function (scope: HTMLElement = document.documentElement): void {
             const textareas = [].slice.call(scope.querySelectorAll('textarea.ds_input')) as HTMLTextAreaElement[];
             textareas.forEach(textarea => {
                 if (!textarea.getAttribute('data-form') && textarea.id) {
@@ -1007,7 +1421,13 @@ const tracking = {
             });
         },
 
-        warningTexts: function (scope = document.documentElement) {
+        /**
+         * Sets data-navigation="warning-link" attributes on links within warning text components
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        warningTexts: function (scope: HTMLElement = document.documentElement): void {
             const warningTexts = tracking.gatherElements('ds_warning-text', scope);
             warningTexts.forEach(warningText => {
 

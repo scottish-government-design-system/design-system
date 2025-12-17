@@ -3,14 +3,29 @@ type HighlightOptions = {
     tagName?: string;
 }
 
-function highlight(element: HTMLElement, pattern: string, options: HighlightOptions) {
+/**
+ * Highlight matching text in an element
+ *
+ * @param {HTMLElement} element - the element to highlight
+ * @param {string} pattern - the pattern to match
+ * @param {HighlightOptions} options - the highlight options
+ * @returns {void}
+ */
+function highlight(element: HTMLElement, pattern: string, options: HighlightOptions): void {
     const defaults = {
         tagName: 'MARK'
     };
 
     options = Object.assign({}, defaults, options);
 
-    function highlightTextNode(textNode: Text, pattern: string) {
+    /**
+     * Highlight matching text in a text node
+     *
+     * @param {Text} textNode - the text node to highlight
+     * @param {string} pattern - the pattern to match
+     * @returns {boolean}
+     */
+    function highlightTextNode(textNode: Text, pattern: string): boolean {
         if (!textNode.data || pattern === '') {
             return false;
         }
@@ -38,7 +53,13 @@ function highlight(element: HTMLElement, pattern: string, options: HighlightOpti
         return !!match;
     }
 
-    function traverse(element: Node) {
+    /**
+     * Traverse the element and highlight matching text nodes
+     *
+     * @param {Node} element - the element to traverse
+     * @returns {void}
+     */
+    function traverse(element: Node): void {
         let childNode: Node;
         const TEXT_NODE_TYPE = 3;
 

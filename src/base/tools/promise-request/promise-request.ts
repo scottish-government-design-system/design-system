@@ -1,13 +1,9 @@
 'use strict';
 
-type PromiseRequestType = {
+const PromiseRequest = function (
     url: string,
-    method: 'GET' | 'POST'
-}
-
-const PromiseRequest = function ({
-    url, method = 'GET'
-}: PromiseRequestType) {
+    method: 'GET' | 'POST' = 'GET'
+) {
     const request = new XMLHttpRequest();
 
     return new Promise((resolve, reject) => {

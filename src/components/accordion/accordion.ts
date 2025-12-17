@@ -2,11 +2,26 @@
 
 import DSComponent from '../../base/component/component';
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
+
+/**
+ * Accordion component
+ *
+ * @class Accordion
+ * @extends DSComponent
+ * @property {HTMLElement} accordion - the accordion element
+ * @property {HTMLElement[]} items - the accordion items
+ * @property {HTMLButtonElement} openAllButton - the open all button
+ */
 class Accordion extends DSComponent {
     private accordion: HTMLElement;
     private items: HTMLElement[];
     private openAllButton: HTMLButtonElement;
 
+    /**
+     * Creates an accordion component
+     *
+     * @param {HTMLElement} accordion - the accordion element
+     */
     constructor(accordion: HTMLElement) {
         super(accordion);
 
@@ -15,7 +30,14 @@ class Accordion extends DSComponent {
         this.openAllButton = accordion.querySelector('.js-open-all');
     }
 
-    init() {
+    /**
+     * Initialize the accordion
+     * - initialize each accordion item
+     * - initialize the open all button if present
+     *
+     * @returns {void}
+     */
+    init(): void {
         if (!this.isInitialised) {
             this.items.forEach((item) => this.initAccordionItem(item));
             if (this.openAllButton) {
@@ -25,7 +47,16 @@ class Accordion extends DSComponent {
         }
     }
 
-    private initAccordionItem(item: HTMLElement) {
+    /**
+     * Initialize an accordion item
+     * - transform markup to button-driven version
+     * - attach event listener
+     * - set aria attributes
+     *
+     * @param {HTMLElement} item - the accordion item to initialize
+     * @returns {void}
+     */
+    private initAccordionItem(item: HTMLElement): void {
         // transform markup to button-driven version
         const itemBody: HTMLElement = item.querySelector('.ds_accordion-item__body');
         const itemControl: HTMLInputElement = item.querySelector('.ds_accordion-item__control');
@@ -96,7 +127,14 @@ class Accordion extends DSComponent {
         });
     }
 
-    private initOpenAll() {
+    /**
+     * Initialize the open all button
+     * - attach event listener
+     * - set aria attributes
+     *
+     * @returns {void}
+     */
+    private initOpenAll(): void {
         this.openAllButton.addEventListener('click', () => {
             function getAccordionItemForButton(button: HTMLButtonElement) {
                 return button.closest('.ds_accordion-item') as HTMLElement;
@@ -125,7 +163,15 @@ class Accordion extends DSComponent {
         this.openAllButton.setAttribute('aria-expanded', false.toString());
     }
 
-    private toggleAccordionItem(item: HTMLElement) {
+    /**
+     * Toggle an accordion item
+     * - set aria attribute
+     * - set 'open' attribute
+     *
+     * @param {HTMLElement} item - the accordion item to toggle
+     * @returns {void}
+     */
+    private toggleAccordionItem(item: HTMLElement): void {
         const itemButton = item.querySelector('.js-accordion-button');
         const itemControl: HTMLInputElement = item.querySelector('.ds_accordion-item__control');
         const isOpen = item.classList.contains('ds_accordion-item--open');
@@ -144,6 +190,11 @@ class Accordion extends DSComponent {
         }
     }
 
+    /**
+     * Set the open all button text and aria-expanded attribute
+     *
+     * @param {boolean} isOpen - true if all items are open, false otherwise
+     */
     private setOpenAllButton(isOpen: boolean) {
         if (isOpen) {
             this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
@@ -153,7 +204,12 @@ class Accordion extends DSComponent {
         this.openAllButton.setAttribute('aria-expanded', isOpen.toString())
     }
 
-    private checkAllOpen() {
+    /**
+     * Check if all accordion items are open
+     *
+     * @returns {boolean} - true if all items are open, false otherwise
+     */
+    private checkAllOpen(): boolean {
         const openItemsCount = this.accordion.querySelectorAll('.ds_accordion-item--open').length;
 
         return (this.items.length === openItemsCount);

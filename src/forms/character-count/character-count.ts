@@ -8,6 +8,24 @@ interface CharacterCountInputElement extends HTMLInputElement {
     oldValue: string
 }
 
+/**
+ * Character count component
+ *
+ * @class CharacterCount
+ * @extends DSComponent
+ * @private {TokenList} describedByTokenList
+ * @private {string} emptyMessage
+ * @private {HTMLElement} emptyMessageElement
+ * @private {HTMLElement} field
+ * @private {boolean} isInvalidInitialState
+ * @private {CharacterCountInputElement} inputElement
+ * @private {number} maxLength
+ * @private {HTMLElement} messageElement
+ * @private {number} messageTimeout
+ * @private {HTMLElement} screenReaderMessageElement
+ * @private {number} threshold
+ * @private {number} thresholdCharacters
+ */
 class CharacterCount extends DSComponent {
     private describedByTokenList: TokenList;
     private emptyMessage: string;
@@ -22,6 +40,11 @@ class CharacterCount extends DSComponent {
     private threshold: number;
     private thresholdCharacters: number;
 
+    /**
+     * Create a character count instance
+     *
+     * @param {HTMLElement} field - the input field or textarea to apply a character count to
+     */
     constructor(field: HTMLElement) {
         super(field);
         this.field = field;
@@ -29,7 +52,15 @@ class CharacterCount extends DSComponent {
         this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0;
     }
 
-    init() {
+    /**
+     * Initialise the character count
+     * - create DOM elements used by the character count component
+     * - check the current state & set the display accordingly
+     * - setup event listener on the input element to watch for changes
+     *
+     * @returns {void}
+     */
+    init(): void {
         if (!this.inputElement) {
             return;
         }
@@ -90,8 +121,10 @@ class CharacterCount extends DSComponent {
     /**
      * Set the component's "maxLength" based on either a supplied maxlength attribute or
      * data-maxlength attribute. Remove a maxlength attribute if it is present.
+     *
+     * @returns {void}
      */
-    private setMaxLength() {
+    private setMaxLength(): void {
         if (this.inputElement.getAttribute('maxlength')) {
             this.maxLength = Number(this.inputElement.getAttribute('maxlength'));
             this.inputElement.removeAttribute('maxlength');
@@ -103,18 +136,22 @@ class CharacterCount extends DSComponent {
     /**
      * Set the number of characters required to make the character count appear, calculated from
      * the maxlength and the supplied threshold
+     *
+     * @returns {void}
      */
-    private setThresholdCharacters() {
+    private setThresholdCharacters(): void {
         this.thresholdCharacters = Math.round(this.maxLength * this.threshold);
     }
 
-    /*
+    /**
      * Per GDS:
      * "Speech recognition software such as Dragon NaturallySpeaking will modify the
      * fields by directly changing its `value`. These changes don't trigger events
      * in JavaScript, so we need to poll to handle when and if they occur."
+     *
+     * @returns {void}
      */
-    private checkIfChanged() {
+    private checkIfChanged(): void {
         if (!this.inputElement.oldValue) {
             this.inputElement.oldValue = '';
         }
@@ -126,7 +163,16 @@ class CharacterCount extends DSComponent {
         }
     }
 
-    private updateCountMessage() {
+    /**
+     * Updates the remaining character count message
+     * - adds error message and aria invalid if the count is exceeded
+     * - pluralises the message correctly
+     * - hides the message if there is a count threshold that is not met
+     * - updates the hidden screen reader message element after a short delay (the delay helps ensure the message is not unterrupted by the screen reader announcing the value of the field)
+     *
+     * @returns {void}
+     */
+    private updateCountMessage(): void {
         const count = this.maxLength - this.inputElement.value.length;
         let noun = 'characters';
         if (Math.abs(count) === 1) {
@@ -171,7 +217,12 @@ class CharacterCount extends DSComponent {
         }, 1000);
     }
 
-    private updateScreenReaderMessage() {
+    /**
+     * Updates the content of the hidden screen reader message
+     *
+     * @returns {void}
+     */
+    private updateScreenReaderMessage(): void {
         this.screenReaderMessageElement.textContent = this.messageElement.textContent;
     }
 }

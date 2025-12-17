@@ -4,6 +4,18 @@ import DSComponent from '../../base/component/component';
 import _storage from '../../base/tools/storage/storage';
 import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
 
+/**
+ * Cookie notification component
+ *
+ * @class CookieNotification
+ * @extends DSComponent
+ * @property {object} storage - the DS storage object
+ * @property {string[]} categories - an array of cookie categories
+ * @property {HTMLButtonElement} cookieAcceptAllButton - the accept all cookies button
+ * @property {HTMLButtonElement} cookieAcceptEssentialButton - the accept essential cookies button
+ * @property {HTMLElement} cookieNoticeElement - the cookie notice element
+ * @property {HTMLElement} cookieNoticeSuccessElement - the cookie notice success message element
+ */
 class CookieNotification extends DSComponent {
     storage: {
         get: (obj: { type: string, name: string }) => string;
@@ -17,6 +29,13 @@ class CookieNotification extends DSComponent {
     private cookieNoticeElement: HTMLElement;
     private cookieNoticeSuccessElement: HTMLElement;
 
+    /**
+     * Creates a cookie notification component
+     *
+     * @param {HTMLElement} element - the cookie notification element
+     * @param storage - the DS storage object
+     * @param categories - an array of cookie categories
+     */
     constructor(element: HTMLElement, storage = _storage, categories?: string[]) {
         super(element);
 
@@ -37,7 +56,16 @@ class CookieNotification extends DSComponent {
         this.cookieAcceptEssentialButton = this.cookieNoticeElement.querySelector('.js-accept-essential-cookies');
     }
 
-    init() {
+    /**
+     * Initialise the cookie notification component
+     * - display the cookie notice if not yet acknowledged
+     * - bind event listeners to the accept buttons
+     * - manage setting cookie permissions based on user choice
+     * - focus on success message after acceptance
+     *
+     * @returns {void}
+     */
+    init(): void {
         // check whether we need to display the cookie notice
         if (!this.storage.get({type: 'cookie', name: 'cookie-notification-acknowledged'})) {
             this.cookieNoticeElement.classList.remove('fully-hidden');
@@ -68,7 +96,16 @@ class CookieNotification extends DSComponent {
         this.isInitialised = true;
     }
 
-    private setAllOptionalPermissions(allow: boolean) {
+    /**
+     * Sets all optional cookie permissions
+     * - necessary is always allowed
+     * - preferences, statistics, campaigns, marketing are set based on the 'allow' parameter
+     * - all cookies are set to expire in 365 days
+     *
+     * @param {boolean} allow - whether to allow optional cookies
+     * @returns {void}
+     */
+    private setAllOptionalPermissions(allow: boolean): void {
         const cookiePermissions = Object.fromEntries(this.categories.map((category) => {
             return [category, category === 'necessary' ? true : allow];
         }));
