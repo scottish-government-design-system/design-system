@@ -3,23 +3,48 @@
 import DSComponent from '../../base/component/component';
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
+/**
+ * Side navigation component
+ *
+ * @class SideNavigation
+ * @extends DSComponent
+ * @property {HTMLElement} navList - the side navigation list element
+ * @property {HTMLElement} sideNavigation - the side navigation element
+ */
 class SideNavigation extends DSComponent {
     private navList: HTMLElement;
     private sideNavigation: HTMLElement;
 
+    /**
+     * Creates a side navigation component
+     *
+     * @param {HTMLElement} sideNavigation - the side navigation element
+     */
     constructor(sideNavigation: HTMLElement) {
         super(sideNavigation);
         this.sideNavigation = sideNavigation;
     }
 
-    init() {
+    /**
+     * Set up the side nav if one has been provided to the constructor
+     *
+     * @returns {void}
+     */
+    init(): void {
         if (this.sideNavigation && !this.isInitialised) {
             this.setupSideNavigation();
             this.isInitialised = true;
         }
     }
 
-    private setupSideNavigation() {
+    /**
+     * Perform DOM transformation on the side nav
+     * - add aria attributes to new markup
+     * - add event listener to new markup
+     *
+     * @returns {void}
+     */
+    private setupSideNavigation(): void {
         // transform markup to button-driven version
         const navControl: HTMLInputElement = this.sideNavigation.querySelector('.js-toggle-side-navigation');
         const navLabel: HTMLElement = this.sideNavigation.querySelector('.ds_side-navigation__expand');

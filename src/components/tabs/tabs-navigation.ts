@@ -3,6 +3,21 @@
 import DSComponent from '../../base/component/component';
 import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
 
+/**
+ * Tabs navigation component
+ *
+ * @class TabsNavigation
+ * @extends DSComponent
+ * @property {HTMLElement} tabContainer - the tab container element
+ * @property {HTMLElement[]} tabHeaders - the tab items
+ * @property {HTMLElement} tabList - the list containing the tabs
+ * @property {HTMLElement} tabNavigation - the tab navigation
+ * @property {HTMLElement} tabTitle - the tab navigation title
+ * @property {Function} breakpointCheck - the breakpoint check function
+ * @property {boolean} hasEventsEnabled - whether events are enabled
+ * @property {number} [resizeTimer] - the resize timer
+ * @property {Function} boundOnResize - the bound on resize function
+ */
 class TabsNavigation extends DSComponent {
     boundOnResize: () => void;
     breakpointCheck: (size: string) => boolean;
@@ -14,6 +29,12 @@ class TabsNavigation extends DSComponent {
     tabNavigation: HTMLElement;
     tabTitle: HTMLElement;
 
+    /**
+     * Creates a tabs navigation component
+     *
+     * @param {HTMLElement} tabContainer - the tab container element
+     * @param {Function} _breakpointCheck - the breakpoint check function
+     */
     constructor(tabContainer: HTMLElement, _breakpointCheck = breakpointCheck) {
         super(tabContainer)
 
@@ -36,8 +57,13 @@ class TabsNavigation extends DSComponent {
         window.addEventListener('resize', this.boundOnResize as EventListenerOrEventListenerObject, true);
     }
 
-        // Initialise tab navigation if smaller than medium size
-    init() {
+    /**
+     * Initialise tab navigation if smaller than medium size
+     * - checks breakpoint and sets up tab navigation dropdown
+     *
+     * @returns {void}
+     */
+    init(): void {
         if (breakpointCheck('medium')) {
             // do nothing
         } else {
@@ -46,8 +72,15 @@ class TabsNavigation extends DSComponent {
         }
     }
 
-    // Setup tab navigation dropdown
-    private set() {
+    /**
+     * Setup tab navigation dropdown
+     * - adds toggle button
+     * - adds event listener to button
+     * - sets aria-labelledby if current page label is shown
+     *
+     * @returns {void}
+     */
+    private set(): void {
         if (!this.isInitialised) {
 
             // Swap title to button
@@ -79,8 +112,13 @@ class TabsNavigation extends DSComponent {
         }
     }
 
-    // Reset tabs to original
-    private reset() {
+    /**
+     * Reset tabs to original state
+     * - removes toggle button
+     *
+     * @returns {void}
+     */
+    private reset(): void {
         if (this.isInitialised) {
             this.isInitialised = false;
 
@@ -93,8 +131,13 @@ class TabsNavigation extends DSComponent {
         }
     }
 
-    // Runs when the browser is resized - includes debounce to prevent multiple calls in quick succession
-    private onResize() {
+    /**
+     * Runs when the browser is resized - includes debounce to prevent multiple calls in quick succession
+     * - resets the tabs if the screen is smaller than medium
+     *
+     * @returns {void}
+     */
+    private onResize(): void {
         clearTimeout(this.resizeTimer);
         this.resizeTimer = window.setTimeout(() => {
             if (breakpointCheck('medium')) {

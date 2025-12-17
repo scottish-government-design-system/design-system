@@ -22,6 +22,33 @@ type DatePickerOptions = {
     dateSelectCallback?: (date: Date) => void;
 }
 
+/**
+ * Date picker component
+ *
+ * @class DSDatePicker
+ * @extends DSComponent
+ * @property {HTMLElement} datePickerParent - the date picker parent element
+ * @property {HTMLButtonElement} calendarButtonElement - the calendar button element
+ * @property {HTMLInputElement} dateInput - the date input element
+ * @property {HTMLElement} dialogElement - the date picker dialog element
+ * @property {HTMLElement} dialogTitleElement - the date picker dialog title element
+ * @property {HTMLButtonElement} firstButtonInDialog - the first button in the date picker dialog
+ * @property {HTMLInputElement} inputElement - the main input element
+ * @property {HTMLButtonElement} lastButtonInDialog - the last button in the date picker dialog
+ * @property {HTMLInputElement} monthInput - the month input element
+ * @property {HTMLInputElement} yearInput - the year input element
+ * @property {boolean} isMultipleInput - whether the date picker uses multiple input fields
+ * @property {function} dateSelectCallback - callback function to be called when a date is selected
+ * @property {Date} currentDate - the currently selected date
+ * @property {Date[]} disabledDates - array of disabled dates
+ * @property {Date} inputDate - the date currently in the input field
+ * @property {Date} maxDate - the maximum selectable date
+ * @property {Date} minDate - the minimum selectable date
+ * @property {CalendarDay[]} calendarDays - array of calendar day objects
+ * @property {string[]} dayLabels - array of day labels
+ * @property {string[]} monthLabels - array of month labels
+ * @property {object} icons - object containing SVG icon templates
+ */
 class DSDatePicker extends DSComponent {
     private options: DatePickerOptions;
     private calendarButtonElement: HTMLButtonElement;
@@ -57,7 +84,13 @@ class DSDatePicker extends DSComponent {
         double_chevron_right: '<svg focusable="false" class="ds_icon" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.6 12 5 7.4 6.4 6l6 6-6 6L5 16.6 9.6 12Zm6.6 0-4.6-4.6L13 6l6 6-6 6-1.4-1.4 4.6-4.6Z"/></svg>',
     }
 
-    constructor(el: HTMLElement, options = {}) {
+    /**
+     * Creates a date picker component
+     *
+     * @param {HTMLElement} el - the date picker element
+     * @param {object} options - configuration options for the date picker
+     */
+    constructor(el: HTMLElement, options: object = {}) {
         super(el);
 
         if (!el) {
@@ -78,7 +111,15 @@ class DSDatePicker extends DSComponent {
         this.disabledDates = [];
     }
 
-    init() {
+    /**
+     * Initialise the date picker
+     * - inserts button and dialog into the DOM
+     * - sets up event listeners
+     * - populates the calendar with initial dates
+     *
+     * @returns {void}
+     */
+    init(): void {
         if (!this.inputElement || this.isInitialised) {
             return;
         }
@@ -177,7 +218,14 @@ class DSDatePicker extends DSComponent {
         this.isInitialised = true;
     }
 
-    private addMonths(date: Date, months: number) {
+    /**
+     * Adds months to a date
+     *
+     * @param {Date} date - the date to add months to
+     * @param {number} months - number of months to add (negative to subtract)
+     * @returns {Date} - the new date after adding months
+     */
+    private addMonths(date: Date, months: number): Date {
         const tempDate = date.getDate();
         date.setMonth(date.getMonth() + +months);
         if (date.getDate() !== tempDate) {
@@ -186,7 +234,12 @@ class DSDatePicker extends DSComponent {
         return date;
     }
 
-    private buttonTemplate() {
+    /**
+     * Date picker button template
+     *
+     * @returns {string} - HTML template for the date picker button
+     */
+    private buttonTemplate(): string {
         return `<button type="button" class="ds_button  ds_button--icon-only  ds_datepicker__button  ds_no-margin  js-calendar-button" aria-expanded="false">
             <span class="visually-hidden">Choose date</span>
             ${this.icons.calendar_today}
@@ -194,7 +247,13 @@ class DSDatePicker extends DSComponent {
         `;
     }
 
-    private dialogTemplate(id: string) {
+    /**
+     * Date picker dialog template
+     *
+     * @param {string} id
+     * @returns {string} - HTML template for the date picker dialog
+     */
+    private dialogTemplate(id: string): string {
         return `<div class="ds_datepicker__dialog__header">
         <div class="ds_datepicker__dialog__navbuttons">
             <button type="button" class="ds_button  ds_button--icon-only  js-datepicker-prev-year" aria-label="previous year" data-button="button-datepicker-prevyear">
@@ -267,7 +326,14 @@ class DSDatePicker extends DSComponent {
       </div>`;
     }
 
-    private leadingZeroes(value: number, length = 2) {
+    /**
+     * Formats a number with leading zeroes
+     *
+     * @param {number} value - value to format
+     * @param {number} length - desired length of output string
+     * @returns {string} - formatted string
+     */
+    private leadingZeroes(value: number, length: number = 2): string {
         let ret = value.toString();
 
         while (ret.length < length) {
@@ -277,7 +343,14 @@ class DSDatePicker extends DSComponent {
         return ret;
     }
 
-    private backgroundClick(event: MouseEvent) {
+    /**
+     * Handle clicks outside the date picker dialog
+     * - closes the dialog if open and the click is outside the dialog
+     *
+     * @param {MouseEvent} event
+     * @returns {void}
+     */
+    private backgroundClick(event: MouseEvent): void {
         const target = event.target as Node;
         if (this.isOpen() &&
             !this.dialogElement.contains(target) &&
@@ -289,84 +362,165 @@ class DSDatePicker extends DSComponent {
         }
     }
 
-    private closeDialog() {
+    /**
+     * Close the date picker dialog
+     * - sets aria-expanded to false on the calendar button
+     * - focuses the calendar button
+     *
+     * @returns {void}
+     */
+    private closeDialog(): void {
         this.dialogElement.classList.remove('ds_datepicker__dialog--open');
         this.calendarButtonElement.setAttribute('aria-expanded', false.toString());
         this.calendarButtonElement.focus();
     }
 
-    private firstButtonKeyup(event: KeyboardEvent) {
+    /**
+     * Handles the keyup event on the first button in the dialog
+     * - focuses the first button in the dialog if the Tab and Shift keys are pressed
+     *
+     * @param {KeyboardEvent} event
+     * @returns {void}
+     */
+    private firstButtonKeyup(event: KeyboardEvent): void {
         if (event.key === 'Tab' && event.shiftKey) {
             this.lastButtonInDialog.focus();
             event.preventDefault();
         }
     }
 
-    // day navigation
-    focusNextDay(date = new Date(this.currentDate)) {
+    /**
+     * Focuses the next day in the calendar
+     *
+     * @param {Date} date
+     * @returns {void}
+     */
+    focusNextDay(date: Date = new Date(this.currentDate)): void {
         date.setDate(date.getDate() + 1);
         this.goToDate(date);
     }
 
-    focusPreviousDay(date = new Date(this.currentDate)) {
+    /**
+     * Focuses the previous day in the calendar
+     *
+     * @param {Date} date
+     * @returns {void}
+     */
+    focusPreviousDay(date: Date = new Date(this.currentDate)): void {
         date.setDate(date.getDate() - 1);
         this.goToDate(date);
     }
 
-    // week navigation
-    focusNextWeek(date = new Date(this.currentDate)) {
+    /**
+     * Focuses the next week in the calendar
+     *
+     * @param {Date} date
+     * @returns {void}
+     */
+    focusNextWeek(date: Date = new Date(this.currentDate)): void {
         date.setDate(date.getDate() + 7);
         this.goToDate(date);
     }
 
-    focusPreviousWeek(date = new Date(this.currentDate)) {
+    /**
+     * Focuses the previous week in the calendar
+     *
+     * @param {Date} date
+     * @returns {void}
+     */
+    focusPreviousWeek(date: Date = new Date(this.currentDate)): void {
         date.setDate(date.getDate() - 7);
         this.goToDate(date);
     }
 
-    focusFirstDayOfWeek() {
+    /**
+     * Focuses the first day of the week in the calendar
+     *
+     * @returns {void}
+     */
+    focusFirstDayOfWeek(): void {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() - date.getDay());
         this.goToDate(date);
     }
 
-    focusLastDayOfWeek() {
+    /**
+     * Focuses the last day of the week in the calendar
+     *
+     * @returns {void}
+     */
+    focusLastDayOfWeek(): void {
         const date = new Date(this.currentDate);
         date.setDate(date.getDate() - date.getDay() + 6);
         this.goToDate(date);
     }
 
-    // month navigation
-    focusNextMonth(event: Event, focus = true) {
+    /**
+     * Focuses the next month in the calendar
+     *
+     * @param {Event} event
+     * @param {boolean} focus
+     * @returns {void}
+     */
+    focusNextMonth(event: Event, focus: boolean = true): void {
         event.preventDefault();
         const date = new Date(this.currentDate);
         this.addMonths(date, 1);
         this.goToDate(date, focus);
     }
 
-    focusPreviousMonth (event: Event, focus = true) {
+    /**
+     * Focuses the previous month in the calendar
+     *
+     * @param {Event} event
+     * @param {boolean} focus
+     * @returns {void}
+     */
+    focusPreviousMonth (event: Event, focus: boolean = true): void {
         event.preventDefault();
         const date = new Date(this.currentDate);
         this.addMonths(date, -1);
         this.goToDate(date, focus);
     }
 
-    // year navigation
-    focusNextYear (event: Event, focus = true) {
+    /**
+     * Focuses the next year in the calendar
+     *
+     * @param {Event} event
+     * @param {boolean} focus
+     * @returns {void}
+     */
+    focusNextYear (event: Event, focus: boolean = true): void {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setFullYear(date.getFullYear() + 1);
         this.goToDate(date, focus);
     }
 
-    focusPreviousYear (event: Event, focus = true) {
+    /**
+     * Focuses the previous year in the calendar
+     *
+     * @param {Event} event
+     * @param {boolean} focus
+     * @returns {void}
+     */
+    focusPreviousYear (event: Event, focus: boolean = true): void {
         event.preventDefault();
         const date = new Date(this.currentDate);
         date.setFullYear(date.getFullYear() - 1);
         this.goToDate(date, focus);
     }
 
-    private formattedDateFromString(dateString: string, fallback = new Date()) {
+    /**
+     * Formats a date string into a Date object
+     * - according to the date format set on the date picker parent element
+     * - falls back to the provided fallback date if formatting fails
+     *
+     * @param {string} dateString - The date string to format
+     * @param {Date}fallback - The fallback date if formatting fails
+     * @returns {Date} - The formatted date
+     */
+    private formattedDateFromString(dateString: string, fallback: Date = new Date()): Date {
         let formattedDate = null;
         const parts = dateString.split('/');
 
@@ -392,11 +546,24 @@ class DSDatePicker extends DSComponent {
         }
     }
 
-    formattedDateHuman(date: Date) {
+    /**
+     * Formats a date in a human-readable format
+     *
+     * @param {Date} date - The date to format
+     * @returns {string} - The formatted date
+     */
+    formattedDateHuman(date: Date): string {
         return `${this.dayLabels[date.getDay()]} ${date.getDate()} ${this.monthLabels[date.getMonth()]} ${date.getFullYear()}`;
     }
 
-    goToDate(date: Date, focus?: boolean) {
+    /**
+     * Go to a specific date in the calendar
+     *
+     * @param {Date} date - The date to go to
+     * @param {boolean} focus - Whether to focus the date in the calendar
+     * @returns {void}
+     */
+    goToDate(date: Date, focus?: boolean): void {
         const current = this.currentDate;
 
         this.currentDate = date;
@@ -408,7 +575,15 @@ class DSDatePicker extends DSComponent {
         this.setCurrentDate(focus);
     }
 
-    private isDisabledDate(date: Date) {
+    /**
+     * Check whether a date is disabled
+     * - Checks if the date is before minDate or after maxDate
+     * - Checks if the date is in the disabledDates array
+     *
+     * @param {Date} date - The date to check
+     * @returns {boolean} - whether the date is disabled
+     */
+    private isDisabledDate(date: Date): boolean {
         let disabled = false;
 
         if (this.minDate && this.minDate > date) {
@@ -427,18 +602,40 @@ class DSDatePicker extends DSComponent {
         return disabled;
     }
 
-    private isOpen() {
+    /**
+     * Checks whether the date picker dialog is open
+     *
+     * @returns {boolean} - whether the dialog is open
+     */
+    private isOpen(): boolean {
         return this.dialogElement.classList.contains('ds_datepicker__dialog--open');
     }
 
-    private lastButtonKeyup(event: KeyboardEvent) {
+    /**
+     * Handles the keyup event on the last button in the dialog
+     * - focuses the first button in the dialog if the Tab key is pressed
+     *
+     * @param {KeyboardEvent} event
+     * @returns {void}
+     */
+    private lastButtonKeyup(event: KeyboardEvent): void {
         if (event.key === 'Tab' && !event.shiftKey) {
             this.firstButtonInDialog.focus();
             event.preventDefault();
         }
     }
 
-    private openDialog() {
+    /**
+     * Opens the date picker dialog
+     * - displays the dialog
+     * - positions the dialog
+     * - gets the date from the input element(s)
+     * - updates the calendar
+     * - sets the current date
+     *
+     * @returns {void}
+     */
+    private openDialog(): void {
         // display the dialog
         this.dialogElement.classList.add('ds_datepicker__dialog--open');
         this.calendarButtonElement.setAttribute('aria-expanded', true.toString());
@@ -477,7 +674,18 @@ class DSDatePicker extends DSComponent {
         this.setCurrentDate();
     }
 
-    selectDate(date: Date) {
+    /**
+     * Selects a date from the calendar
+     * - Updates the calendar button text
+     * - Sets the date in the input field(s)
+     * - Dispatches a change event on the input element
+     * - Calls the dateSelectCallback if provided
+     * - Closes the dialog
+     *
+     * @param {Date} date The date to select
+     * @returns {void | false}
+     */
+    selectDate(date: Date): void | false {
         if (this.isDisabledDate(date)) {
             return false;
         }
@@ -495,7 +703,16 @@ class DSDatePicker extends DSComponent {
         this.closeDialog();
     }
 
-    private setCurrentDate(focus = true) {
+    /**
+     * Sets the current date in the calendar
+     * - Sets the current date in the calendar
+     * - Focuses the current date button if focus is true
+     * - Marks today and selected date with appropriate classes and attributes
+     *
+     * @param {boolean} focus Whether to focus the current date button
+     * @returns {void}
+     */
+    private setCurrentDate(focus: boolean = true): void {
         const currentDate = this.currentDate;
 
         const filteredDays = this.calendarDays.filter(calendarDay => calendarDay.button.classList.contains('fully-hidden') === false);
@@ -544,7 +761,13 @@ class DSDatePicker extends DSComponent {
         }
     }
 
-    private setDate(date: Date) {
+    /**
+     * Sets the date in the input field(s)
+     *
+     * @param {Date} date - The date to set
+     * @returns {void}
+     */
+    private setDate(date: Date): void {
         if (this.isMultipleInput) {
             this.dateInput.value = date.getDate().toString();
             this.monthInput.value = (date.getMonth() + 1).toString();
@@ -567,7 +790,12 @@ class DSDatePicker extends DSComponent {
         }
     }
 
-    private setMinAndMaxDatesOnCalendar() {
+    /**
+     * Sets the current date to be within the min and max date range
+     *
+     * @returns {void}
+     */
+    private setMinAndMaxDatesOnCalendar(): void {
         if (this.minDate && this.currentDate < this.minDate) {
             this.currentDate = this.minDate;
         }
@@ -577,7 +805,12 @@ class DSDatePicker extends DSComponent {
         }
     }
 
-    private setOptions() {
+    /**
+     * Sets options for the date picker from both passed options and data attributes
+     *
+     * @returns {void}
+     */
+    private setOptions(): void {
         this.transformLegacyDataAttributes();
 
         if (this.options.minDate) {
@@ -607,7 +840,13 @@ class DSDatePicker extends DSComponent {
         }
     }
 
-    private toggleDialog(event: Event) {
+    /**
+     * Toggles the date picker dialog open or closed
+     *
+     * @param {Event} event - The event that triggered the toggle
+     * @returns {void}
+     */
+    private toggleDialog(event: Event): void {
         event.preventDefault();
         if (this.isOpen()) {
             this.closeDialog();
@@ -617,7 +856,12 @@ class DSDatePicker extends DSComponent {
         }
     }
 
-    private transformLegacyDataAttributes() {
+    /**
+     * Transforms legacy data attributes from the input element to the date picker parent element
+     *
+     * @returns {void}
+     */
+    private transformLegacyDataAttributes(): void {
         if (this.inputElement.dataset.mindate) {
             this.datePickerParent.dataset.mindate = this.inputElement.dataset.mindate;
         }
@@ -631,8 +875,16 @@ class DSDatePicker extends DSComponent {
         }
     }
 
-     // render calendar
-    private updateCalendar() {
+    /**
+     * Updates the calendar display by redrawing it
+     * - Sets the dialog title to the current month and year
+     * - Updates each day button in the calendar grid
+     * - Hides days from previous/next month
+     * - Disables days outside min/max date range or in disabled dates list
+     *
+     * @returns {void}
+     */
+    private updateCalendar(): void {
         this.dialogTitleElement.innerHTML = `${this.monthLabels[this.currentDate.getMonth()]} ${this.currentDate.getFullYear()}`;
         this.dialogElement.setAttribute('aria-label', this.dialogTitleElement.innerHTML);
 
@@ -670,6 +922,17 @@ class DSDatePicker extends DSComponent {
     }
 }
 
+/**
+ * Class representing a day button in the date picker calendar
+ *
+ * @class DSCalendarDay
+ * @property {number} index - Index of the day button in the calendar grid
+ * @property {number} row - Row index of the day button
+ * @property {number} column - Column index of the day button
+ * @property {HTMLButtonElement} button - The button element representing the day
+ * @property {DSDatePicker} picker - Parent date picker instance
+ * @property {Date} date - The date represented by the day button
+ */
 class DSCalendarDay {
     private index: number;
     private row: number;
@@ -678,6 +941,15 @@ class DSCalendarDay {
     private picker: DSDatePicker;
     date: Date;
 
+    /**
+     * Constructor for a day button in the date picker calendar
+     *
+     * @param {HTMLElement} button - The button element representing the day
+     * @param {number} index - Index of the day button in the calendar grid
+     * @param {number} row - Row index of the day button
+     * @param {number} column - Column index of the day button
+     * @param {DSDatePicker} picker - Parent date picker instance
+     */
     constructor(button: HTMLButtonElement, index: number, row: number, column: number, picker: DSDatePicker) {
         this.index = index;
         this.row = row;
@@ -688,12 +960,30 @@ class DSCalendarDay {
         this.date = new Date();
     }
 
-    init() {
+    /**
+     * Initializes the day button, attaching event listeners for click and keydown events
+     *
+     * @returns {void}
+     */
+    init(): void {
         this.button.addEventListener('keydown', this.keyPress.bind(this));
         this.button.addEventListener('click', this.click.bind(this));
     }
 
-    update(day: Date, isHidden: boolean, isDisabled: boolean) {
+    /**
+     * Updates the day button
+     * - Sets the button text to the day of the month
+     * - Sets the aria-label to the formatted date
+     * - Adds/removes fully-hidden class based on isHidden
+     * - Adds/removes aria-disabled attribute based on isDisabled
+     * - Sets the date property to the provided date
+     *
+     * @param {Date} day The date to update the button with
+     * @param {boolean} isHidden Whether the day is hidden (from previous/next month)
+     * @param {boolean} isDisabled Whether the day is disabled
+     * @returns {void}
+     */
+    update(day: Date, isHidden: boolean, isDisabled: boolean): void {
         this.date = new Date(day);
         this.button.innerHTML = day.getDate().toString();
         this.button.setAttribute('aria-label', this.picker.formattedDateHuman(this.date));
@@ -711,7 +1001,14 @@ class DSCalendarDay {
         }
     }
 
-    click(event: MouseEvent) {
+    /**
+     * Handler for mouse click on day buttons
+     * - Selects the clicked date
+     *
+     * @param {MouseEvent} event
+     * @returns {void}
+     */
+    click(event: MouseEvent): void {
         this.picker.goToDate(this.date);
         this.picker.selectDate(this.date);
 
@@ -719,7 +1016,20 @@ class DSCalendarDay {
         event.preventDefault();
     }
 
-    keyPress(event: KeyboardEvent) {
+    /**
+     * Handler for keyboard events on day buttons
+     * - Arrow keys to navigate days/weeks
+     * - Home/End to go to first/last day of week
+     * - Page Up/Down to go to previous/next month (with Shift for year)
+     * - Escape to close the dialog
+     * - Enter/Space to select the focused date
+     * - Tab to move focus to next/previous focusable element in the dialog
+     * - Shift+Tab to move focus to previous focusable element in the dialog
+     *
+     * @param {KeyboardEvent} event
+     * @returns {void}
+     */
+    keyPress(event: KeyboardEvent): void {
         let calendarNavKey = true;
 
         switch (event.key) {

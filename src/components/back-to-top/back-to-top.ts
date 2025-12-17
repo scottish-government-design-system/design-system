@@ -6,12 +6,28 @@ type BTTOptions = {
     footerElSelector?: string
 }
 
+/**
+ * Back to top component
+ *
+ * @class BackToTop
+ * @extends DSComponent
+ * @property {HTMLElement} backToTopElement - the back to top element
+ * @property {HTMLElement} footerEl - the footer element
+ * @property {Window} window - the window object
+ */
 class BackToTop extends DSComponent {
     private backToTopElement: HTMLElement;
     private backToTopOffset: number;
     private footerEl: HTMLElement;
     private window: Window;
 
+    /**
+     * Creates a back to top component
+     *
+     * @param {HTMLElement} element - the back to top element
+     * @param _window - the window object
+     * @param options - the back to top options
+     */
     constructor(
         element: HTMLElement,
         _window = window,
@@ -34,7 +50,14 @@ class BackToTop extends DSComponent {
         this.window = _window;
     }
 
-    init() {
+    /**
+     * Initialise the back to top component
+     * - check whether to show or hide the back to top button
+     * - adjust the position of the back to top button based on the footer height
+     *
+     * @returns {void}
+     */
+    init(): void {
         if (!this.backToTopElement) {
             return;
         }
@@ -54,7 +77,12 @@ class BackToTop extends DSComponent {
         this.isInitialised = true;
     }
 
-    private checkDisplay() {
+    /**
+     * Check whether to show or hide the back to top button based on the height of the page content
+     *
+     * @returns {void}
+     */
+    private checkDisplay(): void {
         if (document.body.offsetHeight - this.footerEl.offsetHeight - this.backToTopOffset < this.window.innerHeight) {
             this.backToTopElement.classList.add('visually-hidden');
         } else {
@@ -70,7 +98,12 @@ class BackToTop extends DSComponent {
         this.checkPosition();
     }
 
-    checkPosition() {
+    /**
+     * Adjust the position of the back to top button based on the footer height
+     *
+     * @returns {void}
+     */
+    checkPosition(): void {
         const footerOffset = this.footerEl.offsetHeight + 8;
 
         const backToTopSpacingUnits = Math.ceil(footerOffset / 8);

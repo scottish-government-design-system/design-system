@@ -9,6 +9,9 @@ export default defineConfig({
             formats: ['es'],
             name: 'DesignSystem',
         },
-        minify: 'esbuild'
+        minify: 'esbuild',
+
+
+        emptyOutDir: false
     }
 });
