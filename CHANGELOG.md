@@ -7,6 +7,17 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## [3.4.0]
+### Changed
+- Site branding font is now normal weight rather than light
+- Back to top button always accessible to keyboard users whenever it receives focus
+### Fixed
+- Spacing under details component
+- Tracking script no longer adding duplicated entries to datalayer
+### Security
+- Bump js-yaml from 4.1.0 to 4.1.1
+- Bump qs and body-parser
+
 ## [3.3.2]
 ### Added
 - Override classes for offset positioning
