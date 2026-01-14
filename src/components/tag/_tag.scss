@@ -2,48 +2,52 @@
     TAG
 \*------------------------------------*/
 
+@use 'sass:color';
+@use 'sass:list';
+@use "../../base/helpers";
+@use "../../base/settings";
+
 // modifiable vars
-$tag__base-colour: $ds_colour__brand !default;
+$tag__base-colour: settings.$ds_colour__brand !default;
 
 $tag_colours: (
-    'grey'      $ds_colour__grey,
-    'green'     $ds_colour__dark-green,
-    'teal'      $ds_colour__teal,
-    'darkblue'  $ds_colour__blue--darker,
-    'blue'      $ds_colour__blue,
-    'purple'    $ds_colour__purple,
-    'pink'      $ds_colour__pink,
-    'red'       $ds_colour__red,
-    'orange'    $ds_colour__orange,
-    'yellow'    $ds_colour__yellow
+    'grey'      settings.$ds_colour__grey,
+    'green'     settings.$ds_colour__dark-green,
+    'teal'      settings.$ds_colour__teal,
+    'darkblue'  settings.$ds_colour__blue--darker,
+    'blue'      settings.$ds_colour__blue,
+    'purple'    settings.$ds_colour__purple,
+    'pink'      settings.$ds_colour__pink,
+    'red'       settings.$ds_colour__red,
+    'orange'    settings.$ds_colour__orange,
+    'yellow'    settings.$ds_colour__yellow
 );
 
 .ds_tag {
-    @include ds_root-size;
-    @include ds_responsive-padding(1, left);
-    @include ds_responsive-padding(1, right);
-
-    $background: adjustLuminance($tag__base-colour, 0.83);
-    $foreground: adjustForContrast(darken($tag__base-colour, 12.5%), $background, 4.5);
+    $background: helpers.adjustLuminance($tag__base-colour, 0.83);
+    $foreground: helpers.adjustForContrast(color.adjust($tag__base-colour, $lightness: -12.5%), $background, 4.5);
 
     background: $background;
     color: $foreground;
     display: inline-block;
-    font-weight: $normal;
-    outline: 1px solid rgba(red($tag__base-colour), green($tag__base-colour), blue($tag__base-colour), 0.8);
-    outline-offset: -1px;
+    font-weight: settings.$normal;
+    outline: 0.0625rem solid rgba(color.channel($tag__base-colour, "red", $space: rgb), color.channel($tag__base-colour, "green", $space: rgb), color.channel($tag__base-colour, "blue", $space: rgb), 0.8);
+    outline-offset: -0.0625rem;
     white-space: nowrap;
+    @include helpers.ds_root-size;
+    @include helpers.ds_responsive-padding(1, left);
+    @include helpers.ds_responsive-padding(1, right);
 
     @each $color in $tag_colours {
-        $name: nth($color, 1);
-        $hex: nth($color, 2);
-        $background: adjustLuminance($hex, 0.83);
-        $foreground: adjustForContrast(darken($hex, 12.5%), $background, 4.5) ;
+        $name: list.nth($color, 1);
+        $hex: list.nth($color, 2);
+        $background: helpers.adjustLuminance($hex, 0.83);
+        $foreground: helpers.adjustForContrast(color.adjust($hex, $lightness: -12.5%), $background, 4.5) ;
 
         &--#{$name} {
             background-color: $background;
             color: $foreground;
-            outline-color: rgba(red($foreground), green($foreground), blue($foreground), 0.8);
+            outline-color: rgba(color.channel($foreground, "red", $space: rgb), color.channel($foreground, "green", $space: rgb), color.channel($foreground, "blue", $space: rgb), 0.8);
         }
     }
 }

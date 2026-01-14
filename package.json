@@ -42,7 +42,7 @@
     "karma-mocha-reporter": "^2.2.5",
     "karma-viewport": "^1.0.9",
     "karma-webpack": "^5.0.1",
-    "sass": "^1.71.1",
+    "sass": "^1.94.3",
     "sealant": "^0.1.1",
     "svg-sprite": "^2.0.2",
     "svgxuse": "^1.2.6",

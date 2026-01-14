@@ -2,22 +2,28 @@
     SELECT
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
+@use "../form.mixins" as form-mixins;
+@use "../form.settings" as form-settings;
+
 ///
 /// [1] renders an outline/border in windows high contrast mode
 ///
 .ds_select {
-    @include ds_input;
+    @include form-mixins.ds_input;
 
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: $ds_colour__background--primary;
+    background-color: settings.$ds_colour__background--primary;
 
     // background image is a fallback for old browsers. remove after we remove support for IE11
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 -960 960 960' width='24'%3E%3Cpath d='M480-360 280-560h400L480-360Z'/%3E%3C/svg%3E");
-    background-position: center right 10px;
+    background-position: center right 0.625rem;
     background-repeat: no-repeat;
-    padding-right: 3rem - $field-border-width;
+    padding-right: 3rem - form-settings.$field-border-width;
 
     // ie11 fallback
     &::-ms-expand {
@@ -31,8 +37,8 @@
 .ds_select-arrow {
     display: none;
     width: 3rem;
-    outline: 2px solid transparent; /// [1]
-    outline-offset: -2px; /// [1]
+    outline: 0.125rem solid transparent; /// [1]
+    outline-offset: -0.125rem; /// [1]
     pointer-events: none;
     position: relative;
 
@@ -42,23 +48,23 @@
 
     &::before {
         bottom: 0;
-        color: $ds_colour__text;
+        color: settings.$ds_colour__text;
         font-size: 1rem;
         position: absolute;
         right: 0;
         top: 0;
         z-index: 1;
 
-        @include ds_chevron(down, 0.75em);
+        @include helpers.ds_chevron(down, 0.75em);
         right: calc(50% - 0.375em);
         top: calc(50% - 0.5625em);
     }
 }
 
 .ds_select-wrapper {
-    @include ds_responsive-margin(3, bottom);
     max-width: max-content;
-    min-width: 10em
+    min-width: 10em;
+    @include helpers.ds_responsive-margin(3, bottom);
 }
 
 @supports (display: grid) {

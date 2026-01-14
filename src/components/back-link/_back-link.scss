@@ -2,16 +2,18 @@
     BACK LINK
 \*------------------------------------*/
 
+@use "../../base/helpers";
+
 .ds_back-link {
-    @include ds_small-size;
     align-items: center;
     display: inline-flex;
     margin: 1rem 0;
     padding-left: 1rem;
     position: relative;
+    @include helpers.ds_small-size;
 
     &::before {
-        @include ds_chevron(left, 0.5em);
+        @include helpers.ds_chevron(left, 0.5em);
         border-width: 0 0 0.125em 0.125em;
         left: 0.125em;
         position: absolute;

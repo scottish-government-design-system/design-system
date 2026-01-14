@@ -2,8 +2,12 @@
     HIDE THIS PAGE
 \*------------------------------------*/
 
-$hide-this-page-background-color: $ds_colour__red;
-$hide-this-page-background-color--hover: darken($ds_colour__red, 15%);
+@use 'sass:color';
+@use "../../base/helpers";
+@use "../../base/settings";
+
+$hide-this-page-background-color: settings.$ds_colour__red;
+$hide-this-page-background-color--hover: color.adjust(settings.$ds_colour__red, $lightness: -15%);
 
 .ds_hide-page {
     left: 0;
@@ -31,7 +35,7 @@ $hide-this-page-background-color--hover: darken($ds_colour__red, 15%);
             filter: none;
 
             & + .ds_hide-page__text {
-                border-color: $ds_colour__link--focus__shadow;
+                border-color: settings.$ds_colour__link--focus__shadow;
                 position: relative;
             }
         }
@@ -48,14 +52,13 @@ $hide-this-page-background-color--hover: darken($ds_colour__red, 15%);
     }
 
     &__text {
-        @include ds_tiny-size;
-
         background-color: rgba(255, 255, 255, 0.9);
         border: 0.125rem solid $hide-this-page-background-color;
         border-top-width: 0.1875rem;
         margin-bottom: 0;
         margin-top: -0.1875rem;
         padding: 0.5rem 0.5rem 0.375rem;
+        @include helpers.ds_tiny-size;
     }
 
     .js-enabled-text {
@@ -63,7 +66,7 @@ $hide-this-page-background-color--hover: darken($ds_colour__red, 15%);
     }
 }
 
-@include ds_media-query(medium-down) {
+@include helpers.ds_media-query(medium-down) {
     .ds_has-hide-page .ds_page,
     .ds_page:has(.ds_hide-page) {
         margin-top: 2.5rem;
@@ -88,13 +91,13 @@ $hide-this-page-background-color--hover: darken($ds_colour__red, 15%);
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_hide-page {
-        @include ds_block-margins;
         left: auto;
+        @include helpers.ds_block-margins;
 
         @supports (position: sticky) and (display: grid) {
-            bottom: 8px;
+            bottom: 0.5rem;
             position: sticky;
         }
     }
@@ -108,14 +111,14 @@ $hide-this-page-background-color--hover: darken($ds_colour__red, 15%);
     .ds_hide-page {
         width: 100%;
 
-        @include ds_media-query(medium) {
+        @include helpers.ds_media-query(medium) {
             align-self: start;
             grid-area: 1/9/3/13;
-            right: 8px;
-            top: 8px;
+            right: 0.5rem;
+            top: 0.5rem;
         }
 
-        @include ds_media-query(large) {
+        @include helpers.ds_media-query(large) {
             grid-area: 1/10/3/13;
         }
     }

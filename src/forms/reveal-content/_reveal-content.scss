@@ -1,22 +1,24 @@
 /*------------------------------------*\
     REVEAL CONTENT
 \*------------------------------------*/
+@use "../../base/helpers";
+@use "../../base/settings";
 
 .ds_reveal-content {
     display: none;
-    margin-top: 16px;
-    padding-left: 16px;
+    margin-top: 1rem;
+    padding-left: 1rem;
     position: relative;
-    @include ds_last-child-no-margin;
+    @include helpers.ds_last-child-no-margin;
 
     &::before {
-        background-color: $ds_colour__border;
+        background-color: settings.$ds_colour__border;
         bottom: 0;
         content: '';
-        left: -22px;
+        left: -1.375rem;
         position: absolute;
         top: 0;
-        width: 4px;
+        width: 0.25rem;
     }
 }
 

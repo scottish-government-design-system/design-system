@@ -2,15 +2,19 @@
     FEATURE HEADER
 \*------------------------------------*/
 
+@use 'sass:color';
+@use "../../base/helpers";
+@use "../../base/settings";
+
 /// Customise colours
 /// [1] Background colour for feature header - defaults to brand colour
-/// [2] Set to false if you want to define foreground and button hover colours
+/// [2] Set to true if you want the foreground and button hover colours to be calculated automatically
 /// [3] Set foreground colour if [2] is set to false
 /// [4] Set button hover background colour if [2] is set to false
-$feature-header-background: $ds_colour__brand !default; /// [1]
-$feature-header-compute-colours: true !default; /// [2]
-$feature-header-foreground: $ds_colour__white !default; /// [3]
-$feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; /// [4]
+$feature-header-background: settings.$ds_colour__brand !default; /// [1]
+$feature-header-compute-colours: false !default; /// [2]
+$feature-header-foreground: settings.$ds_colour__white !default; /// [3]
+$feature-header-button-hover-background: rgba(settings.$ds_colour__black, 20%) !default; /// [4]
 
 /// Get the background colour for a theme's button
 /// If the background is very close to white or black then the calculated background may not be visible and user defined colours are recommended instead
@@ -21,14 +25,14 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
 /// [2] 12.5%: the amount that ds_colour__blue--darker is darker than ds_colour__blue
 @function getThemeButtonBackground($foreground, $background) {
     // Check contrast with white and black to decide whether to darken or lighten background
-    @if getContrastRatio($foreground, $ds_colour__white) > getContrastRatio($foreground, $ds_colour__black) {
-        @return adjustForContrast(adjustLuminance($foreground, 0.83), $foreground, 4.5, true); /// [1]
+    @if helpers.getContrastRatio($foreground, settings.$ds_colour__white) > helpers.getContrastRatio($foreground, settings.$ds_colour__black) {
+        @return helpers.adjustForContrast(helpers.adjustLuminance($foreground, 0.83), $foreground, 4.5, true); /// [1]
     } @else {
         // If foreground is white then check if background should be lightened instead of darkened
-        @if $foreground == white and darken($background, 12.5%) == black {
-            @return adjustForContrast(lighten($background, 12.5%), $foreground, 4.5, true); /// [2]
+        @if $foreground == white and color.adjust($background, $lightness: -12.5%) == black {
+            @return helpers.adjustForContrast(color.adjust($background, $lightness: 12.5%), $foreground, 4.5, true); /// [2]
         } @else {
-            @return adjustForContrast(darken($background, 12.5%), $foreground, 4.5, true); /// [2]
+            @return helpers.adjustForContrast(color.adjust($background, $lightness: -12.5%), $foreground, 4.5, true); /// [2]
         }
     }
 }
@@ -58,14 +62,14 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
     .ds_button:not(:hover):not(:focus) {
         background-color: transparent;
         color: currentColor;
-        outline: 2px solid currentColor;
-        outline-offset: -2px;
+        outline: 0.125rem solid currentColor;
+        outline-offset: -0.125rem;
     }
     .ds_button:hover:not(:focus) {
         background-color: $buttonHover;
         color: currentColor;
-        outline: 2px solid currentColor;
-        outline-offset: -2px;
+        outline: 0.125rem solid currentColor;
+        outline-offset: -0.125rem;
     }
 }
 
@@ -76,14 +80,14 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
 /// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
 /// @output Theme colour scheme which gives best contrast
 @mixin checkAndSetThemeColour($foreground, $background, $description: '', $ratio: 4.5) {
-    @if getContrastRatio($foreground, $background) < $ratio {
+    @if helpers.getContrastRatio($foreground, $background) < $ratio {
         // If not enough contrast try white
-        @if getContrastRatio($ds_colour__white, $background) > $ratio {
-            @debug 'Adjusting text colour #{$foreground} to #{$ds_colour__white} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
-            @include themeDefinitions($ds_colour__white, getThemeButtonBackground($ds_colour__white, $background));
+        @if helpers.getContrastRatio(settings.$ds_colour__white, $background) > $ratio {
+            @debug 'Adjusting text colour #{$foreground} to #{settings.$ds_colour__white} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
+            @include themeDefinitions(settings.$ds_colour__white, getThemeButtonBackground(settings.$ds_colour__white, $background));
         } @else {
             // Otherwise adjust foreground colours
-            $adjustedForeground: adjustForContrast($foreground, $background, $ratio);
+            $adjustedForeground: helpers.adjustForContrast($foreground, $background, $ratio);
             @debug 'Adjusting text colour #{$foreground} to #{$adjustedForeground} to meet contrast ratio of #{$ratio}:1 against #{$description} background colour #{$background}';
             @include themeDefinitions($adjustedForeground, getThemeButtonBackground($adjustedForeground, $background));
         }
@@ -94,11 +98,11 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
 }
 
 .ds_feature-header {
-    @include ds_responsive-margin(4, bottom);
+    @include helpers.ds_responsive-margin(4, bottom);
 
     &__title {
-        @include ds_h1-style;
-        @include ds_responsive-margin(2, bottom);
+        @include helpers.ds_h1-style;
+        @include helpers.ds_responsive-margin(2, bottom);
     }
 
     &--background {
@@ -106,7 +110,7 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
 
         @if $feature-header-compute-colours {
             // Adjust text, link and button for contrast (either light or dark theme)
-            @include checkAndSetThemeColour($ds_colour__text, $feature-header-background, 'feature header custom');
+            @include checkAndSetThemeColour(settings.$ds_colour__text, $feature-header-background, 'feature header custom');
         } @else {
             // Use user defined colours
             @include themeDefinitions($feature-header-foreground, $feature-header-button-hover-background);
@@ -114,19 +118,19 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
     }
 
     &--background-secondary {
-        background-color: $ds_colour__background--secondary;
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--secondary, 'feature header');
+        background-color: settings.$ds_colour__background--secondary;
+        @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--secondary, 'feature header');
     }
 
     &--background-tertiary {
-        background-color: $ds_colour__background--tertiary;
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'feature header');
+        background-color: settings.$ds_colour__background--tertiary;
+        @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--tertiary, 'feature header');
     }
 
     &__primary {
-        @include ds_responsive-padding(6, top);
-        @include ds_responsive-padding(5, bottom);
         align-self: center;
+        @include helpers.ds_responsive-padding(6, top);
+        @include helpers.ds_responsive-padding(5, bottom);
 
         > :last-child {
             margin-bottom: 0;
@@ -141,7 +145,7 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
         padding-left: 1rem;
         padding-right: 1rem;
 
-        @include ds_media-query(medium) {
+        @include helpers.ds_media-query(medium) {
             padding-left: 2rem;
         }
 
@@ -168,14 +172,14 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
     }
 
     // Full width image at fluid width has bottom padding
-    @include ds_media-query(medium-down) {
+    @include helpers.ds_media-query(medium-down) {
         &--fullwidth &__secondary {
             padding-bottom: 2.5rem;
         }
     }
 
     // Fixed width
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         &--fullwidth &__secondary {
             padding: 0;
         }
@@ -214,13 +218,13 @@ $feature-header-button-hover-background: rgba($ds_colour__black, 20%) !default; 
 
      // Button overrides
      .ds_button {
-        @include ds_responsive-margin(1, top);
+        @include helpers.ds_responsive-margin(1, top);
     }
 }
 
 // Layout if supporting grid
 @supports(display: grid) {
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
 
         .ds_feature-header__image {
             float: right;

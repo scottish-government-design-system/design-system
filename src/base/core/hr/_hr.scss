@@ -2,11 +2,14 @@
     HORIZONTAL RULE
 \*------------------------------------*/
 
+@use "../../settings";
+@use "../../helpers";
+
 /// [1] compensate for border
 hr {
     border: none;
-    border-top: 1px solid $ds_colour__border;
+    border-top: 0.0625rem solid settings.$ds_colour__border;
 
-    @include ds_responsive-margin(4, top);
-    @include ds_responsive-margin(4, bottom, false, -1px); /// [1]
+    @include helpers.ds_responsive-margin(4, top);
+    @include helpers.ds_responsive-margin(4, bottom, false, -0.0625rem); /// [1]
 }

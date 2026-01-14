@@ -2,22 +2,25 @@
     CURRENCY WRAPPER
 \*------------------------------------*/
 
-$input-height: 48px;
+@use "../../base/helpers";
+@use "../../base/settings";
+
+@use "../form.settings" as form-settings;
 
 .ds_currency-wrapper {
     position: relative;
 
     &::before {
-        @include ds_large-size;
+        @include helpers.ds_large-size;
         content: '£';
-        height: $input-height;
-        font-weight: $bold;
-        line-height: $input-height !important;
+        height: form-settings.$input-size;
+        font-weight: settings.$bold;
+        line-height: form-settings.$input-size !important;
         pointer-events: none;
         position: absolute;
         text-align: center;
         top: 0;
-        width: $input-height;
+        width: form-settings.$input-size;
     }
 
     &[data-symbol]::before {
@@ -25,11 +28,11 @@ $input-height: 48px;
     }
 
     & > .ds_input {
-        padding-left: 40px;
+        padding-left: 2.5rem;
     }
 
     & > .ds_input:focus {
-        padding-left: 39px;
+        padding-left: 2.4375rem;
     }
 
 

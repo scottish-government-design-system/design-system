@@ -3,22 +3,22 @@
     previous and next buttons
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 // modifiable vars
-$page-nav__circle-colour: $ds_colour__brand !default;
-$page-nav__circle-hover: $ds_colour__link--hover !default;
-$page-nav__circle-focus: $ds_colour__link--focus !default;
-$page-nav__icon-colour: $ds_colour__button !default;
-$page-nav__prefix-colour: $ds_colour__text !default;
+$page-nav__circle-colour: settings.$ds_colour__brand !default;
+$page-nav__circle-hover: settings.$ds_colour__link--hover !default;
+$page-nav__circle-focus: settings.$ds_colour__link--focus !default;
+$page-nav__icon-colour: settings.$ds_colour__button !default;
+$page-nav__prefix-colour: settings.$ds_colour__text !default;
 
 // fixed vars vars
-$page-nav__circle-size: 56px !default;
-
-
-
+$page-nav__circle-size: 3.5rem !default;
 
 .ds_sequential-nav {
-    margin-bottom: 56px;
-    margin-top: 56px;
+    margin-bottom: 3.5rem;
+    margin-top: 3.5rem;
     overflow: hidden;
 }
 
@@ -29,11 +29,11 @@ $page-nav__circle-size: 56px !default;
 }
 
 .ds_sequential-nav__button {
-    @include ds_link--block;
-    @include ds_link-underline('.ds_sequential-nav__text');
+    @include helpers.ds_link--block;
+    @include helpers.ds_link-underline('.ds_sequential-nav__text');
 
-    line-height: 24px;
-    padding: 12px 4px;
+    line-height: 1.5rem;
+    padding: 0.75rem 0.25rem;
     position: relative;
     width: 100%;
 
@@ -58,12 +58,12 @@ $page-nav__circle-size: 56px !default;
         background-color: $page-nav__circle-colour;
         background-position: center;
         border-radius: $page-nav__circle-size;
-        border: 2px solid $page-nav__circle-colour; /// [1]
+        border: 0.125rem solid $page-nav__circle-colour; /// [1]
         display: inline-block;
         position: absolute;
-        top: 8px;
+        top: 0.5rem;
 
-        transition: background-color $transition-out-time;
+        transition: background-color settings.$transition-out-time;
     }
 
     // ::after is the chevron
@@ -72,37 +72,37 @@ $page-nav__circle-size: 56px !default;
         &::after {
             color: $page-nav__icon-colour;
             position: absolute;
-            top: 25px;
+            top: 1.5625rem;
         }
     }
 
     &--left {
-        padding-left: ($page-nav__circle-size + 5px + 12px);
+        padding-left: ($page-nav__circle-size + 1.0625rem);
         text-align: left;
 
         &::before {
-            left: 4px;
+            left: 0.25rem;
         }
 
         &::after {
-            @include ds_chevron(left, 22px);
-            left: 24px;
+            @include helpers.ds_chevron(left, 1.375rem);
+            left: 1.5rem;
         }
     }
 
     &--right {
         text-align: right;
         float: right;
-        padding-right: ($page-nav__circle-size + 5px + 12px);
+        padding-right: ($page-nav__circle-size + 1.0625rem);
         text-align: right;
 
         &::before {
-            right: 4px;
+            right: 0.25rem;
         }
 
         &::after {
-            @include ds_chevron(right, 22px);
-            right: 24px;
+            @include helpers.ds_chevron(right, 1.375rem);
+            right: 1.5rem;
         }
     }
 }
@@ -121,13 +121,13 @@ $page-nav__circle-size: 56px !default;
     }
 
     &::after {
-        border-color: $ds_colour__link--focus__background;
+        border-color: settings.$ds_colour__link--focus__background;
     }
 }
 
 .ds_sequential-nav__text {
     display: inline-block;
-    padding-top: 24px;
+    padding-top: 1.5rem;
     position: relative;
     width: 100%;
 
@@ -135,22 +135,22 @@ $page-nav__circle-size: 56px !default;
         color: $page-nav__prefix-colour;
         content: attr(data-label);
         font-size: 1rem;
-        font-weight: $bold;
+        font-weight: settings.$bold;
         left: 0;
         position: absolute;
         right: 0;
         text-transform: uppercase;
         top: 0;
 
-        @include media-query(medium) {
-            font-size: px-to-rem($root-font-size);
+        @include helpers.media-query(medium) {
+            font-size: helpers.px-to-rem(settings.$root-font-size);
         }
     }
 }
 
-@include ds_media-query(small) {
+@include helpers.ds_media-query(small) {
     .ds_sequential-nav__item {
-        width: calc(50% - 16px);
+        width: calc(50% - 1rem);
 
         &--prev {
             float: left;
@@ -165,7 +165,7 @@ $page-nav__circle-size: 56px !default;
 @supports (display: grid) {
     .ds_sequential-nav {
         display: grid;
-        grid-gap: $grid-gap-y $grid-gap-x;
+        grid-gap: settings.$grid-gap-y settings.$grid-gap-x;
         grid-template-areas: 'next' 'prev';
     }
 
@@ -182,7 +182,7 @@ $page-nav__circle-size: 56px !default;
         }
     }
 
-    @include ds_media-query (small) {
+    @include helpers.ds_media-query (small) {
         .ds_sequential-nav {
             grid-template-columns: 1fr 1fr;
             grid-template-areas: 'prev next';

@@ -2,30 +2,33 @@
     FILE DOWNLOAD
 \*------------------------------------*/
 
-$file-download-background-colour: $ds_colour__background--secondary !default;
+@use "../../base/helpers";
+@use "../../base/settings";
+
+$file-download-background-colour: settings.$ds_colour__background--secondary !default;
 
 .ds_file-download {
-    @include ds_responsive-margin(4, bottom);
-    @include ds_responsive-margin(4, top);
-    @include ds_responsive-padding(2);
     background-color: $file-download-background-colour;
     display: flex;
+    @include helpers.ds_responsive-margin(4, bottom);
+    @include helpers.ds_responsive-margin(4, top);
+    @include helpers.ds_responsive-padding(2);
 
-    @include checkAndFixDescendantLinkColour($ds_colour__link, $file-download-background-colour, 'file download');
+    @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, $file-download-background-colour, 'file download');
 
     &--highlighted {
-        @include ds_responsive-padding(2, left, $tuning: -4px);
-        border-left: 4px solid $ds_colour__brand;
+        border-left: 0.25rem solid settings.$ds_colour__brand;
+        @include helpers.ds_responsive-padding(2, left, $tuning: -0.25rem);
     }
 
     &__thumbnail {
-        @include ds_responsive-margin(2, right);
+        @include helpers.ds_responsive-margin(2, right);
     }
 
     &__thumbnail-image {
         display: block;
-        outline: 1px solid $ds_colour__border;
-        outline-offset: -1px;
+        outline: 0.0625rem solid settings.$ds_colour__border;
+        outline-offset: -0.0625rem;
     }
 
     &__thumbnail-image[src*=".svg"] {
@@ -34,7 +37,7 @@ $file-download-background-colour: $ds_colour__background--secondary !default;
 
     &__thumbnail-link {
         display: block;
-        width: px-to-rem(64px);
+        width: 4rem;
     }
 
     &__content {
@@ -43,20 +46,20 @@ $file-download-background-colour: $ds_colour__background--secondary !default;
 
     &__title {
         display: inline-block;
-        font-weight: $bold;
-        @include ds_responsive-margin(1, bottom);
+        font-weight: settings.$bold;
+        @include helpers.ds_responsive-margin(1, bottom);
     }
 
     .ds_metadata {
-        line-height: px-to-rem(24px);
+        line-height: 1.5rem;
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_file-download {
 
         &__thumbnail-link {
-            width: px-to-rem(80px);
+            width: 5rem;
         }
     }
 }

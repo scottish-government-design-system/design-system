@@ -8,7 +8,7 @@
 abbr, acronym {
     &[title] { /// [1]
         text-decoration: underline dotted;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 1px;
+        text-decoration-thickness: 0.16em;
+        text-underline-offset: 0.16em;
     }
 }

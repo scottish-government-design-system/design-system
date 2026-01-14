@@ -2,6 +2,9 @@
     SEARCH FILTERS
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_search-filters {
     margin-bottom: 0.5rem;
 
@@ -10,10 +13,10 @@
     }
     
     &__title {
-        @include ds_responsive-padding(1, bottom, false, -1px);
-        @include ds_responsive-padding(1, top);
         margin-bottom: 0;
         margin-top: 0;
+        @include helpers.ds_responsive-padding(1, bottom, false, -0.0625rem);
+        @include helpers.ds_responsive-padding(1, top);
 
         &:not(:first-child) {
             margin-top: 0;
@@ -30,16 +33,16 @@
         padding-right: 0.5rem;
         overflow-y: auto;
 
-        @include ds_scrollbar;
+        @include helpers.ds_scrollbar;
     }
 
     &__filter-count {
-        color: $ds_colour__text;
+        color: settings.$ds_colour__text;
         font-weight: normal;
     }
 
     &__checkboxes {
-        @include ds_small-size;
+        @include helpers.ds_small-size;
 
         .ds_checkbox__input {
             top: 0.25rem;
@@ -55,8 +58,8 @@
     }
 
     .ds_accordion.js-initialised .ds_accordion-item__body {
-        @include ds_responsive-padding(2, right);
-        @include ds_responsive-padding(5, bottom);
+        @include helpers.ds_responsive-padding(2, right);
+        @include helpers.ds_responsive-padding(5, bottom);
     }
 
     .ds_accordion-item__body .ds_question:last-child {
@@ -67,19 +70,19 @@
     }
 
     &.js-initialised .js-apply-filter {
-        @include ds_media-query(medium) {
+        @include helpers.ds_media-query(medium) {
             display: none;
         }
     }
 }
 
-@include ds_media-query(medium-down) {
+@include helpers.ds_media-query(medium-down) {
     .ds_search-filters__title {
-        @include ds_visually-hidden;
+        @include helpers.ds_visually-hidden;
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_search-filters {
         &__title {
             display: block;
@@ -110,7 +113,7 @@
     }
 
     .ds_search-filters .ds_accordion-item__indicator {
-        font-size: px-to-rem($small-size);
+        font-size: helpers.px-to-rem(settings.$small-size);
         line-height: 1.5rem;
         margin-top: 0.25rem;
     }

@@ -4,7 +4,7 @@
     content: '';
     background-color: transparent;
     border-style: solid;
-    border-width: 0px 0px $chevron-width $chevron-width;
+    border-width: 0 0 $chevron-width $chevron-width;
     border-top-color: transparent;
     display: inline-block;
     height: $size;
@@ -55,6 +55,7 @@
 
 
 /// legacy non-prefixed names
+/// DEPRECATED - use prefixed mixins instead
 @mixin chevron($orientation: down, $size: 1em) {
     @include ds_chevron($orientation, $size);
 }

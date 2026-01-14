@@ -2,6 +2,8 @@
     PREFILLED VALUE LIST
 \*------------------------------------*/
 
+@use "../../base/helpers";
+
 .ds_prefilled-value-list {
 
     &__key {
@@ -11,9 +13,8 @@
 
     &__value {
         margin: 0;
-        @include ds_responsive-margin(3, bottom);
         padding: 0;
-
+        @include helpers.ds_responsive-margin(3, bottom);
     }
 
 }

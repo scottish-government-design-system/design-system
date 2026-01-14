@@ -2,19 +2,22 @@
 ///
 /// Single definition for consistent spacing
 
+@use "../spacing";
+
 @mixin ds_block-margins {
-    @include ds_responsive-margin(4, top);
-    @include ds_responsive-margin(4, bottom);
+    @include spacing.ds_responsive-margin(4, top);
+    @include spacing.ds_responsive-margin(4, bottom);
 }
 
 @mixin ds_block-margins--bottom {
-    @include ds_responsive-margin(4, bottom);
+    @include spacing.ds_responsive-margin(4, bottom);
 }
 
 
 
 
 /// legacy non-prefixed names
+/// DEPRECATED - use prefixed mixins instead
 @mixin block-margins {
     @include ds_block-margins;
 }

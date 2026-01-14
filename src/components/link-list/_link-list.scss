@@ -2,22 +2,25 @@
     LINK LIST
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_link-list {
-    @include ds_layout();
+    @include helpers.ds_layout();
     list-style: none;
     margin: 0;
     padding: 0;
 
-    @include ds_media-query(medium-down) {
+    @include helpers.ds_media-query(medium-down) {
         .ds_link-item + .ds_link-item {
-            @include ds_responsive-margin(3, top);
+            @include helpers.ds_responsive-margin(3, top);
         }
     }
 
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         .ds_link-item {
             float: left;
-            @include ds_colwidth(4);
+            @include helpers.ds_colwidth(4);
 
             &:nth-child(3n+1) {
                 clear: left;
@@ -27,25 +30,25 @@
 
         @supports(display: grid) {
             display: grid;
-            row-gap: px-to-rem(24px);
+            row-gap: 1.5rem;
             grid-template-columns: 1fr 1fr 1fr;
         }
     }
 
     &--no-border {
-        @include ds_media-query(medium) {
+        @include helpers.ds_media-query(medium) {
             .ds_link-item {
-                @include ds_responsive-padding (3, bottom);
                 border-bottom: none !important; 
+                @include helpers.ds_responsive-padding (3, bottom);
             }
         }
     }
 
     &-2-items {
-        @include ds_media-query(medium) {
+        @include helpers.ds_media-query(medium) {
             .ds_link-item {
                 float: left;
-                @include ds_colwidth(6);
+                @include helpers.ds_colwidth(6);
 
                 &:nth-child(2n+1) {
                     clear: left;
@@ -55,7 +58,7 @@
 
             @supports(display: grid) {
                 display: grid;
-                row-gap: px-to-rem(24px);
+                row-gap: 1.5rem;
                 grid-template-columns: 1fr 1fr;
             }
         }

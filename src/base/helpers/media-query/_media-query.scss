@@ -12,13 +12,16 @@
 ///     }
 ///   }
 
+@use "sass:map";
+@use "../../settings";
+
 @mixin ds_media-query($breakpoint) {
     // validate param
-    @if not map-has-key($ds_breakpoints, $breakpoint) {
+    @if not map.has-key(settings.$ds_breakpoints, $breakpoint) {
         @error 'Breakpoint "#{$breakpoint}" not defined.';
     }
 
-    $condition: map-get($ds_breakpoints, $breakpoint);
+    $condition: map.get(settings.$ds_breakpoints, $breakpoint);
 
     @media #{$condition} {
         @content;
@@ -51,13 +54,14 @@
 
 
 /// legacy non-prefixed name
+/// DEPRECATED - use prefixed mixin instead
 @mixin media-query($breakpoint) {
     // validate param
-    @if not map-has-key($ds_breakpoints, $breakpoint) {
+    @if not map.has-key(settings.$ds_breakpoints, $breakpoint) {
         @error 'Breakpoint "#{$breakpoint}" not defined.';
     }
 
-    $condition: map-get($ds_breakpoints, $breakpoint);
+    $condition: map.get(settings.$ds_breakpoints, $breakpoint);
 
     @media #{$condition} {
         @content;

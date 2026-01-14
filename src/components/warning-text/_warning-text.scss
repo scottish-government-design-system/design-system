@@ -2,19 +2,22 @@
     #WARNING TEXT
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 /// [1] compensate for border
 .ds_warning-text {
-    border: 1px solid currentColor;
-    border-width: 1px 0;
-    font-weight: $bold;
-    padding-left: 72px;
-    padding-right: 16px;
+    border: 0.0625rem solid currentColor;
+    border-width: 0.0625rem 0;
+    font-weight: settings.$bold;
+    padding-left: 4.5rem;
+    padding-right: 1rem;
     position: relative;
 
-    @include ds_block-margins;
-    @include ds_last-child-no-margin;
-    @include ds_responsive-padding(4, top, false, -1px); /// 1
-    @include ds_responsive-padding(4, bottom, false, -1px); /// 1
+    @include helpers.ds_block-margins;
+    @include helpers.ds_last-child-no-margin;
+    @include helpers.ds_responsive-padding(4, top, false, -0.0625rem); /// 1
+    @include helpers.ds_responsive-padding(4, bottom, false, -0.0625rem); /// 1
 
     &:first-child {
         margin-top: 0;
@@ -23,17 +26,17 @@
 
 .ds_warning-text__icon {
     $warning-text-icon-size: 2rem;
-    @include ds_high-contrast-outline;
-    border: 2px solid $ds_colour__text;
+    @include helpers.ds_high-contrast-outline;
+    border: 0.125rem solid settings.$ds_colour__text;
     border-radius: 50%;
     display: inline-block;
     height: $warning-text-icon-size;
     left: 1.5rem;
     line-height: 1;
-    padding: 2px;
+    padding: 0.125rem;
     position: absolute;
     text-align: center;
-    top: calc(1.25rem - 3px);
+    top: 1.0625rem;
     width: $warning-text-icon-size;
 
     &::before {
@@ -47,9 +50,9 @@
     // Change to solid background and invert icon to white
     @supports (filter: invert(100%)){
         & {
-            background: $ds_colour__text;
+            background: settings.$ds_colour__text;
             border: 0;
-            top: calc(1.25rem - 1px);
+            top: 1.1875rem;
         }
 
         &::before {
@@ -59,19 +62,19 @@
 }
 
 .ds_warning-text__text {
-    @include ds_last-child-no-margin;
+    @include helpers.ds_last-child-no-margin;
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_warning-text {
         padding-right: 4.5rem;
     }
 
     .ds_warning-text__icon {
-        top: calc(2rem - 3px);
+        top: 1.8125rem;
 
         @supports (filter: invert(100%)){
-            top: calc(2rem - 1px);
+            top: 1.9375rem;
         }
     }
 }

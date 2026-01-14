@@ -2,22 +2,25 @@
     BODY
 \*------------------------------------*/
 
+@use "../../helpers";
+@use "../../settings";
+
 body {
-    background: $ds_colour__background--primary;
-    color: $ds_colour__text;
-    font-family: $base-font-family;
-    font-size: px-to-rem($root-font-size); // 1rem
+    background: settings.$ds_colour__background--primary;
+    color: settings.$ds_colour__text;
+    font-family: settings.$base-font-family;
+    font-size: helpers.px-to-rem(settings.$root-font-size); // 1rem
     font-style: normal;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
-    line-height: line-height-on-grid($root-font-size);
+    line-height: helpers.line-height-on-grid(settings.$root-font-size);
     margin: 0;
     text-rendering: optimizeLegibility;
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     body {
-        font-size: px-to-rem($root-font-size--medium);
-        line-height: line-height-on-grid($root-font-size--medium);
+        font-size: helpers.px-to-rem(settings.$root-font-size--medium);
+        line-height: helpers.line-height-on-grid(settings.$root-font-size--medium);
     }
 }

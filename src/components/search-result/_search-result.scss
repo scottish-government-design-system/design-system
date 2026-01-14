@@ -1,1 +1,138 @@
-@import '../search-results/search-result';
+/*------------------------------------*\
+    SEARCH RESULT
+\*------------------------------------*/
+
+@use "../../base/helpers";
+@use "../../base/settings";
+
+.ds_search-result {
+    margin: 0;
+    padding: 0;
+    @include helpers.ds_responsive-padding(2, top);
+    @include helpers.ds_responsive-padding(3, bottom, $tuning: -0.0625rem);
+
+    &:first-child {
+        padding-top:0;
+    }
+
+    & + &:not(&--promoted) {
+        border-top: 0.0625rem settings.$ds_colour__border solid;
+    }
+
+    &--promoted + &:not(&--promoted) {
+        margin-top: -0.0625rem;
+    }
+
+    &--promoted {
+        @include helpers.ds_responsive-padding(3, bottom);
+        padding-top: 0;
+
+        &-content {
+            background: settings.$ds_colour__background--secondary;
+            border-left: 0.25rem solid settings.$ds_colour__brand;
+            @include helpers.ds_responsive-padding(1, top);
+            @include helpers.ds_responsive-padding(2, left);
+            @include helpers.ds_responsive-padding(2, right);
+            @include helpers.ds_responsive-padding(2, bottom);
+        }
+
+        &-title {
+            color: settings.$ds_colour__text--secondary;
+            font-weight: settings.$bold;
+            @include helpers.ds_responsive-margin(1, bottom);
+            @include helpers.ds_tiny-size;
+        }
+
+        @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--secondary, 'promoted search result');
+    }
+
+    &__title {
+        margin: 0 !important;
+        @include helpers.ds_h3-size;
+        @include helpers.ds_responsive-margin(1, bottom, true);
+
+        &:last-child {
+            margin-bottom: 0 !important; // only needed if title is the only part of the result
+        }
+    }
+
+    &__link {
+        display: inline-block;
+    }
+
+    &__sub-title {
+        margin: 0;
+        @include helpers.ds_h4-size;
+        @include helpers.ds_responsive-margin(1, bottom);
+    }
+
+    &__summary {
+        margin: 0;
+        @include helpers.ds_root-size;
+    }
+
+    &__metadata {
+        margin-bottom: 0;
+        @include helpers.ds_responsive-margin(1, top);
+        @include helpers.ds_tiny-size;
+    }
+
+    &__has-media {
+        display: flex;
+    }
+
+    &__media-wrapper {
+        @include helpers.ds_responsive-padding(2, right);
+    }
+
+    &__media-link {
+        display: block;
+    }
+
+    &__media {
+        width: 6rem;
+
+        @include helpers.ds_media-query(small) {
+            width: 8rem;
+        }
+    }
+
+    &__context {
+        margin: 0;
+        padding: 0;
+        @include helpers.ds_responsive-margin(2, top);
+        @include helpers.ds_responsive-padding(2, left);
+        @include helpers.ds_small-size(4px); // Use 4px type grid
+
+        &-key {
+            color: settings.$ds_colour__text--secondary;
+            margin: 0;
+            padding: 0;
+            position: relative;
+
+            &:before {
+                border-left: 0.25rem solid settings.$ds_colour__brand;
+                bottom: 0;
+                content: '';
+                left: -1rem;
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        &-value {
+            margin: 0;
+            padding: 0;
+            @include helpers.ds_responsive-margin(1, top);
+        }
+    }
+
+    &__sublinks {
+        margin-bottom: 0;
+        @include helpers.ds_responsive-margin(2, top);
+
+        &-title {
+            @include helpers.ds_visually-hidden;
+        }
+    }
+}

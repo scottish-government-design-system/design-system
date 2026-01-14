@@ -3,13 +3,14 @@
 /// Single definition for consistent box shadows
 
 @mixin ds_box-shadow {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0.0625rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.15);
 }
 
 
 
 
 /// legacy non-prefixed names
+/// DEPRECATED - use prefixed mixin instead
 @mixin box-shadow {
     @include ds_box-shadow;
 }

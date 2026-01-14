@@ -16,50 +16,55 @@
 /// @param {string} $tuning - value to add to the output for fine tuning
 /// @param {number} $collapse-spacing-unit - entry in the spacing scale to remove from output
 ///
-/// @returns {string} CSS rule for spacing, e.g. padding-top: 8px
+/// @returns {string} CSS rule for spacing, e.g. padding-top: 0.5rem
 ///
 /// @example scss
 ///   .foo {
 ///     @include ds_responsive-spacing(2, 'padding', top);
 ///   }
 
+@use "sass:map";
+@use "sass:meta";
+@use "../../settings";
+@use "../media-query";
+
 @mixin ds_responsive-spacing($spacing-unit, $property, $direction: false, $important: false, $tuning: false, $collapse-spacing-unit: false) {
     // validate params
-    $spacing-unit-type: type-of($spacing-unit);
+    $spacing-unit-type: meta.type-of($spacing-unit);
     @if $spacing-unit-type != 'number' {
         @error 'Expected an integer for spacing unit but got a #{$spacing-unit-type}';
     }
 
-    @if not map-has-key($ds_spacing-scale, $spacing-unit) {
+    @if not map.has-key(settings.$ds_spacing-scale, $spacing-unit) {
         @error 'Spacing unit "#{$spacing-unit}" not found in the spacing scale.';
     }
 
-    @if not map-has-key($ds_spacing-properties, $property) {
+    @if not map.has-key(settings.$ds_spacing-properties, $property) {
         @error 'Spacing property "#{$property}" not allowed.';
     }
 
     @if $direction {
-        @if not map-has-key($ds_spacing-directions, $direction) {
+        @if not map.has-key(settings.$ds_spacing-directions, $direction) {
             @error 'Invalid spacing direction specified: "#{$direction}"';
         }
     }
 
     $collapse-values: false;
     @if $collapse-spacing-unit {
-        @if not map-has-key($ds_spacing-scale, $collapse-spacing-unit) {
+        @if not map.has-key(settings.$ds_spacing-scale, $collapse-spacing-unit) {
             @error 'Spacing unit "#{$collapse-spacing-unit}" not found in the spacing scale.';
         }
-        $collapse-values: map-get($ds_spacing-scale, $collapse-spacing-unit);
+        $collapse-values: map.get(settings.$ds_spacing-scale, $collapse-spacing-unit);
     }
 
-    $scale-values: map-get($ds_spacing-scale, $spacing-unit);
+    $scale-values: map.get(settings.$ds_spacing-scale, $spacing-unit);
 
     @each $breakpoint, $value in $scale-values {
         @if ($tuning) {
             $value: calc(#{$value} + #{$tuning});
         }
         @if ($collapse-values) {
-            $value: calc(#{$value} - #{map-get($ds_spacing-scale, $collapse-spacing-unit, $breakpoint)});
+            $value: calc(#{$value} - #{map.get(settings.$ds_spacing-scale, $collapse-spacing-unit, $breakpoint)});
         }
 
         @if $breakpoint == null {
@@ -69,7 +74,7 @@
                 #{$property}-#{$direction}: $value if($important, !important, null);
             }
         } @else {
-            @include ds_media-query($breakpoint) {
+            @include media-query.ds_media-query($breakpoint) {
                 @if not $direction {
                     #{$property}: $value if($important, !important, null);
                 } @else {
@@ -93,7 +98,7 @@
 /// @param {boolean} $important - whether to include the !important flag
 /// @param {string} $tuning - value to add to the output for fine tuning
 ///
-/// @returns {string} CSS rule for margin, e.g. margin-top: 8px
+/// @returns {string} CSS rule for margin, e.g. margin-top: 0.5rem
 ///
 /// @example scss
 ///   .foo {
@@ -117,7 +122,7 @@
 /// @param {boolean} $important - whether to include the !important flag
 /// @param {string} $tuning - value to add to the output for fine tuning
 ///
-/// @returns {string} CSS rule for padding, e.g. padding-top: 8px
+/// @returns {string} CSS rule for padding, e.g. padding-top: 0.5rem
 ///
 /// @example scss
 ///   .foo {

@@ -2,6 +2,8 @@
     FIELD GROUP
 \*------------------------------------*/
 
+@use "../../base/helpers";
+
 .ds_field-group {
 
     // Remove bottom margin of last field
@@ -22,7 +24,7 @@
         > div {
             margin-bottom: 0;
 
-            @include ds_last-child-no-margin;
+            @include helpers.ds_last-child-no-margin;
         }
     }
 }

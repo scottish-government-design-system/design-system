@@ -2,9 +2,12 @@
     PAGINATION
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_pagination {
-    @include ds_small-size;
     text-align: center;
+    @include helpers.ds_small-size;
 
     &__list {
         list-style-type: none;
@@ -22,7 +25,7 @@
     }
 
     &__link {
-        @include ds_link--block;
+        @include helpers.ds_link--block;
 
         line-height: 2.5rem;
         min-height: 2.5rem;
@@ -31,21 +34,21 @@
         text-decoration: none;
 
         &.ds_current {
-            @include ds_unsupported-css-fallback(
+            @include helpers.ds_unsupported-css-fallback(
                 $prop: 'box-shadow',
-                $modern: inset 0px round(#{$link__current-underline-thickness * -1}, 1px) 0px $ds_colour__link--focus__shadow,
-                $fallback: inset 0px #{$link__current-underline-thickness * -1} 0px $ds_colour__link--focus__shadow
+                $modern: inset 0 round(#{helpers.$link__current-underline-thickness * -1}, 1px) 0 settings.$ds_colour__link--focus__shadow,
+                $fallback: inset 0 #{helpers.$link__current-underline-thickness * -1} 0 settings.$ds_colour__link--focus__shadow
             );
             color: currentColor;
             position: relative;
 
-            @include ds_media-query-high-contrast {
-                border-bottom: $link__current-underline-thickness solid currentColor
+            @include helpers.ds_media-query-high-contrast {
+                border-bottom: helpers.$link__current-underline-thickness solid currentColor
             }
         }
 
         &.ds_current:not(:focus) {
-            background-color: $ds_colour__link--current__background;
+            background-color: settings.$ds_colour__link--current__background;
         }
 
         &--text:not(&--icon) {
@@ -82,7 +85,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     text-decoration-line: underline;
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_pagination {
         &__load-more + &__list {
             display: block;
@@ -93,8 +96,8 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
         }
 
         &__link--icon {
-            padding-left: 0px;
-            padding-right: 0px;
+            padding-left: 0;
+            padding-right: 0;
             width: auto;
 
             .ds_pagination__link-label {
@@ -113,11 +116,11 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     }
 }
 
-@include ds_media-query(medium-down) {
+@include helpers.ds_media-query(medium-down) {
     .ds_pagination {
         &__link--icon {
             .ds_pagination__link-label {
-                @include ds_visually-hidden;
+                @include helpers.ds_visually-hidden;
             }
         }
     }

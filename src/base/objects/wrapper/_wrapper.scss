@@ -2,13 +2,12 @@
     WRAPPERS
 \*------------------------------------*/
 
-$wrapper__padding: 16px !default;
-$wrapper__width--medium: 768px !default;
-$wrapper__width--large: 960px !default;
-$wrapper__width--xlarge: 1152px !default;
+@use "../../helpers";
 
-
-
+$wrapper__padding: 1rem !default;
+$wrapper__width--medium: 48rem !default;
+$wrapper__width--large: 60rem !default;
+$wrapper__width--xlarge: 72rem !default;
 
 .ds_wrapper {
     margin: 0 auto;
@@ -20,19 +19,19 @@ $wrapper__width--xlarge: 1152px !default;
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_wrapper {
         width: $wrapper__width--medium;
     }
 }
 
-@include ds_media-query(large) {
+@include helpers.ds_media-query(large) {
     .ds_wrapper {
         width: $wrapper__width--large;
     }
 }
 
-@include ds_media-query(xlarge) {
+@include helpers.ds_media-query(xlarge) {
     .ds_wrapper {
         width: $wrapper__width--xlarge;
     }

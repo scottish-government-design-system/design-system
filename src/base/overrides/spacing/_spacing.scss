@@ -8,15 +8,18 @@
 ///
 /// @returns {string} a bunch of CSS rules
 
+@use "../../settings";
+@use "../../helpers";
+
 @mixin ds_generate-spacing-overrides-for-property($property) {
-    @each $scale-unit, $scale-map in $ds_spacing-scale {
+    @each $scale-unit, $scale-map in settings.$ds_spacing-scale {
         .ds_\!_#{$property}--#{$scale-unit} {
-            @include ds_responsive-spacing($scale-unit, $property, null, true);
+            @include helpers.ds_responsive-spacing($scale-unit, $property, null, true);
         }
 
-        @each $direction, $value in $ds_spacing-directions {
+        @each $direction, $value in settings.$ds_spacing-directions {
             .ds_\!_#{$property}-#{$direction}--#{$scale-unit} {
-                @include ds_responsive-spacing($scale-unit, $property, $direction, true);
+                @include helpers.ds_responsive-spacing($scale-unit, $property, $direction, true);
             }
         }
     }

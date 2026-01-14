@@ -2,9 +2,12 @@
     LINKS
 \*------------------------------------*/
 
+@use "../../settings";
+@use "../../helpers";
+
 a,
 .ds_link {
-    @include ds_link;
+    @include helpers.ds_link;
 }
 
 .ds_link {
@@ -24,15 +27,15 @@ a,
 .ds_reversed {
     a,
     .ds_link {
-        color: $ds_colour__link--reversed;
+        color: settings.$ds_colour__link--reversed;
 
         &:focus {
-            color: $ds_colour__link--reversed--focus;
+            color: settings.$ds_colour__link--reversed--focus;
         }
 
         &:hover:not(:focus) {
             background-color: transparent;
-            color: $ds_colour__link--reversed--hover;
+            color: settings.$ds_colour__link--reversed--hover;
             outline-color: transparent;
         }
     }

@@ -2,44 +2,44 @@
     HEADINGS
 \*------------------------------------*/
 
+@use "../../helpers";
+@use "../../settings";
+
 $use-legacy-heading-styles: true !default;
 
-
-
-
 h1, .ds_h1 {
-    @include ds_h1-style;
+    @include helpers.ds_h1-style;
 }
 
 h2, .ds_h2 {
-    @include ds_h2-style;
+    @include helpers.ds_h2-style;
 
     &:not(:first-child) {
-        @include ds_responsive-margin(5, top);
+        @include helpers.ds_responsive-margin(5, top);
     }
 }
 
 h3, .ds_h3 {
-    @include ds_h3-style;
+    @include helpers.ds_h3-style;
 
     &:not(:first-child) {
-        @include ds_responsive-margin(3, top);
+        @include helpers.ds_responsive-margin(3, top);
     }
 }
 
 h4, .ds_h4 {
-    @include ds_h4-style;
+    @include helpers.ds_h4-style;
 }
 
 h5, .ds_h5 {
-    @include ds_h5-style;
+    @include helpers.ds_h5-style;
 }
 
 
 
-
+/// legacy non-prefixed names
+/// DEPRECATED - will be removed in a future version
 @if $use-legacy-heading-styles {
-    // legacy
     .alpha {
         @extend .ds_h1;
     }

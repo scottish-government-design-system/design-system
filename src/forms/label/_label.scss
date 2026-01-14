@@ -2,11 +2,13 @@
     LABEL
 \*------------------------------------*/
 
-.ds_label {
-    @include ds_root-size;
+@use "../../base/helpers";
+@use "../../base/settings";
 
-    color: $ds_colour__text;
+.ds_label {
+    color: settings.$ds_colour__text;
     display: inline-block;
-    font-weight: $bold;
+    font-weight: settings.$bold;
     margin-bottom: 0.5rem;
+    @include helpers.ds_root-size;
 }

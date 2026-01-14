@@ -2,8 +2,10 @@
     HINT TEXT
 \*------------------------------------*/
 
+@use "../../base/settings";
+
 .ds_hint-text {
-    color: $ds_colour__text--secondary;
+    color: settings.$ds_colour__text--secondary;
     margin-bottom: 1rem;
 
     > * {
