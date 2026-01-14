@@ -2,13 +2,16 @@
     PHASE BANNER
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_phase-banner {
-    @include ds_small-size;
-    @include ds_responsive-padding(2, top, $tuning: -1px);
-    @include ds_responsive-padding(2, bottom);
-    background: $ds_colour__background--tertiary;
-    border-top: 1px solid transparent;
+    background: settings.$ds_colour__background--tertiary;
+    border-top: 0.0625rem solid transparent;
     clear: both;
+    @include helpers.ds_small-size;
+    @include helpers.ds_responsive-padding(2, top, $tuning: -0.0625rem);
+    @include helpers.ds_responsive-padding(2, bottom);
 
     &.no-bottom-margin {
         margin-bottom: 0;
@@ -20,15 +23,15 @@
     }
 
     &__tag.ds_tag {
-        @include ds_responsive-margin(2, right);
-        @include ds_small-size;
+        @include helpers.ds_responsive-margin(2, right);
+        @include helpers.ds_small-size;
     }
 
     &__text {
         display: table-cell;
     }
 
-    @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'phase banner');
+    @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--tertiary, 'phase banner');
 }
 
 @supports (display: flex) {
@@ -42,7 +45,7 @@
                 flex-direction: column;
 
                 > *:not(:last-child) {
-                    @include ds_responsive-margin(1, bottom);
+                    @include helpers.ds_responsive-margin(1, bottom);
                 }
             }
         }

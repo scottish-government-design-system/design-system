@@ -1,16 +1,29 @@
-$ds_breakpoints: (
-    small: '(min-width: 480px)',
-    medium: '(min-width: 768px)',
-    large: '(min-width: 992px)',
-    xlarge: '(min-width: 1200px)',
+/// Breakpoints in px and rem
+/// small - 480px / 30rem
+/// medium - 768px / 48rem
+/// large - 992px / 62rem
+/// xlarge - 1200px / 75rem
 
-    small-down: '(max-width: 479px)',
-    medium-down: '(max-width: 767px)',
-    large-down: '(max-width: 991px)',
-    small-to-medium: '(min-width: 480px) and (max-width: 767px)',
-    medium-to-large: '(min-width: 768px) and (max-width: 991px)',
-    large-to-xlarge: '(min-width: 992px) and (max-width: 1199px)',
-    xlarge-up: '(min-width: 1200px)',
+// DEPRECATED - medium-portrait and medium-landscape will be removed in a future version
+
+$small: 30rem;
+$medium: 48rem;
+$large: 62rem;
+$xlarge: 75rem;
+
+$ds_breakpoints: (
+    small: '(min-width: #{$small})',
+    medium: '(min-width: #{$medium})',
+    large: '(min-width: #{$large})',
+    xlarge: '(min-width: #{$xlarge})',
+
+    small-down: '(max-width: calc(#{$small} - 1px))',
+    medium-down: '(max-width: calc(#{$medium} - 1px))',
+    large-down: '(max-width: calc(#{$large} - 1px))',
+    small-to-medium: '(min-width: #{$small}) and (max-width: calc(#{$medium} - 1px))',
+    medium-to-large: '(min-width: #{$medium}) and (max-width: calc(#{$large} - 1px))',
+    large-to-xlarge: '(min-width: #{$large}) and (max-width: calc(#{$xlarge} - 1px))',
+    xlarge-up: '(min-width: #{$xlarge})',
 
     medium-portrait: '(min-width: 768px) and (orientation: portrait) and (max-width : 1024px)',
     medium-landscape: '(min-width: 768px) and (orientation: landscape)  and (max-width : 1024px)'

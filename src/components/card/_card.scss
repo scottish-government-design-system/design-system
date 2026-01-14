@@ -2,35 +2,38 @@
     CARD
 \*------------------------------------*/
 
-$card-grey-background-color: $ds_colour__background--secondary !default;
+@use "../../base/helpers";
+@use "../../base/settings";
+
+$card-grey-background-color: settings.$ds_colour__background--secondary !default;
 
 .ds_card {
-    @include ds_box-shadow;
-    @include ds_small-size;
-    @include ds_high-contrast-outline;
-    background-color: $ds_colour__background--primary;
+    @include helpers.ds_box-shadow;
+    @include helpers.ds_small-size;
+    @include helpers.ds_high-contrast-outline;
+    background-color: settings.$ds_colour__background--primary;
     display: grid;
     grid-template-rows: auto 1fr;
     position: relative;
 
     &--grey {
         background-color: $card-grey-background-color;
-        color: $ds_colour__text;
+        color: settings.$ds_colour__text;
 
         &:focus-within {
-            color: $ds_colour__link--focus;
+            color: settings.$ds_colour__link--focus;
         }
 
-        @include checkAndFixDescendantLinkColour($ds_colour__link, $card-grey-background-color, 'grey card');
+        @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, $card-grey-background-color, 'grey card');
     }
 
     &--hover,
     &--has-hover {
         &:hover {
-            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+            box-shadow: 0.0625rem 0.0625rem 0.1875rem rgba(0, 0, 0, 0.25);
         }
         &:hover:not(:focus) {
-            background-color: $ds_colour__link--hover__background;
+            background-color: settings.$ds_colour__link--hover__background;
 
             // override metadata colour to meet contrast
             .ds_metadata {
@@ -39,13 +42,13 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
         }
 
         &:focus-within {
-            @include ds_high-contrast-outline($width: 0.25em, $colour: highlight);
+            @include helpers.ds_high-contrast-outline($width: 0.25em, $colour: highlight);
 
-            background-color: $ds_colour__link--focus__background !important;
-            @include ds_unsupported-css-fallback(
+            background-color: settings.$ds_colour__link--focus__background !important;
+            @include helpers.ds_unsupported-css-fallback(
                 $prop: 'box-shadow',
-                $modern: inset 0px round(#{$focus__shadow-width * -1}, 1px) 0px $ds_colour__link--focus__shadow,
-                $fallback: inset 0px #{$focus__shadow-width * -1} 0px $ds_colour__link--focus__shadow
+                $modern: inset 0 round(#{helpers.$focus__shadow-width * -1}, 1px) 0 settings.$ds_colour__link--focus__shadow,
+                $fallback: inset 0 #{helpers.$focus__shadow-width * -1} 0 settings.$ds_colour__link--focus__shadow
             );
             transition-duration: 0s;
 
@@ -64,52 +67,52 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
     }
 
     &__media {
-        @include ds_media-query (medium-down) {
+        @include helpers.ds_media-query (medium-down) {
             &--small-mobile {
                 padding: 1rem 1rem 0;
-                max-width: calc(360px + 2rem);
+                max-width: 24.5rem;
             }
         }
     }
 
     &__content {
-        @include ds_last-child-no-margin;
+        @include helpers.ds_last-child-no-margin;
         display: grid;
         grid-template-rows: auto auto 1fr;
         height: 100%;
-        @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(2, right);
-        @include ds_responsive-padding(3, bottom);
-        @include ds_responsive-padding(2, left);
+        @include helpers.ds_responsive-padding(2, top);
+        @include helpers.ds_responsive-padding(2, right);
+        @include helpers.ds_responsive-padding(3, bottom);
+        @include helpers.ds_responsive-padding(2, left);
 
         &-footer {
-            @include ds_last-child-no-margin;
+            @include helpers.ds_last-child-no-margin;
             align-self: end;
         }
     }
 
     &__title {
-        @include ds_h3-style;
-        @include ds_responsive-margin(1, bottom);
+        @include helpers.ds_h3-style;
+        @include helpers.ds_responsive-margin(1, bottom);
         margin-top: 0 !important;
     }
 
     &__link--cover:after {
         content: "";
         height: 100%;
-        left: 0px;
+        left: 0;
         position: absolute;
-        top: 0px;
+        top: 0;
         width: 100%;
         z-index: 1;
     }
 
     &:has(.ds_card__link--cover) {
-        @include ds_link--block('.ds_card__link--cover');
+        @include helpers.ds_link--block('.ds_card__link--cover');
         display: grid;
         
         &:focus-within {
-            @include ds_high-contrast-outline($width: 0.25em, $colour: highlight)
+            @include helpers.ds_high-contrast-outline($width: 0.25em, $colour: highlight)
         }
     }
 }

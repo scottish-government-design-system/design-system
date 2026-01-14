@@ -2,41 +2,44 @@
     NOTIFICATION PANEL
 \*------------------------------------*/
 
-.ds_notification-panel {
-    @include ds_responsive-margin(3, bottom);
-    @include ds_responsive-padding(6, top);
-    @include ds_responsive-padding(6, bottom);
-    @include ds_responsive-padding(4, left);
-    @include ds_responsive-padding(4, right);
-    background: $ds_colour__state--positive;
-    color: $ds_colour__text--reversed;
-    text-align: center;
+@use "../../base/helpers";
+@use "../../base/settings";
 
-    @include ds_high-contrast-outline(4px);
+.ds_notification-panel {
+    background: settings.$ds_colour__state--positive;
+    color: settings.$ds_colour__text--reversed;
+    text-align: center;
+    @include helpers.ds_responsive-margin(3, bottom);
+    @include helpers.ds_responsive-padding(6, top);
+    @include helpers.ds_responsive-padding(6, bottom);
+    @include helpers.ds_responsive-padding(4, left);
+    @include helpers.ds_responsive-padding(4, right);
+
+    @include helpers.ds_high-contrast-outline(0.25rem);
 
     // Add top margin if placed below another item
     &:not(:first-child) {
-        @include ds_responsive-margin(6, top);
+        @include helpers.ds_responsive-margin(6, top);
     }
 
     &--neutral {
-        background: $ds_colour__background--secondary;
-        color: $ds_colour__text;
+        background: settings.$ds_colour__background--secondary;
+        color: settings.$ds_colour__text;
     }
 
     &__title {
         // Any heading level will display in standard way - design is separated from heading level
         // This needs improved so line height (and maybe also margin) also comes from mixin
         // Bottom margin reduced over normal h1 value
-        @include ds_h1-style;
-        @include ds_responsive-margin(2, bottom);
+        @include helpers.ds_h1-style;
+        @include helpers.ds_responsive-margin(2, bottom);
     }
 
     &__content {
-        @include ds_last-child-no-margin;
+        @include helpers.ds_last-child-no-margin;
     }
 
     &__reference {
-        @include ds_large-size;
+        @include helpers.ds_large-size;
     }
 }

@@ -2,19 +2,21 @@
 ///
 /// Common definitions for consistent button sizing
 
-$button__height: 56px !default;
-$button__height--small: 48px !default;
+@use "../../settings";
+
+$button__height: settings.$ds_button__height !default; 
+$button__height--small: settings.$ds_button__height--small !default;
 
 @mixin ds_button-sizing ($icon: true) {
     min-height: $button__height;
     min-width: $button__height;
-    padding: 16px;
+    padding: 1rem;
 
     @if $icon {
         > .ds_icon {
-            height: 40px;
-            padding: 8px;
-            width: 40px;
+            height: 2.5rem;
+            padding: 0.5rem;
+            width: 2.5rem;
         }
     }
 }
@@ -22,14 +24,14 @@ $button__height--small: 48px !default;
 @mixin ds_button-sizing--small ($icon: true) {
     min-height: $button__height--small;
     min-width: $button__height--small;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 
     @if $icon {
         > .ds_icon {
-            height: 32px;
-            padding: 8px;
-            width: 32px;
+            height: 2rem;
+            padding: 0.5rem;
+            width: 2rem;
         }
     }
 }

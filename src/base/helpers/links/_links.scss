@@ -1,10 +1,17 @@
-$blocklink__outline-width: 0;
-$link__current-underline-thickness: 0.16em;
-$link__outline-width: 0.125em;
-$link__underline-offset: 0.16em;
-$link__underline-thickness: auto;
-$link__underline-offset--hover: $link__underline-offset;
-$link__underline-thickness--hover: 0.16em;
+@use "../../settings";
+@use "../focus";
+@use "../high-contrast";
+@use "../media-query";
+@use "../unsupported-css-fallback";
+
+
+$blocklink__outline-width: settings.$ds_blocklink__outline-width;
+$link__current-underline-thickness: settings.$ds_link__current-underline-thickness;
+$link__outline-width: settings.$ds_link__outline-width;
+$link__underline-offset: settings.$ds_link__underline-offset;
+$link__underline-thickness: settings.$ds_link__underline-thickness;
+$link__underline-offset--hover: settings.$ds_link__underline-offset--hover;
+$link__underline-thickness--hover: settings.$ds_link__underline-thickness--hover;
 
 
 
@@ -15,27 +22,27 @@ $link__underline-thickness--hover: 0.16em;
 /// look like links (e.g. buttons we want to have display with a link-like style)
 
 @mixin ds_link {
-    @include ds_high-contrast-link;
+    @include high-contrast.ds_high-contrast-link;
 
-    color: $ds_colour__link;
+    color: settings.$ds_colour__link;
     outline: 0px solid transparent;
     text-decoration: underline;
     text-underline-offset: $link__underline-offset;
-    transition: color $transition-out-time, background-color $transition-out-time, outline-color $transition-out-time;
+    transition: color settings.$transition-out-time, background-color settings.$transition-out-time, outline-color settings.$transition-out-time;
 
     &:hover {
-        color: $ds_colour__link--hover;
+        color: settings.$ds_colour__link--hover;
         text-underline-offset: $link__underline-offset--hover;
-        @include ds_unsupported-css-fallback(
+        @include unsupported-css-fallback.ds_unsupported-css-fallback(
             $prop: 'text-decoration-thickness',
             $modern: round($link__underline-thickness--hover, 1px),
             $fallback: $link__underline-thickness--hover
         );
-        transition-duration: $transition-in-time;
+        transition-duration: settings.$transition-in-time;
     }
 
     &:focus {
-        @include ds_focus;
+        @include focus.ds_focus;
     }
 
     > svg {
@@ -54,7 +61,7 @@ $link__underline-thickness--hover: 0.16em;
         #{$link-selector} {
             &:focus {
                 filter: none;
-                @include ds_media-query-high-contrast {
+                @include media-query.ds_media-query-high-contrast {
                     outline-width: 0 !important;
                 }
             }
@@ -65,22 +72,22 @@ $link__underline-thickness--hover: 0.16em;
         }
 
         &:focus-within {
-            @include ds_focus;
-            @include ds_focus--inset;
+            @include focus.ds_focus;
+            @include focus.ds_focus--inset;
         }
 
         &:hover:not(:focus-within) {
-            background-color: $ds_colour__link--hover__background;
-            color: $ds_colour__link--hover;
+            background-color: settings.$ds_colour__link--hover__background;
+            color: settings.$ds_colour__link--hover;
         }
     } @else {
         &:focus {
-            @include ds_focus--inset;
+            @include focus.ds_focus--inset;
         }
 
         &:hover:not(:focus) {
-            background-color: $ds_colour__link--hover__background;
-            color: $ds_colour__link--hover;
+            background-color: settings.$ds_colour__link--hover__background;
+            color: settings.$ds_colour__link--hover;
         }
     }
 }
@@ -94,7 +101,7 @@ $link__underline-thickness--hover: 0.16em;
 
         &:hover #{$link-selector} {
             text-underline-offset: $link__underline-offset--hover;
-            @include ds_unsupported-css-fallback(
+            @include unsupported-css-fallback.ds_unsupported-css-fallback(
                 $prop: 'text-decoration-thickness',
                 $modern: round($link__underline-thickness--hover, 1px),
                 $fallback: $link__underline-thickness--hover
@@ -107,7 +114,7 @@ $link__underline-thickness--hover: 0.16em;
 
         &:hover {
             text-underline-offset: $link__underline-offset--hover;
-            @include ds_unsupported-css-fallback(
+            @include unsupported-css-fallback.ds_unsupported-css-fallback(
                 $prop: 'text-decoration-thickness',
                 $modern: round($link__underline-thickness--hover, 1px),
                 $fallback: $link__underline-thickness--hover

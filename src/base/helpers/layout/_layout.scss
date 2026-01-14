@@ -1,6 +1,7 @@
 @use "sass:math";
+@use "../../settings";
 
-@mixin ds_colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
+@mixin ds_colwidth($columns: 1, $total: 12, $gutter: settings.$grid-gap-x) {
     width: calc(#{100% * math.div($columns, $total)} - #{$gutter});
 }
 
@@ -12,7 +13,7 @@
     margin-left: #{100% * math.div($columns, $total) * -1};
 }
 
-@mixin ds_layout($gutter: $grid-gap-x, $sub: false) {
+@mixin ds_layout($gutter: settings.$grid-gap-x, $sub: false) {
     @if $sub {} @else {
         margin-right: #{$gutter * -1};
     }
@@ -40,7 +41,8 @@
 
 
 /// legacy non-prefixed names
-@mixin colwidth($columns: 1, $total: 12, $gutter: $grid-gap-x) {
+/// DEPRECATED - use prefixed mixins instead
+@mixin colwidth($columns: 1, $total: 12, $gutter: settings.$grid-gap-x) {
     @include ds_colwidth($columns, $total, $gutter);
 }
 

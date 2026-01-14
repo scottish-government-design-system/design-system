@@ -2,16 +2,20 @@
     ERROR SUMMARY
 \*------------------------------------*/
 
-$foreground-colour: $ds_colour__state--negative !default;
+@use 'sass:color';
+@use "../../base/helpers";
+@use "../../base/settings";
+
+$foreground-colour: settings.$ds_colour__state--negative !default;
 $link-colour: $foreground-colour;
-$link-hover-colour: darken($link-colour, 12.5%);
+$link-hover-colour: color.adjust($link-colour, $lightness: -12.5%);
 
 /// [1] compensate for border
 .ds_error-summary {
     border: 0.25rem solid $foreground-colour;
     padding: 1.25rem 1.75rem; /// [1]
-    @include ds_block-margins;
-    @include ds_last-child-no-margin;
+    @include helpers.ds_block-margins;
+    @include helpers.ds_last-child-no-margin;
 
     &__title {
         margin-top: 0;
@@ -19,7 +23,7 @@ $link-hover-colour: darken($link-colour, 12.5%);
 
     &__list {
         color: $foreground-colour;
-        font-weight: $bold;
+        font-weight: settings.$bold;
         list-style-type: none;
         margin-left: 0;
 

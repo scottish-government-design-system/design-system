@@ -2,16 +2,18 @@
     SORT OPTIONS
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 /// [1] IE 11 and pre-Chromium Edge
 /// [2] unsetting items set in [1]
 .ds_sort-options {
-    @include ds_small-size;
-    @include ds_responsive-margin(4, bottom);
-
     align-items: center;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 24px;
+    gap: 0.5rem 1.5rem;
+    @include helpers.ds_small-size;
+    @include helpers.ds_responsive-margin(4, bottom);
 
     .ds_button,
     .ds_label,
@@ -37,7 +39,7 @@
     }
 
     .ds_label {
-        font-weight: normal;
+        font-weight: settings.$normal;
     }
 
     .ds_select {
@@ -53,7 +55,7 @@
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_sort-options .ds_select {
         min-height: 2.5rem;
         padding-top: 0.25rem;

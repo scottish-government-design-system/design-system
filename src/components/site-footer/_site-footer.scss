@@ -2,49 +2,52 @@
     SITE FOOTER
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 // modifiable vars
-$site-footer__background: $ds_colour__background--tertiary !default;
+$site-footer__background: settings.$ds_colour__background--tertiary !default;
 
-
-
+// fixed vars
+$site-footer__border-width: 0.0625rem; // 1px
 
 .ds_site-footer {
     /// [1] subtracting the border width
-    @include ds_small-size;
     background-color: $site-footer__background;
-    border-top: 1px solid $ds_colour__border;
+    border-top: $site-footer__border-width solid settings.$ds_colour__border;
+    @include helpers.ds_small-size;
 
     &__content {
-        padding-top: px-to-rem(23px); /// [1]
-        padding-bottom: px-to-rem(32px);
+        padding-top: #{1.5rem - $site-footer__border-width}; /// [1]
+        padding-bottom: 2rem;
     }
 
     &__site-items {
-        border-bottom: 1px solid $ds_colour__border;
-        font-size: $small-size--fixed;
-        line-height: line-height-on-grid($small-size--fixed);
+        border-bottom: $site-footer__border-width solid settings.$ds_colour__border;
+        font-size: settings.$small-size--fixed;
+        line-height: helpers.line-height-on-grid(settings.$small-size--fixed);
         list-style-type: none;
-        margin: px-to-rem(-8px) 0 px-to-rem(23px);
+        margin: -0.5rem 0 #{1.5rem - $site-footer__border-width};
     }
 
     /// [2] minimum OGL logo width for digital according to the OGL branding guidelines
     &__copyright {
         &-logo {
             display: block;
-            width: 41px; /// [2]
+            width: max(2.5625rem, 41px); /// [2]
 
             img {
                 width: 100%;
             }
         }
 
-        @include ds_media-query(medium) {
-            @include ds_last-child-no-margin;
+        @include helpers.ds_media-query(medium) {
+            @include helpers.ds_last-child-no-margin;
         }
     }
 
     &__org {
-        max-width: 160px;
+        max-width: 10rem;
         position: relative;
     }
 
@@ -56,7 +59,7 @@ $site-footer__background: $ds_colour__background--tertiary !default;
     &__org-link {
         display: block;
 
-        @include ds_fancy-underscore;
+        @include helpers.ds_fancy-underscore;
     }
 
     .ds_site-footer__org-link,
@@ -64,35 +67,35 @@ $site-footer__background: $ds_colour__background--tertiary !default;
         color: currentColor !important;
     }
 
-    @include checkAndFixDescendantLinkColour($ds_colour__link, $ds_colour__background--tertiary, 'site footer');
+    @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--tertiary, 'site footer');
 }
 
 .ds_site-items {
     &__item,
     &__item:last-child {
         display: inline-block;
-        margin-bottom: px-to-rem(16px);
+        margin-bottom: 1rem;
 
         &:not(:last-child) {
-            margin-right: px-to-rem(24px);
+            margin-right: 1.5rem;
         }
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_site-footer {
         &__content {
-            @include ds_layout();
+            @include helpers.ds_layout();
         }
 
         &__copyright {
             float: left;
-            @include ds_colwidth(8);
+            @include helpers.ds_colwidth(8);
         }
 
         &__org {
             float: right;
-            @include ds_colwidth(3);
+            @include helpers.ds_colwidth(3);
         }
     }
 
@@ -100,7 +103,7 @@ $site-footer__background: $ds_colour__background--tertiary !default;
         .ds_site-footer {
             &__content {
                 display: grid;
-                grid-gap: 0 $grid-gap-x;
+                grid-gap: 0 settings.$grid-gap-x;
                 grid-template-columns: repeat(12, 1fr);
                 grid-template-areas: 'a a a a a a a a a a a a'
                                      'b b b b b b b b . c c c';

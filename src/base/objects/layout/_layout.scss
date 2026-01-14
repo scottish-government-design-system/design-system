@@ -2,56 +2,58 @@
     LAYOUT
 \*------------------------------------*/
 
+@use "../../helpers";
+
 .ds_layout {
-    @include ds_layout();
-    margin-bottom: 96px;
+    @include helpers.ds_layout();
+    margin-bottom: 6rem;
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_layout {
 
         // Defaults
         &__header {
             clear: left;
             float: left;
-            @include ds_colwidth(8);
+            @include helpers.ds_colwidth(8);
         }
 
         &__partner {
             float: left;
-            @include ds_colwidth(4);
+            @include helpers.ds_colwidth(4);
         }
 
         &__navigation {
             clear: left;
-            @include ds_colwidth(8);
+            @include helpers.ds_colwidth(8);
         }
 
         &__sidebar {
             float: left;
-            @include ds_colwidth(4);
+            @include helpers.ds_colwidth(4);
         }
 
         &__content {
             clear: left;
             float: left;
-            @include ds_colwidth(8);
+            @include helpers.ds_colwidth(8);
         }
 
         &__list {
             clear: left;
             float: left;
-            @include ds_colwidth(8);
+            @include helpers.ds_colwidth(8);
         }
 
         &__footer {
             clear: left;
-            @include ds_colwidth(8);
+            @include helpers.ds_colwidth(8);
         }
 
         &__feedback {
             clear: left;
-            @include ds_colwidth(8);
+            @include helpers.ds_colwidth(8);
         }
 
         // Layout overrides
@@ -61,7 +63,7 @@
                 &__grid {
                     clear: left;
                     float: left;
-                    @include ds_colwidth(12);
+                    @include helpers.ds_colwidth(12);
                 }
             }
         }
@@ -72,65 +74,42 @@
                 &__sidebar {
                     clear: left;
                     float: left;
-                    @include ds_colwidth(4);
+                    @include helpers.ds_colwidth(4);
                 }
 
                 &__list {
                     clear: none;
                     float: left;
-                    @include ds_colwidth(8);
+                    @include helpers.ds_colwidth(8);
                 }
 
                 &__feedback {
                     clear: left;
-                    @include ds_colpush(4);
-                    @include ds_colwidth(8);
+                    @include helpers.ds_colpush(4);
+                    @include helpers.ds_colwidth(8);
                 }
             }
         }
 
-        // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release
-        &--search-results-with-sidebar {
-            .ds_layout {
-
-                &__sidebar {
-                    clear: left;
-                    float: left;
-                    @include ds_colwidth(4);
-                }
-
-                &__content {
-                    clear: none;
-                    float: left;
-                    @include ds_colwidth(8);
-                }
-
-                &__feedback {
-                    clear: left;
-                    @include ds_colpush(4);
-                    @include ds_colwidth(8);
-                }
-            }
-        }
     }
 }
 
 
-@include ds_media-query(large) {
+@include helpers.ds_media-query(large) {
     .ds_layout {
         &--article {
             .ds_layout {
 
                 &__partner {
                     float: left;
-                    @include ds_colpush(1);
-                    @include ds_colwidth(3);
+                    @include helpers.ds_colpush(1);
+                    @include helpers.ds_colwidth(3);
                 }
 
                 &__sidebar {
                     float: left;
-                    @include ds_colpush(1);
-                    @include ds_colwidth(3);
+                    @include helpers.ds_colpush(1);
+                    @include helpers.ds_colwidth(3);
                 }
             }
         }
@@ -140,14 +119,14 @@
 
                 &__partner {
                     float: left;
-                    @include ds_colpush(1);
-                    @include ds_colwidth(3);
+                    @include helpers.ds_colpush(1);
+                    @include helpers.ds_colwidth(3);
                 }
 
                 &__sidebar {
                     float: left;
-                    @include ds_colpush(1);
-                    @include ds_colwidth(3);
+                    @include helpers.ds_colpush(1);
+                    @include helpers.ds_colwidth(3);
                 }
 
             }
@@ -234,7 +213,7 @@
         &__partner {
             grid-area: $grid-area-partner;
             align-self: start;
-            @include ds_block-margins;
+            @include helpers.ds_block-margins;
         }
 
         &__sidebar {
@@ -260,7 +239,7 @@
                 'f f';
         }
 
-        // navigation grid area 'n' for search results is deprecated - this will be removed in a future release
+        // DEPRECATED navigation grid area 'n' for search results is deprecated - this will be removed in a future release
         &--search-results {
             grid-template-areas:
                 'h h'
@@ -279,16 +258,6 @@
                 'f f';
         }
 
-        // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release
-        &--search-results-with-sidebar {
-            grid-template-areas:
-                'h h'
-                'n n'
-                's s'
-                'c c'
-                'f f';
-        }
-
         &--question-page {
             grid-template-areas:
                 'h h'
@@ -301,7 +270,7 @@
         }
     }
 
-    @include ds_media-query(small) {
+    @include helpers.ds_media-query(small) {
         .ds_layout {
             grid-template-columns: repeat(6, 1fr);
 
@@ -332,7 +301,7 @@
                     'f f f f f f';
             }
 
-            // navigation grid area 'n' for search results is deprecated - this will be removed in a future release
+            // DEPRECATED navigation grid area 'n' for search results is deprecated - this will be removed in a future release
             &--search-results {
                 grid-template-areas:
                     'h h h h h h'
@@ -351,16 +320,6 @@
                     'f f f f f f';
             }
 
-            // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release
-            &--search-results-with-sidebar {
-                grid-template-areas:
-                    'h h h h h h'
-                    'n n n n n n'
-                    's s s s s s'
-                    'c c c c c c'
-                    'f f f f f f';
-            }
-
             &--question-page {
                 grid-template-areas:
                     'h h h h h h'
@@ -374,7 +333,7 @@
         }
     }
 
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         .ds_layout {
             grid-template-areas:
                 'h h h h h h h h p p p p'
@@ -408,7 +367,7 @@
                     'f f f f f f f f . . . .';
             }
 
-            // navigation grid area 'n' for search results is deprecated - this will be removed in a future release
+            // DEPRECATED navigation grid area 'n' for search results is deprecated - this will be removed in a future release
             &--search-results {
                 grid-template-areas:
                     'h h h h h h h h . . . .'
@@ -426,15 +385,6 @@
                     '. . . . f f f f f f f f';
             }
 
-            // .ds_layout--search-results-with-sidebar is deprecated - this will be removed in a future release
-            &--search-results-with-sidebar {
-                grid-template-areas:
-                    'h h h h h h h h . . . .'
-                    'n n n n n n n n . . . .'
-                    's s s s c c c c c c c c'
-                    '. . . . f f f f f f f f';
-            }
-
             &--question-page {
                 grid-template-areas:
                     'h h h h h h h h p p p p'
@@ -446,7 +396,7 @@
         }
     }
 
-    @include ds_media-query(large) {
+    @include helpers.ds_media-query(large) {
         .ds_layout {
             &--article {
                 grid-template-areas:

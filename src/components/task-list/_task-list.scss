@@ -2,30 +2,33 @@
     TASK LIST
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_task-list {
     list-style-type: none;
-    margin: -2px 0 0 0; // Negative top margin to offset top border of first task
+    margin: -0.125rem 0 0 0; // Negative top margin to offset top border of first task
     padding: 0;
 
     &__task {
         align-items: center;
-        border-top: 2px $ds_colour__border--faint solid;
+        border-top: 0.125rem settings.$ds_colour__border--faint solid;
         display: flex;
         gap: 0.5rem 2rem;
         justify-content: space-between;
         margin: 0;
-        @include ds_responsive-padding(2, top);
-        @include ds_responsive-padding(2, bottom, $tuning: -2px);
+        @include helpers.ds_responsive-padding(2, top);
+        @include helpers.ds_responsive-padding(2, bottom, $tuning: -0.125rem);
 
         &:last-child {
-            border-bottom: 2px $ds_colour__border--faint solid;
+            border-bottom: 0.125rem settings.$ds_colour__border--faint solid;
         }
 
         // Stack at small size
-        @include ds_media-query(small-down) {
-            @include ds_responsive-padding(3, bottom, $tuning: -2px);
+        @include helpers.ds_media-query(small-down) {
             align-items: flex-start;
             flex-direction: column;
+            @include helpers.ds_responsive-padding(3, bottom, $tuning: -0.125rem);
         }
 
         &-details {
@@ -34,9 +37,9 @@
 
         // remove heading styles
         &-heading {
-            @include ds_root-size;
-            font-weight: $normal;
+            font-weight: settings.$normal;
             margin: 0;
+            @include helpers.ds_root-size;
         }
 
         &-link {
@@ -45,34 +48,34 @@
 
         &-summary {
             margin: 0;
-            @include ds_responsive-margin(1, top);
+            @include helpers.ds_responsive-margin(1, top);
         }
 
-        // Deprecated - use ds_tag component instead
+        // DEPRECATED - use ds_tag component instead
         &-status {
-            @include ds_small-size;
-            @include ds_high-contrast-outline;
-            background-color: $ds_colour__background--tertiary;
-            font-weight: $bold;
-            padding: px-to-rem(4px) px-to-rem(16px);
+            @include helpers.ds_small-size;
+            @include helpers.ds_high-contrast-outline;
+            background-color: settings.$ds_colour__background--tertiary;
+            font-weight: settings.$bold;
+            padding: 0.25rem 1rem;
             white-space: nowrap;
 
             &--complete {
-                background: $ds_colour__background--primary;
-                color: $ds_colour__state--positive;
-                border: 2px $ds_colour__state--positive solid;
-                padding: px-to-rem(2px) px-to-rem(16px);
+                background: settings.$ds_colour__background--primary;
+                color: settings.$ds_colour__state--positive;
+                border: 0.125rem settings.$ds_colour__state--positive solid;
+                padding: 0.125rem 1rem;
             }
         }
     }
 
     &-heading {
-        @include ds_h3-style;
+        @include helpers.ds_h3-style;
         display: inline-block;
     }
 
     &-intro {
-        @include ds_responsive-margin(2, bottom);
+        @include helpers.ds_responsive-margin(2, bottom);
     }
 
     // Add top margin if following inline heading
@@ -81,7 +84,7 @@
     }
     // Include tuning for top border of tasks
     &-heading + & {
-        @include ds_responsive-margin(1, top, $tuning: -2px);
+        @include helpers.ds_responsive-margin(1, top, $tuning: -0.125rem);
     }
 }
 
@@ -94,10 +97,10 @@
     &__section:last-child {
         margin: 0;
         padding: 0;
-        @include ds_responsive-margin(5, bottom);
+        @include helpers.ds_responsive-margin(5, bottom);
 
-        @include ds_media-query(small-down) {
-            @include ds_responsive-margin(6, bottom);
+        @include helpers.ds_media-query(small-down) {
+            @include helpers.ds_responsive-margin(6, bottom);
         }
     }
 
@@ -106,24 +109,24 @@
         list-style-type: decimal;
 
         .ds_task-list-group__section::marker {
-            @include ds_h3-size;
-            font-weight: $bold;
+            @include helpers.ds_h3-size;
+            font-weight: settings.$bold;
         }
     }
 }
 
 .ds_task-list-status {
-    @include ds_responsive-margin(5, bottom);
+    @include helpers.ds_responsive-margin(5, bottom);
 
-    @include ds_media-query(small-down) {
-        @include ds_responsive-margin(6, bottom);
+    @include helpers.ds_media-query(small-down) {
+        @include helpers.ds_responsive-margin(6, bottom);
     }
 
     > p {
-        @include ds_responsive-margin(1, bottom);
+        @include helpers.ds_responsive-margin(1, bottom);
     }
 
     &-heading {
-        @include ds_h3-style;
+        @include helpers.ds_h3-style;
     }
 }

@@ -3,19 +3,21 @@
     containing site-navigation and mobile equivalent
 */
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 // modifiable vars
-$site-navigation__mobile-menu-background: $ds_colour__background--secondary !default;
-$site-navigation__highlight-colour: $ds_colour__border--highlight !default;
+$site-navigation__mobile-menu-background: settings.$ds_colour__background--secondary !default;
+$site-navigation__highlight-colour: settings.$ds_colour__border--highlight !default;
 
 // common to both mobile and desktop
-$site-navigation__link-padding: 16px;
+$site-navigation__link-padding: 1rem;
 
 $site-navigation__link-underline-thickness: calc(4em/19);
 
 .ds_site-navigation {
-    @include ds_small-size;
-
     display: none;
+    @include helpers.ds_small-size;
 
     &__toggle {
         display: none;
@@ -46,21 +48,21 @@ $site-navigation__link-underline-thickness: calc(4em/19);
 }
 
 // small screens
-@include ds_media-query(medium-down) {
+@include helpers.ds_media-query(medium-down) {
     .ds_site-navigation {
         background-color: $site-navigation__mobile-menu-background;
-        margin: 0 -16px;
+        margin: 0 -1rem;
 
         &--mobile {
             overflow: hidden;
         }
 
         &__list {
-            padding: 16px;
+            padding: 1rem;
         }
 
         &__item:not(:last-child) {
-            border-bottom: 1px solid $ds_colour__border;
+            border-bottom: 0.0625rem solid settings.$ds_colour__border;
         }
 
         &__link {
@@ -69,8 +71,8 @@ $site-navigation__link-underline-thickness: calc(4em/19);
 
             &:hover:not(:focus),
             &.ds_current {
-                $site-navigation__mobile-border-width: 4px;
-                border-left: $site-navigation__mobile-border-width solid $ds_colour__brand;
+                $site-navigation__mobile-border-width: 0.25rem;
+                border-left: $site-navigation__mobile-border-width solid settings.$ds_colour__brand;
                 padding-left: #{$site-navigation__link-padding - $site-navigation__mobile-border-width};
             }
         }
@@ -78,12 +80,12 @@ $site-navigation__link-underline-thickness: calc(4em/19);
 
     .ds_site-navigation__toggle:checked ~ .ds_site-navigation,
     .ds_site-navigation--open {
-        border-top: 1px solid $ds_colour__border--faint;
+        border-top: 0.0625rem solid settings.$ds_colour__border--faint;
         display: block;
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_site-navigation {
         line-height: 1.5;
 
@@ -98,21 +100,21 @@ $site-navigation__link-underline-thickness: calc(4em/19);
         &__list {
             display: flex;
             flex-wrap: wrap;
-            margin: 0 0 0 -16px;
+            margin: 0 0 0 -1rem;
         }
 
         .ds_site-navigation__link {
-            @include ds_fancy-underscore($width: $site-navigation__link-underline-thickness, $horiz-padding: $site-navigation__link-padding);
+            @include helpers.ds_fancy-underscore($width: $site-navigation__link-underline-thickness, $horiz-padding: $site-navigation__link-padding);
 
             &::after {
                 bottom: 0;
             }
 
             &.ds_current:not(:focus) {
-                color: $ds_colour__text;
+                color: settings.$ds_colour__text;
 
                 &:after {
-                    background-color: $ds_colour__link;
+                    background-color: settings.$ds_colour__link;
                     border-bottom: $site-navigation__link-underline-thickness solid transparent;
                     left: $site-navigation__link-padding;
                     opacity: 1;
@@ -123,10 +125,10 @@ $site-navigation__link-underline-thickness: calc(4em/19);
 
         a.ds_site-navigation__link {
             &:focus {
-                @include ds_unsupported-css-fallback(
+                @include helpers.ds_unsupported-css-fallback(
                     $prop: 'box-shadow',
-                    $modern: inset 0 round(#{$focus__shadow-width * -1}, 1px) $ds_colour__link--focus__shadow,
-                    $fallback: inset 0 #{$focus__shadow-width * -1} $ds_colour__link--focus__shadow
+                    $modern: inset 0 round(#{helpers.$focus__shadow-width * -1}, 1px) settings.$ds_colour__link--focus__shadow,
+                    $fallback: inset 0 #{helpers.$focus__shadow-width * -1} settings.$ds_colour__link--focus__shadow
                 );
                 filter: none;
                 outline: none;

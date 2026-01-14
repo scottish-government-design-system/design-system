@@ -2,27 +2,30 @@
     QUESTION
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_question {
 
-    @include ds_responsive-margin(4, bottom);
+    @include helpers.ds_responsive-margin(4, bottom);
 
     &--error {
-        border-left: 0.25rem solid $ds_colour__state--negative;
+        border-left: 0.25rem solid settings.$ds_colour__state--negative;
         padding-left: 1.25rem;
     }
 
     &__message,
     &__error-message {
-        @include ds_responsive-margin(2, bottom);
+        @include helpers.ds_responsive-margin(2, bottom);
     }
 
     &__error-message {
-        color: $ds_colour__state--negative;
-        font-weight: $bold;
+        color: settings.$ds_colour__state--negative;
+        font-weight: settings.$bold;
     }
 
     // Remove bottom margin from last element if within a fieldset to prevent double margin
     & > fieldset {
-        @include ds_last-child-no-margin;
+        @include helpers.ds_last-child-no-margin;
     }
 }

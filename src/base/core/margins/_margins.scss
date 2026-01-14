@@ -2,10 +2,13 @@
     BASIC MARGINS
 \*------------------------------------*/
 
+
+@use "../../helpers";
+
 h1, h2, h3, h4, h5, h6,
 ul, ol, dl,
 blockquote, p, address,
 table, figure,
 pre {
-  @include ds_responsive-margin(2, bottom);
+  @include helpers.ds_responsive-margin(2, bottom);
 }

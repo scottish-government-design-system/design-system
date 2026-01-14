@@ -2,12 +2,15 @@
     BRANDING
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 // modifiable vars
-$site-logo__height: 32px !default;
-$site-logo__height--medium: 40px !default;
-$site-branding-padding: 12px;
-$site-branding-title-spacing: 24px;
-$site-branding-title-spacing--medium: 48px;
+$site-logo__height: 2rem !default;
+$site-logo__height--medium: 2.5rem !default;
+$site-branding-padding: 0.75rem;
+$site-branding-title-spacing: 1.5rem;
+$site-branding-title-spacing--medium: 3rem;
 
 
 
@@ -18,7 +21,7 @@ $site-branding-title-spacing--medium: 48px;
 
     &__logo {
         height: $site-logo__height;
-        margin-right: px-to-rem($site-branding-title-spacing);
+        margin-right: $site-branding-title-spacing;
     }
 
     &__logo-image {
@@ -33,21 +36,21 @@ $site-branding-title-spacing--medium: 48px;
         position: relative;
         text-decoration: none;
 
-        @include ds_fancy-underscore;
+        @include helpers.ds_fancy-underscore;
     }
 
     &__title {
-        font-weight: $normal;
-        line-height: px-to-rem(24px);
+        font-weight: settings.$normal;
+        line-height: 1.5rem;
 
         &::before {
-            background: $ds_colour__brand;
+            background: settings.$ds_colour__brand;
             bottom: $site-branding-padding;
             content: '';
             position: absolute;
-            margin-left: px-to-rem($site-branding-title-spacing * -0.5);
+            margin-left: calc($site-branding-title-spacing * -0.5);
             top: $site-branding-padding;
-            width: 1px;
+            width: 0.0625rem;
         }
     }
 
@@ -58,7 +61,7 @@ $site-branding-title-spacing--medium: 48px;
 
 }
 
-@include ds_media-query (medium) {
+@include helpers.ds_media-query (medium) {
     .ds_site-branding {
         &__link {
             margin-bottom: 0;
@@ -66,7 +69,7 @@ $site-branding-title-spacing--medium: 48px;
 
         &__logo {
             height: $site-logo__height--medium;
-            margin-right: px-to-rem($site-branding-title-spacing--medium);
+            margin-right: $site-branding-title-spacing--medium;
         }
 
         &__logo-image {
@@ -76,7 +79,7 @@ $site-branding-title-spacing--medium: 48px;
         &__title {
 
             &::before {
-                margin-left: px-to-rem($site-branding-title-spacing--medium * -0.5);
+                margin-left: calc($site-branding-title-spacing--medium * -0.5);
             }
         }
     }
@@ -87,7 +90,7 @@ $site-branding-title-spacing--medium: 48px;
         align-items: center;
         display: flex;
         flex-flow: wrap;
-        gap: px-to-rem(16px) 0;
+        gap: 1rem 0;
 
         &__logo,
         &__title {

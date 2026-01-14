@@ -3,13 +3,17 @@
     Default focus indicator
 \*------------------------------------*/
 
-$focus__outline-width: 0.125em !default;
-$focus__shadow-width: 0.16em !default;
-$focus__input-shadow-width: 0.125em !default;
+@use "../../settings";
+@use "../unsupported-css-fallback";
+@use "../high-contrast";
+
+$focus__outline-width: settings.$ds_focus__outline-width !default;
+$focus__shadow-width: settings.$ds_focus__shadow-width !default;
+$focus__input-shadow-width: settings.$ds_focus__input-shadow-width !default;
 
 @mixin ds_focus($hasoutline: true) {
-    background-color: $ds_colour__link--focus__background;
-    color: $ds_colour__link--focus;
+    background-color: settings.$ds_colour__link--focus__background;
+    color: settings.$ds_colour__link--focus;
     text-decoration-line: none;
     transition-duration: 0s;
 
@@ -21,7 +25,7 @@ $focus__input-shadow-width: 0.125em !default;
 
     @include ds_focus-shadow($hasoutline);
 
-    @include ds_high-contrast-outline($inset: false, $colour: highlight);
+    @include high-contrast.ds_high-contrast-outline($inset: false, $colour: highlight);
 }
 
 @mixin ds_focus--button {
@@ -29,29 +33,29 @@ $focus__input-shadow-width: 0.125em !default;
 }
 
 @mixin ds_focus--inset {
-    @include ds_unsupported-css-fallback(
+    @include unsupported-css-fallback.ds_unsupported-css-fallback(
         $prop: 'box-shadow',
-        $modern: inset 0 round(#{$focus__shadow-width * -1}, 1px) 0 $ds_colour__link--focus__shadow,
-        $fallback: inset 0 (-$focus__shadow-width) 0 $ds_colour__link--focus__shadow
+        $modern: inset 0 round(#{$focus__shadow-width * -1}, 1px) 0 settings.$ds_colour__link--focus__shadow,
+        $fallback: inset 0 (-$focus__shadow-width) 0 settings.$ds_colour__link--focus__shadow
     );
     filter: none;
     outline-width: 0;
 }
 
 @mixin ds_input-focus($outline: $focus__outline-width, $shadow: $focus__input-shadow-width) {
-    @include ds_unsupported-css-fallback(
+    @include unsupported-css-fallback.ds_unsupported-css-fallback(
         $prop: 'box-shadow',
-        $modern: inset 0 0 0 round(#{$shadow}, 1px) $ds_colour__link--focus__shadow,
-        $fallback: inset 0 0 0 $shadow $ds_colour__link--focus__shadow
+        $modern: inset 0 0 0 round(#{$shadow}, 1px) settings.$ds_colour__link--focus__shadow,
+        $fallback: inset 0 0 0 $shadow settings.$ds_colour__link--focus__shadow
     );
     @include ds_focus-outline;
 }
 
 @mixin ds_focus-outline($width: $focus__outline-width) {
-    @include ds_unsupported-css-fallback(
+    @include unsupported-css-fallback.ds_unsupported-css-fallback(
         $prop: 'outline',
-        $modern: round(#{$width}, 1px) solid $ds_colour__link--focus__background,
-        $fallback: 0.125rem solid $ds_colour__link--focus__background
+        $modern: round(#{$width}, 1px) solid settings.$ds_colour__link--focus__background,
+        $fallback: 0.125rem solid settings.$ds_colour__link--focus__background
     );
     outline-offset: 0;
 }
@@ -70,6 +74,6 @@ $focus__input-shadow-width: 0.125em !default;
 
     @supports(filter: drop-shadow(0 0 0 currentColor)) {
         box-shadow: none;
-        filter: drop-shadow(0px round($focus__shadow-width, 1px) 0px $ds_colour__link--focus__shadow);
+        filter: drop-shadow(0px round($focus__shadow-width, 1px) 0px settings.$ds_colour__link--focus__shadow);
     }
 }

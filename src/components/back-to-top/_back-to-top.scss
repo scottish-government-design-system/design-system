@@ -2,6 +2,10 @@
     $BACK TO TOP
 \*------------------------------------*/
 
+@use 'sass:color';
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_back-to-top {
     display: none;
 }
@@ -19,15 +23,15 @@
         pointer-events: none;
         position: absolute;
         right: 0.5rem;
-        top: calc(100vh - 1px); /// [1]
+        top: calc(100vh - 0.0625rem); /// [1]
         z-index: 1;
 
         &__button {
-            @include ds_link--block;
-            @include ds_small-size;
+            @include helpers.ds_link--block;
+            @include helpers.ds_small-size;
 
-            background-color: rgba(red($ds_colour__background--primary),green($ds_colour__background--primary),blue($ds_colour__background--primary),0.4);
-            font-weight: $bold;
+            background-color: rgba(color.channel(settings.$ds_colour__background--primary, "red", $space: rgb), color.channel(settings.$ds_colour__background--primary, "green", $space: rgb), color.channel(settings.$ds_colour__background--primary, "blue", $space: rgb), 0.4);
+            font-weight: settings.$bold;
             margin: 0;
             min-width: 7.5rem;
             pointer-events: all;
@@ -58,10 +62,10 @@
 
         &__button::before,
         &__icon {
-            background-color: $ds_colour__background--primary;
+            background-color: settings.$ds_colour__background--primary;
             transition: background-color 0.2s;
 
-            @include ds_media-query-high-contrast {
+            @include helpers.ds_media-query-high-contrast {
                 background-color: canvas;
             }
         }
@@ -85,5 +89,5 @@
 }
 
 .ds_back-to-top--hidden:not(:focus-within) {
-    @include ds_visually-hidden;
+    @include helpers.ds_visually-hidden;
 }

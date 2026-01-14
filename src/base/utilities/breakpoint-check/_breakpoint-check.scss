@@ -2,28 +2,30 @@
     BREAKPOINT CHECK
 \*------------------------------------*/
 
+@use "../../helpers";
+
 .ds_breakpoint-check {
     display: none;
 
-    @include ds_media-query(small) {
+    @include helpers.ds_media-query(small) {
         &.ds_breakpoint-check--small {
             display: block;
         }
     }
 
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         &.ds_breakpoint-check--medium {
             display: block;
         }
     }
 
-    @include ds_media-query(large) {
+    @include helpers.ds_media-query(large) {
         &.ds_breakpoint-check--large {
             display: block;
         }
     }
 
-    @include ds_media-query(xlarge) {
+    @include helpers.ds_media-query(xlarge) {
         &.ds_breakpoint-check--xlarge {
             display: block;
         }

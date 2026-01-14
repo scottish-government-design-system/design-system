@@ -2,11 +2,13 @@
     SMALL
 \*------------------------------------*/
 
+@use "../../helpers";
+
 small,
 .ds_small {
-    @include ds_small-size;
+    @include helpers.ds_small-size;
 }
 
 .ds_tiny {
-    @include ds_tiny-size;
+    @include helpers.ds_tiny-size;
 }

@@ -2,18 +2,21 @@
     ARTICLE ASIDE
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_article-aside {
-    @include ds_block-margins;
-    @include ds_small-size;
-    @include ds_responsive-padding(4, top);
     position: relative;
+    @include helpers.ds_block-margins;
+    @include helpers.ds_small-size;
+    @include helpers.ds_responsive-padding(4, top);
 
     &:first-child {
         margin-top: 0;
     }
 
     &::before {
-        border-top: 2px solid $ds_colour__brand;
+        border-top: 0.125rem solid settings.$ds_colour__brand;
         content: '';
         left: 0;
         position: absolute;

@@ -2,6 +2,8 @@
     #SKIP LINKS
 \*------------------------------------*/
 
+@use "../../base/helpers";
+
 /// [1] fallback for IE 11
 /// [2] unset [1]
 .ds_skip-links {
@@ -24,14 +26,14 @@
 }
 
 .ds_skip-links__link {
-    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
     display: inline-block;
     height: 1px;
-    left: 10px;
+    left: 0.625rem;
     margin-bottom: 1rem;
     overflow: hidden;
     position: absolute;
-    top: 10px;
+    top: 0.625rem;
     width: 1px;
 
     &:focus {
@@ -42,7 +44,7 @@
         width: auto;
         z-index: 10000;
 
-        @include ds_media-query(medium) {
+        @include helpers.ds_media-query(medium) {
             padding: 0.5rem 1rem;
         }
     }

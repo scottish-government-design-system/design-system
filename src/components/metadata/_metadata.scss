@@ -2,10 +2,13 @@
     PAGE METADATA
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_metadata {
-    @include ds_small-size--fixed;
     margin: 0;
     overflow: hidden;
+    @include helpers.ds_small-size--fixed;
 
     &__key {
         display: inline;
@@ -18,11 +21,11 @@
 
     &__value {
         display: inline;
-        font-weight: $bold;
+        font-weight: settings.$bold;
         margin-left: 0;
 
         a {
-            font-weight: $normal;
+            font-weight: settings.$normal;
         }
     }
 }
@@ -32,8 +35,8 @@
  */
 .ds_metadata--inline {
 
-    color: $ds_colour__text--secondary;
-    margin-bottom: px-to-rem(8px);
+    color: settings.$ds_colour__text--secondary;
+    margin-bottom: 0.5rem;;
 
     .ds_metadata__item {
         display: inline;
@@ -42,24 +45,24 @@
 
     .ds_metadata__item:not(:first-child) {
         margin-left: 0.25em;
-        padding-left: calc(0.5em + 1px);
+        padding-left: calc(0.5em + 0.0625rem);
 
         &::before {
             background: currentColor;
             content: '';
-            height: calc(1em - 1px);
+            height: calc(1em - 0.0625rem);
             left: 0;
             position: absolute;
-            top: 2px;
-            width: 1px;
+            top: 0.125rem;
+            width: 0.0625rem;
         }
     }
 
     .ds_metadata__key {
-        @include ds_visually-hidden;
+        @include helpers.ds_visually-hidden;
     }
 
     .ds_metadata__value {
-        font-weight: $normal;
+        font-weight: settings.$normal;
     }
 }
