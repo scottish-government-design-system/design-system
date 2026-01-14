@@ -3,13 +3,16 @@
     Navigation element for a simple link with supporting metadata
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_link-item {
-    @include ds_responsive-padding (3, bottom, $tuning: -2px);
-    border-bottom: 2px $ds_colour__border--faint solid;
+    border-bottom: 0.125rem settings.$ds_colour__border--faint solid;
     margin: 0;
+    @include helpers.ds_responsive-padding (3, bottom, $tuning: -0.125rem);
 
     &__title {
-        @include ds_h3-size();
+        @include helpers.ds_h3-size();
         margin: 0 !important;
     }
 
@@ -18,9 +21,9 @@
     }
 
     &__summary {
-        @include ds_small-size();
         margin: 0;
-        @include ds_responsive-margin (1, top);
+        @include helpers.ds_small-size();
+        @include helpers.ds_responsive-margin (1, top);
     }
 
 

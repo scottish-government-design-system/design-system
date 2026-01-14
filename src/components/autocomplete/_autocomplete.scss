@@ -2,18 +2,18 @@
     AUTOCOMPLETE
 \*------------------------------------*/
 
-$site-search__border-colour: $ds_colour__grey !default;
+@use "../../base/helpers";
+@use "../../base/settings";
 
-
-
+$suggestions__border-colour: settings.$ds_colour__grey !default;
 
 .ds_autocomplete {
     position: relative;
 
     &__suggestions {
-        @include ds_box-shadow;
+        @include helpers.ds_box-shadow;
 
-        border: 2px solid $site-search__border-colour;
+        border: 0.125rem solid $suggestions__border-colour;
         display: none;
         left: 0;
         position: absolute;
@@ -28,48 +28,48 @@ $site-search__border-colour: $ds_colour__grey !default;
     }
 
     /*
-      [1] 10px = 12px (associated site search input) minus 2px (suggestions border), 11px = 12px vertical padding minus 2px (suggestions border) split evenly between top and bottom padding
+      [1] 0.625rem (10px) = 12px (associated site search input) minus 2px (suggestions border), 0.6875rem (11px) = 12px vertical padding minus 2px (suggestions border) split evenly between top and bottom padding
     */
     &__suggestion {
-        background-color: $ds_colour__background--primary;
-        color: $ds_colour__text--secondary;
+        background-color: settings.$ds_colour__background--primary;
+        color: settings.$ds_colour__text--secondary;
         cursor: pointer;
         font-style: italic;
         margin-bottom: 0;
-        padding: 11px 10px; /* [1] */
+        padding: 0.6875rem 0.625rem; /* [1] */
         transition: background-color 0.2s;
 
         &:hover {
-            background-color: $ds_colour__link--hover__background;
+            background-color: settings.$ds_colour__link--hover__background;
         }
 
         &:not(:last-child) {
-            border-bottom: 2px solid $site-search__border-colour;
+            border-bottom: 0.125rem solid $suggestions__border-colour;
         }
 
         &__text {
             font-style: normal;
-            color: $ds_colour__text;
+            color: settings.$ds_colour__text;
         }
 
         &__category {
-            color: $ds_colour__brand;
+            color: settings.$ds_colour__brand;
         }
 
         &.active {
-            @include ds_focus;
-            @include ds_media-query-high-contrast {
+            @include helpers.ds_focus;
+            @include helpers.ds_media-query-high-contrast {
                 outline-offset: -0.125rem !important;
                 outline-width: 0.25rem !important;
             }
         }
 
         &.active {
-            @include ds_focus--inset;
+            @include helpers.ds_focus--inset;
         }
 
         &.active &__text {
-            color: $ds_colour__focus;
+            color: settings.$ds_colour__focus;
         }
     }
 }
@@ -78,9 +78,9 @@ $site-search__border-colour: $ds_colour__grey !default;
     display: block;
 }
 
-@include media-query(medium) {
+@include helpers.media-query(medium) {
     .ds_autocomplete__suggestions {
-        font-size: px-to-rem($root-font-size);
-        line-height: line-height-on-grid($root-font-size);
+        font-size: helpers.px-to-rem(settings.$root-font-size);
+        line-height: helpers.line-height-on-grid(settings.$root-font-size);
     }
 }

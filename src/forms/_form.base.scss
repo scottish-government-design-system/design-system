@@ -2,9 +2,12 @@
     FORM ELEMENTS (base)
 \*------------------------------------*/
 
+@use "../base/helpers";
+@use "../base/settings";
+
 legend {
-    @include ds_h3-size;
-    font-weight: $bold;
+    @include helpers.ds_h3-size;
+    font-weight: settings.$bold;
     margin-bottom: 0.5rem;
 }
 
@@ -21,7 +24,7 @@ fieldset {
         // Move top margin to ds_question to handle when it has error state left border and avoid problems with fieldset and legend negative margins
         .ds_question:has(.ds_page-header) {
             margin-top: 1rem;
-            @include ds_media-query(medium) {
+            @include helpers.ds_media-query(medium) {
                 margin-top: 2rem;
             }
         }
@@ -35,7 +38,7 @@ fieldset {
         // Reduce bottom margin on final datepicker within a form
         .ds_question:last-child,
         .ds_datepicker:last-child {
-            @include ds_responsive-margin(3, bottom);
+            @include helpers.ds_responsive-margin(3, bottom);
         }
     }
 
@@ -43,7 +46,7 @@ fieldset {
     &__actions {
         // Add block margins to buttons if in actions slot of form layout
         .ds_button {
-            @include ds_block-margins;
+            @include helpers.ds_block-margins;
         }
     }
 }

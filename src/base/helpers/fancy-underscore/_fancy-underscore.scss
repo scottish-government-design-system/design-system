@@ -4,7 +4,10 @@
 ///
 /// @param {string} $width - width of the underscore
 
-@mixin ds_fancy-underscore($width: $link__current-underline-thickness, $horiz-padding: 0) {
+@use "../links";
+@use "../../settings";
+
+@mixin ds_fancy-underscore($width: links.$link__current-underline-thickness, $horiz-padding: 0) {
     position: relative;
     transition-duration: 0s !important;
 
@@ -15,14 +18,14 @@
 
     &::after {
         background-color: currentColor;
-        bottom: -5px;
+        bottom: -0.3125rem;
         content: '';
         height: round($width, 1px);
         left: 50%;
         opacity: 0;
         position: absolute;
         right: 50%;
-        transition: left $transition-in-time, right $transition-in-time, opacity $transition-in-time;
+        transition: left settings.$transition-in-time, right settings.$transition-in-time, opacity settings.$transition-in-time;
     }
 
     &:hover::after {
@@ -42,6 +45,7 @@
 
 
 /// legacy non-prefixed names
-@mixin fancy-underscore($width: $link__current-underline-thickness) {
+/// DEPRECATED - use prefixed mixin instead
+@mixin fancy-underscore($width: links.$link__current-underline-thickness) {
     @include ds_fancy-underscore($width);
 }

@@ -2,88 +2,91 @@
     SIDE NAVIGATION
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 // modifiable vars
-$side-nav__expand-colour: $ds_colour__brand !default;
+$side-nav__expand-colour: settings.$ds_colour__brand !default;
 
 // fixed vars
-$side-nav__outline-width: 0.125rem;
-
+$side-nav__border-width: 0.0625rem; // 1px
+$side-nav__outline-width: 0.125rem; // 2px
 
 
 .ds_side-navigation {
-    @include ds_block-margins;
-    @include ds_small-size;
-
-    border: 1px solid $ds_colour__border;
+    border: $side-nav__border-width solid settings.$ds_colour__border;
     position: relative;
+    @include helpers.ds_block-margins;
+    @include helpers.ds_small-size;
+
 
     /// [1] Allowance for 1px border on all sides of parent container
     /// [2] The 'unsupportedCSSFallback' mixin does not work with comma-separated values
     &__expand {
-        @include ds_link;
-        @include ds_link--block;
-        @include ds_high-contrast-button;
+        @include helpers.ds_link;
+        @include helpers.ds_link--block;
+        @include helpers.ds_high-contrast-button;
 
-        background-color: $ds_colour__background--primary;
+        background-color: settings.$ds_colour__background--primary;
         color: $side-nav__expand-colour;
         cursor: pointer;
-        font-weight: $bold;
+        font-weight: settings.$bold;
         line-height: inherit;
         margin: 0;
-        padding: 15px 47px 15px 15px; /// [1]
+        padding: #{1rem - $side-nav__border-width} #{3rem - $side-nav__border-width} #{1rem - $side-nav__border-width} #{1rem - $side-nav__border-width}; /// [1]
         position: sticky;
         text-align: left;
         text-decoration: none;
         top: 0;
-        transition: background-color $transition-in-time, box-shadow $transition-in-time;
+        transition: background-color settings.$transition-in-time, box-shadow settings.$transition-in-time;
         width: 100%;
         z-index: 2;
 
         &--shadow {
-            box-shadow: 0px 5px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 0.3125rem 0.3125rem rgba(0,0,0,0.15);
         }
 
         &:hover:not(:focus) {
-            background-color: $ds_colour__link--hover__background;
+            background-color: settings.$ds_colour__link--hover__background;
         }
 
         &:hover .side-navigation__expand-indicator {
-            color: $ds_colour__link--hover;
+            color: settings.$ds_colour__link--hover;
         }
 
         /// [2]
         &--shadow:focus {
-            box-shadow: 0 round($focus__shadow-width, 1px) $ds_colour__link--focus__shadow, 0px 8px 5px rgba(0,0,0,0.15);
-            box-shadow: 0 $focus__shadow-width $ds_colour__link--focus__shadow, 0px 8px 5px rgba(0,0,0,0.15);
+            box-shadow: 0 round(helpers.$focus__shadow-width, 1px) settings.$ds_colour__link--focus__shadow, 0 0.5rem 0.3125rem rgba(0,0,0,0.15);
+            box-shadow: 0 helpers.$focus__shadow-width settings.$ds_colour__link--focus__shadow, 0 0.5rem 0.3125rem rgba(0,0,0,0.15);
         }
     }
 
     &__expand-indicator {
-        @include ds_chevron(down, 0.75rem);
-        border-width: 0px 0px 3px 3px;
+        @include helpers.ds_chevron(down, 0.75rem);
+        border-width: 0 0 0.1875rem 0.1875rem;
         position: absolute;
-        right: 23px;
-        top: 17px;
+        right: 1.4375rem;
+        top: 1.0625rem;
         transition: transform 0.2s, top 0.2s;
         pointer-events: none;
     }
 
     #show-side-navigation {
-        @include ds_visually-hidden;
+        @include helpers.ds_visually-hidden;
     }
 
     #show-side-navigation:focus ~ .ds_side-navigation__expand {
-        @include ds_focus;
+        @include helpers.ds_focus;
     }
 
     #show-side-navigation:checked ~ .ds_side-navigation__expand .ds_side-navigation__expand-indicator {
-        top: 23px;
+        top: 1.4375rem;
         transform: rotate(-225deg);
     }
 
     #show-side-navigation:checked ~ .ds_side-navigation__expand:not(:focus):not(:hover) {
-        background-color: $ds_colour__link--current__background;
-        color: $ds_colour__link--current;
+        background-color: settings.$ds_colour__link--current__background;
+        color: settings.$ds_colour__link--current;
     }
 
     #show-side-navigation:checked ~ &__list,
@@ -94,7 +97,7 @@ $side-nav__outline-width: 0.125rem;
     &__list {
         display: none;
         list-style-type: none;
-        margin: 8px 16px;
+        margin: 0.5rem 1rem;
         overflow: hidden;
 
         &:focus-within {
@@ -103,7 +106,7 @@ $side-nav__outline-width: 0.125rem;
     }
 
     &__list &__list {
-        margin: 0 0 0 16px;
+        margin: 0 0 0 1rem;
     }
 
     &__item {
@@ -117,10 +120,10 @@ $side-nav__outline-width: 0.125rem;
 
     /// [2] vertical padding offsets the text slightly for visual balance
     &__link {
-        @include ds_link--block;
+        @include helpers.ds_link--block;
 
-        margin-bottom: 2px;
-        padding: 12px 40px 10px 16px; /// [2]
+        margin-bottom: 0.125rem;
+        padding: 0.75rem 2.5rem 0.625rem 1rem; /// [2]
 
 
 
@@ -133,7 +136,7 @@ $side-nav__outline-width: 0.125rem;
             position: relative;
 
             &::before {
-                border-left: $side-nav__outline-width solid $ds_colour__border--highlight;
+                border-left: $side-nav__outline-width solid settings.$ds_colour__border--highlight;
                 bottom: 0;
                 content: '';
                 position: absolute;
@@ -151,30 +154,30 @@ $side-nav__outline-width: 0.125rem;
         }
 
         &.ds_current:not(:focus) {
-            background-color: $ds_colour__link--current__background;
+            background-color: settings.$ds_colour__link--current__background;
 
             &:hover {
-                background-color: $ds_colour__link--current__background;
+                background-color: settings.$ds_colour__link--current__background;
             }
         }
 
         &--inactive {
             pointer-events: none;
-            background-color: $ds_colour__link--disabled__background;
+            background-color: settings.$ds_colour__link--disabled__background;
         }
     }
 }
 
-@include ds_media-query(medium-down) {
+@include helpers.ds_media-query(medium-down) {
     .js-initialised #show-side-navigation {
         display: none;
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_side-navigation {
         border-width: 0;
-        line-height: 24px;
+        line-height: 1.5rem;
 
         &__expand {
             display: none;

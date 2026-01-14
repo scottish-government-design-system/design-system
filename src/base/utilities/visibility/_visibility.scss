@@ -2,8 +2,10 @@
     VISIBILITY
 \*------------------------------------*/
 
+@use "../../helpers";
+
 .visually-hidden {
-    @include ds_visually-hidden;
+    @include helpers.ds_visually-hidden;
 }
 
 .fully-hidden {

@@ -2,13 +2,16 @@
     ABBREVIATIONS
     Improved display of abbreviation styling with better readability than browser default
 \*------------------------------------*/
+@use "../../settings";
 
-/// [1] only apply this if there is a title attribute
+// [1] only apply this if there is a title attribute
+// [2] 1px line thickness at 16px root font size
+// [3] offset set to same as links
 
 abbr, acronym {
-    &[title] { /// [1]
+    &[title] { // [1]
         text-decoration: underline dotted;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 1px;
+        text-decoration-thickness: round(0.0625em, 1px); // [2]
+        text-underline-offset: settings.$ds_link__underline-offset;; // [3]
     }
 }

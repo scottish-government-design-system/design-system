@@ -18,15 +18,6 @@ $icon-sizes: 16, 20, 24, 28, 32, 36, 40, 44, 48;
     }
 }
 
-// icon sizes 12px and 52px to 80px are deprecated -- these will be removed in a future release
-$deprecated-icon-sizes: 12, 52, 56, 60, 64, 68, 72, 76, 80;
-@each $icon-size in $deprecated-icon-sizes {
-    .ds_icon--#{$icon-size} {
-        width: math.div($icon-size, 16) * 1rem;
-        height: math.div($icon-size, 16) * 1rem;
-    }
-}
-
 .ds_icon--fill {
     width: 100%;
     height: 100%;

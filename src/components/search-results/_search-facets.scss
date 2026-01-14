@@ -2,8 +2,11 @@
     SEARCH FACETS
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_facets {
-    @include ds_small-size;
+    @include helpers.ds_small-size;
 
     &__list {
         margin-bottom: 1.5rem;
@@ -49,13 +52,13 @@
 /// [1] IE 11 and pre-Chromium Edge
 /// [2] unsetting margin set in [1]
 .ds_facet {
-    @include ds_high-contrast-button($selector: '.ds_facet');
+    @include helpers.ds_high-contrast-button($selector: '.ds_facet');
 
     line-height: 1.5rem;
     margin: 0 0.5rem; /// [1]
     min-height: 2.5rem;
-    outline: 2px solid currentColor;
-    outline-offset: -2px;
+    outline: 0.125rem solid currentColor;
+    outline-offset: -0.125rem;
     padding: 0.5rem 2.75rem 0.5rem 0.75rem;
     position: relative;
     text-align: center;
@@ -66,11 +69,12 @@
     }
 
     &:hover {
-        background: $ds_colour__button--cancel--hover__background;
+        background: settings.$ds_colour__button--cancel--hover__background;
     }
 
     &:focus-within {
-        @include ds_focus($hasoutline: false);
+        @include helpers.ds_focus;
+        @include helpers.ds_focus--button;
     }
 
     &:focus-within &__button-icon {
@@ -97,7 +101,7 @@
     }
 
     &__button-icon {
-        color: $ds_colour__text--secondary;
+        color: settings.$ds_colour__text--secondary;
         fill: currentColor;
         height: 1.5rem;
         margin-left: 0.5rem;
@@ -106,7 +110,7 @@
         vertical-align: middle;
         width: 1.5rem;
 
-        @include ds_media-query-high-contrast {
+        @include helpers.ds_media-query-high-contrast {
             color: currentColor;
         }
     }

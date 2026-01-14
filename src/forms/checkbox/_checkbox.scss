@@ -2,18 +2,23 @@
     CHECKBOXES
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
+@use "../form.mixins" as form-mixins;
+
 .ds_checkbox {
-    @include ds_radiocheckboxstates();
+    @include form-mixins.ds_radiocheckboxstates();
 
     &__label::after {
         background-color: transparent;
         border-style: solid;
-        border-width: 0px 0 5px 5px;
+        border-width: 0 0 0.3125rem 0.3125rem;
         border-top-color: transparent;
-        left: 7px;
-        height: 14px;
-        top: 6px;
-        width: 26px;
+        left: 0.4375rem;
+        height: 0.875rem;
+        top: 0.375rem;
+        width: 1.625rem;
         transform: rotate(-45deg);
     }
 
@@ -23,51 +28,51 @@
     }
 
     &__input:not(:focus):checked + &__label::after {
-        border-color: $ds_colour__text--reversed;
+        border-color: settings.$ds_colour__text--reversed;
     }
 
     &__input:focus:checked + &__label::before {
-        background-color: $ds_colour__link--focus__background;
+        background-color: settings.$ds_colour__link--focus__background;
     }
 
     &--small &__label::after {
-        border-width: 6px;
-        left: 14px;
-        top: 14px;
+        border-width: 0.375rem;
+        left: 0.875rem;
+        top: 0.875rem;
     }
 
     &--small &__label::after {
-        width: 13px;
-        height: 7px;
-        left: 13px;
-        top: 11px;
-        border-width: 0 0 3px 3px;
+        width: 0.8125rem;
+        height: 0.4375rem;
+        left: 0.8125rem;
+        top: 0.6875rem;
+        border-width: 0 0 0.1875rem 0.1875rem;
     }
 
     .ds_question__error-message {
-        margin-left: 16px;
+        margin-left: 1rem;
     }
 }
 
 .ds_checkboxes > .ds_checkbox:last-child {
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
 }
 
 .ds_checkbox-separator {
     font-weight: 700;
-    margin: 24px 0;
+    margin: 1.5rem 0;
     text-align: center;
-    width: 40px;
+    width: 2.5rem;
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_checkbox {
         &__label::after {
-            top: 10px;
+            top: 0.625rem;
         }
 
         &--small &__label::after {
-            top: 15px;
+            top: 0.9375rem;
         }
     }
 }

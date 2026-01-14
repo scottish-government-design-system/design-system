@@ -2,47 +2,50 @@
     CATEGORY LIST
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 .ds_category-list-container {
-    margin: 32px 0;
+    margin: 2rem 0;
 }
 
 
 .ds_category-list {
-    @include ds_layout();
+    @include helpers.ds_layout();
 
     list-style-type: none;
-    margin-bottom: 32px;
-    margin-left: -8px;
-    margin-top: -8px;
-    padding: 8px;
+    margin-bottom: 2rem;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
+    padding: 0.5rem;
 
     > * {
         display: flex;
         flex-direction: column;
-        margin: 0 0 $grid-gap-y;
+        margin: 0 0 settings.$grid-gap-y;
         width: 100%;
     }
 
     &--narrow > * {
-        margin-bottom: $grid-gap-y--narrow;
+        margin-bottom: settings.$grid-gap-y--narrow;
     }
 }
 
 .ds_category-list--narrow {
-    @include ds_layout($grid-gap-x--narrow)
+    @include helpers.ds_layout(settings.$grid-gap-x--narrow)
 }
 
-@include ds_media-query(medium-down) {
+@include helpers.ds_media-query(medium-down) {
     .ds_category-list--grid > * {
         min-height: 0;
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_category-list--grid {
         > * {
             float: left;
-            @include ds_colwidth(6);
+            @include helpers.ds_colwidth(6);
 
             &:nth-child(2n+1) {
                 clear: left;
@@ -50,15 +53,15 @@
         }
 
         &.ds_category-list--narrow > * {
-            @include ds_colwidth(6, 12, $grid-gap-x--narrow);
+            @include helpers.ds_colwidth(6, 12, settings.$grid-gap-x--narrow);
         }
     }
 }
 
-@include ds_media-query(large) {
+@include helpers.ds_media-query(large) {
     .ds_category-list--grid {
         > * {
-            @include ds_colwidth(4);
+            @include helpers.ds_colwidth(4);
 
             &:nth-child(n) {
                 clear: none;
@@ -71,20 +74,20 @@
         }
 
         &.ds_category-list--narrow > * {
-            @include ds_colwidth(4, 12, $grid-gap-x--narrow);
+            @include helpers.ds_colwidth(4, 12, settings.$grid-gap-x--narrow);
         }
     }
 }
 
 @supports(display: grid) {
     .ds_category-list {
-        grid-row-gap: $grid-gap-y;
+        grid-row-gap: settings.$grid-gap-y;
         margin-left: 0;
         margin-top: 0;
         padding: 0;
 
         &--narrow {
-            grid-gap: $grid-gap-y--narrow $grid-gap-y--narrow;
+            grid-gap: settings.$grid-gap-y--narrow settings.$grid-gap-y--narrow;
         }
 
         > *[class] {
@@ -92,14 +95,14 @@
         }
     }
 
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         .ds_category-list--grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
         }
     }
 
-    @include ds_media-query(large) {
+    @include helpers.ds_media-query(large) {
         .ds_category-list--grid {
             grid-template-columns: 1fr 1fr 1fr;
         }

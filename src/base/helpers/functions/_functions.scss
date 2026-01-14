@@ -2,6 +2,7 @@
 /// Miscellaneous functions, mostly used in the headings helpers
 ///
 @use "sass:math";
+@use "../../settings";
 
 @function strip-unit($num) {
     @return math.div($num, ($num * 0 + 1));
@@ -11,15 +12,15 @@
   @return str-slice($value * 0 + "", 2, -1);
 }
 
-@function px-to-em ($px, $base: $root-font-size) {
+@function px-to-em ($px, $base: settings.$root-font-size) {
     @return math.div($px, $base) * 1em;
 }
 
-@function px-to-rem ($px, $base: $root-font-size) {
+@function px-to-rem ($px, $base: settings.$root-font-size) {
     @return math.div($px, $base) * 1rem;
 }
 
-@function rem-to-px ($rem, $base: $root-font-size) {
+@function rem-to-px ($rem, $base: settings.$root-font-size) {
     @return strip-unit($rem * $base) * 1px;
 }
 

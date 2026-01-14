@@ -2,6 +2,8 @@
     PLACEHOLDER TEXT
 \*------------------------------------*/
 
+@use "../../settings";
+
 ::placeholder {
-    color: $ds_colour__placeholder;
+    color: settings.$ds_colour__placeholder;
 }

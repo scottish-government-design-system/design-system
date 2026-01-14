@@ -2,27 +2,31 @@
     ACCORDION
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 // modifiable vars
-$accordion__header-colour: $ds_colour__link !default;
+$accordion__border-width: 0.0625rem; //1px
+$accordion__header-colour: settings.$ds_colour__link !default;
 
 
 
 
 .ds_accordion {
-    @include ds_responsive-margin (4, bottom, false, -1px);
-    @include ds_responsive-margin (4, top);
-
     position: relative;
+    
+    @include helpers.ds_responsive-margin (4, bottom, false, -1 * $accordion__border-width);
+    @include helpers.ds_responsive-margin (4, top);
 
     &__open-all {
         display: none;
-        line-height: line-height-on-grid($root-font-size);
+        line-height: helpers.line-height-on-grid(settings.$root-font-size);
         margin-bottom: 0.5rem;
         margin-left: 0.5rem;
         position: relative;
 
-        @include ds_media-query(medium) {
-            line-height: line-height-on-grid($root-font-size--medium);
+        @include helpers.ds_media-query(medium) {
+            line-height: helpers.line-height-on-grid(settings.$root-font-size--medium);
         }
 
         + * {
@@ -49,30 +53,30 @@ h1,h2,h3 {
 }
 
 .ds_accordion-item {
-    border-bottom: 1px solid $ds_colour__border;
-    border-top: 1px solid $ds_colour__border;
+    border-bottom: $accordion__border-width solid settings.$ds_colour__border;
+    border-top: $accordion__border-width solid settings.$ds_colour__border;
 
     /// [1] subtracting the accordion item's border width
     &__header {
-        @include ds_link;
-        @include ds_link--block;
+        @include helpers.ds_link;
+        @include helpers.ds_link--block;
 
-        background-color: $ds_colour__background--primary;
+        background-color: settings.$ds_colour__background--primary;
         border-width: 0;
         color: currentColor;
         margin: 0;
-        padding: 0.5rem 0.5rem calc(0.75rem - 1px); /// [1]
+        padding: 0.5rem 0.5rem calc(0.75rem - $accordion__border-width); /// [1]
         position: relative;
         text-align: left;
         width: 100%;
 
         &:hover:not(:focus) {
-            color: $ds_colour__link--hover;
+            color: settings.$ds_colour__link--hover;
         }
     }
 
     &__title {
-        @include ds_h4-size;
+        @include helpers.ds_h4-size;
         margin-bottom: 0.25rem;
 
         &--button {
@@ -86,7 +90,7 @@ h1,h2,h3 {
         appearance: unset;
         background: transparent;
         border: 0;
-        padding: 0.5rem 0.5rem calc(0.75rem - 1px); /// [1]
+        padding: 0.5rem 0.5rem calc(0.75rem - $accordion__border-width); /// [1]
         position: relative;
         text-align: left;
         width: 100%;
@@ -107,20 +111,20 @@ h1,h2,h3 {
     }
 
     &__indicator {
-        @include ds_small-size;
-        color: $ds_colour__link;
+        @include helpers.ds_small-size;
+        color: settings.$ds_colour__link;
         display: block;
-        font-weight: $normal;
+        font-weight: settings.$normal;
         margin-top: 0.25rem;
         min-height: 1.5rem;
-        padding: 0 0 0 1.1875rem;
+        padding: 0 0 0 1.1875rem; //19px
         pointer-events: none;
         position: relative;
 
         &::after {
-            @include ds_chevron(down, 0.6125em);
-            left: 0.1875rem;
-            top: 0.375rem;
+            @include helpers.ds_chevron(down, 0.6125em);
+            left: 0.1875rem; // 3px
+            top: 0.375rem; // 6px
             position: absolute;
             transition: transform 0.2s, top 0.2s;
             pointer-events: none;
@@ -131,7 +135,7 @@ h1,h2,h3 {
         display: none;
         padding: 1rem 0.5rem 1.5rem;
 
-        @include ds_last-child-no-margin;
+        @include helpers.ds_last-child-no-margin;
     }
 
     &__control:checked ~ &__body {
@@ -140,7 +144,7 @@ h1,h2,h3 {
 
     &__control:checked ~ &__header &__indicator {
         &::after {
-            top: 0.625rem;
+            top: 0.625rem; // 1px
             transform: rotate(-225deg);
         }
 
@@ -151,68 +155,68 @@ h1,h2,h3 {
 
     &__control:focus ~ &__header,
     &__button:focus {
-        @include ds_focus;
+        @include helpers.ds_focus;
     }
 
     &__control:focus ~ &__header,
     &__button:focus {
-        @include ds_focus--inset;
+        @include helpers.ds_focus--inset;
     }
 
     &__control:focus ~ &__header &__indicator {
-        color: $ds_colour__link--focus;
+        color: settings.$ds_colour__link--focus;
         text-decoration-color: transparent;
     }
 
     &__control:focus ~ &__header &__indicator {
-        color: $ds_colour__link--focus;
+        color: settings.$ds_colour__link--focus;
         text-decoration: none;
     }
 
     + .ds_accordion-item {
-        margin-top: -1px;
+        margin-top: -1 * $accordion__border-width;
     }
 
     // link styling for indicator text content
     &__indicator {
         text-decoration: underline;
-        text-underline-offset: $link__underline-offset;
+        text-underline-offset: helpers.$link__underline-offset;
     }
 
     &__header:hover &__indicator {
-        text-underline-offset: $link__underline-offset--hover;
-        text-decoration-thickness: $link__underline-thickness--hover;
+        text-underline-offset: helpers.$link__underline-offset--hover;
+        text-decoration-thickness: helpers.$link__underline-thickness--hover;
     }
 
     &__header:hover:not(:focus-within) &__indicator {
-        color: $ds_colour__link--hover;
+        color: settings.$ds_colour__link--hover;
     }
 
     .ds_accordion-item__button:focus &__indicator {
-        color: $ds_colour__link--focus;
+        color: settings.$ds_colour__link--focus;
         text-decoration-color: transparent;
     }
 
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         &__indicator {
             margin-top: 0.5rem;
-            padding-left: 1.375rem;
+            padding-left: 1.375rem; // 22px
 
             &::after {
-                top: 0.3125rem;
+                top: 0.3125rem; //5px
             }
         }
 
         &__control:checked ~ &__header &__indicator {
             &::after {
-                top: 0.625rem;
+                top: 0.625rem; // 1px
             }
         }
 
         /// [1] subtracting the accordion item's border width
         &__header,
         &__button {
-            padding: 1rem 1rem calc(1rem - 1px) 0.5rem; /* [1] */
+            padding: 1rem 1rem calc(1rem - $accordion__border-width) 0.5rem; /* [1] */
         }
 
         &__title {
@@ -255,8 +259,8 @@ h1,h2,h3 {
     .ds_accordion-item__button,
     .ds_accordion-item__body,
     .ds_accordion__open-all {
-        font-size: px-to-rem($root-font-size); // 1rem
-        line-height: line-height-on-grid($root-font-size); //1.5
+        font-size: helpers.px-to-rem(settings.$root-font-size); // 1rem
+        line-height: helpers.line-height-on-grid(settings.$root-font-size); //1.5
     }
 
     .ds_accordion-item__body {
@@ -264,14 +268,14 @@ h1,h2,h3 {
 
         h3, h4 {
             font-size: 1em; // 1rem
-            line-height: line-height-on-grid($root-font-size); //1.5
+            line-height: helpers.line-height-on-grid(settings.$root-font-size); //1.5
         }
     }
 }
 
 
 /* HIGH CONTRAST */
-@include ds_media-query-high-contrast {
+@include helpers.ds_media-query-high-contrast {
     .ds_accordion-item__indicator {
         color: linktext !important;
     }

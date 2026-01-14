@@ -7,40 +7,40 @@ $ds_spacing-scale: (
     null:   0 /// [1]
     ),
   1: (
-    null:   px-to-rem(8px),
-    medium: px-to-rem(8px)
+    null:   0.5rem,
+    medium: 0.5rem
     ),
   2: (
-    null:   px-to-rem(16px),
-    medium: px-to-rem(16px)
+    null:   1rem,
+    medium: 1rem
     ),
   3: (
-    null:   px-to-rem(24px),
-    medium: px-to-rem(24px)
+    null:   1.5rem,
+    medium: 1.5rem
     ),
   4: (
-    null:   px-to-rem(24px),
-    medium: px-to-rem(32px)
+    null:   1.5rem,
+    medium: 2rem
     ),
   5: (
-    null:   px-to-rem(32px),
-    medium: px-to-rem(40px)
+    null:   2rem,
+    medium: 2.5rem
     ),
   6: (
-    null:   px-to-rem(40px),
-    medium: px-to-rem(48px)
+    null:   2.5rem,
+    medium: 3rem
     ),
   7: (
-    null:   px-to-rem(40px),
-    medium: px-to-rem(56px)
+    null:   2.5rem,
+    medium: 3.5rem
     ),
   8: (
-    null:   px-to-rem(48px),
-    medium: px-to-rem(64px)
+    null:   3rem,
+    medium: 4rem
     ),
   9: (
-    null:   px-to-rem(56px),
-    medium: px-to-rem(72px)
+    null:   3.5rem,
+    medium: 4rem
     )
 ) !default;
 

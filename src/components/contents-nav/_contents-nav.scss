@@ -2,42 +2,42 @@
     CONTENTS NAV
 \*------------------------------------*/
 
-
-
+@use "../../base/helpers";
+@use "../../base/settings";
 
 .ds_contents-nav {
 
     &__title {
-        @include ds_h3-size;
         margin: 0;
         padding: 0;
-        @include ds_responsive-margin(1, bottom);
+        @include helpers.ds_h3-size;
+        @include helpers.ds_responsive-margin(1, bottom);
     }
 
     &__list {
-        @include ds_small-size;
-        @include ds_responsive-margin(6, bottom);
         list-style: none;
         margin-left: 0;
-        padding-left: 32px;
+        padding-left: 2rem;
+        @include helpers.ds_small-size;
+        @include helpers.ds_responsive-margin(6, bottom);
     }
 
     &__item {
         position: relative;
 
         &::before {
-            border-top: 1px solid currentColor;
+            border-top: 0.0625rem solid currentColor;
             content: "";
-            height: 1px;
-            left: -32px;
+            height: 0.0625rem;
+            left: -2rem;
             overflow: hidden;
             position: absolute;
-            top: 12px;
-            width: 20px;
+            top: 0.75rem;
+            width: 1.25rem;
         }
     }
 
     &__link.ds_current {
-        font-weight: $bold;
+        font-weight: settings.$bold;
     }
 }

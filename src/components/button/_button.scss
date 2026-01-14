@@ -2,32 +2,32 @@
     BUTTONS
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 $button__border-width: 0.125rem !default;
 $button__outline-width: 0.1875rem !default;
 $button__padding--x: 1rem !default;
 
-
-
-
 .ds_button {
-    @include ds_small-size;
-    @include ds_button-sizing;
-    @include ds_high-contrast-button($button__border-width);
+    @include helpers.ds_small-size;
+    @include helpers.ds_button-sizing;
+    @include helpers.ds_high-contrast-button($button__border-width);
 
-    background: $ds_colour__button__background;
+    background: settings.$ds_colour__button__background;
     border: 0;
     border-radius: 0;
-    color: $ds_colour__button;
+    color: settings.$ds_colour__button;
     cursor: pointer;
     display: inline-block;
-    font-weight: $bold;
+    font-weight: settings.$bold;
     line-height: 1.5rem;
     position: relative;
     text-align: center;
     text-decoration-line: none;
-    transition: background-color $transition-out-time;
+    transition: background-color settings.$transition-out-time;
 
-    @include ds_responsive-margin(4, bottom);
+    @include helpers.ds_responsive-margin(4, bottom);
 
     // Margins won't collapse as inline-block.
     // Assume block margins (step 4) on preceding element/component so no top margin is needed on ds_button
@@ -35,51 +35,52 @@ $button__padding--x: 1rem !default;
 
 
     &:hover {
-        background-color: $ds_colour__button--hover__background;
-        color: $ds_colour__button;
+        background-color: settings.$ds_colour__button--hover__background;
+        color: settings.$ds_colour__button;
         outline-color: transparent;
-        transition-duration: $transition-in-time;
+        transition-duration: settings.$transition-in-time;
     }
 
     &:focus {
-        @include ds_focus($hasoutline: false);
+        @include helpers.ds_focus($hasoutline: false);
+        @include helpers.ds_focus--button;
     }
 
     &[disabled] {
-        background-color: $ds_colour__button--disabled__background;
+        background-color: settings.$ds_colour__button--disabled__background;
         box-shadow: none;
-        color: $ds_colour__button--disabled;
-        font-weight: $normal;
+        color: settings.$ds_colour__button--disabled;
+        font-weight: settings.$normal;
         outline: none;
         pointer-events: none;
 
-        @include ds_media-query-high-contrast {
+        @include helpers.ds_media-query-high-contrast {
             outline: 0.0625rem dashed graytext !important;
         }
     }
 }
 
 .ds_reversed .ds_button {
-    background-color: $ds_colour__button;
-    color: $ds_colour__button__background;
+    background-color: settings.$ds_colour__button;
+    color: settings.$ds_colour__button__background;
 
     &:focus,
     &:hover:focus {
-        background-color: $ds_colour__blocklink-bg--focus;
+        background-color: settings.$ds_colour__blocklink-bg--focus;
     }
 
     &:hover {
-        background-color: $ds_colour__blocklink-bg--hover;
+        background-color: settings.$ds_colour__blocklink-bg--hover;
     }
 
     &--secondary {
         background-color: transparent;
         border-color: currentColor;
-        color: $ds_colour__button;
+        color: settings.$ds_colour__button;
 
         &:hover:not(:focus) {
             background-color: rgba(0, 0, 0, 0.3);
-            color: $ds_colour__button;
+            color: settings.$ds_colour__button;
             outline-color: currentColor;
         }
     }
@@ -87,20 +88,20 @@ $button__padding--x: 1rem !default;
 
 .ds_button {
     &--secondary {
-        background-color: $ds_colour__button--secondary__background;
-        color: $ds_colour__button--secondary;
+        background-color: settings.$ds_colour__button--secondary__background;
+        color: settings.$ds_colour__button--secondary;
         outline: $button__border-width solid currentColor;
         outline-offset: -$button__border-width;
 
         &:hover:not(:focus) {
-            background-color: $ds_colour__button--secondary--hover__background;
-            color: $ds_colour__button--secondary--hover;
+            background-color: settings.$ds_colour__button--secondary--hover__background;
+            color: settings.$ds_colour__button--secondary--hover;
             outline: $button__border-width solid currentColor;
             outline-offset: -($button__border-width);
         }
     }
 
-    // .ds_button--cancel is deprecated - this will be removed in a future release
+    // DEPRECATED .ds_button--cancel is deprecated - this will be removed in a future release
     &--cancel {
         @extend .ds_button--secondary;
     }
@@ -110,8 +111,8 @@ $button__padding--x: 1rem !default;
 // SIZE VARIANTS
 .ds_button {
     &--small {
-        @include ds_small-size;
-        @include ds_button-sizing--small;
+        @include helpers.ds_small-size;
+        @include helpers.ds_button-sizing--small;
     }
 }
 
@@ -144,11 +145,11 @@ $button__padding--x: 1rem !default;
     }
 
     &--has-icon {
-        padding-right: calc(#{$button__height} + #{$button__padding--x});
+        padding-right: calc(#{helpers.$button__height} + #{$button__padding--x});
     }
 
     &--has-icon--left {
-        padding-left: calc(#{$button__height} + #{$button__padding--x});
+        padding-left: calc(#{helpers.$button__height} + #{$button__padding--x});
         padding-right: #{$button__padding--x};
 
         .ds_icon {

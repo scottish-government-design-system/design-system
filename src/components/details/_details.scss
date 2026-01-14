@@ -2,20 +2,23 @@
     DETAILS
 \*------------------------------------*/
 @use "sass:math";
+@use "../../base/helpers";
+@use "../../base/settings";
 
-$details-border-width: 4px;
-$details-icon-size: math.div((1em * 8px), $root-font-size--medium);
+$details-border-width: 0.25rem;
+$details-icon-size: math.div((1em * 8px), settings.$root-font-size--medium);
 
 .ds_details {
-    @include ds_block-margins;
+    @include helpers.ds_block-margins;
 }
 
 .ds_details__summary {
-    @include ds_link;
-    @include ds_responsive-padding(4, left);
     cursor: pointer;
     display: inline-block;
     position: relative;
+    @include helpers.ds_link;
+    @include helpers.ds_responsive-margin(2, bottom);
+    @include helpers.ds_responsive-padding(4, left);
 
     &::-webkit-details-marker {
         display: none;
@@ -29,23 +32,22 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
         height: calc(#{$details-icon-size} * 2);
         left: 0.25em;
         position: absolute;
-        top: calc(50% - #{$details-icon-size} + 1px); // 1px magic number for optical alignment in preference to mathematic alignment
+        top: calc(50% - #{$details-icon-size} + 0.0625rem); // 1px magic number for optical alignment in preference to mathematic alignment
         width: $details-icon-size;
 
         @media (prefers-reduced-motion: no-preference) {
-            transition: transform $transition-in-time;
+            transition: transform settings.$transition-in-time;
         }
     }
 }
 
 .ds_details__text {
-    @include ds_last-child-no-margin;
-    @include ds_responsive-margin(2, top);
+    @include helpers.ds_last-child-no-margin;
     border-left: $details-border-width solid #b3b3b3;
     box-sizing: border-box;
     display: none;
-    @include ds_responsive-padding(1);
-    @include ds_responsive-padding(4, left, false, calc(#{$details-border-width} * -1));
+    @include helpers.ds_responsive-padding(1);
+    @include helpers.ds_responsive-padding(4, left, false, calc(#{$details-border-width} * -1));
 }
 
 .ds_details[open],
@@ -60,10 +62,10 @@ $details-icon-size: math.div((1em * 8px), $root-font-size--medium);
 }
 
 .ds_details__toggle:focus ~ .ds_details__summary {
-    @include ds_focus;
+    @include helpers.ds_focus;
 }
 
-@include ds_media-query-high-contrast {
+@include helpers.ds_media-query-high-contrast {
     .ds_details__summary {
         color: linktext !important;
     }

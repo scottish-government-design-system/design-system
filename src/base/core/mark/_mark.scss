@@ -2,12 +2,15 @@
     MARKED TEXT
 \*------------------------------------*/
 
+@use "../../helpers";
+@use "../../settings";
+
 mark {
     background-color: inherit;
     color: inherit;
-    font-weight: $bold;
+    font-weight: settings.$bold;
 
-    @include ds_media-query-high-contrast {
+    @include helpers.ds_media-query-high-contrast {
         background-color: Mark;
     }
 }

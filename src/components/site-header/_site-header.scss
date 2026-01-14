@@ -2,29 +2,32 @@
     SITE HEADER
 \*------------------------------------*/
 
+@use "../../base/helpers";
+@use "../../base/settings";
+
 // modifiable vars
-$site-header__border-colour--reversed: $ds_colour__brand--secondary !default;
+$site-header__border-colour--reversed: settings.$ds_colour__brand--secondary !default;
 
 // fixed vars
-$site-header__border-colour: $ds_colour__border--faint;
-$site-header__top-band-colour: $ds_colour__brand;
-$site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
+$site-header__border-colour: settings.$ds_colour__border--faint;
+$site-header__top-band-colour: settings.$ds_colour__brand;
+$site-header__top-band-colour--secondary: settings.$ds_colour__brand--secondary;
 
 .ds_site-header {
-    background-color: $ds_colour__background--primary;
-    border-bottom: 1px solid $site-header__border-colour;
-    margin-bottom: -1px;
+    background-color: settings.$ds_colour__background--primary;
+    border-bottom: 0.0625rem solid $site-header__border-colour;
+    margin-bottom: -0.0625rem;
     position: relative;
 
     &::before {
-        border-top: 4px solid $site-header__top-band-colour;
+        border-top: 0.25rem solid $site-header__top-band-colour;
         content: '';
         display: block;
     }
 
     &--gradient::before {
         border-image-slice: 1;
-        border-image-source: linear-gradient(to right, $ds_colour__brand, $ds_colour__brand--secondary);
+        border-image-source: linear-gradient(to right, settings.$ds_colour__brand, settings.$ds_colour__brand--secondary);
     }
 
     &__content {
@@ -37,8 +40,8 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
     .ds_site-header__controls {
         float: right;
-        height: calc(100% + 1px);
-        margin-bottom: -1px;
+        height: calc(100% + 0.0625rem);
+        margin-bottom: -0.0625rem;
     }
 
     .ds_site-navigation {
@@ -47,7 +50,7 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
     &__search {
         float: right;
-        margin: 8px 0;
+        margin: 0.5rem 0;
 
         .ds_input__wrapper {
             margin: 0;
@@ -55,22 +58,22 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
     }
 
     &__control {
-        @include ds_link;
-        @include ds_link--block;
-        @include ds_high-contrast-button;
+        @include helpers.ds_link;
+        @include helpers.ds_link--block;
+        @include helpers.ds_high-contrast-button;
 
         color: inherit;
         cursor: pointer;
         font-size: 1rem;
-        font-weight: $normal;
-        min-height: 48px;
-        margin: 0 -16px -1px 0;
-        padding: 16px;
+        font-weight: settings.$normal;
+        min-height: 3rem;
+        margin: 0 -1rem -0.0625rem 0;
+        padding: 1rem;
         text-decoration: none;
 
         &--active {
-            background-color: $ds_colour__link--current__background;
-            box-shadow: -1px -1px 0px rgba(0, 0, 0, 0.08);
+            background-color: settings.$ds_colour__link--current__background;
+            box-shadow: -0.0625rem -0.0625rem 0 rgba(0, 0, 0, 0.08);
 
             .ds_site-header__control-icon {
                 display: none;
@@ -83,8 +86,8 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
     }
 
     &__control-icon {
-        height: 24px;
-        width: 24px;
+        height: 1.5rem;
+        width: 1.5rem;
 
         &--active-icon {
             display: none;
@@ -93,14 +96,14 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
 
     &__control-text {
         float: left;
-        margin-right: 8px;
+        margin-right: 0.5rem;
         pointer-events: none;
     }
 
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         &__navigation {
-            border-top: 1px solid $ds_colour__border--faint;
-            margin-top: -1px;
+            border-top: 0.0625rem solid settings.$ds_colour__border--faint;
+            margin-top: -0.0625rem;
         }
     }
 }
@@ -132,7 +135,7 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
         }
     }
 
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         .ds_site-header {
             &__content {
                 grid-template-columns: auto max-content;
@@ -152,7 +155,7 @@ $site-header__top-band-colour--secondary: $ds_colour__brand--secondary;
     }
 }
 
-@include ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
     .ds_site-header__controls {
         display: none;
     }

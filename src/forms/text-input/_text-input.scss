@@ -3,9 +3,15 @@
     Covers text-based INPUT elements and TEXTAREA elements
 \*------------------------------------*/
 
+@use 'sass:list';
+@use "../../base/helpers";
+@use "../../base/settings";
+
+@use "../form.mixins" as form-mixins;
+
 .ds_input {
-    @include ds_responsive-margin (3, bottom);
-    @include ds_input;
+    @include helpers.ds_responsive-margin (3, bottom);
+    @include form-mixins.ds_input;
 
     display: block;
     line-height: 2rem;
@@ -16,8 +22,8 @@
     }
 
     &__message--error {
-        color: $ds_colour__state--negative;
-        font-weight: $bold;
+        color: settings.$ds_colour__state--negative;
+        font-weight: settings.$bold;
     }
 }
 
@@ -28,11 +34,11 @@ $text-input-fixed-widths: (2,3,4,5,10,20);
 /// [2] additional currency padding + right padding + n character widths
 @each $width in $text-input-fixed-widths {
     .ds_input--fixed-#{$width} {
-        max-width: calc(16px + #{($width) * 1em}); /// [1]
+        max-width: calc(1rem + #{($width) * 1em}); /// [1]
     }
 
     .ds_currency-wrapper .ds_input--fixed-#{$width} {
-        max-width: calc(40px + 8px + #{($width) * 1em}); /// [2]
+        max-width: calc(3rem + #{($width) * 1em}); /// [2]
     }
 }
 
@@ -46,8 +52,8 @@ $text-input-fluid-widths: (
 );
 
 @each $width in $text-input-fluid-widths {
-    $name:  nth($width, 1);
-    $value: nth($width, 2);
+    $name:  list.nth($width, 1);
+    $value: list.nth($width, 2);
 
     .ds_input--fluid-#{$name} {
         max-width: #{($value) * 1%};
@@ -74,7 +80,7 @@ $text-input-fluid-widths: (
 
     > .ds_button {
         margin: 0;
-        @include ds_button-sizing--small;
+        @include helpers.ds_button-sizing--small;
     }
 }
 
