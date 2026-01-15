@@ -4112,6 +4112,20 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
     transition-duration: 0s;
   }
 }
+.ds_back-to-top--hidden:not(:focus-within) {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+}
+
+.ds_back-to-top--hidden:focus-within {
+  bottom: auto !important;
+  margin-top: -3rem;
+  top: auto;
+}
+
 /*------------------------------------*\
     $BREADCRUMBS
 \*------------------------------------*/
@@ -5727,7 +5741,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   text-decoration: underline;
   text-underline-offset: 0.16em;
   transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
-  margin-bottom: 1rem;
   padding-left: 1.5rem;
   cursor: pointer;
   display: inline-block;
@@ -5775,11 +5788,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media (min-width: 768px) {
   .ds_details__summary {
-    margin-bottom: 1rem;
-  }
-}
-@media (min-width: 768px) {
-  .ds_details__summary {
     padding-left: 2rem;
   }
 }
@@ -5804,6 +5812,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 
 .ds_details__text {
+  margin-top: 1rem;
   border-left: 4px solid #b3b3b3;
   box-sizing: border-box;
   display: none;
@@ -5812,6 +5821,11 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 .ds_details__text > :last-child {
   margin-bottom: 0;
+}
+@media (min-width: 768px) {
+  .ds_details__text {
+    margin-top: 1rem;
+  }
 }
 @media (min-width: 768px) {
   .ds_details__text {
@@ -8366,7 +8380,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   content: none;
 }
 .ds_site-branding__title {
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5rem;
 }
 .ds_site-branding__title::before {
