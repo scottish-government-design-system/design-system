@@ -24,19 +24,6 @@ describe('back to top', () => {
         expect(testObj.backToTopModule.checkDisplay).not.toHaveBeenCalled();
     });
 
-    it('should exit init without doing anything if no footer element defined', () => {
-        const footer = document.querySelector('.ds_site-footer');
-        footer.parentNode.removeChild(footer);
-
-        testObj.backToTopElement = document.querySelector('.ds_back-to-top');
-        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
-
-        spyOn(testObj.backToTopModule, 'checkDisplay');
-        testObj.backToTopModule.init();
-
-        expect(testObj.backToTopModule.checkDisplay).not.toHaveBeenCalled();
-    });
-
     it('should check display on init if an element is supplied', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
@@ -101,5 +88,21 @@ describe('back to top', () => {
         const customFooterEl = document.querySelector('.my_site-footer');
 
         expect(testObj.backToTopModule.footerEl).toEqual(customFooterEl);
+    });
+
+    describe('back to top with no footer', () => {
+        beforeEach(() => {
+            const defaultFooterEl = document.querySelector('.ds_site-footer');
+            const customFooterEl = document.querySelector('.my_site-footer');
+            defaultFooterEl.remove();
+            customFooterEl.remove();
+        });
+
+        it('should use a dummy footer element if one is not present in the acutal page', () => {
+            testObj.backToTopElement = document.querySelector('.ds_back-to-top');
+            testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
+
+            expect(testObj.backToTopModule.footerEl).toBeDefined();
+        });
     });
 });
