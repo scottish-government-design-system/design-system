@@ -9,14 +9,22 @@ class BackToTop {
         } else {
             this.footerEl = document.querySelector('.ds_site-footer');
         }
+
+        // a fake element used for height calculations
+        if (!this.footerEl) {
+            this.footerEl = document.createElement('div');
+        }
+
         this.backToTopElement = el;
         this.window = _window;
     }
 
     init() {
-        if (!this.backToTopElement || !this.footerEl) {
+        if (!this.backToTopElement) {
             return;
         }
+
+        this.backToTopOffset = this.backToTopElement.querySelector('.ds_back-to-top__button').offsetHeight + 8;
 
         this.checkDisplay();
 
@@ -30,7 +38,13 @@ class BackToTop {
     }
 
     checkDisplay() {
-        if (document.body.offsetHeight - this.footerEl.offsetHeight < this.window.innerHeight) {
+        if (document.body.offsetHeight - this.footerEl.offsetHeight - this.backToTopOffset < this.window.innerHeight) {
+            this.backToTopElement.classList.add('ds_back-to-top--clamped');
+        } else {
+            this.backToTopElement.classList.remove('ds_back-to-top--clamped');
+        }
+
+        if (document.body.offsetHeight - this.footerEl.offsetHeight <= this.window.innerHeight) {
             this.backToTopElement.classList.add('ds_back-to-top--hidden');
         } else {
             this.backToTopElement.classList.remove('ds_back-to-top--hidden');

@@ -80,12 +80,10 @@
     }
 }
 
-.ds_back-to-top--hidden:not(:focus-within) {
-    @include ds_visually-hidden;
+.ds_back-to-top--clamped {
+    top: auto !important;
 }
 
-.ds_back-to-top--hidden:focus-within {
-    bottom: auto !important;
-    margin-top: -3rem;
-    top: auto;
+.ds_back-to-top--hidden:not(:focus-within) {
+    @include ds_visually-hidden;
 }
