@@ -1,0 +1,81 @@
+/*------------------------------------*\
+    FILE UPLOAD
+\*------------------------------------*/
+
+.ds_file-upload__input,
+.ds_file-upload__dropzone {
+    background-color: $ds_colour__background--primary;
+    border: 0.125rem dashed $ds_colour__border;
+    padding: 2rem;
+    width: 100%;
+    text-align: start;
+    transition: background-color 0.2s, border-color 0.2s;
+
+    &:focus {
+        @include ds_input-focus;
+        border-style: solid;
+        border-color: $ds_colour__focus;
+    }
+
+    &:hover {
+        background-color: $ds_colour__link--hover__background;
+        border-color: $ds_colour__link--hover;
+    }
+
+    &--error {
+        outline: 0.25rem solid $ds_colour__state--negative;
+        outline-offset: -0.25rem;
+    }
+}
+
+.ds_file-upload__dropzone {
+    display: block;
+}
+
+.ds_file-upload__dropzone--dragging {
+    background-color: $ds_colour__background--tertiary;
+    border-color: $ds_colour__border--strong;
+}
+
+.ds_file-upload__dropzone--dragging .ds_file-upload__button {
+    display: none !important;
+}
+
+.ds_file-upload__input::file-selector-button,
+.ds_file-upload__dropzone .ds_file-upload__button {
+    background-color: transparent;
+    color: $ds_colour__button--secondary;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+
+    min-height: 3rem;
+    min-width: 3rem;
+    outline: 0.125rem solid currentColor;
+    outline-offset: -0.125rem;
+    padding: 0.75rem 1rem;
+}
+
+.ds_file-upload__input::file-selector-button {
+    margin-right: 1rem;
+}
+
+.ds_file-upload__dropzone {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+}
+
+.ds_file-upload__input:hover::file-selector-button,
+.ds_file-upload__dropzone:hover .ds_file-upload__button {
+    color: $ds_colour__link--hover;
+}
+
+ .ds_file-upload__input:focus::file-selector-button,
+ .ds_file-upload__dropzone:focus .ds_file-upload__button {
+    @include ds_focus($hasoutline: false);
+    @include ds_focus--button;
+
+    border-color: transparent;
+}
