@@ -70,8 +70,7 @@
     }
 
     &:focus-within {
-        @include ds_focus;
-        @include ds_focus--button;
+        @include ds_focus($hasoutline: false);
     }
 
     &:focus-within &__button-icon {

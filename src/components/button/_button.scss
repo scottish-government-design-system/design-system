@@ -43,7 +43,6 @@ $button__padding--x: 1rem !default;
 
     &:focus {
         @include ds_focus($hasoutline: false);
-        @include ds_focus--button;
     }
 
     &[disabled] {
