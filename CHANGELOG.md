@@ -7,6 +7,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## [3.4.1]
+### Fixed
+- Correction to positioning of back to top button
+- Inconsistent focus state of button component 
+### Security
+- Bump lodash from 4.17.21 to 4.17.23
+
 ## [3.4.0]
 ### Changed
 - Site branding font is now normal weight rather than light
