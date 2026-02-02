@@ -4112,18 +4112,16 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
     transition-duration: 0s;
   }
 }
+.ds_back-to-top--clamped {
+  top: auto !important;
+}
+
 .ds_back-to-top--hidden:not(:focus-within) {
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;
   position: absolute !important;
   width: 1px;
-}
-
-.ds_back-to-top--hidden:focus-within {
-  bottom: auto !important;
-  margin-top: -3rem;
-  top: auto;
 }
 
 /*------------------------------------*\
@@ -4242,8 +4240,8 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   color: #1a1a1a;
   text-decoration-line: none;
   transition-duration: 0s;
+  outline-style: none;
   box-shadow: 0 0.16em 0 currentColor;
-  outline-width: 0;
 }
 @supports (filter: drop-shadow(0 0 0 currentColor)) {
   .ds_button:focus {
@@ -7219,11 +7217,8 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   color: #1a1a1a;
   text-decoration-line: none;
   transition-duration: 0s;
-  outline: 0.125rem solid #fdd522;
-  outline: round(0.125em, 1px) solid #fdd522;
-  outline-offset: 0;
-  box-shadow: 0 0.285em 0 currentColor;
-  outline-width: 0;
+  outline-style: none;
+  box-shadow: 0 0.16em 0 currentColor;
 }
 @supports (filter: drop-shadow(0 0 0 currentColor)) {
   .ds_facet:focus-within {
