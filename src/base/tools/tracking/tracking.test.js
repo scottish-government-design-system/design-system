@@ -704,7 +704,7 @@ describe('tracking', () => {
             testObj.scope = document.getElementById('card');
         });
 
-        it('should add data attributes to card links, one-indexed', () => {
+        it('should add data attributes to navigation card heading links, one-indexed', () => {
             const links = [].slice.call(testObj.scope.querySelectorAll('.ds_card__link--cover'));
             Tracking.add.cards();
 
@@ -714,6 +714,22 @@ describe('tracking', () => {
                 } else {
                     expect(link.getAttribute('data-navigation')).toEqual(`card-${index + 1}`);
                 }
+            });
+        });
+
+        it('should add the one-indexed data attribute to all links and buttons in card content', () => {
+            const cards = [].slice.call(testObj.scope.querySelectorAll('.ds_card__content-main'));
+            Tracking.add.cards();
+
+            cards.forEach((card, index) => {
+                const elements = [].slice.call(card.querySelectorAll('a, button'));
+                elements.forEach((element) => {
+                    if (element.getAttribute('data-unit') === 'with-attribute') {
+                        expect(element.getAttribute('data-section')).toEqual(`card-foo`);
+                    } else {
+                        expect(element.getAttribute('data-section')).toEqual(`card-${index + 1}`);
+                    }
+                });
             });
         });
     });

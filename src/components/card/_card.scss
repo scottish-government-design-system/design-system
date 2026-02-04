@@ -19,10 +19,13 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
 
     &--hover {
         @include ds_box-shadow;
-        @include ds_high-contrast-outline;
 
         .ds_icon {
             color: $ds_colour__link;
+            
+            @include ds_media-query-high-contrast {
+                color: linktext !important;
+            }
         }
 
         &:hover {
