@@ -3,7 +3,7 @@
 import version from '../../../version';
 
 declare global {
-    interface Window { dataLayer: Record<string, string | number>[]; }
+    interface Window { dataLayer: Record<string, string | number | undefined>[]; }
 }
 
 /**
@@ -75,6 +75,8 @@ function findElementInNodeArray(nodeArray: HTMLElement[], selector: string, spec
             }
         }
     }
+
+    return null;
 }
 
 /**
@@ -123,9 +125,9 @@ const tracking = {
      * Get the type of click (left/middle/right + modifier keys)
      *
      * @param {MouseEvent} event
-     * @returns {string} - click type
+     * @returns {string | undefined} - click type
      */
-    getClickType: function (event: MouseEvent): string {
+    getClickType: function (event: MouseEvent): string | undefined {
         switch (event.type) {
             case 'click':
                 if (event.ctrlKey) {
@@ -152,9 +154,9 @@ const tracking = {
      * - returns undefined if in an exception element
      *
      * @param {HTMLElement} element - the element to find the nearest section header for
-     * @returns {Element} - nearest section header element
+     * @returns {Element | undefined} - nearest section header element
      */
-    getNearestSectionHeader: function (element: HTMLElement): Element {
+    getNearestSectionHeader: function (element: HTMLElement): Element | undefined {
         const linkSectionExceptions = 'nav,.ds_metadata,.ds_summary-card__header';
         const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_details__summary';
         const linkSectionSpecialCases = '.ds_page-header,.ds_layout__header,.ds_accordion-item__header';
@@ -181,7 +183,7 @@ const tracking = {
      * @param data
      * @returns {void}
      */
-    pushToDataLayer: function(data: { [key: string]: string | number }): void {
+    pushToDataLayer: function(data: { [key: string]: string | number | undefined }): void {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(data);
     },
@@ -421,7 +423,7 @@ const tracking = {
                     event: 'autocomplete',
                     searchText: storedValue,
                     clickText: inputElement.dataset.autocompletetext,
-                    resultsCount: parseInt(inputElement.dataset.autocompletecount),
+                    resultsCount: parseInt(inputElement.dataset.autocompletecount as string),
                     clickedResults: `result ${inputElement.dataset.autocompleteposition} of ${inputElement.dataset.autocompletecount}`
                 });
 
@@ -445,7 +447,7 @@ const tracking = {
                     storedValue = inputElement.value;
                 });
 
-                listBoxElement.addEventListener('mousedown', () => {
+                listBoxElement?.addEventListener('mousedown', () => {
                     autocompleteDataLayerPush(storedValue, inputElement);
                 });
             });
@@ -546,7 +548,7 @@ const tracking = {
             checkboxes.forEach(checkbox => {
 
                 // data attributes
-                let attributeValue = checkbox.getAttribute('data-form');
+                let attributeValue = checkbox.getAttribute('data-form') || '';
 
                 if (!attributeValue && checkbox.id) {
                     attributeValue = `checkbox-${checkbox.id}`;
@@ -679,7 +681,7 @@ const tracking = {
                 if (typeof errorMessage.closest === 'function' && errorMessage.closest('.ds_question')) {
                     const question = errorMessage.closest('.ds_question');
 
-                    const target = question.querySelector('.js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input') as HTMLInputElement;
+                    const target = question?.querySelector('.js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input') as HTMLInputElement;
                     let targetName = (index + 1).toString();
 
                     if (target) {
@@ -801,6 +803,7 @@ const tracking = {
          * Sets data-section="[SECTIONNAME]" on links
          * SECIONNAME is determined by seeking the closest heading (or headinglike) element to the link
          */
+        // todo: @returns, should this have scope?
         links: function () {
             const links = [].slice.call(document.querySelectorAll('a')) as HTMLLinkElement[];
             links.forEach(link => {
@@ -909,7 +912,8 @@ const tracking = {
         phaseBanners: function (scope: HTMLElement = document.documentElement): void {
             const phaseBanners = tracking.gatherElements('ds_phase-banner', scope);
             phaseBanners.forEach(banner => {
-                const bannername = banner.querySelector('.ds_tag') ? banner.querySelector('.ds_tag').textContent.trim() : 'phase';
+                const tagElement = banner.querySelector('.ds_tag');
+                const bannername = tagElement ? tagElement.textContent.trim() : 'phase';
 
                 const links = [].slice.call(banner.querySelectorAll('a')) as HTMLLinkElement[];
                 links.forEach(link => {
@@ -973,13 +977,10 @@ const tracking = {
                 const items = [].slice.call(searchResults.querySelectorAll('.ds_search-result')) as HTMLElement[];
                 const promotedItems = [].slice.call(searchResults.querySelectorAll('.ds_search-result--promoted'));
 
-                let start = 1;
-                if (list.getAttribute('start')) {
-                    start = +list.getAttribute('start');
-                }
+                const start = +(list.getAttribute('start') || '1')
 
                 items.forEach((item, index) => {
-                    const link = item.querySelector('.ds_search-result__link');
+                    const link = item.querySelector('.ds_search-result__link') as HTMLAnchorElement;
                     const mediaLink = item.querySelector('.ds_search-result__media-link');
                     const parentLink = item.querySelector('.ds_search-result__context a');
 
@@ -987,7 +988,6 @@ const tracking = {
                         const attributeValue = `search-promoted-${index + 1}/${promotedItems.length}`;
                         link.setAttribute('data-search', attributeValue);
                     } else {
-
                         let count;
                         if (list.getAttribute('data-total')) {
                             count = list.getAttribute('data-total');
@@ -1001,13 +1001,12 @@ const tracking = {
                             parentAttributeValue += `/${count}`;
                         }
                         link.setAttribute('data-search', attributeValue);
-                        if(mediaLink){
-                            mediaLink.setAttribute('data-search', mediaAttributeValue);
+                        if (mediaLink) {
+                        mediaLink.setAttribute('data-search', mediaAttributeValue);
                         }
-                        if(parentLink){
+                        if (parentLink) {
                             parentLink.setAttribute('data-search', parentAttributeValue);
                         }
-
                     }
                 });
             });
@@ -1075,7 +1074,7 @@ const tracking = {
                     select.addEventListener('change', (e) => {
                         const targetElement = e.target as HTMLElement;
                         const checkedItem = targetElement.querySelector(':checked') as HTMLElement;
-                        tracking.pushToDataLayer({ 'event': checkedItem.dataset.form });
+                        tracking.pushToDataLayer({ 'event': String(checkedItem.dataset.form) });
                     });
 
                     select.classList.add('js-has-tracking-event');
@@ -1129,7 +1128,7 @@ const tracking = {
                 const control = sideNav.querySelector('.js-toggle-side-navigation') as HTMLInputElement;
 
                 function setNavButton() {
-                    button.setAttribute('data-navigation', `navigation-${control.checked ? 'close' : 'open'}`);
+                    button?.setAttribute('data-navigation', `navigation-${control.checked ? 'close' : 'open'}`);
                 }
 
                 function recurse(list: HTMLUListElement, stub = '') {
@@ -1246,7 +1245,7 @@ const tracking = {
 
             const mobileNavigations = tracking.gatherElements('ds_site-navigation--mobile', scope);
             mobileNavigations.forEach(mobileNavigation => {
-                const toggler = mobileNavigation.parentNode.querySelector('.js-toggle-menu');
+                const toggler = mobileNavigation.parentNode?.querySelector('.js-toggle-menu');
                 if (toggler) {
                     toggler.setAttribute('data-header', 'header-menu-toggle');
                 }
@@ -1338,8 +1337,8 @@ const tracking = {
                 actionElements.forEach(actionElement => {
                     const actionElementType = actionElement.tagName === 'BUTTON' ? 'button' : 'navigation';
 
-                    const keyForAction = actionElement.closest('.ds_summary-list__item').querySelector('.ds_summary-list__key');
-                    const keyText = '-' + slugify(keyForAction.textContent);
+                    const keyForAction = actionElement.closest('.ds_summary-list__item')?.querySelector('.ds_summary-list__key') as HTMLElement;
+                    const keyText = '-' + slugify(keyForAction.textContent as string);
 
                     actionElement.setAttribute(`data-${actionElementType}`, `${actionElementType}-${slugify(actionElement.textContent)}${keyText}`);
                 });

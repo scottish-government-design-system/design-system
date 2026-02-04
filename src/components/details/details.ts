@@ -27,8 +27,8 @@ class Details extends DSComponent {
     constructor(element: HTMLDetailsElement) {
         super(element);
         this.details = element;
-        this.summary = element.querySelector('.ds_details__summary');
-        this.content = element.querySelector('.ds_details__text');
+        this.summary = element.querySelector('.ds_details__summary') as HTMLElement;
+        this.content = element.querySelector('.ds_details__text') as HTMLElement;
 
         if (this.summary.nodeName === 'SUMMARY') {
             this.openAttribute = 'open';

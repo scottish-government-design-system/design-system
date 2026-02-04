@@ -1,51 +1,52 @@
 'use strict';
 
 interface Categories {
-    necessary?: boolean;
-    preferences?: boolean;
-    statistics?: boolean;
-    campaigns?: boolean;
-    marketing?: boolean;
+    necessary?: boolean
+    preferences?: boolean
+    statistics?: boolean
+    campaigns?: boolean
+    marketing?: boolean
 }
 
-type Category = 'necessary' | 'preferences' | 'statistics' | 'campaigns' | 'marketing';
+type CategoryArgs = 'necessary' | 'preferences' | 'statistics' | 'campaigns' | 'marketing';
 
-type Storage = {
-    hasPermission: (name: string) => boolean;
-    getIsJsonString: (string: string) => boolean;
-    get: (obj: { type: string, name: string }) => string;
-    remove: (obj: {type: string, name: string}) => void;
-    set: (obj: {type: string, name: string, value: string, expiresDays?: number, category: string}) => void;
+export type StorageArgs = {
+    hasPermission: (category: CategoryArgs) => boolean
+    getIsJsonString: (string: string) => boolean
+    get: (obj: { type: string, name: string }) => string
+    remove: (obj: { type: string, name: string }) => void
+    set: (obj: { type: string, name: string, value: string, expiresDays?: number, category: CategoryArgs }) => void
+    error?: unknown
 
-    getCookie: (name: string) => void;
-    getLocalStorage: (name: string) => void;
-    getSessionStorage: (name: string) => void;
-    removeCookie: (name: string) => void;
-    removeLocalStorage: (name: string) => void;
-    removeSessionStorage: (name: string) => void;
-    setCookie: (category: string, name: string, value: string, expiresDays: number) => void;
-    setLocalStorage: (category: string, name: string, value: string) => void;
-    setSessionStorage: (category: string, name: string, value: string) => void;
+    getCookie: (name: string) => void
+    getLocalStorage: (name: string) => void
+    getSessionStorage: (name: string) => void
+    removeCookie: (name: string) => void
+    removeLocalStorage: (name: string) => void
+    removeSessionStorage: (name: string) => void
+    setCookie: (category: CategoryArgs, name: string, value: string, expiresDays: number) => void
+    setLocalStorage: (category: CategoryArgs, name: string, value: string) => void
+    setSessionStorage: (category: CategoryArgs, name: string, value: string) => void
     unsetCookieWithDomain: (name: string, domain?: string) => void
 
     cookie: {
-        get: (name: string) => string;
-        remove: (name: string, _window?: Window) => void;
-        set: (name: string, value: string, expiresDays?: number) => void;
+        get: (name: string) => string | null
+        remove: (name: string, _window?: Window) => void
+        set: (name: string, value: string, expiresDays?: number) => void
     }
 }
 
-type CookieData = {
-    name: string,
-    value: string,
+type CookieDataArgs = {
+    name: string
+    value: string
     expires?: string
 }
 
 declare global {
-    interface Window { storage: Storage; }
+    interface Window { storage: StorageArgs; }
 }
 
-const storage: Storage = {
+const storage: StorageArgs = {
     /**
      * Sets a storage item (local, session, or cookie)
      *
@@ -60,7 +61,7 @@ const storage: Storage = {
      *   - {number} expires - days to remember a cookie for (only relevant to cookies)
      * @returns {void}
      */
-    set: function (obj: {type: string, name: string, value: string, expiresDays: number, category: string}): void {
+    set: function (obj: {type: string, name: string, value: string, expiresDays?: number, category: CategoryArgs}): void {
         if (storage.hasPermission(obj.category)) {
             if (obj.type === 'cookie') {
                 return storage.cookie.set(obj.name, obj.value, obj.expiresDays);
@@ -85,7 +86,7 @@ const storage: Storage = {
      * @returns {string} value of the storage item
      */
     get: function (obj: {type: string, name: string}): string {
-        let value: string;
+        let value: string | null = '';
 
         if (obj.type === 'cookie') {
             value = storage.cookie.get(obj.name);
@@ -95,7 +96,7 @@ const storage: Storage = {
             value = sessionStorage.getItem(obj.name);
         }
 
-        return value;
+        return value || '';
     },
 
     /**
@@ -129,7 +130,7 @@ const storage: Storage = {
      * @param {number} expiresDays - the number of days to expire the cookie after
      * @returns {void}
      */
-    setCookie: function (category: string, name: string, value: string, expiresDays: number): void {
+    setCookie: function (category: CategoryArgs, name: string, value: string, expiresDays: number): void {
         if (storage.hasPermission(category)) {
             storage.cookie.set(name, value, expiresDays);
         }
@@ -139,12 +140,12 @@ const storage: Storage = {
      * Sets a local storage item if permission for this category of storage is given
      * - more direct method than storage.set({})
      *
-     * @param {string} category - the category of the cookie
+     * @param {CategoryArgs} category - the category of the cookie
      * @param {string} name - the name of the cookie
      * @param {string} value - the value of the cookie
      * @returns {void}
      */
-    setLocalStorage: function (category: string, name: string, value: string): void {
+    setLocalStorage: function (category: CategoryArgs, name: string, value: string): void {
         if (storage.hasPermission(category)) {
             localStorage.setItem(name, value);
         }
@@ -154,12 +155,12 @@ const storage: Storage = {
      * Sets a session storage item if permission for this category of storage is given
      * - more direct method than storage.set({})
      *
-     * @param {string} category - the category of the cookie
+     * @param {CategoryArgs} category - the category of the cookie
      * @param {string} name - the name of the cookie
      * @param {string} value - the value of the cookie
      * @returns {void}
      */
-    setSessionStorage: function (category: string, name: string, value: string): void {
+    setSessionStorage: function (category: CategoryArgs, name: string, value: string): void {
         if (storage.hasPermission(category)) {
             sessionStorage.setItem(name, value);
         }
@@ -170,9 +171,9 @@ const storage: Storage = {
      * - more direct method than get({type: 'cookies', name: foo})
      *
      * @param {string} name - the name of the cookie
-     * @returns {string}
+     * @returns {string | null}
      */
-    getCookie: function (name: string): string {
+    getCookie: function (name: string): string | null {
         return storage.cookie.get(name);
     },
 
@@ -181,9 +182,9 @@ const storage: Storage = {
      * - more direct method than get({type: 'localStorage', name: foo})
      *
      * @param {string} name - the name of the localStorage item
-     * @returns {string}
+     * @returns {string | null}
      */
-    getLocalStorage: function (name: string): string {
+    getLocalStorage: function (name: string): string | null {
         return localStorage.getItem(name);
     },
 
@@ -192,9 +193,9 @@ const storage: Storage = {
      * - more direct method than get({type: 'sessionStorage', name: foo})
      *
      * @param {string} name - the name of the sessionStorage item
-     * @returns {string}
+     * @returns {string | null}
      */
-    getSessionStorage: function (name: string): string {
+    getSessionStorage: function (name: string): string | null {
         return sessionStorage.getItem(name);
     },
 
@@ -242,12 +243,12 @@ const storage: Storage = {
          * @param {string} name - the name of the cookie
          * @param {string} value - the value of the cookie
          * @param {number} expiresDays - the number of days until expiration
-         * @returns {CookieData}
+         * @returns {CookieDataArgs}
          */
-        set: function (name: string, value: string, expiresDays: number): CookieData {
+        set: function (name: string, value: string, expiresDays?: number): CookieDataArgs {
             value = window.btoa(value);
 
-            const cookieData: CookieData = {
+            const cookieData: CookieDataArgs = {
                 name: name,
                 value: value
             };
@@ -316,8 +317,9 @@ const storage: Storage = {
          *
          * @param {string} name - the name of the cookie
          * @param {Window} _window - the window object to use
+         * @returns {void}
          */
-        remove: function (name: string, _window: Window = window) {
+        remove: function (name: string, _window: Window = window): void {
             const hostparts = _window.location.host.split('.');
             let domain;
 
@@ -337,10 +339,10 @@ const storage: Storage = {
     /**
      * Check if permission has been given to set a storage item for a given category
      *
-     * @param {Category} category - the category to check
+     * @param {CategoryArgs} category - the category to check
      * @returns {boolean}
      */
-    hasPermission(category: Category): boolean {
+    hasPermission(category: CategoryArgs): boolean {
         const cookiePermissionsString = storage.get({
             type: 'cookie',
             name: 'cookiePermissions'
@@ -364,7 +366,7 @@ const storage: Storage = {
     getIsJsonString: function (string: string): boolean {
         try {
             JSON.parse(string);
-        } catch (error) {
+        } catch (error: unknown) {
             this.error = error;
             return false;
         }
@@ -378,7 +380,7 @@ const storage: Storage = {
      * @param {string} domain - the domain of the cookie
      * @returns {void}
      */
-    unsetCookieWithDomain: function (name: string, domain: string): void {
+    unsetCookieWithDomain: function (name: string, domain?: string): void {
         const domainString = domain ? `domain=${domain};` : ''
 
         document.cookie = `${name}=;path=/;${domainString};expires=Thu, 01 Jan 1970 00:00:01 GMT`;

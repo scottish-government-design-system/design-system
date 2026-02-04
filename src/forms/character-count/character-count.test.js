@@ -39,34 +39,27 @@ describe('character count', () => {
         });
 
         describe('progressively enhanced maxlength attribute', () => {
-            beforeEach(() => {
+            it('should set a max length correctly and remove the maxlength attribute', () => {
                 testObj.characterCountElement = document.querySelector('#maxlength');
-                testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
-            });
-
-            it('should set a max length correctly', () => {
                 const expectedMaxLength = parseInt(document.querySelector('#textinput1-character-limit').getAttribute('maxlength'), 10);
 
+                testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
                 testObj.characterCountModule.init();
-                expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
-            });
 
-            it('should remove the maxlength attribute', () => {
-                testObj.characterCountModule.init();
+                expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
                 expect(document.querySelector('#textinput1-character-limit').getAttribute('maxlength')).toBeNull();
             });
+
         });
 
         describe('maxlength as data atribute', () => {
-            beforeEach(() => {
-                testObj.characterCountElement = document.querySelector('#data-maxlength');
-                testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
-            });
-
             it('should set a max length correctly', () => {
+                testObj.characterCountElement = document.querySelector('#data-maxlength');
                 const expectedMaxLength = Number(testObj.characterCountElement.dataset.maxlength);
 
+                testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
                 testObj.characterCountModule.init();
+
                 expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
             });
         });

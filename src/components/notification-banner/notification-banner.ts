@@ -22,7 +22,7 @@ class Notification extends DSComponent {
     constructor(notification: HTMLElement) {
         super(notification);
         this.notification = notification;
-        this.notificationClose = notification.querySelector('.js-close-notification');
+        this.notificationClose = notification.querySelector('.js-close-notification') as HTMLElement;
     }
 
     /**
@@ -33,7 +33,7 @@ class Notification extends DSComponent {
     init(): void {
         if (this.notificationClose) {
             this.notificationClose.addEventListener('click', () => {
-                this.notification.parentNode.removeChild(this.notification);
+                this.notification.parentNode?.removeChild(this.notification);
             });
         }
 

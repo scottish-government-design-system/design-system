@@ -1,7 +1,7 @@
 'use strict';
 
 import DSComponent from '../../base/component/component';
-import _storage from '../../base/tools/storage/storage';
+import _storage, {StorageArgs} from '../../base/tools/storage/storage';
 import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
 
 /**
@@ -17,11 +17,7 @@ import temporaryFocus from "../../base/tools/temporary-focus/temporary-focus";
  * @property {HTMLElement} cookieNoticeSuccessElement - the cookie notice success message element
  */
 class CookieNotification extends DSComponent {
-    storage: {
-        get: (obj: { type: string, name: string }) => string;
-        setCookie: (category: string, name: string, value: string, expiresDays: number) => void;
-    };
-
+    storage: StorageArgs;
     categories: string[];
 
     private cookieAcceptAllButton: HTMLButtonElement;
@@ -33,10 +29,10 @@ class CookieNotification extends DSComponent {
      * Creates a cookie notification component
      *
      * @param {HTMLElement} element - the cookie notification element
-     * @param storage - the DS storage object
-     * @param categories - an array of cookie categories
+     * @param {StorageArgs} storage - the DS storage object
+     * @param {string[]} categories - an array of cookie categories
      */
-    constructor(element: HTMLElement, storage = _storage, categories?: string[]) {
+    constructor(element: HTMLElement, storage: StorageArgs = _storage, categories?: string[]) {
         super(element);
 
         const defaultCategories = [
@@ -51,9 +47,9 @@ class CookieNotification extends DSComponent {
         this.categories = categories || defaultCategories;
 
         this.cookieNoticeElement = element;
-        this.cookieNoticeSuccessElement = document.getElementById('cookie-confirm');
-        this.cookieAcceptAllButton = this.cookieNoticeElement.querySelector('.js-accept-all-cookies');
-        this.cookieAcceptEssentialButton = this.cookieNoticeElement.querySelector('.js-accept-essential-cookies');
+        this.cookieNoticeSuccessElement = document.getElementById('cookie-confirm') as HTMLElement;
+        this.cookieAcceptAllButton = this.cookieNoticeElement.querySelector('.js-accept-all-cookies') as HTMLButtonElement;
+        this.cookieAcceptEssentialButton = this.cookieNoticeElement.querySelector('.js-accept-essential-cookies') as HTMLButtonElement;
     }
 
     /**

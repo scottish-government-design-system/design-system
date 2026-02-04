@@ -8,7 +8,6 @@
  * @returns {string} - the ID modifier string
  */
 export default function (): string {
-    // @ts-expect-error window type
     window.DS = window.DS || {};
     window.DS.elementIdModifier = window.DS.elementIdModifier || 0;
     window.DS.elementIdModifier += 1;

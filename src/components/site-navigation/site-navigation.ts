@@ -23,6 +23,7 @@ class MobileMenu extends DSComponent {
         super(mobileMenu);
 
         this.mobileMenu = mobileMenu;
+        this.newMenuButton = document.createElement('button');
     }
 
     /**
@@ -46,21 +47,20 @@ class MobileMenu extends DSComponent {
      */
     private setupMobileNavigation(): void {
         // dom transform:
-        const oldMenuButton = document.querySelector('.js-toggle-menu');
-        const newMenuButton = document.createElement('button');
-        newMenuButton.innerHTML = oldMenuButton.innerHTML;
-        newMenuButton.setAttribute('class', oldMenuButton.getAttribute('class'));
-        newMenuButton.classList.add('ds_link');
-        newMenuButton.setAttribute('aria-controls', oldMenuButton.getAttribute('aria-controls'));
-        newMenuButton.setAttribute('aria-expanded', false.toString());
-        oldMenuButton.parentNode.appendChild(newMenuButton);
+        const oldMenuButton = document.querySelector('.js-toggle-menu') as HTMLButtonElement;
+        this.newMenuButton.innerHTML = oldMenuButton.innerHTML;
+        this.newMenuButton.setAttribute('class', oldMenuButton.getAttribute('class') as string);
+        this.newMenuButton.classList.add('ds_link');
+        this.newMenuButton.setAttribute('aria-controls', oldMenuButton.getAttribute('aria-controls') as string);
+        this.newMenuButton.setAttribute('aria-expanded', false.toString());
+        oldMenuButton.parentNode?.appendChild(this.newMenuButton);
         oldMenuButton.classList.add('fully-hidden');
 
         // events
-        newMenuButton.addEventListener('click', (event) => {
+        this.newMenuButton.addEventListener('click', (event) => {
             event.preventDefault();
 
-            this.mobileMenu = document.getElementById(newMenuButton.getAttribute('aria-controls'));
+            this.mobileMenu = document.getElementById(this.newMenuButton.getAttribute('aria-controls') as string) as HTMLElement;
 
             if (this.mobileMenu.classList.contains('ds_site-navigation--open')) {
                 this.closeMenu();
@@ -68,8 +68,6 @@ class MobileMenu extends DSComponent {
                 this.openMenu();
             }
         });
-
-        this.newMenuButton = newMenuButton;
     }
 
     /**

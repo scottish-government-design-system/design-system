@@ -8,11 +8,9 @@ import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
  *
  * @class SideNavigation
  * @extends DSComponent
- * @property {HTMLElement} navList - the side navigation list element
  * @property {HTMLElement} sideNavigation - the side navigation element
  */
 class SideNavigation extends DSComponent {
-    private navList: HTMLElement;
     private sideNavigation: HTMLElement;
 
     /**
@@ -46,10 +44,10 @@ class SideNavigation extends DSComponent {
      */
     private setupSideNavigation(): void {
         // transform markup to button-driven version
-        const navControl: HTMLInputElement = this.sideNavigation.querySelector('.js-toggle-side-navigation');
-        const navLabel: HTMLElement = this.sideNavigation.querySelector('.ds_side-navigation__expand');
-        this.navList = this.sideNavigation.querySelector('.ds_side-navigation__list');
-        this.navList.id = this.navList.id || `side-navigation-${elementIdModifier()}`;
+        const navControl = this.sideNavigation.querySelector('.js-toggle-side-navigation') as HTMLInputElement;
+        const navLabel = this.sideNavigation.querySelector('.ds_side-navigation__expand') as HTMLElement;
+        const navList = this.sideNavigation.querySelector('.ds_side-navigation__list') as HTMLElement;
+        navList.id = navList.id || `side-navigation-${elementIdModifier()}`;
 
         navControl.checked = false;
 
@@ -60,15 +58,15 @@ class SideNavigation extends DSComponent {
         navButton.setAttribute('aria-expanded', false.toString());
         navButton.innerHTML = navLabel.innerHTML;
         navButton.setAttribute('aria-expanded', false.toString());
-        navButton.setAttribute('aria-controls', this.navList.id);
+        navButton.setAttribute('aria-controls', navList.id);
 
         navLabel.classList.add('fully-hidden');
         navControl.classList.add('fully-hidden');
         navControl.classList.remove('visually-hidden');
 
-        this.sideNavigation.insertBefore(navButton, this.navList);
+        this.sideNavigation.insertBefore(navButton, navList);
 
-        navButton.setAttribute('aria-controls', this.navList.id);
+        navButton.setAttribute('aria-controls', navList.id);
 
         // events
         navButton.addEventListener('click', () => {

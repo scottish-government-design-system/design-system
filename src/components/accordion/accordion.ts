@@ -27,7 +27,7 @@ class Accordion extends DSComponent {
 
         this.accordion = accordion;
         this.items = [].slice.call(accordion.querySelectorAll('.ds_accordion-item'));
-        this.openAllButton = accordion.querySelector('.js-open-all');
+        this.openAllButton = accordion.querySelector('.js-open-all') as HTMLButtonElement;
     }
 
     /**
@@ -58,12 +58,12 @@ class Accordion extends DSComponent {
      */
     private initAccordionItem(item: HTMLElement): void {
         // transform markup to button-driven version
-        const itemBody: HTMLElement = item.querySelector('.ds_accordion-item__body');
-        const itemControl: HTMLInputElement = item.querySelector('.ds_accordion-item__control');
-        const itemHeader: HTMLElement = item.querySelector('.ds_accordion-item__header');
-        const itemIndicator: HTMLElement = item.querySelector('.ds_accordion-item__indicator');
-        const itemLabelContent: HTMLElement = item.querySelector('.ds_accordion-item__label span');
-        const itemTitle: HTMLHeadingElement = itemHeader.querySelector('.ds_accordion-item__title');
+        const itemBody = item.querySelector('.ds_accordion-item__body') as HTMLElement;
+        const itemControl = item.querySelector('.ds_accordion-item__control') as HTMLInputElement;
+        const itemHeader = item.querySelector('.ds_accordion-item__header') as HTMLElement;
+        const itemIndicator = item.querySelector('.ds_accordion-item__indicator') as HTMLElement;
+        const itemLabelContent = item.querySelector('.ds_accordion-item__label span') as HTMLElement;
+        const itemTitle = itemHeader.querySelector('.ds_accordion-item__title') as HTMLHeadingElement;
 
         // check for hash to open an accordion with
         let accordionHasLocationHashInIt = false;
@@ -145,7 +145,7 @@ class Accordion extends DSComponent {
             const opening = !this.checkAllOpen();
             const allPanelButtons: HTMLButtonElement[] = [].slice.call(this.accordion.querySelectorAll('.js-accordion-button'));
 
-            let panelsToToggle: HTMLElement[];
+            let panelsToToggle: HTMLButtonElement[];
             if (opening) {
                 panelsToToggle = allPanelButtons.filter(button => !getAccordionItemForButton(button).classList.contains('ds_accordion-item--open'));
             } else {
@@ -172,8 +172,8 @@ class Accordion extends DSComponent {
      * @returns {void}
      */
     private toggleAccordionItem(item: HTMLElement): void {
-        const itemButton = item.querySelector('.js-accordion-button');
-        const itemControl: HTMLInputElement = item.querySelector('.ds_accordion-item__control');
+        const itemButton = item.querySelector('.js-accordion-button') as HTMLButtonElement;
+        const itemControl = item.querySelector('.ds_accordion-item__control') as HTMLInputElement;
         const isOpen = item.classList.contains('ds_accordion-item--open');
 
         if (!isOpen) {

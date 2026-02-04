@@ -4,15 +4,15 @@ import highlight from './highlight';
 import PromiseRequest from '../../base/tools/promise-request/promise-request';
 import DSComponent from '../../base/component/component';
 
-type AutocompleteOptions = {
-    minLength?: number;
-    suggestionMappingFunction?: (suggestions: object[]) => Suggestion[];
-    throttleDelay?: number;
+type AutocompleteOptionsArgs = {
+    minLength?: number
+    suggestionMappingFunction?: (suggestions: object[]) => SuggestionArgs[]
+    throttleDelay?: number
 }
 
-type Suggestion = {
-    displayText: string;
-    isActive: boolean;
+type SuggestionArgs = {
+    displayText: string
+    isActive?: boolean
 }
 
 /**
@@ -20,7 +20,7 @@ type Suggestion = {
  *
  * @class Autocomplete
  * @extends DSComponent
- * @property {Suggestion} activeSuggestion - the currently active suggestion
+ * @property {SuggestionArgs} activeSuggestion - the currently active suggestion
  * @property {string} endpointUrl - the URL of the autocomplete suggestions endpoint
  * @property {HTMLInputElement} inputElement - the input element for autocomplete
  * @property {number} keypressTimeout - the timeout ID for keypress throttling
@@ -30,24 +30,24 @@ type Suggestion = {
  * @property {number} selectedSuggestion - the index of the currently selected suggestion
  * @property {HTMLElement} statusElement - the status element for screen reader updates
  * @property {number} statusTimeout - the timeout ID for status updates
- * @property {Suggestion[]} suggestions - the array of current suggestions
+ * @property {SuggestionArgs[]} suggestions - the array of current suggestions
  * @property {Function} suggestionMappingFunction - the function to map raw suggestions to Suggestion objects
  * @property {string} tempToggleCharacter - a temporary character to toggle status updates
  * @property {number} throttleDelay - the delay in milliseconds for throttling input
  */
 class Autocomplete extends DSComponent {
-    private activeSuggestion: Suggestion;
+    private activeSuggestion?: SuggestionArgs;
     private endpointUrl: string;
     private inputElement: HTMLInputElement;
-    private keypressTimeout: number;
-    private listBoxElement: HTMLElement;
+    private keypressTimeout!: number;
+    private listBoxElement!: HTMLElement;
     private minLength: number;
-    private PromiseRequest: (url: string | {url: string, method: string}) => Promise<unknown>;
-    private selectedSuggestion: number;
+    private PromiseRequest: (url: string, method?: 'GET' | 'POST') => Promise<unknown>;
+    private selectedSuggestion?: number;
     private statusElement: HTMLElement;
-    private statusTimeout: number;
-    private suggestions: Suggestion[];
-    private suggestionMappingFunction: (suggestions: object[]) => Suggestion[]
+    private statusTimeout!: number;
+    private suggestions!: SuggestionArgs[];
+    private suggestionMappingFunction: (suggestions: object[]) => SuggestionArgs[]
     private tempToggleCharacter: string;
     private throttleDelay: number;
 
@@ -56,26 +56,26 @@ class Autocomplete extends DSComponent {
      *
      * @param {HTMLElement} element - the autocomplete element
      * @param {string} endpointUrl - the URL of the autocomplete suggestions endpoint
-     * @param {AutocompleteOptions} options - the autocomplete options
+     * @param {AutocompleteOptionsArgs} options - the autocomplete options
      */
     constructor(
         element: HTMLElement,
         endpointUrl: string,
-        options: AutocompleteOptions = {}
+        options: AutocompleteOptionsArgs = {}
     ) {
         super(element);
 
-        this.inputElement = element.querySelector('.js-autocomplete-input');
+        this.inputElement = element.querySelector('.js-autocomplete-input') as HTMLInputElement;
 
         this.endpointUrl = endpointUrl;
-        this.suggestionMappingFunction = options.suggestionMappingFunction || ((suggestions: Suggestion[]) => suggestions);
+        this.suggestionMappingFunction = options.suggestionMappingFunction || ((suggestions: object[]) => suggestions as SuggestionArgs[]);
         this.throttleDelay = options.throttleDelay || 100;
         this.minLength = options.minLength || 3;
         this.tempToggleCharacter = '';
 
         this.PromiseRequest = PromiseRequest;
 
-        this.statusElement = document.querySelector('#autocomplete-status');
+        this.statusElement = document.querySelector('#autocomplete-status') as HTMLElement;
     }
 
     /**
@@ -86,15 +86,15 @@ class Autocomplete extends DSComponent {
      * - update status for screen readers
      * - handle keyboard and mouse interactions
      *
-     * @returns {void | false}
+     * @returns {void}
      */
-    init(): void | false {
+    init(): void {
         // abort if inputElement or endpointUrl not present
         if (!this.inputElement || !this.endpointUrl) {
-            return false;
+            return;
         }
 
-        this.listBoxElement = document.getElementById(this.inputElement.getAttribute('aria-owns')).querySelector('.ds_autocomplete__suggestions-list');
+        this.listBoxElement = (document.getElementById(this.inputElement.getAttribute('aria-owns') as string) as HTMLElement).querySelector('.ds_autocomplete__suggestions-list') as HTMLElement;
 
         this.inputElement.addEventListener('keydown', event => {
             if (event.key === 'ArrowDown') {
@@ -116,8 +116,8 @@ class Autocomplete extends DSComponent {
             const value = this.inputElement.value.trim();
             if (value.length >= this.minLength) {
                 this.keypressTimeout = window.setTimeout(() => {
-                    this.fetchSuggestions(value).then((suggestions: Suggestion[]) => {
-                        this.suggestions = suggestions;
+                    this.fetchSuggestions(value).then((suggestions: object[]) => {
+                        this.suggestions = suggestions as SuggestionArgs[];
                         this.showSuggestions(this.suggestions);
 
                         this.updateStatus(this.suggestions.length, 1500);
@@ -151,7 +151,8 @@ class Autocomplete extends DSComponent {
 
             const suggestionElement = target.classList.contains('ds_autocomplete__suggestion') ? target : target.closest('.ds_autocomplete__suggestion');
             if (suggestionElement) {
-                const selectedIndex = Array.from(suggestionElement.parentNode.children).indexOf(suggestionElement);
+                const suggestionElementParent = suggestionElement.parentElement as HTMLElement;
+                const selectedIndex = Array.from(suggestionElementParent.children).indexOf(suggestionElement);
                 this.selectSuggestion(selectedIndex);
                 this.acceptSelectedSuggestion();
             }
@@ -169,13 +170,13 @@ class Autocomplete extends DSComponent {
      * @returns {void}
      */
     private acceptSelectedSuggestion(): void {
-        const selectedItem = document.querySelector('#' + this.inputElement.getAttribute('aria-activedescendant'));
-        this.inputElement.value = selectedItem.querySelector('.js-suggestion-text').textContent.trim();
+        const selectedItem = document.querySelector('#' + this.inputElement.getAttribute('aria-activedescendant')) as HTMLLIElement;
+        this.inputElement.value = (selectedItem.querySelector('.js-suggestion-text') as HTMLSpanElement).textContent.trim();
 
         // required for tracking
         this.inputElement.dataset.autocompletetext = this.inputElement.value;
         this.inputElement.dataset.autocompletecount = this.suggestions.length.toString();
-        this.inputElement.dataset.autocompleteposition = [].slice.call(this.listBoxElement.childNodes).filter((item: HTMLElement) => item.tagName === 'LI').indexOf(selectedItem) + 1;
+        this.inputElement.dataset.autocompleteposition = String([].slice.call(this.listBoxElement.querySelectorAll('li')).indexOf(selectedItem as never) + 1);
 
         this.clearSuggestions();
     }
@@ -233,12 +234,15 @@ class Autocomplete extends DSComponent {
      * - maps the results using the suggestion mapping function
      *
      * @param {string}searchTerm - the term to search for
-     * @returns {Promise<void | Suggestion[]>} - a promise that resolves to an array of suggestions
+     * @returns {Promise<void | SuggestionArgs[]>} - a promise that resolves to an array of suggestions
      */
-    private fetchSuggestions(searchTerm: string): Promise<void | Suggestion[]> {
+    private fetchSuggestions(searchTerm: string): Promise<SuggestionArgs[]> {
         return this.PromiseRequest(this.endpointUrl + encodeURIComponent(searchTerm))
-            .then((result: object[]) => this.suggestionMappingFunction(result))
-            .catch((result: object) => console.log('fetch failed', result));
+            .then((result) => this.suggestionMappingFunction(result as object[]))
+            .catch((result: object) => {
+                console.log('fetch failed', result);
+                return this.suggestionMappingFunction([] as object[])
+            });
     }
 
     /**
@@ -271,10 +275,10 @@ class Autocomplete extends DSComponent {
      * - highlights matching text
      * - updates the input element state
      *
-     * @param {Suggestion[]} suggestions - the suggestions to show
+     * @param {SuggestionArgs[]} suggestions - the suggestions to show
      * @returns {void}
      */
-    private showSuggestions(suggestions: Suggestion[]): void {
+    private showSuggestions(suggestions: SuggestionArgs[]): void {
         this.listBoxElement.innerHTML = '';
         if (suggestions.length) {
             for (let i = 0, il = suggestions.length; i < il; i++) {
@@ -293,16 +297,18 @@ class Autocomplete extends DSComponent {
                 }
 
                 suggestionElement.innerHTML = this.buildSuggestionHtml(suggestion.displayText);
-                highlight(suggestionElement.querySelector('.js-suggestion-text'), this.inputElement.value, {});
+                const suggestionTextElement = suggestionElement.querySelector('.js-suggestion-text') as HTMLElement;
+                highlight(suggestionTextElement, this.inputElement.value, {});
                 this.listBoxElement.appendChild(suggestionElement);
             }
             this.inputElement.classList.add('js-has-suggestions');
 
             // remove items that make the box too high for the viewport
-            while (window.visualViewport.height < this.listBoxElement.parentElement.offsetHeight + this.inputElement.offsetHeight + 16) {
-                const lastItem = this.listBoxElement.querySelector('li:last-child');
-                lastItem.parentNode.removeChild(lastItem);
-
+            const lastItem = this.listBoxElement.querySelector('li:last-child') as HTMLLIElement;
+            const listboxParentElement = this.listBoxElement.parentElement as HTMLElement;
+            const visualViewport = window.visualViewport as VisualViewport;
+            while (visualViewport.height < listboxParentElement.offsetHeight + this.inputElement.offsetHeight + 16) {
+                lastItem.parentNode?.removeChild(lastItem);
                 suggestions = suggestions.splice(suggestions.length - 1);
             }
         } else {

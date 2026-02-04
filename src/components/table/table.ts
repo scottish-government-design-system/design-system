@@ -51,7 +51,9 @@ export class MobileTable extends DSComponent {
      * @returns {void}
      */
     private checkScrollingTable(): void {
-        if (this.element.querySelector('tbody')?.offsetWidth > this.element.parentElement?.offsetWidth) {
+        const tableBodyElement = this.element.querySelector('tbody') as HTMLTableSectionElement;
+        const tableParentElement = this.element.parentElement as HTMLElement;
+        if (tableParentElement && tableBodyElement.offsetWidth > tableParentElement.offsetWidth) {
             this.element.classList.add('js-is-scrolling');
         } else {
             this.element.classList.remove('js-is-scrolling');
@@ -66,7 +68,7 @@ export class MobileTable extends DSComponent {
      */
     private setupBoxesTable(): void {
         const trs = this.element.querySelectorAll('tr');
-        let headerRow: HTMLTableRowElement;
+        let headerRow: HTMLTableRowElement | undefined;
 
         if ([].slice.call(trs[0].cells).filter((cell: HTMLTableCellElement) => cell.tagName === 'TH').length === trs[0].cells.length) {
             headerRow = trs[0];
@@ -88,11 +90,9 @@ export class MobileTable extends DSComponent {
  * @class MobileTables
  * @extends DSComponent
  * @property {Window} window - the window object
- * @property {NodeListOf<Element>} element - the table elements
  */
 class MobileTables {
     private window: Window;
-    private mobileTables: NodeListOf<Element>;
 
     constructor(_window = window) {
         this.window = _window;
@@ -106,8 +106,8 @@ class MobileTables {
      * @returns {void}
      */
     init(): void {
-        this.mobileTables = document.querySelectorAll('table[data-smallscreen]');
-        this.mobileTables.forEach(table =>  new MobileTable(table as HTMLTableElement, this.window).init())
+        const mobileTables = document.querySelectorAll('table[data-smallscreen]');
+        mobileTables.forEach(table =>  new MobileTable(table as HTMLTableElement, this.window).init())
     }
 }
 

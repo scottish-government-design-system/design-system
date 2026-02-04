@@ -20,6 +20,16 @@ describe('back to top', () => {
         expect(testObj.backToTopModule.checkDisplay).not.toHaveBeenCalled();
     });
 
+    it('should continue with a dummy footer if no footer element defined', () => {
+        const footer = document.querySelector('.ds_site-footer');
+        footer.parentNode.removeChild(footer);
+
+        testObj.backToTopElement = document.querySelector('.ds_back-to-top');
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
+
+        expect(testObj.backToTopModule.footerEl).toBeDefined();
+    });
+
     it('should check display on init if an element is supplied', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);

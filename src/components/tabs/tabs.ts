@@ -4,6 +4,18 @@ import DSComponent from '../../base/component/component';
 import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
 
 /**
+ * Providing a more specific keyboad event listener and adding other needed properties from Element
+ */
+interface TabLinkElement {
+    addEventListener(
+        type: 'keyup' | 'keydown' | 'click',
+        listener: (event: KeyboardEvent) => void,
+        options?: boolean | EventListenerOptions
+    ): void;
+    setAttribute: Element['setAttribute']
+}
+
+/**
  * Tabs component
  *
  * @class Tabs
@@ -35,14 +47,14 @@ class Tabs extends DSComponent {
     constructor(tabContainer: HTMLElement) {
         super(tabContainer);
 
-        this.resizeTimer = null;
+        this.resizeTimer = 0;
         this.hasEventsEnabled = false;
 
         this.hasAutomaticActivation = !tabContainer.classList.contains('ds_tabs--manual');
 
         this.tabContainer = tabContainer;
         // The list containing the tabs
-        this.tabList = tabContainer.querySelector('.ds_tabs__list');
+        this.tabList = tabContainer.querySelector('.ds_tabs__list') as HTMLElement;
         // The tab items
         this.tabHeaders = [].slice.call(tabContainer.querySelectorAll('.ds_tabs__tab'));
         // The tabs contents
@@ -89,7 +101,7 @@ class Tabs extends DSComponent {
 
             // Set the active tab based on the URL's hash or the first tab
             const currentTabLink = this.getTab(window.location.hash) || this.tabHeaders[0].querySelector('.ds_tabs__tab-link');
-            const currentTab = currentTabLink.parentElement;
+            const currentTab = currentTabLink.parentElement as HTMLElement;
             this.goToTab(currentTab);
 
             // Mark as initialised for specific layout support
@@ -146,7 +158,7 @@ class Tabs extends DSComponent {
             return;
         }
 
-        const tabWithHash = tabWithHashLink.parentElement;
+        const tabWithHash = tabWithHashLink.parentElement as HTMLElement;
 
         if (breakpointCheck('medium')) {
             this.goToTab(tabWithHash);
@@ -163,7 +175,7 @@ class Tabs extends DSComponent {
      */
     private createHistoryEntry(tab: HTMLElement): void {
         const tabId = this.getHref(tab);
-        history.pushState(null,null,tabId);
+        history.pushState(null,'',tabId);
     }
 
     /**
@@ -181,7 +193,7 @@ class Tabs extends DSComponent {
         tabHeader.removeAttribute('role');
         tabHeader.classList.remove('ds_current');
 
-        const tabLink = tabHeader.querySelector('.ds_tabs__tab-link');
+        const tabLink = tabHeader.querySelector('.ds_tabs__tab-link') as HTMLAnchorElement;
         const tabContent = this.tabContents[index];
 
         tabLink.removeAttribute('role');
@@ -207,9 +219,9 @@ class Tabs extends DSComponent {
     ): void {
         tabHeader.setAttribute('role', 'presentation');
 
-        const tabLink = tabHeader.querySelector('.ds_tabs__tab-link');
+        const tabLink = tabHeader.querySelector('.ds_tabs__tab-link') as TabLinkElement;
         const tabContent = this.tabContents[index];
-        const tabId = tabContent.getAttribute('id');
+        const tabId = tabContent.getAttribute('id') as string;
 
         tabLink.setAttribute('role', 'tab');
         tabLink.setAttribute('aria-controls', tabId);
@@ -229,7 +241,7 @@ class Tabs extends DSComponent {
 
             tabLink.addEventListener('keydown', (event: KeyboardEvent) => {
                 if (breakpointCheck('medium')) {
-                    const tab = (event.target as HTMLElement).parentElement;
+                    const tab = (event.target as HTMLElement).parentElement as HTMLElement;
                     let tabNavKey = true;
 
                     if (event.key === 'ArrowRight') {
@@ -329,7 +341,7 @@ class Tabs extends DSComponent {
             return;
         }
 
-        const targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
+        const targetTabLink = targetTab.querySelector('.ds_tabs__tab-link') as HTMLAnchorElement;
         const targetTabContent = this.getTabContent(targetTab);
 
         targetTab.classList.add('ds_current');
@@ -358,7 +370,7 @@ class Tabs extends DSComponent {
         if(!targetTab){
             return;
         }
-        const targetTabLink = targetTab.querySelector('.ds_tabs__tab-link');
+        const targetTabLink = targetTab.querySelector('.ds_tabs__tab-link') as HTMLAnchorElement;
         const targetTabContent = this.getTabContent(targetTab);
 
         targetTab.classList.remove('ds_current');
@@ -395,8 +407,8 @@ class Tabs extends DSComponent {
      * @returns {string} - The href of the specified tab
      */
     private getHref(tab: HTMLElement): string {
-        const tabLink = tab.querySelector('.ds_tabs__tab-link');
-        const href = tabLink.getAttribute('href');
+        const tabLink = tab.querySelector('.ds_tabs__tab-link') as HTMLAnchorElement;
+        const href = tabLink.href;
         return href.slice(href.indexOf('#'), href.length);
     }
 

@@ -3,23 +3,22 @@
 import DSComponent from '../../base/component/component';
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
-type CalendarDay = {
-    init: () => void;
-    update: (day: Date, isHidden?: boolean, isDisabled?: boolean) => void;
-    click: (event: MouseEvent) => void;
-    keyPress: (event: KeyboardEvent) => void;
-
-    button: HTMLButtonElement;
-    date: Date;
+type CalendarDayArgs = {
+    button: HTMLButtonElement
+    click: (event: MouseEvent) => void
+    date: Date
+    init: () => void
     isDisabled?: boolean
     isHidden?: boolean
+    keyPress: (event: KeyboardEvent) => void
+    update: (day: Date, isHidden?: boolean, isDisabled?: boolean) => void
 }
 
-type DatePickerOptions = {
-    minDate?: Date;
-    maxDate?: Date;
-    disabledDates?: Date[];
-    dateSelectCallback?: (date: Date) => void;
+type DatePickerOptionsArgs = {
+    dateSelectCallback?: (date: Date) => void
+    disabledDates?: Date[]
+    maxDate?: Date
+    minDate?: Date
 }
 
 /**
@@ -44,35 +43,30 @@ type DatePickerOptions = {
  * @property {Date} inputDate - the date currently in the input field
  * @property {Date} maxDate - the maximum selectable date
  * @property {Date} minDate - the minimum selectable date
- * @property {CalendarDay[]} calendarDays - array of calendar day objects
+ * @property {CalendarDayArgs[]} calendarDays - array of calendar day objects
  * @property {string[]} dayLabels - array of day labels
  * @property {string[]} monthLabels - array of month labels
  * @property {object} icons - object containing SVG icon templates
  */
 class DSDatePicker extends DSComponent {
-    private options: DatePickerOptions;
-    private calendarButtonElement: HTMLButtonElement;
-    private dateInput: HTMLInputElement;
-    private datePickerParent: HTMLElement;
-    private dialogElement: HTMLElement;
-    private dialogTitleElement: HTMLElement;
-    private firstButtonInDialog: HTMLButtonElement;
-    private inputElement: HTMLInputElement;
-    private lastButtonInDialog: HTMLButtonElement;
-    private monthInput: HTMLInputElement;
-    private yearInput: HTMLInputElement;
+    private options!: DatePickerOptionsArgs;
+    private calendarButtonElement!: HTMLButtonElement;
+    private dateInput!: HTMLInputElement;
+    private datePickerParent!: HTMLElement;
+    private dialogElement!: HTMLElement;
+    private dialogTitleElement!: HTMLElement;
+    private firstButtonInDialog!: HTMLButtonElement;
+    private inputElement!: HTMLInputElement;
+    private lastButtonInDialog!: HTMLButtonElement;
+    private monthInput!: HTMLInputElement;
+    private yearInput!: HTMLInputElement;
 
-    private isMultipleInput: boolean;
+    private isMultipleInput!: boolean;
 
-    private dateSelectCallback: (date: Date) => void;
+    private currentDate!: Date;
+    private inputDate?: Date;
 
-    private currentDate: Date;
-    private disabledDates: Date[];
-    private inputDate: Date;
-    private maxDate: Date;
-    private minDate: Date;
-
-    private calendarDays: CalendarDay[];
+    private calendarDays!: CalendarDayArgs[];
 
     private dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     private monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -90,25 +84,26 @@ class DSDatePicker extends DSComponent {
      * @param {HTMLElement} el - the date picker element
      * @param {object} options - configuration options for the date picker
      */
-    constructor(el: HTMLElement, options: object = {}) {
+    constructor(el: HTMLElement, options: DatePickerOptionsArgs = {}) {
         super(el);
 
-        if (!el) {
-            return;
-        }
+        if (!el) return;
 
         this.datePickerParent = el;
-        this.options = options;
-        this.inputElement = this.datePickerParent.querySelector('input');
+        this.options = Object.assign({
+            disabledDates: []
+        }, options);
+        this.inputElement = this.datePickerParent.querySelector('input') as HTMLInputElement;
+
+
         this.isMultipleInput = el.classList.contains('ds_datepicker--multiple');
-        this.dateInput = el.querySelector('.js-datepicker-date');
-        this.monthInput = el.querySelector('.js-datepicker-month');
-        this.yearInput = el.querySelector('.js-datepicker-year');
+        this.dateInput = el.querySelector('.js-datepicker-date') as HTMLInputElement;
+        this.monthInput = el.querySelector('.js-datepicker-month') as HTMLInputElement;
+        this.yearInput = el.querySelector('.js-datepicker-year') as HTMLInputElement;
 
         this.currentDate = new Date();
         this.currentDate.setHours(0, 0, 0, 0);
         this.calendarDays = [];
-        this.disabledDates = [];
     }
 
     /**
@@ -125,39 +120,36 @@ class DSDatePicker extends DSComponent {
         }
 
         this.setOptions();
+        this.setMinAndMaxDatesOnCalendar();
 
         // insert calendar button
         const calendarButtonTempContainer = document.createElement('div');
         calendarButtonTempContainer.innerHTML = this.buttonTemplate();
         this.calendarButtonElement = calendarButtonTempContainer.firstChild as HTMLButtonElement;
         this.calendarButtonElement.setAttribute('data-button', `datepicker-${this.inputElement.id}-toggle`);
-
         if (this.isMultipleInput) {
-            this.inputElement.parentElement.parentElement.appendChild(this.calendarButtonElement);
+            this.inputElement.parentElement?.parentElement?.appendChild(this.calendarButtonElement);
         } else {
-            this.inputElement.parentElement.appendChild(this.calendarButtonElement);
-            this.inputElement.parentElement.classList.add('ds_input__wrapper--has-icon');
+            this.inputElement.parentElement?.appendChild(this.calendarButtonElement);
+            this.inputElement.parentElement?.classList.add('ds_input__wrapper--has-icon');
         }
 
         // insert dialog template
-        const dialog = document.createElement('div');
-        dialog.id = 'datepicker-' + elementIdModifier();
-        dialog.setAttribute('class', 'ds_datepicker__dialog  datepickerDialog');
-        dialog.setAttribute('role', 'dialog');
-        dialog.setAttribute('aria-modal', 'true');
-        dialog.innerHTML = this.dialogTemplate(dialog.id);
-        this.calendarButtonElement.setAttribute('aria-controls', dialog.id);
+        this.dialogElement = document.createElement('div');
+        this.dialogElement.id = 'datepicker-' + elementIdModifier();
+        this.dialogElement.setAttribute('class', 'ds_datepicker__dialog  datepickerDialog');
+        this.dialogElement.setAttribute('role', 'dialog');
+        this.dialogElement.setAttribute('aria-modal', 'true');
+        this.dialogElement.innerHTML = this.dialogTemplate(this.dialogElement.id);
+        this.calendarButtonElement.setAttribute('aria-controls', this.dialogElement.id);
         this.calendarButtonElement.setAttribute('aria-expanded', false.toString());
 
-        this.dialogElement = dialog;
-        this.datePickerParent.appendChild(dialog);
+        this.datePickerParent.appendChild(this.dialogElement);
 
-        this.dialogTitleElement = this.dialogElement.querySelector('.js-datepicker-month-year');
-
-        this.setMinAndMaxDatesOnCalendar();
+        this.dialogTitleElement = this.dialogElement.querySelector('.js-datepicker-month-year') as HTMLElement;
 
         // create calendar
-        const tbody = this.datePickerParent.querySelector('tbody');
+        const tbody = this.datePickerParent.querySelector('tbody') as HTMLTableSectionElement;
         let dayCount = 0;
         for (let i = 0; i < 6; i++) {
             // create row
@@ -173,7 +165,7 @@ class DSDatePicker extends DSComponent {
                 cell.appendChild(dateButton);
                 row.appendChild(cell);
 
-                const calendarDay = new DSCalendarDay(dateButton, dayCount, i, j, this);
+                const calendarDay = new DSCalendarDay(dateButton, dayCount, i, j, this) as CalendarDayArgs;
                 calendarDay.init();
                 this.calendarDays.push(calendarDay);
                 dayCount++;
@@ -181,10 +173,10 @@ class DSDatePicker extends DSComponent {
         }
 
         // add event listeners
-        const prevMonthButton = this.dialogElement.querySelector('.js-datepicker-prev-month');
-        const prevYearButton = this.dialogElement.querySelector('.js-datepicker-prev-year');
-        const nextMonthButton = this.dialogElement.querySelector('.js-datepicker-next-month');
-        const nextYearButton = this.dialogElement.querySelector('.js-datepicker-next-year');
+        const prevMonthButton = this.dialogElement.querySelector('.js-datepicker-prev-month') as HTMLButtonElement;
+        const prevYearButton = this.dialogElement.querySelector('.js-datepicker-prev-year') as HTMLButtonElement;
+        const nextMonthButton = this.dialogElement.querySelector('.js-datepicker-next-month') as HTMLButtonElement;
+        const nextYearButton = this.dialogElement.querySelector('.js-datepicker-next-year') as HTMLButtonElement;
         prevMonthButton.addEventListener('click', (event) => this.focusPreviousMonth(event, false));
         prevYearButton.addEventListener('click', (event) => this.focusPreviousYear(event, false));
         nextMonthButton.addEventListener('click', (event) => this.focusNextMonth(event, false));
@@ -193,12 +185,12 @@ class DSDatePicker extends DSComponent {
         const dateInputFields = [this.inputElement, this.dateInput, this.monthInput, this.yearInput];
         dateInputFields.forEach(input => {
             if (input) {
-                input.addEventListener('blur', () => { this.calendarButtonElement.querySelector('span').textContent = 'Choose date'; });
+                input.addEventListener('blur', () => { (this.calendarButtonElement.querySelector('span') as HTMLSpanElement).textContent = 'Choose date'; });
             }
         });
 
-        const cancelButton = this.dialogElement.querySelector('.js-datepicker-cancel');
-        const okButton = this.dialogElement.querySelector('.js-datepicker-ok');
+        const cancelButton = this.dialogElement.querySelector('.js-datepicker-cancel') as HTMLButtonElement;
+        const okButton = this.dialogElement.querySelector('.js-datepicker-ok') as HTMLButtonElement;
         cancelButton.addEventListener('click', (event) => { event.preventDefault(); this.closeDialog(); });
         okButton.addEventListener('click', () => this.selectDate(this.currentDate));
 
@@ -517,10 +509,10 @@ class DSDatePicker extends DSComponent {
      * - falls back to the provided fallback date if formatting fails
      *
      * @param {string} dateString - The date string to format
-     * @param {Date}fallback - The fallback date if formatting fails
+     * @param {Date | null} fallback - The fallback date if formatting fails
      * @returns {Date} - The formatted date
      */
-    private formattedDateFromString(dateString: string, fallback: Date = new Date()): Date {
+    private formattedDateFromString(dateString: string, fallback: Date | null = new Date()): Date | null {
         let formattedDate = null;
         const parts = dateString.split('/');
 
@@ -586,15 +578,15 @@ class DSDatePicker extends DSComponent {
     private isDisabledDate(date: Date): boolean {
         let disabled = false;
 
-        if (this.minDate && this.minDate > date) {
+        if (this.options.minDate && this.options.minDate > date) {
             disabled = true;
         }
 
-        if (this.maxDate && this.maxDate < date) {
+        if (this.options.maxDate && this.options.maxDate < date) {
             disabled = true;
         }
 
-        for (const disabledDate of this.disabledDates) {
+        for (const disabledDate of this.options.disabledDates as Date[]) {
             if (date.toDateString() === disabledDate.toDateString()) {
                 disabled = true;
             }
@@ -666,7 +658,7 @@ class DSDatePicker extends DSComponent {
         this.dialogElement.classList.add(`ds_!_off-l-${dialogElementSpacingUnits}`);
 
         if (dateAsString.match(/^\d{1,2}\/\d{1,2}\/\d{4}$/)) {
-            this.inputDate = this.formattedDateFromString(dateAsString);
+            this.inputDate = this.formattedDateFromString(dateAsString) as Date;
             this.currentDate = this.inputDate;
         }
 
@@ -690,14 +682,14 @@ class DSDatePicker extends DSComponent {
             return false;
         }
 
-        this.calendarButtonElement.querySelector('span').textContent = `Choose date. Selected date is ${this.formattedDateHuman(date)}`;
+        (this.calendarButtonElement.querySelector('span') as HTMLSpanElement).textContent = `Choose date. Selected date is ${this.formattedDateHuman(date)}`;
         this.setDate(date);
 
         const changeEvent = new Event('change'); // todo: true true (bubbles, etc?)
         this.inputElement.dispatchEvent(changeEvent);
 
-        if (this.dateSelectCallback) {
-            this.dateSelectCallback(date);
+        if (this.options.dateSelectCallback) {
+            this.options.dateSelectCallback(date);
         }
 
         this.closeDialog();
@@ -796,12 +788,12 @@ class DSDatePicker extends DSComponent {
      * @returns {void}
      */
     private setMinAndMaxDatesOnCalendar(): void {
-        if (this.minDate && this.currentDate < this.minDate) {
-            this.currentDate = this.minDate;
+        if (this.options.minDate && this.currentDate < this.options.minDate) {
+            this.currentDate = this.options.minDate;
         }
 
-        if (this.maxDate && this.currentDate > this.maxDate) {
-            this.currentDate = this.maxDate;
+        if (this.options.maxDate && this.currentDate > this.options.maxDate) {
+            this.currentDate = this.options.maxDate;
         }
     }
 
@@ -813,29 +805,19 @@ class DSDatePicker extends DSComponent {
     private setOptions(): void {
         this.transformLegacyDataAttributes();
 
-        if (this.options.minDate) {
-            this.minDate = this.options.minDate;
-        } else if (this.datePickerParent.dataset.mindate) {
-            this.minDate = this.formattedDateFromString(this.datePickerParent.dataset.mindate, null);
+        if (!this.options.minDate && this.datePickerParent.dataset.mindate) {
+            this.options.minDate = this.formattedDateFromString(this.datePickerParent.dataset.mindate, null) as Date;
         }
 
-        if (this.options.maxDate) {
-            this.maxDate = this.options.maxDate;
-        } else if (this.datePickerParent.dataset.maxdate) {
-            this.maxDate = this.formattedDateFromString(this.datePickerParent.dataset.maxdate, null);
+        if (!this.options.maxDate && this.datePickerParent.dataset.maxdate) {
+            this.options.maxDate = this.formattedDateFromString(this.datePickerParent.dataset.maxdate, null) as Date;
         }
 
-        if (this.options.dateSelectCallback) {
-            this.dateSelectCallback = this.options.dateSelectCallback;
-        }
-
-        if (this.options.disabledDates) {
-            this.disabledDates = this.options.disabledDates;
-        } else if (this.datePickerParent.dataset.disableddates) {
-            this.disabledDates = this.datePickerParent.dataset.disableddates
+        if (!this.options.disabledDates?.length && this.datePickerParent.dataset.disableddates) {
+            this.options.disabledDates = this.datePickerParent.dataset.disableddates
                 .replace(/\s+/, ' ')
                 .split(' ')
-                .map(item => this.formattedDateFromString(item, null))
+                .map(item => this.formattedDateFromString(item) as Date)
                 .filter(item => item);
         }
     }
@@ -901,13 +883,13 @@ class DSDatePicker extends DSComponent {
         for (const element of this.calendarDays) {
             const isHidden = thisDay.getMonth() !== day.getMonth();
 
-            let isDisabled: boolean;
+            let isDisabled: boolean = false;
 
-            if (thisDay < this.minDate) {
+            if (this.options.minDate && thisDay < this.options.minDate) {
                 isDisabled = true;
             }
 
-            if (thisDay > this.maxDate) {
+            if (this.options.maxDate && thisDay > this.options.maxDate) {
                 isDisabled = true;
             }
 
@@ -926,20 +908,20 @@ class DSDatePicker extends DSComponent {
  * Class representing a day button in the date picker calendar
  *
  * @class DSCalendarDay
+ * @property {HTMLButtonElement} button - The button element representing the day
+ * @property {number} column - Column index of the day button
+ * @property {Date} date - The date represented by the day button
  * @property {number} index - Index of the day button in the calendar grid
  * @property {number} row - Row index of the day button
- * @property {number} column - Column index of the day button
- * @property {HTMLButtonElement} button - The button element representing the day
  * @property {DSDatePicker} picker - Parent date picker instance
- * @property {Date} date - The date represented by the day button
  */
 class DSCalendarDay {
+    button: HTMLButtonElement;
+    private column: number;
+    date: Date;
     private index: number;
     private row: number;
-    private column: number;
-    button: HTMLButtonElement;
     private picker: DSDatePicker;
-    date: Date;
 
     /**
      * Constructor for a day button in the date picker calendar

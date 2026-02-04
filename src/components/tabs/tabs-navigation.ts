@@ -1,7 +1,7 @@
 'use strict';
 
 import DSComponent from '../../base/component/component';
-import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-check';
+import breakpointCheck, { BreakpointSizeArgs } from '../../base/utilities/breakpoint-check/breakpoint-check';
 
 /**
  * Tabs navigation component
@@ -9,25 +9,21 @@ import breakpointCheck from '../../base/utilities/breakpoint-check/breakpoint-ch
  * @class TabsNavigation
  * @extends DSComponent
  * @property {HTMLElement} tabContainer - the tab container element
- * @property {HTMLElement[]} tabHeaders - the tab items
  * @property {HTMLElement} tabList - the list containing the tabs
  * @property {HTMLElement} tabNavigation - the tab navigation
  * @property {HTMLElement} tabTitle - the tab navigation title
  * @property {Function} breakpointCheck - the breakpoint check function
- * @property {boolean} hasEventsEnabled - whether events are enabled
  * @property {number} [resizeTimer] - the resize timer
  * @property {Function} boundOnResize - the bound on resize function
  */
 class TabsNavigation extends DSComponent {
-    boundOnResize: () => void;
-    breakpointCheck: (size: string) => boolean;
-    hasEventsEnabled: boolean;
-    resizeTimer?: number;
-    tabContainer: HTMLElement;
-    tabHeaders: HTMLElement[];
-    tabList: HTMLElement;
-    tabNavigation: HTMLElement;
-    tabTitle: HTMLElement;
+    private boundOnResize: () => void;
+    private breakpointCheck: (size: BreakpointSizeArgs) => boolean;
+    private resizeTimer?: number;
+    private tabContainer: HTMLElement;
+    private tabList: HTMLElement;
+    private tabNavigation: HTMLElement;
+    private tabTitle: HTMLElement;
 
     /**
      * Creates a tabs navigation component
@@ -39,18 +35,15 @@ class TabsNavigation extends DSComponent {
         super(tabContainer)
 
         this.breakpointCheck = _breakpointCheck;
-        this.resizeTimer = null;
-        this.hasEventsEnabled = false;
+        this.resizeTimer = 0;
 
         this.tabContainer = tabContainer;
         // The list containing the tabs
-        this.tabList = tabContainer.querySelector('.ds_tabs__list');
-        // The tab items
-        this.tabHeaders = [].slice.call(tabContainer.querySelectorAll('.ds_tabs__tab'));
+        this.tabList = tabContainer.querySelector('.ds_tabs__list') as HTMLElement;
         // The tab navigation
-        this.tabNavigation = tabContainer.querySelector('.ds_tabs__navigation');
+        this.tabNavigation = tabContainer.querySelector('.ds_tabs__navigation') as HTMLElement;
         // The tab navigation title
-        this.tabTitle = tabContainer.querySelector('.ds_tabs__title');
+        this.tabTitle = tabContainer.querySelector('.ds_tabs__title') as HTMLElement;
 
         // Handle resize events
         this.boundOnResize = this.onResize.bind(this)
@@ -64,11 +57,10 @@ class TabsNavigation extends DSComponent {
      * @returns {void}
      */
     init(): void {
-        if (breakpointCheck('medium')) {
+        if (this.breakpointCheck('medium')) {
             // do nothing
         } else {
             this.set();
-            this.hasEventsEnabled = true;
         }
     }
 
@@ -85,7 +77,7 @@ class TabsNavigation extends DSComponent {
 
             // Swap title to button
             const navButton = document.createElement('button');
-            const tabListId = this.tabList.getAttribute('id');
+            const tabListId = this.tabList.getAttribute('id') as string;
             navButton.classList.add('ds_tabs__toggle');
             navButton.setAttribute('aria-expanded', false.toString());
             navButton.innerHTML = this.tabTitle.innerHTML;
@@ -123,8 +115,8 @@ class TabsNavigation extends DSComponent {
             this.isInitialised = false;
 
             // Remove button
-            const navButton = this.tabContainer.querySelector('.ds_tabs__toggle');
-            navButton.parentNode.removeChild(navButton);
+            const navButton = this.tabContainer.querySelector('.ds_tabs__toggle') as HTMLButtonElement;
+            navButton.parentNode?.removeChild(navButton);
 
             // Set aria-labelledby back to using the tab list heading
             this.tabNavigation.setAttribute('aria-labelledby','ds_tabs__title');
@@ -140,7 +132,7 @@ class TabsNavigation extends DSComponent {
     private onResize(): void {
         clearTimeout(this.resizeTimer);
         this.resizeTimer = window.setTimeout(() => {
-            if (breakpointCheck('medium')) {
+            if (this.breakpointCheck('medium')) {
                 this.reset();
             } else {
                 this.set();

@@ -1,6 +1,5 @@
-type HighlightOptions = {
-    className?: string;
-    tagName?: string;
+type HighlightOptionsArgs = {
+    className?: string
 }
 
 /**
@@ -8,12 +7,12 @@ type HighlightOptions = {
  *
  * @param {HTMLElement} element - the element to highlight
  * @param {string} pattern - the pattern to match
- * @param {HighlightOptions} options - the highlight options
+ * @param {HighlightOptionsArgs} options - the highlight options
  * @returns {void}
  */
-function highlight(element: HTMLElement, pattern: string, options: HighlightOptions): void {
+function highlight(element: HTMLElement, pattern: string, options: HighlightOptionsArgs): void {
     const defaults = {
-        tagName: 'MARK'
+        className: ''
     };
 
     options = Object.assign({}, defaults, options);
@@ -37,7 +36,7 @@ function highlight(element: HTMLElement, pattern: string, options: HighlightOpti
         const match = regex.exec(textNode.data);
 
         if (match) {
-            wrapperNode = document.createElement(options.tagName);
+            wrapperNode = document.createElement('MARK');
 
             if (options.className) {
                 wrapperNode.className = options.className;
@@ -47,7 +46,7 @@ function highlight(element: HTMLElement, pattern: string, options: HighlightOpti
             patternNode.splitText(match[0].length);
             wrapperNode.appendChild(patternNode.cloneNode(true));
 
-            textNode.parentNode.replaceChild(wrapperNode, patternNode);
+            textNode.parentNode?.replaceChild(wrapperNode, patternNode);
         }
 
         return !!match;

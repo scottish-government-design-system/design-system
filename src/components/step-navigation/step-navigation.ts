@@ -33,7 +33,7 @@ class StepNavigation extends DSComponent {
      * @returns {void}
      */
     init(): void {
-        const links = this.container.querySelectorAll('.ds_accordion-item__body a');
+        const links = this.container.querySelectorAll('.ds_accordion-item__body a') as NodeListOf<HTMLAnchorElement>;
 
         links.forEach((link: HTMLAnchorElement) => {
             if (link.href === this.window.location.origin + this.window.location.pathname) {

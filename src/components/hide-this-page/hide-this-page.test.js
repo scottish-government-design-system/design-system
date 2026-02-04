@@ -63,9 +63,9 @@ describe('hide page', () => {
         });
 
         it('should go to a specified URL', () => {
-            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
             const hidePageButton = document.querySelector('.js-hide-page');
             hidePageButton.setAttribute('data-altlink', 'https://foo.scot');
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
 
             testObj.hidePage.init();
 

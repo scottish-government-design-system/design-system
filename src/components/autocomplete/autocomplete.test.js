@@ -620,7 +620,7 @@ describe('"autocomplete" component', () => {
             inputElement.parentNode.removeChild(inputElement);
 
             testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, 'endpointUrl');
-            expect(testObj.autocompleteModule.init()).toBe(false);
+            expect(testObj.autocompleteModule.isInitialised).toBe(false);
         });
 
         it('will clear all suggestion-related info if there are no suggestions to display', () => {

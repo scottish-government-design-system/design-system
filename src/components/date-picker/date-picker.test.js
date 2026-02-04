@@ -63,7 +63,7 @@ describe('date picker', () => {
                 testObj.datePickerElement = document.querySelector('#minmaxdate');
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
                 testObj.datePickerModule.init();
-                expect(testObj.datePickerModule.minDate).toEqual(new Date('01/06/2020'));
+                expect(testObj.datePickerModule.options.minDate).toEqual(new Date('01/06/2020'));
             });
 
             it('should set a min date if one is specified in options param, YMD format', () => {
@@ -78,7 +78,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+                expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
             });
 
             it('should set a min date if one is specified as a data attribute, MDY format', () => {
@@ -93,7 +93,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+                expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
             });
 
             it('should set a min date if one is specified as a data attribute, DMY format', () => {
@@ -108,7 +108,7 @@ describe('date picker', () => {
                 testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, options);
                 testObj.datePickerModule.init();
 
-                expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+                expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
             });
         });
 
@@ -116,7 +116,7 @@ describe('date picker', () => {
             testObj.datePickerElement = document.querySelector('#minmaxdate');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.maxDate).toEqual(new Date('01/06/2021'));
+            expect(testObj.datePickerModule.options.maxDate).toEqual(new Date('01/06/2021'));
         });
 
         it('should make the current date the earliest permitted date if the earliest permittted date is later than today', () => {
@@ -137,8 +137,8 @@ describe('date picker', () => {
             testObj.datePickerElement = document.querySelector('#basic');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement, { minDate: new Date('01/06/2020'), maxDate: new Date('01/06/2021')});
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('01/06/2020'));
-            expect(testObj.datePickerModule.maxDate).toEqual(new Date('01/06/2021'));
+            expect(testObj.datePickerModule.options.minDate).toEqual(new Date('01/06/2020'));
+            expect(testObj.datePickerModule.options.maxDate).toEqual(new Date('01/06/2021'));
         });
 
         it('should support presupplied dates in dd/mm/yyyy format', () => {
@@ -147,7 +147,7 @@ describe('date picker', () => {
             testObj.datePickerModule.inputElement.dataset.dateformat = 'DMY';
             testObj.datePickerModule.inputElement.dataset.mindate = '01/07/2020';
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+            expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
         });
 
         it('should support presupplied dates in mm/dd/yyyy format', () => {
@@ -156,7 +156,7 @@ describe('date picker', () => {
             testObj.datePickerModule.inputElement.dataset.dateformat = 'MDY';
             testObj.datePickerModule.inputElement.dataset.mindate = '07/01/2020';
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+            expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
         });
 
         it('should support presupplied dates in yyyy/mm/dd format', () => {
@@ -165,7 +165,7 @@ describe('date picker', () => {
             testObj.datePickerModule.inputElement.dataset.dateformat = 'YMD';
             testObj.datePickerModule.inputElement.dataset.mindate = '2020/07/01';
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toEqual(new Date('07/01/2020'));
+            expect(testObj.datePickerModule.options.minDate).toEqual(new Date('07/01/2020'));
         });
 
         it('should ignore presupplied dates that do not match the expected format', () => {
@@ -174,16 +174,26 @@ describe('date picker', () => {
             testObj.datePickerModule.inputElement.dataset.dateformat = 'YMD';
             testObj.datePickerModule.inputElement.dataset.mindate = 'nonsense';
             testObj.datePickerModule.init();
-            expect(testObj.datePickerModule.minDate).toBeNull();
+            expect(testObj.datePickerModule.options.minDate).toBeNull();
         });
     });
 
-    describe('functions', () => {
+    describe('dialog functions', () => {
         beforeEach(() => {
             // setup
             testObj.datePickerElement = document.querySelector('#basic');
             testObj.datePickerModule = new DSDatePicker(testObj.datePickerElement);
             testObj.datePickerModule.init();
+        });
+
+        it('should reset the position of the dialog when it is opened', () => {
+            // a nonsense value
+            testObj.datePickerModule.dialogElement.classList.add('ds_!_off-l-111');
+            testObj.datePickerModule.openDialog();
+
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_!_off-l-111')).toBeFalsy();
+            // 22 is a magic number
+            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_!_off-l-22')).toBeTruthy();
         });
 
         it('should focus on today when opening the dialog with no value in the input element', () => {
@@ -852,10 +862,10 @@ describe('date picker', () => {
 
         testObj.datePickerModule.init();
 
-        vi.spyOn(testObj.datePickerModule, 'dateSelectCallback').mockImplementation();
+        vi.spyOn(testObj.datePickerModule.options, 'dateSelectCallback').mockImplementation();
 
         testObj.datePickerModule.selectDate(new Date('1/8/2020'));
 
-        expect(testObj.datePickerModule.dateSelectCallback).toHaveBeenCalledWith(new Date('1/8/2020'));
+        expect(testObj.datePickerModule.options.dateSelectCallback).toHaveBeenCalledWith(new Date('1/8/2020'));
     });
 });

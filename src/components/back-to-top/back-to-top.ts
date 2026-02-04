@@ -2,7 +2,7 @@
 
 import DSComponent from "../../base/component/component";
 
-type BTTOptions = {
+type BTTOptionsArgs = {
     footerElSelector?: string
 }
 
@@ -25,20 +25,23 @@ class BackToTop extends DSComponent {
      * Creates a back to top component
      *
      * @param {HTMLElement} element - the back to top element
-     * @param _window - the window object
-     * @param options - the back to top options
+     * @param {Window} _window - the window object
+     * @param {BTTOptionsArgs} options - the back to top options
      */
     constructor(
         element: HTMLElement,
-        _window = window,
-        options: BTTOptions = {}
+        _window: Window = window,
+        options: BTTOptionsArgs = {}
     ) {
         super(element);
 
+        // a fake element used for height calculations
+        const fallbackFooterEl = document.createElement('div');
+
         if (options.footerElSelector) {
-            this.footerEl = document.querySelector(options.footerElSelector);
+            this.footerEl = document.querySelector(options.footerElSelector) as HTMLElement;
         } else {
-            this.footerEl = document.querySelector('.ds_site-footer');
+            this.footerEl = document.querySelector('.ds_site-footer') || fallbackFooterEl;
         }
 
         // a fake element used for height calculations

@@ -13,12 +13,11 @@ interface CharacterCountInputElement extends HTMLInputElement {
  *
  * @class CharacterCount
  * @extends DSComponent
- * @private {TokenList} describedByTokenList
  * @private {string} emptyMessage
- * @private {HTMLElement} emptyMessageElement
  * @private {HTMLElement} field
- * @private {boolean} isInvalidInitialState
+ * @private {string} idModifier
  * @private {CharacterCountInputElement} inputElement
+ * @private {boolean} isInvalidInitialState
  * @private {number} maxLength
  * @private {HTMLElement} messageElement
  * @private {number} messageTimeout
@@ -27,18 +26,17 @@ interface CharacterCountInputElement extends HTMLInputElement {
  * @private {number} thresholdCharacters
  */
 class CharacterCount extends DSComponent {
-    private describedByTokenList: TokenList;
-    private emptyMessage: string;
-    private emptyMessageElement: HTMLElement;
+    private emptyMessage!: string;
     private field: HTMLElement;
-    private isInvalidInitialState: boolean;
+    private idModifier: string
     private inputElement: CharacterCountInputElement;
-    private maxLength: number;
-    private messageElement: HTMLElement;
+    private isInvalidInitialState?: boolean;
+    private maxLength!: number;
+    private messageElement!: HTMLElement;
     private messageTimeout: number;
-    private screenReaderMessageElement: HTMLElement;
+    private screenReaderMessageElement!: HTMLElement;
     private threshold: number;
-    private thresholdCharacters: number;
+    private thresholdCharacters!: number;
 
     /**
      * Create a character count instance
@@ -48,8 +46,10 @@ class CharacterCount extends DSComponent {
     constructor(field: HTMLElement) {
         super(field);
         this.field = field;
-        this.inputElement = this.field.querySelector('input, textarea');
+        this.inputElement = this.field.querySelector('input, textarea') as CharacterCountInputElement;
         this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0;
+        this.messageTimeout = 0;
+        this.idModifier = elementIdModifier();
     }
 
     /**
@@ -66,20 +66,19 @@ class CharacterCount extends DSComponent {
         }
 
         if (!this.isInitialised) {
-            this.setMaxLength();
-            this.setThresholdCharacters();
-            const idModifier = elementIdModifier();
+            this.maxLength = this.getMaxLength();
+            this.thresholdCharacters = this.getThresholdCharacters();
 
-            if (!this.maxLength) {
+            if (this.maxLength === 0) {
                 return;
             }
 
             this.emptyMessage = `You can enter up to ${this.maxLength} characters`;
-            this.emptyMessageElement = document.createElement('div');
-            this.emptyMessageElement.classList.add('fully-hidden');
-            this.emptyMessageElement.classList.add('ds_character-count__initial');
-            this.emptyMessageElement.textContent = this.emptyMessage;
-            this.emptyMessageElement.id = `character-count-empty-${idModifier}`;
+            const emptyMessageElement = document.createElement('div');
+            emptyMessageElement.classList.add('fully-hidden');
+            emptyMessageElement.classList.add('ds_character-count__initial');
+            emptyMessageElement.textContent = this.emptyMessage;
+            emptyMessageElement.id = `character-count-empty-${this.idModifier}`;
 
             // dynamically create the visible message element
             // we update this "live"
@@ -92,10 +91,10 @@ class CharacterCount extends DSComponent {
             // we update this with a delay so screen readers will announce the input value, then the character count
             this.screenReaderMessageElement = document.createElement('div');
             this.screenReaderMessageElement.classList.add('visually-hidden');
-            this.screenReaderMessageElement.id = `character-count-remaining-${idModifier}`;
+            this.screenReaderMessageElement.id = `character-count-remaining-${this.idModifier}`;
 
-            this.describedByTokenList = new TokenList(this.inputElement.getAttribute('aria-describedby'));
-            this.inputElement.setAttribute('aria-describedby', this.describedByTokenList.add([this.emptyMessageElement.id, this.screenReaderMessageElement.id]));
+            const describedByTokenList = new TokenList(this.inputElement.getAttribute('aria-describedby') as string);
+            this.inputElement.setAttribute('aria-describedby', describedByTokenList.add([emptyMessageElement.id, this.screenReaderMessageElement.id]));
 
             if (this.inputElement.value.length < this.thresholdCharacters) {
                 this.messageElement.classList.add('fully-hidden');
@@ -106,7 +105,7 @@ class CharacterCount extends DSComponent {
 
             this.field.appendChild(this.messageElement);
             this.field.appendChild(this.screenReaderMessageElement);
-            this.field.appendChild(this.emptyMessageElement);
+            this.field.appendChild(emptyMessageElement);
 
             this.updateCountMessage();
 
@@ -116,31 +115,6 @@ class CharacterCount extends DSComponent {
 
             this.isInitialised = true;
         }
-    }
-
-    /**
-     * Set the component's "maxLength" based on either a supplied maxlength attribute or
-     * data-maxlength attribute. Remove a maxlength attribute if it is present.
-     *
-     * @returns {void}
-     */
-    private setMaxLength(): void {
-        if (this.inputElement.getAttribute('maxlength')) {
-            this.maxLength = Number(this.inputElement.getAttribute('maxlength'));
-            this.inputElement.removeAttribute('maxlength');
-        } else if (this.field.dataset.maxlength) {
-            this.maxLength = Number(this.field.dataset.maxlength);
-        }
-    }
-
-    /**
-     * Set the number of characters required to make the character count appear, calculated from
-     * the maxlength and the supplied threshold
-     *
-     * @returns {void}
-     */
-    private setThresholdCharacters(): void {
-        this.thresholdCharacters = Math.round(this.maxLength * this.threshold);
     }
 
     /**
@@ -161,6 +135,35 @@ class CharacterCount extends DSComponent {
             this.inputElement.oldValue = this.inputElement.value;
             this.updateCountMessage.bind(this)();
         }
+    }
+
+    /**
+     * Get the component's "maxLength" based on either a supplied maxlength attribute or
+     * data-maxlength attribute. Remove a maxlength attribute if it is present.
+     *
+     * @returns {number}
+     */
+    private getMaxLength(): number {
+        let maxLength: number = 0;
+
+        if (this.inputElement.getAttribute('maxlength')) {
+            maxLength = Number(this.inputElement.getAttribute('maxlength'));
+            this.inputElement.removeAttribute('maxlength');
+        } else if (this.field.dataset.maxlength) {
+            maxLength = Number(this.field.dataset.maxlength);
+        }
+
+        return maxLength;
+    }
+
+    /**
+     * Get the number of characters required to make the character count appear, calculated from
+     * the maxlength and the supplied threshold
+     *
+     * @returns {number}
+     */
+    private getThresholdCharacters(): number {
+        return Math.round(this.maxLength * this.threshold);
     }
 
     /**

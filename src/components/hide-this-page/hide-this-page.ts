@@ -20,13 +20,14 @@ class HidePage extends DSComponent {
      * Creates a hide page component
      *
      * @param {HTMLElement} element - the hide page element
-     * @param _window - the window object
+     * @param {Window} _window - the window object
      */
-    constructor(element: HTMLElement, _window = window) {
+    constructor(element: HTMLElement, _window: Window = window) {
         const button = element.querySelector('.js-hide-page') as HTMLAnchorElement;
         super(button);
         this.button = button;
         this.window = _window;
+        this.altlink = this.button?.dataset.altlink || 'https://www.google.com';
     }
 
     /**
@@ -38,10 +39,9 @@ class HidePage extends DSComponent {
         if (!this.button) {
             return;
         }
+
         this.attachKeyboardEvents();
         this.attachMouseEvents();
-
-        this.altlink = this.button.dataset.altlink || 'https://www.google.com';
 
         this.isInitialised = true;
     }

@@ -15,7 +15,7 @@ const skipLinks = {
     init(): void {
         [].slice.call(document.querySelectorAll('.ds_skip-links__link')).forEach((link: HTMLLinkElement) => {
             link.addEventListener('click', () => {
-                const linkTarget = document.querySelector(link.getAttribute('href'));
+                const linkTarget = document.querySelector(link.getAttribute('href') as string);
                 if (linkTarget) {
                     temporaryFocus(linkTarget as HTMLElement);
                 }
