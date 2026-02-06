@@ -45,7 +45,7 @@ describe('back to top', () => {
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
         testObj.backToTopModule.init();
-        expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeTrue();
+        expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeTruthy();
     });
 
     it('should display if the page is taller than the viewport', async () => {
@@ -56,7 +56,7 @@ describe('back to top', () => {
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
         testObj.backToTopModule.init();
-        expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeFalse();
+        expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeFalsy();
     });
 
     it('should check positioning on resize', () => {

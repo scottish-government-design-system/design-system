@@ -17,7 +17,7 @@ type BTTOptionsArgs = {
  */
 class BackToTop extends DSComponent {
     private backToTopElement: HTMLElement;
-    private backToTopOffset: number;
+    private backToTopOffset!: number;
     private footerEl: HTMLElement;
     private window: Window;
 
@@ -44,11 +44,6 @@ class BackToTop extends DSComponent {
             this.footerEl = document.querySelector('.ds_site-footer') || fallbackFooterEl;
         }
 
-        // a fake element used for height calculations
-        if (!this.footerEl) {
-            this.footerEl = document.createElement('div');
-        }
-
         this.backToTopElement = element;
         this.window = _window;
     }
@@ -65,7 +60,10 @@ class BackToTop extends DSComponent {
             return;
         }
 
-        this.backToTopOffset = (this.backToTopElement.querySelector('.ds_back-to-top__button') as HTMLElement).offsetHeight + 8;
+        const backToTopButton = this.backToTopElement.querySelector('.ds_back-to-top__button') as HTMLElement
+        if (backToTopButton) {
+            this.backToTopOffset = backToTopButton.offsetHeight + 8;
+        }
 
         this.checkDisplay();
 
