@@ -1,77 +1,106 @@
+import { vi, beforeEach, describe, expect, it } from 'vitest';
+import loadHtml from '../../../loadHtml';
+import MobileTables, { MobileTable } from './table';
+
 const testObj = {};
 
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
-import MobileTables from './table';
-
 describe('mobile tables', () => {
-    beforeEach(function () {
-        loadFixtures('components/table/table.html');
-        testObj.mobileTables = new MobileTables();
+    beforeEach(async () => {
+        await loadHtml('src/components/table/table.html');
     });
 
     describe('scrolling tables', () => {
+        beforeEach(() => {
+            testObj.tableElement = document.querySelector('#scrolling');
+            testObj.tableModule = new MobileTable(testObj.tableElement);
+        });
+
         it('should check whether to change the table display on init', () => {
-            spyOn(testObj.mobileTables, 'checkScrollingTables');
+            vi.spyOn(testObj.tableModule, 'checkScrollingTable').mockImplementation();
 
-            testObj.mobileTables.init();
+            testObj.tableModule.init();
 
-            expect(testObj.mobileTables.checkScrollingTables).toHaveBeenCalled();
+            expect(testObj.tableModule.checkScrollingTable).toHaveBeenCalled();
         });
 
         it('should check whether to change the table display on resize', () => {
-            testObj.mobileTables.init();
+            testObj.tableModule.init();
 
-            spyOn(testObj.mobileTables, 'checkScrollingTables');
+            vi.spyOn(testObj.tableModule, 'checkScrollingTable').mockImplementation();
 
             let event = new Event('resize');
-            testObj.mobileTables.window.dispatchEvent(event);
+            testObj.tableModule.window.dispatchEvent(event);
 
-            expect(testObj.mobileTables.checkScrollingTables).toHaveBeenCalled();
+            expect(testObj.tableModule.checkScrollingTable).toHaveBeenCalled();
         });
 
         it('should change the table display if the table is wider than its container', () => {
             const table = document.getElementById('scrolling');
-            table.parentNode.style.width = '400px';
+            table.parentElement.style.width = '400px';
 
-            testObj.mobileTables.init();
+            testObj.tableModule.init();
 
-            expect(table.classList.contains('js-is-scrolling')).toBeTrue();
+            expect(table.classList.contains('js-is-scrolling')).toBe(true);
         });
 
-        it('should use the normaltable display if the table is narrower than its container', () => {
+        it('should use the normal table display if the table is narrower than its container', () => {
             const table = document.getElementById('scrolling');
-            table.parentNode.style.width = '800px';
+            table.parentElement.style.width = '800px';
 
-            testObj.mobileTables.init();
+            testObj.tableModule.init();
 
-            expect(table.classList.contains('js-is-scrolling')).toBeFalse();
+            expect(table.classList.contains('js-is-scrolling')).toBe(false);
         });
     });
 
     describe('box tables', () => {
         it('should do nothing if the table has no heading row', () => {
-            const table = document.getElementById('boxes-no-header');
+            testObj.tableElement = document.querySelector('#boxes-no-header');
+            testObj.tableModule = new MobileTable(testObj.tableElement);
 
-            const origHtml = table.innerHTML;
+            const origHtml = testObj.tableElement.innerHTML;
 
-            testObj.mobileTables.init();
+            testObj.tableModule.init();
 
-            expect(table.innerHTML).toEqual(origHtml);
+            expect(testObj.tableElement.innerHTML).toEqual(origHtml);
         });
 
         it('should add a data attribute with the heading to each table cell', () => {
-            const table = document.getElementById('boxes');
-            const tableHeadings = [].slice.call(table.querySelectorAll('th')).map(cell => cell.innerText);
+            testObj.tableElement = document.querySelector('#boxes');
+            testObj.tableModule = new MobileTable(testObj.tableElement);
+            const tableHeadings = [].slice.call(testObj.tableElement.querySelectorAll('th')).map(cell => cell.textContent);
 
-            testObj.mobileTables.init();
+            testObj.tableModule.init();
 
-            const row = table.querySelector('tbody > tr');
+            const row = testObj.tableElement.querySelector('tbody > tr');
             const cells = row.querySelectorAll('td');
 
             for (let i = 0, il = cells.length; i < il; i++) {
                 expect(cells[i].getAttribute('data-heading')).toEqual(tableHeadings[i]);
             }
+        });
+    });
+
+    describe('unknown data-smallscreen', () => {
+        it('should not do anything, should not set isInitialised', () => {
+            testObj.tableElement = document.querySelector('#boxes');
+
+            testObj.tableElement.dataset.smallscreen = 'foo';
+            testObj.tableModule = new MobileTable(testObj.tableElement);
+
+            testObj.tableModule.init();
+
+            expect(testObj.tableModule.isInitialised).toBe(false);
+        });
+    });
+
+    describe('legacy MobileTables implementation', () => {
+        it('should set up any relevant tables found', () => {
+            const mobileTables = new MobileTables();
+            mobileTables.init();
+
+            const tables = document.querySelectorAll('table[data-smallscreen="boxes"],table[data-smallscreen="scrolling"]');
+            tables.forEach(table => expect(table.classList.contains('js-initialised')).toBe(true));
         });
     });
 });

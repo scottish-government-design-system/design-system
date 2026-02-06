@@ -1,12 +1,12 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi, beforeEach, describe, expect, it } from 'vitest';
+import loadHtml from '../../../loadHtml';
 import CharacterCount from './character-count';
 
+const testObj = {};
+
 describe('character count', () => {
-    beforeEach(() => {
-        loadFixtures('forms/character-count/character-count.html');
+    beforeEach(async () => {
+        await loadHtml('src/forms/character-count/character-count.html');
     });
 
     describe('setup', () => {
@@ -15,13 +15,13 @@ describe('character count', () => {
             testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
             testObj.characterCountModule.init();
 
-            spyOn(testObj.characterCountModule.field.classList, 'add');
+            vi.spyOn(testObj.characterCountModule.field.classList, 'add').mockImplementation();
             testObj.characterCountModule.init();
             expect(testObj.characterCountModule.field.classList.add).not.toHaveBeenCalledWith('js-initialised');
         });
 
         describe('missing information', () => {
-            it ('should exit if no maxlength set', () => {
+            it('should exit if no maxlength set', () => {
                 testObj.characterCountElement = document.querySelector('#bad-no-maxlength');
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
                 testObj.characterCountModule.init();
@@ -29,7 +29,7 @@ describe('character count', () => {
                 expect(countElement.length).toEqual(0);
             });
 
-            it ('should exit if no input element present', () => {
+            it('should exit if no input element present', () => {
                 testObj.characterCountElement = document.querySelector('#bad-no-input');
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
                 testObj.characterCountModule.init();
@@ -39,34 +39,27 @@ describe('character count', () => {
         });
 
         describe('progressively enhanced maxlength attribute', () => {
-            beforeEach(() => {
+            it('should set a max length correctly and remove the maxlength attribute', () => {
                 testObj.characterCountElement = document.querySelector('#maxlength');
-                testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
-            });
-
-            it ('should set a max length correctly', () => {
                 const expectedMaxLength = parseInt(document.querySelector('#textinput1-character-limit').getAttribute('maxlength'), 10);
 
+                testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
                 testObj.characterCountModule.init();
-                expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
-            });
 
-            it ('should remove the maxlength attribute', () => {
-                testObj.characterCountModule.init();
+                expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
                 expect(document.querySelector('#textinput1-character-limit').getAttribute('maxlength')).toBeNull();
             });
+
         });
 
         describe('maxlength as data atribute', () => {
-            beforeEach(() => {
+            it('should set a max length correctly', () => {
                 testObj.characterCountElement = document.querySelector('#data-maxlength');
+                const expectedMaxLength = Number(testObj.characterCountElement.dataset.maxlength);
+
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
-            });
-
-            it ('should set a max length correctly', () => {
-                const expectedMaxLength = testObj.characterCountElement.dataset.maxlength;
-
                 testObj.characterCountModule.init();
+
                 expect(testObj.characterCountModule.maxLength).toEqual(expectedMaxLength);
             });
         });
@@ -77,7 +70,7 @@ describe('character count', () => {
                 testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
             });
 
-            it ('on init, should hide the character count if necessary', () => {
+            it('on init, should hide the character count if necessary', () => {
                 testObj.characterCountModule.init();
 
                 const countElement = testObj.characterCountElement.querySelector('.ds_input__message');
@@ -85,7 +78,7 @@ describe('character count', () => {
                 expect(countElement.classList.contains('fully-hidden')).toEqual(true);
             });
 
-            it ('on init, should show the character count if the input is prepopulated and the input length is greater than the threshold', () => {
+            it('on init, should show the character count if the input is prepopulated and the input length is greater than the threshold', () => {
                 const inputElement = testObj.characterCountElement.querySelector('input');
                 inputElement.value = '1234567890123456789';
 
@@ -113,7 +106,7 @@ describe('character count', () => {
                 testObj.characterCountModule.init();
 
                 const initialCountElement = testObj.characterCountElement.querySelector('.ds_character-count__initial');
-                expect(initialCountElement.innerText).toEqual('You can enter up to 20 characters');
+                expect(initialCountElement.textContent).toEqual('You can enter up to 20 characters');
                 expect(testObj.characterCountModule.inputElement.getAttribute('aria-describedby')).toContain(initialCountElement.id);
             });
         });
@@ -125,7 +118,7 @@ describe('character count', () => {
             testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
         });
 
-        it ('should decrement the character count as the user types', () => {
+        it('should decrement the character count as the user types', () => {
             testObj.characterCountModule.init();
 
             const inputElement = testObj.characterCountElement.querySelector('input');
@@ -136,10 +129,10 @@ describe('character count', () => {
             const event = new Event('input');
             inputElement.dispatchEvent(event);
 
-            expect(countElement.innerText.indexOf('14 characters')).toBeGreaterThan(-1);
+            expect(countElement.textContent.indexOf('14 characters')).toBeGreaterThan(-1);
         });
 
-        it ('should nicely pluralise the message', () => {
+        it('should nicely pluralise the message', () => {
             testObj.characterCountModule.init();
 
             const inputElement = testObj.characterCountElement.querySelector('input');
@@ -150,16 +143,16 @@ describe('character count', () => {
             let event = new Event('input');
             inputElement.dispatchEvent(event);
 
-            expect(countElement.innerText.indexOf('characters ')).toBeGreaterThan(-1);
+            expect(countElement.textContent.indexOf('characters ')).toBeGreaterThan(-1);
 
             // 19 characters. our max is 20.
             inputElement.value = '1234567890123456789';
             event = new Event('input');
             inputElement.dispatchEvent(event);
-            expect(countElement.innerText.indexOf('character ')).toBeGreaterThan(-1);
+            expect(countElement.textContent.indexOf('character ')).toBeGreaterThan(-1);
         });
 
-        it ('should have error styling if the character limit is exceeded', () => {
+        it('should have error styling if the character limit is exceeded', () => {
             testObj.characterCountModule.init();
 
             const inputElement = testObj.characterCountElement.querySelector('input');
@@ -172,7 +165,7 @@ describe('character count', () => {
             expect(inputElement.classList.contains('ds_input--error')).toBe(true);
         });
 
-        it ('should show the character count if a threshold is set and the threshold is exceeded', () => {
+        it('should show the character count if a threshold is set and the threshold is exceeded', () => {
             testObj.characterCountElement = document.querySelector('#data-threshold');
             testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
             testObj.characterCountModule.init();
@@ -201,19 +194,19 @@ describe('character count', () => {
             const countElement = testObj.characterCountElement.querySelector('.ds_input__message');
 
             // get initial value
-            const initialValue = countElement.innerText;
+            const initialValue = countElement.textContent;
 
             // 6 characters. our max is 20.
             inputElement.value = '123456';
             const event = new Event('input');
             inputElement.dispatchEvent(event);
 
-            expect(countElement.innerText).not.toEqual(initialValue);
+            expect(countElement.textContent).not.toEqual(initialValue);
 
             inputElement.value = '';
             inputElement.dispatchEvent(event);
 
-            expect(countElement.innerText).toEqual(initialValue);
+            expect(countElement.textContent).toEqual(initialValue);
         });
 
         it('should show the current character count message if the field has been prepopulated with data', () => {
@@ -224,13 +217,13 @@ describe('character count', () => {
 
             const countElement = testObj.characterCountElement.querySelector('.ds_input__message');
 
-            expect(countElement.innerText).toEqual('You have 9 characters remaining');
+            expect(countElement.textContent).toEqual('You have 9 characters remaining');
         });
 
         it('should only update the mesage if the value has changed', () => {
             const inputElement = testObj.characterCountModule.inputElement;
             testObj.characterCountModule.init();
-            spyOn(testObj.characterCountModule, 'updateCountMessage');
+            vi.spyOn(testObj.characterCountModule, 'updateCountMessage').mockImplementation();
             inputElement.oldValue = '123456';
             inputElement.value = '123456';
             const event = new Event('input');
@@ -240,7 +233,7 @@ describe('character count', () => {
         });
 
         it('should update an aria-live region after a short delay', () => {
-            jasmine.clock().install();
+            vi.useFakeTimers();
 
             testObj.characterCountModule.init();
 
@@ -252,43 +245,39 @@ describe('character count', () => {
             const event = new Event('input');
             inputElement.dispatchEvent(event);
 
-            jasmine.clock().tick(1000);
+            vi.advanceTimersByTime(1000);
 
-            expect(ariaCountElement.innerText.indexOf('14 characters')).toBeGreaterThan(-1);
-
-            jasmine.clock().uninstall();
+            expect(ariaCountElement.textContent.indexOf('14 characters')).toBeGreaterThan(-1);
         });
 
         it('should reset the aria-live update delay after a keypress', () => {
-            jasmine.clock().install();
+            vi.useFakeTimers();
 
             testObj.characterCountModule.init();
 
             const inputElement = testObj.characterCountElement.querySelector('input');
 
-            spyOn(testObj.characterCountModule, 'updateScreenReaderMessage');
+            const spy = vi.spyOn(testObj.characterCountModule, 'updateScreenReaderMessage').mockImplementation();
 
             // 6 characters. our max is 20.
             inputElement.value = '123456';
             let event = new Event('input');
             inputElement.dispatchEvent(event);
 
-            jasmine.clock().tick(500);
+            vi.advanceTimersByTime(500);
 
             // modify the value within the 1000ms window
             inputElement.value = '1234567';
             event = new Event('input');
             inputElement.dispatchEvent(event);
 
-            jasmine.clock().tick(1000);
+            vi.advanceTimersByTime(1000);
 
-            expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(1);
-
-            jasmine.clock().uninstall();
+            expect(spy.mock.calls.length).toEqual(1);
         });
 
         it('should update an aria-live region if a threshold is set and the threshold is exceeded', () => {
-            jasmine.clock().install();
+            vi.useFakeTimers();
 
             testObj.characterCountElement = document.querySelector('#data-threshold');
             testObj.characterCountModule = new CharacterCount(testObj.characterCountElement);
@@ -296,27 +285,25 @@ describe('character count', () => {
 
             const inputElement = testObj.characterCountElement.querySelector('input');
 
-            spyOn(testObj.characterCountModule, 'updateScreenReaderMessage');
+            const spy = vi.spyOn(testObj.characterCountModule, 'updateScreenReaderMessage').mockImplementation();
 
             // 9/20 characters -- under threshold (50%)
             inputElement.value = '123456789';
             let event = new Event('input');
             inputElement.dispatchEvent(event);
 
-            jasmine.clock().tick(1000);
+            vi.advanceTimersByTime(1000);
 
-            expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(0);
+            expect(spy.mock.calls.length).toEqual(0);
 
             // 11/20 characters -- over threshold
             inputElement.value = '12345678901';
             event = new Event('input');
             inputElement.dispatchEvent(event);
 
-            jasmine.clock().tick(1000);
+            vi.advanceTimersByTime(1000);
 
-            expect(testObj.characterCountModule.updateScreenReaderMessage.calls.count()).toEqual(1);
-
-            jasmine.clock().uninstall();
+            expect(spy.mock.calls.length).toEqual(1);
         });
     });
 
@@ -340,7 +327,7 @@ describe('character count', () => {
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
 
             inputElement.value = 'abcdefghijklmnopqrs';
-            event = new Event('input');
+            const event = new Event('input');
             inputElement.dispatchEvent(event);
 
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
@@ -355,7 +342,7 @@ describe('character count', () => {
             expect(inputElement.getAttribute('aria-invalid')).toEqual('false');
 
             inputElement.value = 'abcdefghijklmnopqrstuvwxyz';
-            event = new Event('input');
+            let event = new Event('input');
             inputElement.dispatchEvent(event);
             expect(inputElement.getAttribute('aria-invalid')).toEqual('true');
 

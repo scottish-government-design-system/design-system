@@ -1,12 +1,12 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi, beforeEach, describe, expect, it } from 'vitest';
+import loadHtml from '../../../loadHtml';
 import Details from './details';
 
+const testObj = {};
+
 describe('details', () => {
-    beforeEach(function () {
-        loadFixtures('components/details/details.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/details/details.html');
     });
 
     describe('native details element', () => {
@@ -27,8 +27,8 @@ describe('details', () => {
         it('should toggle the display of the contents element on click of the summary element', () => {
             testObj.detailsModule.init();
 
-            spyOn(testObj.detailsModule, 'openDetails').and.callThrough();
-            spyOn(testObj.detailsModule, 'closeDetails').and.callThrough();
+            vi.spyOn(testObj.detailsModule, 'openDetails');
+            vi.spyOn(testObj.detailsModule, 'closeDetails');
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
             const event = new Event('click');
@@ -44,13 +44,12 @@ describe('details', () => {
         it('should toggle the display of the contents element on keyboard operation of the summary element', () => {
             testObj.detailsModule.init();
 
-            spyOn(testObj.detailsModule, 'openDetails').and.callThrough();
-            spyOn(testObj.detailsModule, 'closeDetails').and.callThrough();
+            vi.spyOn(testObj.detailsModule, 'openDetails');
+            vi.spyOn(testObj.detailsModule, 'closeDetails');
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = document.createEvent('Event');
-            event.keyCode = 32;
-            event.initEvent('keypress');
+            const event = new Event('keypress');
+            event.key = 'Enter';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsElement.getAttribute('open')).toEqual('open');
@@ -63,12 +62,11 @@ describe('details', () => {
         it('should not interfere with other keypresses', () => {
             testObj.detailsModule.init();
 
-            spyOn(testObj.detailsModule, 'openDetails');
+            vi.spyOn(testObj.detailsModule, 'openDetails').mockImplementation();
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = document.createEvent('Event');
-            event.keyCode = 81;
-            event.initEvent('keypress');
+            const event = new Event('keypress');
+            event.key = 'A';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
@@ -77,19 +75,17 @@ describe('details', () => {
         it('should swallow a space keyup event', () => {
             testObj.detailsModule.init();
 
-            spyOn(testObj.detailsModule, 'openDetails');
+            vi.spyOn(testObj.detailsModule, 'openDetails').mockImplementation();
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = document.createEvent('Event');
-            event.keyCode = 32;
-            event.initEvent('keyup');
+            const event = new Event('keyup');
+            event.key = ' ';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
 
             // cover a final branch that does nothing
-            event.keyCode = 81;
-            event.initEvent('keyup');
+            event.key = 'A';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
@@ -105,8 +101,8 @@ describe('details', () => {
         it('should toggle the display of the contents element on click of the summary element', () => {
             testObj.detailsModule.init();
 
-            spyOn(testObj.detailsModule, 'openDetails').and.callThrough();
-            spyOn(testObj.detailsModule, 'closeDetails').and.callThrough();
+            vi.spyOn(testObj.detailsModule, 'openDetails');
+            vi.spyOn(testObj.detailsModule, 'closeDetails');
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
             const event = new Event('click');
@@ -122,13 +118,12 @@ describe('details', () => {
         it('should toggle the display of the contents element on keyboard operation of the summary element', () => {
             testObj.detailsModule.init();
 
-            spyOn(testObj.detailsModule, 'openDetails').and.callThrough();
-            spyOn(testObj.detailsModule, 'closeDetails').and.callThrough();
+            vi.spyOn(testObj.detailsModule, 'openDetails');
+            vi.spyOn(testObj.detailsModule, 'closeDetails');
 
             const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = document.createEvent('Event');
-            event.keyCode = 32;
-            event.initEvent('keypress');
+            const event = new Event('keypress');
+            event.key = ' ';
             titleElement.dispatchEvent(event);
 
             expect(testObj.detailsElement.getAttribute('data-open')).toEqual('open');
