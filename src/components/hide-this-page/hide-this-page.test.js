@@ -62,6 +62,18 @@ describe('hide page', () => {
             expect(testObj.hidePage.doHidePage).toHaveBeenCalled();
         });
 
+        it('should use window.location.replace to replace the current history entry and obfuscate the page', () => {
+            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
+
+            testObj.hidePage.init();
+
+            vi.spyOn(testObj.hidePage.window.location, 'replace').mockImplementation();
+
+            testObj.hidePage.doHidePage({ preventDefault: () => { } });
+
+            expect(testObj.hidePage.window.location.replace).toHaveBeenCalled();
+        });
+
         it('should go to a specified URL', () => {
             const hidePageButton = document.querySelector('.js-hide-page');
             hidePageButton.setAttribute('data-altlink', 'https://foo.scot');
@@ -85,18 +97,6 @@ describe('hide page', () => {
             testObj.hidePage.doHidePage({ preventDefault: () => { } });
 
             expect(testObj.hidePage.window.location.replace).toHaveBeenCalledWith('https://www.google.com');
-        });
-
-        // note: this is not testable with this test tool. disabling spec.
-        it.skip('should replace the current history entry', () => {
-            testObj.hidePage = new HidePage(testObj.hidePageElement, windowObj);
-            testObj.hidePage.init();
-
-            vi.spyOn(testObj.hidePage.window.history, 'replaceState').mockImplementation();
-
-            testObj.hidePage.doHidePage({ preventDefault: () => { } });
-
-            expect(testObj.hidePage.window.history.replaceState).toHaveBeenCalledWith(Object({}), '', '/');
         });
 
         it('should empty the body', () => {

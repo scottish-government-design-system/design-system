@@ -217,7 +217,7 @@ describe('"autocomplete" component', () => {
             expect(testObj.autocompleteModule.fetchSuggestions).toThrowError();
         });
 
-        it('should only display as many suggestions as itcan fit in the viewport', async () => {
+        it('should only display as many suggestions as it can fit in the viewport', async () => {
             testObj.autocompleteElement = document.querySelector('#autocomplete');
             testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, 'endpointUrl');
 

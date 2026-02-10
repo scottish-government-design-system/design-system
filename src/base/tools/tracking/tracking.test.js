@@ -1768,23 +1768,6 @@ describe('tracking', () => {
             expect(links[4].getAttribute('data-button')).toEqual('button-change-will-you-lose-earnings-because-you-need-to-self-isolate');
             expect(links[5].getAttribute('data-button')).toEqual('button-remove-will-you-lose-earnings-because-you-need-to-self-isolate');
         });
-
-        it.skip('should remove redundant data attributes on each action button in the summary card header', () => {
-            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_summary-card__actions-list-item button'));
-
-            Tracking.add.summaryCard();
-
-            expect(links[0].getAttribute('data-button')).toBeUndefined();
-        });
-
-        it.skip('should remove redundant data attributes on each action button in the summary list', () => {
-            const links = [].slice.call(testObj.scope.querySelectorAll('.ds_summary-list__actions button'));
-            Tracking.add.summaryList();
-
-            expect(links[0].getAttribute('data-button')).toBeUndefined();
-            expect(links[1].getAttribute('data-button')).toBeUndefined();
-            expect(links[2].getAttribute('data-button')).toBeUndefined();
-        });
     });
 
     describe('tabs', () => {
