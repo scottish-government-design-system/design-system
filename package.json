@@ -15,7 +15,7 @@
     "prepack": "npm run test && npm run build",
     "sass": "sass --style=expanded src/design-system.scss dist/css/design-system.css",
     "sass-min": "sass --style=compressed src/design-system.scss dist/css/design-system.min.css",
-    "svgsprite": "node ./svg-sprite",
+    "svgsprite": "node ./svg-sprite.mjs",
     "copyicons": "copyfiles -f ./src/images/documents/svg/*.svg ./dist/images/documents/svg",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",

@@ -5,6 +5,7 @@
       "outDir": "./dist/scripts",
       "lib": [
         "dom",
+        "dom.iterable",
         "esnext"
       ],
       "module": "NodeNext",
@@ -16,7 +17,6 @@
     },
     "include": ["./src/**/*"],
     "exclude": [
-      "node_modules/**/*",
-      "./src/all.ts"
+      "node_modules/**/*"
     ]
 }
