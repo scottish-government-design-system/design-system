@@ -1,0 +1,42 @@
+{% extends "sg-prototype-templates/layouts/_base-layout.njk" %}
+
+{% block pageTitle %}Scottish Government Prototype Kit{% endblock %}
+
+{% block siteBrandingTitle %}
+  <div class="ds_site-branding__title">
+    {{ serviceName }}
+  </div>
+{% endblock %}
+
+{% block siteSearch %}{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+
+{% block main %}
+  <div class="ds_wrapper">
+    <main id="main-content" class="ds_layout  ds_layout--article">
+
+      {% block mainHeader %}
+        <div class="ds_layout__header">
+          <header class="ds_page-header">
+            <h1 class="ds_page-header__title">Scottish Government Prototype Kit</h1>
+          </header>
+        </div>
+      {% endblock %}
+
+      {% block mainContent %}
+        {% include "prototype-core/includes/homepage-top.njk" %}
+        <div class="ds_layout__content">
+
+          {% if scotgovDesignSystem.settingsPageUrl and "/manage-prototype" in scotgovDesignSystem.settingsPageUrl %}
+            <p>
+              You can change your service name in the <a href="{{ scotgovDesignSystem.settingsPageUrl }}">Plugin-specific configuration</a>.
+            </p>
+          {% endif %}
+          {% include "prototype-core/includes/homepage-bottom.njk" %}
+
+        </div>
+      {% endblock %}
+
+    </main>
+  </div>
+{% endblock %}

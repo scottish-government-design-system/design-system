@@ -1,0 +1,45 @@
+{
+  "version-2024-03": {
+    "meta": {
+      "description": "Scottish Government Design System plugin for the GOV.UK Prototype Kit"
+    },
+    "assets": [
+      "/dist/images/"
+    ],
+    "nunjucksPaths": [
+      "/"
+    ],
+    "sass": [
+      "/src/design-system.scss"
+    ],
+    "scripts": [
+      "/dist/scripts/design-system.js"
+    ],
+    "relatedPlugins": {
+      "fromNpm": [
+        "@scottish-government-design-system/prototype-templates"
+      ]
+    },
+    "settings": [
+      {
+        "value": "{{PLUGIN_SPECIFIC_SETTINGS_PAGE_URL}}",
+        "variableNames": {
+          "nunjucks": "scotgovDesignSystem.settingsPageUrl"
+        }
+      },
+      {
+        "value": "Service name goes here",
+        "isDefault": true,
+        "variableNames": {
+          "nunjucks": "serviceName"
+        },
+        "userInterface": {
+          "key": "serviceName",
+          "name": "Service name",
+          "hintText": "This is used in the header of each page by default. You can override this in individual templates.",
+          "type": "string"
+        }
+      }
+    ]
+  }
+}

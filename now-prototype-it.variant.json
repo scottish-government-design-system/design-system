@@ -1,0 +1,13 @@
+{
+  "version-2024-03": {
+    "inheritFrom": ["nowprototypeit"],
+    "installedPackages": [
+      "__INHERIT__",
+      "@scottish-government-design-system/prototype-templates"
+    ],
+    "starterFileDirectories": [
+      "__INHERIT__",
+      "/src/prototype-tools/starter-files"
+    ]
+  }
+}
