@@ -1,14 +1,12 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { beforeEach, describe, expect, it } from 'vitest';
+import loadHtml from '../../../loadHtml';
 import NotificationBanner from './notification-banner';
 
+const testObj = {};
+
 describe('notification banners', () => {
-    beforeEach(() => {
-        loadFixtures('components/notification-banner/notification-banner.html');
-
-
+    beforeEach(async () => {
+        await loadHtml('src/components/notification-banner/notification-banner.html');
     });
 
     it('should remove a notification banner on click of its "close" button', () => {

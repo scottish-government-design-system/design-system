@@ -1,34 +1,40 @@
-const testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi, beforeEach, describe, expect, it } from 'vitest';
+import { page } from 'vitest/browser';
+import loadHtml from '../../../loadHtml';
 import BackToTop from './back-to-top';
 
-// mock window
-const windowObj = {
-    addEventListener: function () { }
-};
+const testObj = {};
 
 describe('back to top', () => {
-    beforeEach(() => {
-        loadFixtures('components/back-to-top/back-to-top.html');
-        windowObj.innerHeight = 600;
+    beforeEach(async () => {
+        await loadHtml('src/components/back-to-top/back-to-top.html');
+        await page.viewport(800, 600)
     });
 
     it('should exit init without doing anything if no element supplied', () => {
         testObj.backToTopModule = new BackToTop();
 
-        spyOn(testObj.backToTopModule, 'checkDisplay');
+        vi.spyOn(testObj.backToTopModule, 'checkDisplay');
         testObj.backToTopModule.init();
 
         expect(testObj.backToTopModule.checkDisplay).not.toHaveBeenCalled();
+    });
+
+    it('should continue with a dummy footer if no footer element defined', () => {
+        const footer = document.querySelector('.ds_site-footer');
+        footer.parentNode.removeChild(footer);
+
+        testObj.backToTopElement = document.querySelector('.ds_back-to-top');
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
+
+        expect(testObj.backToTopModule.footerEl).toBeDefined();
     });
 
     it('should check display on init if an element is supplied', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
-        spyOn(testObj.backToTopModule, 'checkDisplay');
+        vi.spyOn(testObj.backToTopModule, 'checkDisplay');
         testObj.backToTopModule.init();
 
         expect(testObj.backToTopModule.checkDisplay).toHaveBeenCalled();
@@ -36,21 +42,21 @@ describe('back to top', () => {
 
     it('should not display if the page is taller than the viewport', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
-        testObj.backToTopModule = new BackToTop(testObj.backToTopElement, windowObj);
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
         testObj.backToTopModule.init();
-        expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeTrue();
+        expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeTruthy();
     });
 
-    it('should display if the page is taller than the viewport', () => {
+    it('should display if the page is taller than the viewport', async () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
 
-        windowObj.innerHeight = 1;
+        await page.viewport(800, 0);
 
-        testObj.backToTopModule = new BackToTop(testObj.backToTopElement, windowObj);
+        testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
         testObj.backToTopModule.init();
-        expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeFalse();
+        expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeFalsy();
     });
 
     it('should check positioning on resize', () => {
@@ -59,10 +65,9 @@ describe('back to top', () => {
 
         testObj.backToTopModule.init();
 
-        spyOn(testObj.backToTopModule, 'checkPosition');
+        vi.spyOn(testObj.backToTopModule, 'checkPosition');
 
-        event = document.createEvent('Event');
-        event.initEvent('resize');
+        const event = new Event('resize');
         window.dispatchEvent(event);
 
         expect(testObj.backToTopModule.checkPosition).toHaveBeenCalled();

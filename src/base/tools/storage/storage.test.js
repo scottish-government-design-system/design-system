@@ -1,11 +1,17 @@
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi, afterEach, beforeEach, describe, expect, it } from 'vitest';
 import storage from './storage';
+
+// mock window
+const windowObj = {
+    location: {
+        host: ''
+    }
+};
 
 describe('storage', () => {
     describe('set', () => {
         it('should do nothing with requests in disallowed categories', () => {
-            spyOn(storage.cookie, 'set');
+            vi.spyOn(storage.cookie, 'set').mockImplementation();
 
             storage.set({
                 type: 'cookie',
@@ -18,9 +24,9 @@ describe('storage', () => {
         });
 
         it('should do nothing with requests in unknown storage types', () => {
-            spyOn(storage.cookie, 'set');
-            spyOn(localStorage, 'setItem');
-            spyOn(sessionStorage, 'setItem');
+            vi.spyOn(storage.cookie, 'set').mockImplementation();
+            vi.spyOn(Storage.prototype, 'setItem').mockImplementation();
+            vi.spyOn(Storage.prototype, 'setItem').mockImplementation();
 
             storage.set({
                 type: 'foo',
@@ -35,9 +41,9 @@ describe('storage', () => {
         });
 
         it('should set the relevant storage type if allowed', () => {
-            spyOn(storage.cookie, 'set');
-            spyOn(localStorage, 'setItem');
-            spyOn(sessionStorage, 'setItem');
+            vi.spyOn(storage.cookie, 'set').mockImplementation();
+            vi.spyOn(Storage.prototype, 'setItem').mockImplementation();
+            vi.spyOn(Storage.prototype, 'setItem').mockImplementation();
 
             storage.set({
                 type: 'cookie',
@@ -69,27 +75,26 @@ describe('storage', () => {
     // todo: spec disabled because it causes intermittent failures. needs investigation.
     describe('get', () => {
         it('should get from cookies if requested', () => {
-            spyOn(storage.cookie, 'get');
+            vi.spyOn(storage.cookie, 'get').mockImplementation();
             storage.get({ type: 'cookie', name: 'name' });
             expect(storage.cookie.get).toHaveBeenCalledWith('name');
         });
 
         it('should get from localStorage if requested', () => {
-            spyOn(localStorage, 'getItem');
+            vi.spyOn(Storage.prototype, 'getItem').mockImplementation();
             storage.get({ type: 'local', name: 'name' });
             expect(localStorage.getItem).toHaveBeenCalledWith('name');
         });
 
         it('should get from sessionStorage if requested', () => {
-            spyOn(sessionStorage, 'getItem');
+            vi.spyOn(Storage.prototype, 'getItem').mockImplementation();
             storage.get({ type: 'session', name: 'name' });
             expect(sessionStorage.getItem).toHaveBeenCalledWith('name');
         });
 
         it('should not get from unknown storage', () => {
-            spyOn(storage.cookie, 'get');
-            spyOn(localStorage, 'getItem');
-            spyOn(sessionStorage, 'getItem');
+            vi.spyOn(storage.cookie, 'get').mockImplementation();
+            vi.spyOn(Storage.prototype, 'getItem').mockImplementation();
             storage.get({ type: 'foo', name: 'name' });
             expect(storage.cookie.get).not.toHaveBeenCalled();
             expect(localStorage.getItem).not.toHaveBeenCalled();
@@ -99,7 +104,7 @@ describe('storage', () => {
 
     describe('remove', () => {
         it('should remove from cookies', () => {
-            spyOn(storage.cookie, 'remove');
+            vi.spyOn(storage.cookie, 'remove').mockImplementation();
             storage.remove({
                 type: 'cookie',
                 name: 'foo'
@@ -108,8 +113,20 @@ describe('storage', () => {
             expect(storage.cookie.remove).toHaveBeenCalledWith('foo');
         });
 
-        it ('should remove from localStorage', () => {
-            spyOn(localStorage, 'removeItem');
+        it('should remove from cookies NOW WITH DOMAIN', () => {
+            windowObj.location.host = 'www.example.com';
+
+            vi.spyOn(storage, 'unsetCookieWithDomain').mockImplementation();
+            storage.cookie.remove('foo', windowObj);
+
+            expect(storage.unsetCookieWithDomain).toHaveBeenCalledWith('foo');
+            expect(storage.unsetCookieWithDomain).toHaveBeenCalledWith('foo', 'www.example.com');
+            expect(storage.unsetCookieWithDomain).toHaveBeenCalledWith('foo', '.example.com');
+            expect(storage.unsetCookieWithDomain).toHaveBeenCalledWith('foo', 'example.com');
+        });
+
+        it('should remove from localStorage', () => {
+            vi.spyOn(Storage.prototype, 'removeItem').mockImplementation();
             storage.remove({
                 type: 'local',
                 name: 'foo'
@@ -118,8 +135,8 @@ describe('storage', () => {
             expect(localStorage.removeItem).toHaveBeenCalledWith('foo');
         });
 
-        it ('should remove from sessionStorage', () => {
-            spyOn(sessionStorage, 'removeItem');
+        it('should remove from sessionStorage', () => {
+            vi.spyOn(Storage.prototype, 'removeItem').mockImplementation();
             storage.remove({
                 type: 'session',
                 name: 'foo'
@@ -129,9 +146,8 @@ describe('storage', () => {
         });
 
         it('should do nothing if the storage type is not recognised', () => {
-            spyOn(storage.cookie, 'remove');
-            spyOn(localStorage, 'removeItem');
-            spyOn(sessionStorage, 'removeItem');
+            vi.spyOn(storage.cookie, 'remove').mockImplementation();
+            vi.spyOn(Storage.prototype, 'removeItem').mockImplementation();
 
             storage.remove({
                 type: 'bananas',
@@ -146,25 +162,25 @@ describe('storage', () => {
 
     describe('cookie', () => {
         it('should set if allowed', () => {
-            spyOn(storage.cookie, 'set');
+            vi.spyOn(storage.cookie, 'set').mockImplementation();
             storage.setCookie('necessary', 'name', 'value', 1);
             expect(storage.cookie.set).toHaveBeenCalledWith('name', 'value', 1);
         });
 
         it('should not set if not allowed', () => {
-            spyOn(storage.cookie, 'set');
+            vi.spyOn(storage.cookie, 'set').mockImplementation();
             storage.setCookie('foo', 'name', 'value', 1);
             expect(storage.cookie.set).not.toHaveBeenCalled();
         });
 
         it('should get', () => {
-            spyOn(storage.cookie, 'get');
+            vi.spyOn(storage.cookie, 'get').mockImplementation();
             storage.getCookie('name');
             expect(storage.cookie.get).toHaveBeenCalledWith('name');
         });
 
         it('should remove', () => {
-            spyOn(storage.cookie, 'remove');
+            vi.spyOn(storage.cookie, 'remove').mockImplementation();
             storage.removeCookie('name');
             expect(storage.cookie.remove).toHaveBeenCalledWith('name');
         });
@@ -201,7 +217,7 @@ describe('storage', () => {
             expect(cookieData.expires).toBeUndefined();
         });
 
-        it ('remove actual cookie', () => {
+        it('remove actual cookie', () => {
             // set a cookie
             document.cookie = `foo=bar;path=/;`;
 
@@ -211,31 +227,29 @@ describe('storage', () => {
             storage.cookie.remove('foo');
             expect(storage.cookie.get('foo')).toBeNull();
         });
-
-
     });
 
     describe('localStorage', () => {
         it('should set if allowed', () => {
-            spyOn(localStorage, 'setItem');
+            vi.spyOn(Storage.prototype, 'setItem').mockImplementation();
             storage.setLocalStorage('necessary', 'name', 'value');
             expect(localStorage.setItem).toHaveBeenCalledWith('name', 'value');
         });
 
         it('should not set if not allowed', () => {
-            spyOn(localStorage, 'setItem');
+            vi.spyOn(Storage.prototype, 'setItem').mockImplementation();
             storage.setLocalStorage('foo', 'name', 'value');
             expect(localStorage.setItem).not.toHaveBeenCalled();
         });
 
         it('should get', () => {
-            spyOn(localStorage, 'getItem');
+            vi.spyOn(Storage.prototype, 'getItem').mockImplementation();
             storage.getLocalStorage('name');
             expect(localStorage.getItem).toHaveBeenCalledWith('name');
         });
 
         it('should remove', () => {
-            spyOn(localStorage, 'removeItem');
+            vi.spyOn(Storage.prototype, 'removeItem').mockImplementation();
             storage.removeLocalStorage('name');
             expect(localStorage.removeItem).toHaveBeenCalledWith('name');
         });
@@ -243,27 +257,27 @@ describe('storage', () => {
 
     describe('sessionStorage', () => {
         it('should set if allowed', () => {
-            spyOn(sessionStorage, 'setItem');
+            const spy = vi.spyOn(Storage.prototype, 'setItem').mockImplementation();
             storage.setSessionStorage('necessary', 'name', 'value');
-            expect(sessionStorage.setItem).toHaveBeenCalledWith('name', 'value');
+            expect(spy).toHaveBeenCalledWith('name', 'value');
         });
 
         it('should not set if not allowed', () => {
-            spyOn(sessionStorage, 'setItem');
+            const spy = vi.spyOn(Storage.prototype, 'setItem').mockImplementation();
             storage.setSessionStorage('foo', 'name', 'value');
-            expect(sessionStorage.setItem).not.toHaveBeenCalled();
+            expect(spy).not.toHaveBeenCalled();
         });
 
         it('should get', () => {
-            spyOn(sessionStorage, 'getItem');
+            const spy = vi.spyOn(Storage.prototype, 'getItem').mockImplementation();
             storage.getSessionStorage('name');
-            expect(sessionStorage.getItem).toHaveBeenCalledWith('name');
+            expect(spy).toHaveBeenCalledWith('name');
         });
 
         it('should remove', () => {
-            spyOn(sessionStorage, 'removeItem');
+            const spy = vi.spyOn(Storage.prototype, 'removeItem').mockImplementation();
             storage.removeSessionStorage('name');
-            expect(sessionStorage.removeItem).toHaveBeenCalledWith('name');
+            expect(spy).toHaveBeenCalledWith('name');
         });
     });
 
@@ -283,8 +297,8 @@ describe('storage', () => {
                 return '{"necessary":true,"preferences":true,"statistics":true,"campaigns":true,"marketing":true}';
             };
 
-            expect(storage.hasPermission('preferences')).toBeTrue();
-            expect(storage.hasPermission('foo')).toBeFalse();
+            expect(storage.hasPermission('preferences')).toBe(true);
+            expect(storage.hasPermission('foo')).toBe(false);
         });
     });
 });

@@ -61,19 +61,14 @@ $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
         @include helpers.ds_responsive-margin(3, top);
     }
 
-
     &.ds_tabs--links {
-
         // Change to dropdown menu when tabs are links and javascript is initialised
         .ds_tabs__navigation.js-initialised {
-
             // Dropdown menu
             @include helpers.ds_media-query(medium-down) {
-
                 @include helpers.ds_responsive-margin(4, bottom);
 
                 .ds_tabs {
-
                     &__toggle {
                         @include helpers.ds_link;
                         @include helpers.ds_link--block;
@@ -147,7 +142,6 @@ $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
                                 display: block;
                             }
                         }
-
                     }
 
                     &__list {
@@ -174,7 +168,6 @@ $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
                         }
 
                         &.ds_current {
-
                             font-weight: settings.$normal;
 
                             .ds_tabs__tab-link:not(:focus) {
@@ -211,19 +204,15 @@ $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
                     display: none;
                 }
             }
-
         }
     }
 
     // Change to tab layout when dynamic tabs initialised or when tabs are links
     &.js-initialised,
     &.ds_tabs--links {
-
         .ds_tabs {
-
             // Tabs format
             @include helpers.ds_media-query(medium) {
-
                 &__list {
                     display: flex;
                     flex-wrap: wrap;
@@ -239,7 +228,6 @@ $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
                 }
 
                 &__tab {
-
                     &::before {
                         display: none;
                     }
@@ -301,7 +289,6 @@ $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
                 &__content--hidden {
                     display: none;
                 }
-
             }
         }
     }
@@ -311,11 +298,8 @@ $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
         // When tabs format
         @include helpers.ds_media-query(medium) {
             .ds_tabs__tab {
-
                 &.ds_current {
-
                     .ds_tabs__tab-link {
-
                         &:hover {
                             background-color: inherit;
                             color: inherit;
@@ -325,5 +309,4 @@ $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
             }
         }
     }
-
 }

@@ -212,7 +212,7 @@
     <div class="ds_site-search  ds_autocomplete">
         <form role="search" method="GET" action="#">
             <label class="ds_label  visually-hidden" for="autocomplete-search" id="autocomplete-search-label">Search</label>
-
+            <div role="status" aria-live="polite" id="autocomplete-status" class="visually-hidden"></div>
             <div class="ds_input__wrapper  ds_input__wrapper--has-icon">
                 <input aria-autocomplete="list" aria-expanded="false" aria-owns="autocomplete-suggestions" autocomplete="off" class="ds_input js-autocomplete-input" haspopup="true" id="autocomplete-search" name="q" placeholder="Search" required="" type="search">
 
@@ -476,7 +476,7 @@
         <div class="ds_details__text">
             Requires a computer running an operating system. The computer must have some
             memory and ideally some kind of long-term storage. An input device as well
-            as some form of output device is recommended. <a href="#" data-unit="without-attribute">Additional link to more information</a> <a href="#" data-unit="with-attribute" data-navigation="details-link-foo" data-section="section-foo"></a>>Additional link foo</a>. 
+            as some form of output device is recommended. <a href="#" data-unit="without-attribute">Additional link to more information</a> <a href="#" data-unit="with-attribute" data-navigation="details-link-foo" data-section="section-foo"></a>>Additional link foo</a>.
         </div>
     </details>
 </div>
@@ -578,7 +578,7 @@
 
 <div id="external-links">
     <a id="internal-relative" href="/bins"></a>
-    <a id="internal-absolute" href="http://localhost:9876/bins"></a>
+    <a id="internal-absolute" href="http://localhost:PORT/bins"></a>
     <a id="internal-hash-same-page" href="#bins"></a>
     <a id="internal-hash-new-page" href="/bins#bins"></a>
     <a id="external" href="http://www.gov.scot"></a>
@@ -1244,7 +1244,7 @@
                         </ul>
                     </div>
                 </li>
-            </ol>    
+            </ol>
         </div>
     </div>
 </div>

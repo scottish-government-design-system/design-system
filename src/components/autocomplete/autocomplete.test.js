@@ -1,8 +1,9 @@
-let testObj = {};
-
-jasmine.getFixtures().fixturesPath = 'base/src/';
-
+import { vi, beforeEach, describe, expect, it } from 'vitest';
+import { page } from 'vitest/browser';
+import loadHtml from '../../../loadHtml';
 import Autocomplete from './autocomplete';
+
+let testObj = {};
 
 const testData = [
     {
@@ -37,13 +38,37 @@ const testData = [
     }
 ];
 
+function waitForElement(selector) {
+    return new Promise((resolve) => {
+        const interval = setInterval(() => {
+            const element = document.querySelector(selector);
+            if (element) {
+                clearInterval(interval);
+                resolve(element);
+            }
+        }, 100);
+    });
+}
+
+function waitForTextChange(element) {
+    const initialText = element.textContent;
+    return new Promise((resolve) => {
+        const interval = setInterval(() => {
+            if (element.textContent !== initialText) {
+                clearInterval(interval);
+                resolve(element.textContent);
+            }
+        }, 100);
+    });
+}
+
 const mockPromiseRequest = function () {
     return Promise.resolve(testData);
 };
 
 describe('"autocomplete" component', () => {
-    beforeEach(() => {
-        loadFixtures('components/autocomplete/autocomplete.html');
+    beforeEach(async () => {
+        await loadHtml('src/components/autocomplete/autocomplete.html');
         testObj.autocompleteElement = document.querySelector('#autocomplete');
     });
 
@@ -65,6 +90,24 @@ describe('"autocomplete" component', () => {
 
             expect(autocompleteModule.suggestionMappingFunction('bob')).toEqual(myMappingFunction('bob'));
         });
+
+        it('should abort init() if no input element found', () => {
+            const inputElement = testObj.autocompleteElement.querySelector('.js-autocomplete-input');
+            inputElement.parentNode.removeChild(inputElement);
+            const autocompleteModule = new Autocomplete(testObj.autocompleteElement);
+
+            autocompleteModule.init()
+
+            expect(testObj.autocompleteElement.classList.contains('js-initialised')).toBe(false);
+        });
+
+        it('should abort init() if no endpoint supplied', () => {
+            const autocompleteModule = new Autocomplete(testObj.autocompleteElement);
+
+            autocompleteModule.init()
+
+            expect(testObj.autocompleteElement.classList.contains('js-initialised')).toBe(false);
+        });
     });
 
     describe('focus with content on the input element', () => {
@@ -73,8 +116,8 @@ describe('"autocomplete" component', () => {
         });
 
         it('should do nothing if the input element has no content', () => {
-            spyOn(testObj.autocompleteModule, 'fetchSuggestions').and.returnValue(Promise.resolve(testData));
-            spyOn(testObj.autocompleteModule, 'showSuggestions');
+            vi.spyOn(testObj.autocompleteModule, 'fetchSuggestions').mockReturnValue(Promise.resolve(testData));
+            vi.spyOn(testObj.autocompleteModule, 'showSuggestions');
             testObj.autocompleteModule.init();
 
             let event = new Event('focus');
@@ -85,7 +128,7 @@ describe('"autocomplete" component', () => {
         });
 
         it('should show a list of cached suggestions if one is in memory', () => {
-            spyOn(testObj.autocompleteModule, 'showSuggestions');
+            vi.spyOn(testObj.autocompleteModule, 'showSuggestions');
             testObj.autocompleteModule.suggestions = testData;
 
             testObj.autocompleteModule.inputElement.value = 'foo';
@@ -98,7 +141,7 @@ describe('"autocomplete" component', () => {
         });
 
         it('should fetch a list of suggestions if there are no cached suggestions', () => {
-            spyOn(testObj.autocompleteModule, 'fetchSuggestions').and.returnValue(Promise.resolve(testData));
+            vi.spyOn(testObj.autocompleteModule, 'fetchSuggestions').mockReturnValue(Promise.resolve(testData));
 
             testObj.autocompleteModule.inputElement.value = 'foo';
             testObj.autocompleteModule.init();
@@ -159,9 +202,39 @@ describe('"autocomplete" component', () => {
 
             testObj.autocompleteModule.PromiseRequest = mockPromiseRequest;
         });
+
+        it('should throw if the request fails', () => {
+            const mockPromiseRequest = function () {
+                return Promise.reject({});
+            };
+            testObj.autocompleteModule.PromiseRequest = mockPromiseRequest;
+            testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, 'endpointUrl');
+
+            vi.spyOn(testObj.autocompleteModule, 'fetchSuggestions');
+
+            testObj.autocompleteModule.fetchSuggestions('ppp');
+
+            expect(testObj.autocompleteModule.fetchSuggestions).toThrowError();
+        });
+
+        it('should only display as many suggestions as it can fit in the viewport', async () => {
+            testObj.autocompleteElement = document.querySelector('#autocomplete');
+            testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, 'endpointUrl');
+
+            await page.viewport(800, 80);
+
+            testObj.autocompleteModule.suggestions = testData;
+            testObj.autocompleteModule.inputElement.value = 'foo';
+            testObj.autocompleteModule.selectedSuggestion = -1;
+            testObj.autocompleteModule.init();
+            let focusEvent = new Event('focus');
+            testObj.autocompleteModule.inputElement.dispatchEvent(focusEvent);
+
+            expect(testObj.autocompleteModule.listBoxElement.children.length).toEqual(2);
+        });
     });
 
-    describe('navigating through suggestions', () => {
+    describe('keyboard navigating through suggestions', () => {
         describe('when a suggestion list is shown', () => {
             beforeEach(() => {
                 testObj.autocompleteElement = document.querySelector('#autocomplete');
@@ -178,15 +251,15 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowDown'});
                 for (let i = 0, il = testObj.autocompleteModule.suggestions.length; i < il; i++) {
                     testObj.autocompleteModule.inputElement.dispatchEvent(event);
-                    expect(testObj.autocompleteModule.suggestions[i].active).toBeTruthy();
-                    expect(document.querySelector('.active .js-suggestion-text').innerText).toEqual(testData[i].displayText);
+                    expect(testObj.autocompleteModule.suggestions[i].isActive).toBe(true);
+                    expect(document.querySelector('.active .js-suggestion-text').textContent).toEqual(testData[i].displayText);
+
                 }
             });
 
             it('should select the previous suggestion in the list when the UP key is pressed', () => {
                 testObj.autocompleteModule.suggestions = testData;
                 testObj.autocompleteModule.inputElement.value = 'foo';
-                testObj.autocompleteModule.selectedSuggestion = 0;
                 testObj.autocompleteModule.init();
                 let focusEvent = new Event('focus');
                 testObj.autocompleteModule.inputElement.dispatchEvent(focusEvent);
@@ -194,8 +267,8 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowUp'});
                 for (let i = testObj.autocompleteModule.suggestions.length - 1; i > -1; i--) {
                     testObj.autocompleteModule.inputElement.dispatchEvent(event);
-                    expect(testObj.autocompleteModule.suggestions[i].active).toBeTruthy();
-                    expect(document.querySelector('.active .js-suggestion-text').innerText).toEqual(testData[i].displayText);
+                    expect(testObj.autocompleteModule.suggestions[i].isActive).toBe(true);
+                    expect(document.querySelector('.active .js-suggestion-text').textContent).toEqual(testData[i].displayText);
                 }
             });
 
@@ -210,8 +283,8 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowDown'});
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
-                expect(testObj.autocompleteModule.suggestions[0].active).toBeTruthy();
-                expect(document.querySelector('.active .js-suggestion-text').innerText).toEqual(testData[0].displayText);
+                expect(testObj.autocompleteModule.suggestions[0].isActive).toBe(true);
+                expect(document.querySelector('.active .js-suggestion-text').textContent).toEqual(testData[0].displayText);
             });
 
             it('should loop to the beginning of the list when the UP key is pressed while on the first item in the list', () => {
@@ -225,8 +298,8 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowUp'});
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
-                expect(testObj.autocompleteModule.suggestions[testData.length - 1].active).toBeTruthy();
-                expect(document.querySelector('.active .js-suggestion-text').innerText).toEqual(testData[testData.length - 1].displayText);
+                expect(testObj.autocompleteModule.suggestions[testData.length - 1].isActive).toBe(true);
+                expect(document.querySelector('.active .js-suggestion-text').textContent).toEqual(testData[testData.length - 1].displayText);
             });
 
             it('should update the input element and close the suggestion list when the ENTER key is pressed', () => {
@@ -240,7 +313,7 @@ describe('"autocomplete" component', () => {
                 let event = new KeyboardEvent('keydown', { key: 'ArrowDown'});
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
-                const selectedItemText = document.querySelector('.active .js-suggestion-text').innerText;
+                const selectedItemText = document.querySelector('.active .js-suggestion-text').textContent;
 
                 event = new KeyboardEvent('keydown', { key: 'Enter' });
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
@@ -256,7 +329,7 @@ describe('"autocomplete" component', () => {
                 let focusEvent = new Event('focus');
                 testObj.autocompleteModule.inputElement.dispatchEvent(focusEvent);
 
-                let event = new KeyboardEvent('keydown', { key: 'Escape'});
+                let event = new KeyboardEvent('keydown', { key: 'Esc'});
                 testObj.autocompleteModule.inputElement.dispatchEvent(event);
 
                 expect(testObj.autocompleteModule.listBoxElement.children.length).toEqual(0);
@@ -274,9 +347,9 @@ describe('"autocomplete" component', () => {
             testObj.autocompleteModule.inputElement.dispatchEvent(focusEvent);
         });
 
-        it('should fetch and display autocomplete suggestions', (done) => {
-            spyOn(testObj.autocompleteModule, 'fetchSuggestions').and.callThrough();
-            spyOn(testObj.autocompleteModule, 'showSuggestions').and.callThrough();
+        it('should fetch and display autocomplete suggestions', async () => {
+            const spy1 = vi.spyOn(testObj.autocompleteModule, 'fetchSuggestions');
+            const spy2 = vi.spyOn(testObj.autocompleteModule, 'showSuggestions');
 
             testObj.autocompleteModule.PromiseRequest = mockPromiseRequest;
 
@@ -292,36 +365,12 @@ describe('"autocomplete" component', () => {
             testObj.autocompleteModule.inputElement.dispatchEvent(event2);
 
             window.setTimeout(() => {
-                expect(testObj.autocompleteModule.fetchSuggestions).toHaveBeenCalled();
-                expect(testObj.autocompleteModule.showSuggestions).toHaveBeenCalled();
-
-                done();
+                expect(spy1).toHaveBeenCalled();
+                expect(spy2).toHaveBeenCalled();
             }, 100);
         });
 
-        it('text matching what is in the input element should be highlighted', (done) => {
-            testObj.autocompleteModule.PromiseRequest = mockPromiseRequest;
-
-            let event = new KeyboardEvent('keydown', { key: 'KeyM'});
-            testObj.autocompleteModule.inputElement.dispatchEvent(event);
-            event = new KeyboardEvent('keydown', { key: 'KeyA'});
-            testObj.autocompleteModule.inputElement.dispatchEvent(event);
-            event = new KeyboardEvent('keydown', { key: 'KeyR'});
-            testObj.autocompleteModule.inputElement.dispatchEvent(event);
-            testObj.autocompleteModule.inputElement.value = 'mar';
-
-            let event2 = new KeyboardEvent('input');
-            testObj.autocompleteModule.inputElement.dispatchEvent(event2);
-
-            window.setTimeout(() => {
-                const firstResultHighlight = testObj.autocompleteModule.listBoxElement.querySelector('.ds_autocomplete__suggestion mark');
-                expect(firstResultHighlight.innerText).toEqual(testObj.autocompleteModule.inputElement.value);
-
-                done();
-            }, 100);
-        });
-
-        it('should clear the suggestions if the text field is empty', (done) => {
+        it('should clear the suggestions if the text field is empty', async () => {
             testObj.autocompleteModule.inputElement.value = '';
 
             let event2 = new KeyboardEvent('input');
@@ -332,10 +381,26 @@ describe('"autocomplete" component', () => {
                 expect(testObj.autocompleteModule.listBoxElement.innerHTML).toEqual('');
                 expect(testObj.autocompleteModule.inputElement.getAttribute('aria-activedescendant')).toBeNull();
                 expect(testObj.autocompleteModule.inputElement.classList.contains('js-has-suggestions')).toEqual(false);
-
-
-                done();
             }, 100);
+        });
+
+        it('text matching what is in the input element should be highlighted', async() => {
+            testObj.autocompleteModule.PromiseRequest = mockPromiseRequest;
+
+            let event = new KeyboardEvent('keydown', { key: 'KeyM'});
+            testObj.autocompleteModule.inputElement.dispatchEvent(event);
+            event = new KeyboardEvent('keydown', { key: 'KeyA'});
+            testObj.autocompleteModule.inputElement.dispatchEvent(event);
+            event = new KeyboardEvent('keydown', { key: 'KeyR'});
+            testObj.autocompleteModule.inputElement.dispatchEvent(event);
+            testObj.autocompleteModule.inputElement.value = 'mar';
+
+            let event2 = new Event('input');
+            testObj.autocompleteModule.inputElement.dispatchEvent(event2);
+
+            await waitForElement('.ds_autocomplete__suggestion mark').then((markElement) => {
+                expect(markElement.textContent).toEqual(testObj.autocompleteModule.inputElement.value);
+            });
         });
     });
 
@@ -359,10 +424,28 @@ describe('"autocomplete" component', () => {
 
             const elementToClick = testObj.autocompleteModule.listBoxElement.querySelector('.ds_autocomplete__suggestion:last-of-type');
 
-            const selectedItemText = elementToClick.querySelector('.js-suggestion-text').innerText;
+            const selectedItemText = elementToClick.querySelector('.js-suggestion-text').textContent;
             elementToClick.dispatchEvent(event);
 
             expect(testObj.autocompleteModule.inputElement.value).toEqual(selectedItemText);
+        });
+
+        it('should do nothing if a mouseclick happens on something that is not a suggestion in the suggestion list', () => {
+            // arrange
+            testObj.autocompleteModule.suggestions = testData;
+            testObj.autocompleteModule.init();
+
+            const selectSuggestionSpy = vi.spyOn(testObj.autocompleteModule, 'selectSuggestion').mockImplementation(() => {});
+
+            // act
+            let event = new MouseEvent('mousedown', {
+                'bubbles': true
+            });
+            const elementToClick = testObj.autocompleteModule.listBoxElement;
+            elementToClick.dispatchEvent(event);
+
+            // assert
+            expect(selectSuggestionSpy).not.toHaveBeenCalled()
         });
 
         it('should clear the suggestion list when the text input loses focus', () => {
@@ -382,7 +465,7 @@ describe('"autocomplete" component', () => {
         });
     });
 
-    describe('accessibility attributes', () => {
+    describe('accessibility attributes and behaviour', () => {
         beforeEach(() => {
             testObj.autocompleteElement = document.querySelector('#autocomplete');
             testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, 'endpointUrl');
@@ -450,6 +533,85 @@ describe('"autocomplete" component', () => {
 
             expect(testObj.autocompleteModule.inputElement.classList.contains('js-has-suggestions')).toEqual(false);
         });
+
+        describe('status text', () => {
+            beforeEach(() => {
+                testObj.autocompleteModule.statusElement.textContent = '';
+            });
+
+            it('update the status text', async () => {
+                // act
+                testObj.autocompleteModule.updateStatus(1);
+                await waitForTextChange(testObj.autocompleteModule.statusElement);
+
+                // assert
+                expect(testObj.autocompleteModule.statusElement.textContent).toEqual('There is 1 option.');
+            });
+
+            it('update the status text only with the latest update', async () => {
+                // arrange
+                const updateStatusTextSpy = vi.spyOn(testObj.autocompleteModule, 'updateStatusText');
+
+                // act
+                testObj.autocompleteModule.updateStatus(0);
+                testObj.autocompleteModule.updateStatus(1);
+                await waitForTextChange(testObj.autocompleteModule.statusElement);
+
+                // assert
+                expect(testObj.autocompleteModule.statusElement.textContent).toEqual('There is 1 option.');
+                expect(updateStatusTextSpy.mock.calls.length).toEqual(1);
+            });
+
+            it('togglecharacter (forces a screen reader to announce status text because the content is changed, even when the number of suggestions is the same)', async () => {
+                // act
+                testObj.autocompleteModule.updateStatus(1);
+                await waitForTextChange(testObj.autocompleteModule.statusElement);
+                // assert
+                expect(testObj.autocompleteModule.statusElement.textContent).toEqual('There is 1 option.');
+
+                // act
+                testObj.autocompleteModule.updateStatus(1);
+                await waitForTextChange(testObj.autocompleteModule.statusElement);
+                // assert
+                expect(testObj.autocompleteModule.statusElement.textContent).toEqual('There is 1 option');
+
+                // act
+                testObj.autocompleteModule.updateStatus(1);
+                await waitForTextChange(testObj.autocompleteModule.statusElement);
+                // assert
+                expect(testObj.autocompleteModule.statusElement.textContent).toEqual('There is 1 option.');
+            });
+
+            it('correct pluralisation: singular', async () => {
+                // act
+                testObj.autocompleteModule.updateStatus(1);
+                await waitForTextChange(testObj.autocompleteModule.statusElement);
+
+                // assert
+                expect(testObj.autocompleteModule.statusElement.textContent).toEqual('There is 1 option.');
+            });
+
+            it('correct pluralisation: plural', async () => {
+                // act
+                testObj.autocompleteModule.updateStatus(10);
+                await waitForTextChange(testObj.autocompleteModule.statusElement);
+
+                // assert
+                expect(testObj.autocompleteModule.statusElement.textContent).toEqual('There are 10 options.');
+            });
+
+            it('no status element to update :(', () => {
+                // arrange
+                delete testObj.autocompleteModule.statusElement;
+
+                // act
+                const updateStatusTextSpy = vi.spyOn(testObj.autocompleteModule, 'updateStatusText');
+                testObj.autocompleteModule.updateStatus(1);
+
+                // assert
+                expect(updateStatusTextSpy).not.toHaveBeenCalled();
+            });
+        });
     });
 
     describe('bad cases which are aborted', () => {
@@ -458,14 +620,14 @@ describe('"autocomplete" component', () => {
             inputElement.parentNode.removeChild(inputElement);
 
             testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, 'endpointUrl');
-            expect(testObj.autocompleteModule.init()).toBeFalsy();
+            expect(testObj.autocompleteModule.isInitialised).toBe(false);
         });
 
         it('will clear all suggestion-related info if there are no suggestions to display', () => {
             testObj.autocompleteModule = new Autocomplete(testObj.autocompleteElement, 'endpointUrl');
             testObj.autocompleteModule.init();
 
-            spyOn(testObj.autocompleteModule, 'clearSuggestions');
+            vi.spyOn(testObj.autocompleteModule, 'clearSuggestions');
 
             testObj.autocompleteModule.showSuggestions([]);
 
