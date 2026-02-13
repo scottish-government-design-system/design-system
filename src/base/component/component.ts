@@ -4,6 +4,7 @@ export default class DSComponent {
 
     constructor(element: HTMLElement) {
         this.#element = element;
+        if (this.#element) this.#element.classList.add('js-instantiated');
         this.#isInitialised = false;
     }
 
