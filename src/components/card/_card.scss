@@ -2,37 +2,57 @@
     CARD
 \*------------------------------------*/
 
-$card-background--primary: $ds_colour__background--primary !default;
-$card-background--secondary: $ds_colour__background--secondary !default;
+@use "../../base/helpers";
+@use "../../base/settings";
+
+$card-background--primary: settings.$ds_colour__background--primary !default;
+$card-background--secondary: settings.$ds_colour__background--secondary !default;
 
 // Deprecated - use $card-background--secondary
-$card-grey-background-color: $ds_colour__background--secondary !default;
+$card-grey-background-color: settings.$ds_colour__background--secondary !default;
 
 .ds_card {
-    @include ds_small-size;
+    @include helpers.ds_small-size;
     background: $card-background--primary;
-    border: 1px solid $ds_colour__border;
+    border: 1px solid settings.$ds_colour__border;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: 0;
     position: relative;
 
+    .ds_icon {
+        color: settings.$ds_colour__brand;
+    }
+
     &--hover {
-        @include ds_box-shadow;
+        @include helpers.ds_box-shadow;
 
         .ds_icon {
-            color: $ds_colour__link;
+            color: settings.$ds_colour__link;
+            transition: color settings.$transition-out-time;
             
-            @include ds_media-query-high-contrast {
+            @include helpers.ds_media-query-high-contrast {
                 color: linktext !important;
             }
         }
 
+        .ds_card__content-main,
+        .ds_metadata--inline {
+            transition: color settings.$transition-out-time;    
+        }
+
         &:hover {
             .ds_icon {
-                color: $ds_colour__link--hover;
+                color: settings.$ds_colour__link--hover;
+            }
+
+            .ds_card__content-main,
+            .ds_metadata--inline {
+                color: settings.$ds_colour__text;
             }
         }
+
     }
 
     &__media {
@@ -42,28 +62,14 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
     }
 
     &__content {
-        @include ds_last-child-no-margin;
+        @include helpers.ds_last-child-no-margin;
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr auto;
-        grid-template-areas: 
-            "h"
-            "m"
-            "f";
-        gap: 0.5rem;
         height: 100%;
         padding: 1rem;
 
-        &:has(&-actions) {
-        grid-template-columns: 1fr auto;
-        grid-template-areas: 
-            "h a"
-            "m m"
-            "f f";
-        }
-
         &-header {
-            grid-area: h;
             display: flex;
             align-items: center;
             flex-wrap: wrap;
@@ -74,7 +80,7 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
                 max-width: 2.5rem;
                 width: auto;
 
-                @include ds_media-query(medium){
+                @include helpers.ds_media-query(medium){
                     height: 3rem;
                     max-width: 3rem;   
                     width: auto; 
@@ -82,29 +88,36 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
             }
 
             .ds_tag {
-                @include ds_small-size;
+                @include helpers.ds_small-size;
             }
         }
 
         &-main {
-            @include ds_last-child-no-margin;
-            grid-area: m;
+            @include helpers.ds_last-child-no-margin;
+            color: settings.$ds_colour__text--secondary;
+            
+            &:not(:first-child) {
+                padding-top: 0.5rem;
+            }
+
+            // Override components when placed inside a .ds_card
+            .ds_button-group {
+                margin-top: 1rem;
+            }
         }
 
         &-footer {
-            @include ds_last-child-no-margin;
-            grid-area: f;
+            @include helpers.ds_last-child-no-margin;
             align-self: end;
-            padding-top: 0.5rem;
-        }
-
-        &-actions {
-            grid-area: a;
+            
+            &:not(:first-child) {
+                padding-top: 1rem;
+            }
         }
     }
 
     &__title {
-        @include ds_h3-size;
+        @include helpers.ds_h3-size;
         width: 100%;
         
         // Override styling applied to heading margins
@@ -157,7 +170,7 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
 
         // Increase size above small width
         // [1] 350px is largest width of a card in a 3 col grid
-        @include ds_media-query(small) {
+        @include helpers.ds_media-query(small) {
             width: min(50%, 21.875rem); //[1]
             max-width: min(50%, 21.875rem); 
 
@@ -194,7 +207,7 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
 // Card is horizontal at viewport sizes up to small breakpoint 30rem(480px
 // Use this when you want horizontal rather than stacked at mobile sizes
 .ds_card--horizontal-small {
-    @include ds_media-query(small-down) {
+    @include helpers.ds_media-query(small-down) {
         @include ds_card--horizontal;
     }
 }
@@ -220,7 +233,7 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
 .ds_card-grid {
     display: grid;
     grid-template-columns: 1fr;
-    @include ds_responsive-spacing(4, "gap");
+    @include helpers.ds_responsive-spacing(4, "gap");
 
     // Default grid behaviour
     // 3 columns @ xlarge
@@ -228,13 +241,13 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
     // 3 columns @ medium
     // 1 column @ small
     // 1 column @ fluid
-    @include ds_media-query(medium) {
+    @include helpers.ds_media-query(medium) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     // 2 columns @ medium
     &--medium-2 {
-        @include ds_media-query(medium-to-large) {
+        @include helpers.ds_media-query(medium-to-large) {
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }    
     }
@@ -242,7 +255,7 @@ $card-grey-background-color: $ds_colour__background--secondary !default;
 
 // Add block margins to grid
 .ds_card-grid-container {
-    @include ds_block-margins;
+    @include helpers.ds_block-margins;
 }
 
 // DEPRECATED - use ds_card--background-secondary instead
