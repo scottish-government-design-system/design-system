@@ -85,43 +85,25 @@ $site-footer__border-width: 0.0625rem; // 1px
 @include helpers.ds_media-query(medium) {
     .ds_site-footer {
         &__content {
-            @include helpers.ds_layout();
+            display: grid;
+            gap: 0 settings.$grid-gap-x;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-areas: 'a a a a a a a a a a a a'
+                                 'b b b b b b b b . c c c';
+        }
+
+        &__site-items {
+            grid-area: a;
         }
 
         &__copyright {
-            float: left;
-            @include helpers.ds_colwidth(8);
+            grid-area: b;
         }
 
         &__org {
-            float: right;
-            @include helpers.ds_colwidth(3);
-        }
-    }
-
-    @supports (display: grid) {
-        .ds_site-footer {
-            &__content {
-                display: grid;
-                grid-gap: 0 settings.$grid-gap-x;
-                grid-template-columns: repeat(12, 1fr);
-                grid-template-areas: 'a a a a a a a a a a a a'
-                                     'b b b b b b b b . c c c';
-            }
-
-            &__site-items {
-                grid-area: a;
-            }
-
-            &__copyright {
-                grid-area: b;
-            }
-
-            &__org {
-                grid-area: c;
-                justify-self: right;
-                width: 100% !important;
-            }
+            grid-area: c;
+            justify-self: right;
+            width: 100% !important;
         }
     }
 }

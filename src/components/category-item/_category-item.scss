@@ -15,6 +15,7 @@ $border-width-size: 0.25rem;
 .ds_category-item {
     @include helpers.ds_link--block('.ds_category-item__link');
 
+    margin: 0;
     padding: 0.75rem 1rem 0.75rem;
     text-decoration: none;
     transition: background-color settings.$transition-out-time, border-color settings.$transition-out-time;
@@ -83,6 +84,7 @@ $border-width-size: 0.25rem;
     }
 }
 
+// DEPRECATED - use cards standalone and not as a category item
 .ds_card {
     > .ds_category-item {
         padding-top: 1.5rem;
@@ -102,6 +104,7 @@ $border-width-size: 0.25rem;
         }
     }
 
+    // DEPRECATED - use cards standalone and not as a category item
     .ds_card {
         > .ds_category-item {
             min-height: 12.5rem;

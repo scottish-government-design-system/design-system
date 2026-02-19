@@ -1,39 +1,30 @@
 @use "sass:math";
 @use "../../settings";
 
+/// DEPRECATED - use grid instead
 @mixin ds_colwidth($columns: 1, $total: 12, $gutter: settings.$grid-gap-x) {
     width: calc(#{100% * math.div($columns, $total)} - #{$gutter});
 }
 
+/// DEPRECATED - use grid instead
 @mixin ds_colpush($columns: 1, $total: 12) {
     margin-left: #{100% * math.div($columns, $total)};
 }
 
+/// DEPRECATED - use grid instead
 @mixin ds_colpull($columns: 1, $total: 12) {
     margin-left: #{100% * math.div($columns, $total) * -1};
 }
 
+/// DEPRECATED - sub parameter is no longer used as will be removed in a future release
 @mixin ds_layout($gutter: settings.$grid-gap-x, $sub: false) {
-    @if $sub {} @else {
-        margin-right: #{$gutter * -1};
-    }
-    overflow: hidden;
+    display: grid;
+    gap: 0 $gutter;
 
     > * {
-        margin-right: $gutter;
-    }
-
-    @supports (display: grid) {
-        display: grid;
-        grid-gap: 0 $gutter;
+        margin-left: 0;
         margin-right: 0;
-        overflow: visible;
-
-        > * {
-            margin-left: 0;
-            margin-right: 0;
-            width: auto !important;
-        }
+        width: auto !important;
     }
 }
 

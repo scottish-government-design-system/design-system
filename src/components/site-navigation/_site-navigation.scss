@@ -125,11 +125,7 @@ $site-navigation__link-underline-thickness: calc(4em/19);
 
         a.ds_site-navigation__link {
             &:focus {
-                @include helpers.ds_unsupported-css-fallback(
-                    $prop: 'box-shadow',
-                    $modern: inset 0 round(#{helpers.$focus__shadow-width * -1}, 1px) settings.$ds_colour__link--focus__shadow,
-                    $fallback: inset 0 #{helpers.$focus__shadow-width * -1} settings.$ds_colour__link--focus__shadow
-                );
+                box-shadow: inset 0 round(#{helpers.$focus__shadow-width * -1}, 1px) settings.$ds_colour__link--focus__shadow;
                 filter: none;
                 outline: none;
             }
