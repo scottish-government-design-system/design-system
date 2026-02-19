@@ -22,38 +22,6 @@
     }
 }
 
-
-
-
-/// Icon mask
-///
-/// @deprecated icons displayed this way do not render in Windows
-/// "High Contrast" mode
-///
-/// Adds mask-image properties for a provided image URL
-///
-/// @param {string} $url - url of the image to be masked
-///
-/// @example scss
-///   .warning-icon {
-///     @include ds_icon-mask('/path/to/my/icon')
-///   }
-
-@mixin ds_icon-mask($url) {
-    /// for IE11 support, use image without clip path
-    background-image: url($url);
-
-    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
-        background-color: currentColor;
-        background-image: none;
-        -webkit-mask-image: url($url);
-        mask-image: url($url);
-    }
-}
-
-
-
-
 /// legacy non-prefixed names
 /// DEPRECATED - use prefixed mixins instead
 @mixin chevron($orientation: down, $size: 1em) {

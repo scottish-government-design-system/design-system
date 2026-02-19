@@ -73,19 +73,7 @@ $contact-details__border-colour: settings.$ds_colour__border--highlight !default
         // 2 Column layout
         &-grid {
             @include helpers.ds_layout();
-
-            .ds_contact-details__list {
-                float: left;
-                @include helpers.ds_colwidth(6);
-            }
-
-            @supports(display: grid) {
-                grid-template-columns: repeat(2, 1fr);
-
-                .ds_contact-details__list {
-                    width: auto;
-                }
-            }
+            grid-template-columns: repeat(2, 1fr);
         }
     }
 }
@@ -94,20 +82,7 @@ $contact-details__border-colour: settings.$ds_colour__border--highlight !default
     .ds_contact-details {
         // 3 Column layout
         &-grid {
-            @include helpers.ds_layout();
-
-            .ds_contact-details__list {
-                float: left;
-                @include helpers.ds_colwidth(4);
-            }
-
-            @supports(display: grid) {
-                grid-template-columns: repeat(3, 1fr);
-
-                .ds_contact-details__list {
-                    width: auto;
-                }
-            }
+            grid-template-columns: repeat(3, 1fr);
         }
     }
 }

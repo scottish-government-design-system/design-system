@@ -190,22 +190,18 @@ $feature-header-button-hover-background: rgba(settings.$ds_colour__black, 20%) !
 
         // set image to cover
         &__secondary--cover {
+            align-self: auto;
+            overflow: hidden;
+            padding: 0;
+            position: relative;
 
-            // Ignore cover option on IE11
-            @supports (object-fit: cover) {
-                align-self: auto;
-                overflow: hidden;
-                padding: 0;
-                position: relative;
-
-                .ds_feature-header__image {
-                    height: 100%;
-                    left: 0;
-                    width: 100%;
-                    object-fit: cover;
-                    position: absolute;
-                    right: 0;
-                }
+            .ds_feature-header__image {
+                height: 100%;
+                left: 0;
+                width: 100%;
+                object-fit: cover;
+                position: absolute;
+                right: 0;
             }
         }
 
@@ -222,43 +218,40 @@ $feature-header-button-hover-background: rgba(settings.$ds_colour__black, 20%) !
     }
 }
 
-// Layout if supporting grid
-@supports(display: grid) {
-    @include helpers.ds_media-query(medium) {
+@include helpers.ds_media-query(medium) {
 
-        .ds_feature-header__image {
-            float: right;
+    .ds_feature-header__image {
+        float: right;
+    }
+
+    .ds_feature-header:not(.ds_feature-header--fullwidth),
+    .ds_feature-header--fullwidth > .ds_wrapper {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-areas:
+            'p p p p p p s s s s s s';
+        gap: 2rem;
+
+        .ds_feature-header__primary {
+            grid-area: p;
+            padding-bottom: 3rem;
         }
 
-        .ds_feature-header:not(.ds_feature-header--fullwidth),
-        .ds_feature-header--fullwidth > .ds_wrapper {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            grid-template-areas:
-                'p p p p p p s s s s s s';
-            grid-gap: 2rem;
-
-            .ds_feature-header__primary {
-                grid-area: p;
-                padding-bottom: 3rem;
-            }
-
-            .ds_feature-header__secondary {
-                grid-area: s;
-            }
-
-            // Change grid columns if there is no image
-            &:not(:has(.ds_feature-header__secondary)){
-                grid-template-areas:
-                    'p p p p p p p p s s s s';
-                }
+        .ds_feature-header__secondary {
+            grid-area: s;
         }
 
-        // Change grid columns if wide option
-        .ds_feature-header--wide:not(.ds_feature-header--fullwidth),
-        .ds_feature-header--wide.ds_feature-header--fullwidth > .ds_wrapper {
+        // Change grid columns if there is no image
+        &:not(:has(.ds_feature-header__secondary)){
             grid-template-areas:
                 'p p p p p p p p s s s s';
-        }
+            }
+    }
+
+    // Change grid columns if wide option
+    .ds_feature-header--wide:not(.ds_feature-header--fullwidth),
+    .ds_feature-header--wide.ds_feature-header--fullwidth > .ds_wrapper {
+        grid-template-areas:
+            'p p p p p p p p s s s s';
     }
 }

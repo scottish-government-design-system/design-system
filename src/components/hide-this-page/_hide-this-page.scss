@@ -93,13 +93,10 @@ $hide-this-page-background-color--hover: color.adjust(settings.$ds_colour__red, 
 
 @include helpers.ds_media-query(medium) {
     .ds_hide-page {
+        bottom: 0.5rem;
         left: auto;
+        position: sticky;
         @include helpers.ds_block-margins;
-
-        @supports (position: sticky) and (display: grid) {
-            bottom: 0.5rem;
-            position: sticky;
-        }
     }
 
     .ds_has-hide-page .ds_page {
@@ -107,33 +104,31 @@ $hide-this-page-background-color--hover: color.adjust(settings.$ds_colour__red, 
     }
 }
 
-@supports (display: grid) {
-    .ds_hide-page {
-        width: 100%;
 
-        @include helpers.ds_media-query(medium) {
-            align-self: start;
-            grid-area: 1/9/3/13;
-            right: 0.5rem;
-            top: 0.5rem;
-        }
+.ds_hide-page {
+    width: 100%;
 
-        @include helpers.ds_media-query(large) {
-            grid-area: 1/10/3/13;
-        }
+    @include helpers.ds_media-query(medium) {
+        align-self: start;
+        grid-area: 1/9/3/13;
+        right: 0.5rem;
+        top: 0.5rem;
+    }
+
+    @include helpers.ds_media-query(large) {
+        grid-area: 1/10/3/13;
     }
 }
+
 
 /**
   This "reverse" order follows GOV UK reasoning, where it assumed that it's better to have scroll
   padding unnecessarily than risking not having it when it's needed.
 */
-@supports (position: sticky) {
-    html {
-        scroll-padding-top: 6.5rem;
+html {
+    scroll-padding-top: 6.5rem;
 
-        &:not(:has(.ds_hide-page)) {
-            scroll-padding-top: 0;
-        }
+    &:not(:has(.ds_hide-page)) {
+        scroll-padding-top: 0;
     }
 }

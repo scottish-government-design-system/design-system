@@ -194,19 +194,13 @@ $date-picker-focus-border-width: helpers.$focus__shadow-width;
         }
 
         &__buttongroup {
+            display: grid;
+            gap: 0.5rem;
+            grid-template-columns: 1fr 1fr;
             overflow: visible;
-            @include helpers.ds_layout(0.5rem);
 
-            // non-grid
-            button {
-                @include helpers.ds_colwidth(1,2,0.5rem);
-                display: block;
-                float: left;
+            .ds_button {
                 margin: 0;
-            }
-
-            @supports (display: grid) {
-                grid-template-columns: 1fr 1fr;
             }
         }
     }
