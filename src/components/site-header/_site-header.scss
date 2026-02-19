@@ -31,25 +31,29 @@ $site-header__top-band-colour--secondary: settings.$ds_colour__brand--secondary;
     }
 
     &__content {
-        overflow: auto;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas: 'branding controls' 'nav nav' 'search search';
     }
 
     .ds_site-branding {
-        float: left;
+        grid-area: branding;
     }
 
     .ds_site-header__controls {
+        grid-area: controls;
         float: right;
         height: calc(100% + 0.0625rem);
         margin-bottom: -0.0625rem;
     }
 
-    .ds_site-navigation {
-        clear: both;
+    .ds_site-navigation--mobile {
+        grid-area: nav;
     }
 
     &__search {
-        float: right;
+        grid-area: search;
         margin: 0.5rem 0;
 
         .ds_input__wrapper {
@@ -62,12 +66,15 @@ $site-header__top-band-colour--secondary: settings.$ds_colour__brand--secondary;
         @include helpers.ds_link--block;
         @include helpers.ds_high-contrast-button;
 
+        align-items: center;
         color: inherit;
         cursor: pointer;
+        display: flex;
         font-size: 1rem;
         font-weight: settings.$normal;
-        min-height: 3rem;
+        height: 100%;
         margin: 0 -1rem -0.0625rem 0;
+        min-height: 3rem;
         padding: 1rem;
         text-decoration: none;
 
@@ -101,62 +108,18 @@ $site-header__top-band-colour--secondary: settings.$ds_colour__brand--secondary;
     }
 
     @include helpers.ds_media-query(medium) {
+        &__content {
+            grid-template-columns: auto max-content;
+            grid-template-areas: 'branding search';
+        }
+
+        &__controls {
+            display: none;
+        }
+
         &__navigation {
             border-top: 0.0625rem solid settings.$ds_colour__border--faint;
             margin-top: -0.0625rem;
         }
-    }
-}
-
-@supports(display: grid) {
-    .ds_site-header {
-        &__content {
-            align-items: center;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            grid-template-areas: 'branding controls' 'nav nav' 'search search';
-            overflow: initial;
-        }
-
-        .ds_site-branding {
-            grid-area: branding;
-        }
-
-        &__controls {
-            grid-area: controls;
-        }
-
-        &__search {
-            grid-area: search;
-        }
-
-        .ds_site-navigation--mobile {
-            grid-area: nav;
-        }
-    }
-
-    @include helpers.ds_media-query(medium) {
-        .ds_site-header {
-            &__content {
-                grid-template-columns: auto max-content;
-                grid-template-areas: 'branding search';
-            }
-        }
-    }
-}
-
-@supports (display: flex) {
-    .ds_site-header {
-        &__control {
-            align-items: center;
-            display: flex;
-            height: 100%;
-        }
-    }
-}
-
-@include helpers.ds_media-query(medium) {
-    .ds_site-header__controls {
-        display: none;
     }
 }

@@ -3,7 +3,6 @@
 ///
 
 @use "../media-query";
-@use "../unsupported-css-fallback";
 
 @mixin ds_high-contrast-button($border-width: 0.125rem, $selector: ':enabled, :link') {
     @include media-query.ds_media-query-high-contrast {
@@ -40,17 +39,9 @@
 
 @mixin ds_high-contrast-outline($width: 0.125em, $inset: true, $colour: canvastext) {
     @include media-query.ds_media-query-high-contrast {
-        @include unsupported-css-fallback.ds_unsupported-css-fallback(
-            $prop: 'outline',
-            $modern: round(#{$width}, 1px) solid $colour !important,
-            $fallback: $width solid $colour !important
-        );
+        outline: round(#{$width}, 1px) solid $colour !important;
         @if inset == true {
-            @include unsupported-css-fallback.ds_unsupported-css-fallback(
-                $prop: 'outline-offset',
-                $modern: calc(round(#{$width}, 1px) * -1) !important,
-                $fallback: calc($width * -1) !important
-            );
+            outline-offset: calc(round(#{$width}, 1px) * -1) !important;
         }
 
         @content;

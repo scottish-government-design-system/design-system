@@ -8,18 +8,23 @@
 .ds_phase-banner {
     background: settings.$ds_colour__background--tertiary;
     border-top: 0.0625rem solid transparent;
-    clear: both;
     @include helpers.ds_small-size;
     @include helpers.ds_responsive-padding(2, top, $tuning: -0.0625rem);
     @include helpers.ds_responsive-padding(2, bottom);
 
-    &.no-bottom-margin {
-        margin-bottom: 0;
-    }
-
     &__content {
-        display: table;
+        align-items: baseline;
+        display: flex;
         margin-bottom: 0;
+
+        // DEPRECATED - this will be removed in a future version
+        &--stacked {
+            flex-direction: column;
+
+            > *:not(:last-child) {
+                @include helpers.ds_responsive-margin(1, bottom);
+            }
+        }
     }
 
     &__tag.ds_tag {
@@ -27,27 +32,5 @@
         @include helpers.ds_small-size;
     }
 
-    &__text {
-        display: table-cell;
-    }
-
     @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--tertiary, 'phase banner');
-}
-
-@supports (display: flex) {
-    .ds_phase-banner {
-
-        &__content {
-            align-items: baseline;
-            display: flex;
-
-            &--stacked {
-                flex-direction: column;
-
-                > *:not(:last-child) {
-                    @include helpers.ds_responsive-margin(1, bottom);
-                }
-            }
-        }
-    }
 }

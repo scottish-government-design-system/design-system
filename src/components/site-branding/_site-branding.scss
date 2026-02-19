@@ -12,10 +12,12 @@ $site-branding-padding: 0.75rem;
 $site-branding-title-spacing: 1.5rem;
 $site-branding-title-spacing--medium: 3rem;
 
-
-
-
 .ds_site-branding {
+    align-items: center;
+    display: flex;
+    flex-flow: wrap;
+    gap: 1rem 0;
+    overflow: hidden;
     padding: $site-branding-padding 0;
     position: relative;
 
@@ -54,11 +56,6 @@ $site-branding-title-spacing--medium: 3rem;
         }
     }
 
-    &__logo,
-    &__title {
-        float: left;
-    }
-
 }
 
 @include helpers.ds_media-query (medium) {
@@ -81,20 +78,6 @@ $site-branding-title-spacing--medium: 3rem;
             &::before {
                 margin-left: calc($site-branding-title-spacing--medium * -0.5);
             }
-        }
-    }
-}
-
-@supports (display: flex) {
-    .ds_site-branding {
-        align-items: center;
-        display: flex;
-        flex-flow: wrap;
-        gap: 1rem 0;
-
-        &__logo,
-        &__title {
-            float: none;
         }
     }
 }

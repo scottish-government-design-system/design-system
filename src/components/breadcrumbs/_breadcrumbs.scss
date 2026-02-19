@@ -11,6 +11,8 @@ $breadcrumbs__font-size: settings.$small-size--fixed;
 
 .ds_breadcrumbs {
     color: $breadcrumbs__colour;
+    display: flex;
+    flex-wrap: wrap;
     font-size: $breadcrumbs__font-size;
     line-height: 1.5rem;
     padding-left: 0;
@@ -43,11 +45,6 @@ $breadcrumbs__font-size: settings.$small-size--fixed;
         &__container {
             padding-top: 1.5rem;
         }
-    }
-
-    @supports (display: flex) {
-        display: flex;
-        flex-wrap: wrap;
     }
 }
 

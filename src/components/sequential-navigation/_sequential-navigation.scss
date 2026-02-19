@@ -17,15 +17,12 @@ $page-nav__prefix-colour: settings.$ds_colour__text !default;
 $page-nav__circle-size: 3.5rem !default;
 
 .ds_sequential-nav {
+    display: grid;
+    gap: settings.$grid-gap-y settings.$grid-gap-x;
+    grid-template-areas: 'next' 'prev';
     margin-bottom: 3.5rem;
     margin-top: 3.5rem;
-    overflow: hidden;
-}
-
-@supports(display: grid) {
-    .ds_sequential-nav {
-        overflow: initial;
-    }
+    overflow: initial;
 }
 
 .ds_sequential-nav__button {
@@ -148,44 +145,21 @@ $page-nav__circle-size: 3.5rem !default;
     }
 }
 
-@include helpers.ds_media-query(small) {
-    .ds_sequential-nav__item {
-        width: calc(50% - 1rem);
+.ds_sequential-nav__item {
+    width: 100%;
 
-        &--prev {
-            float: left;
-        }
+    &--prev {
+        grid-area: prev;
+    }
 
-        &--next {
-            float: right;
-        }
+    &--next {
+        grid-area: next;
     }
 }
 
-@supports (display: grid) {
+@include helpers.ds_media-query(small) {
     .ds_sequential-nav {
-        display: grid;
-        grid-gap: settings.$grid-gap-y settings.$grid-gap-x;
-        grid-template-areas: 'next' 'prev';
-    }
-
-    .ds_sequential-nav__item {
-        float: none;
-        width: 100%;
-
-        &--prev {
-            grid-area: prev;
-        }
-
-        &--next {
-            grid-area: next;
-        }
-    }
-
-    @include helpers.ds_media-query (small) {
-        .ds_sequential-nav {
-            grid-template-columns: 1fr 1fr;
-            grid-template-areas: 'prev next';
-        }
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'prev next';
     }
 }

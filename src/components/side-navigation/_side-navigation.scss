@@ -21,7 +21,6 @@ $side-nav__outline-width: 0.125rem; // 2px
 
 
     /// [1] Allowance for 1px border on all sides of parent container
-    /// [2] The 'unsupportedCSSFallback' mixin does not work with comma-separated values
     &__expand {
         @include helpers.ds_link;
         @include helpers.ds_link--block;
@@ -54,10 +53,8 @@ $side-nav__outline-width: 0.125rem; // 2px
             color: settings.$ds_colour__link--hover;
         }
 
-        /// [2]
         &--shadow:focus {
             box-shadow: 0 round(helpers.$focus__shadow-width, 1px) settings.$ds_colour__link--focus__shadow, 0 0.5rem 0.3125rem rgba(0,0,0,0.15);
-            box-shadow: 0 helpers.$focus__shadow-width settings.$ds_colour__link--focus__shadow, 0 0.5rem 0.3125rem rgba(0,0,0,0.15);
         }
     }
 

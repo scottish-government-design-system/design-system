@@ -61,9 +61,8 @@ $text-input-fluid-widths: (
 }
 
 .ds_input__wrapper {
-    display: block;
+    display: flex;
     margin-bottom: 1.5rem;
-    overflow: auto;
 
     .ds_input {
         float: left;
@@ -81,12 +80,5 @@ $text-input-fluid-widths: (
     > .ds_button {
         margin: 0;
         @include helpers.ds_button-sizing--small;
-    }
-}
-
-@supports (display: flex) {
-    .ds_input__wrapper {
-        display: flex;
-        overflow: visible;
     }
 }
