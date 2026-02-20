@@ -52,7 +52,8 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
         padding: 0.25rem 2rem 0.25rem 1rem;
     }
 
-    &--small &__label {
+    &--small &__label,
+    &--small .ds_question__sub {
         padding-left: 0.5rem;
     }
 
