@@ -4,6 +4,7 @@ import BackToTop from './back-to-top/back-to-top';
 import CookieNotification from './cookie-notification/cookie-notification';
 import DatePicker from './date-picker/date-picker';
 import Details from './details/details';
+import FileUpload from './file-upload/file-upload';
 import HideThisPage from './hide-this-page/hide-this-page';
 import NotificationBanner from './notification-banner/notification-banner';
 import SideNavigation from './side-navigation/side-navigation';
@@ -21,6 +22,7 @@ export default {
     CookieNotification,
     DatePicker,
     Details,
+    FileUpload,
     HideThisPage,
     NotificationBanner,
     SideNavigation,
