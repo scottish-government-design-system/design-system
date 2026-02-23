@@ -10,7 +10,6 @@ $date-picker-focus-border-width: helpers.$focus__shadow-width;
 
 .ds_datepicker {
     position: relative;
-    @include helpers.ds_responsive-margin(4, bottom);
 
     .ds_input {
         margin-bottom: 0;
