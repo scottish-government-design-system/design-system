@@ -1,0 +1,69 @@
+/*------------------------------------*\
+    NOTIFICATION MESSAGE
+    This will evolve to support multiple states - currently only success
+\*------------------------------------*/
+
+@use "../../base/helpers";
+@use "../../base/settings";
+
+@mixin ds_notification-message($notification-colour: settings.$ds_colour__state--positive) {
+
+	@include helpers.ds_block-margins;
+	@include helpers.ds_responsive-padding(2, top);
+    @include helpers.ds_responsive-padding(2, bottom);
+    @include helpers.ds_responsive-padding(2, right);
+
+    background-color: settings.$ds_colour__background--secondary;
+    border-left: 0.25rem solid $notification-colour;
+    padding-left: 2.75rem;
+    position: relative;
+
+    /// [1] ratio of icon height (24px) to .ds_confirmation-message__title line height
+    &__icon {
+        color: $notification-colour;
+        left: 0.75rem;
+        position: absolute;
+        top: 1.25rem; /// [1]
+
+        @include helpers.ds_media-query-high-contrast {
+            color: highlight;
+        }
+
+        @include helpers.ds_media-query(medium) {
+            top: 1.5rem; /// [1]
+        }
+    }
+
+    &__title {
+        @include helpers.ds_h2-size;
+        margin-bottom: 0;
+    }
+
+    &__title:not(:first-child) {
+        margin-top: 0;
+    }
+
+    &__body {
+        @include helpers.ds_last-child-no-margin;
+        margin-top: 0.5rem;
+    }
+
+    /// [1] ratio of icon height (24px) to .ds_confirmation-message__body line height
+    &:not(:has(&__title)) &__icon {
+        top: 1rem; /// [2]
+
+        @include helpers.ds_media-query(medium) {
+            top: 1.25rem; /// [2]
+        }
+    }
+
+    &:not(:has(&__title)) &__body {
+        margin-top: 0;
+    }
+
+    @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--secondary, 'confirmation message');
+}
+
+.ds_notification-message {
+    @include ds_notification-message;
+}
