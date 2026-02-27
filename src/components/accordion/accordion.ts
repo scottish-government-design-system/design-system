@@ -104,8 +104,10 @@ class Accordion extends DSComponent {
         itemButton.appendChild(itemIndicator);
         itemLabelContent.classList.add('fully-hidden');
 
-        item.id = item.id || `accordion-item-${elementIdModifier()}`;
-        itemBody.id = itemBody.id || `accordion-item-${elementIdModifier()}-body`;
+        const ID_MODIFIER = elementIdModifier();
+
+        item.id = item.id || `accordion-item-${ID_MODIFIER}`;
+        itemBody.id = itemBody.id || `accordion-item-${ID_MODIFIER}-body`;
 
         if (startsOpen) {
             item.classList.add('ds_accordion-item--open');
