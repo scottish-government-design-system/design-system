@@ -58,11 +58,11 @@ describe('file upload', () => {
 
         describe('instruction span', () => {
             it('renders the instruction span', () => {
-                expect(fileUploadModule.instructionSpan).toBeInTheDocument();
-                expect(fileUploadModule.instructionSpan.tagName).toEqual('SPAN');
-                expect(fileUploadModule.instructionSpan).toHaveClass('ds_file-upload__instruction');
-                expect(fileUploadModule.instructionSpan.id).toEqual(fileUploadModule.fileInputElement.id + '-instruction');
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan).toBeInTheDocument();
+                expect(fileUploadModule.descriptionSpan.tagName).toEqual('SPAN');
+                expect(fileUploadModule.descriptionSpan).toHaveClass('ds_file-upload__description');
+                expect(fileUploadModule.descriptionSpan.id).toEqual(fileUploadModule.fileInputElement.id + '-description');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('or drag and drop file here');
             });
         });
 
@@ -139,6 +139,14 @@ describe('file upload', () => {
             expect(clickSpy).toHaveBeenCalled();
         });
 
+        it('disabled state of the dropzone button matches the disabled state of the file input element', async () => {
+            fileUploadModule.fileInputElement.disabled = true;
+            await expect.poll(() => fileUploadModule.dropzoneButton.disabled).toEqual(true);
+
+            fileUploadModule.fileInputElement.disabled = false;
+            await expect.poll(() => fileUploadModule.dropzoneButton.disabled).toEqual(false);
+        });
+
         describe('file dragging', () => {
             const INITIAL_MESSAGE = 'foo';
 
@@ -162,7 +170,7 @@ describe('file upload', () => {
 
                 expect(fileUploadModule.dropzoneButton).toHaveClass('ds_file-upload__dropzone--dragging');
                 expect(fileUploadModule.announcementsSpan.textContent).toEqual('Entered drop zone');
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('Drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('Drop file here');
             });
 
             it('dragging without a payload', () => {
@@ -171,7 +179,7 @@ describe('file upload', () => {
                 // do nothing
                 expect(fileUploadModule.dropzoneButton).not.toHaveClass('ds_file-upload__dropzone--dragging');
                 expect(fileUploadModule.announcementsSpan.textContent).toEqual(INITIAL_MESSAGE);
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('or drag and drop file here');
             });
 
             it('dragging onto a disabled dropzone', () => {
@@ -185,7 +193,7 @@ describe('file upload', () => {
                 // do nothing
                 expect(fileUploadModule.dropzoneButton).not.toHaveClass('ds_file-upload__dropzone--dragging');
                 expect(fileUploadModule.announcementsSpan.textContent).toEqual(INITIAL_MESSAGE);
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('or drag and drop file here');
             });
 
             it('exiting the dropzone', () => {
@@ -202,7 +210,7 @@ describe('file upload', () => {
 
                 expect(fileUploadModule.dropzoneButton).not.toHaveClass('ds_file-upload__dropzone--dragging');
                 expect(fileUploadModule.announcementsSpan.textContent).toEqual('Left drop zone');
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('or drag and drop file here');
             });
 
             it('dragover does nothing', () => {
@@ -294,13 +302,13 @@ describe('file upload', () => {
 
                 fireCustomEvent('drop', fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
 
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('myfile.txt');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('myfile.txt');
             });
 
             it('no dataTransfer', () => {
                 fireCustomEvent('drop', fileUploadModule.dropzoneButton);
 
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('or drag and drop file here');
             });
 
             it('not an accepted type', () => {
@@ -310,7 +318,7 @@ describe('file upload', () => {
 
                 fireCustomEvent('drop', fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
 
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('or drag and drop file here');
             });
 
             it('not able to fill input', () => {
@@ -320,7 +328,7 @@ describe('file upload', () => {
 
                 fireCustomEvent('drop', fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
 
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('or drag and drop file here');
             });
         });
 
@@ -429,7 +437,7 @@ describe('file upload', () => {
             });
         });
 
-        describe('file input "onchange" scenarios', () => {
+        describe('file input "on input" scenarios', () => {
             beforeEach(() => {
                 dataTransfer = new DataTransfer();
             });
@@ -440,9 +448,9 @@ describe('file upload', () => {
                  * DataTransfer we we have for the drag event specs elsewhere in this suite.
                  */
                 fileUploadModule.fileInputElement.files = dataTransfer.files;
-                fileUploadModule.fileInputElement.dispatchEvent(new Event('change'));
+                fileUploadModule.fileInputElement.dispatchEvent(new Event('input'));
 
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('or drag and drop file here');
             });
 
             it('should show the selected filename if one file is added', () => {
@@ -453,9 +461,9 @@ describe('file upload', () => {
                 dataTransfer.items.add(file);
 
                 fileUploadModule.fileInputElement.files = dataTransfer.files;
-                fileUploadModule.fileInputElement.dispatchEvent(new Event('change'));
+                fileUploadModule.fileInputElement.dispatchEvent(new Event('input'));
 
-                expect(fileUploadModule.instructionSpan.textContent).toEqual(FILENAME);
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual(FILENAME);
             });
 
             it('should do something else if multiple files are added', () => {
@@ -465,10 +473,9 @@ describe('file upload', () => {
                 dataTransfer.items.add(file);
 
                 fileUploadModule.fileInputElement.files = dataTransfer.files;
-                fileUploadModule.fileInputElement.dispatchEvent(new Event('change'));
+                fileUploadModule.fileInputElement.dispatchEvent(new Event('input'));
 
-                // todo: assert correctly when scenario known
-                expect(fileUploadModule.instructionSpan.textContent).toEqual('or drag and drop file here');
+                expect(fileUploadModule.descriptionSpan.textContent).toEqual('2 files');
             });
         });
     });

@@ -7,24 +7,25 @@
 
 .ds_file-upload__input,
 .ds_file-upload__dropzone {
-    background-color: settings.$ds_colour__background--primary;
+    background-color: settings.$ds_colour__background--secondary;
     border-width: 0;
     outline: 0.125rem dashed settings.$ds_colour__border;
     outline-offset: -0.125rem;
     padding: 1.5rem;
     width: 100%;
     text-align: start;
-    transition: background-color 0.2s, border-color 0.2s;
+    transition: background-color 0.2s, outline-color 0.2s;
 
     &:focus {
-        @include helpers.ds_input-focus;
+        @include helpers.ds_input-focus($shadow: 0.22em);
         border-style: solid;
         border-color: settings.$ds_colour__focus;
+        transition-duration: 0s;
     }
 
-    &:hover {
+    &:hover:not(:focus) {
         background-color: settings.$ds_colour__link--hover__background;
-        border-color: settings.$ds_colour__link--hover;
+        outline-color: settings.$ds_colour__link--hover;
     }
 
     &--error {
@@ -35,11 +36,28 @@
 
 .ds_file-upload__dropzone {
     display: block;
+
+    &[disabled] {
+        background-color: settings.$ds_colour__button--disabled__background;
+        color: settings.$ds_colour__button--disabled;
+        font-weight: settings.$normal;
+        outline: none;
+        pointer-events: none;
+
+        @include helpers.ds_media-query-high-contrast {
+            outline: 0.0625rem dashed graytext !important;
+        }
+
+        .ds_file-upload__button {
+            color: settings.$ds_colour__button--disabled;
+            font-weight: settings.$normal;
+        }
+    }
 }
 
 .ds_file-upload__dropzone--dragging {
     background-color: settings.$ds_colour__background--tertiary;
-    border-color: settings.$ds_colour__border--strong;
+    outline-color: settings.$ds_colour__border--strong;
 }
 
 .ds_file-upload__dropzone--dragging .ds_file-upload__button {
@@ -53,18 +71,26 @@
     display: inline-block;
     font-family: inherit;
     font-size: 1rem;
-    font-weight: 700;
-    line-height: 1.5rem;
+    font-weight: settings.$bold;
     min-height: 3rem;
     min-width: 3rem;
     outline: 0.125rem solid currentColor;
     outline-offset: -0.125rem;
-    padding: 0.75rem 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
-.ds_file-upload__instruction {
-    padding: 0.75rem 0;
+.ds_file-upload__input::file-selector-button,
+.ds_file-upload__dropzone .ds_file-upload__button,
+.ds_file-upload__description {
     line-height: 1.5rem;
+    padding-bottom: 0.75rem;
+    padding-top: 0.75rem;
+
+    @include helpers.ds_media-query(medium) {
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+    }
 }
 
 .ds_file-upload__input::file-selector-button {
@@ -95,5 +121,16 @@
 
     &:not(h3) {
         @include helpers.ds_h3-style;
+    }
+}
+
+.ds_file-upload--has-files {
+    .ds_file-upload__dropzone {
+        font-weight: settings.$bold;
+        outline-style: solid;
+    }
+
+    .ds_file-upload__dropzone--dragging {
+        font-weight: settings.$normal;
     }
 }

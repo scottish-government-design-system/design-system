@@ -150,7 +150,6 @@ class DSDatePicker extends DSComponent {
 
         // create calendar
         const tbody = this.datePickerParent.querySelector('tbody') as HTMLTableSectionElement;
-        let dayCount = 0;
         for (let i = 0; i < 6; i++) {
             // create row
             const row = tbody.insertRow(i);
@@ -165,10 +164,9 @@ class DSDatePicker extends DSComponent {
                 cell.appendChild(dateButton);
                 row.appendChild(cell);
 
-                const calendarDay = new DSCalendarDay(dateButton, dayCount, i, j, this) as CalendarDayArgs;
+                const calendarDay = new DSCalendarDay(dateButton, this) as CalendarDayArgs;
                 calendarDay.init();
                 this.calendarDays.push(calendarDay);
-                dayCount++;
             }
         }
 
@@ -917,10 +915,7 @@ class DSDatePicker extends DSComponent {
  */
 class DSCalendarDay {
     button: HTMLButtonElement;
-    private column: number;
     date: Date;
-    private index: number;
-    private row: number;
     private picker: DSDatePicker;
 
     /**
@@ -932,10 +927,7 @@ class DSCalendarDay {
      * @param {number} column - Column index of the day button
      * @param {DSDatePicker} picker - Parent date picker instance
      */
-    constructor(button: HTMLButtonElement, index: number, row: number, column: number, picker: DSDatePicker) {
-        this.index = index;
-        this.row = row;
-        this.column = column;
+    constructor(button: HTMLButtonElement, picker: DSDatePicker) {
         this.button = button;
         this.picker = picker;
 

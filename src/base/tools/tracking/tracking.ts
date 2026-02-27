@@ -802,12 +802,12 @@ const tracking = {
         /**
          * Sets data-section="[SECTIONNAME]" on links
          * SECIONNAME is determined by seeking the closest heading (or headinglike) element to the link
+         * @returns {void}
          */
-        // todo: @returns, should this have scope?
-        links: function () {
-            const links = [].slice.call(document.querySelectorAll('a')) as HTMLLinkElement[];
+        links: function (scope: HTMLElement = document.documentElement): void {
+            const links = [].slice.call(scope.querySelectorAll('a')) as HTMLLinkElement[];
             links.forEach(link => {
-                const nearestHeader = tracking.getNearestSectionHeader(link);//
+                const nearestHeader = tracking.getNearestSectionHeader(link);
                 if (nearestHeader) {
                     if (!link.getAttribute('data-section')) {
                         link.setAttribute('data-section', nearestHeader.textContent.trim());
