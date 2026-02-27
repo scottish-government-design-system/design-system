@@ -1003,7 +1003,82 @@ describe('tracking', () => {
             Tracking.add.externalLinks(testObj.scope , testObj._window);
             expect(link.getAttribute('data-navigation')).toEqual('link-external');
         });
+    });
 
+    describe('file upload', () => {
+        describe('attributes', () => {
+            beforeEach(() => {
+                testObj.scope = document.getElementById('file-uploads');
+            });
+
+            it('should add a generated data attribute on file upload elements without attributes already set', () => {
+                const fileInput = testObj.scope.querySelector('[data-unit="without-attribute"]');
+                Tracking.add.fileUploads();
+
+                expect(fileInput.getAttribute('data-form')).toEqual('fileinput-file-upload-foo');
+            });
+
+            it('should NOT add a generated data attribute on file upload elements with attributes already set', () => {
+                const fileInput = testObj.scope.querySelector('[data-unit="with-attribute"]');
+                Tracking.add.fileUploads();
+
+                expect(fileInput.getAttribute('data-form')).toEqual('my-file-input');
+            });
+        });
+
+        describe('events', () => {
+            beforeEach(() => {
+                testObj.scope = document.getElementById('file-uploads');
+            });
+
+            it('should set a data-filetype and data-filesize attributes from the selected file\'s properties', () => {
+                Tracking.add.fileUploads();
+
+                const fileInput = testObj.scope.querySelector('input[type="file"]')
+                let dataTransfer = new DataTransfer();
+                let file = new File(['My file'], 'myfile.with.a compli-cated filename.BaNaNa', { type: 'text/plain' });
+
+                dataTransfer.items.add(file);
+                fileInput.files = dataTransfer.files;
+                fileInput.dispatchEvent(new Event('input'));
+
+                expect(fileInput.dataset.filetype).toEqual('banana');
+                expect(fileInput.dataset.filesize).toEqual('0.00MB');
+            });
+
+            it('should output an empty string as file type if none can be determined', () => {
+                Tracking.add.fileUploads();
+
+                const fileInput = testObj.scope.querySelector('input[type="file"]')
+                let dataTransfer = new DataTransfer();
+                let file = new File(['My file'], 'myfile', { type: 'text/plain' });
+
+                dataTransfer.items.add(file);
+                fileInput.files = dataTransfer.files;
+                fileInput.dispatchEvent(new Event('input'));
+
+                expect(fileInput.dataset.filetype).toEqual('');
+            });
+
+            it('should remove data-filesize and data-filetype attributes if there is no selected file', () => {
+                Tracking.add.fileUploads();
+
+                const fileInput = testObj.scope.querySelector('input[type="file"]')
+                let dataTransfer = new DataTransfer();
+                let file = new File(['My file'], 'myfile.with.a compli-cated filename.BaNaNa', { type: 'text/plain' });
+
+                dataTransfer.items.add(file);
+                fileInput.files = dataTransfer.files;
+                fileInput.dispatchEvent(new Event('input'));
+
+                fileInput.files = new DataTransfer().files;
+
+                fileInput.dispatchEvent(new Event('input'));
+
+                expect(fileInput.dataset.filetype).toBeUndefined();
+                expect(fileInput.dataset.filesize).toBeUndefined();
+            });
+        });
     });
 
     describe('hide this page', () => {
