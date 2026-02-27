@@ -24,6 +24,9 @@ export function initAll(scope = document) {
     const detailsElements = [].slice.call(document.querySelectorAll('[data-module="ds-details"]:not(.js-instantiated)')) as HTMLDetailsElement[];
     detailsElements.forEach(details => new DS.components.Details(details).init());
 
+    const fileUploadElements = [].slice.call(document.querySelectorAll('[data-module="ds-file-upload"]:not(.js-instantiated)')) as HTMLInputElement[];
+    fileUploadElements.forEach(fileUploadElement => new DS.components.FileUpload(fileUploadElement).init());
+
     // this one is handled differently because it applies an event to the whole body and we only want that event once
     const hidePageElements = [].slice.call(scope.querySelectorAll('.ds_hide-page')) as HTMLElement[];
     hidePageElements.forEach(hidePage => new DS.components.HideThisPage(hidePage).init());
