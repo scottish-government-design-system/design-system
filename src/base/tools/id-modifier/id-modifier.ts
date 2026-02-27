@@ -1,5 +1,11 @@
 'use strict';
 
+import { DSArgs } from "../../..";
+
+declare const window: {
+    DS: DSArgs
+} & Window;
+
 /**
  * Generates a unique ID modifier string.
  * - Increments a global counter stored on the window object

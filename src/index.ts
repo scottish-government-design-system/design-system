@@ -15,8 +15,11 @@ const DS = {
 };
 
 export default DS;
+
+export type DSArgs = typeof DS;
+
 declare global {
-    interface Window { DS: typeof DS }
+    interface Window { DS: DSArgs }
 };
 
 window.DS = DS;
