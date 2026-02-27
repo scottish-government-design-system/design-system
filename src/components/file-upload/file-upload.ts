@@ -5,16 +5,15 @@
  * https://design-system.service.gov.uk/components/file-upload/
  */
 import DSComponent from '../../base/component/component';
-import humanFileSize from './file-size';
 
 type TextArgs = {
     buttonText: string
-    defaultInstructionText: string
-    draggingInstructionText: string
+    defaultStatusText: string
     enteredDropzone: string
+    filesAddedText: string
     filesListHeading: string
+    instructionText: string
     leftDropzone: string
-    remainingFileSizeString: string
 }
 
 type OptionsArgs = {
@@ -24,14 +23,14 @@ type OptionsArgs = {
 export const defaultText = {
     buttonText: 'Choose file',
     buttonTextPlural: 'Choose files',
-    defaultInstructionText: 'or drag and drop file here',
-    defaultInstructionTextPlural: 'or drag and drop files here',
-    draggingInstructionText: 'Drop file here',
-    draggingInstructionTextPlural: 'Drop files here',
+    defaultStatusText: 'No file chosen',
+    defaultStatusTextPlural: 'No files chosen',
     enteredDropzone: 'Entered drop zone',
+    filesAddedText: '$NUMBER files',
     filesListHeading: 'Files selected for upload',
-    leftDropzone: 'Left drop zone',
-    remainingFileSizeString: '$REMAINING of $MAXIMUM remaining'
+    instructionText: 'or drag and drop file here',
+    instructionTextPlural: 'or drag and drop files here',
+    leftDropzone: 'Left drop zone'
 };
 
 /**
@@ -42,24 +41,22 @@ export const defaultText = {
  * @property {HTMLSpanElement} announcementsSpan
  * @property {HTMLButtonElement} dropzoneButton
  * @property {HTMLElement} element
- * @property {HTMLSpanElement} fileInputElement
- * @property {boolean} hasEnteredAnotherElement
- * @property {HTMLSpanElement} instructionSpan
+ * @property {HTMLInputElement} fileInputElement
+ * @property {HTMLSpanElement} statusSpan
  * @property {TextArgs} text
  */
 class FileUpload extends DSComponent {
-    private announcementsSpan: HTMLSpanElement;
-    private dropzoneButton: HTMLButtonElement;
+    private announcementsSpan!: HTMLSpanElement;
+    private dropzoneButton!: HTMLButtonElement;
     private element: HTMLElement;
     private fileInputElement: HTMLInputElement;
-    private fileListElement!: HTMLDivElement; // todo
-    private hasEnteredAnotherElement: boolean;
-    private instructionSpan: HTMLSpanElement;
+    private hasEnteredAnotherElement!: boolean;
+    private statusSpan!: HTMLSpanElement;
     private text: TextArgs;
 
     static defaultText = defaultText;
 
-    #instructionText: string;
+    #statusText!: string;
 
     constructor(
         element: HTMLElement,
@@ -68,22 +65,26 @@ class FileUpload extends DSComponent {
         super(element);
         this.element = element;
         this.fileInputElement = this.element.querySelector('input[type="file"]') as HTMLInputElement;
+
+        if (this.fileInputElement === null) {
+            throw new Error('File upload: input element not found');
+        }
+
+        if (!this.fileInputElement.id) {
+            throw new Error('File upload: input element missing id');
+        }
+
         this.text = this.setText(options.text);
-        this.#instructionText = this.text.defaultInstructionText;
 
-        this.announcementsSpan = document.createElement('span');
-        this.dropzoneButton = document.createElement('button');
-        this.instructionSpan = document.createElement('span');
+        this.transformMarkup();
+        this.addEventListeners();
 
-        this.hasEnteredAnotherElement = false;
+        // observe disabled state
+        this.updateDisabledState();
+        this.observeDisabledState();
     }
 
     init() {
-        if (this.isInitialised) {
-            return;
-        }
-        this.transformMarkup();
-        this.addEventListeners();
         this.isInitialised = true;
     }
 
@@ -91,15 +92,23 @@ class FileUpload extends DSComponent {
      * Adds events to mimic/duplicate the native file input behaviour where needed
      * @returns {void}
      */
-    addEventListeners(): void {
+    private addEventListeners(): void {
         this.dropzoneButton.addEventListener('click', this.onClick.bind(this));
-        this.dropzoneButton.addEventListener('dragover', event => { event.preventDefault() });
+        this.dropzoneButton.addEventListener('dragover', event => {
+            // prevent default to allow drop
+            event.preventDefault();
+        });
+        // button will need to handle drop event
         this.dropzoneButton.addEventListener('drop', this.onDrop.bind(this));
 
-        this.fileInputElement.addEventListener('change', this.onChange.bind(this));
+        // bind input event to the underlying input
+        // todo: govuk uses 'change'
+        this.fileInputElement.addEventListener('input', this.onInput.bind(this));
 
         document.addEventListener('dragenter', this.updateDropzoneVisibility.bind(this));
 
+        // To detect if we're outside the document, we can track whether a dragenter preceded a
+        // dragleave. If there wasn't, we are outside the document.
         document.addEventListener('dragenter', () => {
             this.hasEnteredAnotherElement = true
         });
@@ -111,23 +120,6 @@ class FileUpload extends DSComponent {
             }
             this.hasEnteredAnotherElement = false;
         });
-
-        this.element.addEventListener('click', (event) => {
-            const targetElement = event.target as HTMLElement;
-
-            if (targetElement.classList.contains('js-remove-file')) {
-                const dummyDataTransfer = new DataTransfer();
-
-                for (const file of this.fileInputElement.files as FileList) {
-                    if (file.name !== targetElement.querySelector('span')?.textContent) {
-                        dummyDataTransfer.items.add(file);
-                    }
-                }
-
-                this.fileInputElement.files = dummyDataTransfer.files;
-                this.updateFileListFromFileInputElement();
-            }
-        });
     }
 
     /**
@@ -135,7 +127,7 @@ class FileUpload extends DSComponent {
      * @param {FileList} files
      * @returns {boolean}
      */
-    canAccept(files: FileList): boolean {
+    private canAccept(files: FileList): boolean {
         let canAccept = true;
 
         if (!this.fileInputElement.accept) {
@@ -180,7 +172,7 @@ class FileUpload extends DSComponent {
      * @param {DataTransfer} dataTransfer
      * @returns {boolean}
      */
-    canDrop(dataTransfer: DataTransfer): boolean {
+    private canDrop(dataTransfer: DataTransfer): boolean {
         // if the browser gives a list of items, use that
         if (dataTransfer.items?.length) {
             return this.matchesInputCapacity(this.countFileItems(dataTransfer.items))
@@ -201,7 +193,7 @@ class FileUpload extends DSComponent {
      * @param {DataTransfer} dataTransfer
      * @returns {boolean}
      */
-    canFillInput(dataTransfer: DataTransfer): boolean {
+    private canFillInput(dataTransfer: DataTransfer): boolean {
         return this.matchesInputCapacity(dataTransfer.files.length)
     }
 
@@ -210,50 +202,15 @@ class FileUpload extends DSComponent {
      * @param {DataTransferItemList} list
      * @returns {number}
      */
-    countFileItems(list: DataTransferItemList): number {
+    private countFileItems(list: DataTransferItemList): number {
         return [].slice.call(list).filter((item: DataTransferItem) => item.kind === 'file').length;
-    }
-
-    // todo: comment
-    // todo: header level? :scream:
-    fileListTemplate(fileList: FileList) {
-        const maximumSize = 5000000;
-        let filesHTML = '';
-        let currentSize = 0;
-
-        for (const file of fileList) {
-            filesHTML += `<div class="ds_summary-list__item">
-                <dt class="ds_summary-list__key">${file.name}</dt>
-                <dd class="ds_summary-list__value">Size: ${humanFileSize(file.size)}</dd>
-                <dd class="ds_summary-list__actions">
-                    <button type="button" class="ds_link  js-remove-file">Remove <span class="visually-hidden">${file.name}</span></button>
-                </dd>
-            </div>`;
-
-            currentSize = currentSize + file.size;
-        }
-
-
-        let ppp;
-        if (maximumSize) {
-            ppp = this.text.remainingFileSizeString.replace('$REMAINING', humanFileSize(maximumSize - currentSize)).replace('$MAXIMUM', humanFileSize(maximumSize));
-        }
-
-        const fileListHtml = `<h3 class="ds_file-upload__file-list-title">${this.text.filesListHeading} (${fileList.length})</h3>
-                ${maximumSize ? `<p class="ds_hint-text  ds_no-margin">${ppp}</p>` : ''}
-
-                <dl class="ds_summary-list">
-                    ${filesHTML}
-                </dl>`;
-
-        return fileListHtml;
     }
 
     /**
      * Unsets the dragging CSS class on the drop zone
      * @returns {void}
      */
-    hideDraggingState(): void {
+    private hideDraggingState(): void {
         this.dropzoneButton.classList.remove('ds_file-upload__dropzone--dragging');
     }
 
@@ -263,7 +220,7 @@ class FileUpload extends DSComponent {
      * @param {number} numberOfFiles
      * @returns {boolean}
      */
-    matchesInputCapacity(numberOfFiles: number): boolean {
+    private matchesInputCapacity(numberOfFiles: number): boolean {
         if (this.fileInputElement.multiple) {
             return numberOfFiles > 0;
         }
@@ -272,33 +229,29 @@ class FileUpload extends DSComponent {
     }
 
     /**
-     * Update the instruction message with the current state of the file input
+     * Watch for changes to the disabled state of the underlying input element.
+     * Keep the replacement element's disabled state in sync.
      * @returns {void}
      */
-    onChange(): void {
-        const fileList = this.fileInputElement.files as FileList;
-
-        if (this.fileInputElement.multiple) {
-            this.#instructionText = this.text.defaultInstructionText
-            this.updateFileListFromFileInputElement();
-        } else {
-            if (fileList.length === 0) {
-                this.#instructionText = this.text.defaultInstructionText
-            } else if (fileList.length === 1) {
-                this.#instructionText = fileList[0].name;
-            } else {
-                this.#instructionText = this.text.defaultInstructionText
+    private observeDisabledState(): void {
+        // watch for change to the disabled state
+        const observer = new MutationObserver(mutationList => {
+            for (const mutation of mutationList) {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'disabled') {
+                    this.updateDisabledState();
+                }
             }
-        }
-
-        this.instructionSpan.textContent = this.#instructionText;
+        });
+        observer.observe(this.fileInputElement, {
+            attributes: true,
+        });
     }
 
     /**
      * A click on the button triggers a click on the actual (hidden) file input
      * @returns {void}
      */
-    onClick(): void {
+    private onClick(): void {
         this.fileInputElement.click();
     }
 
@@ -308,22 +261,56 @@ class FileUpload extends DSComponent {
      * @param {DragEvent} event
      * @returns {void}
      */
-    onDrop(event: DragEvent): void {
+    private onDrop(event: DragEvent): void {
         event.preventDefault();
 
         if (event.dataTransfer
             && this.canAccept(event.dataTransfer.files)
             && this.canFillInput(event.dataTransfer)
         ) {
-            this.fileInputElement.files = event.dataTransfer.files;
-            this.fileInputElement.dispatchEvent(new CustomEvent('change'));
-            this.hideDraggingState();
-        } else {
-            this.instructionSpan.textContent = this.#instructionText;
+            this.setFilesOnFileInputElement(event.dataTransfer.files);
             this.hideDraggingState();
         }
 
         return;
+    }
+
+    /**
+     * Update the component with the current state of the file input
+     * - update instruction message
+     * - update the status message
+     * - update CSS class on root element
+     * @returns {void}
+     */
+    private onInput(): void {
+        const fileList = this.fileInputElement.files as FileList;
+
+        if (fileList.length === 0) {
+            this.#statusText = this.text.defaultStatusText;
+
+            this.element.classList.remove('ds_file-upload--has-files');
+        } else {
+            if (fileList.length === 1) {
+                this.#statusText = fileList[0].name;
+            } else {
+                this.#statusText = this.text.filesAddedText.replace('$NUMBER', fileList.length.toString());
+            }
+
+            this.element.classList.add('ds_file-upload--has-files');
+        }
+
+        this.statusSpan.textContent = this.#statusText;
+    }
+
+    /**
+     * Sets the files attribute on the file input element from a provided file list
+     * Fires an 'input' event on the file input element
+     * @param {FileList} files
+     * @returns {void}
+     */
+    private setFilesOnFileInputElement(files: FileList): void {
+        this.fileInputElement.files = files;
+        this.fileInputElement.dispatchEvent(new CustomEvent('input'));
     }
 
     /**
@@ -339,12 +326,12 @@ class FileUpload extends DSComponent {
 
         return Object.freeze({
             buttonText: this.fileInputElement.multiple ? extendedText.buttonTextPlural : extendedText.buttonText,
-            defaultInstructionText: this.fileInputElement.multiple ? extendedText.defaultInstructionTextPlural : extendedText.defaultInstructionText,
-            draggingInstructionText: this.fileInputElement.multiple ? extendedText.draggingInstructionTextPlural : extendedText.draggingInstructionText,
+            defaultStatusText: this.fileInputElement.multiple ? extendedText.defaultStatusTextPlural : extendedText.defaultStatusText,
             enteredDropzone: extendedText.enteredDropzone,
+            filesAddedText: extendedText.filesAddedText,
             filesListHeading: extendedText.filesListHeading,
-            leftDropzone: extendedText.leftDropzone,
-            remainingFileSizeString: extendedText.remainingFileSizeString
+            instructionText: this.fileInputElement.multiple ? extendedText.instructionTextPlural : extendedText.instructionText,
+            leftDropzone: extendedText.leftDropzone
         });
     }
 
@@ -352,32 +339,36 @@ class FileUpload extends DSComponent {
      * Sets the dragging CSS class on the drop zone
      * @returns {void}
      */
-    showDraggingState(): void {
+    private showDraggingState(): void {
         this.dropzoneButton.classList.add('ds_file-upload__dropzone--dragging');
     }
 
     /**
      * Transforms the native file input element to aset of elements we have more control over
      * - adds a visually hidden span for screen reader status updates
+     * - adds a visible span for status text
      * - adds a visible span for instructional text so we're not using browser defaults
      * - adds a fake button with DS button styling for the "choose file" button
-     *   with text that is not dependant on browser default
+     *     with text that is not dependant on browser default
      * - hides the original file input but keeps it available for us to use its native
-     *   behavior where needed
+     *     behavior where needed
      * @returns {void}
      */
-    transformMarkup(): void {
-        // aria-live region to announce status updates to screen readers
-        this.announcementsSpan.classList.add('visually-hidden');
-        this.announcementsSpan.setAttribute('aria-live', 'assertive');
-
+    private transformMarkup(): void {
         // add ID to the label if there isn't one already
         const label = this.element.querySelector(`[for="${this.fileInputElement.id}"]`) as HTMLLabelElement;
         label.id = label.id || this.fileInputElement.id + '-label';
 
+        // hide the original file input
+        this.fileInputElement.setAttribute('aria-hidden', 'true');
+        this.fileInputElement.setAttribute('hidden', 'true');
+        this.fileInputElement.setAttribute('tabindex', '-1');
+
         // replacement button element
+        this.dropzoneButton = document.createElement('button');
         this.dropzoneButton.classList.add('ds_file-upload__dropzone');
         this.dropzoneButton.type = 'button';
+        this.dropzoneButton.id = this.fileInputElement.id + '-dropzone';
 
         if (this.fileInputElement.getAttribute('aria-describedby')) {
             this.dropzoneButton.setAttribute('aria-describedby', this.fileInputElement.getAttribute('aria-describedby') as string);
@@ -389,58 +380,60 @@ class FileUpload extends DSComponent {
             this.dropzoneButton.classList.add('ds_file-upload__dropzone--error');
         }
 
-        // a span that looks like a regular DS button
-        const pseudoButtonSpan = document.createElement('span');
-        pseudoButtonSpan.classList.add('ds_file-upload__button');
-        pseudoButtonSpan.textContent = this.text.buttonText;
+        // a span that contains file status text (filename, file count, or no file chosen)
+        this.statusSpan = document.createElement('span');
+        this.statusSpan.classList.add('ds_file-upload__status');
+        this.statusSpan.textContent = this.text.defaultStatusText;
+        this.statusSpan.id = `${this.fileInputElement.id}-status`;
+        this.statusSpan.setAttribute('aria-live', 'polite');
 
         // a hidden span that just adds an audible pause when used in screen reader output
         const commaSpan = document.createElement('span')
         commaSpan.className = 'visually-hidden'
         commaSpan.textContent = ', ';
-        commaSpan.id = `${this.fileInputElement.id}-comma`
+        commaSpan.id = `${this.fileInputElement.id}-comma`;
+
+        // a container for the pseudo button and instructions
+        const containerSpan = document.createElement('span');
+        containerSpan.classList.add('ds_file-upload__button-container');
+
+        // a span that looks like a regular DS button
+        const pseudoButtonSpan = document.createElement('span');
+        pseudoButtonSpan.classList.add('ds_file-upload__button');
+        pseudoButtonSpan.textContent = this.text.buttonText;
 
         // a span that contains basic instruction text
-        this.instructionSpan.classList.add('ds_file-upload__instruction')
-        this.instructionSpan.textContent = this.text.defaultInstructionText;
-        this.instructionSpan.id = `${this.fileInputElement.id}-instruction`;
+        const instructionSpan = document.createElement('span');
+        instructionSpan.classList.add('ds_file-upload__instruction')
+        instructionSpan.textContent = this.text.instructionText;
+        instructionSpan.id = `${this.fileInputElement.id}-instruction`;
 
-        // hide the original file input
-        this.fileInputElement.setAttribute('aria-hidden', 'true');
-        this.fileInputElement.setAttribute('hidden', 'true');
-        this.fileInputElement.setAttribute('tabindex', '-1');
+        // aria-live region to announce status updates to screen readers
+        this.announcementsSpan = document.createElement('span');
+        this.announcementsSpan.classList.add('visually-hidden');
+        this.announcementsSpan.setAttribute('aria-live', 'assertive');
 
         // putting the bits together
-        this.element.insertAdjacentElement('afterend', this.announcementsSpan);
-        this.dropzoneButton.appendChild(pseudoButtonSpan);
+        containerSpan.appendChild(pseudoButtonSpan);
+        // Add a space so the button and instruction read correctly when CSS is disabled
+        containerSpan.insertAdjacentText('beforeend', ' ');
+        containerSpan.appendChild(instructionSpan);
+
+        this.dropzoneButton.appendChild(this.statusSpan);
         this.dropzoneButton.appendChild(commaSpan);
-        this.dropzoneButton.appendChild(this.instructionSpan);
+        this.dropzoneButton.appendChild(containerSpan);
+        this.dropzoneButton.setAttribute('aria-labelledby', `${label.id} ${commaSpan.id} ${this.dropzoneButton.id}`);
+
         this.fileInputElement.insertAdjacentElement('beforebegin', this.dropzoneButton);
+        this.element.insertAdjacentElement('afterend', this.announcementsSpan);
+    }
 
-        this.dropzoneButton.setAttribute('aria-labelledby', `${label.id} ${commaSpan.id} ${this.instructionSpan.id}`);
-
-        // synchronise some things
-        // GDS syncs disabled
-        // this.updateDisabledState()
-        // this.observeDisabledState()
-
-
-
-
-
-
-        /**
-         *  if it's a multiple upload, add:
-         * "no files chosen" / "X files chosen" container
-         *   - aria describedby
-         *
-         * container for files
-         */
-
-        if (this.fileInputElement.multiple) {
-            this.fileListElement = document.createElement('div');
-            this.element.appendChild(this.fileListElement);
-        }
+    /**
+     * Synchronise the `disabled` state between the input and replacement button.
+     * @returns {void}
+     */
+    private updateDisabledState(): void {
+        this.dropzoneButton.disabled = this.fileInputElement.disabled;
     }
 
     /**
@@ -450,36 +443,22 @@ class FileUpload extends DSComponent {
      * @param {DragEvent} event
      * @returns {void}
      */
-    updateDropzoneVisibility(event: DragEvent): void {
+    private updateDropzoneVisibility(event: DragEvent): void {
         if (this.dropzoneButton.disabled) {
             return;
         }
 
-        if (this.element.contains(event.target as Node)) {
+        if (this.dropzoneButton.contains(event.target as Node)) {
             if (event.dataTransfer
                 && this.canDrop(event.dataTransfer)
-                && !this.dropzoneButton.classList.contains('ds_file-upload__dropzone--dragging'))
-            {
+                && !this.dropzoneButton.classList.contains('ds_file-upload__dropzone--dragging')
+            ) {
                 this.showDraggingState();
                 this.announcementsSpan.textContent = this.text.enteredDropzone;
-                this.instructionSpan.textContent = this.text.draggingInstructionText;
             }
         } else {
             this.hideDraggingState();
             this.announcementsSpan.textContent = this.text.leftDropzone;
-            this.instructionSpan.textContent = this.#instructionText;
-        }
-    }
-
-    /**
-     *
-     */
-    // todo: comment
-    updateFileListFromFileInputElement() {
-        if (this.fileInputElement.files?.length) {
-            this.fileListElement.innerHTML = this.fileListTemplate(this.fileInputElement.files);
-        } else {
-            this.fileListElement.innerHTML = '';
         }
     }
 };
