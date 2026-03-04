@@ -2,7 +2,6 @@
 @use "../focus";
 @use "../high-contrast";
 @use "../media-query";
-@use "../unsupported-css-fallback";
 
 
 $blocklink__outline-width: settings.$ds_blocklink__outline-width;
@@ -32,12 +31,8 @@ $link__underline-thickness--hover: settings.$ds_link__underline-thickness--hover
 
     &:hover {
         color: settings.$ds_colour__link--hover;
+        text-decoration-thickness: round($link__underline-thickness--hover, 1px);
         text-underline-offset: $link__underline-offset--hover;
-        @include unsupported-css-fallback.ds_unsupported-css-fallback(
-            $prop: 'text-decoration-thickness',
-            $modern: round($link__underline-thickness--hover, 1px),
-            $fallback: $link__underline-thickness--hover
-        );
         transition-duration: settings.$transition-in-time;
     }
 
@@ -100,12 +95,8 @@ $link__underline-thickness--hover: settings.$ds_link__underline-thickness--hover
         }
 
         &:hover #{$link-selector} {
+            text-decoration-thickness: round($link__underline-thickness--hover, 1px);
             text-underline-offset: $link__underline-offset--hover;
-            @include unsupported-css-fallback.ds_unsupported-css-fallback(
-                $prop: 'text-decoration-thickness',
-                $modern: round($link__underline-thickness--hover, 1px),
-                $fallback: $link__underline-thickness--hover
-            );
         }
     }
     @else {
@@ -113,12 +104,8 @@ $link__underline-thickness--hover: settings.$ds_link__underline-thickness--hover
         text-underline-offset: $link__underline-offset;
 
         &:hover {
+            text-decoration-thickness: round($link__underline-thickness--hover, 1px);
             text-underline-offset: $link__underline-offset--hover;
-            @include unsupported-css-fallback.ds_unsupported-css-fallback(
-                $prop: 'text-decoration-thickness',
-                $modern: round($link__underline-thickness--hover, 1px),
-                $fallback: $link__underline-thickness--hover
-            );
         }
     }
 }

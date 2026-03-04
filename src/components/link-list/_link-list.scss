@@ -6,7 +6,6 @@
 @use "../../base/settings";
 
 .ds_link-list {
-    @include helpers.ds_layout();
     list-style: none;
     margin: 0;
     padding: 0;
@@ -18,20 +17,12 @@
     }
 
     @include helpers.ds_media-query(medium) {
-        .ds_link-item {
-            float: left;
-            @include helpers.ds_colwidth(4);
+        display: grid;
+        gap: 1.5rem 2rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
 
-            &:nth-child(3n+1) {
-                clear: left;
-                margin-left: 0;
-            }
-        }
-
-        @supports(display: grid) {
-            display: grid;
-            row-gap: 1.5rem;
-            grid-template-columns: 1fr 1fr 1fr;
+        &-2-items {
+            grid-template-columns: repeat(2, minmax(0, 1fr));    
         }
     }
 
@@ -40,26 +31,6 @@
             .ds_link-item {
                 border-bottom: none !important; 
                 @include helpers.ds_responsive-padding (3, bottom);
-            }
-        }
-    }
-
-    &-2-items {
-        @include helpers.ds_media-query(medium) {
-            .ds_link-item {
-                float: left;
-                @include helpers.ds_colwidth(6);
-
-                &:nth-child(2n+1) {
-                    clear: left;
-                    margin-left: 0;
-                }
-            }
-
-            @supports(display: grid) {
-                display: grid;
-                row-gap: 1.5rem;
-                grid-template-columns: 1fr 1fr;
             }
         }
     }

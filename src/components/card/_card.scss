@@ -45,11 +45,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
             @include helpers.ds_high-contrast-outline($width: 0.25em, $colour: highlight);
 
             background-color: settings.$ds_colour__link--focus__background !important;
-            @include helpers.ds_unsupported-css-fallback(
-                $prop: 'box-shadow',
-                $modern: inset 0 round(#{helpers.$focus__shadow-width * -1}, 1px) 0 settings.$ds_colour__link--focus__shadow,
-                $fallback: inset 0 #{helpers.$focus__shadow-width * -1} 0 settings.$ds_colour__link--focus__shadow
-            );
+            box-shadow: inset 0 round(#{helpers.$focus__shadow-width * -1}, 1px) 0 settings.$ds_colour__link--focus__shadow;
             transition-duration: 0s;
 
             .ds_card__link--cover {

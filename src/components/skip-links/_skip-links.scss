@@ -4,16 +4,9 @@
 
 @use "../../base/helpers";
 
-/// [1] fallback for IE 11
-/// [2] unset [1]
 .ds_skip-links {
-    height: 0; /// [1]
     position: relative;
     z-index: 1;
-
-    @supports selector(:focus-within) { /// [2]
-        height: auto;
-    }
 }
 
 .ds_skip-links__list {
