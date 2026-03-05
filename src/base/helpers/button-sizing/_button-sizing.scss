@@ -15,6 +15,7 @@ $button__height--small: settings.$ds_button__height--small !default;
     @if $icon {
         > .ds_icon {
             height: 2.5rem;
+            max-width: 2.5rem;
             padding: 0.5rem;
             width: 2.5rem;
         }
@@ -30,6 +31,7 @@ $button__height--small: settings.$ds_button__height--small !default;
     @if $icon {
         > .ds_icon {
             height: 2rem;
+            max-width: 2rem;
             padding: 0.5rem;
             width: 2rem;
         }

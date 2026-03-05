@@ -47,8 +47,17 @@
                 min-width: fit-content;
             }
         }
+        // Modifier to let buttons wrap
+        &--wrap {
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            .ds_button {
+                width: auto;
+            }
+        }
         // Centre align icon button label text when stacked
-        &:not(.ds_button-group--inline){
+        &:not(.ds_button-group--inline):not(.ds_button-group--wrap){
             .ds_button--has-icon {
                 padding-right: helpers.$button__height;
                 padding-left: helpers.$button__height;
