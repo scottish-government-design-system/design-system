@@ -1,0 +1,80 @@
+/*------------------------------------*\
+    NOTIFICATION TAG
+    Currently only to be used attached to the icon for a card
+\*------------------------------------*/
+
+@use "../../base/helpers";
+@use "../../base/settings";
+
+$notification-tag__background: settings.$ds_colour__red !default;
+$notification-tag__colour: settings.$ds_colour__white !default;
+$notification-tag__size: 1rem !default; // 16px
+$notification-tag__size--medium: 1.25rem !default; // 20px
+$notification-tag__dot-size: 0.75rem !default; // 12px
+$notification-tag__dot-size--medium: 1rem !default; // 16px
+$notification-tag__border-width: 0.0625rem !default; // 1px
+
+.ds_notification-tag {border-radius: 100px;
+
+    background: $notification-tag__background;
+    border-radius: calc($notification-tag__size / 2);
+    color: $notification-tag__colour;
+    display: inline-block;
+    font-size: helpers.px-to-rem(settings.$tiny-size);
+    font-weight: settings.$bold;
+    height: $notification-tag__size;
+    line-height: calc($notification-tag__size - (2 * $notification-tag__border-width));
+    min-width: $notification-tag__size;
+    border: $notification-tag__border-width solid $notification-tag__colour; // 1px
+    padding: 0 0.1875rem; // 3px
+    text-align: center;
+
+    &--dot {
+        border-radius: calc($notification-tag__dot-size / 2);
+        content: "";
+        height: $notification-tag__dot-size;
+        min-width: $notification-tag__dot-size;
+        padding: 0;
+    }
+
+    @include helpers.ds_media-query(medium) {
+        border-radius: calc($notification-tag__size--medium / 2);
+        font-size: helpers.px-to-rem(settings.$tiny-size--medium);
+        height: $notification-tag__size--medium;
+        line-height: calc($notification-tag__size--medium - (2 * $notification-tag__border-width));
+        min-width: $notification-tag__size--medium;
+        padding: 0 0.25rem; // 4px
+
+        &--dot {
+            border-radius: calc($notification-tag__dot-size--medium / 2);
+            height: $notification-tag__dot-size--medium;
+            min-width: $notification-tag__dot-size--medium;
+            padding: 0;
+        }
+    }
+}
+
+.ds_notification-tag__wrapper {
+    display: inline-block;
+    position: relative;
+
+    .ds_notification-tag {
+        position: absolute;
+        top:-0.125rem;
+        right:-0.5rem;
+
+        &--dot {
+            right:-0.375rem;
+        }
+
+        @include helpers.ds_media-query(medium) {
+            right:-0.625rem;
+
+            &--dot {
+                right:-0.5rem;
+            }
+        }
+    }
+
+
+}

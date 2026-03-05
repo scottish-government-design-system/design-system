@@ -157,7 +157,7 @@ const tracking = {
      * @returns {Element | undefined} - nearest section header element
      */
     getNearestSectionHeader: function (element: HTMLElement): Element | undefined {
-        const linkSectionExceptions = 'nav,.ds_metadata,.ds_summary-card__header';
+        const linkSectionExceptions = 'nav,.ds_metadata,.ds_summary-card__header,.ds_card__content-header';
         const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_details__summary';
         const linkSectionSpecialCases = '.ds_page-header,.ds_layout__header,.ds_accordion-item__header';
 
@@ -507,12 +507,33 @@ const tracking = {
          * @returns {void}
          */
         cards: function (scope: HTMLElement = document.documentElement): void {
+            // Navigation cards
             const linkedCards = tracking.gatherElements('ds_card__link--cover', scope);
             linkedCards.forEach((link, index) => {
                 if (!link.getAttribute('data-navigation')) {
                     link.setAttribute('data-navigation', `card-${index + 1}`);
                 }
             });
+
+            // Other cards
+            const cards = tracking.gatherElements('ds_card', scope);
+            cards.forEach((card, index) => {
+            // Nested buttons
+                const buttons = [].slice.call(card.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button')) as HTMLButtonElement[];
+                buttons.forEach((button) => {
+                    if (!button.getAttribute('data-section')) {
+                        button.setAttribute('data-section', `card-${index + 1}`);
+                    }
+                });
+            // Nested links
+                const links = [].slice.call(card.querySelectorAll('a:not(.ds_card__link)')) as HTMLButtonElement[];
+                links.forEach((link) => {
+                    if (!link.getAttribute('data-section')) {
+                        link.setAttribute('data-section', `card-${index + 1}`);
+                    }
+                });
+            })
+
         },
 
         /**
