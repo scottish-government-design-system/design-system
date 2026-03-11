@@ -251,6 +251,20 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
             grid-template-columns: repeat(2, minmax(0, 1fr));
         }    
     }
+
+    // Narrow gap variant
+    &--narrow {
+        gap: settings.$grid-gap-x--narrow settings.$grid-gap-y--narrow;
+    }
+
+    // Set all cards to have a minimum height of 200px
+    &--min-height {
+        @include helpers.ds_media-query(medium) {
+            .ds_card {
+                min-height: 12.5rem; 
+            }
+        }
+    }
 }
 
 // Add block margins to grid
