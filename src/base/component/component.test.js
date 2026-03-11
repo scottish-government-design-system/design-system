@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import DSComponent from './component';
 
 describe('DS component', () => {
-    it.only('should set the js-instantiated class on instantiation', () => {
+    it('should set the js-instantiated class on instantiation', () => {
         const element = document.createElement('div');
         new DSComponent(element);
 
