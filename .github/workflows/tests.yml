@@ -1,11 +1,17 @@
-name: npm publish only
+name: Tests
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-  build:
+  tests:
+    name: Run unit tests
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
 
     steps:
       - name: Checkout
@@ -32,9 +38,3 @@ jobs:
       # Test
       - name: Run tests
         run: npm run test
-
-      # Publish to npm
-      - name: Publish npm package
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

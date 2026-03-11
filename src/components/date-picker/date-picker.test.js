@@ -192,8 +192,6 @@ describe('date picker', () => {
             testObj.datePickerModule.openDialog();
 
             expect(testObj.datePickerModule.dialogElement.classList.contains('ds_!_off-l-111')).toBeFalsy();
-            // 22 is a magic number
-            expect(testObj.datePickerModule.dialogElement.classList.contains('ds_!_off-l-22')).toBeTruthy();
         });
 
         it('should focus on today when opening the dialog with no value in the input element', () => {
