@@ -23,7 +23,6 @@ jobs:
         with:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
-          always-auth: true
 
       # Install
       - name: Install
