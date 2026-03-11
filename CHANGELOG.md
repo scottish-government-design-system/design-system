@@ -6,6 +6,60 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 `Removed` and `Security`.
 
 ---
+## [4.0.0]
+### Added
+- ESLint and improved code documentation to increase quality of JavaScript/TypeScript code
+- Redesigned card component and card grid
+- Notification tag component - currently only used in cards
+- Sub questions on a checkbox or radio are always visible
+- Notification message component with alias for Confirmation message component which will be deprecated in a future version
+### Changed
+- JavaScript migrated to TypeScript
+- Webpack migrated to Vite
+- Unit tests migrated to Vitest and coverage improved to 100%
+- Sass migrated to use Modular Sass
+- Replaced absolute px values with relative ones
+- Sass version updated to 1.94.3 - this stops short of the breaking change to the if() function
+- File download now has CSS class to control border on image
+### Deprecated
+- Legacy code marked as deprecated
+  - Layout mixins
+  - Block margins mixins
+  - Box shadow mixin
+  - Fancy underscore mixin
+  - Heading mixins 
+  - Heading styles (alpha, gamma etc)
+  - Icons mixins
+  - Media query mixin
+  - Form mixin for radio checkbox states
+  - Navigation grid area for search results layout
+  - ds_category-list--narrow for narrow gaps between category list items
+  - Using category item alongside card
+  - .ds_phase-banner__content--stacked modifier
+### Fixed
+- Make ID modifier script understand DS on global scope
+### Removed
+- Removal of deprecated code
+  - Category header
+  - Callout
+  - Notification actions (from Notification banner)
+  - 2.35:1 aspect box ratio
+  - icon sizes 12px and 52px to 80px
+  - border colour names - $ds_colour__border--dark, $ds_colour__border--light 
+  - search results with sidebar layout
+  - icon mask
+  - grid-gap changed to gap
+- IE 11 specific support
+- Duplicated spacing on ds_datepicker, instead use with ds_question for spacing
+- Conditional revealed questions for checkbox or radio
+### Security
+- Bump minimatch:
+  - 3.1.2 to 3.1.5
+  - 9.0.5 to 9.0.9
+- Bump rollup from 4.53.3 to 4.59.0
+- Bump svgo from 2.8.0 to 2.8.2
+- Bump immutable from 5.1.4 to 5.1.5
+- Bump ajv from 6.12.4 to 6.14.0
 
 ## [3.4.1]
 ### Fixed
