@@ -30,7 +30,6 @@ jobs:
         with:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
-          always-auth: true
 
       # Install
       - name: Install
@@ -102,7 +101,14 @@ jobs:
           git push origin && git push --tags
 
       # Publish to npm
-      - name: Publish npm package
+      - name: Publish npm package (prerelease)
+        if: ${{ startsWith(github.event.inputs.release_type, 'pre') }}
+        run: npm publish --access public --tag pre
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Publish npm package (regular)
+        if: ${{ !startsWith(github.event.inputs.release_type, 'pre') }}
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
