@@ -10,10 +10,10 @@ export function initAll(scope = document) {
     backToTopElements.forEach(backToTop => new DS.components.BackToTop(backToTop).init());
 
     const characterCountElements = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]:not(.js-instantiated)')) as HTMLElement[];
-    characterCountElements.forEach(characterCount => new DS.forms.CharacterCount(characterCount).init());
+    characterCountElements.forEach(characterCount => new DS.components.CharacterCount(characterCount).init());
 
     const checkboxesElements = [].slice.call(scope.querySelectorAll('[data-module="ds-checkboxes"]:not(.js-instantiated)')) as HTMLElement[];
-    checkboxesElements.forEach(checkboxes => new DS.forms.Checkboxes(checkboxes).init());
+    checkboxesElements.forEach(checkboxes => new DS.components.Checkboxes(checkboxes).init());
 
     const cookieNotificationElements = [].slice.call(document.querySelectorAll('[data-module="ds-cookie-notification"]:not(.js-instantiated)')) as HTMLElement[];
     cookieNotificationElements.forEach(cookieNotification => new DS.components.CookieNotification(cookieNotification).init());

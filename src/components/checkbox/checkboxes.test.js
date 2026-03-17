@@ -6,7 +6,7 @@ const testObj = {};
 
 describe('checkboxes', () => {
     beforeEach(async () => {
-        await loadHtml('src/forms/checkbox/checkboxes.html');
+        await loadHtml('src/components/checkbox/checkboxes.html');
         testObj.checkboxesElement = document.querySelector('[data-module="ds-checkboxes"]');
         testObj.checkboxesModule = new Checkboxes(testObj.checkboxesElement);
     });

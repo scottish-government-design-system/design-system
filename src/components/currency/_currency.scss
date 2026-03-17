@@ -5,22 +5,20 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-@use "../form.settings" as form-settings;
-
 .ds_currency-wrapper {
     position: relative;
 
     &::before {
         @include helpers.ds_large-size;
         content: '£';
-        height: form-settings.$input-size;
+        height: settings.$input-size;
         font-weight: settings.$bold;
-        line-height: form-settings.$input-size !important;
+        line-height: settings.$input-size !important;
         pointer-events: none;
         position: absolute;
         text-align: center;
         top: 0;
-        width: form-settings.$input-size;
+        width: settings.$input-size;
     }
 
     &[data-symbol]::before {

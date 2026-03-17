@@ -1,6 +1,8 @@
 import Accordion from './accordion/accordion';
 import Autocomplete from './autocomplete/autocomplete';
 import BackToTop from './back-to-top/back-to-top';
+import CharacterCount from './character-count/character-count';
+import Checkboxes from './checkbox/checkboxes';
 import CookieNotification from './cookie-notification/cookie-notification';
 import DatePicker from './date-picker/date-picker';
 import Details from './details/details';
@@ -18,6 +20,8 @@ export default {
     Accordion,
     Autocomplete,
     BackToTop,
+    CharacterCount,
+    Checkboxes,
     CookieNotification,
     DatePicker,
     Details,

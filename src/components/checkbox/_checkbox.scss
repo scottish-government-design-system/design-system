@@ -5,10 +5,8 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-@use "../form.mixins" as form-mixins;
-
 .ds_checkbox {
-    @include form-mixins.ds_radiocheckboxstates();
+    @include helpers.ds_radiocheckboxstates();
 
     &__label::after {
         background-color: transparent;

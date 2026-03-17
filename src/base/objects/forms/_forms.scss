@@ -2,8 +2,8 @@
     FORM ELEMENTS (base)
 \*------------------------------------*/
 
-@use "../base/helpers";
-@use "../base/settings";
+@use "../../helpers";
+@use "../../settings";
 
 legend {
     @include helpers.ds_h3-size;

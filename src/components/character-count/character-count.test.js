@@ -6,7 +6,7 @@ const testObj = {};
 
 describe('character count', () => {
     beforeEach(async () => {
-        await loadHtml('src/forms/character-count/character-count.html');
+        await loadHtml('src/components/character-count/character-count.html');
     });
 
     describe('setup', () => {
