@@ -7,11 +7,9 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-@use "../form.mixins" as form-mixins;
-
 .ds_input {
     @include helpers.ds_responsive-margin (3, bottom);
-    @include form-mixins.ds_input;
+    @include helpers.ds_input;
 
     display: block;
     line-height: 2rem;

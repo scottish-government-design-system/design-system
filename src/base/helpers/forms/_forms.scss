@@ -2,28 +2,27 @@
     FORM MIXINS
 \*------------------------------------*/
 
-@use "../base/helpers";
-@use "../base/settings";
-
-@use "form.settings" as form-settings;
+@use "../focus";
+@use "../media-query";
+@use "../../settings";
 
 $small-focus-border-colour: settings.$ds_colour__border !default;
 
 @mixin ds_input {
     background-color: settings.$ds_colour__background--primary;
-    border: form-settings.$field-border-width solid currentColor;
+    border: settings.$field-border-width solid currentColor;
     border-radius: 0;
     min-height: 3rem;
-    padding: (0.5rem - form-settings.$field-border-width) (0.75rem - form-settings.$field-border-width);
+    padding: (0.5rem - settings.$field-border-width) (0.75rem - settings.$field-border-width);
 
     &:focus {
-        @include helpers.ds_input-focus;
+        @include focus.ds_input-focus;
     }
 
     &--error {
         border-color: settings.$ds_colour__state--negative;
-        border-width: form-settings.$field-border-width--error;
-        padding: (0.5rem - form-settings.$field-border-width--error) (0.75rem - form-settings.$field-border-width--error);
+        border-width: settings.$field-border-width--error;
+        padding: (0.5rem - settings.$field-border-width--error) (0.75rem - settings.$field-border-width--error);
 
         &:focus {
             border-color: currentColor;
@@ -59,20 +58,20 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
 
     &__label::before {
         background-color: settings.$ds_colour__background--primary;
-        border: form-settings.$field-border-width solid settings.$ds_colour__text;
+        border: settings.$field-border-width solid settings.$ds_colour__text;
         content: '';
-        height: form-settings.$input-size;
+        height: settings.$input-size;
         left: 0;
         position: absolute;
-        width: form-settings.$input-size;
+        width: settings.$input-size;
     }
 
     &__label::after {
         content: "";
         position: absolute;
-        bottom: calc(100% - #{form-settings.$input-size});
+        bottom: calc(100% - #{settings.$input-size});
         left: 0;
-        right: calc(100% - #{form-settings.$input-size});
+        right: calc(100% - #{settings.$input-size});
         opacity: 0;
     }
 
@@ -80,7 +79,7 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
     &__label::after {
         top: -0.25rem;
 
-        @include helpers.ds_media-query(medium) {
+        @include media-query.ds_media-query(medium) {
             top: 0;
         }
 
@@ -94,10 +93,10 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
     &__input:focus + &__label::before {
         background-color: settings.$ds_colour__link--focus__background;
         border-color: settings.$ds_colour__link--focus;
-        border-width: form-settings.$field-border-width--focus;
-        box-shadow: 0 0 0 form-settings.$field-glow-width settings.$ds_colour__input--focus__outline;
+        border-width: settings.$field-border-width--focus;
+        box-shadow: 0 0 0 settings.$field-glow-width settings.$ds_colour__input--focus__outline;
 
-        @include helpers.ds_media-query-high-contrast {
+        @include media-query.ds_media-query-high-contrast {
             outline: 0.25rem solid highlight;
             outline-offset: -0.25rem;
         }
@@ -126,7 +125,7 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
         top: 0.25rem;
         width: 1.5rem;
 
-        @include helpers.ds_media-query(medium) {
+        @include media-query.ds_media-query(medium) {
             top: 0.5rem;
         }
     }
