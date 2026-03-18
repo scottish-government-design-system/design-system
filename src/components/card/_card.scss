@@ -8,18 +8,33 @@
 $card-background--primary: settings.$ds_colour__background--primary !default;
 $card-background--secondary: settings.$ds_colour__background--secondary !default;
 
+$card-outline-width: 0.0625rem;
+
 // Deprecated - use $card-background--secondary
 $card-grey-background-color: settings.$ds_colour__background--secondary !default;
 
 .ds_card {
     @include helpers.ds_small-size;
     background: $card-background--primary;
-    border: 1px solid settings.$ds_colour__border;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0;
+    margin: 0; 
     position: relative;
+
+    &::before {
+        background-color: transparent;
+        content: '';
+        outline: $card-outline-width solid settings.$ds_colour__border;
+        outline-offset: #{$card-outline-width * -1};   
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 1;
+    }
 
     .ds_icon {
         color: settings.$ds_colour__brand;
@@ -233,6 +248,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
 .ds_card-grid {
     display: grid;
     grid-template-columns: 1fr;
+    margin: 0;
     @include helpers.ds_responsive-spacing(4, "gap");
 
     // Default grid behaviour
