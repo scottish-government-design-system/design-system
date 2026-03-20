@@ -1,6 +1,8 @@
 import Accordion from './accordion/accordion';
 import Autocomplete from './autocomplete/autocomplete';
 import BackToTop from './back-to-top/back-to-top';
+import CharacterCount from './character-count/character-count';
+import Checkboxes from './checkbox/checkboxes';
 import CookieNotification from './cookie-notification/cookie-notification';
 import DatePicker from './date-picker/date-picker';
 import Details from './details/details';
@@ -16,6 +18,8 @@ declare const _default: {
     Accordion: typeof Accordion;
     Autocomplete: typeof Autocomplete;
     BackToTop: typeof BackToTop;
+    CharacterCount: typeof CharacterCount;
+    Checkboxes: typeof Checkboxes;
     CookieNotification: typeof CookieNotification;
     DatePicker: typeof DatePicker;
     Details: typeof Details;

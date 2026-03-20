@@ -39,6 +39,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const accordion_1 = __importDefault(require("./accordion/accordion"));
 const autocomplete_1 = __importDefault(require("./autocomplete/autocomplete"));
 const back_to_top_1 = __importDefault(require("./back-to-top/back-to-top"));
+const character_count_1 = __importDefault(require("./character-count/character-count"));
+const checkboxes_1 = __importDefault(require("./checkbox/checkboxes"));
 const cookie_notification_1 = __importDefault(require("./cookie-notification/cookie-notification"));
 const date_picker_1 = __importDefault(require("./date-picker/date-picker"));
 const details_1 = __importDefault(require("./details/details"));
@@ -55,6 +57,8 @@ exports.default = {
     Accordion: accordion_1.default,
     Autocomplete: autocomplete_1.default,
     BackToTop: back_to_top_1.default,
+    CharacterCount: character_count_1.default,
+    Checkboxes: checkboxes_1.default,
     CookieNotification: cookie_notification_1.default,
     DatePicker: date_picker_1.default,
     Details: details_1.default,

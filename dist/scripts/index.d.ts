@@ -78,6 +78,8 @@ declare const DS: {
         Accordion: typeof import("./components/accordion/accordion").default;
         Autocomplete: typeof import("./components/autocomplete/autocomplete").default;
         BackToTop: typeof import("./components/back-to-top/back-to-top").default;
+        CharacterCount: typeof import("./components/character-count/character-count").default;
+        Checkboxes: typeof import("./components/checkbox/checkboxes").default;
         CookieNotification: typeof import("./components/cookie-notification/cookie-notification").default;
         DatePicker: typeof import("./components/date-picker/date-picker").default;
         Details: typeof import("./components/details/details").default;
@@ -93,10 +95,6 @@ declare const DS: {
         MobileTable: typeof import("./components/table/table").MobileTable;
         Tabs: typeof import("./components/tabs/tabs").default;
         TabsNavigation: typeof import("./components/tabs/tabs-navigation").default;
-    };
-    forms: {
-        CharacterCount: typeof import("./forms/character-count/character-count").default;
-        Checkboxes: typeof import("./forms/checkbox/checkboxes").default;
     };
     version: string;
     initAll: typeof initAll;

@@ -1,5 +1,5 @@
 function M(i = document) {
-  [].slice.call(i.querySelectorAll('[data-module="ds-accordion"]:not(.js-instantiated)')).forEach((h) => new f.components.Accordion(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-back-to-top"]:not(.js-instantiated)')).forEach((h) => new f.components.BackToTop(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-character-count"]:not(.js-instantiated)')).forEach((h) => new f.forms.CharacterCount(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-checkboxes"]:not(.js-instantiated)')).forEach((h) => new f.forms.Checkboxes(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-cookie-notification"]:not(.js-instantiated)')).forEach((h) => new f.components.CookieNotification(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]:not(.js-instantiated)')).forEach((h) => new f.components.DatePicker(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-details"]:not(.js-instantiated)')).forEach((h) => new f.components.Details(h).init()), [].slice.call(i.querySelectorAll(".ds_hide-page")).forEach((h) => new f.components.HideThisPage(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-mobile-navigation-menu"]:not(.js-instantiated)')).forEach((h) => new f.components.SiteNavigation(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-notification"]:not(.js-instantiated)')).forEach((h) => new f.components.NotificationBanner(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-side-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.SideNavigation(h).init()), f.components.skipLinks.init(), [].slice.call(i.querySelectorAll('[data-module="ds-step-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.StepNavigation(h).init()), [].slice.call(i.querySelectorAll("table[data-smallscreen]")).forEach((h) => new f.components.MobileTable(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]:not(.js-instantiated)')).forEach((h) => new f.components.Tabs(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.TabsNavigation(h).init()), f.base.tools.tracking.init();
+  [].slice.call(i.querySelectorAll('[data-module="ds-accordion"]:not(.js-instantiated)')).forEach((h) => new f.components.Accordion(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-back-to-top"]:not(.js-instantiated)')).forEach((h) => new f.components.BackToTop(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-character-count"]:not(.js-instantiated)')).forEach((h) => new f.components.CharacterCount(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-checkboxes"]:not(.js-instantiated)')).forEach((h) => new f.components.Checkboxes(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-cookie-notification"]:not(.js-instantiated)')).forEach((h) => new f.components.CookieNotification(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]:not(.js-instantiated)')).forEach((h) => new f.components.DatePicker(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-details"]:not(.js-instantiated)')).forEach((h) => new f.components.Details(h).init()), [].slice.call(i.querySelectorAll(".ds_hide-page")).forEach((h) => new f.components.HideThisPage(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-mobile-navigation-menu"]:not(.js-instantiated)')).forEach((h) => new f.components.SiteNavigation(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-notification"]:not(.js-instantiated)')).forEach((h) => new f.components.NotificationBanner(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-side-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.SideNavigation(h).init()), f.components.skipLinks.init(), [].slice.call(i.querySelectorAll('[data-module="ds-step-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.StepNavigation(h).init()), [].slice.call(i.querySelectorAll("table[data-smallscreen]")).forEach((h) => new f.components.MobileTable(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]:not(.js-instantiated)')).forEach((h) => new f.components.Tabs(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.TabsNavigation(h).init()), f.base.tools.tracking.init();
 }
 function A() {
   return window.DS = window.DS || {}, window.DS.elementIdModifier = window.DS.elementIdModifier || 0, window.DS.elementIdModifier += 1, `ds${window.DS.elementIdModifier}`;
@@ -322,7 +322,7 @@ class D {
     return this.tokens.join(" ").trim();
   }
 }
-const x = "v4.0.0-beta.0";
+const x = "v4.0.0-beta.1";
 function E(i) {
   return i = String(i), i.trim().toLowerCase().replace(/['"’‘”“`]/g, "").replace(/[\W|_]+/g, "-").replace(/^-+|-+$/g, "");
 }
@@ -1596,6 +1596,133 @@ class O extends b {
   }
 }
 class j extends b {
+  emptyMessage;
+  field;
+  idModifier;
+  inputElement;
+  isInvalidInitialState;
+  maxLength;
+  messageElement;
+  messageTimeout;
+  screenReaderMessageElement;
+  threshold;
+  thresholdCharacters;
+  /**
+   * Create a character count instance
+   *
+   * @param {HTMLElement} field - the input field or textarea to apply a character count to
+   */
+  constructor(t) {
+    super(t), this.field = t, this.inputElement = this.field.querySelector("input, textarea"), this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0, this.messageTimeout = 0, this.idModifier = A();
+  }
+  /**
+   * Initialise the character count
+   * - create DOM elements used by the character count component
+   * - check the current state & set the display accordingly
+   * - setup event listener on the input element to watch for changes
+   *
+   * @returns {void}
+   */
+  init() {
+    if (this.inputElement && !this.isInitialised) {
+      if (this.maxLength = this.getMaxLength(), this.thresholdCharacters = this.getThresholdCharacters(), this.maxLength === 0)
+        return;
+      this.emptyMessage = `You can enter up to ${this.maxLength} characters`;
+      const t = document.createElement("div");
+      t.classList.add("fully-hidden"), t.classList.add("ds_character-count__initial"), t.textContent = this.emptyMessage, t.id = `character-count-empty-${this.idModifier}`, this.messageElement = document.createElement("div"), this.messageElement.classList.add("ds_input__message"), this.messageElement.classList.add("ds_hint-text"), this.messageElement.setAttribute("aria-hidden", "true"), this.screenReaderMessageElement = document.createElement("div"), this.screenReaderMessageElement.classList.add("visually-hidden"), this.screenReaderMessageElement.id = `character-count-remaining-${this.idModifier}`;
+      const e = new D(this.inputElement.getAttribute("aria-describedby"));
+      this.inputElement.setAttribute("aria-describedby", e.add([t.id, this.screenReaderMessageElement.id])), this.inputElement.value.length < this.thresholdCharacters && this.messageElement.classList.add("fully-hidden"), this.isInvalidInitialState = !!this.inputElement.getAttribute("aria-invalid") && this.inputElement.getAttribute("aria-invalid") !== "false", this.field.appendChild(this.messageElement), this.field.appendChild(this.screenReaderMessageElement), this.field.appendChild(t), this.updateCountMessage(), this.inputElement.oldValue = this.inputElement.value, this.inputElement.addEventListener("input", this.checkIfChanged.bind(this)), this.isInitialised = !0;
+    }
+  }
+  /**
+   * Per GDS:
+   * "Speech recognition software such as Dragon NaturallySpeaking will modify the
+   * fields by directly changing its `value`. These changes don't trigger events
+   * in JavaScript, so we need to poll to handle when and if they occur."
+   *
+   * @returns {void}
+   */
+  checkIfChanged() {
+    this.inputElement.oldValue || (this.inputElement.oldValue = ""), this.inputElement.value !== this.inputElement.oldValue && (this.screenReaderMessageElement.setAttribute("aria-live", "polite"), this.inputElement.oldValue = this.inputElement.value, this.updateCountMessage.bind(this)());
+  }
+  /**
+   * Get the component's "maxLength" based on either a supplied maxlength attribute or
+   * data-maxlength attribute. Remove a maxlength attribute if it is present.
+   *
+   * @returns {number}
+   */
+  getMaxLength() {
+    let t = 0;
+    return this.inputElement.getAttribute("maxlength") ? (t = Number(this.inputElement.getAttribute("maxlength")), this.inputElement.removeAttribute("maxlength")) : this.field.dataset.maxlength && (t = Number(this.field.dataset.maxlength)), t;
+  }
+  /**
+   * Get the number of characters required to make the character count appear, calculated from
+   * the maxlength and the supplied threshold
+   *
+   * @returns {number}
+   */
+  getThresholdCharacters() {
+    return Math.round(this.maxLength * this.threshold);
+  }
+  /**
+   * Updates the remaining character count message
+   * - adds error message and aria invalid if the count is exceeded
+   * - pluralises the message correctly
+   * - hides the message if there is a count threshold that is not met
+   * - updates the hidden screen reader message element after a short delay (the delay helps ensure the message is not unterrupted by the screen reader announcing the value of the field)
+   *
+   * @returns {void}
+   */
+  updateCountMessage() {
+    const t = this.maxLength - this.inputElement.value.length;
+    let e = "characters";
+    Math.abs(t) === 1 && (e = "character"), this.messageElement.textContent = `You have ${t} ${e} remaining`, t < 0 ? (this.inputElement.classList.add("ds_input--error"), this.inputElement.setAttribute("aria-invalid", "true"), this.messageElement.textContent = `You have ${Math.abs(t)} ${e} too many`, this.messageElement.classList.add("ds_input__message--error")) : (this.isInvalidInitialState || (this.inputElement.classList.remove("ds_input--error"), this.inputElement.setAttribute("aria-invalid", "false")), this.messageElement.classList.remove("ds_input__message--error"), this.inputElement.value.length === 0 ? this.messageElement.textContent = this.emptyMessage : this.messageElement.textContent = `You have ${t} ${e} remaining`), this.inputElement.value.length < this.thresholdCharacters ? this.messageElement.classList.add("fully-hidden") : this.messageElement.classList.remove("fully-hidden"), clearTimeout(this.messageTimeout), this.messageTimeout = window.setTimeout(() => {
+      this.inputElement.value.length >= this.thresholdCharacters ? this.updateScreenReaderMessage() : this.screenReaderMessageElement.innerHTML = "&nbsp;";
+    }, 1e3);
+  }
+  /**
+   * Updates the content of the hidden screen reader message
+   *
+   * @returns {void}
+   */
+  updateScreenReaderMessage() {
+    this.screenReaderMessageElement.textContent = this.messageElement.textContent;
+  }
+}
+class R extends b {
+  checkboxes;
+  /**
+   * Creates a checkboxes component
+   *
+   * @param {HTMLElement} checkboxes - the tab container element
+   */
+  constructor(t) {
+    super(t), this.checkboxes = [].slice.call(t.querySelectorAll(".ds_checkbox__input"));
+  }
+  /**
+   * Initialises a checkbox group
+   * Adds an event listener to handle 'exclusive' checkbox behaviour
+   * - unchecks all other checkboxes when an exclusive checkbox is checked
+   * - unchecks the exclusive checkbox if any other checkbox is checked
+   *
+   * @returns {void}
+   */
+  init() {
+    this.checkboxes.forEach((t) => {
+      t.addEventListener("change", () => {
+        switch (t.dataset.behaviour) {
+          case "exclusive":
+            this.checkboxes.filter((e) => e !== t).forEach((e) => e.checked = !1);
+            break;
+          default:
+            this.checkboxes.filter((e) => e.dataset.behaviour === "exclusive").forEach((e) => e.checked = !1);
+            break;
+        }
+      });
+    }), this.isInitialised = !0;
+  }
+}
+class F extends b {
   storage;
   categories;
   cookieAcceptAllButton;
@@ -1662,7 +1789,7 @@ class j extends b {
     );
   }
 }
-class R extends b {
+class Y extends b {
   options;
   calendarButtonElement;
   dateInput;
@@ -1719,7 +1846,7 @@ class R extends b {
       for (let y = 0; y < 7; y++) {
         const v = document.createElement("td"), h = document.createElement("button");
         h.type = "button", h.dataset.form = "date-select", v.appendChild(h), _.appendChild(v);
-        const L = new F(h, s, d, y, this);
+        const L = new z(h, s, d, y, this);
         L.init(), this.calendarDays.push(L), s++;
       }
     }
@@ -2196,7 +2323,7 @@ class R extends b {
     }
   }
 }
-class F {
+class z {
   button;
   column;
   date;
@@ -2296,7 +2423,7 @@ class F {
     e && (t.preventDefault(), t.stopPropagation());
   }
 }
-class Y extends b {
+class W extends b {
   content;
   details;
   summary;
@@ -2370,7 +2497,7 @@ class Y extends b {
     this.details.hasAttribute(this.openAttribute) ? this.closeDetails() : this.openDetails();
   }
 }
-class z extends b {
+class V extends b {
   altlink;
   button;
   window;
@@ -2427,7 +2554,7 @@ class z extends b {
     t.preventDefault(), document.body.innerHTML = "", document.title = ".", this.window.open(this.button.href, "_newtab"), this.window.location.replace(this.altlink);
   }
 }
-class W extends b {
+class U extends b {
   notification;
   notificationClose;
   /**
@@ -2449,7 +2576,7 @@ class W extends b {
     }), this.isInitialised = !0;
   }
 }
-class V extends b {
+class K extends b {
   sideNavigation;
   /**
    * Creates a side navigation component
@@ -2486,7 +2613,7 @@ class V extends b {
     });
   }
 }
-class U extends b {
+class Z extends b {
   mobileMenu;
   newMenuButton;
   /**
@@ -2535,7 +2662,7 @@ class U extends b {
     this.mobileMenu.classList.remove("ds_site-navigation--open"), this.newMenuButton.classList.remove("ds_site-header__control--active"), this.newMenuButton.setAttribute("aria-expanded", "false");
   }
 }
-const K = {
+const J = {
   /**
    * Initialise skip links
    * - adds click event to skip links to focus target element
@@ -2551,7 +2678,7 @@ const K = {
     });
   }
 };
-class Z extends b {
+class X extends b {
   container;
   window;
   /**
@@ -2625,7 +2752,7 @@ class q extends b {
         });
   }
 }
-class J {
+class G {
   window;
   constructor(t = window) {
     this.window = t;
@@ -2641,7 +2768,7 @@ class J {
     document.querySelectorAll("table[data-smallscreen]").forEach((e) => new q(e, this.window).init());
   }
 }
-class X extends b {
+class Q extends b {
   hasAutomaticActivation;
   boundOnHashChange;
   boundOnResize;
@@ -2877,7 +3004,7 @@ class X extends b {
     return this.tabContainer.querySelector(this.getHref(t));
   }
 }
-class G extends b {
+class tt extends b {
   boundOnResize;
   breakpointCheck;
   resizeTimer;
@@ -2944,158 +3071,28 @@ class G extends b {
     }, 150);
   }
 }
-const Q = {
+const et = {
   Accordion: N,
   Autocomplete: H,
   BackToTop: O,
-  CookieNotification: j,
-  DatePicker: R,
-  Details: Y,
-  HideThisPage: z,
-  NotificationBanner: W,
-  SideNavigation: V,
-  SiteNavigation: U,
-  skipLinks: K,
-  StepNavigation: Z,
-  MobileTables: J,
+  CharacterCount: j,
+  Checkboxes: R,
+  CookieNotification: F,
+  DatePicker: Y,
+  Details: W,
+  HideThisPage: V,
+  NotificationBanner: U,
+  SideNavigation: K,
+  SiteNavigation: Z,
+  skipLinks: J,
+  StepNavigation: X,
+  MobileTables: G,
   MobileTable: q,
-  Tabs: X,
-  TabsNavigation: G
-};
-class tt extends b {
-  emptyMessage;
-  field;
-  idModifier;
-  inputElement;
-  isInvalidInitialState;
-  maxLength;
-  messageElement;
-  messageTimeout;
-  screenReaderMessageElement;
-  threshold;
-  thresholdCharacters;
-  /**
-   * Create a character count instance
-   *
-   * @param {HTMLElement} field - the input field or textarea to apply a character count to
-   */
-  constructor(t) {
-    super(t), this.field = t, this.inputElement = this.field.querySelector("input, textarea"), this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0, this.messageTimeout = 0, this.idModifier = A();
-  }
-  /**
-   * Initialise the character count
-   * - create DOM elements used by the character count component
-   * - check the current state & set the display accordingly
-   * - setup event listener on the input element to watch for changes
-   *
-   * @returns {void}
-   */
-  init() {
-    if (this.inputElement && !this.isInitialised) {
-      if (this.maxLength = this.getMaxLength(), this.thresholdCharacters = this.getThresholdCharacters(), this.maxLength === 0)
-        return;
-      this.emptyMessage = `You can enter up to ${this.maxLength} characters`;
-      const t = document.createElement("div");
-      t.classList.add("fully-hidden"), t.classList.add("ds_character-count__initial"), t.textContent = this.emptyMessage, t.id = `character-count-empty-${this.idModifier}`, this.messageElement = document.createElement("div"), this.messageElement.classList.add("ds_input__message"), this.messageElement.classList.add("ds_hint-text"), this.messageElement.setAttribute("aria-hidden", "true"), this.screenReaderMessageElement = document.createElement("div"), this.screenReaderMessageElement.classList.add("visually-hidden"), this.screenReaderMessageElement.id = `character-count-remaining-${this.idModifier}`;
-      const e = new D(this.inputElement.getAttribute("aria-describedby"));
-      this.inputElement.setAttribute("aria-describedby", e.add([t.id, this.screenReaderMessageElement.id])), this.inputElement.value.length < this.thresholdCharacters && this.messageElement.classList.add("fully-hidden"), this.isInvalidInitialState = !!this.inputElement.getAttribute("aria-invalid") && this.inputElement.getAttribute("aria-invalid") !== "false", this.field.appendChild(this.messageElement), this.field.appendChild(this.screenReaderMessageElement), this.field.appendChild(t), this.updateCountMessage(), this.inputElement.oldValue = this.inputElement.value, this.inputElement.addEventListener("input", this.checkIfChanged.bind(this)), this.isInitialised = !0;
-    }
-  }
-  /**
-   * Per GDS:
-   * "Speech recognition software such as Dragon NaturallySpeaking will modify the
-   * fields by directly changing its `value`. These changes don't trigger events
-   * in JavaScript, so we need to poll to handle when and if they occur."
-   *
-   * @returns {void}
-   */
-  checkIfChanged() {
-    this.inputElement.oldValue || (this.inputElement.oldValue = ""), this.inputElement.value !== this.inputElement.oldValue && (this.screenReaderMessageElement.setAttribute("aria-live", "polite"), this.inputElement.oldValue = this.inputElement.value, this.updateCountMessage.bind(this)());
-  }
-  /**
-   * Get the component's "maxLength" based on either a supplied maxlength attribute or
-   * data-maxlength attribute. Remove a maxlength attribute if it is present.
-   *
-   * @returns {number}
-   */
-  getMaxLength() {
-    let t = 0;
-    return this.inputElement.getAttribute("maxlength") ? (t = Number(this.inputElement.getAttribute("maxlength")), this.inputElement.removeAttribute("maxlength")) : this.field.dataset.maxlength && (t = Number(this.field.dataset.maxlength)), t;
-  }
-  /**
-   * Get the number of characters required to make the character count appear, calculated from
-   * the maxlength and the supplied threshold
-   *
-   * @returns {number}
-   */
-  getThresholdCharacters() {
-    return Math.round(this.maxLength * this.threshold);
-  }
-  /**
-   * Updates the remaining character count message
-   * - adds error message and aria invalid if the count is exceeded
-   * - pluralises the message correctly
-   * - hides the message if there is a count threshold that is not met
-   * - updates the hidden screen reader message element after a short delay (the delay helps ensure the message is not unterrupted by the screen reader announcing the value of the field)
-   *
-   * @returns {void}
-   */
-  updateCountMessage() {
-    const t = this.maxLength - this.inputElement.value.length;
-    let e = "characters";
-    Math.abs(t) === 1 && (e = "character"), this.messageElement.textContent = `You have ${t} ${e} remaining`, t < 0 ? (this.inputElement.classList.add("ds_input--error"), this.inputElement.setAttribute("aria-invalid", "true"), this.messageElement.textContent = `You have ${Math.abs(t)} ${e} too many`, this.messageElement.classList.add("ds_input__message--error")) : (this.isInvalidInitialState || (this.inputElement.classList.remove("ds_input--error"), this.inputElement.setAttribute("aria-invalid", "false")), this.messageElement.classList.remove("ds_input__message--error"), this.inputElement.value.length === 0 ? this.messageElement.textContent = this.emptyMessage : this.messageElement.textContent = `You have ${t} ${e} remaining`), this.inputElement.value.length < this.thresholdCharacters ? this.messageElement.classList.add("fully-hidden") : this.messageElement.classList.remove("fully-hidden"), clearTimeout(this.messageTimeout), this.messageTimeout = window.setTimeout(() => {
-      this.inputElement.value.length >= this.thresholdCharacters ? this.updateScreenReaderMessage() : this.screenReaderMessageElement.innerHTML = "&nbsp;";
-    }, 1e3);
-  }
-  /**
-   * Updates the content of the hidden screen reader message
-   *
-   * @returns {void}
-   */
-  updateScreenReaderMessage() {
-    this.screenReaderMessageElement.textContent = this.messageElement.textContent;
-  }
-}
-class et extends b {
-  checkboxes;
-  /**
-   * Creates a checkboxes component
-   *
-   * @param {HTMLElement} checkboxes - the tab container element
-   */
-  constructor(t) {
-    super(t), this.checkboxes = [].slice.call(t.querySelectorAll(".ds_checkbox__input"));
-  }
-  /**
-   * Initialises a checkbox group
-   * Adds an event listener to handle 'exclusive' checkbox behaviour
-   * - unchecks all other checkboxes when an exclusive checkbox is checked
-   * - unchecks the exclusive checkbox if any other checkbox is checked
-   *
-   * @returns {void}
-   */
-  init() {
-    this.checkboxes.forEach((t) => {
-      t.addEventListener("change", () => {
-        switch (t.dataset.behaviour) {
-          case "exclusive":
-            this.checkboxes.filter((e) => e !== t).forEach((e) => e.checked = !1);
-            break;
-          default:
-            this.checkboxes.filter((e) => e.dataset.behaviour === "exclusive").forEach((e) => e.checked = !1);
-            break;
-        }
-      });
-    }), this.isInitialised = !0;
-  }
-}
-const st = {
-  CharacterCount: tt,
-  Checkboxes: et
+  Tabs: Q,
+  TabsNavigation: tt
 }, f = {
   base: T,
-  components: Q,
-  forms: st,
+  components: et,
   version: x,
   initAll: M,
   tracking: T.tools.tracking,

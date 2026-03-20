@@ -13,9 +13,9 @@ function initAll(scope = document) {
     const backToTopElements = [].slice.call(scope.querySelectorAll('[data-module="ds-back-to-top"]:not(.js-instantiated)'));
     backToTopElements.forEach(backToTop => new index_1.default.components.BackToTop(backToTop).init());
     const characterCountElements = [].slice.call(scope.querySelectorAll('[data-module="ds-character-count"]:not(.js-instantiated)'));
-    characterCountElements.forEach(characterCount => new index_1.default.forms.CharacterCount(characterCount).init());
+    characterCountElements.forEach(characterCount => new index_1.default.components.CharacterCount(characterCount).init());
     const checkboxesElements = [].slice.call(scope.querySelectorAll('[data-module="ds-checkboxes"]:not(.js-instantiated)'));
-    checkboxesElements.forEach(checkboxes => new index_1.default.forms.Checkboxes(checkboxes).init());
+    checkboxesElements.forEach(checkboxes => new index_1.default.components.Checkboxes(checkboxes).init());
     const cookieNotificationElements = [].slice.call(document.querySelectorAll('[data-module="ds-cookie-notification"]:not(.js-instantiated)'));
     cookieNotificationElements.forEach(cookieNotification => new index_1.default.components.CookieNotification(cookieNotification).init());
     const datePickerElements = [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]:not(.js-instantiated)'));
