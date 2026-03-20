@@ -31,7 +31,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
         .ds_icon {
             color: settings.$ds_colour__link;
             transition: color settings.$transition-out-time;
-            
+
             @include helpers.ds_media-query-high-contrast {
                 color: linktext !important;
             }
@@ -39,7 +39,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
 
         .ds_card__content-main,
         .ds_metadata--inline {
-            transition: color settings.$transition-out-time;    
+            transition: color settings.$transition-out-time;
         }
 
         &:hover {
@@ -74,7 +74,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
             align-items: center;
             flex-wrap: wrap;
             gap: 0.5rem;
-            
+
             .ds_icon {
                 height: 2.5rem;
                 max-width: 2.5rem;
@@ -82,8 +82,8 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
 
                 @include helpers.ds_media-query(medium){
                     height: 3rem;
-                    max-width: 3rem;   
-                    width: auto; 
+                    max-width: 3rem;
+                    width: auto;
                 }
             }
 
@@ -95,7 +95,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
         &-main {
             @include helpers.ds_last-child-no-margin;
             color: settings.$ds_colour__text--secondary;
-            
+
             &:not(:first-child) {
                 padding-top: 0.5rem;
             }
@@ -109,7 +109,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
         &-footer {
             @include helpers.ds_last-child-no-margin;
             align-self: end;
-            
+
             &:not(:first-child) {
                 padding-top: 1rem;
             }
@@ -119,7 +119,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
     &__title {
         @include helpers.ds_h3-size;
         width: 100%;
-        
+
         // Override styling applied to heading margins
         &,
         &:not(:first-child) {
@@ -155,16 +155,16 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
 
     .ds_card__media {
         flex: 1 0 auto;
-        width: max(calc(100% / 3), 8rem); 
+        width: max(calc(100% / 3), 8rem);
         max-width: max(calc(100% / 3), 8rem);
 
         &--narrow {
-            width: max(calc(100% / 3), 6rem); 
+            width: max(calc(100% / 3), 6rem);
             max-width: max(calc(100% / 3), 6rem);
         }
 
         &--wide {
-            width: 50%; 
+            width: 50%;
             max-width: 50%;
         }
 
@@ -172,16 +172,16 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
         // [1] 350px is largest width of a card in a 3 col grid
         @include helpers.ds_media-query(small) {
             width: min(50%, 21.875rem); //[1]
-            max-width: min(50%, 21.875rem); 
+            max-width: min(50%, 21.875rem);
 
             &--narrow {
                 width: min(calc(100% / 3), 21.875rem); //[1]
-                max-width: min(calc(100% / 3), 21.875rem); 
+                max-width: min(calc(100% / 3), 21.875rem);
             }
 
             &--wide {
-                width: calc(300% / 4); 
-                max-width: calc(300% / 4); 
+                width: calc(300% / 4);
+                max-width: calc(300% / 4);
             }
         }
 
@@ -249,7 +249,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
     &--medium-2 {
         @include helpers.ds_media-query(medium-to-large) {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-        }    
+        }
     }
 
     // Narrow gap variant
@@ -261,7 +261,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
     &--min-height {
         @include helpers.ds_media-query(medium) {
             .ds_card {
-                min-height: 12.5rem; 
+                min-height: 12.5rem;
             }
         }
     }
@@ -275,4 +275,14 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
 // DEPRECATED - use ds_card--background-secondary instead
 .ds_card--grey {
     background-color: $card-background--secondary;
+}
+
+// this needs special treatment for its focus state because filter: drop-shadow interferes with
+// the ::after pseudoelement we use to make the whole card clickable
+.ds_card__link--cover:focus {
+    filter: none;
+    outline: none;
+    box-shadow:
+        0 0 0 round(settings.$ds_focus__outline-width, 1px) settings.$ds_colour__link--focus__outline,
+        0 round(settings.$ds_focus__shadow-width, 1px) 0 round(settings.$ds_focus__outline-width, 1px) settings.$ds_colour__link--focus__shadow;
 }
