@@ -17,7 +17,6 @@ $details-icon-size: math.div((1em * 8px), settings.$root-font-size--medium);
     display: inline-block;
     position: relative;
     @include helpers.ds_link;
-    @include helpers.ds_responsive-margin(2, bottom);
     @include helpers.ds_responsive-padding(4, left);
 
     &::-webkit-details-marker {
@@ -46,6 +45,7 @@ $details-icon-size: math.div((1em * 8px), settings.$root-font-size--medium);
     border-left: $details-border-width solid #b3b3b3;
     box-sizing: border-box;
     display: none;
+    @include helpers.ds_responsive-margin(2, top);
     @include helpers.ds_responsive-padding(1);
     @include helpers.ds_responsive-padding(4, left, false, calc(#{$details-border-width} * -1));
 }
