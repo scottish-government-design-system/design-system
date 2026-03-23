@@ -322,7 +322,7 @@ class D {
     return this.tokens.join(" ").trim();
   }
 }
-const x = "v4.0.0-beta.1";
+const x = "v4.0.0-beta.2";
 function E(i) {
   return i = String(i), i.trim().toLowerCase().replace(/['"’‘”“`]/g, "").replace(/[\W|_]+/g, "-").replace(/^-+|-+$/g, "");
 }

@@ -2192,7 +2192,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_margin--9 {
-    margin: 4rem !important;
+    margin: 4.5rem !important;
   }
 }
 
@@ -2201,7 +2201,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_margin-left--9 {
-    margin-left: 4rem !important;
+    margin-left: 4.5rem !important;
   }
 }
 
@@ -2210,7 +2210,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_margin-right--9 {
-    margin-right: 4rem !important;
+    margin-right: 4.5rem !important;
   }
 }
 
@@ -2219,7 +2219,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_margin-top--9 {
-    margin-top: 4rem !important;
+    margin-top: 4.5rem !important;
   }
 }
 
@@ -2228,7 +2228,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_margin-bottom--9 {
-    margin-bottom: 4rem !important;
+    margin-bottom: 4.5rem !important;
   }
 }
 
@@ -2617,7 +2617,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_padding--9 {
-    padding: 4rem !important;
+    padding: 4.5rem !important;
   }
 }
 
@@ -2626,7 +2626,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_padding-left--9 {
-    padding-left: 4rem !important;
+    padding-left: 4.5rem !important;
   }
 }
 
@@ -2635,7 +2635,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_padding-right--9 {
-    padding-right: 4rem !important;
+    padding-right: 4.5rem !important;
   }
 }
 
@@ -2644,7 +2644,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_padding-top--9 {
-    padding-top: 4rem !important;
+    padding-top: 4.5rem !important;
   }
 }
 
@@ -2653,7 +2653,7 @@ html {
 }
 @media (min-width: 48rem) {
   .ds_\!_padding-bottom--9 {
-    padding-bottom: 4rem !important;
+    padding-bottom: 4.5rem !important;
   }
 }
 
@@ -5049,14 +5049,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   fill: currentColor;
 }
 .ds_details__summary {
-  margin-bottom: 1rem;
-}
-@media (min-width: 48rem) {
-  .ds_details__summary {
-    margin-bottom: 1rem;
-  }
-}
-.ds_details__summary {
   padding-left: 1.5rem;
 }
 @media (min-width: 48rem) {
@@ -5091,6 +5083,14 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   border-left: 0.25rem solid #b3b3b3;
   box-sizing: border-box;
   display: none;
+  margin-top: 1rem;
+}
+@media (min-width: 48rem) {
+  .ds_details__text {
+    margin-top: 1rem;
+  }
+}
+.ds_details__text {
   padding: 0.5rem;
 }
 @media (min-width: 48rem) {
