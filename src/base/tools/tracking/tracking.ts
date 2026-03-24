@@ -775,6 +775,46 @@ const tracking = {
         },
 
         /**
+         * Sets data-form="fileinput-[ID]" on file upload components
+         * Sets data-filesize and data-filetype when a file is added
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        fileUploads: function (scope: HTMLElement = document.documentElement): void {
+            const fileUploads = [].slice.call(scope.querySelectorAll('.ds_file-upload')) as HTMLElement[];
+            fileUploads.forEach(fileUpload => {
+                const inputElement = fileUpload.querySelector('input[type="file"]') as HTMLInputElement;
+                if (!inputElement.getAttribute('data-form') && inputElement.id) {
+                    inputElement.setAttribute('data-form', `fileinput-${inputElement.id}`);
+                }
+
+                function getFileExtensionFromFilename(fileName: string): string {
+                    const split = fileName.split('.');
+                    if (split.length > 1) {
+                        return (split.pop() as string)?.toLowerCase()
+                    } else {
+                        return '';
+                    }
+                }
+
+                function getFileSizeInMB(fileSizeInBytes: number): string {
+                    return `${(fileSizeInBytes * 0.000001).toFixed(2)}MB`;
+                }
+
+                inputElement.addEventListener('input', () => {
+                     if (inputElement.files?.length) {
+                        inputElement.setAttribute('data-filetype', getFileExtensionFromFilename(inputElement.files[0].name));
+                        inputElement.setAttribute('data-filesize', getFileSizeInMB(inputElement.files[0].size));
+                    } else {
+                        inputElement.removeAttribute('data-filesize');
+                        inputElement.removeAttribute('data-filetype');
+                    }
+                });
+            });
+        },
+
+        /**
          * Sets data-navigation="hide-this-page" on hide this page links
          * Adds an event listener to push 'esc' presses the data layer
          *
@@ -823,12 +863,12 @@ const tracking = {
         /**
          * Sets data-section="[SECTIONNAME]" on links
          * SECIONNAME is determined by seeking the closest heading (or headinglike) element to the link
+         * @returns {void}
          */
-        // todo: @returns, should this have scope?
-        links: function () {
-            const links = [].slice.call(document.querySelectorAll('a')) as HTMLLinkElement[];
+        links: function (scope: HTMLElement = document.documentElement): void {
+            const links = [].slice.call(scope.querySelectorAll('a')) as HTMLLinkElement[];
             links.forEach(link => {
-                const nearestHeader = tracking.getNearestSectionHeader(link);//
+                const nearestHeader = tracking.getNearestSectionHeader(link);
                 if (nearestHeader) {
                     if (!link.getAttribute('data-section')) {
                         link.setAttribute('data-section', nearestHeader.textContent.trim());
