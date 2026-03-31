@@ -72,7 +72,7 @@ jobs:
       # Set version in DS code
       - name: Set version in DS
         run: |
-          echo "export default '${{env.NEW_VERSION}}';" > src/version.js
+          echo "export default '${{env.NEW_VERSION}}';" > src/version.ts
 
       # Build release assets
       - name: Build release assets
@@ -89,7 +89,7 @@ jobs:
         run: |
           git add "package.json"
           git add "package-lock.json"
-          git add "src/version.js"
+          git add "src/version.ts"
           git commit -m "chore: release ${{env.NEW_VERSION}}"
           git tag ${{env.NEW_VERSION}}
 
