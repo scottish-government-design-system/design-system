@@ -40,8 +40,12 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
         color: settings.$ds_colour__brand;
     }
 
-    &--hover {
+    &--navigation {
         @include helpers.ds_box-shadow;
+
+        &::before {
+            content: none;
+        }
 
         .ds_icon {
             color: settings.$ds_colour__link;
@@ -277,7 +281,7 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
     &--min-height {
         @include helpers.ds_media-query(medium) {
             .ds_card {
-                min-height: 12.5rem;
+                min-height: 11rem;
             }
         }
     }
