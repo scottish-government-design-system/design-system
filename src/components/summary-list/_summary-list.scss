@@ -22,6 +22,7 @@ $summary-list__border-width: 0.0625rem; // 1px
     &__value,
     &__actions {
         display: block;
+        margin-left: 0;
         overflow-wrap: break-word;
         @include helpers.ds_responsive-margin(1, bottom);
     }
