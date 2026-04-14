@@ -3598,27 +3598,30 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_card .ds_icon {
   color: #0065bd;
 }
-.ds_card--hover {
+.ds_card--navigation {
   box-shadow: 0.0625rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.15);
 }
-.ds_card--hover .ds_icon {
+.ds_card--navigation::before {
+  content: none;
+}
+.ds_card--navigation .ds_icon {
   color: #0065bd;
   transition: color 0.2s;
 }
 @media screen and (forced-colors: active) {
-  .ds_card--hover .ds_icon {
+  .ds_card--navigation .ds_icon {
     color: linktext !important;
   }
 }
-.ds_card--hover .ds_card__content-main,
-.ds_card--hover .ds_metadata--inline {
+.ds_card--navigation .ds_card__content-main,
+.ds_card--navigation .ds_metadata--inline {
   transition: color 0.2s;
 }
-.ds_card--hover:hover .ds_icon {
+.ds_card--navigation:hover .ds_icon {
   color: rgb(0, 66.9325396825, 125.25);
 }
-.ds_card--hover:hover .ds_card__content-main,
-.ds_card--hover:hover .ds_metadata--inline {
+.ds_card--navigation:hover .ds_card__content-main,
+.ds_card--navigation:hover .ds_metadata--inline {
   color: #1a1a1a;
 }
 .ds_card__media img {
@@ -3868,7 +3871,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 @media (min-width: 48rem) {
   .ds_card-grid--min-height .ds_card {
-    min-height: 12.5rem;
+    min-height: 11rem;
   }
 }
 

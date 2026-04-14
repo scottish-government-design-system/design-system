@@ -322,7 +322,7 @@ class D {
     return this.tokens.join(" ").trim();
   }
 }
-const x = "v4.0.0-beta.2";
+const x = "v5.0.0-beta.0";
 function E(i) {
   return i = String(i), i.trim().toLowerCase().replace(/['"’‘”“`]/g, "").replace(/[\W|_]+/g, "-").replace(/^-+|-+$/g, "");
 }
@@ -1710,14 +1710,7 @@ class R extends b {
   init() {
     this.checkboxes.forEach((t) => {
       t.addEventListener("change", () => {
-        switch (t.dataset.behaviour) {
-          case "exclusive":
-            this.checkboxes.filter((e) => e !== t).forEach((e) => e.checked = !1);
-            break;
-          default:
-            this.checkboxes.filter((e) => e.dataset.behaviour === "exclusive").forEach((e) => e.checked = !1);
-            break;
-        }
+        t.dataset.behaviour === "exclusive" ? this.checkboxes.filter((e) => e !== t).forEach((e) => e.checked = !1) : this.checkboxes.filter((e) => e.dataset.behaviour === "exclusive").forEach((e) => e.checked = !1);
       });
     }), this.isInitialised = !0;
   }
@@ -2130,7 +2123,6 @@ class Y extends b {
         case "MDY":
           s = /* @__PURE__ */ new Date(`${n[0]}/${n[1]}/${n[2]}`);
           break;
-        case "DMY":
         default:
           s = /* @__PURE__ */ new Date(`${n[1]}/${n[0]}/${n[2]}`);
           break;
@@ -2263,7 +2255,6 @@ class Y extends b {
         case "MDY":
           this.inputElement.value = `${this.leadingZeroes(t.getMonth() + 1)}/${this.leadingZeroes(t.getDate())}/${t.getFullYear()}`;
           break;
-        case "DMY":
         default:
           this.inputElement.value = `${this.leadingZeroes(t.getDate())}/${this.leadingZeroes(t.getMonth() + 1)}/${t.getFullYear()}`;
           break;
