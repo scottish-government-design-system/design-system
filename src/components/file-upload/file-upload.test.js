@@ -341,6 +341,19 @@ describe('file upload', () => {
 
                 expect(fileUploadModule.statusSpan.textContent).toEqual('No file chosen');
             });
+
+            it('dropping a file clears the announcements span', () => {
+                const file = new File(['My file'], 'myfile.txt', { type: 'text/plain' });
+                dataTransfer.items.add(file);
+
+                // first, make the announcement text have a realistic value
+                fireCustomEvent('dragenter', fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
+                expect(fileUploadModule.announcementsSpan.textContent).toEqual('Entered drop zone');
+
+                // perform a file drop
+                fireCustomEvent('drop', fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
+                expect(fileUploadModule.announcementsSpan.textContent).toEqual('');
+            });
         });
 
         describe('"can accept" scenarios', () => {
