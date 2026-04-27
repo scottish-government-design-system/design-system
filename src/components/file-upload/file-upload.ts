@@ -272,6 +272,9 @@ class FileUpload extends DSComponent {
             this.hideDraggingState();
         }
 
+        // clear the dropzone announcement
+        this.announcementsSpan.textContent = '';
+
         return;
     }
 
