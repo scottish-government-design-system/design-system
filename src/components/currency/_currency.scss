@@ -11,14 +11,14 @@
     &::before {
         @include helpers.ds_large-size;
         content: '£';
-        height: settings.$input-size;
+        height: settings.$input-min-height;
         font-weight: settings.$bold;
-        line-height: settings.$input-size !important;
+        line-height: settings.$input-min-height !important;
         pointer-events: none;
         position: absolute;
         text-align: center;
         top: 0;
-        width: settings.$input-size;
+        width: 2.5rem;
     }
 
     &[data-symbol]::before {
