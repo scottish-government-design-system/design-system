@@ -37,6 +37,9 @@ export function initAll(scope = document) {
     const notificationBannerElements = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]:not(.js-instantiated)')) as HTMLElement[]
     notificationBannerElements.forEach(notificationBanner => new DS.components.NotificationBanner(notificationBanner).init());
 
+    const notificationMessageElements = [].slice.call(scope.querySelectorAll('[data-module="ds-notification-message"]:not(.js-instantiated)')) as HTMLElement[]
+    notificationMessageElements.forEach(notificationMessage => new DS.components.NotificationMessage(notificationMessage).init());
+
     const sideNavigationElements = [].slice.call(scope.querySelectorAll('[data-module="ds-side-navigation"]:not(.js-instantiated)')) as HTMLElement[]
     sideNavigationElements.forEach(sideNavigation => new DS.components.SideNavigation(sideNavigation).init());
 

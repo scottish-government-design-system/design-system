@@ -9,6 +9,7 @@ import Details from './details/details';
 import FileUpload from './file-upload/file-upload';
 import HideThisPage from './hide-this-page/hide-this-page';
 import NotificationBanner from './notification-banner/notification-banner';
+import NotificationMessage from './notification-message/notification-message';
 import SideNavigation from './side-navigation/side-navigation';
 import SiteNavigation from './site-navigation/site-navigation';
 import skipLinks from './skip-links/skip-links';
@@ -29,6 +30,7 @@ export default {
     FileUpload,
     HideThisPage,
     NotificationBanner,
+    NotificationMessage,
     SideNavigation,
     SiteNavigation,
     skipLinks,
