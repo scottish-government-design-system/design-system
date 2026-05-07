@@ -61,9 +61,67 @@
         margin-top: 0;
     }
 
-    @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--secondary, 'confirmation message');
+    &__close {
+        @include helpers.ds_link;
+        @include helpers.ds_high-contrast-button;
+
+        background: transparent;
+        border-width: 0;
+        color: settings.$ds_colour__text--secondary;
+        display: none;
+        height: 2rem;
+        padding: 0;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        width: 2rem;
+        
+        &:hover:not(:focus) {
+            color: settings.$ds_colour__text--secondary;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        > * {
+            pointer-events: none;
+        }
+    }
+
+    &:has(&__close) {
+        padding-right: 4rem;
+    }
+
+    @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--secondary, 'notification message');
+}
+
+@mixin ds_notification-message-state($notification-colour: settings.$ds_colour__state--positive) {
+    border-color: $notification-colour;
+
+    .ds_notification-message__icon {
+        color: $notification-colour;
+    }
 }
 
 .ds_notification-message {
     @include ds_notification-message;
+
+    &--info {
+        @include ds_notification-message-state(settings.$ds_colour__state--info);        
+    }
+
+    &--warning {
+        @include ds_notification-message-state(settings.$ds_colour__state--warning);
+    }
+
+    &--error {
+        @include ds_notification-message-state(settings.$ds_colour__state--negative);
+    }
+}
+
+.js-initialised {
+    .ds_notification-message__close {
+        display: block;
+    }
 }

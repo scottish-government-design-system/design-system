@@ -601,6 +601,7 @@ const tracking = {
 
         /**
          * Sets data-navigation="confirmation-link" on links in confirmation message components
+         * DEPRECATED - this will be removed in a future release
          *
          * @param {HTMLElement} scope - the element to initialize tracking on
          * @returns {void}
@@ -937,6 +938,42 @@ const tracking = {
                 if (close && !close.getAttribute('data-banner')) {
                     close.setAttribute('data-banner', `banner-${bannername}-close`);
                 }
+            });
+        },
+
+        /**
+         * Sets data-banner="banner-[NAME]-link" on links in notification banners
+         * Sets data-banner="banner-[NAME]-[BUTTONTEXT]" on buttons in notification banners
+         * Sets data-banner="banner-[NAME]-close" on notification banner close buttons
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        notificationMessages: function (scope: HTMLElement = document.documentElement): void {
+            const notificationMessages = tracking.gatherElements('ds_notification-message', scope);
+            notificationMessages.forEach((message, index) => {
+                const messageName = message.id || (index + 1).toString();
+                const notificationType = (() => {
+                    if (message.classList.contains('ds_notification-message--error')) {
+                        return 'error'
+                    } else if (message.classList.contains('ds_notification-message--warning')) {
+                        return 'warning'
+                    } else if (message.classList.contains('ds_notification-message--info')) {
+                        return 'info'
+                    } else {
+                        return 'confirmation'
+                    }
+                })();
+
+                const links = [].slice.call(message.querySelectorAll('a')) as HTMLLinkElement[];
+                links.forEach(link => {
+                    if (!link.getAttribute('data-navigation')) {
+                        link.setAttribute('data-navigation', `${notificationType}-${messageName}-link`);
+                    }
+                });
+
+                const close = message.querySelector('.ds_notification-message__close') as HTMLButtonElement;
+                close?.setAttribute('data-button', `${notificationType}-${messageName}-close`);
             });
         },
 

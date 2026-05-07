@@ -152,5 +152,7 @@ $ds_colour__input--spot:                currentColor !default; // not currently 
 
 
 // state
+$ds_colour__state--info:        $ds_colour__blue;
 $ds_colour__state--negative:    $ds_colour__red;
 $ds_colour__state--positive:    $ds_colour__dark-green;
+$ds_colour__state--warning:     $ds_colour__orange;

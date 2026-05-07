@@ -1297,6 +1297,88 @@ describe('tracking', () => {
         });
     });
 
+    describe('notification messages', () => {
+        beforeEach(() => {
+            testObj.scope = document.getElementById('notification-messages');
+        });
+
+        // links and buttons with and without attributes
+        it('should add a generated data attribute on notification message links without attributes already set', () => {
+            const link = testObj.scope.querySelector('a[data-unit="without-attribute"]');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-navigation')).toEqual('confirmation-mymessage-link');
+        });
+
+        it('should NOT add a generated data attribute on notification message links with attributes already set', () => {
+            const link = testObj.scope.querySelector('a[data-unit="with-attribute"]');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-navigation')).toEqual('bar-link');
+        });
+
+        it('should add a generated data attribute on notification message close buttons without attributes already set', () => {
+            const link = testObj.scope.querySelector('.ds_notification-message__close[data-unit="without-attribute"]');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-button')).toEqual('confirmation-mymessage-close');
+        });
+
+        it('should add a generated data attribute on notification message close buttons with attributes already set', () => {
+            const link = testObj.scope.querySelector('.ds_notification-message__close[data-unit="with-attribute"]');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-button')).not.toEqual('baz-close');
+        });
+
+        // messages with and without IDs
+        it('should use the message ID in data attributes if the message has an ID', () => {
+            const link = testObj.scope.querySelector('.ds_notification-message[data-unit="with-id"] a[data-unit="without-attribute"]');
+            const closeButton = testObj.scope.querySelector('.ds_notification-message[data-unit="with-id"] .ds_notification-message__close');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-navigation')).toEqual('confirmation-mymessage-link');
+            expect(closeButton.getAttribute('data-button')).toEqual('confirmation-mymessage-close');
+        });
+
+        it('should use the message index (one-indexed) in data attributes if the message does not have an ID', () => {
+            const link = testObj.scope.querySelector('.ds_notification-message[data-unit="without-id"] a[data-unit="without-attribute"]');
+            const closeButton = testObj.scope.querySelector('.ds_notification-message[data-unit="without-id"] .ds_notification-message__close');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-navigation')).toEqual('confirmation-2-link');
+            expect(closeButton.getAttribute('data-button')).toEqual('confirmation-2-close');
+        });
+
+        // messages with different states
+        it('should use the warning state in data attributes if the message is in the warning state', () => {
+            const link = testObj.scope.querySelector('.ds_notification-message[data-unit="warning-state"] a[data-unit="without-attribute"]');
+            const closeButton = testObj.scope.querySelector('.ds_notification-message[data-unit="warning-state"] .ds_notification-message__close');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-navigation')).toEqual('warning-3-link');
+            expect(closeButton.getAttribute('data-button')).toEqual('warning-3-close');
+        });
+
+        it('should use the error state in data attributes if the message is in the error state', () => {
+            const link = testObj.scope.querySelector('.ds_notification-message[data-unit="error-state"] a[data-unit="without-attribute"]');
+            const closeButton = testObj.scope.querySelector('.ds_notification-message[data-unit="error-state"] .ds_notification-message__close');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-navigation')).toEqual('error-4-link');
+            expect(closeButton.getAttribute('data-button')).toEqual('error-4-close');
+        });
+
+        it('should use the info state in data attributes if the message is in the info state', () => {
+            const link = testObj.scope.querySelector('.ds_notification-message[data-unit="info-state"] a[data-unit="without-attribute"]');
+            const closeButton = testObj.scope.querySelector('.ds_notification-message[data-unit="info-state"] .ds_notification-message__close');
+            Tracking.add.notificationMessages();
+
+            expect(link.getAttribute('data-navigation')).toEqual('info-5-link');
+            expect(closeButton.getAttribute('data-button')).toEqual('info-5-close');
+        });
+    });
+
     describe('pagination', () => {
         beforeEach(() => {
             testObj.scope = document.getElementById('pagination');
