@@ -322,7 +322,7 @@ class D {
     return this.tokens.join(" ").trim();
   }
 }
-const x = "v4.0.0";
+const x = "v4.0.1";
 function E(i) {
   return i = String(i), i.trim().toLowerCase().replace(/['"’‘”“`]/g, "").replace(/[\W|_]+/g, "-").replace(/^-+|-+$/g, "");
 }
@@ -345,7 +345,7 @@ function $(i, t, e) {
   }
   return null;
 }
-const r = {
+const l = {
   hasAddedCanonicalUrl: !1,
   hasAddedClickTracking: !1,
   hasAddedPrefersColorScheme: !1,
@@ -358,8 +358,8 @@ const r = {
    */
   init: function(i = document.documentElement) {
     let t;
-    for (t in r.add)
-      r.add[t](i);
+    for (t in l.add)
+      l.add[t](i);
   },
   /**
    * Gather elements by class name
@@ -404,7 +404,7 @@ const r = {
       return;
     const n = $(C(i), e, s);
     let a;
-    return n ? a = n : i.parentElement && (a = r.getNearestSectionHeader(i.parentElement)), a;
+    return n ? a = n : i.parentElement && (a = l.getNearestSectionHeader(i.parentElement)), a;
   },
   /**
    * Push data to the dataLayer
@@ -429,19 +429,19 @@ const r = {
      * @returns {void}
      */
     clicks: function(i = document.documentElement) {
-      r.hasAddedClickTracking || (i.addEventListener("click", (t) => {
-        r.pushToDataLayer({
-          method: r.getClickType(t)
+      l.hasAddedClickTracking || (i.addEventListener("click", (t) => {
+        l.pushToDataLayer({
+          method: l.getClickType(t)
         });
       }), i.addEventListener("auxclick", (t) => {
-        (t.button === 1 || t.buttons === 4) && r.pushToDataLayer({
-          method: r.getClickType(t)
+        (t.button === 1 || t.buttons === 4) && l.pushToDataLayer({
+          method: l.getClickType(t)
         });
       }), i.addEventListener("contextmenu", (t) => {
-        r.pushToDataLayer({
-          method: r.getClickType(t)
+        l.pushToDataLayer({
+          method: l.getClickType(t)
         });
-      }), r.hasAddedClickTracking = !0);
+      }), l.hasAddedClickTracking = !0);
     },
     /**
      * Add canonical URL to dataLayer
@@ -451,9 +451,9 @@ const r = {
      */
     canonicalUrl: () => {
       const i = document.querySelector('link[rel="canonical"]');
-      i && i.href && (r.hasAddedCanonicalUrl || (r.pushToDataLayer({
+      i && i.href && (l.hasAddedCanonicalUrl || (l.pushToDataLayer({
         canonicalUrl: i.href
-      }), r.hasAddedCanonicalUrl = !0));
+      }), l.hasAddedCanonicalUrl = !0));
     },
     /**
      * Add prefers color scheme to dataLayer
@@ -465,9 +465,9 @@ const r = {
       if (!window.matchMedia)
         return;
       const i = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      r.hasAddedPrefersColorScheme || (r.pushToDataLayer({
+      l.hasAddedPrefersColorScheme || (l.pushToDataLayer({
         prefersColorScheme: i
-      }), r.hasAddedPrefersColorScheme = !0);
+      }), l.hasAddedPrefersColorScheme = !0);
     },
     /**
      * Add version to dataLayer
@@ -476,9 +476,9 @@ const r = {
      * @returns {void}
      */
     version: function() {
-      r.hasAddedVersion || (r.pushToDataLayer({
+      l.hasAddedVersion || (l.pushToDataLayer({
         version: x
-      }), r.hasAddedVersion = !0);
+      }), l.hasAddedVersion = !0);
     },
     /**
      * Sets data-navigation="accordion-link" on links in accordion panels
@@ -490,7 +490,7 @@ const r = {
      * @returns {void}
      */
     accordions: function(i = document.documentElement) {
-      r.gatherElements("ds_accordion", i).forEach((e) => {
+      l.gatherElements("ds_accordion", i).forEach((e) => {
         let s = "";
         if (e.dataset.name && (s = e.dataset.name), !e.classList.contains("js-initialised"))
           return;
@@ -498,27 +498,27 @@ const r = {
           u.getAttribute("data-navigation") || u.setAttribute("data-navigation", "accordion-link");
         });
         const a = e.querySelector(".js-open-all"), o = [].slice.call(e.querySelectorAll(".ds_accordion-item"));
-        function l() {
+        function r() {
           const u = e.querySelectorAll(".ds_accordion-item--open").length;
           return o.length === u;
         }
-        function c(u) {
-          u && (l() ? u.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}close-all`) : u.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}open-all`));
+        function d(u) {
+          u && (r() ? u.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}close-all`) : u.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}open-all`));
         }
         function m(u, g) {
-          const d = u.querySelector(".ds_accordion-item__button"), _ = u.querySelector(".ds_accordion-item__control");
-          d.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}${_.checked ? "close" : "open"}-${g + 1}`);
+          const c = u.querySelector(".ds_accordion-item__button"), _ = u.querySelector(".ds_accordion-item__control");
+          c.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}${_.checked ? "close" : "open"}-${g + 1}`);
         }
-        c(a), o.forEach((u, g) => {
+        d(a), o.forEach((u, g) => {
           m(u, g);
         }), a && a.addEventListener("click", () => {
           o.forEach((u, g) => {
             m(u, g);
-          }), c(a);
+          }), d(a);
         }), o.forEach((u, g) => {
-          const d = u.querySelector(".ds_accordion-item__button"), _ = u.querySelector(".ds_accordion-item__control");
-          d.addEventListener("click", () => {
-            d.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}${_.checked ? "close" : "open"}-${g + 1}`), c(a);
+          const c = u.querySelector(".ds_accordion-item__button"), _ = u.querySelector(".ds_accordion-item__control");
+          c.addEventListener("click", () => {
+            c.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}${_.checked ? "close" : "open"}-${g + 1}`), d(a);
           });
         });
       });
@@ -530,7 +530,7 @@ const r = {
      * @returns {void}
      */
     asides: function(i = document.documentElement) {
-      r.gatherElements("ds_article-aside", i).forEach((e) => {
+      l.gatherElements("ds_article-aside", i).forEach((e) => {
         [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((n, a) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `link-related-${a + 1}`);
         });
@@ -551,7 +551,7 @@ const r = {
      */
     autocompletes: function(i = document.documentElement) {
       function t(s, n) {
-        r.pushToDataLayer({
+        l.pushToDataLayer({
           event: "autocomplete",
           searchText: s,
           clickText: n.dataset.autocompletetext,
@@ -559,11 +559,11 @@ const r = {
           clickedResults: `result ${n.dataset.autocompleteposition} of ${n.dataset.autocompletecount}`
         }), delete n.dataset.autocompletetext, delete n.dataset.autocompletecount, delete n.dataset.autocompleteposition;
       }
-      r.gatherElements("ds_autocomplete", i).forEach((s) => {
+      l.gatherElements("ds_autocomplete", i).forEach((s) => {
         const n = s.querySelector(".js-autocomplete-input"), a = document.querySelector("#" + n.getAttribute("aria-owns") + " .ds_autocomplete__suggestions-list");
         let o = n.value;
-        n.addEventListener("keydown", (l) => {
-          l.key === "Enter" && n.dataset.autocompletetext && t(o, n), o = n.value;
+        n.addEventListener("keydown", (r) => {
+          r.key === "Enter" && n.dataset.autocompletetext && t(o, n), o = n.value;
         }), a?.addEventListener("mousedown", () => {
           t(o, n);
         });
@@ -576,7 +576,7 @@ const r = {
      * @returns {void}
      */
     backToTop: function(i = document.documentElement) {
-      r.gatherElements("ds_back-to-top__button", i).forEach((e) => {
+      l.gatherElements("ds_back-to-top__button", i).forEach((e) => {
         e.setAttribute("data-navigation", "backtotop");
       });
     },
@@ -587,7 +587,7 @@ const r = {
      * @returns {void}
      */
     breadcrumbs: function(i = document.documentElement) {
-      r.gatherElements("ds_breadcrumbs", i).forEach((e) => {
+      l.gatherElements("ds_breadcrumbs", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_breadcrumbs__link")).forEach((n, a) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `breadcrumb-${a + 1}`);
         });
@@ -611,13 +611,13 @@ const r = {
      * @returns {void}
      */
     cards: function(i = document.documentElement) {
-      r.gatherElements("ds_card__link--cover", i).forEach((s, n) => {
+      l.gatherElements("ds_card__link--cover", i).forEach((s, n) => {
         s.getAttribute("data-navigation") || s.setAttribute("data-navigation", `card-${n + 1}`);
-      }), r.gatherElements("ds_card", i).forEach((s, n) => {
-        [].slice.call(s.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button')).forEach((l) => {
-          l.getAttribute("data-section") || l.setAttribute("data-section", `card-${n + 1}`);
-        }), [].slice.call(s.querySelectorAll("a:not(.ds_card__link)")).forEach((l) => {
-          l.getAttribute("data-section") || l.setAttribute("data-section", `card-${n + 1}`);
+      }), l.gatherElements("ds_card", i).forEach((s, n) => {
+        [].slice.call(s.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button')).forEach((r) => {
+          r.getAttribute("data-section") || r.setAttribute("data-section", `card-${n + 1}`);
+        }), [].slice.call(s.querySelectorAll("a:not(.ds_card__link)")).forEach((r) => {
+          r.getAttribute("data-section") || r.setAttribute("data-section", `card-${n + 1}`);
         });
       });
     },
@@ -628,7 +628,7 @@ const r = {
      * @returns {void}
      */
     categoryLists: function(i = document.documentElement) {
-      r.gatherElements("ds_category-list", i).forEach((e) => {
+      l.gatherElements("ds_category-list", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_category-item__link")).forEach((n, a) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `category-item-${a + 1}`);
         });
@@ -644,7 +644,7 @@ const r = {
      * @returns {void}
      */
     checkboxes: function(i = document.documentElement) {
-      r.gatherElements("ds_checkbox__input", i).forEach((e) => {
+      l.gatherElements("ds_checkbox__input", i).forEach((e) => {
         let s = e.getAttribute("data-form") || "";
         !s && e.id ? s = `checkbox-${e.id}` : s = s.replace(/-checked/g, ""), e.checked && (s = s + "-checked"), e.setAttribute("data-form", s), e.id && !e.getAttribute("data-value") && e.setAttribute("data-value", `${e.id}`);
         const n = i.querySelector(`[for=${e.id}]`);
@@ -660,7 +660,7 @@ const r = {
      * @returns {void}
      */
     confirmationMessages: function(i = document.documentElement) {
-      r.gatherElements("ds_confirmation-message", i).forEach((e) => {
+      l.gatherElements("ds_confirmation-message", i).forEach((e) => {
         [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((n) => {
           n.setAttribute("data-navigation", "confirmation-link");
         });
@@ -674,7 +674,7 @@ const r = {
      * @returns {void}
      */
     contactDetails: function(i = document.documentElement) {
-      r.gatherElements("ds_contact-details", i).forEach((e) => {
+      l.gatherElements("ds_contact-details", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_contact-details__social-link")).forEach((a) => {
           a.getAttribute("data-navigation") || a.setAttribute("data-navigation", `contact-details-${E(a.textContent)}`);
         }), [].slice.call(e.querySelectorAll('a[href^="mailto"]')).forEach((a) => {
@@ -689,7 +689,7 @@ const r = {
      * @returns {void}
      */
     contentNavs: function(i = document.documentElement) {
-      r.gatherElements("ds_contents-nav", i).forEach((e) => {
+      l.gatherElements("ds_contents-nav", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_contents-nav__link")).forEach((n, a) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `contentsnav-${a + 1}`);
         });
@@ -704,7 +704,7 @@ const r = {
      * @returns {void}
      */
     details: function(i = document.documentElement) {
-      r.gatherElements("ds_details", i).forEach((e) => {
+      l.gatherElements("ds_details", i).forEach((e) => {
         const s = e.querySelector(".ds_details__summary");
         s.setAttribute("data-accordion", `detail-${e.open ? "close" : "open"}`), s.addEventListener("click", () => {
           s.setAttribute("data-accordion", `detail-${e.open ? "open" : "close"}`);
@@ -721,16 +721,16 @@ const r = {
      * @returns {void}
      */
     errorMessages: function(i = document.documentElement) {
-      r.gatherElements("ds_question__error-message", i).forEach((e, s) => {
+      l.gatherElements("ds_question__error-message", i).forEach((e, s) => {
         if (typeof e.closest == "function" && e.closest(".ds_question")) {
           const a = e.closest(".ds_question")?.querySelector(".js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input");
           let o = (s + 1).toString();
           if (a)
             if (a.classList.contains("js-validation-group")) {
-              const l = function(m, u, g) {
+              const r = function(m, u, g) {
                 return g.indexOf(m) === u;
               };
-              o = [].slice.call(a.querySelectorAll(".ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input")).map((m) => m.type === "radio" ? m.name : m.id).filter(l).join("-");
+              o = [].slice.call(a.querySelectorAll(".ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input")).map((m) => m.type === "radio" ? m.name : m.id).filter(r).join("-");
             } else a.type === "radio" ? o = a.name : o = a.id;
           e.getAttribute("data-form") || e.setAttribute("data-form", `error-${o}`);
         }
@@ -744,7 +744,7 @@ const r = {
      * @returns {void}
      */
     errorSummaries: function(i = document.documentElement) {
-      r.gatherElements("ds_error-summary", i).forEach((e) => {
+      l.gatherElements("ds_error-summary", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_error-summary__list a")).forEach((n) => {
           !n.getAttribute("data-form") && n.href && n.setAttribute("data-form", `error-${n.href.substring(n.href.lastIndexOf("#") + 1)}`);
         });
@@ -772,10 +772,10 @@ const r = {
      * @returns {void}
      */
     hideThisPage: function(i = document.documentElement) {
-      r.gatherElements("ds_hide-page", i).forEach((e) => {
+      l.gatherElements("ds_hide-page", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_hide-page__button")).forEach((n) => {
           n.setAttribute("data-navigation", "hide-this-page"), document.addEventListener("keyup", (a) => {
-            a.key === "Esc" && r.pushToDataLayer({ event: "hide-this-page-keyboard" });
+            a.key === "Esc" && l.pushToDataLayer({ event: "hide-this-page-keyboard" });
           });
         });
       });
@@ -787,7 +787,7 @@ const r = {
      * @returns {void}
      */
     insetTexts: function(i = document.documentElement) {
-      r.gatherElements("ds_inset-text", i).forEach((e) => {
+      l.gatherElements("ds_inset-text", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_inset-text__text a:not(.ds_button)")).forEach((n) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", "inset-link");
         });
@@ -800,7 +800,7 @@ const r = {
     // todo: @returns, should this have scope?
     links: function() {
       [].slice.call(document.querySelectorAll("a")).forEach((t) => {
-        const e = r.getNearestSectionHeader(t);
+        const e = l.getNearestSectionHeader(t);
         e && (t.getAttribute("data-section") || t.setAttribute("data-section", e.textContent.trim()));
       });
     },
@@ -811,11 +811,11 @@ const r = {
      * @returns {void}
      */
     metadataItems: function(i = document.documentElement) {
-      r.gatherElements("ds_metadata__item", i).forEach((e, s) => {
+      l.gatherElements("ds_metadata__item", i).forEach((e, s) => {
         const n = e.querySelector(".ds_metadata__key");
         let a;
-        n ? a = n.textContent.trim() : a = `metadata-${s}`, [].slice.call(e.querySelectorAll(".ds_metadata__value a")).forEach((l, c) => {
-          l.getAttribute("data-navigation") || l.setAttribute("data-navigation", `${E(a)}-${c + 1}`);
+        n ? a = n.textContent.trim() : a = `metadata-${s}`, [].slice.call(e.querySelectorAll(".ds_metadata__value a")).forEach((r, d) => {
+          r.getAttribute("data-navigation") || r.setAttribute("data-navigation", `${E(a)}-${d + 1}`);
         });
       });
     },
@@ -828,15 +828,15 @@ const r = {
      * @returns {void}
      */
     notifications: function(i = document.documentElement) {
-      r.gatherElements("ds_notification", i).forEach((e, s) => {
+      l.gatherElements("ds_notification", i).forEach((e, s) => {
         const n = e.id || (s + 1).toString();
-        [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((c) => {
-          c.getAttribute("data-banner") || c.setAttribute("data-banner", `banner-${n}-link`);
-        }), [].slice.call(e.querySelectorAll(".ds_button:not(.ds_notification__close)")).forEach((c) => {
-          c.getAttribute("data-banner") || c.setAttribute("data-banner", `banner-${n}-${E(c.textContent)}`);
+        [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((d) => {
+          d.getAttribute("data-banner") || d.setAttribute("data-banner", `banner-${n}-link`);
+        }), [].slice.call(e.querySelectorAll(".ds_button:not(.ds_notification__close)")).forEach((d) => {
+          d.getAttribute("data-banner") || d.setAttribute("data-banner", `banner-${n}-${E(d.textContent)}`);
         });
-        const l = e.querySelector(".ds_notification__close");
-        l && !l.getAttribute("data-banner") && l.setAttribute("data-banner", `banner-${n}-close`);
+        const r = e.querySelector(".ds_notification__close");
+        r && !r.getAttribute("data-banner") && r.setAttribute("data-banner", `banner-${n}-close`);
       });
     },
     /**
@@ -847,7 +847,7 @@ const r = {
      * @returns {void}
      */
     pagination: function(i = document.documentElement) {
-      r.gatherElements("ds_pagination", i).forEach((e) => {
+      l.gatherElements("ds_pagination", i).forEach((e) => {
         const s = e.querySelector(".ds_pagination__load-more button");
         s && !s.getAttribute("data-search") && s.setAttribute("data-search", "pagination-more"), [].slice.call(e.querySelectorAll("a.ds_pagination__link")).forEach((a) => {
           a.getAttribute("data-search") || a.setAttribute("data-search", `pagination-${E(a.textContent)}`);
@@ -861,7 +861,7 @@ const r = {
      * @returns {void}
      */
     phaseBanners: function(i = document.documentElement) {
-      r.gatherElements("ds_phase-banner", i).forEach((e) => {
+      l.gatherElements("ds_phase-banner", i).forEach((e) => {
         const s = e.querySelector(".ds_tag"), n = s ? s.textContent.trim() : "phase";
         [].slice.call(e.querySelectorAll("a")).forEach((o) => {
           o.getAttribute("data-banner") || o.setAttribute("data-banner", `banner-${E(n)}-link`);
@@ -876,7 +876,7 @@ const r = {
      * @returns {void}
      */
     radios: function(i = document.documentElement) {
-      r.gatherElements("ds_radio__input", i).forEach((e) => {
+      l.gatherElements("ds_radio__input", i).forEach((e) => {
         !e.getAttribute("data-form") && e.name && e.id && e.setAttribute("data-form", `radio-${e.name}-${e.id}`), e.id && !e.getAttribute("data-value") && e.setAttribute("data-value", `${e.id}`);
       });
     },
@@ -887,7 +887,7 @@ const r = {
      * @returns {void}
      */
     searchFacets: function(i = document.documentElement) {
-      r.gatherElements("ds_facet__button", i).forEach((e) => {
+      l.gatherElements("ds_facet__button", i).forEach((e) => {
         e.setAttribute("data-button", `button-filter-${e.dataset.slug}-remove`);
       });
     },
@@ -901,23 +901,23 @@ const r = {
      * @returns {void}
      */
     searchResults: function(i = document.documentElement) {
-      r.gatherElements("ds_search-results", i).forEach((e) => {
+      l.gatherElements("ds_search-results", i).forEach((e) => {
         const s = e.querySelector(".ds_search-results__list");
         if (!s)
           return;
         const n = [].slice.call(e.querySelectorAll(".ds_search-result")), a = [].slice.call(e.querySelectorAll(".ds_search-result--promoted")), o = +(s.getAttribute("start") || "1");
-        n.forEach((l, c) => {
-          const m = l.querySelector(".ds_search-result__link"), u = l.querySelector(".ds_search-result__media-link"), g = l.querySelector(".ds_search-result__context a");
-          if (l.classList.contains("ds_search-result--promoted")) {
-            const d = `search-promoted-${c + 1}/${a.length}`;
-            m.setAttribute("data-search", d);
+        n.forEach((r, d) => {
+          const m = r.querySelector(".ds_search-result__link"), u = r.querySelector(".ds_search-result__media-link"), g = r.querySelector(".ds_search-result__context a");
+          if (r.classList.contains("ds_search-result--promoted")) {
+            const c = `search-promoted-${d + 1}/${a.length}`;
+            m.setAttribute("data-search", c);
           } else {
-            let d;
-            s.getAttribute("data-total") && (d = s.getAttribute("data-total"));
-            let _ = `search-result-${o + c - a.length}`;
-            const y = `search-image-${o + c - a.length}`;
-            let v = `search-parent-link-${o + c - a.length}`;
-            d && (_ += `/${d}`, v += `/${d}`), m.setAttribute("data-search", _), u && u.setAttribute("data-search", y), g && g.setAttribute("data-search", v);
+            let c;
+            s.getAttribute("data-total") && (c = s.getAttribute("data-total"));
+            let _ = `search-result-${o + d - a.length}`;
+            const y = `search-image-${o + d - a.length}`;
+            let v = `search-parent-link-${o + d - a.length}`;
+            c && (_ += `/${c}`, v += `/${c}`), m.setAttribute("data-search", _), u && u.setAttribute("data-search", y), g && g.setAttribute("data-search", v);
           }
         });
       });
@@ -929,7 +929,7 @@ const r = {
      * @returns {void}
      */
     searchSuggestions: function(i = document.documentElement) {
-      r.gatherElements("ds_search-suggestions", i).forEach((e) => {
+      l.gatherElements("ds_search-suggestions", i).forEach((e) => {
         const s = [].slice.call(e.querySelectorAll(".ds_search-suggestions a"));
         s.forEach((n, a) => {
           n.setAttribute("data-search", `suggestion-result-${a + 1}/${s.length}`);
@@ -943,7 +943,7 @@ const r = {
      * @returns {void}
      */
     searchRelated: function(i = document.documentElement) {
-      r.gatherElements("ds_search-results__related", i).forEach((e) => {
+      l.gatherElements("ds_search-results__related", i).forEach((e) => {
         const s = [].slice.call(e.querySelectorAll(".ds_search-results__related a"));
         s.forEach((n, a) => {
           n.setAttribute("data-search", `search-related-${a + 1}/${s.length}`);
@@ -959,13 +959,13 @@ const r = {
      * @returns {void}
      */
     selects: function(i = document.documentElement) {
-      r.gatherElements("ds_select", i).forEach((e) => {
+      l.gatherElements("ds_select", i).forEach((e) => {
         !e.getAttribute("data-form") && e.id && e.setAttribute("data-form", `select-${e.id}`), [].slice.call(e.querySelectorAll("option")).forEach((n) => {
           let a = "null";
           n.value && (a = E(n.value)), n.setAttribute("data-form", `${e.getAttribute("data-form")}-${a}`);
         }), e.classList.contains("js-has-tracking-event") || (e.addEventListener("change", (n) => {
           const o = n.target.querySelector(":checked");
-          r.pushToDataLayer({ event: String(o.dataset.form) });
+          l.pushToDataLayer({ event: String(o.dataset.form) });
         }), e.classList.add("js-has-tracking-event"));
       });
     },
@@ -977,7 +977,7 @@ const r = {
      * @returns {void}
      */
     sequentialNavs: function(i = document.documentElement) {
-      r.gatherElements("ds_sequential-nav", i).forEach((e) => {
+      l.gatherElements("ds_sequential-nav", i).forEach((e) => {
         const s = e.querySelector(".ds_sequential-nav__item--prev > .ds_sequential-nav__button "), n = e.querySelector(".ds_sequential-nav__item--next > .ds_sequential-nav__button ");
         s && !s.getAttribute("data-navigation") && s.setAttribute("data-navigation", "sequential-previous"), n && !n.getAttribute("data-navigation") && n.setAttribute("data-navigation", "sequential-next");
       });
@@ -999,19 +999,19 @@ const r = {
      * @returns {void}
      */
     sideNavs: function(i = document.documentElement) {
-      r.gatherElements("ds_side-navigation", i).forEach((e) => {
+      l.gatherElements("ds_side-navigation", i).forEach((e) => {
         const s = e.querySelector(".ds_side-navigation__list"), n = e.querySelector(".js-side-navigation-button"), a = e.querySelector(".js-toggle-side-navigation");
         function o() {
           n?.setAttribute("data-navigation", `navigation-${a.checked ? "close" : "open"}`);
         }
-        function l(c, m = "") {
-          [].slice.call(c.children).forEach((u, g) => {
-            [].slice.call(u.children).forEach((d) => {
-              d.classList.contains("ds_side-navigation__list") ? l(d, `${m}-${g + 1}`) : d.setAttribute("data-navigation", `sidenav${m}-${g + 1}`);
+        function r(d, m = "") {
+          [].slice.call(d.children).forEach((u, g) => {
+            [].slice.call(u.children).forEach((c) => {
+              c.classList.contains("ds_side-navigation__list") ? r(c, `${m}-${g + 1}`) : c.setAttribute("data-navigation", `sidenav${m}-${g + 1}`);
             });
           });
         }
-        l(s), n && (o(), n.addEventListener("click", () => {
+        r(s), n && (o(), n.addEventListener("click", () => {
           o();
         }));
       });
@@ -1024,7 +1024,7 @@ const r = {
      * @returns {void}
      */
     siteBranding: function(i = document.documentElement) {
-      r.gatherElements("ds_site-branding", i).forEach((e) => {
+      l.gatherElements("ds_site-branding", i).forEach((e) => {
         const s = e.querySelector(".ds_site-branding__logo");
         s && !s.getAttribute("data-header") && s.setAttribute("data-header", "header-logo");
         const n = e.querySelector(".ds_site-branding__title");
@@ -1040,13 +1040,13 @@ const r = {
      * @returns {void}
      */
     siteFooter: function(i = document.documentElement) {
-      r.gatherElements("ds_site-footer", i).forEach((e) => {
+      l.gatherElements("ds_site-footer", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_site-footer__org-link")).forEach((o) => {
           o.getAttribute("data-footer") || o.setAttribute("data-footer", "footer-logo");
         }), [].slice.call(e.querySelectorAll(".ds_site-footer__copyright a")).forEach((o) => {
           o.getAttribute("data-footer") || o.setAttribute("data-footer", "footer-copyright");
-        }), [].slice.call(e.querySelectorAll(".ds_site-items__item a:not(.ds_button)")).forEach((o, l) => {
-          o.getAttribute("data-footer") || o.setAttribute("data-footer", `footer-link-${l + 1}`);
+        }), [].slice.call(e.querySelectorAll(".ds_site-items__item a:not(.ds_button)")).forEach((o, r) => {
+          o.getAttribute("data-footer") || o.setAttribute("data-footer", `footer-link-${r + 1}`);
         });
       });
     },
@@ -1059,11 +1059,11 @@ const r = {
      * @returns {void}
      */
     siteNavigation: function(i = document.documentElement) {
-      r.gatherElements("ds_site-navigation", i).forEach((s) => {
+      l.gatherElements("ds_site-navigation", i).forEach((s) => {
         [].slice.call(s.querySelectorAll(".ds_site-navigation__link")).forEach((a, o) => {
           a.getAttribute("data-device") || (typeof a.closest == "function" && a.closest(".ds_site-navigation--mobile") ? a.setAttribute("data-device", "mobile") : a.setAttribute("data-device", "desktop")), a.getAttribute("data-header") || a.setAttribute("data-header", `header-link-${o + 1}`);
         });
-      }), r.gatherElements("ds_site-navigation--mobile", i).forEach((s) => {
+      }), l.gatherElements("ds_site-navigation--mobile", i).forEach((s) => {
         const n = s.parentNode?.querySelector(".js-toggle-menu");
         n && n.setAttribute("data-header", "header-menu-toggle");
       });
@@ -1087,11 +1087,11 @@ const r = {
      * @returns {void}
      */
     stepNavigation: function(i = document.documentElement) {
-      r.gatherElements("ds_step-navigation", i).forEach((s) => {
+      l.gatherElements("ds_step-navigation", i).forEach((s) => {
         [].slice.call(s.querySelectorAll(".ds_step-navigation__title-link")).forEach((a) => {
           a.setAttribute("data-navigation", "partof-sidebar");
         });
-      }), r.gatherElements("ds_step-navigation-top", i).forEach((s) => {
+      }), l.gatherElements("ds_step-navigation-top", i).forEach((s) => {
         [].slice.call(s.querySelectorAll("a")).forEach((a) => {
           a.setAttribute("data-navigation", "partof-header");
         });
@@ -1108,13 +1108,13 @@ const r = {
      * @returns {void}
      */
     summaryCard: function(i = document.documentElement) {
-      r.gatherElements("ds_summary-card", i).forEach((e, s) => {
+      l.gatherElements("ds_summary-card", i).forEach((e, s) => {
         [].slice.call(e.querySelectorAll(".ds_summary-card__actions-list")).forEach((a) => {
-          const o = [].slice.call(a.querySelectorAll("button")), l = [].slice.call(a.querySelectorAll("a"));
-          o.forEach((c) => {
-            c.setAttribute("data-button", `button-${E(c.textContent)}-${s + 1}`);
-          }), l.forEach((c) => {
-            c.setAttribute("data-navigation", `navigation-${E(c.textContent)}-${s + 1}`);
+          const o = [].slice.call(a.querySelectorAll("button")), r = [].slice.call(a.querySelectorAll("a"));
+          o.forEach((d) => {
+            d.setAttribute("data-button", `button-${E(d.textContent)}-${s + 1}`);
+          }), r.forEach((d) => {
+            d.setAttribute("data-navigation", `navigation-${E(d.textContent)}-${s + 1}`);
           });
         });
       });
@@ -1130,10 +1130,10 @@ const r = {
      * @returns {void}
      */
     summaryList: function(i = document.documentElement) {
-      r.gatherElements("ds_summary-list__actions", i).forEach((e) => {
+      l.gatherElements("ds_summary-list__actions", i).forEach((e) => {
         [].slice.call(e.querySelectorAll("button, a")).forEach((n) => {
-          const a = n.tagName === "BUTTON" ? "button" : "navigation", o = n.closest(".ds_summary-list__item")?.querySelector(".ds_summary-list__key"), l = "-" + E(o.textContent);
-          n.setAttribute(`data-${a}`, `${a}-${E(n.textContent)}${l}`);
+          const a = n.tagName === "BUTTON" ? "button" : "navigation", o = n.closest(".ds_summary-list__item")?.querySelector(".ds_summary-list__key"), r = "-" + E(o.textContent);
+          n.setAttribute(`data-${a}`, `${a}-${E(n.textContent)}${r}`);
         });
       });
     },
@@ -1144,7 +1144,7 @@ const r = {
      * @returns {void}
      */
     tabs: function(i = document.documentElement) {
-      const t = r.gatherElements("ds_tabs", i);
+      const t = l.gatherElements("ds_tabs", i);
       let e = 1;
       t.forEach((s) => {
         [].slice.call(s.querySelectorAll(".ds_tabs__tab-link")).forEach((a, o) => {
@@ -1160,9 +1160,9 @@ const r = {
      * @returns {void}
      */
     taskList: function(i = document.documentElement) {
-      r.gatherElements("ds_task-list__task-link", i).forEach((s) => {
+      l.gatherElements("ds_task-list__task-link", i).forEach((s) => {
         s.getAttribute("data-navigation") || s.setAttribute("data-navigation", "tasklist");
-      }), r.gatherElements("js-task-list-skip-link", i).forEach((s) => {
+      }), l.gatherElements("js-task-list-skip-link", i).forEach((s) => {
         s.getAttribute("data-navigation") || s.setAttribute("data-navigation", "tasklist-skip");
       });
     },
@@ -1199,7 +1199,7 @@ const r = {
      * @returns {void}
      */
     warningTexts: function(i = document.documentElement) {
-      r.gatherElements("ds_warning-text", i).forEach((e) => {
+      l.gatherElements("ds_warning-text", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_warning-text a:not(.ds_button)")).forEach((n) => {
           n.setAttribute("data-navigation", "warning-link");
         });
@@ -1212,7 +1212,7 @@ const r = {
   storage: p,
   temporaryFocus: S,
   TokenList: D,
-  tracking: r
+  tracking: l
 };
 function k(i) {
   const t = document.createElement("div");
@@ -1271,18 +1271,18 @@ class N extends b {
    * @returns {void}
    */
   initAccordionItem(t) {
-    const e = t.querySelector(".ds_accordion-item__body"), s = t.querySelector(".ds_accordion-item__control"), n = t.querySelector(".ds_accordion-item__header"), a = t.querySelector(".ds_accordion-item__indicator"), o = t.querySelector(".ds_accordion-item__label span"), l = n.querySelector(".ds_accordion-item__title");
-    let c = !1;
+    const e = t.querySelector(".ds_accordion-item__body"), s = t.querySelector(".ds_accordion-item__control"), n = t.querySelector(".ds_accordion-item__header"), a = t.querySelector(".ds_accordion-item__indicator"), o = t.querySelector(".ds_accordion-item__label span"), r = n.querySelector(".ds_accordion-item__title");
+    let d = !1;
     if (window.location.hash)
       try {
-        t.querySelector(window.location.hash) && (c = !0, s.checked = !0);
+        t.querySelector(window.location.hash) && (d = !0, s.checked = !0);
       } catch {
       }
     const m = s.checked, u = document.createElement("button");
-    l.classList.add("ds_accordion-item__title--button"), u.classList.add("ds_accordion-item__button"), u.classList.add("js-accordion-button"), u.id = l.id + "-button", u.type = "button", s.classList.remove("visually-hidden"), s.classList.add("fully-hidden"), s.setAttribute("tabindex", "-1"), u.innerHTML = l.innerHTML, a.setAttribute("aria-hidden", "true"), l.innerHTML = "", l.insertBefore(u, l.firstChild), u.appendChild(a), o.classList.add("fully-hidden");
+    r.classList.add("ds_accordion-item__title--button"), u.classList.add("ds_accordion-item__button"), u.classList.add("js-accordion-button"), u.id = r.id + "-button", u.type = "button", s.classList.remove("visually-hidden"), s.classList.add("fully-hidden"), s.setAttribute("tabindex", "-1"), u.innerHTML = r.innerHTML, a.setAttribute("aria-hidden", "true"), r.innerHTML = "", r.insertBefore(u, r.firstChild), u.appendChild(a), o.classList.add("fully-hidden");
     const g = A();
-    t.id = t.id || `accordion-item-${g}`, e.id = e.id || `accordion-item-${g}-body`, m && (t.classList.add("ds_accordion-item--open"), this.openAllButton && this.setOpenAllButton(this.checkAllOpen()), c && t.scrollIntoView()), u.setAttribute("aria-expanded", m.toString()), u.setAttribute("aria-controls", e.id), u.addEventListener("click", (d) => {
-      d.preventDefault(), this.toggleAccordionItem(t);
+    t.id = t.id || `accordion-item-${g}`, e.id = e.id || `accordion-item-${g}-body`, m && (t.classList.add("ds_accordion-item--open"), this.openAllButton && this.setOpenAllButton(this.checkAllOpen()), d && t.scrollIntoView()), u.setAttribute("aria-expanded", m.toString()), u.setAttribute("aria-controls", e.id), u.addEventListener("click", (c) => {
+      c.preventDefault(), this.toggleAccordionItem(t);
     });
   }
   /**
@@ -1338,17 +1338,17 @@ function P(i, t, e) {
   e = Object.assign({}, {
     className: ""
   }, e);
-  function n(o, l) {
-    if (!o.data || l === "")
+  function n(o, r) {
+    if (!o.data || r === "")
       return !1;
-    let c, m;
-    const g = new RegExp(l, "i").exec(o.data);
-    return g && (m = document.createElement("MARK"), e.className && (m.className = e.className), c = o.splitText(g.index), c.splitText(g[0].length), m.appendChild(c.cloneNode(!0)), o.parentNode?.replaceChild(m, c)), !!g;
+    let d, m;
+    const g = new RegExp(r, "i").exec(o.data);
+    return g && (m = document.createElement("MARK"), e.className && (m.className = e.className), d = o.splitText(g.index), d.splitText(g[0].length), m.appendChild(d.cloneNode(!0)), o.parentNode?.replaceChild(m, d)), !!g;
   }
   function a(o) {
-    let l;
+    let r;
     for (let m = 0; m < o.childNodes.length; m++)
-      l = o.childNodes[m], l.nodeType === 3 ? m += n(l, t) ? 1 : 0 : a(l);
+      r = o.childNodes[m], r.nodeType === 3 ? m += n(r, t) ? 1 : 0 : a(r);
   }
   a(i);
 }
@@ -1493,16 +1493,18 @@ class H extends b {
    */
   showSuggestions(t) {
     if (this.listBoxElement.innerHTML = "", t.length) {
-      for (let a = 0, o = t.length; a < o; a++) {
-        const l = t[a], c = document.createElement("li");
-        c.id = "suggestion-" + a, c.classList.add("ds_autocomplete__suggestion"), c.setAttribute("role", "option"), document.createElement("span").classList.add("js-suggestion-text"), l.isActive && c.classList.add("active"), c.innerHTML = this.buildSuggestionHtml(l.displayText);
-        const u = c.querySelector(".js-suggestion-text");
-        P(u, this.inputElement.value, {}), this.listBoxElement.appendChild(c);
+      for (let n = 0, a = t.length; n < a; n++) {
+        const o = t[n], r = document.createElement("li");
+        r.id = "suggestion-" + n, r.classList.add("ds_autocomplete__suggestion"), r.setAttribute("role", "option"), document.createElement("span").classList.add("js-suggestion-text"), o.isActive && r.classList.add("active"), r.innerHTML = this.buildSuggestionHtml(o.displayText);
+        const m = r.querySelector(".js-suggestion-text");
+        P(m, this.inputElement.value, {}), this.listBoxElement.appendChild(r);
       }
       this.inputElement.classList.add("js-has-suggestions");
-      const e = this.listBoxElement.querySelector("li:last-child"), s = this.listBoxElement.parentElement, n = window.visualViewport;
-      for (; n.height < s.offsetHeight + this.inputElement.offsetHeight + 16; )
-        e.parentNode?.removeChild(e), t = t.splice(t.length - 1);
+      const e = this.listBoxElement.parentElement, s = window.visualViewport;
+      for (; s.height < e.offsetHeight + this.inputElement.offsetHeight + 16; ) {
+        const n = this.listBoxElement.querySelector("li:last-child");
+        n.parentNode?.removeChild(n), t = t.splice(t.length - 1);
+      }
     } else
       this.clearSuggestions();
   }
@@ -1834,27 +1836,27 @@ class Y extends b {
     t.innerHTML = this.buttonTemplate(), this.calendarButtonElement = t.firstChild, this.calendarButtonElement.setAttribute("data-button", `datepicker-${this.inputElement.id}-toggle`), this.isMultipleInput ? this.inputElement.parentElement?.parentElement?.appendChild(this.calendarButtonElement) : (this.inputElement.parentElement?.appendChild(this.calendarButtonElement), this.inputElement.parentElement?.classList.add("ds_input__wrapper--has-icon")), this.dialogElement = document.createElement("div"), this.dialogElement.id = "datepicker-" + A(), this.dialogElement.setAttribute("class", "ds_datepicker__dialog  datepickerDialog"), this.dialogElement.setAttribute("role", "dialog"), this.dialogElement.setAttribute("aria-modal", "true"), this.dialogElement.innerHTML = this.dialogTemplate(this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-controls", this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-expanded", "false"), this.datePickerParent.appendChild(this.dialogElement), this.dialogTitleElement = this.dialogElement.querySelector(".js-datepicker-month-year");
     const e = this.datePickerParent.querySelector("tbody");
     let s = 0;
-    for (let d = 0; d < 6; d++) {
-      const _ = e.insertRow(d);
+    for (let c = 0; c < 6; c++) {
+      const _ = e.insertRow(c);
       for (let y = 0; y < 7; y++) {
         const v = document.createElement("td"), h = document.createElement("button");
         h.type = "button", h.dataset.form = "date-select", v.appendChild(h), _.appendChild(v);
-        const L = new z(h, s, d, y, this);
+        const L = new z(h, s, c, y, this);
         L.init(), this.calendarDays.push(L), s++;
       }
     }
-    const n = this.dialogElement.querySelector(".js-datepicker-prev-month"), a = this.dialogElement.querySelector(".js-datepicker-prev-year"), o = this.dialogElement.querySelector(".js-datepicker-next-month"), l = this.dialogElement.querySelector(".js-datepicker-next-year");
-    n.addEventListener("click", (d) => this.focusPreviousMonth(d, !1)), a.addEventListener("click", (d) => this.focusPreviousYear(d, !1)), o.addEventListener("click", (d) => this.focusNextMonth(d, !1)), l.addEventListener("click", (d) => this.focusNextYear(d, !1)), [this.inputElement, this.dateInput, this.monthInput, this.yearInput].forEach((d) => {
-      d && d.addEventListener("blur", () => {
+    const n = this.dialogElement.querySelector(".js-datepicker-prev-month"), a = this.dialogElement.querySelector(".js-datepicker-prev-year"), o = this.dialogElement.querySelector(".js-datepicker-next-month"), r = this.dialogElement.querySelector(".js-datepicker-next-year");
+    n.addEventListener("click", (c) => this.focusPreviousMonth(c, !1)), a.addEventListener("click", (c) => this.focusPreviousYear(c, !1)), o.addEventListener("click", (c) => this.focusNextMonth(c, !1)), r.addEventListener("click", (c) => this.focusNextYear(c, !1)), [this.inputElement, this.dateInput, this.monthInput, this.yearInput].forEach((c) => {
+      c && c.addEventListener("blur", () => {
         this.calendarButtonElement.querySelector("span").textContent = "Choose date";
       });
     });
     const m = this.dialogElement.querySelector(".js-datepicker-cancel"), u = this.dialogElement.querySelector(".js-datepicker-ok");
-    m.addEventListener("click", (d) => {
-      d.preventDefault(), this.closeDialog();
+    m.addEventListener("click", (c) => {
+      c.preventDefault(), this.closeDialog();
     }), u.addEventListener("click", () => this.selectDate(this.currentDate));
     const g = this.dialogElement.querySelectorAll('button:not([disabled="true"])');
-    this.firstButtonInDialog = g[0], this.lastButtonInDialog = g[g.length - 1], this.firstButtonInDialog.addEventListener("keydown", (d) => this.firstButtonKeyup(d)), this.lastButtonInDialog.addEventListener("keydown", (d) => this.lastButtonKeyup(d)), this.calendarButtonElement.addEventListener("click", (d) => this.toggleDialog(d)), document.body.addEventListener("mouseup", (d) => this.backgroundClick(d)), this.updateCalendar(), this.isInitialised = !0;
+    this.firstButtonInDialog = g[0], this.lastButtonInDialog = g[g.length - 1], this.firstButtonInDialog.addEventListener("keydown", (c) => this.firstButtonKeyup(c)), this.lastButtonInDialog.addEventListener("keydown", (c) => this.lastButtonKeyup(c)), this.calendarButtonElement.addEventListener("click", (c) => this.toggleDialog(c)), document.body.addEventListener("mouseup", (c) => this.backgroundClick(c)), this.updateCalendar(), this.isInitialised = !0;
   }
   /**
    * Adds months to a date
@@ -2309,8 +2311,8 @@ class Y extends b {
     const n = new Date(e);
     for (const a of this.calendarDays) {
       const o = n.getMonth() !== t.getMonth();
-      let l = !1;
-      this.options.minDate && n < this.options.minDate && (l = !0), this.options.maxDate && n > this.options.maxDate && (l = !0), this.isDisabledDate(n) && (l = !0), a.update(n, o, l), n.setDate(n.getDate() + 1);
+      let r = !1;
+      this.options.minDate && n < this.options.minDate && (r = !0), this.options.maxDate && n > this.options.maxDate && (r = !0), this.isDisabledDate(n) && (r = !0), a.update(n, o, r), n.setDate(n.getDate() + 1);
     }
   }
 }
@@ -2876,9 +2878,9 @@ class Q extends b {
       k("medium") && (o.preventDefault(), this.goToTab(t, !0));
     }), s.addEventListener("keydown", (o) => {
       if (k("medium")) {
-        const l = o.target.parentElement;
-        let c = !0;
-        o.key === "ArrowRight" ? this.navToTab(this.getNextTab(l)) : o.key === "ArrowLeft" ? this.navToTab(this.getPreviousTab(l)) : o.key === "Home" ? this.navToTab(this.getFirstTab()) : o.key === "End" ? this.navToTab(this.getLastTab()) : o.key === "Spacebar" || o.key === " " ? this.goToTab(l, !0) : c = !1, c && o.preventDefault();
+        const r = o.target.parentElement;
+        let d = !0;
+        o.key === "ArrowRight" ? this.navToTab(this.getNextTab(r)) : o.key === "ArrowLeft" ? this.navToTab(this.getPreviousTab(r)) : o.key === "Home" ? this.navToTab(this.getFirstTab()) : o.key === "End" ? this.navToTab(this.getLastTab()) : o.key === "Spacebar" || o.key === " " ? this.goToTab(r, !0) : d = !1, d && o.preventDefault();
       }
     }));
   }
