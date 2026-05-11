@@ -6,6 +6,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 `Removed` and `Security`.
 
 ---
+## [4.0.1]
+### Fixed
+- Autocomplete can run into an infinite loop when there is not enough room in the viewport to display all returned suggestions
+
 ## [4.0.0]
 ### Added
 - ESLint and improved code documentation to increase quality of JavaScript/TypeScript code
