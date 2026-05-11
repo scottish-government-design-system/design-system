@@ -304,10 +304,10 @@ class Autocomplete extends DSComponent {
             this.inputElement.classList.add('js-has-suggestions');
 
             // remove items that make the box too high for the viewport
-            const lastItem = this.listBoxElement.querySelector('li:last-child') as HTMLLIElement;
             const listboxParentElement = this.listBoxElement.parentElement as HTMLElement;
             const visualViewport = window.visualViewport as VisualViewport;
             while (visualViewport.height < listboxParentElement.offsetHeight + this.inputElement.offsetHeight + 16) {
+                const lastItem = this.listBoxElement.querySelector('li:last-child') as HTMLLIElement;
                 lastItem.parentNode?.removeChild(lastItem);
                 suggestions = suggestions.splice(suggestions.length - 1);
             }
