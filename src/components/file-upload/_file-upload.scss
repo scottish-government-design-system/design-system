@@ -53,6 +53,10 @@
             font-weight: settings.$normal;
         }
     }
+
+    > * {
+        pointer-events: none;
+    }
 }
 
 .ds_file-upload__dropzone--dragging {

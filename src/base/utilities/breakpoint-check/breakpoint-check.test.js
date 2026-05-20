@@ -1,7 +1,7 @@
 // These are more of an implementation check than a unit test
 import { beforeEach, describe, expect, it } from 'vitest';
 import { page } from 'vitest/browser';
-import loadHtml from '../../../../loadHtml';
+import loadHtml from '../../../../test/load-html';
 import breakpointCheck from './breakpoint-check';
 
 describe('breakpoint check', () => {

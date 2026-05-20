@@ -275,6 +275,20 @@ class FileUpload extends DSComponent {
         // clear the dropzone announcement
         this.announcementsSpan.textContent = '';
 
+        if (event.dataTransfer) {
+            const dropHappened = new CustomEvent('dropHappened', {
+                bubbles: true,
+                composed: true,
+                detail: {
+                    files: event.dataTransfer.files,
+                    canAccept: this.canAccept(event.dataTransfer.files),
+                    canFill: this.canFillInput(event.dataTransfer)
+                }
+            });
+
+            this.element.dispatchEvent(dropHappened);
+        };
+
         return;
     }
 

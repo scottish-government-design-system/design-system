@@ -1,6 +1,6 @@
 import { vi, beforeEach, describe, it, expect } from 'vitest';
 import { page } from 'vitest/browser';
-import loadHtml from '../../../loadHtml';
+import loadHtml from '../../../test/load-html';
 import tabsNavigation from './tabs-navigation';
 
 const testObj = {};
