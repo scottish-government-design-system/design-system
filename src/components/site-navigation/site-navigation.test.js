@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import loadHtml from '../../../loadHtml';
+import loadHtml from '../../../test/load-html';
 import MobileMenu from './site-navigation';
 
 const testObj = {};

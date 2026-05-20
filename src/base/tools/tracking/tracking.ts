@@ -2,8 +2,11 @@
 
 import version from '../../../version';
 
+type DataLayerObject = {
+    [key: string]: string | number | { [key: string]: string | number | undefined }[] | undefined
+}
 declare global {
-    interface Window { dataLayer: Record<string, string | number | undefined>[]; }
+    interface Window { dataLayer?: object[]; }
 }
 
 /**
@@ -183,7 +186,7 @@ const tracking = {
      * @param data
      * @returns {void}
      */
-    pushToDataLayer: function(data: { [key: string]: string | number | undefined }): void {
+    pushToDataLayer: function(data: DataLayerObject): void {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(data);
     },
@@ -812,6 +815,44 @@ const tracking = {
                         inputElement.removeAttribute('data-filetype');
                     }
                 });
+
+                type EventData = {
+                    event: string
+                    status?: string
+                    files?: Files[]
+                }
+
+                type Files = {
+                    extension: string
+                    size: number
+                    type: string
+                }
+
+                fileUpload.addEventListener('dropHappened', ((event: CustomEvent) => {
+                    const data: EventData = {
+                        event: 'fileUploadDrop'
+                    };
+
+                    if (!event.detail.canFill) {
+                        data.status = 'fail: unable to fill';
+                    } else if (!event.detail.canAccept) {
+                        data.status = 'fail: unable to accept';
+                    } else {
+                        data.status = 'success'
+                    }
+
+                    data.files = Array.from(event.detail.files).map(item => {
+                        const itemAsFile = item as File;
+
+                        return {
+                            extension: getFileExtensionFromFilename(itemAsFile.name),
+                            size: itemAsFile.size,
+                            type: itemAsFile.type
+                        }
+                    });
+
+                    tracking.pushToDataLayer(data);
+                }) as EventListener);
             });
         },
 

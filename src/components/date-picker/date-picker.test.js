@@ -1,5 +1,5 @@
 import { vi, afterEach, beforeEach, describe, expect, it } from 'vitest';
-import loadHtml from '../../../loadHtml';
+import loadHtml from '../../../test/load-html';
 import DSDatePicker from './date-picker';
 
 function leadingZeroes(value, length = 2) {

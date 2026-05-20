@@ -1,5 +1,5 @@
 import { vi, beforeEach, describe, expect, it } from 'vitest';
-import loadHtml from '../../../loadHtml';
+import loadHtml from '../../../test/load-html';
 import HidePage from './hide-this-page';
 
 // mock window

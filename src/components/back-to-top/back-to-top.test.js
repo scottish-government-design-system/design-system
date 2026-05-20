@@ -1,6 +1,6 @@
 import { vi, beforeEach, describe, expect, it } from 'vitest';
 import { page } from 'vitest/browser';
-import loadHtml from '../../../loadHtml';
+import loadHtml from '../../../test/load-html';
 import BackToTop from './back-to-top';
 
 const testObj = {};

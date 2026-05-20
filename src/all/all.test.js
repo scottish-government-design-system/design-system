@@ -1,6 +1,6 @@
 import { vi, beforeEach, describe, expect, it } from 'vitest';
 import { page } from 'vitest/browser';
-import loadHtml from '../../loadHtml';
+import loadHtml from '../../test/load-html';
 import DS from '../index';
 
 describe('ALL', () => {
@@ -17,6 +17,7 @@ describe('ALL', () => {
         const detailsElement = document.querySelector('#details');
         const hideThisPageElement = document.querySelector('#hide-this-page');
         const notificationBannerElement = document.querySelector('#notification-banner');
+        const notificationMessageElement = document.querySelector('#notification-message');
         const sideNavigationElement = document.querySelector('#side-navigation');
         const siteNavigationElement = document.querySelector('#site-navigation');
         const skipLinksSpy = vi.spyOn(DS.components.skipLinks, 'init');
@@ -35,6 +36,7 @@ describe('ALL', () => {
         expect(detailsElement.classList.contains('js-initialised')).toBe(true);
         expect(hideThisPageElement.querySelector('.js-hide-page').classList.contains('js-initialised')).toBe(true);
         expect(notificationBannerElement.classList.contains('js-initialised')).toBe(true);
+        expect(notificationMessageElement.classList.contains('js-initialised')).toBe(true);
         expect(sideNavigationElement.classList.contains('js-initialised')).toBe(true);
         expect(siteNavigationElement.classList.contains('js-initialised')).toBe(true);
         expect(skipLinksSpy).toHaveBeenCalled();

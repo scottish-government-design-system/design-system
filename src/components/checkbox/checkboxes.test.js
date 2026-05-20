@@ -1,5 +1,5 @@
 import { beforeEach, describe, it, expect } from 'vitest';
-import loadHtml from '../../../loadHtml';
+import loadHtml from '../../../test/load-html';
 import Checkboxes from './checkboxes';
 
 const testObj = {};

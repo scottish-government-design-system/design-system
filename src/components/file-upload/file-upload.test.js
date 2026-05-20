@@ -1,18 +1,9 @@
 import { vi, beforeEach, describe, expect, it } from 'vitest';
-import loadHtml from '../../../loadHtml';
+import fireCustomEvent from '../../../test/fire-custom-event';
+import loadHtml from '../../../test/load-html';
 import FileUpload from './file-upload';
 
 let dataTransfer, fileUploadElement, fileUploadModule;
-
-// this lets us mock the needed drag events
-function fireCustomEvent(eventName, element, data) {
-    data = data || {};
-
-    let event = new Event(eventName, { cancelable: true, bubbles: true });
-    event = Object.assign(event, data);
-
-    element.dispatchEvent(event);
-}
 
 describe('file upload', () => {
     beforeEach(async () => {
@@ -353,6 +344,21 @@ describe('file upload', () => {
                 // perform a file drop
                 fireCustomEvent('drop', fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
                 expect(fileUploadModule.announcementsSpan.textContent).toEqual('');
+            });
+
+            it('dropping a file triggers the "dropHappened" event', () => {
+                const dropSpy = vi.spyOn(fileUploadModule.element, 'dispatchEvent');
+
+                const file = new File(['My file'], 'myfile.txt', { type: 'text/plain' });
+                dataTransfer.items.add(file);
+
+                fireCustomEvent('drop', fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
+                const callInner = dropSpy.mock.calls[0][0];
+
+                expect(callInner.type).toEqual('dropHappened');
+                expect(typeof callInner.detail.canAccept).toEqual('boolean');
+                expect(typeof callInner.detail.canFill).toEqual('boolean');
+                expect(callInner.detail.files instanceof FileList).toBeTruthy();
             });
         });
 

@@ -2,10 +2,12 @@
 import { vi, afterEach, afterAll, beforeEach, describe, expect, it } from 'vitest';
 import MatchMediaMock from 'vitest-matchmedia-mock'
 
-import loadHtml from '../../../../loadHtml';
+import fireCustomEvent from '../../../../test/fire-custom-event';
+import loadHtml from '../../../../test/load-html';
 import Tracking from './tracking';
 import Accordion from '../../../components/accordion/accordion';
 import Autocomplete from "../../../components/autocomplete/autocomplete";
+import FileUpload from '../../../components/file-upload/file-upload';
 import SideNavigation from '../../../components/side-navigation/side-navigation';
 
 import version from '../../../version';
@@ -13,6 +15,12 @@ import version from '../../../version';
 window.storage = {}
 
 const testObj = {};
+
+
+
+
+
+
 
 describe('tracking', () => {
     beforeEach(async () => {
@@ -1094,6 +1102,58 @@ describe('tracking', () => {
 
                 expect(fileInput.dataset.filetype).toBeUndefined();
                 expect(fileInput.dataset.filesize).toBeUndefined();
+            });
+
+            describe('drop events', () => {
+                beforeEach(() => {
+                    testObj.fileUploadElement = testObj.scope.querySelector('.ds_file-upload');
+                    testObj.fileUploadModule = new FileUpload(testObj.fileUploadElement);
+                    testObj.fileUploadModule.init();
+
+                    Tracking.add.fileUploads();
+                });
+
+                it('should push a successful drop to the data layer', () => {
+                    const dataTransfer = new DataTransfer();
+                    const file = new File(['My file'], 'myfile.foo', { type: 'text/plain' });
+                    dataTransfer.items.add(file);
+
+                    fireCustomEvent('drop', testObj.fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
+
+                    const latestDataLayerEntry = window.dataLayer.pop();
+                    expect(latestDataLayerEntry.event).toEqual('fileUploadDrop');
+                    expect(latestDataLayerEntry.status).toEqual('success');
+                    expect(latestDataLayerEntry.files[0].extension).toEqual('foo');
+                    expect(typeof latestDataLayerEntry.files[0].size).toEqual('number');
+                    expect(latestDataLayerEntry.files[0].type).toEqual('text/plain');
+                });
+
+                it('should push an unsuccessful drop (too many files) to the data layer', () => {
+                    const dataTransfer = new DataTransfer();
+                    const file = new File(['My file'], 'myfile.foo', { type: 'text/plain' });
+                    dataTransfer.items.add(file);
+                    dataTransfer.items.add(file);
+
+                    fireCustomEvent('drop', testObj.fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
+
+                    const latestDataLayerEntry = window.dataLayer.pop();
+                    expect(latestDataLayerEntry.event).toEqual('fileUploadDrop');
+                    expect(latestDataLayerEntry.status).toEqual('fail: unable to fill');
+                });
+
+                it('should push an unsuccessful drop (wrong file type) to the data layer', () => {
+                    const dataTransfer = new DataTransfer();
+                    const file = new File(['My file'], 'myfile.foo', { type: 'text/plain' });
+                    const fileInput = testObj.scope.querySelector('input[type="file"]');
+                    dataTransfer.items.add(file);
+                    fileInput.setAttribute('accept', 'image/*');
+
+                    fireCustomEvent('drop', testObj.fileUploadModule.dropzoneButton, { dataTransfer: dataTransfer });
+
+                    const latestDataLayerEntry = window.dataLayer.pop();
+                    expect(latestDataLayerEntry.event).toEqual('fileUploadDrop');
+                    expect(latestDataLayerEntry.status).toEqual('fail: unable to accept');
+                });
             });
         });
     });
