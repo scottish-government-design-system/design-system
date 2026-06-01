@@ -6,6 +6,30 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 `Removed` and `Security`.
 
 ---
+## [4.1.0]
+### Added
+- File upload component with drag and drop support
+- Notification message component enhancements
+  - New information, warning and error states
+  - Optional dismiss/close button
+  - Additional tracking attributes
+### Changed
+- Notification banner component design changes to align with notification message
+  - Tighter spacing
+  - Reduced size of dismiss/close button
+  - Icon changed to match warning state icon
+- Warning text component design changes to align with notification banner
+  - Tighter spacing
+  - Icon changed to match warning state icon
+- Bump vitest from 4.0.4 to 4.1.7
+### Fixed
+- Position of currency symbol on currency text inputs
+### Removed
+- Inverse and colour icon options from notification banner component
+### Security
+- Bump @xmldom/xmldom from 0.8.12 to 0.8.13
+- Bump postcss from 8.5.6 to 8.5.12
+
 ## [4.0.1]
 ### Fixed
 - Autocomplete can run into an infinite loop when there is not enough room in the viewport to display all returned suggestions
