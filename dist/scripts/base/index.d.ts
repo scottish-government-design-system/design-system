@@ -15,7 +15,9 @@ declare const _default: {
             getClickType: (event: MouseEvent) => string | undefined;
             getNearestSectionHeader: (element: HTMLElement) => Element | undefined;
             pushToDataLayer: (data: {
-                [key: string]: string | number | undefined;
+                [key: string]: string | number | {
+                    [key: string]: string | number | undefined;
+                }[] | undefined;
             }) => void;
             add: {
                 clicks: (scope?: HTMLElement) => void;
@@ -38,11 +40,13 @@ declare const _default: {
                 errorMessages: (scope?: HTMLElement) => void;
                 errorSummaries: (scope?: HTMLElement) => void;
                 externalLinks: (scope?: HTMLElement) => void;
+                fileUploads: (scope?: HTMLElement) => void;
                 hideThisPage: (scope?: HTMLElement) => void;
                 insetTexts: (scope?: HTMLElement) => void;
-                links: () => void;
+                links: (scope?: HTMLElement) => void;
                 metadataItems: (scope?: HTMLElement) => void;
                 notifications: (scope?: HTMLElement) => void;
+                notificationMessages: (scope?: HTMLElement) => void;
                 pagination: (scope?: HTMLElement) => void;
                 phaseBanners: (scope?: HTMLElement) => void;
                 radios: (scope?: HTMLElement) => void;

@@ -263,10 +263,10 @@ class Autocomplete extends component_1.default {
             }
             this.inputElement.classList.add('js-has-suggestions');
             // remove items that make the box too high for the viewport
-            const lastItem = this.listBoxElement.querySelector('li:last-child');
             const listboxParentElement = this.listBoxElement.parentElement;
             const visualViewport = window.visualViewport;
             while (visualViewport.height < listboxParentElement.offsetHeight + this.inputElement.offsetHeight + 16) {
+                const lastItem = this.listBoxElement.querySelector('li:last-child');
                 lastItem.parentNode?.removeChild(lastItem);
                 suggestions = suggestions.splice(suggestions.length - 1);
             }

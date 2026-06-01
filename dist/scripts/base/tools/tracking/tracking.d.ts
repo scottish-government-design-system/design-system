@@ -1,6 +1,11 @@
+type DataLayerObject = {
+    [key: string]: string | number | {
+        [key: string]: string | number | undefined;
+    }[] | undefined;
+};
 declare global {
     interface Window {
-        dataLayer: Record<string, string | number | undefined>[];
+        dataLayer?: object[];
     }
 }
 /**
@@ -53,9 +58,7 @@ declare const tracking: {
      * @param data
      * @returns {void}
      */
-    pushToDataLayer: (data: {
-        [key: string]: string | number | undefined;
-    }) => void;
+    pushToDataLayer: (data: DataLayerObject) => void;
     /**
      * Add various tracking features
      */
@@ -169,6 +172,7 @@ declare const tracking: {
         checkboxes: (scope?: HTMLElement) => void;
         /**
          * Sets data-navigation="confirmation-link" on links in confirmation message components
+         * DEPRECATED - this will be removed in a future release
          *
          * @param {HTMLElement} scope - the element to initialize tracking on
          * @returns {void}
@@ -222,6 +226,14 @@ declare const tracking: {
          */
         externalLinks: (scope?: HTMLElement) => void;
         /**
+         * Sets data-form="fileinput-[ID]" on file upload components
+         * Sets data-filesize and data-filetype when a file is added
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        fileUploads: (scope?: HTMLElement) => void;
+        /**
          * Sets data-navigation="hide-this-page" on hide this page links
          * Adds an event listener to push 'esc' presses the data layer
          *
@@ -239,8 +251,9 @@ declare const tracking: {
         /**
          * Sets data-section="[SECTIONNAME]" on links
          * SECIONNAME is determined by seeking the closest heading (or headinglike) element to the link
+         * @returns {void}
          */
-        links: () => void;
+        links: (scope?: HTMLElement) => void;
         /**
          * Sets data-navigation="[NAME]-[INDEX+1]" on links in metadata items
          *
@@ -257,6 +270,15 @@ declare const tracking: {
          * @returns {void}
          */
         notifications: (scope?: HTMLElement) => void;
+        /**
+         * Sets data-banner="banner-[NAME]-link" on links in notification banners
+         * Sets data-banner="banner-[NAME]-[BUTTONTEXT]" on buttons in notification banners
+         * Sets data-banner="banner-[NAME]-close" on notification banner close buttons
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        notificationMessages: (scope?: HTMLElement) => void;
         /**
          * Sets data-search="pagination-more" on "load more" links
          * Sets data-search="pagination-[LINKTEXT]" on pagination links

@@ -44,8 +44,10 @@ const checkboxes_1 = __importDefault(require("./checkbox/checkboxes"));
 const cookie_notification_1 = __importDefault(require("./cookie-notification/cookie-notification"));
 const date_picker_1 = __importDefault(require("./date-picker/date-picker"));
 const details_1 = __importDefault(require("./details/details"));
+const file_upload_1 = __importDefault(require("./file-upload/file-upload"));
 const hide_this_page_1 = __importDefault(require("./hide-this-page/hide-this-page"));
 const notification_banner_1 = __importDefault(require("./notification-banner/notification-banner"));
+const notification_message_1 = __importDefault(require("./notification-message/notification-message"));
 const side_navigation_1 = __importDefault(require("./side-navigation/side-navigation"));
 const site_navigation_1 = __importDefault(require("./site-navigation/site-navigation"));
 const skip_links_1 = __importDefault(require("./skip-links/skip-links"));
@@ -62,8 +64,10 @@ exports.default = {
     CookieNotification: cookie_notification_1.default,
     DatePicker: date_picker_1.default,
     Details: details_1.default,
+    FileUpload: file_upload_1.default,
     HideThisPage: hide_this_page_1.default,
     NotificationBanner: notification_banner_1.default,
+    NotificationMessage: notification_message_1.default,
     SideNavigation: side_navigation_1.default,
     SiteNavigation: site_navigation_1.default,
     skipLinks: skip_links_1.default,

@@ -119,7 +119,6 @@ class DSDatePicker extends component_1.default {
         this.dialogTitleElement = this.dialogElement.querySelector('.js-datepicker-month-year');
         // create calendar
         const tbody = this.datePickerParent.querySelector('tbody');
-        let dayCount = 0;
         for (let i = 0; i < 6; i++) {
             // create row
             const row = tbody.insertRow(i);
@@ -131,10 +130,9 @@ class DSDatePicker extends component_1.default {
                 dateButton.dataset.form = 'date-select';
                 cell.appendChild(dateButton);
                 row.appendChild(cell);
-                const calendarDay = new DSCalendarDay(dateButton, dayCount, i, j, this);
+                const calendarDay = new DSCalendarDay(dateButton, this);
                 calendarDay.init();
                 this.calendarDays.push(calendarDay);
-                dayCount++;
             }
         }
         // add event listeners
@@ -800,10 +798,7 @@ class DSDatePicker extends component_1.default {
  */
 class DSCalendarDay {
     button;
-    column;
     date;
-    index;
-    row;
     picker;
     /**
      * Constructor for a day button in the date picker calendar
@@ -814,10 +809,7 @@ class DSCalendarDay {
      * @param {number} column - Column index of the day button
      * @param {DSDatePicker} picker - Parent date picker instance
      */
-    constructor(button, index, row, column, picker) {
-        this.index = index;
-        this.row = row;
-        this.column = column;
+    constructor(button, picker) {
         this.button = button;
         this.picker = picker;
         this.date = new Date();

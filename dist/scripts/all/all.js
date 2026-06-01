@@ -22,6 +22,8 @@ function initAll(scope = document) {
     datePickerElements.forEach(datePicker => new index_1.default.components.DatePicker(datePicker).init());
     const detailsElements = [].slice.call(document.querySelectorAll('[data-module="ds-details"]:not(.js-instantiated)'));
     detailsElements.forEach(details => new index_1.default.components.Details(details).init());
+    const fileUploadElements = [].slice.call(document.querySelectorAll('[data-module="ds-file-upload"]:not(.js-instantiated)'));
+    fileUploadElements.forEach(fileUploadElement => new index_1.default.components.FileUpload(fileUploadElement).init());
     // this one is handled differently because it applies an event to the whole body and we only want that event once
     const hidePageElements = [].slice.call(scope.querySelectorAll('.ds_hide-page'));
     hidePageElements.forEach(hidePage => new index_1.default.components.HideThisPage(hidePage).init());
@@ -29,6 +31,8 @@ function initAll(scope = document) {
     mobileMenuElements.forEach(mobileMenu => new index_1.default.components.SiteNavigation(mobileMenu).init());
     const notificationBannerElements = [].slice.call(scope.querySelectorAll('[data-module="ds-notification"]:not(.js-instantiated)'));
     notificationBannerElements.forEach(notificationBanner => new index_1.default.components.NotificationBanner(notificationBanner).init());
+    const notificationMessageElements = [].slice.call(scope.querySelectorAll('[data-module="ds-notification-message"]:not(.js-instantiated)'));
+    notificationMessageElements.forEach(notificationMessage => new index_1.default.components.NotificationMessage(notificationMessage).init());
     const sideNavigationElements = [].slice.call(scope.querySelectorAll('[data-module="ds-side-navigation"]:not(.js-instantiated)'));
     sideNavigationElements.forEach(sideNavigation => new index_1.default.components.SideNavigation(sideNavigation).init());
     // skip links doesn't need any special treatment -- just init it

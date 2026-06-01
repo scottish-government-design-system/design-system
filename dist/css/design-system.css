@@ -4325,6 +4325,104 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_notification-message:not(:has(.ds_notification-message__title)) .ds_notification-message__body {
   margin-top: 0;
 }
+@media screen and (forced-colors: active) {
+  .ds_notification-message__close:is(:enabled, :link, summary) {
+    color: linkText !important;
+  }
+  .ds_notification-message__close:is(:enabled, :link, summary):not(:focus) {
+    text-decoration-line: underline !important;
+  }
+}
+.ds_notification-message__close {
+  color: #0065bd;
+  outline: 0px solid transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
+}
+.ds_notification-message__close:hover {
+  color: rgb(0, 66.9325396825, 125.25);
+  text-decoration-thickness: round(0.16em, 1px);
+  text-underline-offset: 0.16em;
+  transition-duration: 0.2s;
+}
+.ds_notification-message__close:focus {
+  background-color: #fdd522;
+  color: #1a1a1a;
+  text-decoration-line: none;
+  transition-duration: 0s;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+}
+@media screen and (forced-colors: active) {
+  .ds_notification-message__close:focus {
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_notification-message__close > svg {
+  fill: currentColor;
+}
+@media screen and (forced-colors: active) {
+  .ds_notification-message__close:is(:enabled, :link) {
+    outline: 0.125rem solid transparent !important;
+    outline-offset: -0.125rem !important;
+    transition-duration: 0s !important;
+  }
+  .ds_notification-message__close:is(:enabled, :link):hover {
+    outline-color: highlight !important;
+  }
+  .ds_notification-message__close:is(:enabled, :link):focus, .ds_notification-message__close:is(:enabled, :link):active, .ds_notification-message__close:is(:enabled, :link):focus-within {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
+  }
+}
+.ds_notification-message__close {
+  background: transparent;
+  border-width: 0;
+  color: #5e5e5e;
+  display: none;
+  height: 2rem;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 2rem;
+}
+.ds_notification-message__close:hover:not(:focus) {
+  color: #5e5e5e;
+}
+.ds_notification-message__close:focus {
+  outline: none;
+}
+.ds_notification-message__close > * {
+  pointer-events: none;
+}
+.ds_notification-message:has(.ds_notification-message__close) {
+  padding-right: 4rem;
+}
+.ds_notification-message--info {
+  border-color: #0065bd;
+}
+.ds_notification-message--info .ds_notification-message__icon {
+  color: #0065bd;
+}
+.ds_notification-message--warning {
+  border-color: #cb4e0b;
+}
+.ds_notification-message--warning .ds_notification-message__icon {
+  color: #cb4e0b;
+}
+.ds_notification-message--error {
+  border-color: #d32205;
+}
+.ds_notification-message--error .ds_notification-message__icon {
+  color: #d32205;
+}
+
+.js-initialised .ds_notification-message__close {
+  display: block;
+}
 
 .ds_confirmation-message {
   margin-top: 1.5rem;
@@ -4420,6 +4518,82 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 .ds_confirmation-message:not(:has(.ds_confirmation-message__title)) .ds_confirmation-message__body {
   margin-top: 0;
+}
+@media screen and (forced-colors: active) {
+  .ds_confirmation-message__close:is(:enabled, :link, summary) {
+    color: linkText !important;
+  }
+  .ds_confirmation-message__close:is(:enabled, :link, summary):not(:focus) {
+    text-decoration-line: underline !important;
+  }
+}
+.ds_confirmation-message__close {
+  color: #0065bd;
+  outline: 0px solid transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.16em;
+  transition: color 0.2s, background-color 0.2s, outline-color 0.2s;
+}
+.ds_confirmation-message__close:hover {
+  color: rgb(0, 66.9325396825, 125.25);
+  text-decoration-thickness: round(0.16em, 1px);
+  text-underline-offset: 0.16em;
+  transition-duration: 0.2s;
+}
+.ds_confirmation-message__close:focus {
+  background-color: #fdd522;
+  color: #1a1a1a;
+  text-decoration-line: none;
+  transition-duration: 0s;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+}
+@media screen and (forced-colors: active) {
+  .ds_confirmation-message__close:focus {
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_confirmation-message__close > svg {
+  fill: currentColor;
+}
+@media screen and (forced-colors: active) {
+  .ds_confirmation-message__close:is(:enabled, :link) {
+    outline: 0.125rem solid transparent !important;
+    outline-offset: -0.125rem !important;
+    transition-duration: 0s !important;
+  }
+  .ds_confirmation-message__close:is(:enabled, :link):hover {
+    outline-color: highlight !important;
+  }
+  .ds_confirmation-message__close:is(:enabled, :link):focus, .ds_confirmation-message__close:is(:enabled, :link):active, .ds_confirmation-message__close:is(:enabled, :link):focus-within {
+    outline-offset: -0.125rem !important;
+    outline-width: 0.25rem !important;
+  }
+}
+.ds_confirmation-message__close {
+  background: transparent;
+  border-width: 0;
+  color: #5e5e5e;
+  display: none;
+  height: 2rem;
+  padding: 0;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 2rem;
+}
+.ds_confirmation-message__close:hover:not(:focus) {
+  color: #5e5e5e;
+}
+.ds_confirmation-message__close:focus {
+  outline: none;
+}
+.ds_confirmation-message__close > * {
+  pointer-events: none;
+}
+.ds_confirmation-message:has(.ds_confirmation-message__close) {
+  padding-right: 4rem;
 }
 
 /*------------------------------------*\
@@ -4631,9 +4805,9 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 }
 .ds_currency-wrapper::before {
   content: "£";
-  height: 2.5rem;
+  height: 3rem;
   font-weight: 700;
-  line-height: 2.5rem !important;
+  line-height: 3rem !important;
   pointer-events: none;
   position: absolute;
   text-align: center;
@@ -5466,6 +5640,165 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   }
 }
 /*------------------------------------*\
+    FILE UPLOAD
+\*------------------------------------*/
+.ds_file-upload__input,
+.ds_file-upload__dropzone {
+  background-color: #f8f8f8;
+  border-width: 0;
+  outline: 0.125rem dashed #b3b3b3;
+  outline-offset: -0.125rem;
+  padding: 1.5rem;
+  width: 100%;
+  text-align: start;
+  transition: background-color 0.2s, outline-color 0.2s;
+}
+.ds_file-upload__input:focus,
+.ds_file-upload__dropzone:focus {
+  box-shadow: inset 0 0 0 round(0.22em, 1px) #1a1a1a;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  border-style: solid;
+  border-color: #1a1a1a;
+  transition-duration: 0s;
+}
+.ds_file-upload__input:hover:not(:focus),
+.ds_file-upload__dropzone:hover:not(:focus) {
+  background-color: rgb(217.6861375301, 237.6263497495, 255);
+  outline-color: rgb(0, 66.9325396825, 125.25);
+}
+.ds_file-upload__input--error,
+.ds_file-upload__dropzone--error {
+  outline: 0.25rem solid #d32205;
+  outline-offset: -0.25rem;
+}
+
+.ds_file-upload__dropzone {
+  display: block;
+}
+.ds_file-upload__dropzone[disabled] {
+  background-color: #b3b3b3;
+  color: #1a1a1a;
+  font-weight: 400;
+  outline: none;
+  pointer-events: none;
+}
+@media screen and (forced-colors: active) {
+  .ds_file-upload__dropzone[disabled] {
+    outline: 0.0625rem dashed graytext !important;
+  }
+}
+.ds_file-upload__dropzone[disabled] .ds_file-upload__button {
+  color: #1a1a1a;
+  font-weight: 400;
+}
+.ds_file-upload__dropzone > * {
+  pointer-events: none;
+}
+
+.ds_file-upload__dropzone--dragging {
+  background-color: #ebebeb;
+  outline-color: #1a1a1a;
+}
+
+.ds_file-upload__input::file-selector-button,
+.ds_file-upload__button {
+  background-color: transparent;
+  color: #0065bd;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  min-height: 3rem;
+  min-width: 3rem;
+  outline: 0.125rem solid currentColor;
+  outline-offset: -0.125rem;
+  padding: 0.75rem 1rem;
+}
+@media (min-width: 48rem) {
+  .ds_file-upload__input::file-selector-button,
+  .ds_file-upload__button {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+.ds_file-upload__button-container {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem 1rem;
+  flex-wrap: wrap;
+}
+
+.ds_file-upload__input::file-selector-button {
+  margin-right: 1rem;
+}
+
+.ds_file-upload__status {
+  display: block;
+  margin-bottom: 1rem;
+  overflow-wrap: break-word;
+  width: 100%;
+}
+
+.ds_file-upload__input:hover::file-selector-button,
+.ds_file-upload__dropzone:hover .ds_file-upload__button {
+  color: rgb(0, 66.9325396825, 125.25);
+}
+
+.ds_file-upload__input:focus::file-selector-button,
+.ds_file-upload__dropzone:focus .ds_file-upload__button {
+  background-color: #fdd522;
+  color: #1a1a1a;
+  text-decoration-line: none;
+  transition-duration: 0s;
+  outline-style: none;
+  filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+}
+@media screen and (forced-colors: active) {
+  .ds_file-upload__input:focus::file-selector-button,
+  .ds_file-upload__dropzone:focus .ds_file-upload__button {
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_file-upload__input:focus::file-selector-button,
+.ds_file-upload__dropzone:focus .ds_file-upload__button {
+  outline-width: 0;
+  border-color: transparent;
+}
+
+.ds_file-upload__file-list-title {
+  margin-top: 2.5rem;
+}
+.ds_file-upload__file-list-title:not(h3) {
+  font-weight: 700;
+  font-size: 1.1875rem;
+  line-height: 1.2631578947;
+}
+@media (min-width: 48rem) {
+  .ds_file-upload__file-list-title:not(h3) {
+    font-size: 1.375rem;
+    line-height: 1.4545454545;
+  }
+}
+.ds_file-upload__file-list-title:not(h3) {
+  margin-bottom: 1rem;
+}
+@media (min-width: 48rem) {
+  .ds_file-upload__file-list-title:not(h3) {
+    margin-bottom: 1rem;
+  }
+}
+
+.ds_file-upload--has-files .ds_file-upload__dropzone {
+  outline-style: solid;
+}
+.ds_file-upload--has-files .ds_file-upload__status {
+  font-weight: 700;
+}
+
+/*------------------------------------*\
     HIDE THIS PAGE
 \*------------------------------------*/
 .ds_hide-page {
@@ -5950,7 +6283,10 @@ html:not(:has(.ds_hide-page)) {
   color: #ffffff;
 }
 .ds_notification__content {
-  padding: 1rem 0 0.9375rem;
+  align-items: start;
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0 0.6875rem;
   position: relative;
 }
 .ds_notification__content > :last-child {
@@ -5961,7 +6297,9 @@ html:not(:has(.ds_hide-page)) {
 }
 .ds_notification__text {
   display: inline-block;
+  flex: 1;
   margin-right: 1rem;
+  padding: 0.25rem 0;
 }
 .ds_notification__text > :last-child {
   margin-bottom: 0;
@@ -5980,33 +6318,12 @@ html:not(:has(.ds_hide-page)) {
   margin-bottom: -1rem;
 }
 .ds_notification__icon {
+  color: #cb4e0b;
   display: block;
-  position: absolute;
   height: 2rem;
   line-height: 0;
-  margin-left: -0.25rem;
-  margin-top: -0.25rem;
-  padding: 0.125rem;
+  min-width: 2rem;
   width: 2rem;
-}
-.ds_notification__icon + .ds_notification__text {
-  margin-left: 2.5rem;
-}
-@media (min-width: 48rem) {
-  .ds_notification__icon + .ds_notification__text {
-    margin-left: 4rem;
-  }
-}
-.ds_notification__icon--colour {
-  color: #fdd522;
-}
-.ds_notification__icon--inverse {
-  background-color: #ffffff;
-  border-radius: 6.25rem;
-  color: #1a1a1a;
-}
-.ds_notification__icon--inverse.ds_notification__icon--colour {
-  background-color: #fdd522;
 }
 @media screen and (forced-colors: active) {
   .ds_notification__close:is(:enabled, :link, summary) {
@@ -6065,17 +6382,14 @@ html:not(:has(.ds_hide-page)) {
   border-width: 0;
   color: currentColor;
   display: none;
-  height: 2.5rem;
-  padding: 0;
-  position: absolute;
-  right: -0.5rem;
-  top: 0.5rem;
-  width: 2.5rem;
+  height: 2rem;
+  line-height: 0;
+  min-width: 2rem;
+  padding: 0.125rem;
+  width: 2rem;
 }
 .ds_notification__close:hover:not(:focus) {
   color: currentColor;
-  outline: 0.125rem solid currentColor;
-  outline-offset: -0.125rem;
 }
 .ds_notification__close > * {
   pointer-events: none;
@@ -6090,11 +6404,12 @@ html:not(:has(.ds_hide-page)) {
 }
 
 @media (min-width: 48rem) {
-  .ds_notification__close {
-    top: 0.75rem;
+  .ds_notification__content {
+    gap: 1.5rem;
+    padding: 1rem 0 0.9375rem;
   }
-  .ds_notification__icon {
-    margin-top: 0;
+  .ds_notification__text {
+    padding: 0;
   }
   .ds_notification__actions {
     text-align: left;
@@ -8604,6 +8919,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 .ds_summary-list__key, .ds_summary-list__value, .ds_summary-list__actions {
   display: block;
+  margin-left: 0;
   overflow-wrap: break-word;
   margin-bottom: 0.5rem;
 }
@@ -9976,7 +10292,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   border: 0.0625rem solid currentColor;
   border-width: 0.0625rem 0;
   font-weight: 700;
-  padding-left: 4.5rem;
+  padding-left: 4rem;
   padding-right: 1rem;
   position: relative;
   margin-top: 1.5rem;
@@ -10002,7 +10318,7 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 @media (min-width: 48rem) {
   .ds_warning-text {
-    padding-top: calc(2rem + -0.0625rem);
+    padding-top: calc(1.5rem + -0.0625rem);
   }
 }
 .ds_warning-text {
@@ -10010,38 +10326,57 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 }
 @media (min-width: 48rem) {
   .ds_warning-text {
-    padding-bottom: calc(2rem + -0.0625rem);
+    padding-bottom: calc(1.5rem + -0.0625rem);
   }
 }
 .ds_warning-text:first-child {
   margin-top: 0;
 }
 
-@media screen and (forced-colors: active) {
-  .ds_warning-text__icon {
-    outline: round(0.125em, 1px) solid canvastext !important;
-  }
-}
 .ds_warning-text__icon {
-  background: #1a1a1a;
-  border-radius: 50%;
-  display: inline-block;
-  height: 2rem;
-  left: 1.5rem;
+  height: 2.125rem;
+  left: 0.9375rem;
   line-height: 1;
-  padding: 0.125rem;
   position: absolute;
-  text-align: center;
-  top: 1.1875rem;
-  width: 2rem;
+  top: 1.0625rem;
+  width: 2.125rem;
+  /** legacy support for users who are not using markup with a SVG icon **/
 }
-.ds_warning-text__icon::before {
-  content: "";
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%' viewBox='0 0 24 24' width='100%' fill='%23000000'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Ccircle cx='12' cy='19' r='2'/%3E%3Cpath d='M10 3h4v12h-4z'/%3E%3C/svg%3E");
+.ds_warning-text__icon:not(:has(svg)) {
   display: inline-block;
-  filter: invert(100%);
+}
+.ds_warning-text__icon:not(:has(svg))::before {
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%' viewBox='0 -960 960 960' width='100%' fill='%231a1a1a'%3E%3Cpath d='m40-120 440-760 440 760H40Zm468.5-131.5Q520-263 520-280t-11.5-28.5Q497-320 480-320t-28.5 11.5Q440-297 440-280t11.5 28.5Q463-240 480-240t28.5-11.5ZM440-360h80v-200h-80v200Z'/%3E%3C/svg%3E");
+  display: inline-block;
   height: 100%;
   width: 100%;
+}
+@media screen and (forced-colors: active) {
+  .ds_warning-text__icon:not(:has(svg)) {
+    width: 0;
+    height: 0;
+    border-left: 1rem solid background;
+    border-right: 1rem solid background;
+    border-bottom: 1.75rem solid currentColor;
+  }
+  .ds_warning-text__icon:not(:has(svg))::before, .ds_warning-text__icon:not(:has(svg))::after {
+    background-color: background;
+    content: "";
+    left: -0.125rem;
+    position: absolute;
+    width: 0.25rem;
+  }
+  .ds_warning-text__icon:not(:has(svg))::before {
+    background-image: none;
+    height: 0.475rem;
+    top: 0.6875rem;
+  }
+  .ds_warning-text__icon:not(:has(svg))::after {
+    height: 0.1875rem;
+    border-radius: 0.125rem;
+    top: 1.3125rem;
+  }
 }
 
 .ds_warning-text__text > :last-child {
@@ -10050,10 +10385,10 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
 
 @media (min-width: 48rem) {
   .ds_warning-text {
-    padding-right: 4.5rem;
+    padding-right: 4rem;
   }
   .ds_warning-text__icon {
-    top: 1.9375rem;
+    top: 1.3125rem;
   }
 }
 

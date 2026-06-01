@@ -17,7 +17,9 @@ declare const DS: {
                 getClickType: (event: MouseEvent) => string | undefined;
                 getNearestSectionHeader: (element: HTMLElement) => Element | undefined;
                 pushToDataLayer: (data: {
-                    [key: string]: string | number | undefined;
+                    [key: string]: string | number | {
+                        [key: string]: string | number | undefined;
+                    }[] | undefined;
                 }) => void;
                 add: {
                     clicks: (scope?: HTMLElement) => void;
@@ -40,11 +42,13 @@ declare const DS: {
                     errorMessages: (scope?: HTMLElement) => void;
                     errorSummaries: (scope?: HTMLElement) => void;
                     externalLinks: (scope?: HTMLElement) => void;
+                    fileUploads: (scope?: HTMLElement) => void;
                     hideThisPage: (scope?: HTMLElement) => void;
                     insetTexts: (scope?: HTMLElement) => void;
-                    links: () => void;
+                    links: (scope?: HTMLElement) => void;
                     metadataItems: (scope?: HTMLElement) => void;
                     notifications: (scope?: HTMLElement) => void;
+                    notificationMessages: (scope?: HTMLElement) => void;
                     pagination: (scope?: HTMLElement) => void;
                     phaseBanners: (scope?: HTMLElement) => void;
                     radios: (scope?: HTMLElement) => void;
@@ -83,8 +87,10 @@ declare const DS: {
         CookieNotification: typeof import("./components/cookie-notification/cookie-notification").default;
         DatePicker: typeof import("./components/date-picker/date-picker").default;
         Details: typeof import("./components/details/details").default;
+        FileUpload: typeof import("./components/file-upload/file-upload").default;
         HideThisPage: typeof import("./components/hide-this-page/hide-this-page").default;
         NotificationBanner: typeof import("./components/notification-banner/notification-banner").default;
+        NotificationMessage: typeof import("./components/notification-message/notification-message").default;
         SideNavigation: typeof import("./components/side-navigation/side-navigation").default;
         SiteNavigation: typeof import("./components/site-navigation/site-navigation").default;
         skipLinks: {
@@ -108,7 +114,9 @@ declare const DS: {
         getClickType: (event: MouseEvent) => string | undefined;
         getNearestSectionHeader: (element: HTMLElement) => Element | undefined;
         pushToDataLayer: (data: {
-            [key: string]: string | number | undefined;
+            [key: string]: string | number | {
+                [key: string]: string | number | undefined;
+            }[] | undefined;
         }) => void;
         add: {
             clicks: (scope?: HTMLElement) => void;
@@ -131,11 +139,13 @@ declare const DS: {
             errorMessages: (scope?: HTMLElement) => void;
             errorSummaries: (scope?: HTMLElement) => void;
             externalLinks: (scope?: HTMLElement) => void;
+            fileUploads: (scope?: HTMLElement) => void;
             hideThisPage: (scope?: HTMLElement) => void;
             insetTexts: (scope?: HTMLElement) => void;
-            links: () => void;
+            links: (scope?: HTMLElement) => void;
             metadataItems: (scope?: HTMLElement) => void;
             notifications: (scope?: HTMLElement) => void;
+            notificationMessages: (scope?: HTMLElement) => void;
             pagination: (scope?: HTMLElement) => void;
             phaseBanners: (scope?: HTMLElement) => void;
             radios: (scope?: HTMLElement) => void;

@@ -1,10 +1,10 @@
 function M(i = document) {
-  [].slice.call(i.querySelectorAll('[data-module="ds-accordion"]:not(.js-instantiated)')).forEach((h) => new f.components.Accordion(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-back-to-top"]:not(.js-instantiated)')).forEach((h) => new f.components.BackToTop(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-character-count"]:not(.js-instantiated)')).forEach((h) => new f.components.CharacterCount(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-checkboxes"]:not(.js-instantiated)')).forEach((h) => new f.components.Checkboxes(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-cookie-notification"]:not(.js-instantiated)')).forEach((h) => new f.components.CookieNotification(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]:not(.js-instantiated)')).forEach((h) => new f.components.DatePicker(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-details"]:not(.js-instantiated)')).forEach((h) => new f.components.Details(h).init()), [].slice.call(i.querySelectorAll(".ds_hide-page")).forEach((h) => new f.components.HideThisPage(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-mobile-navigation-menu"]:not(.js-instantiated)')).forEach((h) => new f.components.SiteNavigation(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-notification"]:not(.js-instantiated)')).forEach((h) => new f.components.NotificationBanner(h).init()), [].slice.call(i.querySelectorAll('[data-module="ds-side-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.SideNavigation(h).init()), f.components.skipLinks.init(), [].slice.call(i.querySelectorAll('[data-module="ds-step-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.StepNavigation(h).init()), [].slice.call(i.querySelectorAll("table[data-smallscreen]")).forEach((h) => new f.components.MobileTable(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]:not(.js-instantiated)')).forEach((h) => new f.components.Tabs(h).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]:not(.js-instantiated)')).forEach((h) => new f.components.TabsNavigation(h).init()), f.base.tools.tracking.init();
+  [].slice.call(i.querySelectorAll('[data-module="ds-accordion"]:not(.js-instantiated)')).forEach((m) => new f.components.Accordion(m).init()), [].slice.call(i.querySelectorAll('[data-module="ds-back-to-top"]:not(.js-instantiated)')).forEach((m) => new f.components.BackToTop(m).init()), [].slice.call(i.querySelectorAll('[data-module="ds-character-count"]:not(.js-instantiated)')).forEach((m) => new f.components.CharacterCount(m).init()), [].slice.call(i.querySelectorAll('[data-module="ds-checkboxes"]:not(.js-instantiated)')).forEach((m) => new f.components.Checkboxes(m).init()), [].slice.call(document.querySelectorAll('[data-module="ds-cookie-notification"]:not(.js-instantiated)')).forEach((m) => new f.components.CookieNotification(m).init()), [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]:not(.js-instantiated)')).forEach((m) => new f.components.DatePicker(m).init()), [].slice.call(document.querySelectorAll('[data-module="ds-details"]:not(.js-instantiated)')).forEach((m) => new f.components.Details(m).init()), [].slice.call(document.querySelectorAll('[data-module="ds-file-upload"]:not(.js-instantiated)')).forEach((m) => new f.components.FileUpload(m).init()), [].slice.call(i.querySelectorAll(".ds_hide-page")).forEach((m) => new f.components.HideThisPage(m).init()), [].slice.call(i.querySelectorAll('[data-module="ds-mobile-navigation-menu"]:not(.js-instantiated)')).forEach((m) => new f.components.SiteNavigation(m).init()), [].slice.call(i.querySelectorAll('[data-module="ds-notification"]:not(.js-instantiated)')).forEach((m) => new f.components.NotificationBanner(m).init()), [].slice.call(i.querySelectorAll('[data-module="ds-notification-message"]:not(.js-instantiated)')).forEach((m) => new f.components.NotificationMessage(m).init()), [].slice.call(i.querySelectorAll('[data-module="ds-side-navigation"]:not(.js-instantiated)')).forEach((m) => new f.components.SideNavigation(m).init()), f.components.skipLinks.init(), [].slice.call(i.querySelectorAll('[data-module="ds-step-navigation"]:not(.js-instantiated)')).forEach((m) => new f.components.StepNavigation(m).init()), [].slice.call(i.querySelectorAll("table[data-smallscreen]")).forEach((m) => new f.components.MobileTable(m).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]:not(.js-instantiated)')).forEach((m) => new f.components.Tabs(m).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]:not(.js-instantiated)')).forEach((m) => new f.components.TabsNavigation(m).init()), f.base.tools.tracking.init();
 }
-function A() {
+function v() {
   return window.DS = window.DS || {}, window.DS.elementIdModifier = window.DS.elementIdModifier || 0, window.DS.elementIdModifier += 1, `ds${window.DS.elementIdModifier}`;
 }
-const w = function(i, t = "GET") {
+const x = function(i, t = "GET") {
   const e = new XMLHttpRequest();
   return new Promise((s, n) => {
     e.onreadystatechange = () => {
@@ -14,7 +14,7 @@ const w = function(i, t = "GET") {
       }));
     }, e.open(t, i, !0), e.send();
   });
-}, p = {
+}, g = {
   /**
    * Sets a storage item (local, session, or cookie)
    *
@@ -30,9 +30,9 @@ const w = function(i, t = "GET") {
    * @returns {void}
    */
   set: function(i) {
-    if (p.hasPermission(i.category)) {
+    if (g.hasPermission(i.category)) {
       if (i.type === "cookie")
-        return p.cookie.set(i.name, i.value, i.expiresDays);
+        return g.cookie.set(i.name, i.value, i.expiresDays);
       i.type === "local" ? localStorage.setItem(i.name, i.value) : i.type === "session" && sessionStorage.setItem(i.name, i.value);
     }
   },
@@ -50,7 +50,7 @@ const w = function(i, t = "GET") {
    */
   get: function(i) {
     let t = "";
-    return i.type === "cookie" ? t = p.cookie.get(i.name) : i.type === "local" ? t = localStorage.getItem(i.name) : i.type === "session" && (t = sessionStorage.getItem(i.name)), t || "";
+    return i.type === "cookie" ? t = g.cookie.get(i.name) : i.type === "local" ? t = localStorage.getItem(i.name) : i.type === "session" && (t = sessionStorage.getItem(i.name)), t || "";
   },
   /**
    * removes a storage item (local, session, or cookie)
@@ -64,7 +64,7 @@ const w = function(i, t = "GET") {
    * @returns {void}
    */
   remove: function(i) {
-    i.type === "cookie" ? p.cookie.remove(i.name) : i.type === "local" ? localStorage.removeItem(i.name) : i.type === "session" && sessionStorage.removeItem(i.name);
+    i.type === "cookie" ? g.cookie.remove(i.name) : i.type === "local" ? localStorage.removeItem(i.name) : i.type === "session" && sessionStorage.removeItem(i.name);
   },
   /**
    * Sets a cookie if permission for this category of storage is given
@@ -77,7 +77,7 @@ const w = function(i, t = "GET") {
    * @returns {void}
    */
   setCookie: function(i, t, e, s) {
-    p.hasPermission(i) && p.cookie.set(t, e, s);
+    g.hasPermission(i) && g.cookie.set(t, e, s);
   },
   /**
    * Sets a local storage item if permission for this category of storage is given
@@ -89,7 +89,7 @@ const w = function(i, t = "GET") {
    * @returns {void}
    */
   setLocalStorage: function(i, t, e) {
-    p.hasPermission(i) && localStorage.setItem(t, e);
+    g.hasPermission(i) && localStorage.setItem(t, e);
   },
   /**
    * Sets a session storage item if permission for this category of storage is given
@@ -101,7 +101,7 @@ const w = function(i, t = "GET") {
    * @returns {void}
    */
   setSessionStorage: function(i, t, e) {
-    p.hasPermission(i) && sessionStorage.setItem(t, e);
+    g.hasPermission(i) && sessionStorage.setItem(t, e);
   },
   /**
    * Get a cookie value
@@ -111,7 +111,7 @@ const w = function(i, t = "GET") {
    * @returns {string | null}
    */
   getCookie: function(i) {
-    return p.cookie.get(i);
+    return g.cookie.get(i);
   },
   /**
    * Get a localStorage value
@@ -141,7 +141,7 @@ const w = function(i, t = "GET") {
    * @returns {void}
    */
   removeCookie: function(i) {
-    return p.cookie.remove(i);
+    return g.cookie.remove(i);
   },
   /**
    * Remove a localStorage item
@@ -222,8 +222,8 @@ const w = function(i, t = "GET") {
     remove: function(i, t = window) {
       const e = t.location.host.split(".");
       let s;
-      for (p.unsetCookieWithDomain(i); e.length > 1; )
-        s = e.join("."), p.unsetCookieWithDomain(i, s), p.unsetCookieWithDomain(i, `.${s}`), e.shift();
+      for (g.unsetCookieWithDomain(i); e.length > 1; )
+        s = e.join("."), g.unsetCookieWithDomain(i, s), g.unsetCookieWithDomain(i, `.${s}`), e.shift();
     }
   },
   /**
@@ -233,12 +233,12 @@ const w = function(i, t = "GET") {
    * @returns {boolean}
    */
   hasPermission(i) {
-    const t = p.get({
+    const t = g.get({
       type: "cookie",
       name: "cookiePermissions"
     }) || "";
     let e = {};
-    return p.getIsJsonString(t) && (e = JSON.parse(t)), i === "necessary" || e[i] === !0;
+    return g.getIsJsonString(t) && (e = JSON.parse(t)), i === "necessary" || e[i] === !0;
   },
   /**
    * Check if a string is valid JSON
@@ -266,13 +266,13 @@ const w = function(i, t = "GET") {
     document.cookie = `${i}=;path=/;${e};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
   }
 };
-window.storage = p;
+window.storage = g;
 function S(i) {
   i.tabIndex = -1, i.addEventListener("focusout", () => {
     i.removeAttribute("tabindex");
   }), i.focus();
 }
-class D {
+class w {
   tokens;
   /**
    * TokenList is a rough equivalent of DOMTokenList for managing a space-separated list of strings.
@@ -322,11 +322,11 @@ class D {
     return this.tokens.join(" ").trim();
   }
 }
-const x = "v4.0.0";
+const q = "v4.1.0";
 function E(i) {
   return i = String(i), i.trim().toLowerCase().replace(/['"’‘”“`]/g, "").replace(/[\W|_]+/g, "-").replace(/^-+|-+$/g, "");
 }
-function C(i) {
+function I(i) {
   const t = [];
   if (i.parentElement) {
     const e = [].slice.call(i.parentElement.children);
@@ -335,7 +335,7 @@ function C(i) {
   }
   return t;
 }
-function $(i, t, e) {
+function B(i, t, e) {
   i.reverse();
   for (let s = 0, n = i.length; s < n; s++) {
     if (i[s].matches(t))
@@ -345,7 +345,7 @@ function $(i, t, e) {
   }
   return null;
 }
-const r = {
+const l = {
   hasAddedCanonicalUrl: !1,
   hasAddedClickTracking: !1,
   hasAddedPrefersColorScheme: !1,
@@ -358,8 +358,8 @@ const r = {
    */
   init: function(i = document.documentElement) {
     let t;
-    for (t in r.add)
-      r.add[t](i);
+    for (t in l.add)
+      l.add[t](i);
   },
   /**
    * Gather elements by class name
@@ -402,9 +402,9 @@ const r = {
     const t = "nav,.ds_metadata,.ds_summary-card__header,.ds_card__content-header", e = "h1,h2,h3,h4,h5,h6,.ds_details__summary", s = ".ds_page-header,.ds_layout__header,.ds_accordion-item__header";
     if (typeof i.closest == "function" && i.closest(t))
       return;
-    const n = $(C(i), e, s);
+    const n = B(I(i), e, s);
     let a;
-    return n ? a = n : i.parentElement && (a = r.getNearestSectionHeader(i.parentElement)), a;
+    return n ? a = n : i.parentElement && (a = l.getNearestSectionHeader(i.parentElement)), a;
   },
   /**
    * Push data to the dataLayer
@@ -429,19 +429,19 @@ const r = {
      * @returns {void}
      */
     clicks: function(i = document.documentElement) {
-      r.hasAddedClickTracking || (i.addEventListener("click", (t) => {
-        r.pushToDataLayer({
-          method: r.getClickType(t)
+      l.hasAddedClickTracking || (i.addEventListener("click", (t) => {
+        l.pushToDataLayer({
+          method: l.getClickType(t)
         });
       }), i.addEventListener("auxclick", (t) => {
-        (t.button === 1 || t.buttons === 4) && r.pushToDataLayer({
-          method: r.getClickType(t)
+        (t.button === 1 || t.buttons === 4) && l.pushToDataLayer({
+          method: l.getClickType(t)
         });
       }), i.addEventListener("contextmenu", (t) => {
-        r.pushToDataLayer({
-          method: r.getClickType(t)
+        l.pushToDataLayer({
+          method: l.getClickType(t)
         });
-      }), r.hasAddedClickTracking = !0);
+      }), l.hasAddedClickTracking = !0);
     },
     /**
      * Add canonical URL to dataLayer
@@ -451,9 +451,9 @@ const r = {
      */
     canonicalUrl: () => {
       const i = document.querySelector('link[rel="canonical"]');
-      i && i.href && (r.hasAddedCanonicalUrl || (r.pushToDataLayer({
+      i && i.href && (l.hasAddedCanonicalUrl || (l.pushToDataLayer({
         canonicalUrl: i.href
-      }), r.hasAddedCanonicalUrl = !0));
+      }), l.hasAddedCanonicalUrl = !0));
     },
     /**
      * Add prefers color scheme to dataLayer
@@ -465,9 +465,9 @@ const r = {
       if (!window.matchMedia)
         return;
       const i = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      r.hasAddedPrefersColorScheme || (r.pushToDataLayer({
+      l.hasAddedPrefersColorScheme || (l.pushToDataLayer({
         prefersColorScheme: i
-      }), r.hasAddedPrefersColorScheme = !0);
+      }), l.hasAddedPrefersColorScheme = !0);
     },
     /**
      * Add version to dataLayer
@@ -476,9 +476,9 @@ const r = {
      * @returns {void}
      */
     version: function() {
-      r.hasAddedVersion || (r.pushToDataLayer({
-        version: x
-      }), r.hasAddedVersion = !0);
+      l.hasAddedVersion || (l.pushToDataLayer({
+        version: q
+      }), l.hasAddedVersion = !0);
     },
     /**
      * Sets data-navigation="accordion-link" on links in accordion panels
@@ -490,7 +490,7 @@ const r = {
      * @returns {void}
      */
     accordions: function(i = document.documentElement) {
-      r.gatherElements("ds_accordion", i).forEach((e) => {
+      l.gatherElements("ds_accordion", i).forEach((e) => {
         let s = "";
         if (e.dataset.name && (s = e.dataset.name), !e.classList.contains("js-initialised"))
           return;
@@ -498,27 +498,27 @@ const r = {
           u.getAttribute("data-navigation") || u.setAttribute("data-navigation", "accordion-link");
         });
         const a = e.querySelector(".js-open-all"), o = [].slice.call(e.querySelectorAll(".ds_accordion-item"));
-        function l() {
+        function r() {
           const u = e.querySelectorAll(".ds_accordion-item--open").length;
           return o.length === u;
         }
-        function c(u) {
-          u && (l() ? u.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}close-all`) : u.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}open-all`));
+        function d(u) {
+          u && (r() ? u.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}close-all`) : u.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}open-all`));
         }
-        function m(u, g) {
-          const d = u.querySelector(".ds_accordion-item__button"), _ = u.querySelector(".ds_accordion-item__control");
-          d.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}${_.checked ? "close" : "open"}-${g + 1}`);
+        function h(u, c) {
+          const p = u.querySelector(".ds_accordion-item__button"), _ = u.querySelector(".ds_accordion-item__control");
+          p.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}${_.checked ? "close" : "open"}-${c + 1}`);
         }
-        c(a), o.forEach((u, g) => {
-          m(u, g);
+        d(a), o.forEach((u, c) => {
+          h(u, c);
         }), a && a.addEventListener("click", () => {
-          o.forEach((u, g) => {
-            m(u, g);
-          }), c(a);
-        }), o.forEach((u, g) => {
-          const d = u.querySelector(".ds_accordion-item__button"), _ = u.querySelector(".ds_accordion-item__control");
-          d.addEventListener("click", () => {
-            d.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}${_.checked ? "close" : "open"}-${g + 1}`), c(a);
+          o.forEach((u, c) => {
+            h(u, c);
+          }), d(a);
+        }), o.forEach((u, c) => {
+          const p = u.querySelector(".ds_accordion-item__button"), _ = u.querySelector(".ds_accordion-item__control");
+          p.addEventListener("click", () => {
+            p.setAttribute("data-accordion", `accordion-${s.length ? s + "-" : s}${_.checked ? "close" : "open"}-${c + 1}`), d(a);
           });
         });
       });
@@ -530,7 +530,7 @@ const r = {
      * @returns {void}
      */
     asides: function(i = document.documentElement) {
-      r.gatherElements("ds_article-aside", i).forEach((e) => {
+      l.gatherElements("ds_article-aside", i).forEach((e) => {
         [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((n, a) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `link-related-${a + 1}`);
         });
@@ -551,7 +551,7 @@ const r = {
      */
     autocompletes: function(i = document.documentElement) {
       function t(s, n) {
-        r.pushToDataLayer({
+        l.pushToDataLayer({
           event: "autocomplete",
           searchText: s,
           clickText: n.dataset.autocompletetext,
@@ -559,11 +559,11 @@ const r = {
           clickedResults: `result ${n.dataset.autocompleteposition} of ${n.dataset.autocompletecount}`
         }), delete n.dataset.autocompletetext, delete n.dataset.autocompletecount, delete n.dataset.autocompleteposition;
       }
-      r.gatherElements("ds_autocomplete", i).forEach((s) => {
+      l.gatherElements("ds_autocomplete", i).forEach((s) => {
         const n = s.querySelector(".js-autocomplete-input"), a = document.querySelector("#" + n.getAttribute("aria-owns") + " .ds_autocomplete__suggestions-list");
         let o = n.value;
-        n.addEventListener("keydown", (l) => {
-          l.key === "Enter" && n.dataset.autocompletetext && t(o, n), o = n.value;
+        n.addEventListener("keydown", (r) => {
+          r.key === "Enter" && n.dataset.autocompletetext && t(o, n), o = n.value;
         }), a?.addEventListener("mousedown", () => {
           t(o, n);
         });
@@ -576,7 +576,7 @@ const r = {
      * @returns {void}
      */
     backToTop: function(i = document.documentElement) {
-      r.gatherElements("ds_back-to-top__button", i).forEach((e) => {
+      l.gatherElements("ds_back-to-top__button", i).forEach((e) => {
         e.setAttribute("data-navigation", "backtotop");
       });
     },
@@ -587,7 +587,7 @@ const r = {
      * @returns {void}
      */
     breadcrumbs: function(i = document.documentElement) {
-      r.gatherElements("ds_breadcrumbs", i).forEach((e) => {
+      l.gatherElements("ds_breadcrumbs", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_breadcrumbs__link")).forEach((n, a) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `breadcrumb-${a + 1}`);
         });
@@ -611,13 +611,13 @@ const r = {
      * @returns {void}
      */
     cards: function(i = document.documentElement) {
-      r.gatherElements("ds_card__link--cover", i).forEach((s, n) => {
+      l.gatherElements("ds_card__link--cover", i).forEach((s, n) => {
         s.getAttribute("data-navigation") || s.setAttribute("data-navigation", `card-${n + 1}`);
-      }), r.gatherElements("ds_card", i).forEach((s, n) => {
-        [].slice.call(s.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button')).forEach((l) => {
-          l.getAttribute("data-section") || l.setAttribute("data-section", `card-${n + 1}`);
-        }), [].slice.call(s.querySelectorAll("a:not(.ds_card__link)")).forEach((l) => {
-          l.getAttribute("data-section") || l.setAttribute("data-section", `card-${n + 1}`);
+      }), l.gatherElements("ds_card", i).forEach((s, n) => {
+        [].slice.call(s.querySelectorAll('.ds_button, input[type="button"], input[type="submit"], button')).forEach((r) => {
+          r.getAttribute("data-section") || r.setAttribute("data-section", `card-${n + 1}`);
+        }), [].slice.call(s.querySelectorAll("a:not(.ds_card__link)")).forEach((r) => {
+          r.getAttribute("data-section") || r.setAttribute("data-section", `card-${n + 1}`);
         });
       });
     },
@@ -628,7 +628,7 @@ const r = {
      * @returns {void}
      */
     categoryLists: function(i = document.documentElement) {
-      r.gatherElements("ds_category-list", i).forEach((e) => {
+      l.gatherElements("ds_category-list", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_category-item__link")).forEach((n, a) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `category-item-${a + 1}`);
         });
@@ -644,7 +644,7 @@ const r = {
      * @returns {void}
      */
     checkboxes: function(i = document.documentElement) {
-      r.gatherElements("ds_checkbox__input", i).forEach((e) => {
+      l.gatherElements("ds_checkbox__input", i).forEach((e) => {
         let s = e.getAttribute("data-form") || "";
         !s && e.id ? s = `checkbox-${e.id}` : s = s.replace(/-checked/g, ""), e.checked && (s = s + "-checked"), e.setAttribute("data-form", s), e.id && !e.getAttribute("data-value") && e.setAttribute("data-value", `${e.id}`);
         const n = i.querySelector(`[for=${e.id}]`);
@@ -655,12 +655,13 @@ const r = {
     },
     /**
      * Sets data-navigation="confirmation-link" on links in confirmation message components
+     * DEPRECATED - this will be removed in a future release
      *
      * @param {HTMLElement} scope - the element to initialize tracking on
      * @returns {void}
      */
     confirmationMessages: function(i = document.documentElement) {
-      r.gatherElements("ds_confirmation-message", i).forEach((e) => {
+      l.gatherElements("ds_confirmation-message", i).forEach((e) => {
         [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((n) => {
           n.setAttribute("data-navigation", "confirmation-link");
         });
@@ -674,7 +675,7 @@ const r = {
      * @returns {void}
      */
     contactDetails: function(i = document.documentElement) {
-      r.gatherElements("ds_contact-details", i).forEach((e) => {
+      l.gatherElements("ds_contact-details", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_contact-details__social-link")).forEach((a) => {
           a.getAttribute("data-navigation") || a.setAttribute("data-navigation", `contact-details-${E(a.textContent)}`);
         }), [].slice.call(e.querySelectorAll('a[href^="mailto"]')).forEach((a) => {
@@ -689,7 +690,7 @@ const r = {
      * @returns {void}
      */
     contentNavs: function(i = document.documentElement) {
-      r.gatherElements("ds_contents-nav", i).forEach((e) => {
+      l.gatherElements("ds_contents-nav", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_contents-nav__link")).forEach((n, a) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `contentsnav-${a + 1}`);
         });
@@ -704,7 +705,7 @@ const r = {
      * @returns {void}
      */
     details: function(i = document.documentElement) {
-      r.gatherElements("ds_details", i).forEach((e) => {
+      l.gatherElements("ds_details", i).forEach((e) => {
         const s = e.querySelector(".ds_details__summary");
         s.setAttribute("data-accordion", `detail-${e.open ? "close" : "open"}`), s.addEventListener("click", () => {
           s.setAttribute("data-accordion", `detail-${e.open ? "open" : "close"}`);
@@ -721,16 +722,16 @@ const r = {
      * @returns {void}
      */
     errorMessages: function(i = document.documentElement) {
-      r.gatherElements("ds_question__error-message", i).forEach((e, s) => {
+      l.gatherElements("ds_question__error-message", i).forEach((e, s) => {
         if (typeof e.closest == "function" && e.closest(".ds_question")) {
           const a = e.closest(".ds_question")?.querySelector(".js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input");
           let o = (s + 1).toString();
           if (a)
             if (a.classList.contains("js-validation-group")) {
-              const l = function(m, u, g) {
-                return g.indexOf(m) === u;
+              const r = function(h, u, c) {
+                return c.indexOf(h) === u;
               };
-              o = [].slice.call(a.querySelectorAll(".ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input")).map((m) => m.type === "radio" ? m.name : m.id).filter(l).join("-");
+              o = [].slice.call(a.querySelectorAll(".ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input")).map((h) => h.type === "radio" ? h.name : h.id).filter(r).join("-");
             } else a.type === "radio" ? o = a.name : o = a.id;
           e.getAttribute("data-form") || e.setAttribute("data-form", `error-${o}`);
         }
@@ -744,7 +745,7 @@ const r = {
      * @returns {void}
      */
     errorSummaries: function(i = document.documentElement) {
-      r.gatherElements("ds_error-summary", i).forEach((e) => {
+      l.gatherElements("ds_error-summary", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_error-summary__list a")).forEach((n) => {
           !n.getAttribute("data-form") && n.href && n.setAttribute("data-form", `error-${n.href.substring(n.href.lastIndexOf("#") + 1)}`);
         });
@@ -765,6 +766,41 @@ const r = {
       });
     },
     /**
+     * Sets data-form="fileinput-[ID]" on file upload components
+     * Sets data-filesize and data-filetype when a file is added
+     *
+     * @param {HTMLElement} scope - the element to initialize tracking on
+     * @returns {void}
+     */
+    fileUploads: function(i = document.documentElement) {
+      [].slice.call(i.querySelectorAll(".ds_file-upload")).forEach((e) => {
+        const s = e.querySelector('input[type="file"]');
+        !s.getAttribute("data-form") && s.id && s.setAttribute("data-form", `fileinput-${s.id}`);
+        function n(o) {
+          const r = o.split(".");
+          return r.length > 1 ? r.pop()?.toLowerCase() : "";
+        }
+        function a(o) {
+          return `${(o * 1e-6).toFixed(2)}MB`;
+        }
+        s.addEventListener("input", () => {
+          s.files?.length ? (s.setAttribute("data-filetype", n(s.files[0].name)), s.setAttribute("data-filesize", a(s.files[0].size))) : (s.removeAttribute("data-filesize"), s.removeAttribute("data-filetype"));
+        }), e.addEventListener("dropHappened", ((o) => {
+          const r = {
+            event: "fileUploadDrop"
+          };
+          o.detail.canFill ? o.detail.canAccept ? r.status = "success" : r.status = "fail: unable to accept" : r.status = "fail: unable to fill", r.files = Array.from(o.detail.files).map((d) => {
+            const h = d;
+            return {
+              extension: n(h.name),
+              size: h.size,
+              type: h.type
+            };
+          }), l.pushToDataLayer(r);
+        }));
+      });
+    },
+    /**
      * Sets data-navigation="hide-this-page" on hide this page links
      * Adds an event listener to push 'esc' presses the data layer
      *
@@ -772,10 +808,10 @@ const r = {
      * @returns {void}
      */
     hideThisPage: function(i = document.documentElement) {
-      r.gatherElements("ds_hide-page", i).forEach((e) => {
+      l.gatherElements("ds_hide-page", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_hide-page__button")).forEach((n) => {
           n.setAttribute("data-navigation", "hide-this-page"), document.addEventListener("keyup", (a) => {
-            a.key === "Esc" && r.pushToDataLayer({ event: "hide-this-page-keyboard" });
+            a.key === "Esc" && l.pushToDataLayer({ event: "hide-this-page-keyboard" });
           });
         });
       });
@@ -787,7 +823,7 @@ const r = {
      * @returns {void}
      */
     insetTexts: function(i = document.documentElement) {
-      r.gatherElements("ds_inset-text", i).forEach((e) => {
+      l.gatherElements("ds_inset-text", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_inset-text__text a:not(.ds_button)")).forEach((n) => {
           n.getAttribute("data-navigation") || n.setAttribute("data-navigation", "inset-link");
         });
@@ -796,12 +832,12 @@ const r = {
     /**
      * Sets data-section="[SECTIONNAME]" on links
      * SECIONNAME is determined by seeking the closest heading (or headinglike) element to the link
+     * @returns {void}
      */
-    // todo: @returns, should this have scope?
-    links: function() {
-      [].slice.call(document.querySelectorAll("a")).forEach((t) => {
-        const e = r.getNearestSectionHeader(t);
-        e && (t.getAttribute("data-section") || t.setAttribute("data-section", e.textContent.trim()));
+    links: function(i = document.documentElement) {
+      [].slice.call(i.querySelectorAll("a")).forEach((e) => {
+        const s = l.getNearestSectionHeader(e);
+        s && (e.getAttribute("data-section") || e.setAttribute("data-section", s.textContent.trim()));
       });
     },
     /**
@@ -811,11 +847,11 @@ const r = {
      * @returns {void}
      */
     metadataItems: function(i = document.documentElement) {
-      r.gatherElements("ds_metadata__item", i).forEach((e, s) => {
+      l.gatherElements("ds_metadata__item", i).forEach((e, s) => {
         const n = e.querySelector(".ds_metadata__key");
         let a;
-        n ? a = n.textContent.trim() : a = `metadata-${s}`, [].slice.call(e.querySelectorAll(".ds_metadata__value a")).forEach((l, c) => {
-          l.getAttribute("data-navigation") || l.setAttribute("data-navigation", `${E(a)}-${c + 1}`);
+        n ? a = n.textContent.trim() : a = `metadata-${s}`, [].slice.call(e.querySelectorAll(".ds_metadata__value a")).forEach((r, d) => {
+          r.getAttribute("data-navigation") || r.setAttribute("data-navigation", `${E(a)}-${d + 1}`);
         });
       });
     },
@@ -828,15 +864,31 @@ const r = {
      * @returns {void}
      */
     notifications: function(i = document.documentElement) {
-      r.gatherElements("ds_notification", i).forEach((e, s) => {
+      l.gatherElements("ds_notification", i).forEach((e, s) => {
         const n = e.id || (s + 1).toString();
-        [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((c) => {
-          c.getAttribute("data-banner") || c.setAttribute("data-banner", `banner-${n}-link`);
-        }), [].slice.call(e.querySelectorAll(".ds_button:not(.ds_notification__close)")).forEach((c) => {
-          c.getAttribute("data-banner") || c.setAttribute("data-banner", `banner-${n}-${E(c.textContent)}`);
+        [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((d) => {
+          d.getAttribute("data-banner") || d.setAttribute("data-banner", `banner-${n}-link`);
+        }), [].slice.call(e.querySelectorAll(".ds_button:not(.ds_notification__close)")).forEach((d) => {
+          d.getAttribute("data-banner") || d.setAttribute("data-banner", `banner-${n}-${E(d.textContent)}`);
         });
-        const l = e.querySelector(".ds_notification__close");
-        l && !l.getAttribute("data-banner") && l.setAttribute("data-banner", `banner-${n}-close`);
+        const r = e.querySelector(".ds_notification__close");
+        r && !r.getAttribute("data-banner") && r.setAttribute("data-banner", `banner-${n}-close`);
+      });
+    },
+    /**
+     * Sets data-banner="banner-[NAME]-link" on links in notification banners
+     * Sets data-banner="banner-[NAME]-[BUTTONTEXT]" on buttons in notification banners
+     * Sets data-banner="banner-[NAME]-close" on notification banner close buttons
+     *
+     * @param {HTMLElement} scope - the element to initialize tracking on
+     * @returns {void}
+     */
+    notificationMessages: function(i = document.documentElement) {
+      l.gatherElements("ds_notification-message", i).forEach((e, s) => {
+        const n = e.id || (s + 1).toString(), a = e.classList.contains("ds_notification-message--error") ? "error" : e.classList.contains("ds_notification-message--warning") ? "warning" : e.classList.contains("ds_notification-message--info") ? "info" : "confirmation";
+        [].slice.call(e.querySelectorAll("a")).forEach((d) => {
+          d.getAttribute("data-navigation") || d.setAttribute("data-navigation", `${a}-${n}-link`);
+        }), e.querySelector(".ds_notification-message__close")?.setAttribute("data-button", `${a}-${n}-close`);
       });
     },
     /**
@@ -847,7 +899,7 @@ const r = {
      * @returns {void}
      */
     pagination: function(i = document.documentElement) {
-      r.gatherElements("ds_pagination", i).forEach((e) => {
+      l.gatherElements("ds_pagination", i).forEach((e) => {
         const s = e.querySelector(".ds_pagination__load-more button");
         s && !s.getAttribute("data-search") && s.setAttribute("data-search", "pagination-more"), [].slice.call(e.querySelectorAll("a.ds_pagination__link")).forEach((a) => {
           a.getAttribute("data-search") || a.setAttribute("data-search", `pagination-${E(a.textContent)}`);
@@ -861,7 +913,7 @@ const r = {
      * @returns {void}
      */
     phaseBanners: function(i = document.documentElement) {
-      r.gatherElements("ds_phase-banner", i).forEach((e) => {
+      l.gatherElements("ds_phase-banner", i).forEach((e) => {
         const s = e.querySelector(".ds_tag"), n = s ? s.textContent.trim() : "phase";
         [].slice.call(e.querySelectorAll("a")).forEach((o) => {
           o.getAttribute("data-banner") || o.setAttribute("data-banner", `banner-${E(n)}-link`);
@@ -876,7 +928,7 @@ const r = {
      * @returns {void}
      */
     radios: function(i = document.documentElement) {
-      r.gatherElements("ds_radio__input", i).forEach((e) => {
+      l.gatherElements("ds_radio__input", i).forEach((e) => {
         !e.getAttribute("data-form") && e.name && e.id && e.setAttribute("data-form", `radio-${e.name}-${e.id}`), e.id && !e.getAttribute("data-value") && e.setAttribute("data-value", `${e.id}`);
       });
     },
@@ -887,7 +939,7 @@ const r = {
      * @returns {void}
      */
     searchFacets: function(i = document.documentElement) {
-      r.gatherElements("ds_facet__button", i).forEach((e) => {
+      l.gatherElements("ds_facet__button", i).forEach((e) => {
         e.setAttribute("data-button", `button-filter-${e.dataset.slug}-remove`);
       });
     },
@@ -901,23 +953,23 @@ const r = {
      * @returns {void}
      */
     searchResults: function(i = document.documentElement) {
-      r.gatherElements("ds_search-results", i).forEach((e) => {
+      l.gatherElements("ds_search-results", i).forEach((e) => {
         const s = e.querySelector(".ds_search-results__list");
         if (!s)
           return;
         const n = [].slice.call(e.querySelectorAll(".ds_search-result")), a = [].slice.call(e.querySelectorAll(".ds_search-result--promoted")), o = +(s.getAttribute("start") || "1");
-        n.forEach((l, c) => {
-          const m = l.querySelector(".ds_search-result__link"), u = l.querySelector(".ds_search-result__media-link"), g = l.querySelector(".ds_search-result__context a");
-          if (l.classList.contains("ds_search-result--promoted")) {
-            const d = `search-promoted-${c + 1}/${a.length}`;
-            m.setAttribute("data-search", d);
+        n.forEach((r, d) => {
+          const h = r.querySelector(".ds_search-result__link"), u = r.querySelector(".ds_search-result__media-link"), c = r.querySelector(".ds_search-result__context a");
+          if (r.classList.contains("ds_search-result--promoted")) {
+            const p = `search-promoted-${d + 1}/${a.length}`;
+            h.setAttribute("data-search", p);
           } else {
-            let d;
-            s.getAttribute("data-total") && (d = s.getAttribute("data-total"));
-            let _ = `search-result-${o + c - a.length}`;
-            const y = `search-image-${o + c - a.length}`;
-            let v = `search-parent-link-${o + c - a.length}`;
-            d && (_ += `/${d}`, v += `/${d}`), m.setAttribute("data-search", _), u && u.setAttribute("data-search", y), g && g.setAttribute("data-search", v);
+            let p;
+            s.getAttribute("data-total") && (p = s.getAttribute("data-total"));
+            let _ = `search-result-${o + d - a.length}`;
+            const A = `search-image-${o + d - a.length}`;
+            let y = `search-parent-link-${o + d - a.length}`;
+            p && (_ += `/${p}`, y += `/${p}`), h.setAttribute("data-search", _), u && u.setAttribute("data-search", A), c && c.setAttribute("data-search", y);
           }
         });
       });
@@ -929,7 +981,7 @@ const r = {
      * @returns {void}
      */
     searchSuggestions: function(i = document.documentElement) {
-      r.gatherElements("ds_search-suggestions", i).forEach((e) => {
+      l.gatherElements("ds_search-suggestions", i).forEach((e) => {
         const s = [].slice.call(e.querySelectorAll(".ds_search-suggestions a"));
         s.forEach((n, a) => {
           n.setAttribute("data-search", `suggestion-result-${a + 1}/${s.length}`);
@@ -943,7 +995,7 @@ const r = {
      * @returns {void}
      */
     searchRelated: function(i = document.documentElement) {
-      r.gatherElements("ds_search-results__related", i).forEach((e) => {
+      l.gatherElements("ds_search-results__related", i).forEach((e) => {
         const s = [].slice.call(e.querySelectorAll(".ds_search-results__related a"));
         s.forEach((n, a) => {
           n.setAttribute("data-search", `search-related-${a + 1}/${s.length}`);
@@ -959,13 +1011,13 @@ const r = {
      * @returns {void}
      */
     selects: function(i = document.documentElement) {
-      r.gatherElements("ds_select", i).forEach((e) => {
+      l.gatherElements("ds_select", i).forEach((e) => {
         !e.getAttribute("data-form") && e.id && e.setAttribute("data-form", `select-${e.id}`), [].slice.call(e.querySelectorAll("option")).forEach((n) => {
           let a = "null";
           n.value && (a = E(n.value)), n.setAttribute("data-form", `${e.getAttribute("data-form")}-${a}`);
         }), e.classList.contains("js-has-tracking-event") || (e.addEventListener("change", (n) => {
           const o = n.target.querySelector(":checked");
-          r.pushToDataLayer({ event: String(o.dataset.form) });
+          l.pushToDataLayer({ event: String(o.dataset.form) });
         }), e.classList.add("js-has-tracking-event"));
       });
     },
@@ -977,7 +1029,7 @@ const r = {
      * @returns {void}
      */
     sequentialNavs: function(i = document.documentElement) {
-      r.gatherElements("ds_sequential-nav", i).forEach((e) => {
+      l.gatherElements("ds_sequential-nav", i).forEach((e) => {
         const s = e.querySelector(".ds_sequential-nav__item--prev > .ds_sequential-nav__button "), n = e.querySelector(".ds_sequential-nav__item--next > .ds_sequential-nav__button ");
         s && !s.getAttribute("data-navigation") && s.setAttribute("data-navigation", "sequential-previous"), n && !n.getAttribute("data-navigation") && n.setAttribute("data-navigation", "sequential-next");
       });
@@ -999,19 +1051,19 @@ const r = {
      * @returns {void}
      */
     sideNavs: function(i = document.documentElement) {
-      r.gatherElements("ds_side-navigation", i).forEach((e) => {
+      l.gatherElements("ds_side-navigation", i).forEach((e) => {
         const s = e.querySelector(".ds_side-navigation__list"), n = e.querySelector(".js-side-navigation-button"), a = e.querySelector(".js-toggle-side-navigation");
         function o() {
           n?.setAttribute("data-navigation", `navigation-${a.checked ? "close" : "open"}`);
         }
-        function l(c, m = "") {
-          [].slice.call(c.children).forEach((u, g) => {
-            [].slice.call(u.children).forEach((d) => {
-              d.classList.contains("ds_side-navigation__list") ? l(d, `${m}-${g + 1}`) : d.setAttribute("data-navigation", `sidenav${m}-${g + 1}`);
+        function r(d, h = "") {
+          [].slice.call(d.children).forEach((u, c) => {
+            [].slice.call(u.children).forEach((p) => {
+              p.classList.contains("ds_side-navigation__list") ? r(p, `${h}-${c + 1}`) : p.setAttribute("data-navigation", `sidenav${h}-${c + 1}`);
             });
           });
         }
-        l(s), n && (o(), n.addEventListener("click", () => {
+        r(s), n && (o(), n.addEventListener("click", () => {
           o();
         }));
       });
@@ -1024,7 +1076,7 @@ const r = {
      * @returns {void}
      */
     siteBranding: function(i = document.documentElement) {
-      r.gatherElements("ds_site-branding", i).forEach((e) => {
+      l.gatherElements("ds_site-branding", i).forEach((e) => {
         const s = e.querySelector(".ds_site-branding__logo");
         s && !s.getAttribute("data-header") && s.setAttribute("data-header", "header-logo");
         const n = e.querySelector(".ds_site-branding__title");
@@ -1040,13 +1092,13 @@ const r = {
      * @returns {void}
      */
     siteFooter: function(i = document.documentElement) {
-      r.gatherElements("ds_site-footer", i).forEach((e) => {
+      l.gatherElements("ds_site-footer", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_site-footer__org-link")).forEach((o) => {
           o.getAttribute("data-footer") || o.setAttribute("data-footer", "footer-logo");
         }), [].slice.call(e.querySelectorAll(".ds_site-footer__copyright a")).forEach((o) => {
           o.getAttribute("data-footer") || o.setAttribute("data-footer", "footer-copyright");
-        }), [].slice.call(e.querySelectorAll(".ds_site-items__item a:not(.ds_button)")).forEach((o, l) => {
-          o.getAttribute("data-footer") || o.setAttribute("data-footer", `footer-link-${l + 1}`);
+        }), [].slice.call(e.querySelectorAll(".ds_site-items__item a:not(.ds_button)")).forEach((o, r) => {
+          o.getAttribute("data-footer") || o.setAttribute("data-footer", `footer-link-${r + 1}`);
         });
       });
     },
@@ -1059,11 +1111,11 @@ const r = {
      * @returns {void}
      */
     siteNavigation: function(i = document.documentElement) {
-      r.gatherElements("ds_site-navigation", i).forEach((s) => {
+      l.gatherElements("ds_site-navigation", i).forEach((s) => {
         [].slice.call(s.querySelectorAll(".ds_site-navigation__link")).forEach((a, o) => {
           a.getAttribute("data-device") || (typeof a.closest == "function" && a.closest(".ds_site-navigation--mobile") ? a.setAttribute("data-device", "mobile") : a.setAttribute("data-device", "desktop")), a.getAttribute("data-header") || a.setAttribute("data-header", `header-link-${o + 1}`);
         });
-      }), r.gatherElements("ds_site-navigation--mobile", i).forEach((s) => {
+      }), l.gatherElements("ds_site-navigation--mobile", i).forEach((s) => {
         const n = s.parentNode?.querySelector(".js-toggle-menu");
         n && n.setAttribute("data-header", "header-menu-toggle");
       });
@@ -1087,11 +1139,11 @@ const r = {
      * @returns {void}
      */
     stepNavigation: function(i = document.documentElement) {
-      r.gatherElements("ds_step-navigation", i).forEach((s) => {
+      l.gatherElements("ds_step-navigation", i).forEach((s) => {
         [].slice.call(s.querySelectorAll(".ds_step-navigation__title-link")).forEach((a) => {
           a.setAttribute("data-navigation", "partof-sidebar");
         });
-      }), r.gatherElements("ds_step-navigation-top", i).forEach((s) => {
+      }), l.gatherElements("ds_step-navigation-top", i).forEach((s) => {
         [].slice.call(s.querySelectorAll("a")).forEach((a) => {
           a.setAttribute("data-navigation", "partof-header");
         });
@@ -1108,13 +1160,13 @@ const r = {
      * @returns {void}
      */
     summaryCard: function(i = document.documentElement) {
-      r.gatherElements("ds_summary-card", i).forEach((e, s) => {
+      l.gatherElements("ds_summary-card", i).forEach((e, s) => {
         [].slice.call(e.querySelectorAll(".ds_summary-card__actions-list")).forEach((a) => {
-          const o = [].slice.call(a.querySelectorAll("button")), l = [].slice.call(a.querySelectorAll("a"));
-          o.forEach((c) => {
-            c.setAttribute("data-button", `button-${E(c.textContent)}-${s + 1}`);
-          }), l.forEach((c) => {
-            c.setAttribute("data-navigation", `navigation-${E(c.textContent)}-${s + 1}`);
+          const o = [].slice.call(a.querySelectorAll("button")), r = [].slice.call(a.querySelectorAll("a"));
+          o.forEach((d) => {
+            d.setAttribute("data-button", `button-${E(d.textContent)}-${s + 1}`);
+          }), r.forEach((d) => {
+            d.setAttribute("data-navigation", `navigation-${E(d.textContent)}-${s + 1}`);
           });
         });
       });
@@ -1130,10 +1182,10 @@ const r = {
      * @returns {void}
      */
     summaryList: function(i = document.documentElement) {
-      r.gatherElements("ds_summary-list__actions", i).forEach((e) => {
+      l.gatherElements("ds_summary-list__actions", i).forEach((e) => {
         [].slice.call(e.querySelectorAll("button, a")).forEach((n) => {
-          const a = n.tagName === "BUTTON" ? "button" : "navigation", o = n.closest(".ds_summary-list__item")?.querySelector(".ds_summary-list__key"), l = "-" + E(o.textContent);
-          n.setAttribute(`data-${a}`, `${a}-${E(n.textContent)}${l}`);
+          const a = n.tagName === "BUTTON" ? "button" : "navigation", o = n.closest(".ds_summary-list__item")?.querySelector(".ds_summary-list__key"), r = "-" + E(o.textContent);
+          n.setAttribute(`data-${a}`, `${a}-${E(n.textContent)}${r}`);
         });
       });
     },
@@ -1144,7 +1196,7 @@ const r = {
      * @returns {void}
      */
     tabs: function(i = document.documentElement) {
-      const t = r.gatherElements("ds_tabs", i);
+      const t = l.gatherElements("ds_tabs", i);
       let e = 1;
       t.forEach((s) => {
         [].slice.call(s.querySelectorAll(".ds_tabs__tab-link")).forEach((a, o) => {
@@ -1160,9 +1212,9 @@ const r = {
      * @returns {void}
      */
     taskList: function(i = document.documentElement) {
-      r.gatherElements("ds_task-list__task-link", i).forEach((s) => {
+      l.gatherElements("ds_task-list__task-link", i).forEach((s) => {
         s.getAttribute("data-navigation") || s.setAttribute("data-navigation", "tasklist");
-      }), r.gatherElements("js-task-list-skip-link", i).forEach((s) => {
+      }), l.gatherElements("js-task-list-skip-link", i).forEach((s) => {
         s.getAttribute("data-navigation") || s.setAttribute("data-navigation", "tasklist-skip");
       });
     },
@@ -1199,20 +1251,20 @@ const r = {
      * @returns {void}
      */
     warningTexts: function(i = document.documentElement) {
-      r.gatherElements("ds_warning-text", i).forEach((e) => {
+      l.gatherElements("ds_warning-text", i).forEach((e) => {
         [].slice.call(e.querySelectorAll(".ds_warning-text a:not(.ds_button)")).forEach((n) => {
           n.setAttribute("data-navigation", "warning-link");
         });
       });
     }
   }
-}, B = {
-  idModifier: A,
-  PromiseRequest: w,
-  storage: p,
+}, $ = {
+  idModifier: v,
+  PromiseRequest: x,
+  storage: g,
   temporaryFocus: S,
-  TokenList: D,
-  tracking: r
+  TokenList: w,
+  tracking: l
 };
 function k(i) {
   const t = document.createElement("div");
@@ -1220,11 +1272,11 @@ function k(i) {
   const e = window.getComputedStyle(t, null).display === "block";
   return t.parentNode?.removeChild(t), e;
 }
-const I = {
+const N = {
   breakpointCheck: k
-}, T = {
-  tools: B,
-  utilities: I
+}, D = {
+  tools: $,
+  utilities: N
 };
 class b {
   #t;
@@ -1239,7 +1291,7 @@ class b {
     return this.#e;
   }
 }
-class N extends b {
+class P extends b {
   accordion;
   items;
   openAllButton;
@@ -1271,18 +1323,18 @@ class N extends b {
    * @returns {void}
    */
   initAccordionItem(t) {
-    const e = t.querySelector(".ds_accordion-item__body"), s = t.querySelector(".ds_accordion-item__control"), n = t.querySelector(".ds_accordion-item__header"), a = t.querySelector(".ds_accordion-item__indicator"), o = t.querySelector(".ds_accordion-item__label span"), l = n.querySelector(".ds_accordion-item__title");
-    let c = !1;
+    const e = t.querySelector(".ds_accordion-item__body"), s = t.querySelector(".ds_accordion-item__control"), n = t.querySelector(".ds_accordion-item__header"), a = t.querySelector(".ds_accordion-item__indicator"), o = t.querySelector(".ds_accordion-item__label span"), r = n.querySelector(".ds_accordion-item__title");
+    let d = !1;
     if (window.location.hash)
       try {
-        t.querySelector(window.location.hash) && (c = !0, s.checked = !0);
+        t.querySelector(window.location.hash) && (d = !0, s.checked = !0);
       } catch {
       }
-    const m = s.checked, u = document.createElement("button");
-    l.classList.add("ds_accordion-item__title--button"), u.classList.add("ds_accordion-item__button"), u.classList.add("js-accordion-button"), u.id = l.id + "-button", u.type = "button", s.classList.remove("visually-hidden"), s.classList.add("fully-hidden"), s.setAttribute("tabindex", "-1"), u.innerHTML = l.innerHTML, a.setAttribute("aria-hidden", "true"), l.innerHTML = "", l.insertBefore(u, l.firstChild), u.appendChild(a), o.classList.add("fully-hidden");
-    const g = A();
-    t.id = t.id || `accordion-item-${g}`, e.id = e.id || `accordion-item-${g}-body`, m && (t.classList.add("ds_accordion-item--open"), this.openAllButton && this.setOpenAllButton(this.checkAllOpen()), c && t.scrollIntoView()), u.setAttribute("aria-expanded", m.toString()), u.setAttribute("aria-controls", e.id), u.addEventListener("click", (d) => {
-      d.preventDefault(), this.toggleAccordionItem(t);
+    const h = s.checked, u = document.createElement("button");
+    r.classList.add("ds_accordion-item__title--button"), u.classList.add("ds_accordion-item__button"), u.classList.add("js-accordion-button"), u.id = r.id + "-button", u.type = "button", s.classList.remove("visually-hidden"), s.classList.add("fully-hidden"), s.setAttribute("tabindex", "-1"), u.innerHTML = r.innerHTML, a.setAttribute("aria-hidden", "true"), r.innerHTML = "", r.insertBefore(u, r.firstChild), u.appendChild(a), o.classList.add("fully-hidden");
+    const c = v();
+    t.id = t.id || `accordion-item-${c}`, e.id = e.id || `accordion-item-${c}-body`, h && (t.classList.add("ds_accordion-item--open"), this.openAllButton && this.setOpenAllButton(this.checkAllOpen()), d && t.scrollIntoView()), u.setAttribute("aria-expanded", h.toString()), u.setAttribute("aria-controls", e.id), u.addEventListener("click", (p) => {
+      p.preventDefault(), this.toggleAccordionItem(t);
     });
   }
   /**
@@ -1334,25 +1386,25 @@ class N extends b {
     return this.items.length === t;
   }
 }
-function P(i, t, e) {
+function H(i, t, e) {
   e = Object.assign({}, {
     className: ""
   }, e);
-  function n(o, l) {
-    if (!o.data || l === "")
+  function n(o, r) {
+    if (!o.data || r === "")
       return !1;
-    let c, m;
-    const g = new RegExp(l, "i").exec(o.data);
-    return g && (m = document.createElement("MARK"), e.className && (m.className = e.className), c = o.splitText(g.index), c.splitText(g[0].length), m.appendChild(c.cloneNode(!0)), o.parentNode?.replaceChild(m, c)), !!g;
+    let d, h;
+    const c = new RegExp(r, "i").exec(o.data);
+    return c && (h = document.createElement("MARK"), e.className && (h.className = e.className), d = o.splitText(c.index), d.splitText(c[0].length), h.appendChild(d.cloneNode(!0)), o.parentNode?.replaceChild(h, d)), !!c;
   }
   function a(o) {
-    let l;
-    for (let m = 0; m < o.childNodes.length; m++)
-      l = o.childNodes[m], l.nodeType === 3 ? m += n(l, t) ? 1 : 0 : a(l);
+    let r;
+    for (let h = 0; h < o.childNodes.length; h++)
+      r = o.childNodes[h], r.nodeType === 3 ? h += n(r, t) ? 1 : 0 : a(r);
   }
   a(i);
 }
-class H extends b {
+class z extends b {
   activeSuggestion;
   endpointUrl;
   inputElement;
@@ -1375,7 +1427,7 @@ class H extends b {
    * @param {AutocompleteOptionsArgs} options - the autocomplete options
    */
   constructor(t, e, s = {}) {
-    super(t), this.inputElement = t.querySelector(".js-autocomplete-input"), this.endpointUrl = e, this.suggestionMappingFunction = s.suggestionMappingFunction || ((n) => n), this.throttleDelay = s.throttleDelay || 100, this.minLength = s.minLength || 3, this.tempToggleCharacter = "", this.PromiseRequest = w, this.statusElement = document.querySelector("#autocomplete-status");
+    super(t), this.inputElement = t.querySelector(".js-autocomplete-input"), this.endpointUrl = e, this.suggestionMappingFunction = s.suggestionMappingFunction || ((n) => n), this.throttleDelay = s.throttleDelay || 100, this.minLength = s.minLength || 3, this.tempToggleCharacter = "", this.PromiseRequest = x, this.statusElement = document.querySelector("#autocomplete-status");
   }
   /**
    * Initialise the autocomplete component
@@ -1493,16 +1545,18 @@ class H extends b {
    */
   showSuggestions(t) {
     if (this.listBoxElement.innerHTML = "", t.length) {
-      for (let a = 0, o = t.length; a < o; a++) {
-        const l = t[a], c = document.createElement("li");
-        c.id = "suggestion-" + a, c.classList.add("ds_autocomplete__suggestion"), c.setAttribute("role", "option"), document.createElement("span").classList.add("js-suggestion-text"), l.isActive && c.classList.add("active"), c.innerHTML = this.buildSuggestionHtml(l.displayText);
-        const u = c.querySelector(".js-suggestion-text");
-        P(u, this.inputElement.value, {}), this.listBoxElement.appendChild(c);
+      for (let n = 0, a = t.length; n < a; n++) {
+        const o = t[n], r = document.createElement("li");
+        r.id = "suggestion-" + n, r.classList.add("ds_autocomplete__suggestion"), r.setAttribute("role", "option"), document.createElement("span").classList.add("js-suggestion-text"), o.isActive && r.classList.add("active"), r.innerHTML = this.buildSuggestionHtml(o.displayText);
+        const h = r.querySelector(".js-suggestion-text");
+        H(h, this.inputElement.value, {}), this.listBoxElement.appendChild(r);
       }
       this.inputElement.classList.add("js-has-suggestions");
-      const e = this.listBoxElement.querySelector("li:last-child"), s = this.listBoxElement.parentElement, n = window.visualViewport;
-      for (; n.height < s.offsetHeight + this.inputElement.offsetHeight + 16; )
-        e.parentNode?.removeChild(e), t = t.splice(t.length - 1);
+      const e = this.listBoxElement.parentElement, s = window.visualViewport;
+      for (; s.height < e.offsetHeight + this.inputElement.offsetHeight + 16; ) {
+        const n = this.listBoxElement.querySelector("li:last-child");
+        n.parentNode?.removeChild(n), t = t.splice(t.length - 1);
+      }
     } else
       this.clearSuggestions();
   }
@@ -1595,7 +1649,7 @@ class O extends b {
     }), this.backToTopElement.classList.add(`ds_!_off-b-${e}`);
   }
 }
-class j extends b {
+class F extends b {
   emptyMessage;
   field;
   idModifier;
@@ -1613,7 +1667,7 @@ class j extends b {
    * @param {HTMLElement} field - the input field or textarea to apply a character count to
    */
   constructor(t) {
-    super(t), this.field = t, this.inputElement = this.field.querySelector("input, textarea"), this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0, this.messageTimeout = 0, this.idModifier = A();
+    super(t), this.field = t, this.inputElement = this.field.querySelector("input, textarea"), this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0, this.messageTimeout = 0, this.idModifier = v();
   }
   /**
    * Initialise the character count
@@ -1630,7 +1684,7 @@ class j extends b {
       this.emptyMessage = `You can enter up to ${this.maxLength} characters`;
       const t = document.createElement("div");
       t.classList.add("fully-hidden"), t.classList.add("ds_character-count__initial"), t.textContent = this.emptyMessage, t.id = `character-count-empty-${this.idModifier}`, this.messageElement = document.createElement("div"), this.messageElement.classList.add("ds_input__message"), this.messageElement.classList.add("ds_hint-text"), this.messageElement.setAttribute("aria-hidden", "true"), this.screenReaderMessageElement = document.createElement("div"), this.screenReaderMessageElement.classList.add("visually-hidden"), this.screenReaderMessageElement.id = `character-count-remaining-${this.idModifier}`;
-      const e = new D(this.inputElement.getAttribute("aria-describedby"));
+      const e = new w(this.inputElement.getAttribute("aria-describedby"));
       this.inputElement.setAttribute("aria-describedby", e.add([t.id, this.screenReaderMessageElement.id])), this.inputElement.value.length < this.thresholdCharacters && this.messageElement.classList.add("fully-hidden"), this.isInvalidInitialState = !!this.inputElement.getAttribute("aria-invalid") && this.inputElement.getAttribute("aria-invalid") !== "false", this.field.appendChild(this.messageElement), this.field.appendChild(this.screenReaderMessageElement), this.field.appendChild(t), this.updateCountMessage(), this.inputElement.oldValue = this.inputElement.value, this.inputElement.addEventListener("input", this.checkIfChanged.bind(this)), this.isInitialised = !0;
     }
   }
@@ -1689,7 +1743,7 @@ class j extends b {
     this.screenReaderMessageElement.textContent = this.messageElement.textContent;
   }
 }
-class R extends b {
+class j extends b {
   checkboxes;
   /**
    * Creates a checkboxes component
@@ -1715,7 +1769,7 @@ class R extends b {
     }), this.isInitialised = !0;
   }
 }
-class F extends b {
+class R extends b {
   storage;
   categories;
   cookieAcceptAllButton;
@@ -1729,7 +1783,7 @@ class F extends b {
    * @param {StorageArgs} storage - the DS storage object
    * @param {string[]} categories - an array of cookie categories
    */
-  constructor(t, e = p, s) {
+  constructor(t, e = g, s) {
     super(t);
     const n = [
       "necessary",
@@ -1831,30 +1885,29 @@ class Y extends b {
       return;
     this.setOptions(), this.setMinAndMaxDatesOnCalendar();
     const t = document.createElement("div");
-    t.innerHTML = this.buttonTemplate(), this.calendarButtonElement = t.firstChild, this.calendarButtonElement.setAttribute("data-button", `datepicker-${this.inputElement.id}-toggle`), this.isMultipleInput ? this.inputElement.parentElement?.parentElement?.appendChild(this.calendarButtonElement) : (this.inputElement.parentElement?.appendChild(this.calendarButtonElement), this.inputElement.parentElement?.classList.add("ds_input__wrapper--has-icon")), this.dialogElement = document.createElement("div"), this.dialogElement.id = "datepicker-" + A(), this.dialogElement.setAttribute("class", "ds_datepicker__dialog  datepickerDialog"), this.dialogElement.setAttribute("role", "dialog"), this.dialogElement.setAttribute("aria-modal", "true"), this.dialogElement.innerHTML = this.dialogTemplate(this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-controls", this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-expanded", "false"), this.datePickerParent.appendChild(this.dialogElement), this.dialogTitleElement = this.dialogElement.querySelector(".js-datepicker-month-year");
+    t.innerHTML = this.buttonTemplate(), this.calendarButtonElement = t.firstChild, this.calendarButtonElement.setAttribute("data-button", `datepicker-${this.inputElement.id}-toggle`), this.isMultipleInput ? this.inputElement.parentElement?.parentElement?.appendChild(this.calendarButtonElement) : (this.inputElement.parentElement?.appendChild(this.calendarButtonElement), this.inputElement.parentElement?.classList.add("ds_input__wrapper--has-icon")), this.dialogElement = document.createElement("div"), this.dialogElement.id = "datepicker-" + v(), this.dialogElement.setAttribute("class", "ds_datepicker__dialog  datepickerDialog"), this.dialogElement.setAttribute("role", "dialog"), this.dialogElement.setAttribute("aria-modal", "true"), this.dialogElement.innerHTML = this.dialogTemplate(this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-controls", this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-expanded", "false"), this.datePickerParent.appendChild(this.dialogElement), this.dialogTitleElement = this.dialogElement.querySelector(".js-datepicker-month-year");
     const e = this.datePickerParent.querySelector("tbody");
-    let s = 0;
-    for (let d = 0; d < 6; d++) {
-      const _ = e.insertRow(d);
-      for (let y = 0; y < 7; y++) {
-        const v = document.createElement("td"), h = document.createElement("button");
-        h.type = "button", h.dataset.form = "date-select", v.appendChild(h), _.appendChild(v);
-        const L = new z(h, s, d, y, this);
-        L.init(), this.calendarDays.push(L), s++;
+    for (let c = 0; c < 6; c++) {
+      const p = e.insertRow(c);
+      for (let _ = 0; _ < 7; _++) {
+        const A = document.createElement("td"), y = document.createElement("button");
+        y.type = "button", y.dataset.form = "date-select", A.appendChild(y), p.appendChild(A);
+        const L = new U(y, this);
+        L.init(), this.calendarDays.push(L);
       }
     }
-    const n = this.dialogElement.querySelector(".js-datepicker-prev-month"), a = this.dialogElement.querySelector(".js-datepicker-prev-year"), o = this.dialogElement.querySelector(".js-datepicker-next-month"), l = this.dialogElement.querySelector(".js-datepicker-next-year");
-    n.addEventListener("click", (d) => this.focusPreviousMonth(d, !1)), a.addEventListener("click", (d) => this.focusPreviousYear(d, !1)), o.addEventListener("click", (d) => this.focusNextMonth(d, !1)), l.addEventListener("click", (d) => this.focusNextYear(d, !1)), [this.inputElement, this.dateInput, this.monthInput, this.yearInput].forEach((d) => {
-      d && d.addEventListener("blur", () => {
+    const s = this.dialogElement.querySelector(".js-datepicker-prev-month"), n = this.dialogElement.querySelector(".js-datepicker-prev-year"), a = this.dialogElement.querySelector(".js-datepicker-next-month"), o = this.dialogElement.querySelector(".js-datepicker-next-year");
+    s.addEventListener("click", (c) => this.focusPreviousMonth(c, !1)), n.addEventListener("click", (c) => this.focusPreviousYear(c, !1)), a.addEventListener("click", (c) => this.focusNextMonth(c, !1)), o.addEventListener("click", (c) => this.focusNextYear(c, !1)), [this.inputElement, this.dateInput, this.monthInput, this.yearInput].forEach((c) => {
+      c && c.addEventListener("blur", () => {
         this.calendarButtonElement.querySelector("span").textContent = "Choose date";
       });
     });
-    const m = this.dialogElement.querySelector(".js-datepicker-cancel"), u = this.dialogElement.querySelector(".js-datepicker-ok");
-    m.addEventListener("click", (d) => {
-      d.preventDefault(), this.closeDialog();
-    }), u.addEventListener("click", () => this.selectDate(this.currentDate));
-    const g = this.dialogElement.querySelectorAll('button:not([disabled="true"])');
-    this.firstButtonInDialog = g[0], this.lastButtonInDialog = g[g.length - 1], this.firstButtonInDialog.addEventListener("keydown", (d) => this.firstButtonKeyup(d)), this.lastButtonInDialog.addEventListener("keydown", (d) => this.lastButtonKeyup(d)), this.calendarButtonElement.addEventListener("click", (d) => this.toggleDialog(d)), document.body.addEventListener("mouseup", (d) => this.backgroundClick(d)), this.updateCalendar(), this.isInitialised = !0;
+    const d = this.dialogElement.querySelector(".js-datepicker-cancel"), h = this.dialogElement.querySelector(".js-datepicker-ok");
+    d.addEventListener("click", (c) => {
+      c.preventDefault(), this.closeDialog();
+    }), h.addEventListener("click", () => this.selectDate(this.currentDate));
+    const u = this.dialogElement.querySelectorAll('button:not([disabled="true"])');
+    this.firstButtonInDialog = u[0], this.lastButtonInDialog = u[u.length - 1], this.firstButtonInDialog.addEventListener("keydown", (c) => this.firstButtonKeyup(c)), this.lastButtonInDialog.addEventListener("keydown", (c) => this.lastButtonKeyup(c)), this.calendarButtonElement.addEventListener("click", (c) => this.toggleDialog(c)), document.body.addEventListener("mouseup", (c) => this.backgroundClick(c)), this.updateCalendar(), this.isInitialised = !0;
   }
   /**
    * Adds months to a date
@@ -2309,17 +2362,14 @@ class Y extends b {
     const n = new Date(e);
     for (const a of this.calendarDays) {
       const o = n.getMonth() !== t.getMonth();
-      let l = !1;
-      this.options.minDate && n < this.options.minDate && (l = !0), this.options.maxDate && n > this.options.maxDate && (l = !0), this.isDisabledDate(n) && (l = !0), a.update(n, o, l), n.setDate(n.getDate() + 1);
+      let r = !1;
+      this.options.minDate && n < this.options.minDate && (r = !0), this.options.maxDate && n > this.options.maxDate && (r = !0), this.isDisabledDate(n) && (r = !0), a.update(n, o, r), n.setDate(n.getDate() + 1);
     }
   }
 }
-class z {
+class U {
   button;
-  column;
   date;
-  index;
-  row;
   picker;
   /**
    * Constructor for a day button in the date picker calendar
@@ -2330,8 +2380,8 @@ class z {
    * @param {number} column - Column index of the day button
    * @param {DSDatePicker} picker - Parent date picker instance
    */
-  constructor(t, e, s, n, a) {
-    this.index = e, this.row = s, this.column = n, this.button = t, this.picker = a, this.date = /* @__PURE__ */ new Date();
+  constructor(t, e) {
+    this.button = t, this.picker = e, this.date = /* @__PURE__ */ new Date();
   }
   /**
    * Initializes the day button, attaching event listeners for click and keydown events
@@ -2414,7 +2464,7 @@ class z {
     e && (t.preventDefault(), t.stopPropagation());
   }
 }
-class W extends b {
+class V extends b {
   content;
   details;
   summary;
@@ -2461,7 +2511,7 @@ class W extends b {
    * @returns {void}
    */
   polyfillAttributes() {
-    this.content.id = this.content.id || `details-${A()}`, this.details.setAttribute("role", "group"), this.summary.setAttribute("role", "button"), this.summary.setAttribute("aria-controls", this.content.id), this.summary.nodeName === "SUMMARY" && (this.summary.tabIndex = 0);
+    this.content.id = this.content.id || `details-${v()}`, this.details.setAttribute("role", "group"), this.summary.setAttribute("role", "button"), this.summary.setAttribute("aria-controls", this.content.id), this.summary.nodeName === "SUMMARY" && (this.summary.tabIndex = 0);
     const t = this.details.hasAttribute(this.openAttribute);
     this.summary.setAttribute("aria-expanded", t.toString());
   }
@@ -2488,7 +2538,243 @@ class W extends b {
     this.details.hasAttribute(this.openAttribute) ? this.closeDetails() : this.openDetails();
   }
 }
-class V extends b {
+const W = {
+  buttonText: "Choose file",
+  buttonTextPlural: "Choose files",
+  defaultStatusText: "No file chosen",
+  defaultStatusTextPlural: "No files chosen",
+  enteredDropzone: "Entered drop zone",
+  filesAddedText: "$NUMBER files",
+  filesListHeading: "Files selected for upload",
+  instructionText: "or drag and drop file here",
+  instructionTextPlural: "or drag and drop files here",
+  leftDropzone: "Left drop zone"
+};
+class T extends b {
+  announcementsSpan;
+  dropzoneButton;
+  element;
+  fileInputElement;
+  hasEnteredAnotherElement;
+  statusSpan;
+  text;
+  static defaultText = W;
+  #t;
+  constructor(t, e = {}) {
+    if (super(t), this.element = t, this.fileInputElement = this.element.querySelector('input[type="file"]'), this.fileInputElement === null)
+      throw new Error("File upload: input element not found");
+    if (!this.fileInputElement.id)
+      throw new Error("File upload: input element missing id");
+    this.text = this.setText(e.text), this.transformMarkup(), this.addEventListeners(), this.updateDisabledState(), this.observeDisabledState();
+  }
+  init() {
+    this.isInitialised = !0;
+  }
+  /**
+   * Adds events to mimic/duplicate the native file input behaviour where needed
+   * @returns {void}
+   */
+  addEventListeners() {
+    this.dropzoneButton.addEventListener("click", this.onClick.bind(this)), this.dropzoneButton.addEventListener("dragover", (t) => {
+      t.preventDefault();
+    }), this.dropzoneButton.addEventListener("drop", this.onDrop.bind(this)), this.fileInputElement.addEventListener("input", this.onInput.bind(this)), document.addEventListener("dragenter", this.updateDropzoneVisibility.bind(this)), document.addEventListener("dragenter", () => {
+      this.hasEnteredAnotherElement = !0;
+    }), document.addEventListener("dragleave", () => {
+      !this.hasEnteredAnotherElement && !this.dropzoneButton.disabled && (this.hideDraggingState(), this.announcementsSpan.textContent = this.text.leftDropzone), this.hasEnteredAnotherElement = !1;
+    });
+  }
+  /**
+   * Checks the selected files against the `accept` attribute of the file input element
+   * @param {FileList} files
+   * @returns {boolean}
+   */
+  canAccept(t) {
+    let e = !0;
+    if (!this.fileInputElement.accept)
+      return !0;
+    const s = (n) => {
+      let a = !1;
+      return this.fileInputElement.accept.replace(" ", "").split(",").forEach((r) => {
+        if (r.match(/^\.\w+/)) {
+          const d = new RegExp(r + "$");
+          n.name.match(d) && (a = !0);
+        } else r.match(/\w+\/\w.+/) ? n.type === r && (a = !0) : r.match(/audio|image|video\/*/) && n.type.match(new RegExp(r.replace("*", ".+"))) && (a = !0);
+      }), a;
+    };
+    return [].slice.call(t).forEach((n) => {
+      s(n) || (e = !1);
+    }), e;
+  }
+  /**
+   * Check whether the content of what is being dragged can be dropped onto the file input
+   * @param {DataTransfer} dataTransfer
+   * @returns {boolean}
+   */
+  canDrop(t) {
+    return t.items?.length ? this.matchesInputCapacity(this.countFileItems(t.items)) : t.types?.length ? t.types.includes("Files") : !0;
+  }
+  /**
+   * Confirms that the provided dataTransfer can fill the input
+   * e.g. reject multiple files in a non-multiple input
+   * @param {DataTransfer} dataTransfer
+   * @returns {boolean}
+   */
+  canFillInput(t) {
+    return this.matchesInputCapacity(t.files.length);
+  }
+  /**
+   * Returns the number of DataTransferItems that have the "file" type/kind
+   * @param {DataTransferItemList} list
+   * @returns {number}
+   */
+  countFileItems(t) {
+    return [].slice.call(t).filter((e) => e.kind === "file").length;
+  }
+  /**
+   * Unsets the dragging CSS class on the drop zone
+   * @returns {void}
+   */
+  hideDraggingState() {
+    this.dropzoneButton.classList.remove("ds_file-upload__dropzone--dragging");
+  }
+  /**
+   * Check that the number of files to be added matches the number allowed
+   * (i.e. a single file for a non-multple input, or more than one if it's a 'multiple' input)
+   * @param {number} numberOfFiles
+   * @returns {boolean}
+   */
+  matchesInputCapacity(t) {
+    return this.fileInputElement.multiple ? t > 0 : t === 1;
+  }
+  /**
+   * Watch for changes to the disabled state of the underlying input element.
+   * Keep the replacement element's disabled state in sync.
+   * @returns {void}
+   */
+  observeDisabledState() {
+    new MutationObserver((e) => {
+      for (const s of e)
+        s.type === "attributes" && s.attributeName === "disabled" && this.updateDisabledState();
+    }).observe(this.fileInputElement, {
+      attributes: !0
+    });
+  }
+  /**
+   * A click on the button triggers a click on the actual (hidden) file input
+   * @returns {void}
+   */
+  onClick() {
+    this.fileInputElement.click();
+  }
+  /**
+   * Put dragged files onto the file input element
+   * Update component state
+   * @param {DragEvent} event
+   * @returns {void}
+   */
+  onDrop(t) {
+    if (t.preventDefault(), t.dataTransfer && this.canAccept(t.dataTransfer.files) && this.canFillInput(t.dataTransfer) && (this.setFilesOnFileInputElement(t.dataTransfer.files), this.hideDraggingState()), this.announcementsSpan.textContent = "", t.dataTransfer) {
+      const e = new CustomEvent("dropHappened", {
+        bubbles: !0,
+        composed: !0,
+        detail: {
+          files: t.dataTransfer.files,
+          canAccept: this.canAccept(t.dataTransfer.files),
+          canFill: this.canFillInput(t.dataTransfer)
+        }
+      });
+      this.element.dispatchEvent(e);
+    }
+  }
+  /**
+   * Update the component with the current state of the file input
+   * - update instruction message
+   * - update the status message
+   * - update CSS class on root element
+   * @returns {void}
+   */
+  onInput() {
+    const t = this.fileInputElement.files;
+    t.length === 0 ? (this.#t = this.text.defaultStatusText, this.element.classList.remove("ds_file-upload--has-files")) : (t.length === 1 ? this.#t = t[0].name : this.#t = this.text.filesAddedText.replace("$NUMBER", t.length.toString()), this.element.classList.add("ds_file-upload--has-files")), this.statusSpan.textContent = this.#t;
+  }
+  /**
+   * Sets the files attribute on the file input element from a provided file list
+   * Fires an 'input' event on the file input element
+   * @param {FileList} files
+   * @returns {void}
+   */
+  setFilesOnFileInputElement(t) {
+    this.fileInputElement.files = t, this.fileInputElement.dispatchEvent(new CustomEvent("input"));
+  }
+  /**
+   * Sets the text used on parts of the file upload
+   * - extends the default set of text with any alterations specified in component options
+   * - sets pluralisation based on the file input's 'multiple' attribute
+   * - freezes the resulting text to prevent further modification
+   * @param extension
+   * @returns {TextArgs}
+   */
+  setText(t = {}) {
+    const e = Object.assign(T.defaultText, t);
+    return Object.freeze({
+      buttonText: this.fileInputElement.multiple ? e.buttonTextPlural : e.buttonText,
+      defaultStatusText: this.fileInputElement.multiple ? e.defaultStatusTextPlural : e.defaultStatusText,
+      enteredDropzone: e.enteredDropzone,
+      filesAddedText: e.filesAddedText,
+      filesListHeading: e.filesListHeading,
+      instructionText: this.fileInputElement.multiple ? e.instructionTextPlural : e.instructionText,
+      leftDropzone: e.leftDropzone
+    });
+  }
+  /**
+   * Sets the dragging CSS class on the drop zone
+   * @returns {void}
+   */
+  showDraggingState() {
+    this.dropzoneButton.classList.add("ds_file-upload__dropzone--dragging");
+  }
+  /**
+   * Transforms the native file input element to aset of elements we have more control over
+   * - adds a visually hidden span for screen reader status updates
+   * - adds a visible span for status text
+   * - adds a visible span for instructional text so we're not using browser defaults
+   * - adds a fake button with DS button styling for the "choose file" button
+   *     with text that is not dependant on browser default
+   * - hides the original file input but keeps it available for us to use its native
+   *     behavior where needed
+   * @returns {void}
+   */
+  transformMarkup() {
+    const t = this.element.querySelector(`[for="${this.fileInputElement.id}"]`);
+    t.id = t.id || this.fileInputElement.id + "-label", this.fileInputElement.setAttribute("aria-hidden", "true"), this.fileInputElement.setAttribute("hidden", "true"), this.fileInputElement.setAttribute("tabindex", "-1"), this.dropzoneButton = document.createElement("button"), this.dropzoneButton.classList.add("ds_file-upload__dropzone"), this.dropzoneButton.type = "button", this.dropzoneButton.id = this.fileInputElement.id + "-dropzone", this.fileInputElement.getAttribute("aria-describedby") && this.dropzoneButton.setAttribute("aria-describedby", this.fileInputElement.getAttribute("aria-describedby")), this.fileInputElement.getAttribute("aria-invalid") && this.dropzoneButton.setAttribute("aria-invalid", this.fileInputElement.getAttribute("aria-invalid")), this.fileInputElement.classList.contains("ds_file-upload__input--error") && this.dropzoneButton.classList.add("ds_file-upload__dropzone--error"), this.statusSpan = document.createElement("span"), this.statusSpan.classList.add("ds_file-upload__status"), this.statusSpan.textContent = this.text.defaultStatusText, this.statusSpan.id = `${this.fileInputElement.id}-status`, this.statusSpan.setAttribute("aria-live", "polite");
+    const e = document.createElement("span");
+    e.className = "visually-hidden", e.textContent = ", ", e.id = `${this.fileInputElement.id}-comma`;
+    const s = document.createElement("span");
+    s.classList.add("ds_file-upload__button-container");
+    const n = document.createElement("span");
+    n.classList.add("ds_file-upload__button"), n.textContent = this.text.buttonText;
+    const a = document.createElement("span");
+    a.classList.add("ds_file-upload__instruction"), a.textContent = this.text.instructionText, a.id = `${this.fileInputElement.id}-instruction`, this.announcementsSpan = document.createElement("span"), this.announcementsSpan.classList.add("visually-hidden"), this.announcementsSpan.setAttribute("aria-live", "assertive"), s.appendChild(n), s.insertAdjacentText("beforeend", " "), s.appendChild(a), this.dropzoneButton.appendChild(this.statusSpan), this.dropzoneButton.appendChild(e), this.dropzoneButton.appendChild(s), this.dropzoneButton.setAttribute("aria-labelledby", `${t.id} ${e.id} ${this.dropzoneButton.id}`), this.fileInputElement.insertAdjacentElement("beforebegin", this.dropzoneButton), this.element.insertAdjacentElement("afterend", this.announcementsSpan);
+  }
+  /**
+   * Synchronise the `disabled` state between the input and replacement button.
+   * @returns {void}
+   */
+  updateDisabledState() {
+    this.dropzoneButton.disabled = this.fileInputElement.disabled;
+  }
+  /**
+   * In response to drag events:
+   *  - updates the content/display of the drop zone pseudo button
+   *  - updates the text content of the visually hidden announcements span
+   * @param {DragEvent} event
+   * @returns {void}
+   */
+  updateDropzoneVisibility(t) {
+    this.dropzoneButton.disabled || (this.dropzoneButton.contains(t.target) ? t.dataTransfer && this.canDrop(t.dataTransfer) && !this.dropzoneButton.classList.contains("ds_file-upload__dropzone--dragging") && (this.showDraggingState(), this.announcementsSpan.textContent = this.text.enteredDropzone) : (this.hideDraggingState(), this.announcementsSpan.textContent = this.text.leftDropzone));
+  }
+}
+class K extends b {
   altlink;
   button;
   window;
@@ -2545,7 +2831,7 @@ class V extends b {
     t.preventDefault(), document.body.innerHTML = "", document.title = ".", this.window.open(this.button.href, "_newtab"), this.window.location.replace(this.altlink);
   }
 }
-class U extends b {
+class Z extends b {
   notification;
   notificationClose;
   /**
@@ -2567,7 +2853,29 @@ class U extends b {
     }), this.isInitialised = !0;
   }
 }
-class K extends b {
+class J extends b {
+  notificationMessage;
+  notificationMessageClose;
+  /**
+   * Creates a notification component
+   *
+   * @param {HTMLElement} notificationMessage - the notification element
+   */
+  constructor(t) {
+    super(t), this.notificationMessage = t, this.notificationMessageClose = t.querySelector(".js-close-notification-message");
+  }
+  /**
+   * Add event listener to the close button
+   *
+   * @returns {void}
+   */
+  init() {
+    this.notificationMessageClose && this.notificationMessageClose.addEventListener("click", () => {
+      this.notificationMessage.parentNode?.removeChild(this.notificationMessage);
+    }), this.isInitialised = !0;
+  }
+}
+class X extends b {
   sideNavigation;
   /**
    * Creates a side navigation component
@@ -2594,7 +2902,7 @@ class K extends b {
    */
   setupSideNavigation() {
     const t = this.sideNavigation.querySelector(".js-toggle-side-navigation"), e = this.sideNavigation.querySelector(".ds_side-navigation__expand"), s = this.sideNavigation.querySelector(".ds_side-navigation__list");
-    s.id = s.id || `side-navigation-${A()}`, t.checked = !1;
+    s.id = s.id || `side-navigation-${v()}`, t.checked = !1;
     const n = document.createElement("button");
     n.classList.add("ds_side-navigation__expand"), n.classList.add("ds_link"), n.classList.add("js-side-navigation-button"), n.setAttribute("aria-expanded", "false"), n.innerHTML = e.innerHTML, n.setAttribute("aria-expanded", "false"), n.setAttribute("aria-controls", s.id), e.classList.add("fully-hidden"), t.classList.add("fully-hidden"), t.classList.remove("visually-hidden"), this.sideNavigation.insertBefore(n, s), n.setAttribute("aria-controls", s.id), n.addEventListener("click", () => {
       const a = t.checked;
@@ -2604,7 +2912,7 @@ class K extends b {
     });
   }
 }
-class Z extends b {
+class G extends b {
   mobileMenu;
   newMenuButton;
   /**
@@ -2653,7 +2961,7 @@ class Z extends b {
     this.mobileMenu.classList.remove("ds_site-navigation--open"), this.newMenuButton.classList.remove("ds_site-header__control--active"), this.newMenuButton.setAttribute("aria-expanded", "false");
   }
 }
-const J = {
+const Q = {
   /**
    * Initialise skip links
    * - adds click event to skip links to focus target element
@@ -2669,7 +2977,7 @@ const J = {
     });
   }
 };
-class X extends b {
+class tt extends b {
   container;
   window;
   /**
@@ -2693,7 +3001,7 @@ class X extends b {
     }), this.isInitialised = !0;
   }
 }
-class q extends b {
+class C extends b {
   element;
   window;
   /**
@@ -2743,7 +3051,7 @@ class q extends b {
         });
   }
 }
-class G {
+class et {
   window;
   constructor(t = window) {
     this.window = t;
@@ -2756,10 +3064,10 @@ class G {
    * @returns {void}
    */
   init() {
-    document.querySelectorAll("table[data-smallscreen]").forEach((e) => new q(e, this.window).init());
+    document.querySelectorAll("table[data-smallscreen]").forEach((e) => new C(e, this.window).init());
   }
 }
-class Q extends b {
+class st extends b {
   hasAutomaticActivation;
   boundOnHashChange;
   boundOnResize;
@@ -2876,9 +3184,9 @@ class Q extends b {
       k("medium") && (o.preventDefault(), this.goToTab(t, !0));
     }), s.addEventListener("keydown", (o) => {
       if (k("medium")) {
-        const l = o.target.parentElement;
-        let c = !0;
-        o.key === "ArrowRight" ? this.navToTab(this.getNextTab(l)) : o.key === "ArrowLeft" ? this.navToTab(this.getPreviousTab(l)) : o.key === "Home" ? this.navToTab(this.getFirstTab()) : o.key === "End" ? this.navToTab(this.getLastTab()) : o.key === "Spacebar" || o.key === " " ? this.goToTab(l, !0) : c = !1, c && o.preventDefault();
+        const r = o.target.parentElement;
+        let d = !0;
+        o.key === "ArrowRight" ? this.navToTab(this.getNextTab(r)) : o.key === "ArrowLeft" ? this.navToTab(this.getPreviousTab(r)) : o.key === "Home" ? this.navToTab(this.getFirstTab()) : o.key === "End" ? this.navToTab(this.getLastTab()) : o.key === "Spacebar" || o.key === " " ? this.goToTab(r, !0) : d = !1, d && o.preventDefault();
       }
     }));
   }
@@ -2995,7 +3303,7 @@ class Q extends b {
     return this.tabContainer.querySelector(this.getHref(t));
   }
 }
-class tt extends b {
+class it extends b {
   boundOnResize;
   breakpointCheck;
   resizeTimer;
@@ -3062,31 +3370,33 @@ class tt extends b {
     }, 150);
   }
 }
-const et = {
-  Accordion: N,
-  Autocomplete: H,
+const nt = {
+  Accordion: P,
+  Autocomplete: z,
   BackToTop: O,
-  CharacterCount: j,
-  Checkboxes: R,
-  CookieNotification: F,
+  CharacterCount: F,
+  Checkboxes: j,
+  CookieNotification: R,
   DatePicker: Y,
-  Details: W,
-  HideThisPage: V,
-  NotificationBanner: U,
-  SideNavigation: K,
-  SiteNavigation: Z,
-  skipLinks: J,
-  StepNavigation: X,
-  MobileTables: G,
-  MobileTable: q,
-  Tabs: Q,
-  TabsNavigation: tt
+  Details: V,
+  FileUpload: T,
+  HideThisPage: K,
+  NotificationBanner: Z,
+  NotificationMessage: J,
+  SideNavigation: X,
+  SiteNavigation: G,
+  skipLinks: Q,
+  StepNavigation: tt,
+  MobileTables: et,
+  MobileTable: C,
+  Tabs: st,
+  TabsNavigation: it
 }, f = {
-  base: T,
-  components: et,
-  version: x,
+  base: D,
+  components: nt,
+  version: q,
   initAll: M,
-  tracking: T.tools.tracking,
+  tracking: D.tools.tracking,
   elementIdModifier: 0
 };
 window.DS = f;

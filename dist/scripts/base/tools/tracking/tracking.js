@@ -535,6 +535,7 @@ const tracking = {
         },
         /**
          * Sets data-navigation="confirmation-link" on links in confirmation message components
+         * DEPRECATED - this will be removed in a future release
          *
          * @param {HTMLElement} scope - the element to initialize tracking on
          * @returns {void}
@@ -695,6 +696,67 @@ const tracking = {
             });
         },
         /**
+         * Sets data-form="fileinput-[ID]" on file upload components
+         * Sets data-filesize and data-filetype when a file is added
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        fileUploads: function (scope = document.documentElement) {
+            const fileUploads = [].slice.call(scope.querySelectorAll('.ds_file-upload'));
+            fileUploads.forEach(fileUpload => {
+                const inputElement = fileUpload.querySelector('input[type="file"]');
+                if (!inputElement.getAttribute('data-form') && inputElement.id) {
+                    inputElement.setAttribute('data-form', `fileinput-${inputElement.id}`);
+                }
+                function getFileExtensionFromFilename(fileName) {
+                    const split = fileName.split('.');
+                    if (split.length > 1) {
+                        return split.pop()?.toLowerCase();
+                    }
+                    else {
+                        return '';
+                    }
+                }
+                function getFileSizeInMB(fileSizeInBytes) {
+                    return `${(fileSizeInBytes * 0.000001).toFixed(2)}MB`;
+                }
+                inputElement.addEventListener('input', () => {
+                    if (inputElement.files?.length) {
+                        inputElement.setAttribute('data-filetype', getFileExtensionFromFilename(inputElement.files[0].name));
+                        inputElement.setAttribute('data-filesize', getFileSizeInMB(inputElement.files[0].size));
+                    }
+                    else {
+                        inputElement.removeAttribute('data-filesize');
+                        inputElement.removeAttribute('data-filetype');
+                    }
+                });
+                fileUpload.addEventListener('dropHappened', ((event) => {
+                    const data = {
+                        event: 'fileUploadDrop'
+                    };
+                    if (!event.detail.canFill) {
+                        data.status = 'fail: unable to fill';
+                    }
+                    else if (!event.detail.canAccept) {
+                        data.status = 'fail: unable to accept';
+                    }
+                    else {
+                        data.status = 'success';
+                    }
+                    data.files = Array.from(event.detail.files).map(item => {
+                        const itemAsFile = item;
+                        return {
+                            extension: getFileExtensionFromFilename(itemAsFile.name),
+                            size: itemAsFile.size,
+                            type: itemAsFile.type
+                        };
+                    });
+                    tracking.pushToDataLayer(data);
+                }));
+            });
+        },
+        /**
          * Sets data-navigation="hide-this-page" on hide this page links
          * Adds an event listener to push 'esc' presses the data layer
          *
@@ -738,12 +800,12 @@ const tracking = {
         /**
          * Sets data-section="[SECTIONNAME]" on links
          * SECIONNAME is determined by seeking the closest heading (or headinglike) element to the link
+         * @returns {void}
          */
-        // todo: @returns, should this have scope?
-        links: function () {
-            const links = [].slice.call(document.querySelectorAll('a'));
+        links: function (scope = document.documentElement) {
+            const links = [].slice.call(scope.querySelectorAll('a'));
             links.forEach(link => {
-                const nearestHeader = tracking.getNearestSectionHeader(link); //
+                const nearestHeader = tracking.getNearestSectionHeader(link);
                 if (nearestHeader) {
                     if (!link.getAttribute('data-section')) {
                         link.setAttribute('data-section', nearestHeader.textContent.trim());
@@ -804,6 +866,42 @@ const tracking = {
                 if (close && !close.getAttribute('data-banner')) {
                     close.setAttribute('data-banner', `banner-${bannername}-close`);
                 }
+            });
+        },
+        /**
+         * Sets data-banner="banner-[NAME]-link" on links in notification banners
+         * Sets data-banner="banner-[NAME]-[BUTTONTEXT]" on buttons in notification banners
+         * Sets data-banner="banner-[NAME]-close" on notification banner close buttons
+         *
+         * @param {HTMLElement} scope - the element to initialize tracking on
+         * @returns {void}
+         */
+        notificationMessages: function (scope = document.documentElement) {
+            const notificationMessages = tracking.gatherElements('ds_notification-message', scope);
+            notificationMessages.forEach((message, index) => {
+                const messageName = message.id || (index + 1).toString();
+                const notificationType = (() => {
+                    if (message.classList.contains('ds_notification-message--error')) {
+                        return 'error';
+                    }
+                    else if (message.classList.contains('ds_notification-message--warning')) {
+                        return 'warning';
+                    }
+                    else if (message.classList.contains('ds_notification-message--info')) {
+                        return 'info';
+                    }
+                    else {
+                        return 'confirmation';
+                    }
+                })();
+                const links = [].slice.call(message.querySelectorAll('a'));
+                links.forEach(link => {
+                    if (!link.getAttribute('data-navigation')) {
+                        link.setAttribute('data-navigation', `${notificationType}-${messageName}-link`);
+                    }
+                });
+                const close = message.querySelector('.ds_notification-message__close');
+                close?.setAttribute('data-button', `${notificationType}-${messageName}-close`);
             });
         },
         /**

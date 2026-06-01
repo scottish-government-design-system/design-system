@@ -6,8 +6,10 @@ import Checkboxes from './checkbox/checkboxes';
 import CookieNotification from './cookie-notification/cookie-notification';
 import DatePicker from './date-picker/date-picker';
 import Details from './details/details';
+import FileUpload from './file-upload/file-upload';
 import HideThisPage from './hide-this-page/hide-this-page';
 import NotificationBanner from './notification-banner/notification-banner';
+import NotificationMessage from './notification-message/notification-message';
 import SideNavigation from './side-navigation/side-navigation';
 import SiteNavigation from './site-navigation/site-navigation';
 import StepNavigation from './step-navigation/step-navigation';
@@ -23,8 +25,10 @@ declare const _default: {
     CookieNotification: typeof CookieNotification;
     DatePicker: typeof DatePicker;
     Details: typeof Details;
+    FileUpload: typeof FileUpload;
     HideThisPage: typeof HideThisPage;
     NotificationBanner: typeof NotificationBanner;
+    NotificationMessage: typeof NotificationMessage;
     SideNavigation: typeof SideNavigation;
     SiteNavigation: typeof SiteNavigation;
     skipLinks: {
