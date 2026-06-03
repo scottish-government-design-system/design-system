@@ -6,6 +6,12 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 `Removed` and `Security`.
 
 ---
+## [4.1.1]
+### Changed
+- Cookie notification banner markup changed to work with flex layout that is used in notification banner
+### Fixed
+- Layout issue with cookie notification banner introduced in v4.1.0 with legacy support added for old markup
+
 ## [4.1.0]
 ### Added
 - File upload component with drag and drop support
