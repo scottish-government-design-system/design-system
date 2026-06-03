@@ -1,13 +1,18 @@
-name: npm publish only
+name: npm publish
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - if: ${{ github.ref_type != 'tag' }}
+        run: |
+          echo "No tag specified, exiting job."
+          exit 1
+
       - name: Checkout
         uses: actions/checkout@v5
 
@@ -33,7 +38,14 @@ jobs:
         run: npm run test
 
       # Publish to npm
-      - name: Publish npm package
+      - name: Publish npm package (prerelease)
+        if: ${{ github.ref_type == 'tag' && contains(github.ref_name, 'beta') }}
+        run: npm publish --access public --tag pre
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Publish npm package (regular)
+        if: ${{ github.ref_type == 'tag' && !contains(github.ref_name, 'beta') }}
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
