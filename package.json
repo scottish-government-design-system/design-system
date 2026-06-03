@@ -12,13 +12,14 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist; npx eslint && npx vite build && npx tsc && npm run sass && npm run sass-min && npm run svgsprite && npm run copyicons",
-    "prepack": "npm run test && npm run build",
+    "copyicons": "copyfiles -f ./src/images/documents/svg/*.svg ./dist/images/documents/svg",
+    "prepare": "npm run build",
+    "prepublishOnly": "vitest --run",
     "sass": "sass --style=expanded src/design-system.scss dist/css/design-system.css",
     "sass-min": "sass --style=compressed src/design-system.scss dist/css/design-system.min.css",
     "svgsprite": "node ./svg-sprite.mjs",
-    "copyicons": "copyfiles -f ./src/images/documents/svg/*.svg ./dist/images/documents/svg",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test": "vitest --run",
+    "test:coverage": "vitest --coverage",
     "tsc": "tsc"
   },
   "devDependencies": {
