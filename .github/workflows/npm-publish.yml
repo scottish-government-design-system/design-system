@@ -45,8 +45,8 @@ jobs:
       # Publish to npm
       - name: Publish npm package (prerelease)
         if: ${{ github.ref_type == 'tag' && contains(github.ref_name, 'beta') }}
-        run: npm publish --access public --tag pre
+        run: npm publish --dry-run --access public --tag pre
 
       - name: Publish npm package (regular)
         if: ${{ github.ref_type == 'tag' && !contains(github.ref_name, 'beta') }}
-        run: npm publish --access public
+        run: npm publish --dry-run --access public
