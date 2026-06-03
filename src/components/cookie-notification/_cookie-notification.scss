@@ -17,6 +17,11 @@ $cookie-notification__background-colour--success: settings.$ds_colour__state--po
     .ds_notification__content {
         padding-top: 1.5rem;
         padding-bottom: 2rem;
+
+        // DEPRECATED - this legacy support will be removed in a future release
+        &:not(.ds_notification__content--has-close) {
+            display: block;
+        }
     }
 
     @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, $cookie-notification__background-colour, 'cookie banner');
