@@ -1,13 +1,22 @@
-name: npm publish only
+name: npm publish
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - if: ${{ github.ref_type != 'tag' }}
+        run: |
+          echo "No tag specified, exiting job."
+          exit 1
+
       - name: Checkout
         uses: actions/checkout@v5
 
@@ -17,6 +26,7 @@ jobs:
         with:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
+          package-manager-cache: false  # never use caching in release builds
 
       # Install
       - name: Install
@@ -33,7 +43,10 @@ jobs:
         run: npm run test
 
       # Publish to npm
-      - name: Publish npm package
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Publish npm package (prerelease)
+        if: ${{ github.ref_type == 'tag' && contains(github.ref_name, 'beta') }}
+        run: npm publish --dry-run --access public --tag pre
+
+      - name: Publish npm package (regular)
+        if: ${{ github.ref_type == 'tag' && !contains(github.ref_name, 'beta') }}
+        run: npm publish --dry-run --access public
