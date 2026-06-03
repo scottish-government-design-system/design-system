@@ -4782,6 +4782,9 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   padding-top: 1.5rem;
   padding-bottom: 2rem;
 }
+.ds_notification.ds_notification--cookie .ds_notification__content:not(.ds_notification__content--has-close) {
+  display: block;
+}
 
 .ds_notification.ds_notification--cookie-success {
   background: #1a7032;
