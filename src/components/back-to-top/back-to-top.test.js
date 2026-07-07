@@ -40,7 +40,7 @@ describe('back to top', () => {
         expect(testObj.backToTopModule.checkDisplay).toHaveBeenCalled();
     });
 
-    it('should not display if the page is taller than the viewport', () => {
+    it('should not display if the page is shorter than the viewport', () => {
         testObj.backToTopElement = document.querySelector('.ds_back-to-top');
         testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
 
@@ -57,6 +57,68 @@ describe('back to top', () => {
 
         testObj.backToTopModule.init();
         expect(testObj.backToTopElement.classList.contains('ds_back-to-top--hidden')).toBeFalsy();
+    });
+
+    describe('visually hidden', () => {
+        it('should be visually hidden if the page content is shorter than the viewport', async () => {
+            testObj.backToTopElement = document.querySelector('.ds_back-to-top');
+            testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
+
+            // 150 is a magic number, a size only just larger than the height at which the behaviour changes (body offsetHeight - footer height - backToTopOffset = 144)
+            await page.viewport(800, 150);
+            testObj.backToTopModule.init();
+            expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeTruthy();
+        });
+
+        it('should not be visually hidden if the page content is not shorter than the viewport', async () => {
+            testObj.backToTopElement = document.querySelector('.ds_back-to-top');
+            testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
+
+            testObj.backToTopModule.init();
+            expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeTruthy();
+        });
+
+        it('should stop being visually hidden if a short page becomes long', async () => {
+            testObj.backToTopElement = document.querySelector('.ds_back-to-top');
+            testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
+
+            // 150 is a magic number, a size only just larger than the height at which the behaviour changes (body offsetHeight - footer height - backToTopOffset = 144)
+            await page.viewport(800, 150);
+            testObj.backToTopModule.init();
+            expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeTruthy();
+
+            // something to alter the size of the content
+            const additionalContentElement = document.createElement('div');
+            additionalContentElement.textContent = 'foo';
+            document.body.prepend(additionalContentElement);
+
+            // a hacky little wait
+            await page.viewport(800, 150);
+
+            expect(testObj.backToTopElement.classList.contains('visually-hidden')).not.toBeTruthy();
+        });
+
+        it('should become visually hidden if a long page becomes short', async () => {
+            testObj.backToTopElement = document.querySelector('.ds_back-to-top');
+            testObj.backToTopModule = new BackToTop(testObj.backToTopElement);
+
+            // something to alter the size of the content
+            const additionalContentElement = document.createElement('div');
+            additionalContentElement.textContent = 'foo';
+            document.body.prepend(additionalContentElement);
+
+            // 150 is a magic number, a size only just larger than the height at which the behaviour changes (body offsetHeight - footer height - backToTopOffset = 144)
+            await page.viewport(800, 150);
+            testObj.backToTopModule.init();
+            expect(testObj.backToTopElement.classList.contains('visually-hidden')).not.toBeTruthy();
+
+            document.body.removeChild(additionalContentElement);
+
+            // a hacky little wait
+            await page.viewport(800, 150);
+
+            expect(testObj.backToTopElement.classList.contains('visually-hidden')).toBeTruthy();
+        });
     });
 
     it('should check positioning on resize', () => {
