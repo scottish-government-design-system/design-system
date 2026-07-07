@@ -88,6 +88,7 @@ class BackToTop extends DSComponent {
             this.backToTopElement.classList.add('visually-hidden');
         } else {
             this.backToTopElement.classList.remove('ds_back-to-top--clamped');
+            this.backToTopElement.classList.remove('visually-hidden');
         }
 
         if (document.body.offsetHeight - this.footerEl.offsetHeight <= this.window.innerHeight) {
