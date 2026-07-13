@@ -816,21 +816,9 @@ const tracking = {
                     }
                 });
 
-                type EventData = {
-                    event: string
-                    status?: string
-                    files?: Files[]
-                }
-
-                type Files = {
-                    extension: string
-                    size: number
-                    type: string
-                }
-
-                fileUpload.addEventListener('dropHappened', ((event: CustomEvent) => {
+                function pushEventWithDetail(event: CustomEvent, eventType: string): void {
                     const data: EventData = {
-                        event: 'fileUploadDrop'
+                        event: eventType
                     };
 
                     if (!event.detail.canFill) {
@@ -852,7 +840,35 @@ const tracking = {
                     });
 
                     tracking.pushToDataLayer(data);
+                }
+
+                type EventData = {
+                    event: string
+                    status?: string
+                    files?: Files[]
+                }
+
+                type Files = {
+                    extension: string
+                    size: number
+                    type: string
+                }
+
+                fileUpload.addEventListener('dropHappened', ((event: CustomEvent) => {
+                    pushEventWithDetail(event, 'fileUploadDrop');
                 }) as EventListener);
+
+                fileUpload.addEventListener('changeHappened', ((event: CustomEvent) => {
+                    pushEventWithDetail(event, 'fileUploadChange');
+                }) as EventListener);
+
+                fileUpload.addEventListener('cancel', () => {
+                    const data: EventData = {
+                        event: 'fileUploadCancel'
+                    };
+
+                    tracking.pushToDataLayer(data);
+                });
             });
         },
 

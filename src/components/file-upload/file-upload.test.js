@@ -507,6 +507,25 @@ describe('file upload', () => {
 
                 expect(fileUploadModule.statusSpan.textContent).toEqual('2 files');
             });
+
+            it('choosing (not dropping) a file triggers the "changeHappened" event', () => {
+                const changeSpy = vi.spyOn(fileUploadModule.element, 'dispatchEvent');
+
+                const file = new File(['My file'], 'myfile.txt', { type: 'text/plain' });
+                dataTransfer.items.add(file);
+
+                const event = new MouseEvent( 'change', {
+                    bubbles: true
+                });
+                fileUploadModule.fileInputElement.dispatchEvent(event);
+
+                const callInner = changeSpy.mock.calls[0][0];
+
+                expect(callInner.type).toEqual('changeHappened');
+                expect(typeof callInner.detail.canAccept).toEqual('boolean');
+                expect(typeof callInner.detail.canFill).toEqual('boolean');
+                expect(callInner.detail.files instanceof FileList).toBeTruthy();
+            });
         });
     });
 

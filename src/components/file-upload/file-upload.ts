@@ -102,8 +102,8 @@ class FileUpload extends DSComponent {
         this.dropzoneButton.addEventListener('drop', this.onDrop.bind(this));
 
         // bind input event to the underlying input
-        // todo: govuk uses 'change'
         this.fileInputElement.addEventListener('input', this.onInput.bind(this));
+        this.fileInputElement.addEventListener('change', this.onChange.bind(this));
 
         document.addEventListener('dragenter', this.updateDropzoneVisibility.bind(this));
 
@@ -248,6 +248,25 @@ class FileUpload extends DSComponent {
     }
 
     /**
+     * A custom event to pass file data to the tracking script
+     * @returns {void}
+     */
+    private onChange(): void {
+        const fileList = this.fileInputElement.files as FileList;
+        const changeHappened = new CustomEvent('changeHappened', {
+            bubbles: true,
+            composed: true,
+            detail: {
+                canFill: true,
+                canAccept: true,
+                files: fileList
+            }
+        });
+
+        this.element.dispatchEvent(changeHappened);
+    }
+
+    /**
      * A click on the button triggers a click on the actual (hidden) file input
      * @returns {void}
      */
@@ -276,6 +295,7 @@ class FileUpload extends DSComponent {
         this.announcementsSpan.textContent = '';
 
         if (event.dataTransfer) {
+            // custom event for tracking
             const dropHappened = new CustomEvent('dropHappened', {
                 bubbles: true,
                 composed: true,
