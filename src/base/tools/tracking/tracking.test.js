@@ -16,12 +16,6 @@ window.storage = {}
 
 const testObj = {};
 
-
-
-
-
-
-
 describe('tracking', () => {
     beforeEach(async () => {
         await loadHtml('src/base/tools/tracking/tracking.html');
@@ -1153,6 +1147,36 @@ describe('tracking', () => {
                     const latestDataLayerEntry = window.dataLayer.pop();
                     expect(latestDataLayerEntry.event).toEqual('fileUploadDrop');
                     expect(latestDataLayerEntry.status).toEqual('fail: unable to accept');
+                });
+            });
+
+            describe('change event', () => {
+                beforeEach(() => {
+                    testObj.fileUploadElement = testObj.scope.querySelector('.ds_file-upload');
+                    testObj.fileUploadModule = new FileUpload(testObj.fileUploadElement);
+                    testObj.fileUploadModule.init();
+
+                    Tracking.add.fileUploads();
+                });
+
+                it('should push a successful drop to the data layer', () => {
+                    const dataTransfer = new DataTransfer();
+                    const file = new File(['My file'], 'myfile.foo', { type: 'text/plain' });
+                    dataTransfer.items.add(file);
+                    testObj.fileUploadModule.fileInputElement.files = dataTransfer.files;
+
+                    const event = new MouseEvent( 'change', {
+                        bubbles: true
+                    });
+                    testObj.fileUploadModule.fileInputElement.dispatchEvent(event);
+
+                    const latestDataLayerEntry = window.dataLayer.pop();
+                    console.log(latestDataLayerEntry)
+                    expect(latestDataLayerEntry.event).toEqual('fileUploadChange');
+                    expect(latestDataLayerEntry.status).toEqual('success');
+                    expect(latestDataLayerEntry.files[0].extension).toEqual('foo');
+                    expect(typeof latestDataLayerEntry.files[0].size).toEqual('number');
+                    expect(latestDataLayerEntry.files[0].type).toEqual('text/plain');
                 });
             });
         });
