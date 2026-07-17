@@ -387,6 +387,4 @@ const storage: StorageArgs = {
     }
 };
 
-window.storage = storage;
-
 export default storage;
