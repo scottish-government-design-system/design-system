@@ -11,7 +11,7 @@
     &__search {
         margin-top: 0.5rem; // Add extra space to align with search results when search is within sidebar
     }
-    
+
     &__title {
         margin-bottom: 0;
         margin-top: 0;
@@ -88,6 +88,10 @@
             display: block;
         }
 
+        .ds_details::details-content {
+            content-visibility: visible;
+        }
+
         .ds_details__summary,
         #filters-toggle {
             display: none;
@@ -95,7 +99,6 @@
 
         .ds_details__text {
             display: block;
-
             border-left: none;
             margin: 0;
             padding: 0;

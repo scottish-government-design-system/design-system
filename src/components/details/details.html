@@ -5,16 +5,22 @@
     </div>
 </details>
 
-<div id="fallback" class="ds_details" data-module="ds-details">
-    <summary class="ds_details__summary">Title</summary>
-    <div class="ds_details__text">
+<div id="fake" data-foo="foo" class="ds_details" data-module="ds-details">
+    <div class="ds_details__summary" data-bar="bar">Title</div>
+    <div id="foo" class="ds_details__text">
         Content
     </div>
+    <div id="bar">Bar</div>
 </div>
 
-<div id="fake" class="ds_details" data-module="ds-details">
-    <div class="ds_details__summary">Title</div>
+<div id="toggle" class="ds_details" data-module="ds-details">
+    <input id="filters-toggle" type="checkbox" class="ds_details__toggle  visually-hidden">
+
+    <label for="filters-toggle" class="ds_details__summary">
+        Title
+    </label>
+
     <div class="ds_details__text">
-        Content
+        <p>Content</p>
     </div>
 </div>

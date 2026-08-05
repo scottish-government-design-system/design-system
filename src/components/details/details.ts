@@ -1,132 +1,78 @@
 'use strict';
 
 import DSComponent from '../../base/component/component';
-import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
 /**
  * Details component
  *
  * @class Details
  * @extends DSComponent
- * @property {HTMLElement} content - the details content element
  * @property {HTMLDetailsElement} details - the details element
- * @property {HTMLElement} summary - the details summary element
- * @property {'open' | 'data-open'} openAttribute - the attribute used to indicate open state
  */
 class Details extends DSComponent {
-    private content: HTMLElement;
     private details: HTMLDetailsElement;
-    private summary: HTMLElement;
-    private openAttribute: 'open' | 'data-open';
 
     /**
      * Creates a details component
+     * Converts legacy non-details markup to native DETAILS elements
      *
      * @param {HTMLDetailsElement} element - the details element
      */
     constructor(element: HTMLDetailsElement) {
         super(element);
         this.details = element;
-        this.summary = element.querySelector('.ds_details__summary') as HTMLElement;
-        this.content = element.querySelector('.ds_details__text') as HTMLElement;
 
-        if (this.summary.nodeName === 'SUMMARY') {
-            this.openAttribute = 'open';
-        } else {
-            this.openAttribute = 'data-open';
+        if (this.details.nodeName !== 'DETAILS') {
+            this.doFallback();
         }
     }
 
     /**
-     * Adds details-like open/close behaviour to non-native details components
-     *
      * @returns {void}
      */
     init(): void {
-        if (typeof (this.details.open) !== 'boolean') {
-            this.polyfillAttributes();
-            this.polyfillEvents();
-        }
-
         this.isInitialised = true;
     }
 
     /**
-     * Close the disclosure widget
-     * - set aria attribute
-     * - clear 'open' attribute
+     * Fallback for old markup
+     * - convert non-details markup to native DETAILS elements
      *
      * @returns {void}
      */
-    private closeDetails(): void {
-        this.details.removeAttribute(this.openAttribute);
-        this.summary.setAttribute('aria-expanded', 'false');
-    }
+    private doFallback(): void {
+        const children = this.details.children;
+        const summary = this.details.querySelector('.ds_details__summary') as HTMLElement;
+        const newDetails = document.createElement('details');
+        const newSummary = document.createElement('summary');
 
-    /**
-     * Open the disclosure widget
-     * - set aria attribute
-     * - set 'open' attribute
-     *
-     * @returns {void}
-     */
-    private openDetails(): void {
-        this.details.setAttribute(this.openAttribute, 'open');
-        this.summary.setAttribute('aria-expanded', 'true');
-    }
-
-    /**
-     * Add role and attributes to a non-native disclosure widget
-     *
-     * @returns {void}
-     */
-    private polyfillAttributes(): void {
-        this.content.id = this.content.id || `details-${elementIdModifier()}`;
-        this.details.setAttribute('role', 'group');
-        this.summary.setAttribute('role', 'button');
-        this.summary.setAttribute('aria-controls', this.content.id);
-
-        if (this.summary.nodeName === 'SUMMARY') {
-            this.summary.tabIndex = 0;
+        function cloneAttributes(fromElement: HTMLElement, toElement: HTMLElement): void {
+            Array.from(fromElement.attributes).forEach(attribute => {
+                toElement.setAttribute(attribute.name, attribute.value);
+            });
         }
 
-        // initial state
-        const isOpen = this.details.hasAttribute(this.openAttribute);
-        this.summary.setAttribute('aria-expanded', isOpen.toString());
-    }
+        cloneAttributes(this.details, newDetails);
+        cloneAttributes(summary, newSummary);
+        newSummary.removeAttribute('for');
 
-    /**
-     * Add mouse and keyboard events to trigger open/close of a non-native disclosure widget
-     *
-     * @returns {void}
-     */
-    private polyfillEvents(): void {
-        this.summary.addEventListener('click', () => { this.setState(); });
-        this.summary.addEventListener('keypress', event => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                this.setState();
+        for (const child of children) {
+            if (child.classList.contains('ds_details__toggle')) {
+                // do nothing -- we don't want to recreate this element
+            } else if (child.classList.contains('ds_details__summary')) {
+                newSummary.innerHTML = child.innerHTML;
+                newDetails.appendChild(newSummary);
+            } else {
+                newDetails.appendChild(child.cloneNode(true));
             }
-        });
-
-        this.summary.addEventListener('keyup', event => {
-            if (event.key === ' ') {
-                event.preventDefault();
-            }
-        });
-    }
-
-    /**
-     * Open or close the disclosure widget based on the value of its 'open' attribute
-     *
-     * @returns {void}
-     */
-    private setState(): void {
-        if (this.details.hasAttribute(this.openAttribute)) {
-            this.closeDetails();
-        } else {
-            this.openDetails();
         }
+
+        Array.from(this.details.attributes).forEach(attribute => {
+            newDetails.setAttribute(attribute.name, attribute.value);
+        });
+
+        this.details.replaceWith(newDetails);
+        this.details = newDetails
     }
 }
 

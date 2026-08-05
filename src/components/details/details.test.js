@@ -1,4 +1,4 @@
-import { vi, beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import loadHtml from '../../../test/load-html';
 import Details from './details';
 
@@ -14,123 +14,90 @@ describe('details', () => {
             testObj.detailsElement = document.getElementById('native');
             testObj.detailsModule = new Details(testObj.detailsElement);
             testObj.detailsModule.init();
-            // nothing to do
-        });
-    });
 
-    describe('fallback details element', () => {
-        beforeEach(() => {
-            testObj.detailsElement = document.getElementById('fallback');
-            testObj.detailsModule = new Details(testObj.detailsElement);
-        });
-
-        it('should toggle the display of the contents element on click of the summary element', () => {
-            testObj.detailsModule.init();
-
-            vi.spyOn(testObj.detailsModule, 'openDetails');
-            vi.spyOn(testObj.detailsModule, 'closeDetails');
-
-            const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = new Event('click');
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsElement.getAttribute('open')).toEqual('open');
-
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsElement.getAttribute('open')).toBeNull();
-        });
-
-        it('should toggle the display of the contents element on keyboard operation of the summary element', () => {
-            testObj.detailsModule.init();
-
-            vi.spyOn(testObj.detailsModule, 'openDetails');
-            vi.spyOn(testObj.detailsModule, 'closeDetails');
-
-            const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = new Event('keypress');
-            event.key = 'Enter';
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsElement.getAttribute('open')).toEqual('open');
-
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsElement.getAttribute('open')).toBeNull();
-        });
-
-        it('should not interfere with other keypresses', () => {
-            testObj.detailsModule.init();
-
-            vi.spyOn(testObj.detailsModule, 'openDetails').mockImplementation();
-
-            const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = new Event('keypress');
-            event.key = 'A';
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
-        });
-
-        it('should swallow a space keyup event', () => {
-            testObj.detailsModule.init();
-
-            vi.spyOn(testObj.detailsModule, 'openDetails').mockImplementation();
-
-            const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = new Event('keyup');
-            event.key = ' ';
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
-
-            // cover a final branch that does nothing
-            event.key = 'A';
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsModule.openDetails).not.toHaveBeenCalled();
+            // nothing to do but say it's init-ed
+            expect(testObj.detailsModule.isInitialised).toBeTruthy();
         });
     });
 
     describe('fake details element', () => {
+        let detailsAttributesList, summaryAttributesList, contentElements;
+
         beforeEach(() => {
             testObj.detailsElement = document.getElementById('fake');
+            detailsAttributesList = testObj.detailsElement.attributes;
+            summaryAttributesList = testObj.detailsElement.querySelector('.ds_details__summary').attributes;
+            contentElements = {
+                foo: testObj.detailsElement.querySelector('#foo'),
+                bar: testObj.detailsElement.querySelector('#bar')
+            };
+
             testObj.detailsModule = new Details(testObj.detailsElement);
         });
 
-        it('should toggle the display of the contents element on click of the summary element', () => {
-            testObj.detailsModule.init();
+        describe('markup transforms', () => {
+            it('should use a native DETAILS for the container element', () => {
+                const newDetailsElement = testObj.detailsModule.details;
+                expect(newDetailsElement.nodeName).toEqual('DETAILS');
+            });
 
-            vi.spyOn(testObj.detailsModule, 'openDetails');
-            vi.spyOn(testObj.detailsModule, 'closeDetails');
+            it('should clone attributes from the original container element to the replacement element', () => {
+                const newDetailsElement = testObj.detailsModule.details;
 
-            const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = new Event('click');
-            titleElement.dispatchEvent(event);
+                Array.from(detailsAttributesList).forEach(attribute => {
+                    expect(newDetailsElement.getAttribute(attribute.name)).toBeDefined();
+                    expect(newDetailsElement.getAttribute(attribute.name)).toEqual(attribute.value);
+                });
 
-            expect(testObj.detailsElement.getAttribute('data-open')).toEqual('open');
+                // and a specific check
+                expect(newDetailsElement.getAttribute('data-foo')).toEqual('foo');
+            });
 
-            titleElement.dispatchEvent(event);
+            it('should use a native SUMMARY element for \'ds_details__summary\'', () => {
+                const newDetailsElement = testObj.detailsModule.details;
+                const newSummaryElement = newDetailsElement.querySelector('.ds_details__summary');
+                expect(newSummaryElement.nodeName).toEqual('SUMMARY');
+            });
 
-            expect(testObj.detailsElement.getAttribute('data-open')).toBeNull();
+            it('should clone attributes from the original summary element to the replacement element', () => {
+                const newDetailsElement = testObj.detailsModule.details;
+                const newSummaryElement = newDetailsElement.querySelector('.ds_details__summary');
+
+                Array.from(summaryAttributesList).forEach(attribute => {
+                    expect(newSummaryElement.getAttribute(attribute.name)).toBeDefined();
+                    expect(newSummaryElement.getAttribute(attribute.name)).toEqual(attribute.value);
+                });
+
+                // and a specific check
+                expect(newSummaryElement.getAttribute('data-bar')).toEqual('bar');
+            });
+
+            it('should copy all non-summary children to the new element', () => {
+                const newDetailsElement = testObj.detailsModule.details;
+
+                expect(newDetailsElement.querySelector('#foo').outerHTML).toEqual(contentElements.foo.outerHTML)
+                expect(newDetailsElement.querySelector('#bar').outerHTML).toEqual(contentElements.bar.outerHTML)
+            });
+        });
+    });
+
+    describe('exceptions', () => {
+        it('the fallback should specifically NOT clone a \'for\' attribute to the summary element', () => {
+            testObj.detailsElement = document.getElementById('toggle');
+            const newDetailsElement = testObj.detailsModule.details;
+            const newSummaryElement = newDetailsElement.querySelector('.ds_details__summary');
+
+            testObj.detailsModule = new Details(testObj.detailsElement);
+
+            expect(newSummaryElement.getAttribute('for')).toBeNull();
         });
 
-        it('should toggle the display of the contents element on keyboard operation of the summary element', () => {
-            testObj.detailsModule.init();
+        it('the fallback should specifically NOT copy a `ds_details__toggle` checkbox to the new element', () => {
+            testObj.detailsElement = document.getElementById('toggle');
+            testObj.detailsModule = new Details(testObj.detailsElement);
 
-            vi.spyOn(testObj.detailsModule, 'openDetails');
-            vi.spyOn(testObj.detailsModule, 'closeDetails');
-
-            const titleElement = testObj.detailsElement.querySelector('.ds_details__summary');
-            const event = new Event('keypress');
-            event.key = ' ';
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsElement.getAttribute('data-open')).toEqual('open');
-
-            titleElement.dispatchEvent(event);
-
-            expect(testObj.detailsElement.getAttribute('data-open')).toBeNull();
+            expect(testObj.detailsElement.querySelector('.ds_details__toggle')).toBeDefined();
+            expect(testObj.detailsModule.details.querySelector('.ds_details__toggle')).toBeNull();
         });
     });
 });
