@@ -55,7 +55,6 @@ class SideNavigation extends DSComponent {
         navButton.classList.add('ds_side-navigation__expand');
         navButton.classList.add('ds_link');
         navButton.classList.add('js-side-navigation-button');
-        navButton.setAttribute('aria-expanded', false.toString());
         navButton.innerHTML = navLabel.innerHTML;
         navButton.setAttribute('aria-expanded', false.toString());
         navButton.setAttribute('aria-controls', navList.id);
