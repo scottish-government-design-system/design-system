@@ -12,9 +12,12 @@ $step-count-margin: 2.5rem;
 $step-count-margin--medium: 3rem;
 $step-count-size: 2rem;
 $step-count-size--medium: 2.5rem;
+$step-count-border-width: 0.0625rem;
+$step-count-border-width--current: 0.125rem;
 $step-content-line-height: 1.5rem;
 $step-content-line-height--medium: 2rem;
-$step-vertical-line-width: 0.125rem;
+$step-line-width: 0.0625rem;
+$step-border-width: 0.0625rem; // clones accordion border width
 
 .ds_step-navigation {
     counter-reset: section;
@@ -45,14 +48,19 @@ $step-vertical-line-width: 0.125rem;
         position: absolute;
         left: #{math.div($step-count-size, 2) - $step-count-margin};
         right: 100%;
-        height: 0.0625rem;
+        height: $step-line-width;
         background: settings.$ds_colour__border--strong;
         margin-top: math.div($step-content-line-height, 2);
     }
 
+    /// [1] nudge 1px to mimic the offset created by the accordion top border
+    /// [2] to center-align with step title:
+    ///     start with top padding of step heading,
+    ///     subtract difference between height of count and line height of step heading, divided by two
+    ///     0.5rem - (2rem - 1.5rem) / 2 = 0.25 rem
     &__count {
         background-color: settings.$ds_colour__background--primary;
-        border: 0.0625rem solid currentColor;
+        border: $step-count-border-width solid currentColor;
         border-radius: 1.25rem;
         color: settings.$ds_colour__border--strong;
         content: counter(section);
@@ -62,21 +70,30 @@ $step-vertical-line-width: 0.125rem;
         font-weight: settings.$bold;
         height: $step-count-size;
         left: #{$step-count-margin * -1};
-        line-height: #{$step-count-size - 0.125rem};
+        line-height: #{$step-count-size - $step-count-border-width * 2};
+        margin-top: $step_border-width; /// 1
         position: absolute;
         text-align: center;
-        top: 0.25rem;
+        top: 0.25rem; /// 2
         width: $step-count-size;
     }
 
     .ds_current &__count {
         background-color: settings.$ds_colour__link--current__background;
-        border: 0.125rem solid settings.$ds_colour__border--highlight;
-        line-height: #{$step-count-size - 0.25rem};
+        border: $step-count-border-width--current solid settings.$ds_colour__border--highlight;
+        line-height: #{$step-count-size - $step-count-border-width--current * 2};
 
         @include helpers.ds_media-query-high-contrast {
             border-color: highlight;
         }
+    }
+
+    &__item {
+        position: relative;
+    }
+
+    &__item + &__item {
+        margin-top: -1 * $step-border-width;
     }
 
     .ds_accordion {
@@ -88,33 +105,38 @@ $step-vertical-line-width: 0.125rem;
         padding-left: 0;
     }
 
-    .ds_accordion-item {
+    .ds_step-navigation__item {
         position: relative;
 
+        /// [1] meets top of next step count circle
+        /// [2] meets bottom of next step count circle
+        /// [3] size adjustment to meet optical spacing for non-numeric 'count' values, from Figma
         &::before {
-            border-left: 0.0625rem solid settings.$ds_colour__border--strong;
-            bottom: -0.625rem;
+            $step-line-bottom: -0.25rem; /// 1
+            $step-line-top: 2.25rem; /// 2
+
+            border-left: $step-line-width solid settings.$ds_colour__border--strong;
+            bottom: $step-line-bottom - 0.25rem; /// 3
             content: '';
             display: block;
-            left: #{math.div($step-count-size, 2) - $step-count-margin - math.div($step-vertical-line-width, 2)};
+            left: #{math.div($step-count-size,2) - $step-count-margin};
             position: absolute;
-            top: 2rem;
-            width: $step-vertical-line-width;
+            top: $step-line-top - 0.1875rem; /// 3
         }
 
         &:last-child::before {
             bottom: 0 !important;
         }
 
+        /// [1] bottom line width is 6px either side of a 1px line, i.e. 13px or 0.8125rem
         &:last-child::after {
-            border-bottom: 0.0625rem solid settings.$ds_colour__border--strong;
-            bottom: -0.0625rem;
+            border-bottom: $step-line-width solid settings.$ds_colour__border--strong;
+            bottom: 0;
             content: '';
             display: block;
-            height: 0.0625rem;
             left: #{math.div($step-count-size, 2) - $step-count-margin - 0.375rem};
             position: absolute;
-            width: 0.8125rem;
+            width: 0.8125rem; /// 1
         }
     }
 
@@ -143,17 +165,21 @@ $step-vertical-line-width: 0.125rem;
     }
 
     .ds_step-navigation:not(.ds_step-navigation--small) {
+        /// [1] to center-align with step title:
+        ///     start with top padding of step heading,
+        ///     subtract difference between height of count and line height of step heading, divided by two
+        ///     1em - (2.5rem - 2rem) / 2 = 0.75 rem
         .ds_step-navigation__count {
             font-size: helpers.px-to-rem(settings.$root-font-size--medium);
             height: $step-count-size--medium;
             left: #{$step-count-margin--medium * -1};
-            line-height: #{$step-count-size--medium - 0.125rem};
-            top: 0.75rem;
+            line-height: #{$step-count-size--medium - $step-count-border-width * 2};
+            top: 0.75rem; /// 1
             width: $step-count-size--medium;
         }
 
         .ds_current .ds_step-navigation__count {
-            line-height: #{$step-count-size--medium - 0.25rem};
+            line-height: #{$step-count-size--medium - $step-count-border-width--current * 2};
         }
 
         .ds_step-navigation__current-link::before {
@@ -169,13 +195,19 @@ $step-vertical-line-width: 0.125rem;
             margin-left: $step-count-margin--medium * -1;
         }
 
-        .ds_accordion-item::before {
-            bottom: -1.0625rem;
+        /// [1] meets top of next step count circle
+        /// [2] meets bottom of next step count circle
+        /// [3] size adjustment to meet optical spacing for non-numeric 'count' values, from Figma
+        .ds_step-navigation__item::before {
+            $step-line-bottom--medium: -0.75rem; /// 1
+            $step-line-top--medium: 3.25rem; /// 2
+
+            bottom: $step-line-bottom--medium - 0.25rem; /// 3
             left: #{math.div($step-count-size--medium, 2) - $step-count-margin--medium};
-            top: 3.0625rem;
+            top: $step-line-top--medium - 0.1875rem; /// 3
         }
 
-        .ds_accordion-item:last-child::after {
+        .ds_step-navigation__item:last-child::after {
             left: #{math.div($step-count-size--medium, 2) - $step-count-margin--medium - 0.375rem};
         }
     }
