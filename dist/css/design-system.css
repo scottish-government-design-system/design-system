@@ -2700,9 +2700,6 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_accordion.js-initialised .ds_accordion__open-all {
   display: block;
 }
-.ds_accordion.js-initialised .ds_accordion-item__header {
-  padding: 0;
-}
 
 .ds_accordion-item {
   border-bottom: 0.0625rem solid #b3b3b3;
@@ -2763,53 +2760,16 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_accordion-item__header {
   background-color: #ffffff;
   border-width: 0;
+  box-sizing: border-box;
   color: currentColor;
+  font-weight: 700;
   margin: 0;
   padding: 0.5rem 0.5rem 0.6875rem;
   position: relative;
   text-align: left;
-  width: 100%;
 }
 .ds_accordion-item__header:hover:not(:focus) {
   color: rgb(0, 66.9325396825, 125.25);
-}
-.ds_accordion-item__title {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-@media (min-width: 48rem) {
-  .ds_accordion-item__title {
-    font-size: 1.1875rem;
-    line-height: 1.6842105263;
-  }
-}
-.ds_accordion-item__title {
-  margin-bottom: 0.25rem;
-}
-.ds_accordion-item__title--button {
-  padding: 0;
-  margin-bottom: 0;
-}
-.ds_accordion-item__button {
-  appearance: unset;
-  background: transparent;
-  border: 0;
-  padding: 0.5rem 0.5rem 0.6875rem;
-  position: relative;
-  text-align: left;
-  width: 100%;
-  z-index: 1;
-}
-.ds_accordion-item__label {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.ds_accordion-item__title--button .ds_accordion-item__label {
-  z-index: -1;
 }
 .ds_accordion-item__indicator {
   font-size: 0.875rem;
@@ -2848,48 +2808,17 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   pointer-events: none;
 }
 .ds_accordion-item__body {
-  display: none;
   padding: 1rem 0.5rem 1.5rem;
 }
 .ds_accordion-item__body > :last-child {
   margin-bottom: 0;
 }
-.ds_accordion-item__control:checked ~ .ds_accordion-item__body {
-  display: block;
-}
-.ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator::after {
+.ds_accordion-item:open .ds_accordion-item__indicator::after {
   top: 0.625rem;
   transform: rotate(-225deg);
 }
-.ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator .js-close-label {
+.ds_accordion-item:open .ds_accordion-item__indicator .js-close-label {
   display: inline;
-}
-.ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__button:focus {
-  background-color: #fdd522;
-  color: #1a1a1a;
-  text-decoration-line: none;
-  transition-duration: 0s;
-  outline: round(0.125em, 1px) solid #fdd522;
-  outline-offset: 0;
-  filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
-}
-@media screen and (forced-colors: active) {
-  .ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__button:focus {
-    outline: round(0.125em, 1px) solid highlight !important;
-  }
-}
-.ds_accordion-item__control:focus ~ .ds_accordion-item__header, .ds_accordion-item__button:focus {
-  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
-  filter: none;
-  outline-width: 0;
-}
-.ds_accordion-item__control:focus ~ .ds_accordion-item__header .ds_accordion-item__indicator {
-  color: #1a1a1a;
-  text-decoration-color: transparent;
-}
-.ds_accordion-item__control:focus ~ .ds_accordion-item__header .ds_accordion-item__indicator {
-  color: #1a1a1a;
-  text-decoration: none;
 }
 .ds_accordion-item + .ds_accordion-item {
   margin-top: -0.0625rem;
@@ -2905,7 +2834,7 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
 .ds_accordion-item__header:hover:not(:focus-within) .ds_accordion-item__indicator {
   color: rgb(0, 66.9325396825, 125.25);
 }
-.ds_accordion-item__button:focus .ds_accordion-item__indicator {
+.ds_accordion-item__header:focus .ds_accordion-item__indicator {
   color: #1a1a1a;
   text-decoration-color: transparent;
 }
@@ -2917,17 +2846,11 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   .ds_accordion-item__indicator::after {
     top: 0.3125rem;
   }
-  .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator::after {
+  .ds_accordion-item:open .ds_accordion-item__indicator::after {
     top: 0.625rem;
   }
-  .ds_accordion-item__header, .ds_accordion-item__button {
+  .ds_accordion-item__header {
     padding: 1rem 1rem 0.9375rem 0.5rem; /* [1] */
-  }
-  .ds_accordion-item__title {
-    margin-bottom: 0.5rem;
-  }
-  .ds_accordion-item__title--button {
-    margin-bottom: 0;
   }
 }
 
@@ -2940,17 +2863,15 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
   content: attr(data-open-text);
 }
 
-.ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator::before {
+.ds_accordion-item:open .ds_accordion-item__indicator::before {
   content: "Close";
 }
-.ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator[data-close-text]::before {
+.ds_accordion-item:open .ds_accordion-item__indicator[data-close-text]::before {
   content: attr(data-close-text);
 }
 
 /* SMALL VARIANT */
 .ds_accordion--small .ds_accordion-item__header,
-.ds_accordion--small .ds_accordion-item__title,
-.ds_accordion--small .ds_accordion-item__button,
 .ds_accordion--small .ds_accordion-item__body,
 .ds_accordion--small .ds_accordion__open-all {
   font-size: 1rem;
@@ -2970,6 +2891,87 @@ h1 + .ds_accordion, h2 + .ds_accordion, h3 + .ds_accordion {
     color: linktext !important;
   }
 }
+/* LEGACY, non-details markup */
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__title {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+@media (min-width: 48rem) {
+  .ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__title {
+    font-size: 1.1875rem;
+    line-height: 1.6842105263;
+  }
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__title {
+  margin-bottom: 0.25rem;
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__label {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__body {
+  display: none;
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:checked ~ .ds_accordion-item__body {
+  display: block;
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator::after {
+  top: 0.625rem;
+  transform: rotate(-225deg);
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator .js-close-label {
+  display: inline;
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:focus ~ .ds_accordion-item__header {
+  background-color: #fdd522;
+  color: #1a1a1a;
+  text-decoration-line: none;
+  transition-duration: 0s;
+  outline: round(0.125em, 1px) solid #fdd522;
+  outline-offset: 0;
+  filter: drop-shadow(0px round(0.16em, 1px) 0px #1a1a1a);
+}
+@media screen and (forced-colors: active) {
+  .ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:focus ~ .ds_accordion-item__header {
+    outline: round(0.125em, 1px) solid highlight !important;
+  }
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:focus ~ .ds_accordion-item__header {
+  box-shadow: inset 0 round(-0.16em, 1px) 0 #1a1a1a;
+  filter: none;
+  outline-width: 0;
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:focus ~ .ds_accordion-item__header .ds_accordion-item__indicator {
+  color: #1a1a1a;
+  text-decoration-color: transparent;
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:focus ~ .ds_accordion-item__header .ds_accordion-item__indicator {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator::before {
+  content: "Close";
+}
+.ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator[data-close-text]::before {
+  content: attr(data-close-text);
+}
+@media (min-width: 48rem) {
+  .ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__indicator {
+    margin-top: 0.5rem;
+    padding-left: 1.375rem;
+  }
+  .ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__indicator .ds_accordion-item::after {
+    top: 0.3125rem;
+  }
+  .ds_accordion-item:has(.ds_accordion-item__title) .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator .ds_accordion-item::after {
+    top: 0.625rem;
+  }
+}
+
 /*------------------------------------*\
     ARTICLE ASIDE
 \*------------------------------------*/
@@ -8825,6 +8827,12 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
     border-color: highlight;
   }
 }
+.ds_step-navigation__item {
+  position: relative;
+}
+.ds_step-navigation__item + .ds_step-navigation__item {
+  margin-top: -0.0625rem;
+}
 .ds_step-navigation .ds_accordion {
   margin-left: 2.5rem;
 }
@@ -8832,10 +8840,10 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   margin-left: -2.5rem;
   padding-left: 0;
 }
-.ds_step-navigation .ds_accordion-item {
+.ds_step-navigation .ds_step-navigation__item {
   position: relative;
 }
-.ds_step-navigation .ds_accordion-item::before {
+.ds_step-navigation .ds_step-navigation__item::before {
   border-left: 0.0625rem solid #1a1a1a;
   bottom: -0.625rem;
   content: "";
@@ -8845,10 +8853,10 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   top: 2rem;
   width: 0.125rem;
 }
-.ds_step-navigation .ds_accordion-item:last-child::before {
+.ds_step-navigation .ds_step-navigation__item:last-child::before {
   bottom: 0 !important;
 }
-.ds_step-navigation .ds_accordion-item:last-child::after {
+.ds_step-navigation .ds_step-navigation__item:last-child::after {
   border-bottom: 0.0625rem solid #1a1a1a;
   bottom: -0.0625rem;
   content: "";
@@ -8895,12 +8903,12 @@ a.ds_pagination__link:not(.ds_current):not(:focus) {
   .ds_step-navigation:not(.ds_step-navigation--small) .ds_accordion__open-all {
     margin-left: -3rem;
   }
-  .ds_step-navigation:not(.ds_step-navigation--small) .ds_accordion-item::before {
+  .ds_step-navigation:not(.ds_step-navigation--small) .ds_step-navigation__item::before {
     bottom: -1.0625rem;
     left: -1.75rem;
     top: 3.0625rem;
   }
-  .ds_step-navigation:not(.ds_step-navigation--small) .ds_accordion-item:last-child::after {
+  .ds_step-navigation:not(.ds_step-navigation--small) .ds_step-navigation__item:last-child::after {
     left: -2.125rem;
   }
 }

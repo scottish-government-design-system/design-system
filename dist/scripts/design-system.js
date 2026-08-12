@@ -1,45 +1,45 @@
 function x(t = document) {
-  [].slice.call(t.querySelectorAll('[data-module="ds-accordion"]:not(.js-instantiated)')).forEach((e) => new h.components.Accordion(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-back-to-top"]:not(.js-instantiated)')).forEach((e) => new h.components.BackToTop(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-character-count"]:not(.js-instantiated)')).forEach((e) => new h.components.CharacterCount(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-checkboxes"]:not(.js-instantiated)')).forEach((e) => new h.components.Checkboxes(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-cookie-notification"]:not(.js-instantiated)')).forEach((e) => new h.components.CookieNotification(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]:not(.js-instantiated)')).forEach((e) => new h.components.DatePicker(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-details"]:not(.js-instantiated)')).forEach((e) => new h.components.Details(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-file-upload"]:not(.js-instantiated)')).forEach((e) => new h.components.FileUpload(e).init()), [].slice.call(t.querySelectorAll(".ds_hide-page")).forEach((e) => new h.components.HideThisPage(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-mobile-navigation-menu"]:not(.js-instantiated)')).forEach((e) => new h.components.SiteNavigation(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-notification"]:not(.js-instantiated)')).forEach((e) => new h.components.NotificationBanner(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-notification-message"]:not(.js-instantiated)')).forEach((e) => new h.components.NotificationMessage(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-side-navigation"]:not(.js-instantiated)')).forEach((e) => new h.components.SideNavigation(e).init()), h.components.skipLinks.init(), [].slice.call(t.querySelectorAll('[data-module="ds-step-navigation"]:not(.js-instantiated)')).forEach((e) => new h.components.StepNavigation(e).init()), [].slice.call(t.querySelectorAll("table[data-smallscreen]")).forEach((e) => new h.components.MobileTable(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]:not(.js-instantiated)')).forEach((e) => new h.components.Tabs(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]:not(.js-instantiated)')).forEach((e) => new h.components.TabsNavigation(e).init()), h.base.tools.tracking.init();
+  [].slice.call(t.querySelectorAll('[data-module="ds-accordion"]:not(.js-instantiated)')).forEach((e) => new u.components.Accordion(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-back-to-top"]:not(.js-instantiated)')).forEach((e) => new u.components.BackToTop(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-character-count"]:not(.js-instantiated)')).forEach((e) => new u.components.CharacterCount(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-checkboxes"]:not(.js-instantiated)')).forEach((e) => new u.components.Checkboxes(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-cookie-notification"]:not(.js-instantiated)')).forEach((e) => new u.components.CookieNotification(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-datepicker"]:not(.js-instantiated)')).forEach((e) => new u.components.DatePicker(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-details"]:not(.js-instantiated)')).forEach((e) => new u.components.Details(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-file-upload"]:not(.js-instantiated)')).forEach((e) => new u.components.FileUpload(e).init()), [].slice.call(t.querySelectorAll(".ds_hide-page")).forEach((e) => new u.components.HideThisPage(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-mobile-navigation-menu"]:not(.js-instantiated)')).forEach((e) => new u.components.SiteNavigation(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-notification"]:not(.js-instantiated)')).forEach((e) => new u.components.NotificationBanner(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-notification-message"]:not(.js-instantiated)')).forEach((e) => new u.components.NotificationMessage(e).init()), [].slice.call(t.querySelectorAll('[data-module="ds-side-navigation"]:not(.js-instantiated)')).forEach((e) => new u.components.SideNavigation(e).init()), u.components.skipLinks.init(), [].slice.call(t.querySelectorAll('[data-module="ds-step-navigation"]:not(.js-instantiated)')).forEach((e) => new u.components.StepNavigation(e).init()), [].slice.call(t.querySelectorAll("table[data-smallscreen]")).forEach((e) => new u.components.MobileTable(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs"]:not(.js-instantiated)')).forEach((e) => new u.components.Tabs(e).init()), [].slice.call(document.querySelectorAll('[data-module="ds-tabs-navigation"]:not(.js-instantiated)')).forEach((e) => new u.components.TabsNavigation(e).init()), u.base.tools.tracking.init();
 }
-function v() {
+function y() {
   return window.DS = window.DS || {}, window.DS.elementIdModifier = window.DS.elementIdModifier || 0, window.DS.elementIdModifier += 1, `ds${window.DS.elementIdModifier}`;
 }
 var S = function(t, e = "GET") {
   const i = new XMLHttpRequest();
-  return new Promise((s, n) => {
+  return new Promise((s, a) => {
     i.onreadystatechange = () => {
       if (i.readyState !== 4) return;
-      i.status >= 200 && i.status < 300 ? s(i) : n({
+      i.status >= 200 && i.status < 300 ? s(i) : a({
         status: i.status,
         statusText: i.statusText
       });
     }, i.open(e, t, !0), i.send();
   });
-}, f = {
+}, m = {
   set: function(t) {
-    if (f.hasPermission(t.category)) {
-      if (t.type === "cookie") return f.cookie.set(t.name, t.value, t.expiresDays);
+    if (m.hasPermission(t.category)) {
+      if (t.type === "cookie") return m.cookie.set(t.name, t.value, t.expiresDays, t.domain);
       t.type === "local" ? localStorage.setItem(t.name, t.value) : t.type === "session" && sessionStorage.setItem(t.name, t.value);
     }
   },
   get: function(t) {
     let e = "";
-    return t.type === "cookie" ? e = f.cookie.get(t.name) : t.type === "local" ? e = localStorage.getItem(t.name) : t.type === "session" && (e = sessionStorage.getItem(t.name)), e || "";
+    return t.type === "cookie" ? e = m.cookie.get(t.name) : t.type === "local" ? e = localStorage.getItem(t.name) : t.type === "session" && (e = sessionStorage.getItem(t.name)), e || "";
   },
   remove: function(t) {
-    t.type === "cookie" ? f.cookie.remove(t.name) : t.type === "local" ? localStorage.removeItem(t.name) : t.type === "session" && sessionStorage.removeItem(t.name);
+    t.type === "cookie" ? m.cookie.remove(t.name) : t.type === "local" ? localStorage.removeItem(t.name) : t.type === "session" && sessionStorage.removeItem(t.name);
   },
-  setCookie: function(t, e, i, s) {
-    f.hasPermission(t) && f.cookie.set(e, i, s);
+  setCookie: function(t, e, i, s, a) {
+    m.hasPermission(t) && m.cookie.set(e, i, s, a);
   },
   setLocalStorage: function(t, e, i) {
-    f.hasPermission(t) && localStorage.setItem(e, i);
+    m.hasPermission(t) && localStorage.setItem(e, i);
   },
   setSessionStorage: function(t, e, i) {
-    f.hasPermission(t) && sessionStorage.setItem(e, i);
+    m.hasPermission(t) && sessionStorage.setItem(e, i);
   },
   getCookie: function(t) {
-    return f.cookie.get(t);
+    return m.cookie.get(t);
   },
   getLocalStorage: function(t) {
     return localStorage.getItem(t);
@@ -48,7 +48,7 @@ var S = function(t, e = "GET") {
     return sessionStorage.getItem(t);
   },
   removeCookie: function(t) {
-    return f.cookie.remove(t);
+    return m.cookie.remove(t);
   },
   removeLocalStorage: function(t) {
     return localStorage.removeItem(t);
@@ -57,26 +57,26 @@ var S = function(t, e = "GET") {
     return sessionStorage.removeItem(t);
   },
   cookie: {
-    set: function(t, e, i) {
+    set: function(t, e, i, s) {
       e = window.btoa(e);
-      const s = {
+      const a = {
         name: t,
         value: e
       };
-      if (i) {
-        const a = /* @__PURE__ */ new Date();
-        a.setTime(a.getTime() + i * 24 * 60 * 60 * 1e3), s.expires = a.toUTCString();
+      if (s && (a.domain = s), i) {
+        const o = /* @__PURE__ */ new Date();
+        o.setTime(o.getTime() + i * 24 * 60 * 60 * 1e3), a.expires = o.toUTCString();
       }
-      let n = t + "=" + e + "; ";
-      return s.expires && (n += "expires=" + s.expires + "; "), n += "path=/", document.cookie = n, s;
+      let n = `${t}=${e};`;
+      return a.expires && (n += `expires=${a.expires};`), a.domain && (n += `domain=${s};`), n += "path=/", document.cookie = n, a;
     },
     get: function(t) {
       const e = t + "=", i = document.cookie.split(";");
-      for (let s = 0, n = i.length; s < n; s++) {
-        let a = i[s];
-        for (; a.charAt(0) === " "; ) a = a.substring(1, a.length);
-        if (a.indexOf(e) === 0) {
-          const o = a.substring(e.length, a.length);
+      for (let s = 0, a = i.length; s < a; s++) {
+        let n = i[s];
+        for (; n.charAt(0) === " "; ) n = n.substring(1, n.length);
+        if (n.indexOf(e) === 0) {
+          const o = n.substring(e.length, n.length);
           return /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/.test(o) ? window.atob(o) : o;
         }
       }
@@ -85,17 +85,17 @@ var S = function(t, e = "GET") {
     remove: function(t, e = window) {
       const i = e.location.host.split(".");
       let s;
-      for (f.unsetCookieWithDomain(t); i.length > 1; )
-        s = i.join("."), f.unsetCookieWithDomain(t, s), f.unsetCookieWithDomain(t, `.${s}`), i.shift();
+      for (m.unsetCookieWithDomain(t); i.length > 1; )
+        s = i.join("."), m.unsetCookieWithDomain(t, s), m.unsetCookieWithDomain(t, `.${s}`), i.shift();
     }
   },
   hasPermission(t) {
-    const e = f.get({
+    const e = m.get({
       type: "cookie",
       name: "cookiePermissions"
     }) || "";
     let i = {};
-    return f.getIsJsonString(e) && (i = JSON.parse(e)), t === "necessary" || i[t] === !0;
+    return m.getIsJsonString(e) && (i = JSON.parse(e)), t === "necessary" || i[t] === !0;
   },
   getIsJsonString: function(t) {
     try {
@@ -110,8 +110,7 @@ var S = function(t, e = "GET") {
     document.cookie = `${t}=;path=/;${i};expires=Thu, 01 Jan 1970 00:00:01 GMT`;
   }
 };
-window.storage = f;
-function A(t) {
+function k(t) {
   t.tabIndex = -1, t.addEventListener("focusout", () => {
     t.removeAttribute("tabindex");
   }), t.focus();
@@ -137,7 +136,7 @@ var L = class {
   get value() {
     return this.tokens.join(" ").trim();
   }
-}, D = "v4.1.1";
+}, T = "v4.3.0";
 function g(t) {
   return t = String(t), t.trim().toLowerCase().replace(/['"’‘”“`]/g, "").replace(/[\W|_]+/g, "-").replace(/^-+|-+$/g, "");
 }
@@ -145,14 +144,14 @@ function q(t) {
   const e = [];
   if (t.parentElement) {
     const i = [].slice.call(t.parentElement.children);
-    for (let s = 0, n = i.length; s < n && i[s] !== t; s++)
+    for (let s = 0, a = i.length; s < a && i[s] !== t; s++)
       e.push(i[s]);
   }
   return e;
 }
 function C(t, e, i) {
   t.reverse();
-  for (let s = 0, n = t.length; s < n; s++) {
+  for (let s = 0, a = t.length; s < a; s++) {
     if (t[s].matches(e)) return t[s];
     if (i && t[s].matches(i) && t[s].querySelector(e))
       return t[s].querySelector(e);
@@ -183,11 +182,11 @@ var r = {
     }
   },
   getNearestSectionHeader: function(t) {
-    const e = "nav,.ds_metadata,.ds_summary-card__header,.ds_card__content-header", i = "h1,h2,h3,h4,h5,h6,.ds_details__summary", s = ".ds_page-header,.ds_layout__header,.ds_accordion-item__header";
+    const e = "nav,.ds_metadata,.ds_summary-card__header,.ds_card__content-header", i = "h1,h2,h3,h4,h5,h6,summary,.ds_details__summary", s = ".ds_page-header,.ds_layout__header,.ds_accordion-item__header";
     if (typeof t.closest == "function" && t.closest(e)) return;
-    const n = C(q(t), i, s);
-    let a;
-    return n ? a = n : t.parentElement && (a = r.getNearestSectionHeader(t.parentElement)), a;
+    const a = C(q(t), i, s);
+    let n;
+    return a ? n = a : t.parentElement && (n = r.getNearestSectionHeader(t.parentElement)), n;
   },
   pushToDataLayer: function(t) {
     window.dataLayer = window.dataLayer || [], window.dataLayer.push(t);
@@ -212,37 +211,36 @@ var r = {
       r.hasAddedPrefersColorScheme || (r.pushToDataLayer({ prefersColorScheme: t }), r.hasAddedPrefersColorScheme = !0);
     },
     version: function() {
-      r.hasAddedVersion || (r.pushToDataLayer({ version: D }), r.hasAddedVersion = !0);
+      r.hasAddedVersion || (r.pushToDataLayer({ version: T }), r.hasAddedVersion = !0);
     },
     accordions: function(t = document.documentElement) {
       r.gatherElements("ds_accordion", t).forEach((e) => {
         let i = "";
         if (e.dataset.name && (i = e.dataset.name), !e.classList.contains("js-initialised")) return;
-        [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((c) => {
-          c.getAttribute("data-navigation") || c.setAttribute("data-navigation", "accordion-link");
+        [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((l) => {
+          l.getAttribute("data-navigation") || l.setAttribute("data-navigation", "accordion-link");
         });
-        const s = e.querySelector(".js-open-all"), n = [].slice.call(e.querySelectorAll(".ds_accordion-item"));
-        function a() {
-          const c = e.querySelectorAll(".ds_accordion-item--open").length;
-          return n.length === c;
+        const s = e.querySelector(".js-open-all"), a = [].slice.call(e.querySelectorAll(".ds_accordion-item"));
+        function n() {
+          const l = e.querySelectorAll(".ds_accordion-item[open]").length;
+          return a.length === l;
         }
-        function o(c) {
-          c && (a() ? c.setAttribute("data-accordion", `accordion-${i.length ? i + "-" : i}close-all`) : c.setAttribute("data-accordion", `accordion-${i.length ? i + "-" : i}open-all`));
+        function o(l) {
+          l && (n() ? l.setAttribute("data-accordion", `accordion-${i.length ? i + "-" : i}close-all`) : l.setAttribute("data-accordion", `accordion-${i.length ? i + "-" : i}open-all`));
         }
-        function d(c, l) {
-          const m = c.querySelector(".ds_accordion-item__button"), u = c.querySelector(".ds_accordion-item__control");
-          m.setAttribute("data-accordion", `accordion-${i.length ? i + "-" : i}${u.checked ? "close" : "open"}-${l + 1}`);
+        function d(l, c) {
+          l.querySelector(".ds_accordion-item__header").setAttribute("data-accordion", `accordion-${i.length ? i + "-" : i}${l.hasAttribute("open") ? "close" : "open"}-${c + 1}`);
         }
-        o(s), n.forEach((c, l) => {
-          d(c, l);
+        o(s), a.forEach((l, c) => {
+          d(l, c);
         }), s && s.addEventListener("click", () => {
-          n.forEach((c, l) => {
-            d(c, l);
+          a.forEach((l, c) => {
+            d(l, c);
           }), o(s);
-        }), n.forEach((c, l) => {
-          const m = c.querySelector(".ds_accordion-item__button"), u = c.querySelector(".ds_accordion-item__control");
-          m.addEventListener("click", () => {
-            m.setAttribute("data-accordion", `accordion-${i.length ? i + "-" : i}${u.checked ? "close" : "open"}-${l + 1}`), o(s);
+        }), a.forEach((l, c) => {
+          const p = l.querySelector(".ds_accordion-item__header");
+          l.addEventListener("toggle", () => {
+            p.setAttribute("data-accordion", `accordion-${i.length ? i + "-" : i}${l.hasAttribute("open") ? "close" : "open"}-${c + 1}`), o(s);
           });
         });
       });
@@ -265,12 +263,12 @@ var r = {
         }), delete s.dataset.autocompletetext, delete s.dataset.autocompletecount, delete s.dataset.autocompleteposition;
       }
       r.gatherElements("ds_autocomplete", t).forEach((i) => {
-        const s = i.querySelector(".js-autocomplete-input"), n = document.querySelector("#" + s.getAttribute("aria-owns") + " .ds_autocomplete__suggestions-list");
-        let a = s.value;
+        const s = i.querySelector(".js-autocomplete-input"), a = document.querySelector("#" + s.getAttribute("aria-owns") + " .ds_autocomplete__suggestions-list");
+        let n = s.value;
         s.addEventListener("keydown", (o) => {
-          o.key === "Enter" && s.dataset.autocompletetext && e(a, s), a = s.value;
-        }), n?.addEventListener("mousedown", () => {
-          e(a, s);
+          o.key === "Enter" && s.dataset.autocompletetext && e(n, s), n = s.value;
+        }), a?.addEventListener("mousedown", () => {
+          e(n, s);
         });
       });
     },
@@ -356,14 +354,14 @@ var r = {
       r.gatherElements("ds_question__error-message", t).forEach((e, i) => {
         if (typeof e.closest == "function" && e.closest(".ds_question")) {
           const s = e.closest(".ds_question")?.querySelector(".js-validation-group, .ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input");
-          let n = (i + 1).toString();
+          let a = (i + 1).toString();
           if (s) if (s.classList.contains("js-validation-group")) {
-            const a = function(o, d, c) {
-              return c.indexOf(o) === d;
+            const n = function(o, d, l) {
+              return l.indexOf(o) === d;
             };
-            n = [].slice.call(s.querySelectorAll(".ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input")).map((o) => o.type === "radio" ? o.name : o.id).filter(a).join("-");
-          } else s.type === "radio" ? n = s.name : n = s.id;
-          e.getAttribute("data-form") || e.setAttribute("data-form", `error-${n}`);
+            a = [].slice.call(s.querySelectorAll(".ds_input, .ds_select, .ds_checkbox__input, .ds_radio__input")).map((o) => o.type === "radio" ? o.name : o.id).filter(n).join("-");
+          } else s.type === "radio" ? a = s.name : a = s.id;
+          e.getAttribute("data-form") || e.setAttribute("data-form", `error-${a}`);
         }
       });
     },
@@ -390,31 +388,31 @@ var r = {
           const d = o.split(".");
           return d.length > 1 ? d.pop()?.toLowerCase() : "";
         }
-        function n(o) {
+        function a(o) {
           return `${(o * 1e-6).toFixed(2)}MB`;
         }
         i.addEventListener("input", () => {
-          i.files?.length ? (i.setAttribute("data-filetype", s(i.files[0].name)), i.setAttribute("data-filesize", n(i.files[0].size))) : (i.removeAttribute("data-filesize"), i.removeAttribute("data-filetype"));
+          i.files?.length ? (i.setAttribute("data-filetype", s(i.files[0].name)), i.setAttribute("data-filesize", a(i.files[0].size))) : (i.removeAttribute("data-filesize"), i.removeAttribute("data-filetype"));
         });
-        function a(o, d) {
-          const c = { event: d };
-          o.detail.canFill ? o.detail.canAccept ? c.status = "success" : c.status = "fail: unable to accept" : c.status = "fail: unable to fill";
-          const l = [], m = [], u = [];
+        function n(o, d) {
+          const l = { event: d };
+          o.detail.canFill ? o.detail.canAccept ? l.status = "success" : l.status = "fail: unable to accept" : l.status = "fail: unable to fill";
+          const c = [], p = [], f = [];
           for (const E of o.detail.files) {
             const b = E;
-            l.push(s(b.name)), m.push(b.size), u.push(b.type);
+            c.push(s(b.name)), p.push(b.size), f.push(b.type);
           }
-          c.files = {
-            extension: l.join(" "),
-            size: m.join(" "),
-            type: u.join(" ")
-          }, r.pushToDataLayer(c);
+          l.files = {
+            extension: c.join(" "),
+            size: p.join(" "),
+            type: f.join(" ")
+          }, r.pushToDataLayer(l);
         }
         e.addEventListener("dropHappened", ((o) => {
-          a(o, "fileUploadDrop");
+          n(o, "fileUploadDrop");
         })), e.addEventListener("changeHappened", ((o) => {
-          a(o, "fileUploadChange");
-        })), e.addEventListener("cancel", () => {
+          n(o, "fileUploadChange");
+        })), i.addEventListener("cancel", () => {
           r.pushToDataLayer({ event: "fileUploadCancel" });
         });
       });
@@ -444,30 +442,30 @@ var r = {
     metadataItems: function(t = document.documentElement) {
       r.gatherElements("ds_metadata__item", t).forEach((e, i) => {
         const s = e.querySelector(".ds_metadata__key");
-        let n;
-        s ? n = s.textContent.trim() : n = `metadata-${i}`, [].slice.call(e.querySelectorAll(".ds_metadata__value a")).forEach((a, o) => {
-          a.getAttribute("data-navigation") || a.setAttribute("data-navigation", `${g(n)}-${o + 1}`);
+        let a;
+        s ? a = s.textContent.trim() : a = `metadata-${i}`, [].slice.call(e.querySelectorAll(".ds_metadata__value a")).forEach((n, o) => {
+          n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `${g(a)}-${o + 1}`);
         });
       });
     },
     notifications: function(t = document.documentElement) {
       r.gatherElements("ds_notification", t).forEach((e, i) => {
         const s = e.id || (i + 1).toString();
-        [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((a) => {
-          a.getAttribute("data-banner") || a.setAttribute("data-banner", `banner-${s}-link`);
-        }), [].slice.call(e.querySelectorAll(".ds_button:not(.ds_notification__close)")).forEach((a) => {
-          a.getAttribute("data-banner") || a.setAttribute("data-banner", `banner-${s}-${g(a.textContent)}`);
+        [].slice.call(e.querySelectorAll("a:not(.ds_button)")).forEach((n) => {
+          n.getAttribute("data-banner") || n.setAttribute("data-banner", `banner-${s}-link`);
+        }), [].slice.call(e.querySelectorAll(".ds_button:not(.ds_notification__close)")).forEach((n) => {
+          n.getAttribute("data-banner") || n.setAttribute("data-banner", `banner-${s}-${g(n.textContent)}`);
         });
-        const n = e.querySelector(".ds_notification__close");
-        n && !n.getAttribute("data-banner") && n.setAttribute("data-banner", `banner-${s}-close`);
+        const a = e.querySelector(".ds_notification__close");
+        a && !a.getAttribute("data-banner") && a.setAttribute("data-banner", `banner-${s}-close`);
       });
     },
     notificationMessages: function(t = document.documentElement) {
       r.gatherElements("ds_notification-message", t).forEach((e, i) => {
-        const s = e.id || (i + 1).toString(), n = e.classList.contains("ds_notification-message--error") ? "error" : e.classList.contains("ds_notification-message--warning") ? "warning" : e.classList.contains("ds_notification-message--info") ? "info" : "confirmation";
-        [].slice.call(e.querySelectorAll("a")).forEach((a) => {
-          a.getAttribute("data-navigation") || a.setAttribute("data-navigation", `${n}-${s}-link`);
-        }), e.querySelector(".ds_notification-message__close")?.setAttribute("data-button", `${n}-${s}-close`);
+        const s = e.id || (i + 1).toString(), a = e.classList.contains("ds_notification-message--error") ? "error" : e.classList.contains("ds_notification-message--warning") ? "warning" : e.classList.contains("ds_notification-message--info") ? "info" : "confirmation";
+        [].slice.call(e.querySelectorAll("a")).forEach((n) => {
+          n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `${a}-${s}-link`);
+        }), e.querySelector(".ds_notification-message__close")?.setAttribute("data-button", `${a}-${s}-close`);
       });
     },
     pagination: function(t = document.documentElement) {
@@ -481,8 +479,8 @@ var r = {
     phaseBanners: function(t = document.documentElement) {
       r.gatherElements("ds_phase-banner", t).forEach((e) => {
         const i = e.querySelector(".ds_tag"), s = i ? i.textContent.trim() : "phase";
-        [].slice.call(e.querySelectorAll("a")).forEach((n) => {
-          n.getAttribute("data-banner") || n.setAttribute("data-banner", `banner-${g(s)}-link`);
+        [].slice.call(e.querySelectorAll("a")).forEach((a) => {
+          a.getAttribute("data-banner") || a.setAttribute("data-banner", `banner-${g(s)}-link`);
         });
       });
     },
@@ -500,19 +498,19 @@ var r = {
       r.gatherElements("ds_search-results", t).forEach((e) => {
         const i = e.querySelector(".ds_search-results__list");
         if (!i) return;
-        const s = [].slice.call(e.querySelectorAll(".ds_search-result")), n = [].slice.call(e.querySelectorAll(".ds_search-result--promoted")), a = +(i.getAttribute("start") || "1");
+        const s = [].slice.call(e.querySelectorAll(".ds_search-result")), a = [].slice.call(e.querySelectorAll(".ds_search-result--promoted")), n = +(i.getAttribute("start") || "1");
         s.forEach((o, d) => {
-          const c = o.querySelector(".ds_search-result__link"), l = o.querySelector(".ds_search-result__media-link"), m = o.querySelector(".ds_search-result__context a");
+          const l = o.querySelector(".ds_search-result__link"), c = o.querySelector(".ds_search-result__media-link"), p = o.querySelector(".ds_search-result__context a");
           if (o.classList.contains("ds_search-result--promoted")) {
-            const u = `search-promoted-${d + 1}/${n.length}`;
-            c.setAttribute("data-search", u);
+            const f = `search-promoted-${d + 1}/${a.length}`;
+            l.setAttribute("data-search", f);
           } else {
-            let u;
-            i.getAttribute("data-total") && (u = i.getAttribute("data-total"));
-            let E = `search-result-${a + d - n.length}`;
-            const b = `search-image-${a + d - n.length}`;
-            let y = `search-parent-link-${a + d - n.length}`;
-            u && (E += `/${u}`, y += `/${u}`), c.setAttribute("data-search", E), l && l.setAttribute("data-search", b), m && m.setAttribute("data-search", y);
+            let f;
+            i.getAttribute("data-total") && (f = i.getAttribute("data-total"));
+            let E = `search-result-${n + d - a.length}`;
+            const b = `search-image-${n + d - a.length}`;
+            let v = `search-parent-link-${n + d - a.length}`;
+            f && (E += `/${f}`, v += `/${f}`), l.setAttribute("data-search", E), c && c.setAttribute("data-search", b), p && p.setAttribute("data-search", v);
           }
         });
       });
@@ -520,16 +518,16 @@ var r = {
     searchSuggestions: function(t = document.documentElement) {
       r.gatherElements("ds_search-suggestions", t).forEach((e) => {
         const i = [].slice.call(e.querySelectorAll(".ds_search-suggestions a"));
-        i.forEach((s, n) => {
-          s.setAttribute("data-search", `suggestion-result-${n + 1}/${i.length}`);
+        i.forEach((s, a) => {
+          s.setAttribute("data-search", `suggestion-result-${a + 1}/${i.length}`);
         });
       });
     },
     searchRelated: function(t = document.documentElement) {
       r.gatherElements("ds_search-results__related", t).forEach((e) => {
         const i = [].slice.call(e.querySelectorAll(".ds_search-results__related a"));
-        i.forEach((s, n) => {
-          s.setAttribute("data-search", `search-related-${n + 1}/${i.length}`);
+        i.forEach((s, a) => {
+          s.setAttribute("data-search", `search-related-${a + 1}/${i.length}`);
         });
       });
     },
@@ -552,19 +550,19 @@ var r = {
     },
     sideNavs: function(t = document.documentElement) {
       r.gatherElements("ds_side-navigation", t).forEach((e) => {
-        const i = e.querySelector(".ds_side-navigation__list"), s = e.querySelector(".js-side-navigation-button"), n = e.querySelector(".js-toggle-side-navigation");
-        function a() {
-          s?.setAttribute("data-navigation", `navigation-${n.checked ? "close" : "open"}`);
+        const i = e.querySelector(".ds_side-navigation__list"), s = e.querySelector(".js-side-navigation-button"), a = e.querySelector(".js-toggle-side-navigation");
+        function n() {
+          s?.setAttribute("data-navigation", `navigation-${a.checked ? "close" : "open"}`);
         }
-        function o(d, c = "") {
-          [].slice.call(d.children).forEach((l, m) => {
-            [].slice.call(l.children).forEach((u) => {
-              u.classList.contains("ds_side-navigation__list") ? o(u, `${c}-${m + 1}`) : u.setAttribute("data-navigation", `sidenav${c}-${m + 1}`);
+        function o(d, l = "") {
+          [].slice.call(d.children).forEach((c, p) => {
+            [].slice.call(c.children).forEach((f) => {
+              f.classList.contains("ds_side-navigation__list") ? o(f, `${l}-${p + 1}`) : f.setAttribute("data-navigation", `sidenav${l}-${p + 1}`);
             });
           });
         }
-        o(i), s && (a(), s.addEventListener("click", () => {
-          a();
+        o(i), s && (n(), s.addEventListener("click", () => {
+          n();
         }));
       });
     },
@@ -616,10 +614,10 @@ var r = {
     summaryCard: function(t = document.documentElement) {
       r.gatherElements("ds_summary-card", t).forEach((e, i) => {
         [].slice.call(e.querySelectorAll(".ds_summary-card__actions-list")).forEach((s) => {
-          const n = [].slice.call(s.querySelectorAll("button")), a = [].slice.call(s.querySelectorAll("a"));
-          n.forEach((o) => {
+          const a = [].slice.call(s.querySelectorAll("button")), n = [].slice.call(s.querySelectorAll("a"));
+          a.forEach((o) => {
             o.setAttribute("data-button", `button-${g(o.textContent)}-${i + 1}`);
-          }), a.forEach((o) => {
+          }), n.forEach((o) => {
             o.setAttribute("data-navigation", `navigation-${g(o.textContent)}-${i + 1}`);
           });
         });
@@ -628,8 +626,8 @@ var r = {
     summaryList: function(t = document.documentElement) {
       r.gatherElements("ds_summary-list__actions", t).forEach((e) => {
         [].slice.call(e.querySelectorAll("button, a")).forEach((i) => {
-          const s = i.tagName === "BUTTON" ? "button" : "navigation", n = i.closest(".ds_summary-list__item")?.querySelector(".ds_summary-list__key"), a = "-" + g(n.textContent);
-          i.setAttribute(`data-${s}`, `${s}-${g(i.textContent)}${a}`);
+          const s = i.tagName === "BUTTON" ? "button" : "navigation", a = i.closest(".ds_summary-list__item")?.querySelector(".ds_summary-list__key"), n = "-" + g(a.textContent);
+          i.setAttribute(`data-${s}`, `${s}-${g(i.textContent)}${n}`);
         });
       });
     },
@@ -637,8 +635,8 @@ var r = {
       const e = r.gatherElements("ds_tabs", t);
       let i = 1;
       e.forEach((s) => {
-        [].slice.call(s.querySelectorAll(".ds_tabs__tab-link")).forEach((n, a) => {
-          n.getAttribute("data-navigation") || n.setAttribute("data-navigation", `tab-link-${i}-${a + 1}`);
+        [].slice.call(s.querySelectorAll(".ds_tabs__tab-link")).forEach((a, n) => {
+          a.getAttribute("data-navigation") || a.setAttribute("data-navigation", `tab-link-${i}-${n + 1}`);
         }), i++;
       });
     },
@@ -671,10 +669,10 @@ var r = {
     }
   }
 }, M = {
-  idModifier: v,
+  idModifier: y,
   PromiseRequest: S,
-  storage: f,
-  temporaryFocus: A,
+  storage: m,
+  temporaryFocus: k,
   TokenList: L,
   tracking: r
 };
@@ -684,10 +682,10 @@ function _(t) {
   const i = window.getComputedStyle(e, null).display === "block";
   return e.parentNode?.removeChild(e), i;
 }
-var I = { breakpointCheck: _ }, k = {
+var $ = { breakpointCheck: _ }, A = {
   tools: M,
-  utilities: I
-}, p = class {
+  utilities: $
+}, h = class {
   #t;
   #e = !1;
   constructor(t) {
@@ -699,70 +697,67 @@ var I = { breakpointCheck: _ }, k = {
   get isInitialised() {
     return this.#e;
   }
-}, $ = class extends p {
+}, I = class extends h {
   accordion;
   items;
   openAllButton;
   constructor(t) {
-    super(t), this.accordion = t, this.items = [].slice.call(t.querySelectorAll(".ds_accordion-item")), this.openAllButton = t.querySelector(".js-open-all");
+    super(t), this.accordion = t, this.items = [].slice.call(t.querySelectorAll(".ds_accordion-item")), this.openAllButton = t.querySelector(".js-open-all"), this.accordion.querySelector("div.ds_accordion-item") && this.doFallback();
   }
   init() {
     this.isInitialised || (this.items.forEach((t) => this.initAccordionItem(t)), this.openAllButton && this.initOpenAll(), this.isInitialised = !0);
   }
+  doFallback() {
+    this.items.forEach((t) => {
+      const e = document.createElement("details"), i = document.createElement("summary"), s = t.querySelector(".ds_accordion-item__body") || document.createElement("div"), a = t.querySelector(".ds_accordion-item__title") || document.createElement("div"), n = t.querySelector(".ds_accordion-item__control") || document.createElement("input");
+      i.innerHTML = a.innerHTML + t.querySelector(".ds_accordion-item__indicator")?.outerHTML, e.classList.add("ds_accordion-item"), i.classList.add("ds_accordion-item__header"), n.checked && e.setAttribute("open", ""), e.appendChild(i), e.appendChild(s), t.replaceWith(e);
+    }), this.items = [].slice.call(this.accordion.querySelectorAll(".ds_accordion-item"));
+  }
   initAccordionItem(t) {
-    const e = t.querySelector(".ds_accordion-item__body"), i = t.querySelector(".ds_accordion-item__control"), s = t.querySelector(".ds_accordion-item__header"), n = t.querySelector(".ds_accordion-item__indicator"), a = t.querySelector(".ds_accordion-item__label span"), o = s.querySelector(".ds_accordion-item__title");
-    let d = !1;
+    const e = y();
+    t.id = t.id || `accordion-item-${e}`;
+    const i = t.hasAttribute("open");
+    let s = !1;
     if (window.location.hash) try {
-      t.querySelector(window.location.hash) && (d = !0, i.checked = !0);
+      t.querySelector(window.location.hash) && (s = !0, t.setAttribute("open", ""));
     } catch {
     }
-    const c = i.checked, l = document.createElement("button");
-    o.classList.add("ds_accordion-item__title--button"), l.classList.add("ds_accordion-item__button"), l.classList.add("js-accordion-button"), l.id = o.id + "-button", l.type = "button", i.classList.remove("visually-hidden"), i.classList.add("fully-hidden"), i.setAttribute("tabindex", "-1"), l.innerHTML = o.innerHTML, n.setAttribute("aria-hidden", "true"), o.innerHTML = "", o.insertBefore(l, o.firstChild), l.appendChild(n), a.classList.add("fully-hidden");
-    const m = v();
-    t.id = t.id || `accordion-item-${m}`, e.id = e.id || `accordion-item-${m}-body`, c && (t.classList.add("ds_accordion-item--open"), this.openAllButton && this.setOpenAllButton(this.checkAllOpen()), d && t.scrollIntoView()), l.setAttribute("aria-expanded", c.toString()), l.setAttribute("aria-controls", e.id), l.addEventListener("click", (u) => {
-      u.preventDefault(), this.toggleAccordionItem(t);
+    i && (this.openAllButton && this.setOpenAllButton(this.checkAllOpen()), s && t.scrollIntoView()), t.addEventListener("toggle", () => {
+      this.openAllButton && this.setOpenAllButton(this.checkAllOpen());
     });
   }
   initOpenAll() {
-    this.openAllButton.addEventListener("click", () => {
-      function t(n) {
-        return n.closest(".ds_accordion-item");
-      }
-      const e = !this.checkAllOpen(), i = [].slice.call(this.accordion.querySelectorAll(".js-accordion-button"));
-      let s;
-      e ? s = i.filter((n) => !t(n).classList.contains("ds_accordion-item--open")) : s = i.filter((n) => t(n).classList.contains("ds_accordion-item--open")), s.forEach((n) => {
-        this.toggleAccordionItem(t(n));
-      }), this.setOpenAllButton(e);
-    }), this.openAllButton.setAttribute("aria-controls", this.items.map((t) => t.id).join(" ")), this.openAllButton.setAttribute("aria-expanded", "false");
-  }
-  toggleAccordionItem(t) {
-    const e = t.querySelector(".js-accordion-button"), i = t.querySelector(".ds_accordion-item__control"), s = t.classList.contains("ds_accordion-item--open");
-    s ? t.classList.remove("ds_accordion-item--open") : t.classList.add("ds_accordion-item--open"), e.setAttribute("aria-expanded", (!s).toString()), i.checked = !s, this.openAllButton && this.setOpenAllButton(this.checkAllOpen());
+    this.openAllButton.setAttribute("aria-controls", this.items.map((t) => t.id).join(" ")), this.openAllButton.setAttribute("aria-expanded", "false"), this.openAllButton.addEventListener("click", () => {
+      const t = !this.checkAllOpen();
+      [].slice.call(this.accordion.querySelectorAll(".ds_accordion-item")).forEach((e) => {
+        t ? e.setAttribute("open", "") : e.removeAttribute("open");
+      }), this.setOpenAllButton(t);
+    });
   }
   setOpenAllButton(t) {
     t ? this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>' : this.openAllButton.innerHTML = 'Open all <span class="visually-hidden">sections</span>', this.openAllButton.setAttribute("aria-expanded", t.toString());
   }
   checkAllOpen() {
-    const t = this.accordion.querySelectorAll(".ds_accordion-item--open").length;
+    const t = this.accordion.querySelectorAll(".ds_accordion-item[open]").length;
     return this.items.length === t;
   }
 };
 function B(t, e, i) {
   i = Object.assign({}, { className: "" }, i);
-  function s(a, o) {
-    if (!a.data || o === "") return !1;
-    let d, c;
-    const l = new RegExp(o, "i").exec(a.data);
-    return l && (c = document.createElement("MARK"), i.className && (c.className = i.className), d = a.splitText(l.index), d.splitText(l[0].length), c.appendChild(d.cloneNode(!0)), a.parentNode?.replaceChild(c, d)), !!l;
+  function s(n, o) {
+    if (!n.data || o === "") return !1;
+    let d, l;
+    const c = new RegExp(o, "i").exec(n.data);
+    return c && (l = document.createElement("MARK"), i.className && (l.className = i.className), d = n.splitText(c.index), d.splitText(c[0].length), l.appendChild(d.cloneNode(!0)), n.parentNode?.replaceChild(l, d)), !!c;
   }
-  function n(a) {
+  function a(n) {
     let o;
-    for (let c = 0; c < a.childNodes.length; c++)
-      o = a.childNodes[c], o.nodeType === 3 ? c += s(o, e) ? 1 : 0 : n(o);
+    for (let l = 0; l < n.childNodes.length; l++)
+      o = n.childNodes[l], o.nodeType === 3 ? l += s(o, e) ? 1 : 0 : a(o);
   }
-  n(t);
+  a(t);
 }
-var N = class extends p {
+var N = class extends h {
   activeSuggestion;
   endpointUrl;
   inputElement;
@@ -799,8 +794,8 @@ var N = class extends p {
       t.preventDefault();
       const e = t.target, i = e.classList.contains("ds_autocomplete__suggestion") ? e : e.closest(".ds_autocomplete__suggestion");
       if (i) {
-        const s = i.parentElement, n = Array.from(s.children).indexOf(i);
-        this.selectSuggestion(n), this.acceptSelectedSuggestion();
+        const s = i.parentElement, a = Array.from(s.children).indexOf(i);
+        this.selectSuggestion(a), this.acceptSelectedSuggestion();
       }
     }), this.isInitialised = !0);
   }
@@ -830,9 +825,9 @@ var N = class extends p {
   }
   showSuggestions(t) {
     if (this.listBoxElement.innerHTML = "", t.length) {
-      for (let s = 0, n = t.length; s < n; s++) {
-        const a = t[s], o = document.createElement("li");
-        o.id = "suggestion-" + s, o.classList.add("ds_autocomplete__suggestion"), o.setAttribute("role", "option"), document.createElement("span").classList.add("js-suggestion-text"), a.isActive && o.classList.add("active"), o.innerHTML = this.buildSuggestionHtml(a.displayText), B(o.querySelector(".js-suggestion-text"), this.inputElement.value, {}), this.listBoxElement.appendChild(o);
+      for (let s = 0, a = t.length; s < a; s++) {
+        const n = t[s], o = document.createElement("li");
+        o.id = "suggestion-" + s, o.classList.add("ds_autocomplete__suggestion"), o.setAttribute("role", "option"), document.createElement("span").classList.add("js-suggestion-text"), n.isActive && o.classList.add("active"), o.innerHTML = this.buildSuggestionHtml(n.displayText), B(o.querySelector(".js-suggestion-text"), this.inputElement.value, {}), this.listBoxElement.appendChild(o);
       }
       this.inputElement.classList.add("js-has-suggestions");
       const e = this.listBoxElement.parentElement, i = window.visualViewport;
@@ -857,7 +852,7 @@ var N = class extends p {
   modulo(t, e) {
     return (t % e + e) % e;
   }
-}, P = class extends p {
+}, P = class extends h {
   backToTopElement;
   backToTopOffset;
   footerEl;
@@ -883,7 +878,7 @@ var N = class extends p {
       i.match(/ds_!_off-b-/) && this.backToTopElement.classList.remove(i);
     }), this.backToTopElement.classList.add(`ds_!_off-b-${e}`);
   }
-}, H = class extends p {
+}, H = class extends h {
   emptyMessage;
   field;
   idModifier;
@@ -896,7 +891,7 @@ var N = class extends p {
   threshold;
   thresholdCharacters;
   constructor(t) {
-    super(t), this.field = t, this.inputElement = this.field.querySelector("input, textarea"), this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0, this.messageTimeout = 0, this.idModifier = v();
+    super(t), this.field = t, this.inputElement = this.field.querySelector("input, textarea"), this.threshold = this.field.dataset.threshold ? Number(this.field.dataset.threshold) * 0.01 : 0, this.messageTimeout = 0, this.idModifier = y();
   }
   init() {
     if (this.inputElement && !this.isInitialised) {
@@ -928,7 +923,7 @@ var N = class extends p {
   updateScreenReaderMessage() {
     this.screenReaderMessageElement.textContent = this.messageElement.textContent;
   }
-}, z = class extends p {
+}, z = class extends h {
   checkboxes;
   constructor(t) {
     super(t), this.checkboxes = [].slice.call(t.querySelectorAll(".ds_checkbox__input"));
@@ -940,14 +935,14 @@ var N = class extends p {
       });
     }), this.isInitialised = !0;
   }
-}, O = class extends p {
+}, F = class extends h {
   storage;
   categories;
   cookieAcceptAllButton;
   cookieAcceptEssentialButton;
   cookieNoticeElement;
   cookieNoticeSuccessElement;
-  constructor(t, e = f, i) {
+  constructor(t, e = m, i) {
     super(t);
     const s = [
       "necessary",
@@ -963,9 +958,9 @@ var N = class extends p {
       type: "cookie",
       name: "cookie-notification-acknowledged"
     }) || this.cookieNoticeElement.classList.remove("fully-hidden"), this.cookieAcceptAllButton.addEventListener("click", (t) => {
-      t.preventDefault(), this.setAllOptionalPermissions(!0), this.cookieNoticeElement.classList.add("fully-hidden"), this.cookieNoticeSuccessElement.classList.remove("fully-hidden"), A(this.cookieNoticeSuccessElement);
+      t.preventDefault(), this.setAllOptionalPermissions(!0), this.cookieNoticeElement.classList.add("fully-hidden"), this.cookieNoticeSuccessElement.classList.remove("fully-hidden"), k(this.cookieNoticeSuccessElement);
     }), this.cookieAcceptEssentialButton.addEventListener("click", (t) => {
-      t.preventDefault(), this.setAllOptionalPermissions(!1), this.cookieNoticeElement.classList.add("fully-hidden"), this.cookieNoticeSuccessElement.classList.remove("fully-hidden"), A(this.cookieNoticeSuccessElement);
+      t.preventDefault(), this.setAllOptionalPermissions(!1), this.cookieNoticeElement.classList.add("fully-hidden"), this.cookieNoticeSuccessElement.classList.remove("fully-hidden"), k(this.cookieNoticeSuccessElement);
     }), this.isInitialised = !0;
   }
   setAllOptionalPermissions(t) {
@@ -973,7 +968,7 @@ var N = class extends p {
     for (const i in e) i === "necessary" ? e[i] = !0 : e[i] = t;
     this.storage.setCookie("necessary", "cookiePermissions", JSON.stringify(e), 365), this.storage.setCookie("necessary", "cookie-notification-acknowledged", "yes", 365);
   }
-}, j = class extends p {
+}, O = class extends h {
   options;
   calendarButtonElement;
   dateInput;
@@ -1026,34 +1021,34 @@ var N = class extends p {
     if (!this.inputElement || this.isInitialised) return;
     this.setOptions(), this.setMinAndMaxDatesOnCalendar();
     const t = document.createElement("div");
-    t.innerHTML = this.buttonTemplate(), this.calendarButtonElement = t.firstChild, this.calendarButtonElement.setAttribute("data-button", `datepicker-${this.inputElement.id}-toggle`), this.isMultipleInput ? this.inputElement.parentElement?.parentElement?.appendChild(this.calendarButtonElement) : (this.inputElement.parentElement?.appendChild(this.calendarButtonElement), this.inputElement.parentElement?.classList.add("ds_input__wrapper--has-icon")), this.dialogElement = document.createElement("div"), this.dialogElement.id = "datepicker-" + v(), this.dialogElement.setAttribute("class", "ds_datepicker__dialog  datepickerDialog"), this.dialogElement.setAttribute("role", "dialog"), this.dialogElement.setAttribute("aria-modal", "true"), this.dialogElement.innerHTML = this.dialogTemplate(this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-controls", this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-expanded", "false"), this.datePickerParent.appendChild(this.dialogElement), this.dialogTitleElement = this.dialogElement.querySelector(".js-datepicker-month-year");
+    t.innerHTML = this.buttonTemplate(), this.calendarButtonElement = t.firstChild, this.calendarButtonElement.setAttribute("data-button", `datepicker-${this.inputElement.id}-toggle`), this.isMultipleInput ? this.inputElement.parentElement?.parentElement?.appendChild(this.calendarButtonElement) : (this.inputElement.parentElement?.appendChild(this.calendarButtonElement), this.inputElement.parentElement?.classList.add("ds_input__wrapper--has-icon")), this.dialogElement = document.createElement("div"), this.dialogElement.id = "datepicker-" + y(), this.dialogElement.setAttribute("class", "ds_datepicker__dialog  datepickerDialog"), this.dialogElement.setAttribute("role", "dialog"), this.dialogElement.setAttribute("aria-modal", "true"), this.dialogElement.innerHTML = this.dialogTemplate(this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-controls", this.dialogElement.id), this.calendarButtonElement.setAttribute("aria-expanded", "false"), this.datePickerParent.appendChild(this.dialogElement), this.dialogTitleElement = this.dialogElement.querySelector(".js-datepicker-month-year");
     const e = this.datePickerParent.querySelector("tbody");
-    for (let l = 0; l < 6; l++) {
-      const m = e.insertRow(l);
-      for (let u = 0; u < 7; u++) {
+    for (let c = 0; c < 6; c++) {
+      const p = e.insertRow(c);
+      for (let f = 0; f < 7; f++) {
         const E = document.createElement("td"), b = document.createElement("button");
-        b.type = "button", b.dataset.form = "date-select", E.appendChild(b), m.appendChild(E);
-        const y = new F(b, this);
-        y.init(), this.calendarDays.push(y);
+        b.type = "button", b.dataset.form = "date-select", E.appendChild(b), p.appendChild(E);
+        const v = new j(b, this);
+        v.init(), this.calendarDays.push(v);
       }
     }
-    const i = this.dialogElement.querySelector(".js-datepicker-prev-month"), s = this.dialogElement.querySelector(".js-datepicker-prev-year"), n = this.dialogElement.querySelector(".js-datepicker-next-month"), a = this.dialogElement.querySelector(".js-datepicker-next-year");
-    i.addEventListener("click", (l) => this.focusPreviousMonth(l, !1)), s.addEventListener("click", (l) => this.focusPreviousYear(l, !1)), n.addEventListener("click", (l) => this.focusNextMonth(l, !1)), a.addEventListener("click", (l) => this.focusNextYear(l, !1)), [
+    const i = this.dialogElement.querySelector(".js-datepicker-prev-month"), s = this.dialogElement.querySelector(".js-datepicker-prev-year"), a = this.dialogElement.querySelector(".js-datepicker-next-month"), n = this.dialogElement.querySelector(".js-datepicker-next-year");
+    i.addEventListener("click", (c) => this.focusPreviousMonth(c, !1)), s.addEventListener("click", (c) => this.focusPreviousYear(c, !1)), a.addEventListener("click", (c) => this.focusNextMonth(c, !1)), n.addEventListener("click", (c) => this.focusNextYear(c, !1)), [
       this.inputElement,
       this.dateInput,
       this.monthInput,
       this.yearInput
-    ].forEach((l) => {
-      l && l.addEventListener("blur", () => {
+    ].forEach((c) => {
+      c && c.addEventListener("blur", () => {
         this.calendarButtonElement.querySelector("span").textContent = "Choose date";
       });
     });
     const o = this.dialogElement.querySelector(".js-datepicker-cancel"), d = this.dialogElement.querySelector(".js-datepicker-ok");
-    o.addEventListener("click", (l) => {
-      l.preventDefault(), this.closeDialog();
+    o.addEventListener("click", (c) => {
+      c.preventDefault(), this.closeDialog();
     }), d.addEventListener("click", () => this.selectDate(this.currentDate));
-    const c = this.dialogElement.querySelectorAll('button:not([disabled="true"])');
-    this.firstButtonInDialog = c[0], this.lastButtonInDialog = c[c.length - 1], this.firstButtonInDialog.addEventListener("keydown", (l) => this.firstButtonKeyup(l)), this.lastButtonInDialog.addEventListener("keydown", (l) => this.lastButtonKeyup(l)), this.calendarButtonElement.addEventListener("click", (l) => this.toggleDialog(l)), document.body.addEventListener("mouseup", (l) => this.backgroundClick(l)), this.updateCalendar(), this.isInitialised = !0;
+    const l = this.dialogElement.querySelectorAll('button:not([disabled="true"])');
+    this.firstButtonInDialog = l[0], this.lastButtonInDialog = l[l.length - 1], this.firstButtonInDialog.addEventListener("keydown", (c) => this.firstButtonKeyup(c)), this.lastButtonInDialog.addEventListener("keydown", (c) => this.lastButtonKeyup(c)), this.calendarButtonElement.addEventListener("click", (c) => this.toggleDialog(c)), document.body.addEventListener("mouseup", (c) => this.backgroundClick(c)), this.updateCalendar(), this.isInitialised = !0;
   }
   addMonths(t, e) {
     const i = t.getDate();
@@ -1247,10 +1242,10 @@ var N = class extends p {
     const e = this.currentDate, i = this.calendarDays.filter((s) => s.button.classList.contains("fully-hidden") === !1);
     i.forEach((s) => {
       s.button.setAttribute("tabindex", "-1"), s.button.classList.remove("ds_selected");
-      const n = s.date;
-      n.setHours(0, 0, 0, 0);
-      const a = /* @__PURE__ */ new Date();
-      a.setHours(0, 0, 0, 0), n.getTime() === e.getTime() && !s.isDisabled && t && (s.button.setAttribute("tabindex", "0"), s.button.focus(), s.button.classList.add("ds_selected")), this.inputDate && !this.isDisabledDate(this.inputDate) && n.getTime() === this.inputDate.getTime() ? (s.button.classList.add("ds_datepicker__current"), s.button.setAttribute("aria-description", "selected date")) : (s.button.classList.remove("ds_datepicker__current"), s.button.removeAttribute("aria-description")), n.getTime() === a.getTime() ? (s.button.classList.add("ds_datepicker__today"), s.button.setAttribute("aria-current", "date")) : (s.button.classList.remove("ds_datepicker__today"), s.button.removeAttribute("aria-current"));
+      const a = s.date;
+      a.setHours(0, 0, 0, 0);
+      const n = /* @__PURE__ */ new Date();
+      n.setHours(0, 0, 0, 0), a.getTime() === e.getTime() && !s.isDisabled && t && (s.button.setAttribute("tabindex", "0"), s.button.focus(), s.button.classList.add("ds_selected")), this.inputDate && !this.isDisabledDate(this.inputDate) && a.getTime() === this.inputDate.getTime() ? (s.button.classList.add("ds_datepicker__current"), s.button.setAttribute("aria-description", "selected date")) : (s.button.classList.remove("ds_datepicker__current"), s.button.removeAttribute("aria-description")), a.getTime() === n.getTime() ? (s.button.classList.add("ds_datepicker__today"), s.button.setAttribute("aria-current", "date")) : (s.button.classList.remove("ds_datepicker__today"), s.button.removeAttribute("aria-current"));
     }), t || (i[0].button.setAttribute("tabindex", "0"), this.currentDate = i[0].date);
   }
   setDate(t) {
@@ -1286,13 +1281,13 @@ var N = class extends p {
     const t = this.currentDate, e = new Date(t.getFullYear(), t.getMonth(), 1), i = e.getDay();
     e.setDate(e.getDate() - i);
     const s = new Date(e);
-    for (const n of this.calendarDays) {
-      const a = s.getMonth() !== t.getMonth();
+    for (const a of this.calendarDays) {
+      const n = s.getMonth() !== t.getMonth();
       let o = !1;
-      this.options.minDate && s < this.options.minDate && (o = !0), this.options.maxDate && s > this.options.maxDate && (o = !0), this.isDisabledDate(s) && (o = !0), n.update(s, a, o), s.setDate(s.getDate() + 1);
+      this.options.minDate && s < this.options.minDate && (o = !0), this.options.maxDate && s > this.options.maxDate && (o = !0), this.isDisabledDate(s) && (o = !0), a.update(s, n, o), s.setDate(s.getDate() + 1);
     }
   }
-}, F = class {
+}, j = class {
   button;
   date;
   picker;
@@ -1341,39 +1336,26 @@ var N = class extends p {
     }
     e && (t.preventDefault(), t.stopPropagation());
   }
-}, R = class extends p {
-  content;
+}, R = class extends h {
   details;
-  summary;
-  openAttribute;
   constructor(t) {
-    super(t), this.details = t, this.summary = t.querySelector(".ds_details__summary"), this.content = t.querySelector(".ds_details__text"), this.summary.nodeName === "SUMMARY" ? this.openAttribute = "open" : this.openAttribute = "data-open";
+    super(t), this.details = t, this.details.nodeName !== "DETAILS" && this.doFallback();
   }
   init() {
-    typeof this.details.open != "boolean" && (this.polyfillAttributes(), this.polyfillEvents()), this.isInitialised = !0;
+    this.isInitialised = !0;
   }
-  closeDetails() {
-    this.details.removeAttribute(this.openAttribute), this.summary.setAttribute("aria-expanded", "false");
-  }
-  openDetails() {
-    this.details.setAttribute(this.openAttribute, "open"), this.summary.setAttribute("aria-expanded", "true");
-  }
-  polyfillAttributes() {
-    this.content.id = this.content.id || `details-${v()}`, this.details.setAttribute("role", "group"), this.summary.setAttribute("role", "button"), this.summary.setAttribute("aria-controls", this.content.id), this.summary.nodeName === "SUMMARY" && (this.summary.tabIndex = 0);
-    const t = this.details.hasAttribute(this.openAttribute);
-    this.summary.setAttribute("aria-expanded", t.toString());
-  }
-  polyfillEvents() {
-    this.summary.addEventListener("click", () => {
-      this.setState();
-    }), this.summary.addEventListener("keypress", (t) => {
-      (t.key === "Enter" || t.key === " ") && (t.preventDefault(), this.setState());
-    }), this.summary.addEventListener("keyup", (t) => {
-      t.key === " " && t.preventDefault();
-    });
-  }
-  setState() {
-    this.details.hasAttribute(this.openAttribute) ? this.closeDetails() : this.openDetails();
+  doFallback() {
+    const t = this.details.children, e = this.details.querySelector(".ds_details__summary"), i = document.createElement("details"), s = document.createElement("summary");
+    function a(n, o) {
+      Array.from(n.attributes).forEach((d) => {
+        o.setAttribute(d.name, d.value);
+      });
+    }
+    a(this.details, i), a(e, s), s.removeAttribute("for");
+    for (const n of t) n.classList.contains("ds_details__toggle") || (n.classList.contains("ds_details__summary") ? (s.innerHTML = n.innerHTML, i.appendChild(s)) : i.appendChild(n.cloneNode(!0)));
+    Array.from(this.details.attributes).forEach((n) => {
+      i.setAttribute(n.name, n.value);
+    }), this.details.replaceWith(i), this.details = i;
   }
 }, Y = {
   buttonText: "Choose file",
@@ -1386,7 +1368,7 @@ var N = class extends p {
   instructionText: "or drag and drop file here",
   instructionTextPlural: "or drag and drop files here",
   leftDropzone: "Left drop zone"
-}, U = class T extends p {
+}, W = class D extends h {
   announcementsSpan;
   dropzoneButton;
   element;
@@ -1416,17 +1398,17 @@ var N = class extends p {
   canAccept(e) {
     let i = !0;
     if (!this.fileInputElement.accept) return !0;
-    const s = (n) => {
-      let a = !1;
+    const s = (a) => {
+      let n = !1;
       return this.fileInputElement.accept.replace(" ", "").split(",").forEach((o) => {
         if (o.match(/^\.\w+/)) {
           const d = new RegExp(o + "$");
-          n.name.match(d) && (a = !0);
-        } else o.match(/\w+\/\w.+/) ? n.type === o && (a = !0) : o.match(/audio|image|video\/*/) && n.type.match(new RegExp(o.replace("*", ".+"))) && (a = !0);
-      }), a;
+          a.name.match(d) && (n = !0);
+        } else o.match(/\w+\/\w.+/) ? a.type === o && (n = !0) : o.match(/audio|image|video\/*/) && a.type.match(new RegExp(o.replace("*", ".+"))) && (n = !0);
+      }), n;
     };
-    return [].slice.call(e).forEach((n) => {
-      s(n) || (i = !1);
+    return [].slice.call(e).forEach((a) => {
+      s(a) || (i = !1);
     }), i;
   }
   canDrop(e) {
@@ -1486,7 +1468,7 @@ var N = class extends p {
     this.fileInputElement.files = e, this.fileInputElement.dispatchEvent(new CustomEvent("input"));
   }
   setText(e = {}) {
-    const i = Object.assign(T.defaultText, e);
+    const i = Object.assign(D.defaultText, e);
     return Object.freeze({
       buttonText: this.fileInputElement.multiple ? i.buttonTextPlural : i.buttonText,
       defaultStatusText: this.fileInputElement.multiple ? i.defaultStatusTextPlural : i.defaultStatusText,
@@ -1507,10 +1489,10 @@ var N = class extends p {
     i.className = "visually-hidden", i.textContent = ", ", i.id = `${this.fileInputElement.id}-comma`;
     const s = document.createElement("span");
     s.classList.add("ds_file-upload__button-container");
-    const n = document.createElement("span");
-    n.classList.add("ds_file-upload__button"), n.textContent = this.text.buttonText;
     const a = document.createElement("span");
-    a.classList.add("ds_file-upload__instruction"), a.textContent = this.text.instructionText, a.id = `${this.fileInputElement.id}-instruction`, this.announcementsSpan = document.createElement("span"), this.announcementsSpan.classList.add("visually-hidden"), this.announcementsSpan.setAttribute("aria-live", "assertive"), s.appendChild(n), s.insertAdjacentText("beforeend", " "), s.appendChild(a), this.dropzoneButton.appendChild(this.statusSpan), this.dropzoneButton.appendChild(i), this.dropzoneButton.appendChild(s), this.dropzoneButton.setAttribute("aria-labelledby", `${e.id} ${i.id} ${this.dropzoneButton.id}`), this.fileInputElement.insertAdjacentElement("beforebegin", this.dropzoneButton), this.element.insertAdjacentElement("afterend", this.announcementsSpan);
+    a.classList.add("ds_file-upload__button"), a.textContent = this.text.buttonText;
+    const n = document.createElement("span");
+    n.classList.add("ds_file-upload__instruction"), n.textContent = this.text.instructionText, n.id = `${this.fileInputElement.id}-instruction`, this.announcementsSpan = document.createElement("span"), this.announcementsSpan.classList.add("visually-hidden"), this.announcementsSpan.setAttribute("aria-live", "assertive"), s.appendChild(a), s.insertAdjacentText("beforeend", " "), s.appendChild(n), this.dropzoneButton.appendChild(this.statusSpan), this.dropzoneButton.appendChild(i), this.dropzoneButton.appendChild(s), this.dropzoneButton.setAttribute("aria-labelledby", `${e.id} ${i.id} ${this.dropzoneButton.id}`), this.fileInputElement.insertAdjacentElement("beforebegin", this.dropzoneButton), this.element.insertAdjacentElement("afterend", this.announcementsSpan);
   }
   updateDisabledState() {
     this.dropzoneButton.disabled = this.fileInputElement.disabled;
@@ -1518,7 +1500,7 @@ var N = class extends p {
   updateDropzoneVisibility(e) {
     this.dropzoneButton.disabled || (this.dropzoneButton.contains(e.target) ? e.dataTransfer && this.canDrop(e.dataTransfer) && !this.dropzoneButton.classList.contains("ds_file-upload__dropzone--dragging") && (this.showDraggingState(), this.announcementsSpan.textContent = this.text.enteredDropzone) : (this.hideDraggingState(), this.announcementsSpan.textContent = this.text.leftDropzone));
   }
-}, V = class extends p {
+}, U = class extends h {
   altlink;
   button;
   window;
@@ -1542,7 +1524,7 @@ var N = class extends p {
   doHidePage(t) {
     t.preventDefault(), document.body.innerHTML = "", document.title = ".", this.window.open(this.button.href, "_newtab"), this.window.location.replace(this.altlink);
   }
-}, W = class extends p {
+}, V = class extends h {
   notification;
   notificationClose;
   constructor(t) {
@@ -1553,7 +1535,7 @@ var N = class extends p {
       this.notification.parentNode?.removeChild(this.notification);
     }), this.isInitialised = !0;
   }
-}, K = class extends p {
+}, K = class extends h {
   notificationMessage;
   notificationMessageClose;
   constructor(t) {
@@ -1564,7 +1546,7 @@ var N = class extends p {
       this.notificationMessage.parentNode?.removeChild(this.notificationMessage);
     }), this.isInitialised = !0;
   }
-}, Z = class extends p {
+}, Z = class extends h {
   sideNavigation;
   constructor(t) {
     super(t), this.sideNavigation = t;
@@ -1574,16 +1556,16 @@ var N = class extends p {
   }
   setupSideNavigation() {
     const t = this.sideNavigation.querySelector(".js-toggle-side-navigation"), e = this.sideNavigation.querySelector(".ds_side-navigation__expand"), i = this.sideNavigation.querySelector(".ds_side-navigation__list");
-    i.id = i.id || `side-navigation-${v()}`, t.checked = !1;
+    i.id = i.id || `side-navigation-${y()}`, t.checked = !1;
     const s = document.createElement("button");
-    s.classList.add("ds_side-navigation__expand"), s.classList.add("ds_link"), s.classList.add("js-side-navigation-button"), s.setAttribute("aria-expanded", "false"), s.innerHTML = e.innerHTML, s.setAttribute("aria-expanded", "false"), s.setAttribute("aria-controls", i.id), e.classList.add("fully-hidden"), t.classList.add("fully-hidden"), t.classList.remove("visually-hidden"), this.sideNavigation.insertBefore(s, i), s.setAttribute("aria-controls", i.id), s.addEventListener("click", () => {
-      const n = t.checked;
-      s.setAttribute("aria-expanded", (!n).toString()), t.checked = !n;
+    s.classList.add("ds_side-navigation__expand"), s.classList.add("ds_link"), s.classList.add("js-side-navigation-button"), s.innerHTML = e.innerHTML, s.setAttribute("aria-expanded", "false"), s.setAttribute("aria-controls", i.id), e.classList.add("fully-hidden"), t.classList.add("fully-hidden"), t.classList.remove("visually-hidden"), this.sideNavigation.insertBefore(s, i), s.setAttribute("aria-controls", i.id), s.addEventListener("click", () => {
+      const a = t.checked;
+      s.setAttribute("aria-expanded", (!a).toString()), t.checked = !a;
     }), window.addEventListener("scroll", () => {
       s.offsetTop >= 1 ? s.classList.add("ds_side-navigation__expand--shadow") : s.classList.remove("ds_side-navigation__expand--shadow");
     });
   }
-}, J = class extends p {
+}, J = class extends h {
   mobileMenu;
   newMenuButton;
   constructor(t) {
@@ -1608,10 +1590,10 @@ var N = class extends p {
   [].slice.call(document.querySelectorAll(".ds_skip-links__link")).forEach((t) => {
     t.addEventListener("click", () => {
       const e = document.querySelector(t.getAttribute("href"));
-      e && A(e);
+      e && k(e);
     });
   });
-} }, G = class extends p {
+} }, G = class extends h {
   container;
   window;
   constructor(t, e = window) {
@@ -1622,7 +1604,7 @@ var N = class extends p {
       t.href === this.window.location.origin + this.window.location.pathname && t.classList.add("ds_step-navigation__current-link");
     }), this.isInitialised = !0;
   }
-}, w = class extends p {
+}, w = class extends h {
   element;
   window;
   constructor(t, e = window) {
@@ -1640,8 +1622,8 @@ var N = class extends p {
   setupBoxesTable() {
     const t = this.element.querySelectorAll("tr");
     let e;
-    if ([].slice.call(t[0].cells).filter((i) => i.tagName === "TH").length === t[0].cells.length && (e = t[0]), e) for (let i = 1, s = t.length; i < s; i++) [].slice.call(t[i].cells).forEach((n, a) => {
-      n.setAttribute("data-heading", e.cells[a].textContent);
+    if ([].slice.call(t[0].cells).filter((i) => i.tagName === "TH").length === t[0].cells.length && (e = t[0]), e) for (let i = 1, s = t.length; i < s; i++) [].slice.call(t[i].cells).forEach((a, n) => {
+      a.setAttribute("data-heading", e.cells[n].textContent);
     });
   }
 }, Q = class {
@@ -1652,7 +1634,7 @@ var N = class extends p {
   init() {
     document.querySelectorAll("table[data-smallscreen]").forEach((t) => new w(t, this.window).init());
   }
-}, tt = class extends p {
+}, tt = class extends h {
   hasAutomaticActivation;
   boundOnHashChange;
   boundOnResize;
@@ -1704,14 +1686,14 @@ var N = class extends p {
   }
   initTab(t, e) {
     t.setAttribute("role", "presentation");
-    const i = t.querySelector(".ds_tabs__tab-link"), s = this.tabContents[e], n = s.getAttribute("id");
-    i.setAttribute("role", "tab"), i.setAttribute("aria-controls", n), i.setAttribute("aria-selected", "false"), i.setAttribute("tabindex", "-1"), s.classList.add("ds_tabs__content--hidden"), this.hasEventsEnabled || (i.addEventListener("click", (a) => {
-      _("medium") && (a.preventDefault(), this.goToTab(t, !0));
-    }), i.addEventListener("keydown", (a) => {
+    const i = t.querySelector(".ds_tabs__tab-link"), s = this.tabContents[e], a = s.getAttribute("id");
+    i.setAttribute("role", "tab"), i.setAttribute("aria-controls", a), i.setAttribute("aria-selected", "false"), i.setAttribute("tabindex", "-1"), s.classList.add("ds_tabs__content--hidden"), this.hasEventsEnabled || (i.addEventListener("click", (n) => {
+      _("medium") && (n.preventDefault(), this.goToTab(t, !0));
+    }), i.addEventListener("keydown", (n) => {
       if (_("medium")) {
-        const o = a.target.parentElement;
+        const o = n.target.parentElement;
         let d = !0;
-        a.key === "ArrowRight" ? this.navToTab(this.getNextTab(o)) : a.key === "ArrowLeft" ? this.navToTab(this.getPreviousTab(o)) : a.key === "Home" ? this.navToTab(this.getFirstTab()) : a.key === "End" ? this.navToTab(this.getLastTab()) : a.key === "Spacebar" || a.key === " " ? this.goToTab(o, !0) : d = !1, d && a.preventDefault();
+        n.key === "ArrowRight" ? this.navToTab(this.getNextTab(o)) : n.key === "ArrowLeft" ? this.navToTab(this.getPreviousTab(o)) : n.key === "Home" ? this.navToTab(this.getFirstTab()) : n.key === "End" ? this.navToTab(this.getLastTab()) : n.key === "Spacebar" || n.key === " " ? this.goToTab(o, !0) : d = !1, d && n.preventDefault();
       }
     }));
   }
@@ -1733,8 +1715,8 @@ var N = class extends p {
   goToTab(t, e = !1) {
     const i = this.getCurrentTab();
     if (i === t) return;
-    const s = t.querySelector(".ds_tabs__tab-link"), n = this.getTabContent(t);
-    t.classList.add("ds_current"), s.setAttribute("aria-selected", "true"), s.setAttribute("tabindex", "0"), n.classList.remove("ds_tabs__content--hidden"), this.deactivateTab(i), e && this.createHistoryEntry(t);
+    const s = t.querySelector(".ds_tabs__tab-link"), a = this.getTabContent(t);
+    t.classList.add("ds_current"), s.setAttribute("aria-selected", "true"), s.setAttribute("tabindex", "0"), a.classList.remove("ds_tabs__content--hidden"), this.deactivateTab(i), e && this.createHistoryEntry(t);
   }
   deactivateTab(t) {
     if (!t) return;
@@ -1754,7 +1736,7 @@ var N = class extends p {
   getTabContent(t) {
     return this.tabContainer.querySelector(this.getHref(t));
   }
-}, et = class extends p {
+}, et = class extends h {
   boundOnResize;
   breakpointCheck;
   resizeTimer;
@@ -1789,17 +1771,17 @@ var N = class extends p {
     }, 150);
   }
 }, it = {
-  Accordion: $,
+  Accordion: I,
   Autocomplete: N,
   BackToTop: P,
   CharacterCount: H,
   Checkboxes: z,
-  CookieNotification: O,
-  DatePicker: j,
+  CookieNotification: F,
+  DatePicker: O,
   Details: R,
-  FileUpload: U,
-  HideThisPage: V,
-  NotificationBanner: W,
+  FileUpload: W,
+  HideThisPage: U,
+  NotificationBanner: V,
   NotificationMessage: K,
   SideNavigation: Z,
   SiteNavigation: J,
@@ -1809,15 +1791,15 @@ var N = class extends p {
   MobileTable: w,
   Tabs: tt,
   TabsNavigation: et
-}, h = {
-  base: k,
+}, u = {
+  base: A,
   components: it,
-  version: D,
+  version: T,
   initAll: x,
-  tracking: k.tools.tracking,
+  tracking: A.tools.tracking,
   elementIdModifier: 0
 };
-window.DS = h;
+window.DS = u;
 export {
-  h as default
+  u as default
 };

@@ -3,6 +3,10 @@
 import DSComponent from '../../base/component/component';
 import elementIdModifier from '../../base/tools/id-modifier/id-modifier';
 
+interface DSAccordionItemElement extends HTMLElement {
+    open?: boolean
+};
+
 /**
  * Accordion component
  *
@@ -28,6 +32,10 @@ class Accordion extends DSComponent {
         this.accordion = accordion;
         this.items = [].slice.call(accordion.querySelectorAll('.ds_accordion-item'));
         this.openAllButton = accordion.querySelector('.js-open-all') as HTMLButtonElement;
+
+        if (this.accordion.querySelector('div.ds_accordion-item')) {
+            this.doFallback();
+        }
     }
 
     /**
@@ -48,69 +56,64 @@ class Accordion extends DSComponent {
     }
 
     /**
+     * Fallback for old markup
+     * - convert accordion panels to DETAILS elements
+     * - redeclare this.items
+     *
+     * @returns {void}
+     */
+    private doFallback(): void {
+        this.items.forEach(item => {
+            const details = document.createElement('details');
+            const summary = document.createElement('summary');
+
+            const body = item.querySelector('.ds_accordion-item__body') || document.createElement('div');
+            const title = item.querySelector('.ds_accordion-item__title') || document.createElement('div');
+            const control = item.querySelector('.ds_accordion-item__control') as HTMLInputElement || document.createElement('input');
+
+            summary.innerHTML = title.innerHTML + item.querySelector('.ds_accordion-item__indicator')?.outerHTML;
+
+            details.classList.add('ds_accordion-item');
+            summary.classList.add('ds_accordion-item__header');
+            if (control.checked) details.setAttribute('open', '');
+
+            details.appendChild(summary);
+            details.appendChild(body);
+
+            item.replaceWith(details);
+        });
+
+        this.items = [].slice.call(this.accordion.querySelectorAll('.ds_accordion-item'));
+    }
+
+    /**
      * Initialize an accordion item
-     * - transform markup to button-driven version
-     * - attach event listener
-     * - set aria attributes
+     * - set IDs on accordion panels
+     * - set initial state
      *
      * @param {HTMLElement} item - the accordion item to initialize
      * @returns {void}
      */
-    private initAccordionItem(item: HTMLElement): void {
-        // transform markup to button-driven version
-        const itemBody = item.querySelector('.ds_accordion-item__body') as HTMLElement;
-        const itemControl = item.querySelector('.ds_accordion-item__control') as HTMLInputElement;
-        const itemHeader = item.querySelector('.ds_accordion-item__header') as HTMLElement;
-        const itemIndicator = item.querySelector('.ds_accordion-item__indicator') as HTMLElement;
-        const itemLabelContent = item.querySelector('.ds_accordion-item__label span') as HTMLElement;
-        const itemTitle = itemHeader.querySelector('.ds_accordion-item__title') as HTMLHeadingElement;
+    private initAccordionItem(item: DSAccordionItemElement): void {
+        const ID_MODIFIER = elementIdModifier();
+        item.id = item.id || `accordion-item-${ID_MODIFIER}`;
 
         // check for hash to open an accordion with
+        const startsOpen = item.hasAttribute('open');
         let accordionHasLocationHashInIt = false;
 
         if (window.location.hash) {
             try {
                 if (item.querySelector(window.location.hash)) {
                     accordionHasLocationHashInIt = true;
-                    itemControl.checked = true;
+                    item.setAttribute('open', '');
                 }
             } catch {
                 // hash is not a valid CSS selector or a selector for an item that is not found. ignore.
             }
         }
 
-        const startsOpen = itemControl.checked;
-
-        const itemButton = document.createElement('button');
-
-        itemTitle.classList.add('ds_accordion-item__title--button');
-        itemButton.classList.add('ds_accordion-item__button');
-        itemButton.classList.add('js-accordion-button');
-        itemButton.id = itemTitle.id + '-button';
-        itemButton.type = 'button';
-
-        // we keep the control present but make it unavailable in the tab order or to screen readers
-        // browsers will generally remember the state of the checkbox on back/forward navigation
-        itemControl.classList.remove('visually-hidden');
-        itemControl.classList.add('fully-hidden');
-        itemControl.setAttribute('tabindex', (-1).toString());
-
-        itemButton.innerHTML = itemTitle.innerHTML;
-
-        itemIndicator.setAttribute('aria-hidden', true.toString());
-
-        itemTitle.innerHTML = '';
-        itemTitle.insertBefore(itemButton, itemTitle.firstChild);
-        itemButton.appendChild(itemIndicator);
-        itemLabelContent.classList.add('fully-hidden');
-
-        const ID_MODIFIER = elementIdModifier();
-
-        item.id = item.id || `accordion-item-${ID_MODIFIER}`;
-        itemBody.id = itemBody.id || `accordion-item-${ID_MODIFIER}-body`;
-
         if (startsOpen) {
-            item.classList.add('ds_accordion-item--open');
             if (this.openAllButton) {
                 this.setOpenAllButton(this.checkAllOpen());
             }
@@ -119,85 +122,49 @@ class Accordion extends DSComponent {
             }
         }
 
-        itemButton.setAttribute('aria-expanded', startsOpen.toString());
-        itemButton.setAttribute('aria-controls', itemBody.id);
-
-        // events
-        itemButton.addEventListener('click', event => {
-            event.preventDefault();
-            this.toggleAccordionItem(item);
+        item.addEventListener('toggle', () => {
+            if (this.openAllButton) {
+                this.setOpenAllButton(this.checkAllOpen());
+            }
         });
     }
 
     /**
      * Initialize the open all button
-     * - attach event listener
      * - set aria attributes
+     * - attach event listener
      *
      * @returns {void}
      */
     private initOpenAll(): void {
-        this.openAllButton.addEventListener('click', () => {
-            function getAccordionItemForButton(button: HTMLButtonElement) {
-                return button.closest('.ds_accordion-item') as HTMLElement;
-            }
+        this.openAllButton.setAttribute('aria-controls', this.items.map(item => item.id).join(' '));
+        this.openAllButton.setAttribute('aria-expanded', false.toString());
 
+        this.openAllButton.addEventListener('click', () => {
             // if we're opening, open all unopened panels
             // if we're closing, close all opened panels
             const opening = !this.checkAllOpen();
-            const allPanelButtons: HTMLButtonElement[] = [].slice.call(this.accordion.querySelectorAll('.js-accordion-button'));
+            const allPanels: DSAccordionItemElement[] = [].slice.call(this.accordion.querySelectorAll('.ds_accordion-item'));
 
-            let panelsToToggle: HTMLButtonElement[];
-            if (opening) {
-                panelsToToggle = allPanelButtons.filter(button => !getAccordionItemForButton(button).classList.contains('ds_accordion-item--open'));
-            } else {
-                panelsToToggle = allPanelButtons.filter(button => getAccordionItemForButton(button).classList.contains('ds_accordion-item--open'));
-            }
-
-            panelsToToggle.forEach((button: HTMLButtonElement) => {
-                this.toggleAccordionItem(getAccordionItemForButton(button));
+            allPanels.forEach(item => {
+                if (opening) {
+                    item.setAttribute('open', '');
+                } else {
+                    item.removeAttribute('open');
+                }
             });
 
             this.setOpenAllButton(opening);
         });
-
-        this.openAllButton.setAttribute('aria-controls', this.items.map(item => item.id).join(' '));
-        this.openAllButton.setAttribute('aria-expanded', false.toString());
-    }
-
-    /**
-     * Toggle an accordion item
-     * - set aria attribute
-     * - set 'open' attribute
-     *
-     * @param {HTMLElement} item - the accordion item to toggle
-     * @returns {void}
-     */
-    private toggleAccordionItem(item: HTMLElement): void {
-        const itemButton = item.querySelector('.js-accordion-button') as HTMLButtonElement;
-        const itemControl = item.querySelector('.ds_accordion-item__control') as HTMLInputElement;
-        const isOpen = item.classList.contains('ds_accordion-item--open');
-
-        if (!isOpen) {
-            item.classList.add('ds_accordion-item--open');
-        } else {
-            item.classList.remove('ds_accordion-item--open');
-        }
-
-        itemButton.setAttribute('aria-expanded', (!isOpen).toString());
-        itemControl.checked = !isOpen;
-
-        if (this.openAllButton) {
-            this.setOpenAllButton(this.checkAllOpen());
-        }
     }
 
     /**
      * Set the open all button text and aria-expanded attribute
      *
      * @param {boolean} isOpen - true if all items are open, false otherwise
+     * @returns {void}
      */
-    private setOpenAllButton(isOpen: boolean) {
+    private setOpenAllButton(isOpen: boolean): void {
         if (isOpen) {
             this.openAllButton.innerHTML = 'Close all <span class="visually-hidden">sections</span>';
         } else {
@@ -212,8 +179,7 @@ class Accordion extends DSComponent {
      * @returns {boolean} - true if all items are open, false otherwise
      */
     private checkAllOpen(): boolean {
-        const openItemsCount = this.accordion.querySelectorAll('.ds_accordion-item--open').length;
-
+        const openItemsCount = this.accordion.querySelectorAll('.ds_accordion-item[open]').length;
         return (this.items.length === openItemsCount);
     }
 }

@@ -27,47 +27,12 @@ describe('accordion', () => {
     });
 
     describe('accordion items', () => {
-        it('should switch to the "open" view if selected on init', () => {
-            const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item');
-
-            testObj.accordionModule.init();
-            expect(firstAccordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
-        });
-
         it('should be opened if window.location.hash matches an element inside the accordion', () => {
             const hashAccordionItem = testObj.accordionElement.querySelector('#hashAccordionItem');
             window.location.hash = 'foo';
             testObj.accordionModule.init();
-            expect(hashAccordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
+            expect(hashAccordionItem).toHaveAttribute('open');
             window.location.hash = '';
-        });
-
-        it('should set aria-expanded appropriately on each content item depending on open/closed state', () => {
-            testObj.accordionModule.init();
-
-            const accordionItems = testObj.accordionElement.querySelectorAll('.ds_accordion-item');
-
-            // in fixture, first item is checked, others are not
-            const states = [true, false, false];
-            for (let i = 0, il = accordionItems.length; i < il; i++) {
-                const accordionItemButton = accordionItems[i].querySelector('.js-accordion-button');
-                expect(accordionItemButton.getAttribute('aria-expanded')).toEqual(states[i].toString());
-            }
-        });
-
-        it('should open on click of its header if currently closed (and vice versa)', () => {
-            testObj.accordionModule.init();
-
-            const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
-            const accordionItemButton = firstAccordionItem.querySelector('.js-accordion-button');
-
-            let event = new Event('click');
-            accordionItemButton.dispatchEvent(event);
-            expect(firstAccordionItem.classList.contains('ds_accordion-item--open')).toBe(true);
-
-            event = new Event('click');
-            accordionItemButton.dispatchEvent(event);
-            expect(firstAccordionItem.classList.contains('ds_accordion-item--open')).toBe(false);
         });
     });
 
@@ -77,54 +42,49 @@ describe('accordion', () => {
 
             const button = testObj.accordionElement.querySelector('.js-open-all');
             const accordionItems = testObj.accordionElement.querySelectorAll('.ds_accordion-item');
-            const states = [true, true, true];
 
             const event = new Event('click');
             button.dispatchEvent(event);
 
             for (let i = 0, il = accordionItems.length; i < il; i++) {
                 const accordionItem = accordionItems[i];
-                const accordionItemButton = accordionItem.querySelector('.js-accordion-button');
-                expect(accordionItemButton.getAttribute('aria-expanded')).toEqual(states[i].toString());
-                expect(accordionItem.classList.contains('ds_accordion-item--open')).toEqual(true);
+                expect(accordionItem).toHaveAttribute('open');
             }
         });
 
         it('"open all" button should change to "close all" if no panels left to open', () => {
-            const secondCheckbox = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2) .ds_accordion-item__control');
-            secondCheckbox.setAttribute('checked', true);
+            const secondItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
+            const thirdItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(3)');
+            secondItem.setAttribute('open', '');
 
             testObj.accordionModule.init();
 
-            const accordionItemButton = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(3) .js-accordion-button');
+            vi.spyOn(testObj.accordionModule, 'setOpenAllButton');
 
-            const event = new Event('click');
-            accordionItemButton.dispatchEvent(event);
+            const event = new Event('toggle');
+            thirdItem.setAttribute('open', '');
+            thirdItem.dispatchEvent(event);
 
-            // todo: no assertion, test success is inferred from there being no execution errors
+            expect(testObj.accordionModule.setOpenAllButton).toHaveBeenCalledWith(true);
         });
 
         it('"close all" button should close all panels when clicked', () => {
             const accordionItems = testObj.accordionElement.querySelectorAll('.ds_accordion-item');
             const button = testObj.accordionElement.querySelector('.ds_accordion__open-all');
-            const secondCheckbox = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2) .ds_accordion-item__control');
-            secondCheckbox.setAttribute('checked', true);
+            const secondItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
+            secondItem.setAttribute('open', '');
 
-            const thirdCheckbox = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(3) .ds_accordion-item__control');
-            thirdCheckbox.setAttribute('checked', true);
+            const thirdItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(3)');
+            thirdItem.setAttribute('open', '');
 
             testObj.accordionModule.init();
-
-            const states = [false, false, false];
 
             const event = new Event('click');
             button.dispatchEvent(event);
 
             for (let i = 0, il = accordionItems.length; i < il; i++) {
                 const accordionItem = accordionItems[i];
-                const accordionItemButton = accordionItem.querySelector('.js-accordion-button');
-                expect(accordionItemButton.getAttribute('aria-expanded')).toEqual(states[i].toString());
-                expect(accordionItem.classList.contains('ds_accordion-item--open')).toEqual(false);
+                expect(accordionItem.getAttribute('open')).toBeNull();
             }
         });
     });
@@ -150,7 +110,8 @@ describe('accordion without "open all" button', function () {
 
         const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
 
-        testObj.accordionModule.toggleAccordionItem(firstAccordionItem);
+        const event = new Event('toggle');
+        firstAccordionItem.dispatchEvent(event);
 
         expect(testObj.accordionModule.setOpenAllButton).not.toHaveBeenCalled();
     });
