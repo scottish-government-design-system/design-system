@@ -14,7 +14,7 @@ $accordion__header-colour: settings.$ds_colour__link !default;
 
 .ds_accordion {
     position: relative;
-    
+
     @include helpers.ds_responsive-margin (4, bottom, false, -1 * $accordion__border-width);
     @include helpers.ds_responsive-margin (4, top);
 
@@ -46,10 +46,6 @@ h1,h2,h3 {
     .ds_accordion__open-all {
         display: block;
     }
-
-    .ds_accordion-item__header {
-        padding: 0;
-    }
 }
 
 .ds_accordion-item {
@@ -63,51 +59,17 @@ h1,h2,h3 {
 
         background-color: settings.$ds_colour__background--primary;
         border-width: 0;
+        box-sizing: border-box;
         color: currentColor;
+        font-weight: settings.$bold;
         margin: 0;
         padding: 0.5rem 0.5rem calc(0.75rem - $accordion__border-width); /// [1]
         position: relative;
         text-align: left;
-        width: 100%;
 
         &:hover:not(:focus) {
             color: settings.$ds_colour__link--hover;
         }
-    }
-
-    &__title {
-        @include helpers.ds_h4-size;
-        margin-bottom: 0.25rem;
-
-        &--button {
-            padding: 0;
-            margin-bottom: 0;
-        }
-    }
-
-    /// [1] subtracting the accordion item's border width
-    &__button {
-        appearance: unset;
-        background: transparent;
-        border: 0;
-        padding: 0.5rem 0.5rem calc(0.75rem - $accordion__border-width); /// [1]
-        position: relative;
-        text-align: left;
-        width: 100%;
-        z-index: 1;
-    }
-
-    &__label {
-        cursor: pointer;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
-
-    &__title--button &__label {
-        z-index: -1;
     }
 
     &__indicator {
@@ -132,17 +94,12 @@ h1,h2,h3 {
     }
 
     &__body {
-        display: none;
         padding: 1rem 0.5rem 1.5rem;
 
         @include helpers.ds_last-child-no-margin;
     }
 
-    &__control:checked ~ &__body {
-        display: block;
-    }
-
-    &__control:checked ~ &__header &__indicator {
+    &:open &__indicator {
         &::after {
             top: 0.625rem; // 1px
             transform: rotate(-225deg);
@@ -151,26 +108,6 @@ h1,h2,h3 {
         .js-close-label {
             display: inline;
         }
-    }
-
-    &__control:focus ~ &__header,
-    &__button:focus {
-        @include helpers.ds_focus;
-    }
-
-    &__control:focus ~ &__header,
-    &__button:focus {
-        @include helpers.ds_focus--inset;
-    }
-
-    &__control:focus ~ &__header &__indicator {
-        color: settings.$ds_colour__link--focus;
-        text-decoration-color: transparent;
-    }
-
-    &__control:focus ~ &__header &__indicator {
-        color: settings.$ds_colour__link--focus;
-        text-decoration: none;
     }
 
     + .ds_accordion-item {
@@ -192,7 +129,7 @@ h1,h2,h3 {
         color: settings.$ds_colour__link--hover;
     }
 
-    .ds_accordion-item__button:focus &__indicator {
+    .ds_accordion-item__header:focus &__indicator {
         color: settings.$ds_colour__link--focus;
         text-decoration-color: transparent;
     }
@@ -207,24 +144,15 @@ h1,h2,h3 {
             }
         }
 
-        &__control:checked ~ &__header &__indicator {
+        &:open &__indicator {
             &::after {
                 top: 0.625rem; // 1px
             }
         }
 
         /// [1] subtracting the accordion item's border width
-        &__header,
-        &__button {
+        &__header {
             padding: 1rem 1rem calc(1rem - $accordion__border-width) 0.5rem; /* [1] */
-        }
-
-        &__title {
-            margin-bottom: 0.5rem;
-
-            &--button {
-                margin-bottom: 0;
-            }
         }
     }
 }
@@ -240,7 +168,7 @@ h1,h2,h3 {
     content: attr(data-open-text);
 }
 
-.ds_accordion-item__control:checked ~ .ds_accordion-item__header {
+.ds_accordion-item:open {
     .ds_accordion-item__indicator::before {
         content: 'Close';
     }
@@ -255,8 +183,6 @@ h1,h2,h3 {
 
 .ds_accordion--small {
     .ds_accordion-item__header,
-    .ds_accordion-item__title,
-    .ds_accordion-item__button,
     .ds_accordion-item__body,
     .ds_accordion__open-all {
         font-size: helpers.px-to-rem(settings.$root-font-size); // 1rem
@@ -278,5 +204,87 @@ h1,h2,h3 {
 @include helpers.ds_media-query-high-contrast {
     .ds_accordion-item__indicator {
         color: linktext !important;
+    }
+}
+
+
+
+/* LEGACY, non-details markup */
+.ds_accordion-item:has(.ds_accordion-item__title) {
+    .ds_accordion-item__title {
+        @include helpers.ds_h4-size;
+        margin-bottom: 0.25rem;
+    }
+
+    .ds_accordion-item__label {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    .ds_accordion-item__body {
+        display: none;
+    }
+
+    .ds_accordion-item__control:checked ~ .ds_accordion-item__body {
+        display: block;
+    }
+
+    .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator {
+        &::after {
+            top: 0.625rem; // 1px
+            transform: rotate(-225deg);
+        }
+
+        .js-close-label {
+            display: inline;
+        }
+    }
+
+    .ds_accordion-item__control:focus ~ .ds_accordion-item__header {
+        @include helpers.ds_focus;
+    }
+
+    .ds_accordion-item__control:focus ~ .ds_accordion-item__header {
+        @include helpers.ds_focus--inset;
+    }
+
+    .ds_accordion-item__control:focus ~ .ds_accordion-item__header .ds_accordion-item__indicator {
+        color: settings.$ds_colour__link--focus;
+        text-decoration-color: transparent;
+    }
+
+    .ds_accordion-item__control:focus ~ .ds_accordion-item__header .ds_accordion-item__indicator {
+        color: settings.$ds_colour__link--focus;
+        text-decoration: none;
+    }
+
+    .ds_accordion-item__control:checked ~ .ds_accordion-item__header {
+        .ds_accordion-item__indicator::before {
+            content: 'Close';
+        }
+        .ds_accordion-item__indicator[data-close-text]::before {
+            content: attr(data-close-text);
+        }
+    }
+
+    @include helpers.ds_media-query(medium) {
+        .ds_accordion-item__indicator {
+            margin-top: 0.5rem;
+            padding-left: 1.375rem; // 22px
+
+            .ds_accordion-item::after {
+                top: 0.3125rem; //5px
+            }
+        }
+
+        .ds_accordion-item__control:checked ~ .ds_accordion-item__header .ds_accordion-item__indicator {
+            .ds_accordion-item::after {
+                top: 0.625rem; // 1px
+            }
+        }
     }
 }

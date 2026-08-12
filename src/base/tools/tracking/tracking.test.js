@@ -363,18 +363,18 @@ describe('tracking', () => {
                 testObj.accordionModule.init();
             });
 
-            it('should add data attributes to accordion buttons', () => {
+            it('should add data attributes to accordion headers', () => {
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
                 openAll.parentNode.removeChild(openAll);
 
-                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__button'));
+                const headers = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header'));
 
                 Tracking.add.accordions();
 
-                expect(buttons[0].getAttribute('data-accordion')).toEqual('accordion-open-1');
+                expect(headers[0].getAttribute('data-accordion')).toEqual('accordion-open-1');
                 // accordion item 2 is open on load and it should have a different attribute
-                expect(buttons[1].getAttribute('data-accordion')).toEqual('accordion-close-2');
-                expect(buttons[2].getAttribute('data-accordion')).toEqual('accordion-open-3');
+                expect(headers[1].getAttribute('data-accordion')).toEqual('accordion-close-2');
+                expect(headers[2].getAttribute('data-accordion')).toEqual('accordion-open-3');
             });
 
             it('should add a data attribute to the accordion "open all" button', () => {
@@ -394,37 +394,40 @@ describe('tracking', () => {
                 testObj.accordionModule.init();
             });
 
-            it('should add data attributes, with name, to accordion buttons', () => {
+            it('should add data attributes, with name, to accordion headers', () => {
+                const NAME = testObj.accordionElement.dataset.name;
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
                 openAll.parentNode.removeChild(openAll);
 
-                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__button'));
+                const headers = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header'));
 
                 Tracking.add.accordions();
 
-                expect(buttons[0].getAttribute('data-accordion')).toEqual('accordion-foo-open-1');
+                expect(headers[0].getAttribute('data-accordion')).toEqual(`accordion-${NAME}-open-1`);
                 // accordion item 2 is open on load and it should have a different attribute
-                expect(buttons[1].getAttribute('data-accordion')).toEqual('accordion-foo-close-2');
-                expect(buttons[2].getAttribute('data-accordion')).toEqual('accordion-foo-open-3');
+                expect(headers[1].getAttribute('data-accordion')).toEqual(`accordion-${NAME}-close-2`);
+                expect(headers[2].getAttribute('data-accordion')).toEqual(`accordion-${NAME}-open-3`);
             });
 
             it('should add a data attribute to the accordion "open all" button', () => {
+                const NAME = testObj.accordionElement.dataset.name;
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
 
                 Tracking.add.accordions();
 
-                expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-open-all');
+                expect(openAll.getAttribute('data-accordion')).toEqual(`accordion-${NAME}-open-all`);
             });
 
             it('should only set generated data attribute on links without attributes already set', () => {
+                const NAME = testObj.accordionElement.dataset.name;
                 const withoutAttribute = testObj.accordionElement.querySelector('[data-unit="without-attribute"]');
                 const withAttribute = testObj.accordionElement.querySelector('[data-unit="with-attribute"]');
                 Tracking.add.accordions();
                 Tracking.add.links();
                 expect(withoutAttribute.getAttribute('data-navigation')).toEqual('accordion-link');
                 expect(withoutAttribute.getAttribute('data-section')).toEqual('Healthcare for veterans');
-                expect(withAttribute.getAttribute('data-navigation')).toEqual('accordion-link-foo');
-                expect(withAttribute.getAttribute('data-section')).toEqual('section-foo');
+                expect(withAttribute.getAttribute('data-navigation')).toEqual(`accordion-link-${NAME}`);
+                expect(withAttribute.getAttribute('data-section')).toEqual(`section-${NAME}`);
             });
         });
 
@@ -438,50 +441,45 @@ describe('tracking', () => {
 
             it('should toggle the attribute value on accordion item buttons when they open or close', () => {
                 const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
-                const itemButton = items[0].querySelector('.ds_accordion-item__button');
-                const itemControl = items[0].querySelector('.ds_accordion-item__control');
+                const item = items[0];
 
                 Tracking.add.accordions();
 
-                let event = new Event('click');
-                itemControl.checked = true;
-                itemButton.dispatchEvent(event);
+                let event = new Event('toggle');
+                item.setAttribute('open', '');
+                item.dispatchEvent(event);
 
-                expect(itemButton.getAttribute('data-accordion')).toEqual('accordion-close-1');
+                expect(item.querySelector('.ds_accordion-item__header').getAttribute('data-accordion')).toEqual('accordion-close-1');
             });
 
             it('should toggle the "open all" button to "close all" when all accordion items are open', () => {
                 const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
-                const itemButton1 = items[0].querySelector('.ds_accordion-item__button');
-                const itemControl1 = items[0].querySelector('.ds_accordion-item__control');
-                const itemButton3 = items[2].querySelector('.ds_accordion-item__button');
-                const itemControl3 = items[2].querySelector('.ds_accordion-item__control');
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
 
                 Tracking.add.accordions();
 
                 // run through a number of open/close interactions
-                let event = new Event('click');
+                let event = new Event('toggle');
 
-                itemControl1.checked = true;
-                itemButton1.dispatchEvent(event);
+                items[0].setAttribute('open', '');
+                items[0].dispatchEvent(event);
                 expect(openAll.getAttribute('data-accordion')).toEqual('accordion-open-all');
 
                 // second item is already open
 
-                itemControl3.checked = true;
-                itemButton3.dispatchEvent(event);
+                items[2].setAttribute('open', '');
+                items[2].dispatchEvent(event);
                 expect(openAll.getAttribute('data-accordion')).toEqual('accordion-close-all');
 
                 // and now back to open all
-                itemControl1.checked = false;
-                itemButton1.dispatchEvent(event);
+                items[0].removeAttribute('open');
+                items[0].dispatchEvent(event);
                 expect(openAll.getAttribute('data-accordion')).toEqual('accordion-open-all');
             });
 
             it('should modify all panels\' data-attributes on click of "open all"', () => {
                 const openAll = testObj.accordionElement.querySelector('.js-open-all');
-                const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__button'));
+                const headers = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header'));
 
                 Tracking.add.accordions();
 
@@ -489,14 +487,85 @@ describe('tracking', () => {
 
                 // open them all
                 openAll.dispatchEvent(event);
-                buttons.forEach((button, index) => {
-                    expect(button.getAttribute('data-accordion')).toEqual(`accordion-close-${index + 1}`);
+                headers.forEach((header, index) => {
+                    expect(header.getAttribute('data-accordion')).toEqual(`accordion-close-${index + 1}`);
                 });
 
                 // and now close them all
                 openAll.dispatchEvent(event);
-                buttons.forEach((button, index) => {
-                    expect(button.getAttribute('data-accordion')).toEqual(`accordion-open-${index + 1}`);
+                headers.forEach((header, index) => {
+                    expect(header.getAttribute('data-accordion')).toEqual(`accordion-open-${index + 1}`);
+                });
+            });
+        });
+
+        describe('events for accordion with data-name attribute', () => {
+            beforeEach(() => {
+                testObj.scope = document.getElementById('accordions');
+                testObj.accordionElement = testObj.scope.querySelector('#accordion-with-name');
+                testObj.accordionModule = new Accordion(testObj.accordionElement);
+                testObj.accordionModule.init();
+            });
+
+            it('should toggle the attribute value on accordion item buttons when they open or close', () => {
+                const NAME = testObj.accordionElement.dataset.name;
+                const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
+                const item = items[0];
+
+                Tracking.add.accordions();
+
+                let event = new Event('toggle');
+                item.setAttribute('open', '');
+                item.dispatchEvent(event);
+
+                expect(item.querySelector('.ds_accordion-item__header').getAttribute('data-accordion')).toEqual(`accordion-${NAME}-close-1`);
+            });
+
+            it('should toggle the "open all" button to "close all" when all accordion items are open', () => {
+                const NAME = testObj.accordionElement.dataset.name;
+                const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
+                const openAll = testObj.accordionElement.querySelector('.js-open-all');
+
+                Tracking.add.accordions();
+
+                // run through a number of open/close interactions
+                let event = new Event('toggle');
+
+                items[0].setAttribute('open', '');
+                items[0].dispatchEvent(event);
+                expect(openAll.getAttribute('data-accordion')).toEqual(`accordion-${NAME}-open-all`);
+
+                // second item is already open
+
+                items[2].setAttribute('open', '');
+                items[2].dispatchEvent(event);
+                expect(openAll.getAttribute('data-accordion')).toEqual(`accordion-${NAME}-close-all`);
+
+                // and now back to open all
+                items[0].removeAttribute('open');
+                items[0].dispatchEvent(event);
+                expect(openAll.getAttribute('data-accordion')).toEqual(`accordion-${NAME}-open-all`);
+            });
+
+            it('should modify all panels\' data-attributes on click of "open all"', () => {
+                const NAME = testObj.accordionElement.dataset.name;
+                const openAll = testObj.accordionElement.querySelector('.js-open-all');
+                const headers = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header'));
+
+                Tracking.add.accordions();
+
+                let event = new Event('click');
+
+                // open them all
+                openAll.dispatchEvent(event);
+                headers.forEach((header, index) => {
+                    expect(header.getAttribute('data-accordion')).toEqual(`accordion-${NAME}-close-${index + 1}`);
+                });
+
+                // and now close them all
+                openAll.dispatchEvent(event);
+                headers.forEach((header, index) => {
+                    expect(header.getAttribute('data-accordion')).toEqual(`accordion-${NAME}-open-${index + 1}`);
                 });
             });
         });
@@ -579,79 +648,6 @@ describe('tracking', () => {
                 clickText: '2',
                 resultsCount: 3,
                 clickedResults: 'result 2 of 3'
-            });
-        });
-    });
-
-    describe('events for accordion with data-name attribute', () => {
-        beforeEach(() => {
-            testObj.scope = document.getElementById('accordions');
-            testObj.accordionElement = testObj.scope.querySelector('#accordion-with-name');
-            testObj.accordionModule = new Accordion(testObj.accordionElement);
-            testObj.accordionModule.init();
-        });
-
-        it('should toggle the attribute value on accordion item buttons when they open or close', () => {
-            const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
-            const itemButton = items[0].querySelector('.ds_accordion-item__button');
-            const itemControl = items[0].querySelector('.ds_accordion-item__control');
-
-            Tracking.add.accordions();
-
-            let event = new Event('click');
-            itemControl.checked = true;
-            itemButton.dispatchEvent(event);
-
-            expect(itemButton.getAttribute('data-accordion')).toEqual('accordion-foo-close-1');
-        });
-
-        it('should toggle the "open all" button to "close all" when all accordion items are open', () => {
-            const items = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item'));
-            const itemButton1 = items[0].querySelector('.ds_accordion-item__button');
-            const itemControl1 = items[0].querySelector('.ds_accordion-item__control');
-            const itemButton3 = items[2].querySelector('.ds_accordion-item__button');
-            const itemControl3 = items[2].querySelector('.ds_accordion-item__control');
-            const openAll = testObj.accordionElement.querySelector('.js-open-all');
-
-            Tracking.add.accordions();
-
-            // run through a number of open/close interactions
-            let event = new Event('click');
-
-            itemControl1.checked = true;
-            itemButton1.dispatchEvent(event);
-            expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-open-all');
-
-            // second item is already open
-
-            itemControl3.checked = true;
-            itemButton3.dispatchEvent(event);
-            expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-close-all');
-
-            // and now back to open all
-            itemControl1.checked = false;
-            itemButton1.dispatchEvent(event);
-            expect(openAll.getAttribute('data-accordion')).toEqual('accordion-foo-open-all');
-        });
-
-        it('should modify all panels\' data-attributes on click of "open all"', () => {
-            const openAll = testObj.accordionElement.querySelector('.js-open-all');
-            const buttons = [].slice.call(testObj.accordionElement.querySelectorAll('.ds_accordion-item__header-button'));
-
-            Tracking.add.accordions();
-
-            let event = new Event('click');
-
-            // open them all
-            openAll.dispatchEvent(event);
-            buttons.forEach((button, index) => {
-                expect(button.getAttribute('data-accordion')).toEqual(`accordion-foo-close-${index + 1}`);
-            });
-
-            // and now close them all
-            openAll.dispatchEvent(event);
-            buttons.forEach((button, index) => {
-                expect(button.getAttribute('data-accordion')).toEqual(`accordion-foo-open-${index + 1}`);
             });
         });
     });
@@ -1171,12 +1167,25 @@ describe('tracking', () => {
                     testObj.fileUploadModule.fileInputElement.dispatchEvent(event);
 
                     const latestDataLayerEntry = window.dataLayer.pop();
-                    console.log(latestDataLayerEntry)
                     expect(latestDataLayerEntry.event).toEqual('fileUploadChange');
                     expect(latestDataLayerEntry.status).toEqual('success');
                     expect(latestDataLayerEntry.files[0].extension).toEqual('foo');
                     expect(typeof latestDataLayerEntry.files[0].size).toEqual('number');
                     expect(latestDataLayerEntry.files[0].type).toEqual('text/plain');
+                });
+            });
+
+            describe('cancel event', () => {
+                it('should push a cancel event to the data layer', () => {
+                    Tracking.add.fileUploads();
+
+                    const fileInput = testObj.scope.querySelector('input[type="file"]')
+                    fileInput.dispatchEvent(new Event('cancel'));
+
+                    const latestDataLayerEntry = window.dataLayer.pop();
+                    expect(latestDataLayerEntry.event).toEqual('fileUploadCancel');
+                    expect(latestDataLayerEntry.status).toBeUndefined();
+                    expect(latestDataLayerEntry.files).toBeUndefined();
                 });
             });
         });

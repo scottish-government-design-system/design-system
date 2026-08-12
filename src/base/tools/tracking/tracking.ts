@@ -161,7 +161,7 @@ const tracking = {
      */
     getNearestSectionHeader: function (element: HTMLElement): Element | undefined {
         const linkSectionExceptions = 'nav,.ds_metadata,.ds_summary-card__header,.ds_card__content-header';
-        const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,.ds_details__summary';
+        const linkSectionIdentifiers = 'h1,h2,h3,h4,h5,h6,summary,.ds_details__summary';
         const linkSectionSpecialCases = '.ds_page-header,.ds_layout__header,.ds_accordion-item__header';
 
         if (typeof element.closest === 'function' && element.closest(linkSectionExceptions)) {
@@ -318,7 +318,7 @@ const tracking = {
                 });
 
                 const openAll = accordion.querySelector('.js-open-all') as HTMLButtonElement;
-                const items = [].slice.call(accordion.querySelectorAll('.ds_accordion-item')) as HTMLElement[];
+                const items = [].slice.call(accordion.querySelectorAll('.ds_accordion-item')) as HTMLDetailsElement[];
 
                 /**
                  * Check if all accordion items are open
@@ -326,7 +326,7 @@ const tracking = {
                  * @returns {boolean}
                  */
                 function checkOpenAll(): boolean {
-                    const openItemsCount = accordion.querySelectorAll('.ds_accordion-item--open').length;
+                    const openItemsCount = accordion.querySelectorAll('.ds_accordion-item[open]').length;
                     return (items.length === openItemsCount);
                 }
 
@@ -355,10 +355,9 @@ const tracking = {
                  * @param {number} index
                  * @returns {void}
                  */
-                function setAccordionItem(item: HTMLElement, index: number): void {
-                    const itemButton = item.querySelector('.ds_accordion-item__button') as HTMLButtonElement;
-                    const itemControl = item.querySelector('.ds_accordion-item__control') as HTMLInputElement;
-                    itemButton.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
+                function setAccordionItem(item: HTMLDetailsElement, index: number): void {
+                    const itemHeader = item.querySelector('.ds_accordion-item__header') as HTMLElement;
+                    itemHeader.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${item.hasAttribute('open') ? 'close' : 'open'}-${index + 1}`);
                 }
 
                 setOpenAll(openAll);
@@ -378,10 +377,10 @@ const tracking = {
                 }
 
                 items.forEach((item, index) => {
-                    const itemButton = item.querySelector('.ds_accordion-item__button') as HTMLButtonElement;
-                    const itemControl = item.querySelector('.ds_accordion-item__control') as HTMLInputElement;
-                    itemButton.addEventListener('click', () => {
-                        itemButton.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${itemControl.checked ? 'close' : 'open'}-${index + 1}`);
+
+                    const itemHeader = item.querySelector('.ds_accordion-item__header') as HTMLElement;
+                    item.addEventListener('toggle', () => {
+                        itemHeader.setAttribute('data-accordion', `accordion-${name.length ? name + '-' : name}${item.hasAttribute('open')  ? 'close' : 'open'}-${index + 1}`);
                         setOpenAll(openAll);
                     });
                 });
@@ -862,7 +861,7 @@ const tracking = {
                     pushEventWithDetail(event, 'fileUploadChange');
                 }) as EventListener);
 
-                fileUpload.addEventListener('cancel', () => {
+                inputElement.addEventListener('cancel', () => {
                     const data: EventData = {
                         event: 'fileUploadCancel'
                     };
