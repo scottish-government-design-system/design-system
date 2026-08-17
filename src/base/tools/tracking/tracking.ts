@@ -2,8 +2,14 @@
 
 import version from '../../../version';
 
+type Files = {
+    extension?: string
+    size?: string
+    type?: string
+}
+
 type DataLayerObject = {
-    [key: string]: string | number | { [key: string]: string | number | undefined }[] | undefined
+    [key: string]: string | number | { [key: string]: string | number | undefined }[] | Files | undefined
 }
 declare global {
     interface Window { dataLayer?: object[]; }
@@ -829,15 +835,22 @@ const tracking = {
                         data.status = 'success'
                     }
 
-                    data.files = Array.from(event.detail.files).map(item => {
-                        const itemAsFile = item as File;
+                    const extensions = [];
+                    const sizes = [];
+                    const types = [];
 
-                        return {
-                            extension: getFileExtensionFromFilename(itemAsFile.name),
-                            size: itemAsFile.size,
-                            type: itemAsFile.type
-                        }
-                    });
+                    for (const item of event.detail.files) {
+                        const itemAsFile = item as File;
+                        extensions.push(getFileExtensionFromFilename(itemAsFile.name));
+                        sizes.push(itemAsFile.size);
+                        types.push(itemAsFile.type);
+                    }
+
+                    data.files = {
+                        extension: extensions.join(' '),
+                        size: sizes.join(' '),
+                        type: types.join(' ')
+                    }
 
                     tracking.pushToDataLayer(data);
                 }
@@ -845,13 +858,7 @@ const tracking = {
                 type EventData = {
                     event: string
                     status?: string
-                    files?: Files[]
-                }
-
-                type Files = {
-                    extension: string
-                    size: number
-                    type: string
+                    files?: Files
                 }
 
                 fileUpload.addEventListener('dropHappened', ((event: CustomEvent) => {
