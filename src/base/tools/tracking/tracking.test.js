@@ -1117,9 +1117,8 @@ describe('tracking', () => {
                     const latestDataLayerEntry = window.dataLayer.pop();
                     expect(latestDataLayerEntry.event).toEqual('fileUploadDrop');
                     expect(latestDataLayerEntry.status).toEqual('success');
-                    expect(latestDataLayerEntry.files[0].extension).toEqual('foo');
-                    expect(typeof latestDataLayerEntry.files[0].size).toEqual('number');
-                    expect(latestDataLayerEntry.files[0].type).toEqual('text/plain');
+                    expect(latestDataLayerEntry.files.extension).toEqual('foo');
+                    expect(latestDataLayerEntry.files.type).toEqual('text/plain');
                 });
 
                 it('should push an unsuccessful drop (too many files) to the data layer', () => {
@@ -1171,12 +1170,30 @@ describe('tracking', () => {
                     testObj.fileUploadModule.fileInputElement.dispatchEvent(event);
 
                     const latestDataLayerEntry = window.dataLayer.pop();
-                    console.log(latestDataLayerEntry)
                     expect(latestDataLayerEntry.event).toEqual('fileUploadChange');
                     expect(latestDataLayerEntry.status).toEqual('success');
-                    expect(latestDataLayerEntry.files[0].extension).toEqual('foo');
-                    expect(typeof latestDataLayerEntry.files[0].size).toEqual('number');
-                    expect(latestDataLayerEntry.files[0].type).toEqual('text/plain');
+                    expect(latestDataLayerEntry.files.extension).toEqual('foo');
+                    expect(latestDataLayerEntry.files.type).toEqual('text/plain');
+                });
+            });
+
+            describe('cancel event', () => {
+                beforeEach(() => {
+                    testObj.fileUploadElement = testObj.scope.querySelector('.ds_file-upload');
+                    testObj.fileUploadModule = new FileUpload(testObj.fileUploadElement);
+                    testObj.fileUploadModule.init();
+
+                    Tracking.add.fileUploads();
+                });
+
+                it('should push a cancelled file selection to the data layer', () => {
+                    const event = new MouseEvent( 'cancel', {
+                        bubbles: true
+                    });
+                    testObj.fileUploadModule.fileInputElement.dispatchEvent(event);
+
+                    const latestDataLayerEntry = window.dataLayer.pop();
+                    expect(latestDataLayerEntry.event).toEqual('fileUploadCancel');
                 });
             });
         });
