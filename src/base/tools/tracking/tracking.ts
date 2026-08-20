@@ -604,7 +604,7 @@ const tracking = {
 
         /**
          * Sets data-navigation="confirmation-link" on links in confirmation message components
-         * DEPRECATED - this will be removed in a future release
+         * @deprecated - this will be removed in a future release
          *
          * @param {HTMLElement} scope - the element to initialize tracking on
          * @returns {void}

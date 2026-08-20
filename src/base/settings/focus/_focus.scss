@@ -3,6 +3,14 @@
     Default focus indicator
 \*------------------------------------*/
 
+/// Focus outline width
+/// @type Number
 $ds_focus__outline-width: 0.125em !default;
+
+/// Focus shadow width
+/// @type Number
 $ds_focus__shadow-width: 0.16em !default;
+
+/// Input focus shadow width
+/// @type Number
 $ds_focus__input-shadow-width: 0.125em !default;

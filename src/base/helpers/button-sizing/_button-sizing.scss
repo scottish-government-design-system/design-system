@@ -4,9 +4,17 @@
 
 @use "../../settings";
 
+/// Button height for default button size
+/// @type Number
 $button__height: settings.$ds_button__height !default; 
+
+/// Button height for small button size
+/// @type Number
 $button__height--small: settings.$ds_button__height--small !default;
 
+/// Button sizing and padding for default button size with optional icon
+/// @param {boolean} $icon - Whether the button contains an icon (default: true
+/// @output Minimum height and width of the button, padding, and icon sizing if applicable
 @mixin ds_button-sizing ($icon: true) {
     min-height: $button__height;
     min-width: $button__height;
@@ -22,6 +30,9 @@ $button__height--small: settings.$ds_button__height--small !default;
     }
 }
 
+/// Button sizing and padding for small button size with optional icon
+/// @param {boolean} $icon - Whether the button contains an icon (default: true
+/// @output Minimum height and width of the button, padding, and icon sizing if applicable
 @mixin ds_button-sizing--small ($icon: true) {
     min-height: $button__height--small;
     min-width: $button__height--small;

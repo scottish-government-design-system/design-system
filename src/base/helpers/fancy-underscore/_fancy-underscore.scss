@@ -1,12 +1,12 @@
 /// Fancy underscore
-///
-/// Animated underscore used on logo images, site nav
-///
-/// @param {string} $width - width of the underscore
 
 @use "../links";
 @use "../../settings";
 
+/// Animated underscore used on logo images, site nav
+/// @param {number} $width - width of the underscore
+/// @param {number} $horiz-padding - horizontal padding of the underscore
+/// @output Animated underscore on hover
 @mixin ds_fancy-underscore($width: links.$link__current-underline-thickness, $horiz-padding: 0) {
     position: relative;
     transition-duration: 0s !important;
@@ -41,11 +41,8 @@
     }
 }
 
-
-
-
 /// legacy non-prefixed names
-/// DEPRECATED - use prefixed mixin instead
+/// @deprecated - use prefixed mixin instead
 @mixin fancy-underscore($width: links.$link__current-underline-thickness) {
     @include ds_fancy-underscore($width);
 }

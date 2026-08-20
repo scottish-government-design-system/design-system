@@ -7,9 +7,11 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Base colour used to generate tag background and foreground colours
+/// @type Color
 $tag__base-colour: settings.$ds_colour__brand !default;
 
+// Fixed vars
 $tag_colours: (
     'grey'      settings.$ds_colour__grey,
     'green'     settings.$ds_colour__dark-green,

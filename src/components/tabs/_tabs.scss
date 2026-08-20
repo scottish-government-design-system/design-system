@@ -5,16 +5,48 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Tab background colour
+/// @type Color
 $tab__background-colour: settings.$ds_colour__background--secondary !default;
+
+/// Current tab background colour
+/// @type Color
 $tab__background-colour--current: settings.$ds_colour__background--primary !default;
+
+/// Tab text colour
+/// @type Color
 $tab__link-colour: settings.$ds_colour__text !default;
+
+/// Current tab text colour
+/// @type Color
 $tab__link-colour--current: settings.$ds_colour__text !default;
+
+/// Tab border width
+/// @type Number
 $tab__border-width: 0.125rem !default;
+
+/// Current tab border width
+/// @type Number
 $tab__border-width--current: 0.1875rem !default;
+
+/// Top and bottom padding within a tab
+/// @type Number
 $tab__padding--vertical: 0.75rem !default;
+
+/// Left and right padding within a tab
+/// @type Number
 $tab__padding--horizontal: 1rem !default;
+
+/// Spacing between tabs
+/// @type Number
 $tab__gap: 0.5rem !default;
+
+/// Collapsed tabs, toggle colour
+/// @type Color
 $tab__toggle-colour: settings.$ds_colour__link !default;
+
+/// Collapsed tabs, toggle colour on hover
+/// @type Color
 $tab__toggle-colour--hover: settings.$ds_colour__link--hover !default;
 
 .ds_tabs {

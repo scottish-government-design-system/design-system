@@ -4,6 +4,10 @@
 
 @use "../media-query";
 
+/// Set consistent high contrast styling for buttons
+/// @param {number} $border-width - The width of the outline (default: 0.125rem)
+/// @param {string} $selector - The selector for the button (default: ':enabled, :link')
+/// @output High contrast styling for buttons, including hover, focus, and active states
 @mixin ds_high-contrast-button($border-width: 0.125rem, $selector: ':enabled, :link') {
     @include media-query.ds_media-query-high-contrast {
         &:is(#{$selector}) {
@@ -25,6 +29,9 @@
     }
 }
 
+/// Set consistent high contrast styling for links
+/// @param {string} $selector - The selector for the link (default: ':enabled, :link, summary')
+/// @output High contrast styling for links
 @mixin ds_high-contrast-link($selector: ':enabled, :link, summary') {
     @include media-query.ds_media-query-high-contrast {
         &:is(#{$selector}) {
@@ -37,6 +44,11 @@
     }
 }
 
+/// Set consistent high contrast styling for focus outlines
+/// @param {number} $width - The width of the outline (default: 0.125em)
+/// @param {boolean} $inset - Whether the outline should be inset (default: true)
+/// @param {color} $colour - The color of the outline (default: canvastext)
+/// @output High contrast styling for focus outlines
 @mixin ds_high-contrast-outline($width: 0.125em, $inset: true, $colour: canvastext) {
     @include media-query.ds_media-query-high-contrast {
         outline: round(#{$width}, 1px) solid $colour !important;
@@ -48,15 +60,13 @@
     }
 }
 
-
-
-// DEPRECATED - will be removed in a future version
+/// @deprecated - will be removed in a future version
 @mixin ds_high-contrast-link-style {
     @include ds_high-contrast-link;
     @debug "Mixin 'ds_high-contrast-link-style' has been renamed to 'ds_high-contrast-link'. This alias will be removed in a future version of the Design System.";
 }
 
-// DEPRECATED - will be removed in a future version
+/// @deprecated - will be removed in a future version
 @mixin ds_high-contrast-focus($width: 0.125rem) {
     @include ds_high-contrast-outline($width: $width, $colour: highlight);
     @debug "Mixin 'ds_high-contrast-focus' has been deprecated. Use 'ds_high-contrast-outline' with a $color parameter instead. This alias will be removed in a future version of the Design System.";

@@ -4,9 +4,20 @@
 
 @use "../../helpers";
 
+/// Horizontal padding either side of the wrapper
+/// @type Number
 $wrapper__padding: 1rem !default;
+
+/// Fixed width of the wrapper at medium breakpoint
+/// @type Number
 $wrapper__width--medium: 48rem !default;
+
+/// Fixed width of the wrapper at large breakpoint
+/// @type Number
 $wrapper__width--large: 60rem !default;
+
+/// Fixed width of the wrapper at xlarge breakpoint
+/// @type Number
 $wrapper__width--xlarge: 72rem !default;
 
 .ds_wrapper {

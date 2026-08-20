@@ -6,13 +6,15 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Background colour of menu when a collapsible mobile menu
+/// @type Color
 $site-navigation__mobile-menu-background: settings.$ds_colour__background--secondary !default;
+
+// Deprecated / not used
 $site-navigation__highlight-colour: settings.$ds_colour__border--highlight !default;
 
-// common to both mobile and desktop
+// Fixed vars
 $site-navigation__link-padding: 1rem;
-
 $site-navigation__link-underline-thickness: calc(4em/19);
 
 .ds_site-navigation {

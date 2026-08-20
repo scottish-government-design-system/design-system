@@ -1,4 +1,9 @@
 /// Button sizing
 
+/// Buttong height for default button size
+/// @type Number
 $ds_button__height: 3.5rem !default; 
+
+/// Button height for small button size
+/// @type Number
 $ds_button__height--small: 3rem !default;

@@ -5,7 +5,8 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Footer background colour
+/// @type Color
 $site-footer__background: settings.$ds_colour__background--tertiary !default;
 
 // fixed vars

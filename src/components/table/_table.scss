@@ -5,9 +5,20 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Colour of a table's outer border
+/// @type Color
 $table-border-colour: settings.$ds_colour__border !default;
+
+/// Colour of dividing borders between table rows
+/// @type Color
 $table-border-colour--light: settings.$ds_colour__border--faint !default;
+
+/// Table header background colour
+/// @type Color
 $table-header-background-colour: settings.$ds_colour__background--tertiary !default;
+
+/// Alternating colour for table row background
+/// @type Color
 $table-row-zebra-colour: settings.$ds_colour__background--secondary !default;
 
 // Fixed vars

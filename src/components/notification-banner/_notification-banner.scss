@@ -5,10 +5,20 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Notification banner default background colour
+/// @type Color
 $notification-banner__background-colour: settings.$ds_colour__text !default;
+
+/// Notification banner background colour for success state
+/// @type Color
 $notification-banner__background-colour--success: settings.$ds_colour__state--positive !default;
+
+/// Notification banner icon colour
+/// @type Color
 $notification-banner__colour-icon-colour: settings.$ds_colour__state--warning !default;
+
+/// Notification banner text/foreground colour
+/// @type Color
 $notification-banner__foreground-colour: settings.$ds_colour__white !default;
 
 // fixed vars

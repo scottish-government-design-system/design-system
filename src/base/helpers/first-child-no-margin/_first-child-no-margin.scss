@@ -1,3 +1,6 @@
+/// Removes the top margin from the first child of an element
+/// @output The first child element has top margin set to 0
+
 @mixin ds_first-child-no-margin {
     > :first-child {
         margin-top: 0;

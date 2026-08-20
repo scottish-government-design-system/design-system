@@ -5,8 +5,11 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Background colour for summary card header
+/// @type Color
 $summary-card-header-background-colour: settings.$ds_colour__background--secondary !default;
 
+// Fixed vars
 $summary-list__border-width: 0.0625rem; // 1px
 
 .ds_summary-list {

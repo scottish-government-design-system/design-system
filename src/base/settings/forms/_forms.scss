@@ -7,9 +7,14 @@ $field-border-width: 0.125rem;
 $field-border-width--focus: 0.25rem;
 $field-border-width--error: 0.25rem;
 
+/// Input minimum height - eg. for text inputs
+/// @type Number
 $input-min-height: 3rem !default;
+
+/// Size of checkboxes and radio buttons
+/// @type Number
 $input-size: 2.5rem !default;
 
-// Not currently used
+/// Not currently used / Deprecated
 $small-input-size: 1.5rem !default;
 $small-input-offset: 0.5rem !default;

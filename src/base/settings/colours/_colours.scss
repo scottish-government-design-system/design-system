@@ -13,7 +13,7 @@
 @use 'sass:color';
 @use "../../helpers/colours";
 
-// Palette
+/// Palette
 $ds_colour__white:          #ffffff;
 $ds_colour__black:          #000000;
 
@@ -30,8 +30,7 @@ $ds_colour__grey--dark:     #1a1a1a;
 
 $ds_colour__sg-secondary:   #333e48;
 
-
-// extended palette
+/// Extended palette
 $ds_colour__dark-blue:  $ds_colour__blue--darker;
 $ds_colour__teal:       #28a197;
 $ds_colour__dark-teal:  #1c5d5d;
@@ -45,114 +44,294 @@ $ds_colour__purple:     #741e6d;
 $ds_colour__brown:      #592c20;
 
 
+///
+/// Branding
+///
 
+/// Primary brand colour
+/// @type Color
+$ds_colour__brand: $ds_colour__blue !default;
 
-// branding
-$ds_colour__brand:              $ds_colour__blue !default;
-$ds_colour__brand--secondary:   $ds_colour__sg-secondary !default;
-$ds_brand-gradient-direction:   right !default;
+/// Secondary brand colour
+/// @type Color
+$ds_colour__brand--secondary: $ds_colour__sg-secondary !default;
 
+/// Brand gradient direction
+/// @type String
+$ds_brand-gradient-direction: right !default;
+
+// Output a warning if the brand colour does not meet 4.5:1 contrast ratio against white
 @if colours.getContrastRatio(#ffffff, $ds_colour__brand) < 4.5 {
     @warn 'Brand colour #{$ds_colour__brand} does not meet 4.5:1 contrast ratio against white.';
 }
 
 
+///
+/// General backgrounds
+/// 
+
+/// Primary background colour
+/// @type Color
+$ds_colour__background--primary: $ds_colour__white !default;
+
+/// Secondary background colour
+/// @type Color
+$ds_colour__background--secondary: $ds_colour__grey--lighter !default;
+
+/// Tertiary background colour
+/// @type Color
+$ds_colour__background--tertiary: $ds_colour__grey--light !default;
 
 
-// general backgrounds
-$ds_colour__background--primary:        $ds_colour__white !default;
-$ds_colour__background--secondary:      $ds_colour__grey--lighter !default;
-$ds_colour__background--tertiary:       $ds_colour__grey--light !default;
+///
+/// Borders
+///
+
+/// Default border colour
+/// @type Color
+$ds_colour__border: $ds_colour__grey--medium !default;
+
+/// Higher emphasis border colour
+/// @type Color
+$ds_colour__border--strong: $ds_colour__grey--dark !default;
+
+/// Lower emphasis border colour
+/// @type Color
+$ds_colour__border--faint: $ds_colour__grey--light !default;
+
+/// Maximum emphasis border colour
+/// @type Color
+$ds_colour__border--highlight: $ds_colour__brand !default;
 
 
+///
+/// Typography
+/// 
+
+/// Default text colour
+/// @type Color
+$ds_colour__text: $ds_colour__grey--dark !default;
+
+/// Secondary text colour
+/// @type Color
+$ds_colour__text--secondary: $ds_colour__grey !default;
+
+/// Inverse text colour (for use on dark backgrounds)
+/// @type Color
+$ds_colour__text--reversed: $ds_colour__white !default;
+
+/// Placeholder text colour
+/// @type Color
+$ds_colour__placeholder: $ds_colour__text--secondary !default;
 
 
-// borders
-$ds_colour__border:             $ds_colour__grey--medium !default;
-$ds_colour__border--strong:     $ds_colour__grey--dark !default;
-$ds_colour__border--faint:      $ds_colour__grey--light !default;
-$ds_colour__border--highlight:  $ds_colour__brand !default;
+///
+/// Focus
+/// 
+
+/// Focus foreground colour
+/// @type Color
+$ds_colour__focus: $ds_colour__grey--dark !default;
+
+/// Focus constrasting background colour
+/// @type Color
+$ds_colour__focus--background: $ds_colour__yellow !default;
 
 
+///
+/// Links
+/// 
 
+/// Default link colour
+/// @type Color
+$ds_colour__link: $ds_colour__brand !default;
 
-// type
-$ds_colour__text:               $ds_colour__grey--dark !default;
-$ds_colour__text--secondary:    $ds_colour__grey !default;
-$ds_colour__text--reversed:     $ds_colour__white !default;
-$ds_colour__placeholder:        $ds_colour__text--secondary !default;
+/// Link hover background colour
+/// @type Color
+$ds_colour__link--hover__background: colours.adjustLuminance($ds_colour__link, 0.83) !default; /// [1]
 
+/// Link hover foreground colour
+/// @type Color
+$ds_colour__link--hover: colours.adjustForContrast(color.adjust($ds_colour__link, $lightness: -12.5%), $ds_colour__link--hover__background, 4.5) !default; /// [2]
 
+/// Link focus foreground colour
+/// @type Color
+$ds_colour__link--focus: $ds_colour__focus !default;
 
+/// Link focus outline colour
+/// @type Color
+$ds_colour__link--focus__outline: $ds_colour__focus--background !default;
 
-// focus
-$ds_colour__focus:              $ds_colour__grey--dark !default;
-$ds_colour__focus--background:  $ds_colour__yellow !default;
+/// Link focus background colour
+/// @type Color
+$ds_colour__link--focus__background: $ds_colour__focus--background !default;
 
+/// Link focus shadow colour
+/// @type Color
+$ds_colour__link--focus__shadow: $ds_colour__focus !default;
 
+/// Link current foreground colour
+/// @type Color
+$ds_colour__link--current: $ds_colour__text !default;
 
+/// Link current background colour
+/// @type Color
+$ds_colour__link--current__background: $ds_colour__background--secondary !default;
 
-// links
-$ds_colour__link:                       $ds_colour__brand !default;
-$ds_colour__link--hover__background:    colours.adjustLuminance($ds_colour__link, 0.83) !default; /// [1]
-$ds_colour__link--hover:                colours.adjustForContrast(color.adjust($ds_colour__link, $lightness: -12.5%), $ds_colour__link--hover__background, 4.5) !default; /// [2]
-$ds_colour__link--focus:                $ds_colour__focus !default;
-$ds_colour__link--focus__outline:       $ds_colour__focus--background !default;
-$ds_colour__link--focus__background:    $ds_colour__focus--background !default;
-$ds_colour__link--focus__shadow:        $ds_colour__focus !default;
-$ds_colour__link--current:              $ds_colour__text !default;
-$ds_colour__link--current__background:  $ds_colour__background--secondary !default;
-$ds_colour__link--disabled:             $ds_colour__text !default;
+/// Link disabled foreground colour
+/// @type Color
+$ds_colour__link--disabled: $ds_colour__text !default;
+
+/// Link disabled background colour
+/// @type Color
 $ds_colour__link--disabled__background: $ds_colour__background--tertiary !default;
-$ds_colour__link--reversed:             currentColor !default;
-$ds_colour__link--reversed--hover:      currentColor !default;
-$ds_colour__link--reversed--focus:      $ds_colour__link--focus !default;
+
+/// Link reversed foreground colour - uses same colour as the text surrounding it, typically white on a dark background
+/// @type Color
+$ds_colour__link--reversed: currentColor !default;
+
+/// Link reversed hover foreground colour - uses same colour as the text surrounding it, typically white on a dark background
+/// @type Color
+$ds_colour__link--reversed--hover: currentColor !default;
+
+/// Link reversed focus foreground colour
+/// @type Color
+$ds_colour__link--reversed--focus: $ds_colour__link--focus !default;
+
+///
+/// Block links
+/// 
+
+/// Block link background colour
+/// @type Color
+$ds_colour__blocklink-bg: $ds_colour__white !default;
+
+/// Block link hover background colour
+/// @type Color
+$ds_colour__blocklink-bg--hover: $ds_colour__link--hover__background !default;
+
+/// Block link focus background colour
+/// @type Color
+$ds_colour__blocklink-bg--focus: $ds_colour__link--focus__background !default;
 
 
+///
+/// Buttons
+/// 
 
+/// Primary button
 
-// block links
-$ds_colour__blocklink-bg:               $ds_colour__white !default;
-$ds_colour__blocklink-bg--hover:        $ds_colour__link--hover__background !default;
-$ds_colour__blocklink-bg--focus:        $ds_colour__link--focus__background !default;
+/// Primary button foreground colour
+/// @type Color
+$ds_colour__button: $ds_colour__white !default;
 
+/// Primary button background colour
+/// @type Color
+$ds_colour__button__background: $ds_colour__brand !default;
 
-
-
-// buttons
-$ds_colour__button:                     $ds_colour__white !default;
-$ds_colour__button__background:         $ds_colour__brand !default;
+/// Primary button hover foreground colour
+/// @type Color
 $ds_colour__button--hover__background:  colours.adjustForContrast(color.adjust($ds_colour__button__background, $lightness: -12.5%), $ds_colour__button, 4.5) !default; /// [2]
-$ds_colour__button--focus:              $ds_colour__link--focus !default;
+
+/// Primary button focus foreground colour
+/// @type Color
+$ds_colour__button--focus: $ds_colour__link--focus !default;
+
+/// Primary button focus background colour
+/// @type Color
 $ds_colour__button--focus__background:  $ds_colour__link--focus__background !default;
 
 
-$ds_colour__button--secondary:                      $ds_colour__button__background !default;
-$ds_colour__button--secondary__background:          transparent !default;
-$ds_colour__button--secondary--hover:               $ds_colour__button--hover__background !default;
-$ds_colour__button--secondary--hover__background:   colours.adjustLuminance($ds_colour__button--secondary, 0.83) !default; /// [1]
-$ds_colour__button--secondary--focus:               $ds_colour__button--focus !default;
-$ds_colour__button--cancel:                         $ds_colour__text !default;
-$ds_colour__button--cancel__background:             $ds_colour__button--secondary__background !default;
-$ds_colour__button--cancel--hover__background:      colours.adjustLuminance($ds_colour__button--cancel, 0.83) !default; /// [1]
-$ds_colour__button--disabled:                       $ds_colour__text !default;
-$ds_colour__button--disabled__background:           $ds_colour__grey--medium !default;
+/// Secondary button
+
+/// Secondary button foreground colour
+/// @type Color
+$ds_colour__button--secondary: $ds_colour__button__background !default;
+
+/// Secondary button background colour
+/// @type Color
+$ds_colour__button--secondary__background: transparent !default;
+
+/// Secondary button hover foreground colour
+/// @type Color
+$ds_colour__button--secondary--hover: $ds_colour__button--hover__background !default;
+
+/// Secondary button hover background colour
+/// @type Color
+$ds_colour__button--secondary--hover__background: colours.adjustLuminance($ds_colour__button--secondary, 0.83) !default; /// [1]
+
+/// Secondary button focus foreground colour
+/// @type Color
+$ds_colour__button--secondary--focus: $ds_colour__button--focus !default;
 
 
+/// Cancel button - Deprecated - use secondary button instead
+
+/// Cancel button foreground colour
+/// @type Color
+$ds_colour__button--cancel: $ds_colour__text !default;
+
+/// Cancel button background colour
+/// @type Color
+$ds_colour__button--cancel__background: $ds_colour__button--secondary__background !default;
+
+/// Cancel button hover background colour
+/// @type Color
+$ds_colour__button--cancel--hover__background: colours.adjustLuminance($ds_colour__button--cancel, 0.83) !default; /// [1]
 
 
-// input
-$ds_colour__input--border:              $ds_colour__border--strong !default;
-$ds_colour__input--hover__border:       $ds_colour__grey--medium !default; // not currently used
-$ds_colour__input--focus__background:   $ds_colour__white !default;
-$ds_colour__input--focus__outline:      $ds_colour__focus--background !default;
-$ds_colour__input--spot:                currentColor !default; // not currently used
+/// Disabled button
+
+/// Disabled button foreground colour
+/// @type Color
+$ds_colour__button--disabled: $ds_colour__text !default;
+
+/// Disabled button background colour
+/// @type Color
+$ds_colour__button--disabled__background: $ds_colour__grey--medium !default;
 
 
+///
+/// inputs
+/// 
+
+/// Input border colour
+/// @type Color
+$ds_colour__input--border: $ds_colour__border--strong !default;
+
+/// Input hover border colour - not currently used / Deprecated
+/// @type Color
+$ds_colour__input--hover__border: $ds_colour__grey--medium !default;
+
+/// Input focus background colour
+/// @type Color
+$ds_colour__input--focus__background: $ds_colour__white !default;
+
+/// Input focus outline colour
+/// @type Color
+$ds_colour__input--focus__outline: $ds_colour__focus--background !default;
+
+/// Input (spot) colour - not currently used / Deprecated
+/// @type Color
+$ds_colour__input--spot: currentColor !default;
 
 
-// state
-$ds_colour__state--info:        $ds_colour__blue;
-$ds_colour__state--negative:    $ds_colour__red;
-$ds_colour__state--positive:    $ds_colour__dark-green;
-$ds_colour__state--warning:     $ds_colour__orange;
+///
+/// State
+/// 
+
+/// Information state colour
+/// @type Color
+$ds_colour__state--info: $ds_colour__blue;
+
+/// Negative state colour
+/// @type Color
+$ds_colour__state--negative: $ds_colour__red;
+
+/// Positive state colour
+/// @type Color
+$ds_colour__state--positive: $ds_colour__dark-green;
+
+/// Warning state colour
+/// @type Color
+$ds_colour__state--warning: $ds_colour__orange;

@@ -16,7 +16,7 @@
 /// @param {string} $tuning - value to add to the output for fine tuning
 /// @param {number} $collapse-spacing-unit - entry in the spacing scale to remove from output
 ///
-/// @returns {string} CSS rule for spacing, e.g. padding-top: 0.5rem
+/// @output CSS rule for spacing, e.g. padding-top: 0.5rem
 ///
 /// @example scss
 ///   .foo {
@@ -98,7 +98,7 @@
 /// @param {boolean} $important - whether to include the !important flag
 /// @param {string} $tuning - value to add to the output for fine tuning
 ///
-/// @returns {string} CSS rule for margin, e.g. margin-top: 0.5rem
+/// @output CSS rule for margin, e.g. margin-top: 0.5rem
 ///
 /// @example scss
 ///   .foo {
@@ -122,7 +122,7 @@
 /// @param {boolean} $important - whether to include the !important flag
 /// @param {string} $tuning - value to add to the output for fine tuning
 ///
-/// @returns {string} CSS rule for padding, e.g. padding-top: 0.5rem
+/// @output CSS rule for padding, e.g. padding-top: 0.5rem
 ///
 /// @example scss
 ///   .foo {

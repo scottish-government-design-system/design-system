@@ -1,5 +1,7 @@
-/// TRANSITION
-/// Variables for CSS transitions
-
+/// Transition in time
+/// @type Number
 $transition-in-time: 0.2s !default;
+
+/// Transition out time
+/// @type Number
 $transition-out-time: $transition-in-time !default;

@@ -6,10 +6,19 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Border colour - using highlight state for maximum visibility
+/// @type Color
+$category-item__border-colour: settings.$ds_colour__border--highlight !default;
+
+/// Border colour for hover state
+/// @type Color
 $category-item__border-colour--hover: settings.$ds_colour__link--hover !default;
+
+/// Link colour for heading
+/// @type Color
 $category-item__link-colour: settings.$ds_colour__link !default;
 
+// Fixed var
 $border-width-size: 0.25rem;
 
 .ds_category-item {
@@ -37,7 +46,7 @@ $border-width-size: 0.25rem;
         color: $category-item__link-colour;
 
         &::before {
-            border-left: $border-width-size solid settings.$ds_colour__border--highlight;
+            border-left: $border-width-size solid $category-item__border-colour;
             bottom: 0;
             content: '';
             left: #{$border-width-size * -1};

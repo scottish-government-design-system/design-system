@@ -5,13 +5,13 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+// Deprecated / not used
 $site-header__border-colour--reversed: settings.$ds_colour__brand--secondary !default;
+$site-header__top-band-colour--secondary: settings.$ds_colour__brand--secondary;
 
 // fixed vars
 $site-header__border-colour: settings.$ds_colour__border--faint;
 $site-header__top-band-colour: settings.$ds_colour__brand;
-$site-header__top-band-colour--secondary: settings.$ds_colour__brand--secondary;
 
 .ds_site-header {
     background-color: settings.$ds_colour__background--primary;

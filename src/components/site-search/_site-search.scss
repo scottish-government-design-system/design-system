@@ -5,13 +5,21 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Height for site search elements
+/// @type Number
 $site-search__height: 3rem !default;
+
+/// Height for site search elements at medium breakpoint
+/// @type Number
 $site-search__height--medium: 3rem !default;
+
+/// Background colour for search input
+/// @type Color
 $site-search__background-colour: settings.$ds_colour__background--secondary !default;
+
+/// Border colour for search input
+/// @type Color
 $site-search__border-colour: settings.$ds_colour__grey !default;
-
-
 
 
 .ds_site-search {

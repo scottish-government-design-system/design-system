@@ -3,6 +3,8 @@
     Your classic lobotomised owl https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
 \*------------------------------------*/
 
+/// Top margin that applies to every stacked item except the first one
+/// @type Number
 $text-margin-vertical: 1rem !default;
 
 .ds_stack {

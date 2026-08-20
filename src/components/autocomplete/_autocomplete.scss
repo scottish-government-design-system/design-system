@@ -5,6 +5,8 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Border colour for suggestions dropdown
+/// @type Color
 $suggestions__border-colour: settings.$ds_colour__grey !default;
 
 .ds_autocomplete {

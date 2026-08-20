@@ -5,9 +5,15 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Height of logo in header
+/// @type Number
 $site-logo__height: 2rem !default;
+
+/// Height of logo in header at medium breakpoint
+/// @type Number
 $site-logo__height--medium: 2.5rem !default;
+
+// Fixed vars
 $site-branding-padding: 0.75rem;
 $site-branding-title-spacing: 1.5rem;
 $site-branding-title-spacing--medium: 3rem;
