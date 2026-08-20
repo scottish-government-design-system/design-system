@@ -1,3 +1,8 @@
+/// Mixin to provide a fallback for unsupported CSS properties
+/// @param {string} $prop - the CSS property to apply
+/// @param {string} $modern - the modern CSS value to apply
+/// @param {string} $fallback - the fallback CSS value to apply
+/// @output CSS property with fallback for unsupported browsers
 @mixin ds_unsupported-css-fallback($prop, $modern, $fallback) {
     #{$prop}: #{$fallback};
     #{$prop}: $modern;

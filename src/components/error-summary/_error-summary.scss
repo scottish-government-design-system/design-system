@@ -6,7 +6,11 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Text colour for error summary
+/// @type Color
 $foreground-colour: settings.$ds_colour__state--negative !default;
+
+// Calculated from the foreground colour
 $link-colour: $foreground-colour;
 $link-hover-colour: color.adjust($link-colour, $lightness: -12.5%);
 

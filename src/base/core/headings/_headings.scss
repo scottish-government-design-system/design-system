@@ -5,6 +5,8 @@
 @use "../../helpers";
 @use "../../settings";
 
+/// Flag to use legacy heading styles
+/// @deprecated - will be removed in a future version
 $use-legacy-heading-styles: true !default;
 
 h1, .ds_h1 {
@@ -38,7 +40,7 @@ h5, .ds_h5 {
 
 
 /// legacy non-prefixed names
-/// DEPRECATED - will be removed in a future version
+/// @deprecated - will be removed in a future version
 @if $use-legacy-heading-styles {
     .alpha {
         @extend .ds_h1;

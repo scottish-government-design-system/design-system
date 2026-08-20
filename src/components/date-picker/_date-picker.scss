@@ -5,6 +5,7 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+// Fixed vars
 $date-picker-focus-outline-width: 0.125em;
 $date-picker-focus-border-width: helpers.$focus__shadow-width;
 

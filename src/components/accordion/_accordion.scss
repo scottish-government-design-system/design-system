@@ -5,8 +5,9 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
 $accordion__border-width: 0.0625rem; //1px
+
+/// Deprecated
 $accordion__header-colour: settings.$ds_colour__link !default;
 
 

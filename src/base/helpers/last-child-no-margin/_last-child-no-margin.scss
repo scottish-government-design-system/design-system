@@ -1,3 +1,5 @@
+/// Sets the bottom margin of the last child element to 0
+/// @output The last child element has bottom margin set to 0
 @mixin ds_last-child-no-margin {
     > :last-child {
         margin-bottom: 0;

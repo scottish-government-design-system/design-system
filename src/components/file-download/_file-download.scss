@@ -5,6 +5,8 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Background colour for component
+/// @type Color
 $file-download-background-colour: settings.$ds_colour__background--secondary !default;
 
 .ds_file-download {

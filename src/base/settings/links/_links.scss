@@ -1,7 +1,27 @@
+/// Outline width for block links
+/// @type Number
 $ds_blocklink__outline-width: 0 !default;
+
+/// Underline thickness for stnadard links
+/// @type Number
 $ds_link__current-underline-thickness: 0.16em !default;
+
+// Outline width for standard links
+/// @type Number
 $ds_link__outline-width: 0.125em !default;
+
+/// Underline offset for standard links
+/// @type Number
 $ds_link__underline-offset: 0.16em !default;
+
+/// Underline thickness for standard links
+/// @type Number
 $ds_link__underline-thickness: auto !default;
+
+/// Underline offset for standard links on hover - this is the same as the default offset
+/// @type Number
 $ds_link__underline-offset--hover: $ds_link__underline-offset !default;
+
+/// Underline thickness for standard links on hover
+/// @type Number
 $ds_link__underline-thickness--hover: 0.16em !default;

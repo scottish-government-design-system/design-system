@@ -3,23 +3,17 @@
 @use "../high-contrast";
 @use "../media-query";
 
-
 $blocklink__outline-width: settings.$ds_blocklink__outline-width;
 $link__current-underline-thickness: settings.$ds_link__current-underline-thickness;
 $link__outline-width: settings.$ds_link__outline-width;
 $link__underline-offset: settings.$ds_link__underline-offset;
-$link__underline-thickness: settings.$ds_link__underline-thickness;
 $link__underline-offset--hover: settings.$ds_link__underline-offset--hover;
+$link__underline-thickness: settings.$ds_link__underline-thickness;
 $link__underline-thickness--hover: settings.$ds_link__underline-thickness--hover;
 
-
-
-
-/// Link
-///
 /// Single definition to enforce consistent display of links and elements that
 /// look like links (e.g. buttons we want to have display with a link-like style)
-
+/// @output link style with hover and focus states, including high contrast mode
 @mixin ds_link {
     @include high-contrast.ds_high-contrast-link;
 
@@ -45,6 +39,10 @@ $link__underline-thickness--hover: settings.$ds_link__underline-thickness--hover
     }
 }
 
+/// Single definition to enforce consistent display of block-style links and elements that
+/// look like links (e.g. buttons we want to have display with a link-like style)
+/// @param {string} $link-selector - child element that is used as the link, optional
+/// @param {boolean} $underline - whether to show underline on the link, defaults to false
 @mixin ds_link--block($link-selector: null, $underline: false) {
     display: block;
     position: relative;
@@ -87,6 +85,10 @@ $link__underline-thickness--hover: settings.$ds_link__underline-thickness--hover
     }
 }
 
+/// Single definition to enforce consistent display of links and elements that
+/// look like links (e.g. buttons we want to have display with a link-like style
+/// @param {string} $link-selector - child element that is used as the link, optional
+/// @output underline link style with hover state
 @mixin ds_link-underline($link-selector) {
     @if $link-selector {
         &:not(:focus) #{$link-selector} {
@@ -110,14 +112,9 @@ $link__underline-thickness--hover: settings.$ds_link__underline-thickness--hover
     }
 }
 
-
-
-
-/// Blocklink
-///
-/// Mixin to enforce consistency on block-style links, e.g. search results, category items, etc
-///
+/// Enforce consistency on block-style links, e.g. search results, category items, etc
 /// @param {string} $link-selector - child element that is used as the link, optional
+/// @output block link style with hover and focus states, including high contrast mode
 @mixin ds_blocklink($link-selector: null) {
     @include ds_link;
     @include ds_link--block($link-selector);

@@ -1,22 +1,22 @@
 @use "sass:math";
 @use "../../settings";
 
-/// DEPRECATED - use grid instead
+/// @deprecated - use grid instead
 @mixin ds_colwidth($columns: 1, $total: 12, $gutter: settings.$grid-gap-x) {
     width: calc(#{100% * math.div($columns, $total)} - #{$gutter});
 }
 
-/// DEPRECATED - use grid instead
+/// @deprecated - use grid instead
 @mixin ds_colpush($columns: 1, $total: 12) {
     margin-left: #{100% * math.div($columns, $total)};
 }
 
-/// DEPRECATED - use grid instead
+/// @deprecated - use grid instead
 @mixin ds_colpull($columns: 1, $total: 12) {
     margin-left: #{100% * math.div($columns, $total) * -1};
 }
 
-/// DEPRECATED - sub parameter is no longer used as will be removed in a future release
+/// @deprecated - sub parameter is no longer used as will be removed in a future release
 @mixin ds_layout($gutter: settings.$grid-gap-x, $sub: false) {
     display: grid;
     gap: 0 $gutter;
@@ -28,23 +28,23 @@
     }
 }
 
-
-
-
 /// legacy non-prefixed names
-/// DEPRECATED - use prefixed mixins instead
+/// @deprecated - use prefixed mixins instead
 @mixin colwidth($columns: 1, $total: 12, $gutter: settings.$grid-gap-x) {
     @include ds_colwidth($columns, $total, $gutter);
 }
 
+/// @deprecated - use prefixed mixins instead
 @mixin colpush($columns: 1, $total: 12) {
     @include ds_colpush($columns, $total);
 }
 
+/// @deprecated - use prefixed mixins instead
 @mixin colpull($columns: 1, $total: 12) {
     @include ds_colpull($columns, $total);
 }
 
+/// @deprecated - use prefixed mixins instead
 @mixin layout($gutter: $grid-gap-x, $sub: false) {
     @include ds_layout($gutter, $sub);
 }

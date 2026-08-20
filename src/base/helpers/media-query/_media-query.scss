@@ -1,20 +1,16 @@
-/// Media query
-///
-/// Shorthand @media alias that keeps media query rules to a defined set of
-/// breakpoints.
-///
+@use "sass:map";
+@use "../../settings";
+
+
+/// Shorthand @media alias that keeps media query rules to a defined set of breakpoints.
 /// @param {string} $breakpoint - name of the breakpoint to use
-///
 /// @example scss
 ///   @include ds_media-query(medium) {
 ///     .my-element {
 ///        display: block;
 ///     }
 ///   }
-
-@use "sass:map";
-@use "../../settings";
-
+/// @output A media query wrapper with the specified breakpoint and rules
 @mixin ds_media-query($breakpoint) {
     // validate param
     @if not map.has-key(settings.$ds_breakpoints, $breakpoint) {
@@ -28,16 +24,15 @@
     }
 }
 
-/// Media query: high contrast
-///
+
 /// Shorthand @media alias for "forced colors" and "prefers contrast"
-///
 /// @example scss
 ///   @include ds_media-query-high-contrast {
 ///     .my-element {
 ///        color: LinkText;
 ///     }
 ///   }
+/// @output A media query wrapper for high contrast mode with the specified rules
 
 @mixin ds_media-query-high-contrast {
     @media screen and (forced-colors: active) {
@@ -45,16 +40,16 @@
     }
 }
 
+/// Shorthand @media alias for "forced colors" and "prefers contrast" with inverted logic
+/// @output A media query wrapper for non-high contrast mode with the specified rules
 @mixin ds_media-query-high-contrast--invert {
     @media screen and (forced-colors: none) {
         @content;
     }
 }
 
-
-
 /// legacy non-prefixed name
-/// DEPRECATED - use prefixed mixin instead
+/// @deprecated - use prefixed mixin instead
 @mixin media-query($breakpoint) {
     // validate param
     @if not map.has-key(settings.$ds_breakpoints, $breakpoint) {

@@ -5,12 +5,18 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Card primary background - matches to default primary background
+/// @type Color
 $card-background--primary: settings.$ds_colour__background--primary !default;
+
+/// Card secondary background - matches to default secondary background
+/// @type Color
 $card-background--secondary: settings.$ds_colour__background--secondary !default;
 
+// Fixed var
 $card-outline-width: 0.0625rem;
 
-// Deprecated - use $card-background--secondary
+// DEPRECATED - use $card-background--secondary
 $card-grey-background-color: settings.$ds_colour__background--secondary !default;
 
 .ds_card {

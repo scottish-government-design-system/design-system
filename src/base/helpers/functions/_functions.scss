@@ -1,33 +1,61 @@
-///
-/// Miscellaneous functions, mostly used in the headings helpers
-///
+/*------------------------------------*\
+    MISC FUNCTIONS
+\*------------------------------------*/
+
 @use "sass:math";
 @use "../../settings";
 
+/// Removes the unit from a number
+/// @param {number} $num - The number to remove the unit from
+/// @return {number} The number without a unit
 @function strip-unit($num) {
     @return math.div($num, ($num * 0 + 1));
 }
 
+/// Returns the unit of a number
+/// @param {number} $value - The number to get the unit from
+/// @return {string} The unit of the number
 @function get-unit($value) {
   @return str-slice($value * 0 + "", 2, -1);
 }
 
+/// Converts a pixel value to em
+/// @param {number} $px - The pixel value to convert
+/// @param {number} $base - The base font size to use for the conversion (defaults to settings.$root-font-size)
+/// @return {number} The converted em value
 @function px-to-em ($px, $base: settings.$root-font-size) {
     @return math.div($px, $base) * 1em;
 }
 
+/// Converts a px value to rem
+/// @param {number} $px - The px value to convert
+/// @param {number} $base - The base font size to use for the conversion (defaults to settings.$root-font-size)
+/// @return {number} The converted rem value  
 @function px-to-rem ($px, $base: settings.$root-font-size) {
     @return math.div($px, $base) * 1rem;
 }
 
+/// Converts a rem value to px
+/// @param {number} $rem - The rem value to convert
+/// @param {number} $base - The base font size to use for the conversion (defaults to settings.$root-font-size)
+/// @return {number} The converted px value
 @function rem-to-px ($rem, $base: settings.$root-font-size) {
     @return strip-unit($rem * $base) * 1px;
 }
 
+/// Returns the nearest grid size for a given value
+/// @param {number} $value - The value to round to the nearest grid size
+/// @param {number} $grid - The grid size to round to (defaults to 8px)
+/// @return {number} The nearest grid size 
 @function nearest-grid-size ($value, $grid: 8px) {
     @return round(math.div($value, $grid)) * $grid;
 }
 
+/// Returns the line height that aligns with the grid system
+/// @param {number} $font-size - The font size to use for the calculation
+/// @param {number} $line-height - The line height to use for the calculation (defaults to 1.5)
+/// @param {number} $grid - The grid size to use for the calculation (defaults to 8px)
+/// @return {number} The line height that aligns with the grid system
 @function line-height-on-grid ($font-size, $line-height: 1.5, $grid: 8px) {
     @return math.div(nearest-grid-size($font-size * $line-height, $grid), $font-size);
 }

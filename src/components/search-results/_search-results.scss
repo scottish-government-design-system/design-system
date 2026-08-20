@@ -5,7 +5,9 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-$search-results-related-background: settings.$ds_colour__background--secondary;
+/// Background colour for related results panel
+/// @type Color
+$search-results-related-background: settings.$ds_colour__background--secondary !default;
 
 .ds_search-results {
     margin-top: 0.5rem;
@@ -45,7 +47,7 @@ $search-results-related-background: settings.$ds_colour__background--secondary;
             @include helpers.ds_responsive-margin(1, bottom);
         }
 
-        @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--secondary, 'related search results');
+        @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, $search-results-related-background, 'related search results');
     }
 
     &__divider {

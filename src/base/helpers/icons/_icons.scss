@@ -1,3 +1,7 @@
+/// Creates a chevron icon using CSS borders
+/// @param {string} $orientation - The orientation of the chevron (down, up, left, right)
+/// @param {string} $size - The size of the chevron (default: 1em)
+/// @output A chevron icon at the specified orientation and size
 @mixin ds_chevron($orientation: down, $size: 1em) {
     $chevron-width: #{$size * 0.25};
 
@@ -23,11 +27,7 @@
 }
 
 /// legacy non-prefixed names
-/// DEPRECATED - use prefixed mixins instead
+/// @deprecated - use prefixed mixin instead
 @mixin chevron($orientation: down, $size: 1em) {
     @include ds_chevron($orientation, $size);
-}
-
-@mixin icon-mask($url) {
-    @include ds_icon-mask($url);
 }

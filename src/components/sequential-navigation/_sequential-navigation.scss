@@ -6,14 +6,28 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Background circle colour
+/// @type Color
 $page-nav__circle-colour: settings.$ds_colour__brand !default;
+
+/// Background circle colour on hover
+/// @type Color
 $page-nav__circle-hover: settings.$ds_colour__link--hover !default;
+
+/// Background circle colour on focus
+/// @type Color
 $page-nav__circle-focus: settings.$ds_colour__link--focus !default;
+
+/// Default chevron icon colour - inherits same colour as default button text for primary button (white)
+/// @type Color
 $page-nav__icon-colour: settings.$ds_colour__button !default;
+
+/// Text colour for the additional label text
+/// @type Color
 $page-nav__prefix-colour: settings.$ds_colour__text !default;
 
-// fixed vars vars
+/// Size of circle
+/// @type Number
 $page-nav__circle-size: 3.5rem !default;
 
 .ds_sequential-nav {

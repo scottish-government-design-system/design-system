@@ -1,17 +1,21 @@
 /*------------------------------------*\
     ABBREVIATIONS
     Improved display of abbreviation styling with better readability than browser default
+
+    The <acronym> tag is deprecated in HTML5 and should not be used.
+    Use the <abbr> tag instead.
+
+    If the abbreviation does not have a title attribute, its underline is not shown.
 \*------------------------------------*/
 @use "../../settings";
 
-// [1] only apply this if there is a title attribute
-// [2] 1px line thickness at 16px root font size
-// [3] offset set to same as links
+// [1] 1px line thickness at 16px root font size
+// [2] offset set to same as links
 
 abbr, acronym {
-    &[title] { // [1]
+    &[title] { 
         text-decoration: underline dotted;
-        text-decoration-thickness: round(0.0625em, 1px); // [2]
-        text-underline-offset: settings.$ds_link__underline-offset;; // [3]
+        text-decoration-thickness: round(0.0625em, 1px); // [1]
+        text-underline-offset: settings.$ds_link__underline-offset;; // [2]
     }
 }

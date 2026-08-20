@@ -5,7 +5,8 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// fixed vars
+/// Border colour that appears above main title
+/// @type Color
 $contact-details__border-colour: settings.$ds_colour__border--highlight !default;
 
 .ds_contact-details {

@@ -6,13 +6,33 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Tag background colour
+/// @type Color
 $notification-tag__background: settings.$ds_colour__red !default;
+
+/// Tag text colour
+/// @type Color
 $notification-tag__colour: settings.$ds_colour__white !default;
-$notification-tag__size: 1rem !default; // 16px
-$notification-tag__size--medium: 1.25rem !default; // 20px
-$notification-tag__dot-size: 0.75rem !default; // 12px
-$notification-tag__dot-size--medium: 1rem !default; // 16px
-$notification-tag__border-width: 0.0625rem !default; // 1px
+
+/// Tag default font size - 1rem/16px
+/// @type Number
+$notification-tag__size: 1rem !default;
+
+/// Tag font size at medium breakpoint - 1.25rem/20px
+/// @type Number
+$notification-tag__size--medium: 1.25rem !default; 
+
+/// Size of dot variant - 0.75rem/12px
+/// @type Number
+$notification-tag__dot-size: 0.75rem !default; 
+
+/// Size of dot variant at medium breakpoint - 1rem/16px
+/// @type Number
+$notification-tag__dot-size--medium: 1rem !default; 
+
+/// Tag border width - 0.0625rem/1px
+/// @type Number
+$notification-tag__border-width: 0.0625rem !default;
 
 .ds_notification-tag {border-radius: 100px;
 

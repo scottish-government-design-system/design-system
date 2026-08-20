@@ -1,5 +1,5 @@
-/// VISIBILITY
-
+/// Mixin to visually hide an element while keeping it accessible to screen readers
+/// @output CSS to visually hide an element while keeping it accessible to screen readers
 @mixin ds_visually-hidden {
     clip: rect(1px, 1px, 1px, 1px);
     height: 1px;
@@ -8,6 +8,8 @@
     width: 1px;
 }
 
+/// Legacy non-prefixed name for visually hidden mixin
+/// @deprecated - use prefixed mixin instead
 @mixin visually-hidden {
     @include ds_visually-hidden
 }

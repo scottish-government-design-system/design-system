@@ -5,7 +5,8 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Colour of text in expand indicator when not open
+/// @type Color
 $side-nav__expand-colour: settings.$ds_colour__brand !default;
 
 // fixed vars

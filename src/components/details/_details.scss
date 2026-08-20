@@ -5,6 +5,7 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+// Fixed vars
 $details-border-width: 0.25rem;
 $details-icon-size: math.div((1em * 8px), settings.$root-font-size--medium);
 

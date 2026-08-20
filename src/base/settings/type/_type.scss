@@ -1,38 +1,119 @@
-/// TYPE
+/// Typography
 
+/// Body/Root
+
+/// Body font size
+/// @type Number
 $root-font-size: 16px !default;
+
+/// Body font size at medium breakpoint
+/// @type Number
 $root-font-size--medium: 19px !default;
+
+/// Body font size that stays fixed regardless of breakpoint
+/// @type Number
 $root-font-size--fixed: 16px !default;
 
-// heading sizes
-$h1-size:               30px !default;
-$h2-size:               22px !default;
-$h3-size:               19px !default;
-$h4-size:               16px !default;
-$h5-size:               14px !default;
 
-// heading sizes at medium breakpoint
-$h1-size--medium:       44px !default;
-$h2-size--medium:       30px !default;
-$h3-size--medium:       22px !default;
-$h4-size--medium:       19px !default;
-$h5-size--medium:       16px !default;
 
-// size variants
-$large-size:            19px !default;
-$small-size:            14px !default;
-$tiny-size:             12px !default;
+/// Headings
 
-$large-size--medium:    24px !default;
-$small-size--medium:    16px !default;
-$tiny-size--medium:     14px !default;
+/// H1 size
+/// @type Number 
+$h1-size: 30px !default;
 
-$small-size--fixed:     14px !default;
+/// H1 size at medium breakpoint
+/// @type Number
+$h1-size--medium: 44px !default;
 
-// weights
+
+/// H2 size
+/// @type Number
+$h2-size: 22px !default;
+
+/// H2 size at medium breakpoint
+/// @type Number
+$h2-size--medium: 30px !default;
+
+
+/// H3 size
+/// @type Number
+$h3-size: 19px !default;
+
+/// H3 size at medium breakpoint
+/// @type Number
+$h3-size--medium: 22px !default;
+
+
+/// H4 size
+/// @type Number
+$h4-size: 16px !default;
+
+/// H4 size at medium breakpoint
+/// @type Number
+$h4-size--medium: 19px !default;
+
+
+/// H5 size
+/// @type Number
+$h5-size: 14px !default;
+
+/// H5 size at medium breakpoint
+/// @type Number
+$h5-size--medium: 16px !default;
+
+
+
+/// Other size variants
+
+/// Large size - eg. for leader text
+/// @type Number
+$large-size: 19px !default;
+
+/// Large size at medium breakpoint
+/// @type Number
+$large-size--medium: 24px !default;
+
+
+/// Small size - eg. for metadata
+/// @type Number
+$small-size: 14px !default;
+
+/// Small size at medium breakpoint
+/// @type Number
+$small-size--medium: 16px !default;
+
+/// Small size that stays fixed regardless of breakpoint
+/// @type Number
+$small-size--fixed: 14px !default;
+
+
+/// Tiny size - limited use, use with caution
+/// @type Number
+$tiny-size: 12px !default;
+
+/// Tiny size at medium breakpoint
+/// @type Number
+$tiny-size--medium: 14px !default;
+
+
+/// Weights
+
+/// Light font weight
+/// @type Number
 $light: 300 !default;
+
+/// Normal font weight
+/// @type Number
 $normal: 400 !default;
+
+/// Bold font weight
+/// @type Number
 $bold: 700 !default;
 
-// font face
+
+/// Fonts
+
+/// Default font stack for the design system
+/// @type String
 $base-font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif !default;

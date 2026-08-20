@@ -1,10 +1,13 @@
-/// Breakpoints in px and rem
-/// small - 480px / 30rem
-/// medium - 768px / 48rem
-/// large - 992px / 62rem
-/// xlarge - 1200px / 75rem
+/*------------------------------------*\
+    Breakpoints in px and rem
+    small - 480px / 30rem
+    medium - 768px / 48rem
+    large - 992px / 62rem
+    xlarge - 1200px / 75rem
 
-// DEPRECATED - medium-portrait and medium-landscape will be removed in a future version
+    medium-portrait - deprecated, will be removed in a future version
+    medium-landscape - deprecated, will be removed in a future version
+\*------------------------------------*/
 
 $small: 30rem;
 $medium: 48rem;

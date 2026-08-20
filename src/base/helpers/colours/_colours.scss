@@ -78,7 +78,7 @@
 
 /// Adjust the lightness of a colour until it meets a target luminance
 /// @param {color} $color - the colour to adjust
-/// @param {number%} $targetLuminance - the luminance to lighten the colour to
+/// @param {number} $targetLuminance - the luminance to lighten the colour to
 /// @return {color} the lightened colour
 @function adjustLuminance($color, $targetLuminance) {
     $colorLuminance: getLuminance($color);
@@ -101,7 +101,7 @@
 /// Adjust a link colour to meet a required contrast ratio against a provided background colour
 /// @param {color} $foreground - the foreground colour
 /// @param {color} $background - the background colour
-/// @param {text} $description - text description of the element, used in the debug message
+/// @param {string} $description - text description of the element, used in the debug message
 /// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
 /// @output A child selector for links
 @mixin checkAndFixDescendantLinkColour($foreground, $background, $description: '', $ratio: 4.5) {
@@ -119,7 +119,7 @@
 /// Adjust a secondary button colour to meet a required contrast ratio against a provided background colour
 /// @param {color} $foreground - the foreground colour
 /// @param {color} $background - the background colour
-/// @param {text} $description - text description of the element, used in the debug message
+/// @param {string} $description - text description of the element, used in the debug message
 /// @param {number} $ratio - the contrast ratio to meet, from 0 to 21
 /// @output A child selector for secondary buttons
 @mixin checkAndFixDescendantSecondaryButtonColour($foreground, $background, $description: '', $ratio: 4.5) {

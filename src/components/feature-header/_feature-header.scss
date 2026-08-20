@@ -6,15 +6,21 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-/// Customise colours
 /// [1] Background colour for feature header - defaults to brand colour
+/// @type Color
+$feature-header-background: settings.$ds_colour__brand !default;
+
 /// [2] Set to true if you want the foreground and button hover colours to be calculated automatically
+/// @type Color
+$feature-header-compute-colours: false !default;
+
 /// [3] Set foreground colour if [2] is set to false
+/// @type Color
+$feature-header-foreground: settings.$ds_colour__white !default;
+
 /// [4] Set button hover background colour if [2] is set to false
-$feature-header-background: settings.$ds_colour__brand !default; /// [1]
-$feature-header-compute-colours: false !default; /// [2]
-$feature-header-foreground: settings.$ds_colour__white !default; /// [3]
-$feature-header-button-hover-background: rgba(settings.$ds_colour__black, 20%) !default; /// [4]
+/// @type Color
+$feature-header-button-hover-background: rgba(settings.$ds_colour__black, 20%) !default;
 
 /// Get the background colour for a theme's button
 /// If the background is very close to white or black then the calculated background may not be visible and user defined colours are recommended instead

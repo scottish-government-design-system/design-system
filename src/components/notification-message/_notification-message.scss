@@ -1,11 +1,14 @@
 /*------------------------------------*\
     NOTIFICATION MESSAGE
-    This will evolve to support multiple states - currently only success
 \*------------------------------------*/
 
 @use "../../base/helpers";
 @use "../../base/settings";
 
+/// Notification message supporting different states/colours
+/// The colour param is deprecated with the management of state moved to a separate mixin 'ds_notification-message-state'
+/// @param {color} $notification-colour - colour for the notification messages state - defaults to success/positive - Deprecated
+/// @output Style definitions for a notification message using the specified colour
 @mixin ds_notification-message($notification-colour: settings.$ds_colour__state--positive) {
 
 	@include helpers.ds_block-margins;
@@ -96,6 +99,9 @@
     @include helpers.checkAndFixDescendantLinkColour(settings.$ds_colour__link, settings.$ds_colour__background--secondary, 'notification message');
 }
 
+/// Set colour/state on the customisable parts of a notification message
+/// @param {Color} $notification-colour - colour for the notification messages state - defaults to success/positive
+/// @output Colour overrides for border and icon within a notification message
 @mixin ds_notification-message-state($notification-colour: settings.$ds_colour__state--positive) {
     border-color: $notification-colour;
 

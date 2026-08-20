@@ -6,6 +6,7 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+// Fixed vars
 $hide-this-page-background-color: settings.$ds_colour__red;
 $hide-this-page-background-color--hover: color.adjust(settings.$ds_colour__red, $lightness: -15%);
 

@@ -4,24 +4,26 @@
 
 @use "../spacing";
 
+/// Sets block margins on top and bottom of an element
+/// @output Top and bottom margins of position 4 on the responsive spacing scale
 @mixin ds_block-margins {
     @include spacing.ds_responsive-margin(4, top);
     @include spacing.ds_responsive-margin(4, bottom);
 }
 
+/// Sets block margins on bottom of an element
+/// @output Bottom margin of position 4 on the responsive spacing scale
 @mixin ds_block-margins--bottom {
     @include spacing.ds_responsive-margin(4, bottom);
 }
 
-
-
-
 /// legacy non-prefixed names
-/// DEPRECATED - use prefixed mixins instead
+/// @deprecated - use prefixed mixins instead
 @mixin block-margins {
     @include ds_block-margins;
 }
 
+/// @deprecated - use prefixed mixins instead
 @mixin block-margins--bottom {
     @include ds_block-margins--bottom;
 }

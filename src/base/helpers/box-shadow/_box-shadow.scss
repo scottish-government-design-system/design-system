@@ -2,15 +2,14 @@
 ///
 /// Single definition for consistent box shadows
 
+/// Standard box shadow for elements
+/// @output Box shadow property
 @mixin ds_box-shadow {
     box-shadow: 0.0625rem 0.0625rem 0.25rem rgba(0, 0, 0, 0.15);
 }
 
-
-
-
 /// legacy non-prefixed names
-/// DEPRECATED - use prefixed mixin instead
+/// @deprecated - use prefixed mixin instead
 @mixin box-shadow {
     @include ds_box-shadow;
 }

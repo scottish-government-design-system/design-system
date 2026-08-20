@@ -6,8 +6,12 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
-// modifiable vars
+/// Background colour for notification
+/// @type Color
 $cookie-notification__background-colour: settings.$ds_colour__background--tertiary !default;
+
+/// Background colour for success notification
+/// @type Color
 $cookie-notification__background-colour--success: settings.$ds_colour__state--positive !default;
 
 .ds_notification.ds_notification--cookie {

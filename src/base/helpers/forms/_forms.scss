@@ -6,8 +6,11 @@
 @use "../media-query";
 @use "../../settings";
 
+/// @deprecated - will be removed in a future version
 $small-focus-border-colour: settings.$ds_colour__border !default;
 
+/// Consistent styling for form inputs
+/// @output Consistent styling for form inputs, including focus and error states
 @mixin ds_input {
     background-color: settings.$ds_colour__background--primary;
     border: settings.$field-border-width solid currentColor;
@@ -31,6 +34,11 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
     }
 }
 
+/// Set consistent styling for form checkboxes and radio buttons
+/// @param {boolean} $round - Whether the checkbox/radio button should be round (default: false)
+/// @param {number} $small-pip-padding - Deprecated
+/// @param {color} $active-shadow-colour - Deprecated
+/// @output Style baseline for checkbox or radio with matching label, including focus and checked states along with small size variant
 @mixin ds_radiocheckboxstates ($round: false, $small-pip-padding: 0.125rem, $active-shadow-colour: settings.$ds_colour__input--focus__background) {
 
     margin-bottom: 1.5rem;
@@ -38,12 +46,12 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
     position: relative;
 
     &__input {
-        height: 2.5rem;
+        height: settings.$input-size;
         left: 0;
         opacity: 0;
         position: absolute;
         top: 0;
-        width: 2.5rem;
+        width: settings.$input-size;
     }
 
     &__label {
@@ -89,7 +97,7 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
 
     }
 
-    /// focus
+    // Focus
     &__input:focus + &__label::before {
         background-color: settings.$ds_colour__link--focus__background;
         border-color: settings.$ds_colour__link--focus;
@@ -106,10 +114,10 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
         opacity: 1;
     }
 
-    /// [1] this negative margin makes the small checkboxes/radios align left with content
+    // [1] this negative margin makes the small checkboxes/radios align left with content
     &--small {
         margin-bottom: 1rem;
-        margin-left: -0.5rem; /// [1]
+        margin-left: -0.5rem; // [1]
     }
 
     &--small &__input {
@@ -135,11 +143,8 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
     }
 }
 
-
-
-
 /// legacy non-prefixed names
-/// DEPRECATED - use prefixed mixin instead
+/// @deprecated - use prefixed mixin instead
 @mixin radiocheckboxstates($round: false, $small-pip-padding: 0.125rem, $active-shadow-colour: settings.$ds_colour__input--focus__background) {
     @include ds_radiocheckboxstates($round, $small-pip-padding, $active-shadow-colour);
 }
