@@ -6,6 +6,42 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 `Removed` and `Security`.
 
 ---
+
+## [4.2.0]
+### Added
+- Improvements to file upload component tracking
+### Changed
+- General improvements to Sass documentation
+- Details and search filter components now just use native details element
+### Deprecated
+- Details component no longer requires the legacy support version
+- Various Sass variables and params no longer used and marked as deprecated
+### Fixed
+- Back to top button positioning now correct when browser is resized
+### Removed
+- Storage module no longer added to global scope
+### Security
+Update the following dependencies
+- vite from 7.3.2 to 7.3.6
+- js-yaml from 4.1.1 to 4.3.1
+- esbuild from 0.27.7 to 0.28.1
+- immutable from 5.1.5 to 5.1.9
+- svgo from 2.8.2 to 2.8.3
+- undici from 7.28.0 to 7.29.0
+- postcss from 8.5.22 to 8.5.26
+- @eslint/js from ^9.39.1 to ^10.0.1
+- @vitest/browser-playwright from ^4.1.7 to ^4.1.10
+- @vitest/coverage-v8 from ^4.1.7 to ^4.1.10
+- eslint from ^9.39.1 to ^10.7.0
+- globals from ^16.5.0 to ^17.7.0
+- jsdom from ^27.0.1 to ^29.1.1
+- typescript from ^5.9.3 to ^6.0.2
+- typescript-eslint from ^8.47.0 to ^8.65.0
+- vite from ^7.1.12 to ^8.1.5
+- vitest from ^4.1.7 to ^4.1.10
+- nanoid from 3.3.17 to 3.3.18
+- brace-expansion from 5.0.7 to 5.0.9 and from 1.1.16 to 1.1.18
+
 ## [4.1.1]
 ### Changed
 - Cookie notification banner markup changed to work with flex layout that is used in notification banner
