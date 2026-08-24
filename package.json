@@ -9,6 +9,10 @@
     "email": "designsystem@gov.scot",
     "url": "https://github.com/scottish-government-design-system/design-system"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scottish-government-design-system/design-system"
+  },
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist; npx eslint && npx vite build && npx tsc && npm run sass && npm run sass-min && npm run svgsprite && npm run copyicons",
