@@ -8,6 +8,8 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 ---
 
 ## Upcoming
+### Added
+- 'storage' script can use the `domain` parameter when setting cookies
 ### Fixed
 - 'scrolling' small-screen table: shadow width on first column corrected
 

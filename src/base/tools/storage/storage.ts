@@ -32,7 +32,7 @@ export type StorageArgs = {
     cookie: {
         get: (name: string) => string | null
         remove: (name: string, _window?: Window) => void
-        set: (name: string, value: string, expiresDays?: number) => void
+        set: (name: string, value: string, expiresDays?: number, domain?: string) => void
     }
 }
 
@@ -40,6 +40,7 @@ type CookieDataArgs = {
     name: string
     value: string
     expires?: string
+    domain?: string
 }
 
 declare global {
@@ -59,12 +60,13 @@ const storage: StorageArgs = {
      *   - {string} name
      *   - {string} value
      *   - {number} expires - days to remember a cookie for (only relevant to cookies)
+     *   - {string} domain - host to which the cookie will be sent (only relevant to cookies)
      * @returns {void}
      */
-    set: function (obj: {type: string, name: string, value: string, expiresDays?: number, category: CategoryArgs}): void {
+    set: function (obj: { type: string, name: string, value: string, expiresDays?: number, category: CategoryArgs, domain?: string }): void {
         if (storage.hasPermission(obj.category)) {
             if (obj.type === 'cookie') {
-                return storage.cookie.set(obj.name, obj.value, obj.expiresDays);
+                return storage.cookie.set(obj.name, obj.value, obj.expiresDays, obj.domain);
             } else if (obj.type === 'local') {
                 localStorage.setItem(obj.name, obj.value);
             } else if (obj.type === 'session') {
@@ -128,11 +130,12 @@ const storage: StorageArgs = {
      * @param {string} name - the name of the cookie
      * @param {string} value - the value of the cookie
      * @param {number} expiresDays - the number of days to expire the cookie after
+     * @param {string} domain - host to which the cookie will be sent
      * @returns {void}
      */
-    setCookie: function (category: CategoryArgs, name: string, value: string, expiresDays: number): void {
+    setCookie: function (category: CategoryArgs, name: string, value: string, expiresDays: number, domain?: string): void {
         if (storage.hasPermission(category)) {
-            storage.cookie.set(name, value, expiresDays);
+            storage.cookie.set(name, value, expiresDays, domain);
         }
     },
 
@@ -243,15 +246,20 @@ const storage: StorageArgs = {
          * @param {string} name - the name of the cookie
          * @param {string} value - the value of the cookie
          * @param {number} expiresDays - the number of days until expiration
+         * @param {string} domain - host to which the cookie will be sent
          * @returns {CookieDataArgs}
          */
-        set: function (name: string, value: string, expiresDays?: number): CookieDataArgs {
+        set: function (name: string, value: string, expiresDays?: number, domain?: string): CookieDataArgs {
             value = window.btoa(value);
 
             const cookieData: CookieDataArgs = {
                 name: name,
                 value: value
             };
+
+            if (domain) {
+                cookieData.domain = domain;
+            }
 
             if (expiresDays) {
                 const date = new Date();
@@ -261,14 +269,18 @@ const storage: StorageArgs = {
             }
 
             // build the string, as IE wants expires parameter omitted if no expires set
-            let cookieString = name + '=' + value + '; ';
+            let cookieString = `${name}=${value};`;
             if (cookieData.expires) {
-                cookieString += 'expires=' + cookieData.expires + '; ';
+                cookieString += `expires=${cookieData.expires};`;
             }
+
+            if (cookieData.domain) {
+                cookieString += `domain=${domain};`;
+            }
+
             cookieString += 'path=/';
 
             document.cookie = cookieString;
-
             // this variable is used in tests to verify that things are being set correctly
             return cookieData;
         },

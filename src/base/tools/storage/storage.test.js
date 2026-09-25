@@ -70,9 +70,42 @@ describe('storage', () => {
             expect(localStorage.setItem).toHaveBeenCalled();
             expect(sessionStorage.setItem).toHaveBeenCalled();
         });
+
+        it('should set a cookie with expiry', () => {
+            // set a temp cookie
+            const EXPIRY_DAYS = 1;
+            const date = new Date();
+            const newDate = new Date(date.setDate(date.getDate() + EXPIRY_DAYS));
+            const cookieData = storage.set({
+                category: 'necessary',
+                expiresDays: EXPIRY_DAYS,
+                name: 'foo',
+                value: 'bar',
+                type: 'cookie'
+            });
+
+            expect(cookieData.name).toEqual('foo');
+            expect(cookieData.value).toEqual(window.btoa('bar'));
+            expect(cookieData.expires).toEqual(newDate.toUTCString());
+        });
+
+        it('should set a cookie with domain', () => {
+            // set a temp cookie
+            const COOKIE_DOMAIN = 'site.com';
+            const cookieData = storage.set({
+                category: 'necessary',
+                domain: COOKIE_DOMAIN,
+                name: 'foo',
+                value: 'bar',
+                type: 'cookie'
+            });
+
+            expect(cookieData.name).toEqual('foo');
+            expect(cookieData.value).toEqual(window.btoa('bar'));
+            expect(cookieData.domain).toEqual(COOKIE_DOMAIN);
+        });
     });
 
-    // todo: spec disabled because it causes intermittent failures. needs investigation.
     describe('get', () => {
         it('should get from cookies if requested', () => {
             vi.spyOn(storage.cookie, 'get').mockImplementation();
@@ -164,7 +197,7 @@ describe('storage', () => {
         it('should set if allowed', () => {
             vi.spyOn(storage.cookie, 'set').mockImplementation();
             storage.setCookie('necessary', 'name', 'value', 1);
-            expect(storage.cookie.set).toHaveBeenCalledWith('name', 'value', 1);
+            expect(storage.cookie.set).toHaveBeenCalledWith('name', 'value', 1, undefined);
         });
 
         it('should not set if not allowed', () => {
@@ -199,9 +232,10 @@ describe('storage', () => {
 
         it('set actual cookie, with expiry', () => {
             // set a temp cookie
+            const EXPIRY_DAYS = 1;
             const date = new Date();
-            const newDate = new Date(date.setDate(date.getDate() + 1));
-            const cookieData = storage.cookie.set('foo', 'bar', 1);
+            const newDate = new Date(date.setDate(date.getDate() + EXPIRY_DAYS));
+            const cookieData = storage.cookie.set('foo', 'bar', EXPIRY_DAYS);
 
             expect(cookieData.name).toEqual('foo');
             expect(cookieData.value).toEqual(window.btoa('bar'));
@@ -215,6 +249,16 @@ describe('storage', () => {
             expect(cookieData.name).toEqual('foo');
             expect(cookieData.value).toEqual(window.btoa('bar'));
             expect(cookieData.expires).toBeUndefined();
+        });
+
+        it('set actual cookie, with domain', () => {
+            // set a temp cookie
+            const COOKIE_DOMAIN = 'site.com'
+            const cookieData = storage.cookie.set('foo', 'bar', undefined, COOKIE_DOMAIN);
+
+            expect(cookieData.name).toEqual('foo');
+            expect(cookieData.value).toEqual(window.btoa('bar'));
+            expect(cookieData.domain).toEqual(COOKIE_DOMAIN);
         });
 
         it('remove actual cookie', () => {
