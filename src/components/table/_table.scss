@@ -23,6 +23,7 @@ $table-row-zebra-colour: settings.$ds_colour__background--secondary !default;
 
 // Fixed vars
 $table-border-width: 0.0625rem; // 1px
+$table-scrolling-shadow-width: 0.625rem; // 10px
 
 
 .ds_table {
@@ -126,9 +127,9 @@ $table-border-width: 0.0625rem; // 1px
             content: '';
             height: 100%;
             position: absolute;
-            right: -0.625rem; // -10px
+            right: #{$table-scrolling-shadow-width * -1};
             top: 0;
-            width: $table-border-width;
+            width: $table-scrolling-shadow-width;
         }
 
         &[data-smallscreen="scrolling"] tr > :first-child::before {
