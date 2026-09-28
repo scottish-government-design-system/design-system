@@ -43,16 +43,11 @@ $notification-banner__border-width: 0.0625rem; //1px
         position: relative;
 
         @include helpers.ds_last-child-no-margin;
-
-        &--has-close {
-            padding-right: 2.5rem;
-        }
     }
 
     &__text {
         display: inline-block;
         flex: 1;
-        margin-right: 1rem;
         padding: 0.25rem 0;
 
         @include helpers.ds_last-child-no-margin;
