@@ -7,6 +7,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## Upcoming
+### Fixed
+- 'scrolling' small-screen table: shadow width on first column corrected
+
 ## [4.2.0]
 ### Added
 - Improvements to file upload component tracking
