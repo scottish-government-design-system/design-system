@@ -121,8 +121,14 @@ $card-grey-background-color: settings.$ds_colour__background--secondary !default
             @include helpers.ds_last-child-no-margin;
             color: settings.$ds_colour__text--secondary;
 
+            // Add extra top spacing if the card has a header
             &:not(:first-child) {
                 padding-top: 0.5rem;
+            }
+
+            // Add extra bottom spacing if the card has no footer
+            &:last-child {
+                padding-bottom: 0.5rem;
             }
 
             // Override components when placed inside a .ds_card

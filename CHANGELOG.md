@@ -10,8 +10,16 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 ## Upcoming
 ### Added
 - 'storage' script can use the `domain` parameter when setting cookies
+### Changed
+- Card with no footer/metadata has increased bottom padding
 ### Fixed
 - 'scrolling' small-screen table: shadow width on first column corrected
+### Security
+- Bump @humanfs/node from 0.16.7 to 0.16.8
+- Bump @xmldom/xmldom from 0.8.13 to 0.8.15
+- Bump vitest from 4.1.10 to 4.1.11
+- Bump js-yaml from 4.3.1 to 4.3.2
+- Bump svgo from 2.8.3 to 2.8.4
 
 ## [4.2.0]
 ### Added
