@@ -42,7 +42,7 @@
     "typescript-eslint": "^8.65.0",
     "vite": "^8.1.5",
     "vitest": "^4.1.10",
-    "vitest-matchmedia-mock": "^2.0.3"
+    "vitest-matchmedia-mock": "^2.0.4"
   },
   "browserslist": [
     "defaults"
