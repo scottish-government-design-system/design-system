@@ -8,6 +8,11 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 ---
 
 ## Upcoming
+### Fixed
+- vertical alignment of hint text and label corrected on small checkboxes and small radios corrected
+- vertical alignment of separator text ('or') and small checkboxes corrected
+
+## [4.3.0]
 ### Added
 - 'storage' script can use the `domain` parameter when setting cookies
 ### Changed
