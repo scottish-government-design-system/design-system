@@ -7,7 +7,7 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
-## Upcoming
+## [4.3.0]
 ### Added
 - 'storage' script can use the `domain` parameter when setting cookies
 ### Changed
