@@ -7,6 +7,10 @@
 @use "../../base/helpers";
 @use "../../base/settings";
 
+$symbol-width: 2.5rem;
+$input-left-padding-with-symbol: $symbol-width;
+$input-left-padding-with-symbol-error-modifier: settings.$field-border-width--error - settings.$field-border-width;
+
 .ds_input {
     @include helpers.ds_responsive-margin (3, bottom);
     @include helpers.ds_input;
@@ -15,14 +19,15 @@
     line-height: 2rem;
     width: 100%;
 
-    & + &__message {
-        margin-top: -1rem;
-    }
-
     &__message--error {
         color: settings.$ds_colour__state--negative;
         font-weight: settings.$bold;
     }
+}
+
+.ds_input + .ds_input__message,
+.ds_input-wrapper + .ds_input__message {
+    margin-top: -1rem;
 }
 
 // width variants: fixed
@@ -32,11 +37,14 @@ $text-input-fixed-widths: (2,3,4,5,10,20);
 /// [2] additional currency padding + right padding + n character widths
 @each $width in $text-input-fixed-widths {
     .ds_input--fixed-#{$width} {
-        max-width: calc(1rem + #{($width) * 1em}); /// [1]
+        max-width: calc(#{(settings.$field-padding-x - settings.$field-border-width) * 2} + #{($width) * 1em}); /// [1]
     }
 
-    .ds_currency-wrapper .ds_input--fixed-#{$width} {
-        max-width: calc(3rem + #{($width) * 1em}); /// [2]
+    .ds_currency-wrapper,
+    .ds_input-wrapper:has(.ds_input-wrapper__symbol) {
+        .ds_input--fixed-#{$width} {
+            max-width: calc(1.875rem + #{(settings.$field-padding-x - settings.$field-border-width) * 2} + #{($width) * 1em}); /// [2]
+        }
     }
 }
 
@@ -58,25 +66,51 @@ $text-input-fluid-widths: (
     }
 }
 
+.ds_input-wrapper,
 .ds_input__wrapper {
+    align-items: center;
     display: flex;
+    gap: 0.75rem;
     margin-bottom: 1.5rem;
+    position: relative;
 
     .ds_input {
-        float: left;
         margin-bottom: 0;
-        margin-right: -3rem;
-        padding-right: 3.5rem;
     }
 
-    .ds_icon {
-        height: 2rem;
-        padding: 0.5rem;
-        width: 2rem;
+    .ds_input-wrapper__after {
+        @include helpers.ds_small-size;
+        font-weight: settings.$bold;
+        white-space: nowrap;
     }
 
-    > .ds_button {
+    .ds_input-wrapper__symbol {
+        @include helpers.ds_large-size;
+        height: settings.$input-min-height;
+        font-weight: settings.$bold;
+        line-height: settings.$input-min-height !important;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: $symbol-width;
+    }
+
+    &:has(.ds_input-wrapper__symbol) .ds_input {
+        padding-left: $input-left-padding-with-symbol;
+
+        &--error {
+            padding-left: calc($input-left-padding-with-symbol - $input-left-padding-with-symbol-error-modifier);
+        }
+    }
+
+    .ds_button {
         margin: 0;
         @include helpers.ds_button-sizing--small;
+    }
+
+    &:has(.ds_button) .ds_input {
+        margin-right: -3.75rem;
+        padding-right: 3.5rem;
     }
 }
