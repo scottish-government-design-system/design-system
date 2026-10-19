@@ -16,7 +16,7 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
     border: settings.$field-border-width solid currentColor;
     border-radius: 0;
     min-height: settings.$input-min-height;
-    padding: (0.5rem - settings.$field-border-width) (0.75rem - settings.$field-border-width);
+    padding: (settings.$field-padding-y - settings.$field-border-width) (settings.$field-padding-x - settings.$field-border-width);
 
     &:focus {
         @include focus.ds_input-focus;
@@ -25,7 +25,7 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
     &--error {
         border-color: settings.$ds_colour__state--negative;
         border-width: settings.$field-border-width--error;
-        padding: (0.5rem - settings.$field-border-width--error) (0.75rem - settings.$field-border-width--error);
+        padding: (settings.$field-padding-y - settings.$field-border-width--error) (settings.$field-padding-x - settings.$field-border-width--error);
 
         &:focus {
             border-color: currentColor;

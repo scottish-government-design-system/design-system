@@ -8,6 +8,13 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 ---
 
 ## Upcoming
+### Changed
+- change `.ds_input__wrapper` to `.ds_input-wrapper`. `.ds_input-wrapper` accommodates:
+  - a currency symbol (`.ds_currency-wrapper` is now deprecated)
+  - an icon button after a text input
+  - unit/description text after a text input
+
+## [4.3.0]
 ### Added
 - 'storage' script can use the `domain` parameter when setting cookies
 ### Changed
