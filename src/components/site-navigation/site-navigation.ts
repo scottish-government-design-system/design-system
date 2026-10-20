@@ -55,6 +55,7 @@ class MobileMenu extends DSComponent {
         this.newMenuButton.setAttribute('aria-expanded', false.toString());
         oldMenuButton.parentNode?.appendChild(this.newMenuButton);
         oldMenuButton.classList.add('fully-hidden');
+        oldMenuButton.classList.remove('js-toggle-menu');
 
         // events
         this.newMenuButton.addEventListener('click', (event) => {
