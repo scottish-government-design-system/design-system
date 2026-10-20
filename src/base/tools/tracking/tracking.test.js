@@ -1786,13 +1786,6 @@ describe('tracking', () => {
             // note: no assertion, test success can be inferred from there being no execution errors
         });
 
-        it('should add a data attribute to the title', () => {
-            const title = testObj.scope.querySelector('.ds_site-branding__title');
-            Tracking.add.siteBranding();
-
-            expect(title.getAttribute('data-header')).toEqual('header-title');
-        });
-
         it('should NOT add a data attribute to a title with attributes already set', () => {
             const title = testObj.scope.querySelector('.ds_site-branding__title');
             title.setAttribute('data-header', 'header-bar');

@@ -1335,12 +1335,6 @@ const tracking = {
                 if (logo && !logo.getAttribute('data-header')) {
                     logo.setAttribute('data-header', 'header-logo');
                 }
-
-                const title = branding.querySelector('.ds_site-branding__title');
-
-                if (title && !title.getAttribute('data-header')) {
-                    title.setAttribute('data-header', 'header-title');
-                }
             });
         },
 
