@@ -141,6 +141,10 @@ $small-focus-border-colour: settings.$ds_colour__border !default;
     > .ds_hint-text {
         padding-left: 1rem;
     }
+
+    &--small > .ds_hint-text {
+        padding-left: 0.5rem;
+    }
 }
 
 /// legacy non-prefixed names
