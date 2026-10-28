@@ -7,6 +7,10 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 
 ---
 
+## Upcoming
+### Fixed
+- `Back to top` component now has its link underlined
+
 ## [4.3.0]
 ### Added
 - 'storage' script can use the `domain` parameter when setting cookies
