@@ -27,7 +27,7 @@
         z-index: 1;
 
         &__button {
-            @include helpers.ds_link--block;
+            @include helpers.ds_link--block($underline: true);
             @include helpers.ds_small-size;
 
             background-color: rgba(color.channel(settings.$ds_colour__background--primary, "red", $space: rgb), color.channel(settings.$ds_colour__background--primary, "green", $space: rgb), color.channel(settings.$ds_colour__background--primary, "blue", $space: rgb), 0.4);
