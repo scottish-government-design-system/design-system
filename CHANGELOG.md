@@ -8,8 +8,15 @@ Changes are grouped under the labels: `Added`, `Changed`, `Deprecated`, `Fixed`,
 ---
 
 ## Upcoming
+### Changed
+- change `.ds_input__wrapper` to `.ds_input-wrapper`. `.ds_input-wrapper` accommodates:
+  - a currency symbol (`.ds_currency-wrapper` is now deprecated)
+  - an icon button after a text input
+  - unit/description text after a text input
+### Deprecated
+- `.ds_currency-wrapper` and `.ds_input__wrapper` marked as deprecated - use `.ds_input-wrapper` instead
 ### Fixed
-- `Back to top` component now has its link underlined
+- 'Back to top' component now has its link underlined
 
 ## [4.3.0]
 ### Added
