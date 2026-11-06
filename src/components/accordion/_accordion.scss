@@ -62,6 +62,7 @@ h1,h2,h3 {
         border-width: 0;
         box-sizing: border-box;
         color: currentColor;
+        cursor: pointer;
         font-weight: settings.$bold;
         margin: 0;
         padding: 0.5rem 0.5rem calc(0.75rem - $accordion__border-width); /// [1]
