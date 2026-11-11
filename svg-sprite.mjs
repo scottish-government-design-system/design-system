@@ -5,7 +5,7 @@ import path from 'path';
 import { mkdirp } from 'mkdirp';
 import fs from 'fs';
 import File from 'vinyl';
-import glob from 'glob';
+import { globSync } from 'glob';
 
 const filename = "icons.stack.svg";
 const destpath = 'dist/images/icons/';
@@ -35,7 +35,7 @@ spritePaths.forEach(spritePath => {
     const cwd = path.resolve(spritePath);
 
     // Register some SVG files with the spriter
-    glob.sync('**/*.svg', { cwd: cwd }).forEach(function (file) {
+    globSync('**/*.svg', { cwd: cwd }).forEach(function (file) {
         spriter.add(new File({
             path: path.join(cwd, file),
             base: cwd,

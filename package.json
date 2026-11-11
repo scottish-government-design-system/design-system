@@ -33,6 +33,7 @@
     "copyfiles": "^2.4.1",
     "esbuild": "^0.28.2",
     "eslint": "^10.14.0",
+    "glob": "^14.0.4",
     "globals": "^17.7.0",
     "jsdom": "^29.1.1",
     "mkdirp": "^3.0.1",
@@ -47,5 +48,8 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "overrides": {
+    "minimatch": "^11.0.1"
+  }
 }
