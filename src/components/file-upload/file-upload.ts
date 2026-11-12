@@ -137,7 +137,7 @@ class FileUpload extends DSComponent {
 
         const canAcceptFile = (file: File): boolean => {
             let canAcceptFile = false;
-            const accepts = this.fileInputElement.accept.replace(' ', '').split(',');
+            const accepts = this.fileInputElement.accept.replaceAll(' ', '').split(',');
             accepts.forEach((accept: string) => {
                 if (accept.match(/^\.\w+/)) { // file extension
                     const test = new RegExp(accept + '$');

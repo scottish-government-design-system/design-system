@@ -465,6 +465,18 @@ describe('file upload', () => {
 
                 expect(canAcceptResult).toEqual(true);
             });
+
+            // GH issue 324
+            it('spaces in "accept" value with multiple items', () => {
+                fileUploadModule.fileInputElement.accept = '.jpeg, .jpg, .png, .webp, .heic';
+                const file1 = new File(['My first file'], 'myfile1.jpeg', { type: 'image/jpeg' });
+                const file2 = new File(['My second file'], 'myfile2.jpg', { type: 'image/jpeg' });
+                const file3 = new File(['My third file'], 'myfile3.png', { type: 'image/png' });
+
+                const canAcceptResult = fileUploadModule.canAccept([file1, file2, file3]);
+
+                expect(canAcceptResult).toEqual(true);
+            });
         });
 
         describe('file input "on input" scenarios', () => {
