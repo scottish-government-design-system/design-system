@@ -90,7 +90,7 @@ describe('accordion', () => {
     });
 });
 
-describe('accordion without "open all" button', function () {
+describe('accordion without "open all" button', () => {
     beforeEach(async () => {
         await loadHtml('src/components/accordion/accordion.html');
         testObj.accordionElement = document.querySelector('#withoutopenall');
@@ -114,5 +114,73 @@ describe('accordion without "open all" button', function () {
         firstAccordionItem.dispatchEvent(event);
 
         expect(testObj.accordionModule.setOpenAllButton).not.toHaveBeenCalled();
+    });
+});
+
+describe('accordion with legacy markup', () => {
+    beforeEach(async () => {
+        await loadHtml('src/components/accordion/accordion.html');
+        testObj.accordionElement = document.querySelector('#legacymarkup');
+
+    });
+
+    it('should transform the markup to the new DETAILS structure', () => {
+        const firstAccordionItemTitleHTML = testObj.accordionElement.querySelector('.ds_accordion-item__title').innerHTML;
+        const firstAccordionItemIndicatorHTML = testObj.accordionElement.querySelector('.ds_accordion-item__indicator').outerHTML;
+        const firstAccordionItemBodyHTML = testObj.accordionElement.querySelector('.ds_accordion-item__body').innerHTML;
+
+        testObj.accordionModule = new Accordion(testObj.accordionElement);
+
+        const firstAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item');
+        const secondAccordionItem = testObj.accordionElement.querySelector('.ds_accordion-item:nth-of-type(2)');
+        const firstAccordionItemHeader = firstAccordionItem.querySelector('.ds_accordion-item__header');
+        const firstAccordionItemBody = firstAccordionItem.querySelector('.ds_accordion-item__body');
+        const control = firstAccordionItem.querySelector('.ds_accordion-item__control');
+        const label = firstAccordionItem.querySelector('.ds_accordion-item__label');
+
+        // accordion items are new DETAILS
+        expect(firstAccordionItem.nodeName).toEqual('DETAILS');
+
+        // accordion headers are now SUMMARY
+        expect(firstAccordionItemHeader.nodeName).toEqual('SUMMARY');
+
+        // accordion headers' content is old accordion-item__title content
+        expect(firstAccordionItemHeader.innerHTML).toEqual(firstAccordionItemTitleHTML + firstAccordionItemIndicatorHTML);
+
+        // accordion body content is old accordion-item__body content
+        expect(firstAccordionItemBody.innerHTML).toEqual(firstAccordionItemBodyHTML);
+
+        // accordion control is removed
+        expect(control).toBeNull();
+
+        // accordion label is removed
+        expect(label).toBeNull();
+
+        // open state is preserved
+        expect(firstAccordionItem.open).toEqual(true);
+        expect(secondAccordionItem.open).toEqual(false);
+    });
+
+    describe('invalid legacy markup should abort the fallback', () => {
+        it('no body', () => {
+            const firstBody = testObj.accordionElement.querySelector('.ds_accordion-item__body');
+
+            firstBody.parentNode.removeChild(firstBody);
+            testObj.accordionModule = new Accordion(testObj.accordionElement);
+        });
+
+        it('no title', () => {
+            const firstTitle = testObj.accordionElement.querySelector('.ds_accordion-item__title');
+
+            firstTitle.parentNode.removeChild(firstTitle);
+            testObj.accordionModule = new Accordion(testObj.accordionElement);
+        });
+
+        it('no control', () => {
+            const firstControl = testObj.accordionElement.querySelector('.ds_accordion-item__control');
+
+            firstControl.parentNode.removeChild(firstControl);
+            testObj.accordionModule = new Accordion(testObj.accordionElement);
+        });
     });
 });
