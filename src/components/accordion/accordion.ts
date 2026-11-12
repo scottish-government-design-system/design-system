@@ -64,12 +64,16 @@ class Accordion extends DSComponent {
      */
     private doFallback(): void {
         this.items.forEach(item => {
+            const body = item.querySelector('.ds_accordion-item__body');
+            const title = item.querySelector('.ds_accordion-item__title');
+            const control = item.querySelector('.ds_accordion-item__control') as HTMLInputElement;
+
+            if (!body || !title || !control) {
+                return;
+            }
+
             const details = document.createElement('details');
             const summary = document.createElement('summary');
-
-            const body = item.querySelector('.ds_accordion-item__body') || document.createElement('div');
-            const title = item.querySelector('.ds_accordion-item__title') || document.createElement('div');
-            const control = item.querySelector('.ds_accordion-item__control') as HTMLInputElement || document.createElement('input');
 
             summary.innerHTML = title.innerHTML + item.querySelector('.ds_accordion-item__indicator')?.outerHTML;
 
